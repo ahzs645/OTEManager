@@ -217,3 +217,29 @@ export const updateAuthorPaymentInfo = createServerFn({ method: "POST" })
       };
     }
   });
+
+// Update article content (markdown)
+export const updateArticleContent = createServerFn({ method: "POST" })
+  .validator((data: { articleId: string; content: string }) => data)
+  .handler(async ({ data }) => {
+    try {
+      const { db, articles } = await import("@db/index");
+      const { eq } = await import("drizzle-orm");
+
+      await db
+        .update(articles)
+        .set({
+          content: data.content,
+          updatedAt: new Date(),
+        })
+        .where(eq(articles.id, data.articleId));
+
+      return { success: true };
+    } catch (error) {
+      console.error("Failed to update article content:", error);
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : "Unknown error",
+      };
+    }
+  });

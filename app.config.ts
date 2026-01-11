@@ -7,5 +7,11 @@ export default defineConfig({
   },
   vite: {
     plugins: [viteTsConfigPaths()],
+    optimizeDeps: {
+      exclude: ["mammoth"],
+    },
+    ssr: {
+      noExternal: ["mammoth"],
+    },
   },
 });

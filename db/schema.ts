@@ -84,6 +84,7 @@ export const articles = pgTable("articles", {
   automationStatus: automationStatusEnum("automation_status").default("Pending Review"),
   prefersAnonymity: boolean("prefers_anonymity").default(false),
   articleFilePath: text("article_file_path"),
+  content: text("content"), // Markdown content
 
   // Payment info
   paymentStatus: boolean("payment_status").default(false),

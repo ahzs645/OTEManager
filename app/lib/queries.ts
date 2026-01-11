@@ -85,7 +85,7 @@ export const getRecentArticles = createServerFn({ method: "GET" }).handler(
 );
 
 // All articles with filters
-export const getArticles = createServerFn({ method: "GET" })
+export const getArticles = createServerFn({ method: "POST" })
   .validator(
     (data: {
       status?: string;
@@ -97,6 +97,7 @@ export const getArticles = createServerFn({ method: "GET" })
     }) => data
   )
   .handler(async ({ data }) => {
+    console.log("getArticles called with data:", JSON.stringify(data));
     try {
       const { db, articles } = await import("@db/index");
       const { eq, ilike, and, or, count, sql } = await import("drizzle-orm");
@@ -166,12 +167,18 @@ export const getArticles = createServerFn({ method: "GET" })
   });
 
 // Get single article by ID
-export const getArticleById = createServerFn({ method: "GET" })
-  .validator((id: string) => id)
-  .handler(async ({ data: id }) => {
+export const getArticleById = createServerFn({ method: "POST" })
+  .validator((data: { id: string }) => data)
+  .handler(async ({ data }) => {
+    console.log("getArticleById called with data:", data);
     try {
+      if (!data?.id) {
+        console.error("Article ID is undefined or empty");
+        return { article: null };
+      }
       const { db, articles } = await import("@db/index");
       const { eq } = await import("drizzle-orm");
+      const id = data.id;
 
       const article = await db.query.articles.findFirst({
         where: eq(articles.id, id),
@@ -192,6 +199,60 @@ export const getArticleById = createServerFn({ method: "GET" })
     } catch (error) {
       console.error("Failed to get article:", error);
       return { article: null };
+    }
+  });
+
+// Get single author with stats
+export const getAuthorById = createServerFn({ method: "POST" })
+  .validator((data: { id: string }) => data)
+  .handler(async ({ data }) => {
+    try {
+      const { db, authors, articles } = await import("@db/index");
+      const { eq, sum, count, and } = await import("drizzle-orm");
+
+      const author = await db.query.authors.findFirst({
+        where: eq(authors.id, data.id),
+        with: {
+          articles: {
+            with: {
+              attachments: true,
+            },
+            orderBy: (articles, { desc }) => [desc(articles.createdAt)],
+          },
+        },
+      });
+
+      if (!author) {
+        return { author: null, stats: null };
+      }
+
+      // Calculate stats
+      const [statsResult] = await db
+        .select({
+          totalArticles: count(),
+          totalPaid: sum(articles.paymentAmount),
+        })
+        .from(articles)
+        .where(
+          and(eq(articles.authorId, data.id), eq(articles.paymentStatus, true))
+        );
+
+      const [allArticlesCount] = await db
+        .select({ count: count() })
+        .from(articles)
+        .where(eq(articles.authorId, data.id));
+
+      return {
+        author,
+        stats: {
+          totalArticles: allArticlesCount?.count ?? 0,
+          paidArticles: Number(statsResult?.totalArticles) || 0,
+          totalEarnings: Number(statsResult?.totalPaid) || 0,
+        },
+      };
+    } catch (error) {
+      console.error("Failed to get author:", error);
+      return { author: null, stats: null };
     }
   });
 

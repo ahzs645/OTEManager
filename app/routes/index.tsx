@@ -22,6 +22,10 @@ import { getDashboardStats, getRecentArticles } from "~/lib/queries";
 
 export const Route = createFileRoute("/")({
   component: Dashboard,
+  // Cache loader data for 30 seconds to prevent refetching on navigation
+  staleTime: 30_000,
+  // Keep data in cache for 5 minutes even when inactive
+  gcTime: 5 * 60 * 1000,
   loader: async () => {
     const [stats, recent] = await Promise.all([
       getDashboardStats(),
@@ -155,7 +159,7 @@ function ArticleListItem({
 
   return (
     <Link
-      to="/articles/$articleId"
+      to="/article/$articleId"
       params={{ articleId: article.id }}
       className="list-item list-item-clickable"
       style={{ borderBottom: isLast ? "none" : undefined }}

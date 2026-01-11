@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   FileText,
   Search,
@@ -33,6 +33,10 @@ type ArticlesSearch = {
 
 export const Route = createFileRoute("/articles")({
   component: ArticlesPage,
+  // Cache loader data for 30 seconds to prevent refetching on navigation
+  staleTime: 30_000,
+  // Keep data in cache for 5 minutes even when inactive
+  gcTime: 5 * 60 * 1000,
   validateSearch: (search: Record<string, unknown>): ArticlesSearch => {
     return {
       status: search.status as string | undefined,
@@ -41,16 +45,6 @@ export const Route = createFileRoute("/articles")({
       authorId: search.authorId as string | undefined,
       page: Number(search.page) || 1,
     };
-  },
-  loaderDeps: ({ search }) => ({ search }),
-  loader: async ({ deps }) => {
-    return getArticles({
-      status: deps.search.status,
-      tier: deps.search.tier,
-      search: deps.search.search,
-      authorId: deps.search.authorId,
-      page: deps.search.page,
-    });
   },
 });
 
@@ -75,10 +69,39 @@ const TIER_OPTIONS = [
 ];
 
 function ArticlesPage() {
-  const { articles, total, page, totalPages } = Route.useLoaderData();
   const search = Route.useSearch();
   const navigate = useNavigate({ from: Route.fullPath });
   const [searchInput, setSearchInput] = useState(search.search || "");
+  const [data, setData] = useState<{
+    articles: any[];
+    total: number;
+    page: number;
+    totalPages: number;
+  }>({ articles: [], total: 0, page: 1, totalPages: 0 });
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Fetch articles when search params change
+  useEffect(() => {
+    setIsLoading(true);
+    // Build params object, only including defined values
+    const params: Record<string, any> = { page: search.page || 1 };
+    if (search.status) params.status = search.status;
+    if (search.tier) params.tier = search.tier;
+    if (search.search) params.search = search.search;
+    if (search.authorId) params.authorId = search.authorId;
+
+    getArticles(params)
+      .then((result) => {
+        setData(result);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch articles:", err);
+        setIsLoading(false);
+      });
+  }, [search.status, search.tier, search.search, search.authorId, search.page]);
+
+  const { articles, total, page, totalPages } = data;
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -112,8 +135,7 @@ function ArticlesPage() {
         <div className="page-header" style={{ marginBottom: 0 }}>
           <h1 className="page-title">Articles</h1>
           <p className="page-subtitle">
-            {total} {total === 1 ? "article" : "articles"}
-            {hasFilters && " matching filters"}
+            {isLoading ? "Loading..." : `${total} ${total === 1 ? "article" : "articles"}${hasFilters ? " matching filters" : ""}`}
           </p>
         </div>
       </div>
@@ -258,7 +280,7 @@ function ArticleRow({ article }: { article: any }) {
 
   return (
     <Link
-      to="/articles/$articleId"
+      to="/article/$articleId"
       params={{ articleId: article.id }}
       className="grid gap-4 px-4 py-3 items-center table-row"
       style={{
