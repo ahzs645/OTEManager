@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Build output
+.output/
+.vinxi/
+dist/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Generated files
+app/routeTree.gen.ts
+
+# Uploads (local file storage)
+uploads/
+
+# Database
+db/migrations/
+*.db
+*.sqlite
+
+# Testing
+coverage/
