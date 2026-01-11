@@ -214,12 +214,13 @@ function ArticlesPage() {
             <div
               className="grid gap-4 px-4 py-2"
               style={{
-                gridTemplateColumns: "1fr 140px 100px 100px 80px 60px",
+                gridTemplateColumns: "1fr 140px 70px 100px 100px 80px 60px",
                 borderBottom: "0.5px solid var(--border-subtle)",
               }}
             >
               <span className="table-header">Article</span>
               <span className="table-header">Author</span>
+              <span className="table-header">Vol/Issue</span>
               <span className="table-header">Status</span>
               <span className="table-header">Submitted</span>
               <span className="table-header">Tier</span>
@@ -284,7 +285,7 @@ function ArticleRow({ article }: { article: any }) {
       params={{ articleId: article.id }}
       className="grid gap-4 px-4 py-3 items-center table-row"
       style={{
-        gridTemplateColumns: "1fr 140px 100px 100px 80px 60px",
+        gridTemplateColumns: "1fr 140px 70px 100px 100px 80px 60px",
         display: "grid",
       }}
     >
@@ -309,6 +310,25 @@ function ArticleRow({ article }: { article: any }) {
             {authorName}
           </span>
         </div>
+      </div>
+
+      {/* Volume/Issue */}
+      <div>
+        {article.volume || article.issue ? (
+          <span
+            className="text-xs tabular-nums px-1.5 py-0.5 rounded"
+            style={{
+              background: "var(--bg-subtle)",
+              color: "var(--fg-muted)",
+            }}
+          >
+            {article.volume && `V${article.volume}`}
+            {article.volume && article.issue && "/"}
+            {article.issue && `#${article.issue}`}
+          </span>
+        ) : (
+          <span className="text-xs" style={{ color: "var(--fg-faint)" }}>—</span>
+        )}
       </div>
 
       {/* Status */}

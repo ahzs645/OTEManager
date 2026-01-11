@@ -86,6 +86,10 @@ export const articles = pgTable("articles", {
   articleFilePath: text("article_file_path"),
   content: text("content"), // Markdown content
 
+  // Publication info
+  volume: integer("volume"), // e.g., 12
+  issue: integer("issue"), // e.g., 3
+
   // Payment info
   paymentStatus: boolean("payment_status").default(false),
   paymentAmount: integer("payment_amount"), // in cents

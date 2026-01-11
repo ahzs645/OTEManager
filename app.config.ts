@@ -13,5 +13,14 @@ export default defineConfig({
     ssr: {
       noExternal: ["mammoth"],
     },
+    define: {
+      // Provide Buffer polyfill for client-side
+      "global.Buffer": "globalThis.Buffer",
+    },
+    resolve: {
+      alias: {
+        buffer: "buffer/",
+      },
+    },
   },
 });

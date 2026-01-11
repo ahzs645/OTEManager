@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
+import { createServerFn } from '@tanstack/start'
 import { useState } from 'react'
 import {
   ArrowLeft,
@@ -28,16 +29,22 @@ import {
   Button,
   LoadingSpinner,
 } from '~/components/Layout'
-import { updateArticleStatus, addArticleNote, updateArticleContent } from '~/lib/mutations'
+import { updateArticleStatus, addArticleNote, updateArticleContent, updateArticle } from '~/lib/mutations'
 
-export const Route = createFileRoute('/article/$articleId')({
-  component: ArticleDetailPage,
-  loader: async ({ params }) => {
+// Server function to fetch article data - ensures db code only runs on server
+const fetchArticleData = createServerFn({ method: 'GET' })
+  .validator((articleId: string) => articleId)
+  .handler(async ({ data: articleId }) => {
+    // Guard against undefined articleId (can happen during hot reload)
+    if (!articleId) {
+      return { article: null }
+    }
+
     const { db, articles } = await import('@db/index')
     const { eq } = await import('drizzle-orm')
 
     const article = await db.query.articles.findFirst({
-      where: eq(articles.id, params.articleId),
+      where: eq(articles.id, articleId),
       with: {
         author: true,
         attachments: true,
@@ -52,7 +59,11 @@ export const Route = createFileRoute('/article/$articleId')({
     })
 
     return { article }
-  },
+  })
+
+export const Route = createFileRoute('/article/$articleId')({
+  component: ArticleDetailPage,
+  loader: ({ params }) => fetchArticleData(params.articleId),
 })
 
 const STATUS_OPTIONS = [
@@ -605,6 +616,15 @@ function ArticleDetailPage() {
             </div>
           </Section>
 
+          {/* Publication */}
+          <Section title="Publication">
+            <VolumeIssueEditor
+              articleId={article.id}
+              initialVolume={article.volume}
+              initialIssue={article.issue}
+            />
+          </Section>
+
           {/* Payment */}
           <Section title="Payment">
             <div className="flex items-center gap-3">
@@ -679,6 +699,121 @@ function DetailRow({
         </span>
       ) : (
         value
+      )}
+    </div>
+  )
+}
+
+function VolumeIssueEditor({
+  articleId,
+  initialVolume,
+  initialIssue,
+}: {
+  articleId: string
+  initialVolume: number | null
+  initialIssue: number | null
+}) {
+  const [volume, setVolume] = useState<string>(initialVolume?.toString() || '')
+  const [issue, setIssue] = useState<string>(initialIssue?.toString() || '')
+  const [isSaving, setIsSaving] = useState(false)
+  const [initialVol] = useState(initialVolume?.toString() || '')
+  const [initialIss] = useState(initialIssue?.toString() || '')
+
+  const hasChanges = volume !== initialVol || issue !== initialIss
+
+  const handleSave = async () => {
+    setIsSaving(true)
+    try {
+      await updateArticle({
+        articleId,
+        volume: volume ? parseInt(volume, 10) : null,
+        issue: issue ? parseInt(issue, 10) : null,
+      })
+      // Reload to refresh data
+      window.location.reload()
+    } catch (error) {
+      console.error('Failed to save volume/issue:', error)
+    } finally {
+      setIsSaving(false)
+    }
+  }
+
+  const handleVolumeChange = (value: string) => {
+    // Only allow numbers
+    if (value === '' || /^\d+$/.test(value)) {
+      setVolume(value)
+    }
+  }
+
+  const handleIssueChange = (value: string) => {
+    // Only allow numbers
+    if (value === '' || /^\d+$/.test(value)) {
+      setIssue(value)
+    }
+  }
+
+  return (
+    <div className="space-y-3">
+      <div className="grid grid-cols-2 gap-3">
+        <div>
+          <label
+            className="block text-xs mb-1"
+            style={{ color: 'var(--fg-muted)' }}
+          >
+            Volume
+          </label>
+          <input
+            type="text"
+            value={volume}
+            onChange={(e) => handleVolumeChange(e.target.value)}
+            placeholder="e.g., 12"
+            className="input w-full tabular-nums"
+            style={{ textAlign: 'center' }}
+          />
+        </div>
+        <div>
+          <label
+            className="block text-xs mb-1"
+            style={{ color: 'var(--fg-muted)' }}
+          >
+            Issue
+          </label>
+          <input
+            type="text"
+            value={issue}
+            onChange={(e) => handleIssueChange(e.target.value)}
+            placeholder="e.g., 3"
+            className="input w-full tabular-nums"
+            style={{ textAlign: 'center' }}
+          />
+        </div>
+      </div>
+
+      {hasChanges && (
+        <Button
+          onClick={handleSave}
+          disabled={isSaving}
+          variant="primary"
+          size="sm"
+          className="w-full"
+        >
+          {isSaving ? (
+            <LoadingSpinner size="sm" />
+          ) : (
+            <>
+              <Save className="w-3 h-3" />
+              Save Changes
+            </>
+          )}
+        </Button>
+      )}
+
+      {(volume || issue) && !hasChanges && (
+        <p className="text-xs text-center" style={{ color: 'var(--fg-muted)' }}>
+          {volume && `Volume ${volume}`}
+          {volume && issue && ' · '}
+          {issue && `Issue ${issue}`}
+        </p>
       )}
     </div>
   )

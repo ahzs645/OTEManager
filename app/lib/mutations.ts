@@ -62,6 +62,8 @@ export const updateArticle = createServerFn({ method: "POST" })
       prefersAnonymity?: boolean;
       paymentStatus?: boolean;
       paymentAmount?: number;
+      volume?: number | null;
+      issue?: number | null;
     }) => data
   )
   .handler(async ({ data }) => {
@@ -69,15 +71,23 @@ export const updateArticle = createServerFn({ method: "POST" })
       const { db, articles } = await import("@db/index");
       const { eq } = await import("drizzle-orm");
 
-      const { articleId, ...updateData } = data;
+      const { articleId, ...rest } = data;
+
+      // Build update object, only including defined fields
+      // null is allowed (to clear values), undefined is not
+      const updateData: Record<string, any> = { updatedAt: new Date() };
+
+      if (rest.title !== undefined) updateData.title = rest.title;
+      if (rest.articleTier !== undefined) updateData.articleTier = rest.articleTier;
+      if (rest.prefersAnonymity !== undefined) updateData.prefersAnonymity = rest.prefersAnonymity;
+      if (rest.paymentStatus !== undefined) updateData.paymentStatus = rest.paymentStatus;
+      if (rest.paymentAmount !== undefined) updateData.paymentAmount = rest.paymentAmount;
+      if (rest.volume !== undefined) updateData.volume = rest.volume;
+      if (rest.issue !== undefined) updateData.issue = rest.issue;
 
       await db
         .update(articles)
-        .set({
-          ...updateData,
-          articleTier: updateData.articleTier as any,
-          updatedAt: new Date(),
-        })
+        .set(updateData)
         .where(eq(articles.id, articleId));
 
       return { success: true };

@@ -206,12 +206,18 @@ export const getArticleById = createServerFn({ method: "POST" })
 export const getAuthorById = createServerFn({ method: "POST" })
   .validator((data: { id: string }) => data)
   .handler(async ({ data }) => {
+    console.log("getAuthorById called with data:", JSON.stringify(data));
     try {
+      if (!data?.id) {
+        console.error("Author ID is undefined or empty");
+        return { author: null, stats: null };
+      }
       const { db, authors, articles } = await import("@db/index");
       const { eq, sum, count, and } = await import("drizzle-orm");
+      const id = data.id;
 
       const author = await db.query.authors.findFirst({
-        where: eq(authors.id, data.id),
+        where: eq(authors.id, id),
         with: {
           articles: {
             with: {
@@ -234,13 +240,13 @@ export const getAuthorById = createServerFn({ method: "POST" })
         })
         .from(articles)
         .where(
-          and(eq(articles.authorId, data.id), eq(articles.paymentStatus, true))
+          and(eq(articles.authorId, id), eq(articles.paymentStatus, true))
         );
 
       const [allArticlesCount] = await db
         .select({ count: count() })
         .from(articles)
-        .where(eq(articles.authorId, data.id));
+        .where(eq(articles.authorId, id));
 
       return {
         author,
