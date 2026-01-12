@@ -23,6 +23,7 @@ import {
   RefreshCw,
   Calculator,
   Edit2,
+  Trash2,
 } from 'lucide-react'
 import {
   StatusBadge,
@@ -33,7 +34,7 @@ import {
   Button,
   LoadingSpinner,
 } from '~/components/Layout'
-import { updateArticleStatus, addArticleNote, updateArticleContent, updateArticle, calculateArticlePayment, setManualPayment, toggleArticleFeatured, updateAttachmentCaption, updateArticleIssue, markPaymentComplete, updateArticleBonusFlags, updateArticleFeedbackLetter } from '~/lib/mutations'
+import { updateArticleStatus, addArticleNote, updateArticleNote, deleteArticleNote, updateArticleContent, updateArticle, calculateArticlePayment, setManualPayment, toggleArticleFeatured, updateAttachmentCaption, updateArticleIssue, markPaymentComplete, updateArticleBonusFlags, updateArticleFeedbackLetter } from '~/lib/mutations'
 import { formatCents, type PaymentCalculation } from '~/lib/payment-calculator'
 
 // Server function to fetch article data - ensures db code only runs on server
@@ -124,6 +125,10 @@ function ArticleDetailPage() {
   const [feedbackLetter, setFeedbackLetter] = useState(article?.feedbackLetter || '')
   const [isSavingFeedback, setIsSavingFeedback] = useState(false)
   const [feedbackSaved, setFeedbackSaved] = useState(true)
+  const [editingNote, setEditingNote] = useState<{ id: string; content: string } | null>(null)
+  const [editNoteContent, setEditNoteContent] = useState('')
+  const [isSavingNote, setIsSavingNote] = useState(false)
+  const [isDeletingNote, setIsDeletingNote] = useState<string | null>(null)
 
   if (!article) {
     return (
@@ -289,6 +294,49 @@ function ArticleDetailPage() {
   const handleFeedbackLetterChange = (newContent: string) => {
     setFeedbackLetter(newContent)
     setFeedbackSaved(false)
+  }
+
+  const handleEditNote = (note: { id: string; content: string }) => {
+    setEditingNote(note)
+    setEditNoteContent(note.content)
+  }
+
+  const handleSaveEditedNote = async () => {
+    if (!editingNote || !editNoteContent.trim()) return
+    setIsSavingNote(true)
+    try {
+      await updateArticleNote({
+        data: {
+          noteId: editingNote.id,
+          content: editNoteContent,
+        },
+      })
+      setEditingNote(null)
+      setEditNoteContent('')
+      window.location.reload()
+    } catch (error) {
+      console.error('Failed to update note:', error)
+    } finally {
+      setIsSavingNote(false)
+    }
+  }
+
+  const handleCancelEditNote = () => {
+    setEditingNote(null)
+    setEditNoteContent('')
+  }
+
+  const handleDeleteNote = async (noteId: string) => {
+    if (!confirm('Are you sure you want to delete this note?')) return
+    setIsDeletingNote(noteId)
+    try {
+      await deleteArticleNote({ data: { noteId } })
+      window.location.reload()
+    } catch (error) {
+      console.error('Failed to delete note:', error)
+    } finally {
+      setIsDeletingNote(null)
+    }
   }
 
   const wordCount = content.trim() ? content.trim().split(/\s+/).length : 0
@@ -639,19 +687,81 @@ function ArticleDetailPage() {
                         borderLeft: '2px solid var(--accent)',
                       }}
                     >
-                      <p
-                        className="text-sm"
-                        style={{ color: 'var(--fg-default)' }}
-                      >
-                        {note.content}
-                      </p>
-                      <p
-                        className="text-xs mt-2"
-                        style={{ color: 'var(--fg-muted)' }}
-                      >
-                        {note.createdBy || 'Unknown'} ·{' '}
-                        {formatDate(note.createdAt)}
-                      </p>
+                      {editingNote?.id === note.id ? (
+                        // Edit mode
+                        <div className="space-y-2">
+                          <textarea
+                            value={editNoteContent}
+                            onChange={(e) => setEditNoteContent(e.target.value)}
+                            className="w-full p-2 text-sm rounded"
+                            style={{
+                              background: 'var(--bg-surface)',
+                              border: '1px solid var(--border-default)',
+                              color: 'var(--fg-default)',
+                              minHeight: '80px',
+                            }}
+                            autoFocus
+                          />
+                          <div className="flex gap-2">
+                            <Button
+                              onClick={handleSaveEditedNote}
+                              disabled={isSavingNote || !editNoteContent.trim()}
+                              variant="primary"
+                              size="sm"
+                            >
+                              {isSavingNote ? <LoadingSpinner size="sm" /> : 'Save'}
+                            </Button>
+                            <Button
+                              onClick={handleCancelEditNote}
+                              variant="ghost"
+                              size="sm"
+                            >
+                              Cancel
+                            </Button>
+                          </div>
+                        </div>
+                      ) : (
+                        // View mode
+                        <>
+                          <div className="flex items-start justify-between gap-2">
+                            <p
+                              className="text-sm flex-1"
+                              style={{ color: 'var(--fg-default)' }}
+                            >
+                              {note.content}
+                            </p>
+                            <div className="flex items-center gap-1 flex-shrink-0">
+                              <button
+                                onClick={() => handleEditNote(note)}
+                                className="btn btn-ghost !p-1"
+                                title="Edit note"
+                              >
+                                <Edit2 className="w-3 h-3" />
+                              </button>
+                              <button
+                                onClick={() => handleDeleteNote(note.id)}
+                                disabled={isDeletingNote === note.id}
+                                className="btn btn-ghost !p-1"
+                                title="Delete note"
+                                style={{ color: 'var(--status-error)' }}
+                              >
+                                {isDeletingNote === note.id ? (
+                                  <LoadingSpinner size="sm" />
+                                ) : (
+                                  <Trash2 className="w-3 h-3" />
+                                )}
+                              </button>
+                            </div>
+                          </div>
+                          <p
+                            className="text-xs mt-2"
+                            style={{ color: 'var(--fg-muted)' }}
+                          >
+                            {note.createdBy || 'Unknown'} ·{' '}
+                            {formatDate(note.createdAt)}
+                          </p>
+                        </>
+                      )}
                     </div>
                   ))}
                 </div>
