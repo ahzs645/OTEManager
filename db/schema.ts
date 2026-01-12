@@ -59,6 +59,13 @@ export const attachmentTypeEnum = pgEnum("attachment_type", [
   "other",
 ]);
 
+export const authorTypeEnum = pgEnum("author_type", [
+  "Student",
+  "Faculty",
+  "Organization",
+  "External",
+]);
+
 // Authors/Contributors table
 export const authors = pgTable("authors", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -66,6 +73,7 @@ export const authors = pgTable("authors", {
   surname: text("surname").notNull(),
   email: text("email").notNull().unique(),
   role: contributorRoleEnum("role").default("Guest Contributor"),
+  authorType: authorTypeEnum("author_type").default("Student"),
   autoDepositAvailable: boolean("auto_deposit_available").default(false),
   etransferEmail: text("etransfer_email"),
   createdAt: timestamp("created_at").defaultNow().notNull(),

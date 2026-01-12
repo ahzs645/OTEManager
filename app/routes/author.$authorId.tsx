@@ -97,13 +97,23 @@ const ROLE_OPTIONS = [
   'Other',
 ]
 
+const AUTHOR_TYPE_OPTIONS = [
+  'Student',
+  'Faculty',
+  'Organization',
+  'External',
+]
+
 function AuthorDetailPage() {
   const { author, stats } = Route.useLoaderData()
   const [isEditing, setIsEditing] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
   const [editData, setEditData] = useState({
+    email: author?.email ?? '',
     autoDepositAvailable: author?.autoDepositAvailable ?? false,
     etransferEmail: author?.etransferEmail ?? '',
+    sameAsContactEmail: !author?.etransferEmail || author?.etransferEmail === author?.email,
+    authorType: author?.authorType ?? 'Student',
   })
 
   if (!author) {
@@ -125,11 +135,18 @@ function AuthorDetailPage() {
   const handleSave = async () => {
     setIsSaving(true)
     try {
+      // If "same as contact email" is checked, use the contact email for e-transfer
+      const etransferEmail = editData.sameAsContactEmail
+        ? editData.email
+        : editData.etransferEmail
+
       await updateAuthorPaymentInfo({
         data: {
           authorId: author.id,
+          email: editData.email,
           autoDepositAvailable: editData.autoDepositAvailable,
-          etransferEmail: editData.etransferEmail || undefined,
+          etransferEmail: etransferEmail || undefined,
+          authorType: editData.authorType,
         },
       })
       setIsEditing(false)
@@ -193,8 +210,11 @@ function AuthorDetailPage() {
             onClick={() => {
               if (isEditing) {
                 setEditData({
+                  email: author.email ?? '',
                   autoDepositAvailable: author.autoDepositAvailable ?? false,
                   etransferEmail: author.etransferEmail ?? '',
+                  sameAsContactEmail: !author.etransferEmail || author.etransferEmail === author.email,
+                  authorType: author.authorType ?? 'Student',
                 })
               }
               setIsEditing(!isEditing)
@@ -347,9 +367,77 @@ function AuthorDetailPage() {
 
         {/* Right Column - Payment Info */}
         <div>
-          <Section title="Payment Information">
+          <Section title="Author Information">
             {isEditing ? (
               <div className="space-y-4">
+                <div>
+                  <label className="text-xs font-medium mb-1 block" style={{ color: 'var(--fg-muted)' }}>
+                    Author Type
+                  </label>
+                  <select
+                    value={editData.authorType}
+                    onChange={(e) =>
+                      setEditData((d) => ({ ...d, authorType: e.target.value }))
+                    }
+                    className="input w-full"
+                  >
+                    {AUTHOR_TYPE_OPTIONS.map((type) => (
+                      <option key={type} value={type}>
+                        {type}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="text-xs font-medium mb-1 block" style={{ color: 'var(--fg-muted)' }}>
+                    Contact Email
+                  </label>
+                  <input
+                    type="email"
+                    value={editData.email}
+                    onChange={(e) =>
+                      setEditData((d) => ({ ...d, email: e.target.value }))
+                    }
+                    placeholder="author@example.com"
+                    className="input w-full"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-xs font-medium mb-1 block" style={{ color: 'var(--fg-muted)' }}>
+                    E-Transfer Email
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer mb-2">
+                    <input
+                      type="checkbox"
+                      checked={editData.sameAsContactEmail}
+                      onChange={(e) =>
+                        setEditData((d) => ({
+                          ...d,
+                          sameAsContactEmail: e.target.checked,
+                          etransferEmail: e.target.checked ? d.email : d.etransferEmail,
+                        }))
+                      }
+                      className="w-4 h-4 rounded border-gray-300"
+                    />
+                    <span className="text-sm" style={{ color: 'var(--fg-default)' }}>
+                      Same as contact email
+                    </span>
+                  </label>
+                  {!editData.sameAsContactEmail && (
+                    <input
+                      type="email"
+                      value={editData.etransferEmail}
+                      onChange={(e) =>
+                        setEditData((d) => ({ ...d, etransferEmail: e.target.value }))
+                      }
+                      placeholder="payment@example.com"
+                      className="input w-full"
+                    />
+                  )}
+                </div>
+
                 <div>
                   <label className="text-xs font-medium mb-1 block" style={{ color: 'var(--fg-muted)' }}>
                     Auto-Deposit Available
@@ -372,24 +460,6 @@ function AuthorDetailPage() {
                   </label>
                 </div>
 
-                <div>
-                  <label className="text-xs font-medium mb-1 block" style={{ color: 'var(--fg-muted)' }}>
-                    E-Transfer Email
-                  </label>
-                  <input
-                    type="email"
-                    value={editData.etransferEmail}
-                    onChange={(e) =>
-                      setEditData((d) => ({ ...d, etransferEmail: e.target.value }))
-                    }
-                    placeholder="payment@example.com"
-                    className="input w-full"
-                  />
-                  <p className="text-xs mt-1" style={{ color: 'var(--fg-muted)' }}>
-                    Leave blank to use primary email
-                  </p>
-                </div>
-
                 <Button
                   onClick={handleSave}
                   disabled={isSaving}
@@ -403,6 +473,38 @@ function AuthorDetailPage() {
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-sm" style={{ color: 'var(--fg-muted)' }}>
+                    Author Type
+                  </span>
+                  <span className="text-sm" style={{ color: 'var(--fg-default)' }}>
+                    {author.authorType || 'Student'}
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <span className="text-sm" style={{ color: 'var(--fg-muted)' }}>
+                    Contact Email
+                  </span>
+                  <span className="text-sm" style={{ color: 'var(--fg-default)' }}>
+                    {author.email}
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <span className="text-sm" style={{ color: 'var(--fg-muted)' }}>
+                    E-Transfer Email
+                  </span>
+                  <span className="text-sm" style={{ color: 'var(--fg-default)' }}>
+                    {author.etransferEmail || author.email}
+                    {(!author.etransferEmail || author.etransferEmail === author.email) && (
+                      <span className="text-xs ml-1" style={{ color: 'var(--fg-faint)' }}>
+                        (same)
+                      </span>
+                    )}
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <span className="text-sm" style={{ color: 'var(--fg-muted)' }}>
                     Auto-Deposit
                   </span>
                   <span
@@ -414,15 +516,6 @@ function AuthorDetailPage() {
                     }}
                   >
                     {author.autoDepositAvailable ? 'Enabled' : 'Disabled'}
-                  </span>
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <span className="text-sm" style={{ color: 'var(--fg-muted)' }}>
-                    E-Transfer Email
-                  </span>
-                  <span className="text-sm" style={{ color: 'var(--fg-default)' }}>
-                    {author.etransferEmail || author.email}
                   </span>
                 </div>
 
