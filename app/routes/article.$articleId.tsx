@@ -366,7 +366,7 @@ function ArticleDetailPage() {
           border: '0.5px solid var(--border-default)',
         }}
       >
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex items-start justify-between gap-4 mb-4">
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-3 mb-2">
               <h1
@@ -419,6 +419,19 @@ function ArticleDetailPage() {
               </div>
             )}
           </div>
+        </div>
+
+        {/* Publication - inline in header */}
+        <div
+          className="pt-3"
+          style={{ borderTop: '0.5px solid var(--border-subtle)' }}
+        >
+          <VolumeIssueEditorInline
+            articleId={article.id}
+            volumes={volumes}
+            currentIssueId={article.issueId}
+            currentIssue={article.publicationIssue}
+          />
         </div>
       </div>
 
@@ -942,18 +955,6 @@ function ArticleDetailPage() {
             </div>
           </Section>
 
-          {/* Publication */}
-          <Section title="Publication">
-            <VolumeIssueEditor
-              articleId={article.id}
-              volumes={volumes}
-              currentIssueId={article.issueId}
-              currentIssue={article.publicationIssue}
-              legacyVolume={article.volume}
-              legacyIssue={article.issue}
-            />
-          </Section>
-
           {/* Payment */}
           <Section title="Payment">
             <PaymentSection article={article} />
@@ -1372,6 +1373,171 @@ function VolumeIssueEditor({
         <p className="text-xs" style={{ color: 'var(--fg-faint)' }}>
           Legacy: Volume {legacyVolume || '?'}, Issue {legacyIssue || '?'}
         </p>
+      )}
+    </div>
+  )
+}
+
+// Inline Volume/Issue Editor for the header
+function VolumeIssueEditorInline({
+  articleId,
+  volumes,
+  currentIssueId,
+  currentIssue,
+}: {
+  articleId: string
+  volumes: VolumeWithIssues[]
+  currentIssueId: string | null
+  currentIssue: CurrentIssue
+}) {
+  const initialVolumeId = currentIssue?.volume?.id || ''
+
+  const [selectedVolumeId, setSelectedVolumeId] = useState<string>(initialVolumeId)
+  const [selectedIssueId, setSelectedIssueId] = useState<string>(currentIssueId || '')
+  const [isSaving, setIsSaving] = useState(false)
+
+  const selectedVolume = volumes.find((v) => v.id === selectedVolumeId)
+  const availableIssues = selectedVolume?.issues || []
+  const hasChanges = selectedIssueId !== (currentIssueId || '')
+
+  const handleVolumeChange = (volumeId: string) => {
+    setSelectedVolumeId(volumeId)
+    setSelectedIssueId('')
+  }
+
+  const handleIssueChange = (issueId: string) => {
+    setSelectedIssueId(issueId)
+  }
+
+  const handleSave = async () => {
+    setIsSaving(true)
+    try {
+      await updateArticleIssue({
+        data: {
+          articleId,
+          issueId: selectedIssueId || null,
+        },
+      })
+      window.location.reload()
+    } catch (error) {
+      console.error('Failed to save publication info:', error)
+    } finally {
+      setIsSaving(false)
+    }
+  }
+
+  const handleClear = async () => {
+    setIsSaving(true)
+    try {
+      await updateArticleIssue({
+        data: {
+          articleId,
+          issueId: null,
+        },
+      })
+      window.location.reload()
+    } catch (error) {
+      console.error('Failed to clear publication info:', error)
+    } finally {
+      setIsSaving(false)
+    }
+  }
+
+  if (volumes.length === 0) {
+    return (
+      <div className="flex items-center gap-2">
+        <span className="text-xs" style={{ color: 'var(--fg-muted)' }}>
+          No volumes configured.
+        </span>
+        <Link
+          to="/publications"
+          className="text-xs"
+          style={{ color: 'var(--accent)' }}
+        >
+          Create volumes →
+        </Link>
+      </div>
+    )
+  }
+
+  return (
+    <div className="flex items-center gap-3 flex-wrap">
+      <span className="text-xs font-medium" style={{ color: 'var(--fg-muted)' }}>
+        Publication:
+      </span>
+
+      {/* Volume Dropdown */}
+      <div className="relative">
+        <select
+          value={selectedVolumeId}
+          onChange={(e) => handleVolumeChange(e.target.value)}
+          className="select-trigger pr-7 text-sm"
+          style={{ minWidth: '130px', padding: '0.35rem 0.5rem' }}
+        >
+          <option value="">Select volume...</option>
+          {volumes.map((volume) => (
+            <option key={volume.id} value={volume.id}>
+              Volume {volume.volumeNumber}
+              {volume.year ? ` (${volume.year})` : ''}
+            </option>
+          ))}
+        </select>
+        <ChevronDown
+          className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 pointer-events-none"
+          style={{ color: 'var(--fg-faint)' }}
+        />
+      </div>
+
+      {/* Issue Dropdown */}
+      {selectedVolumeId && (
+        <div className="relative">
+          <select
+            value={selectedIssueId}
+            onChange={(e) => handleIssueChange(e.target.value)}
+            className="select-trigger pr-7 text-sm"
+            style={{ minWidth: '120px', padding: '0.35rem 0.5rem' }}
+            disabled={availableIssues.length === 0}
+          >
+            <option value="">
+              {availableIssues.length === 0 ? 'No issues' : 'Select issue...'}
+            </option>
+            {availableIssues.map((issue) => (
+              <option key={issue.id} value={issue.id}>
+                Issue {issue.issueNumber}
+                {issue.title ? ` - ${issue.title}` : ''}
+              </option>
+            ))}
+          </select>
+          <ChevronDown
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 pointer-events-none"
+            style={{ color: 'var(--fg-faint)' }}
+          />
+        </div>
+      )}
+
+      {/* Save Button */}
+      {hasChanges && (
+        <Button
+          onClick={handleSave}
+          disabled={isSaving}
+          variant="primary"
+          size="sm"
+        >
+          {isSaving ? <LoadingSpinner size="sm" /> : 'Save'}
+        </Button>
+      )}
+
+      {/* Current assignment + Clear */}
+      {currentIssue && !hasChanges && (
+        <button
+          onClick={handleClear}
+          disabled={isSaving}
+          className="text-xs"
+          style={{ color: 'var(--fg-faint)' }}
+          title="Clear publication assignment"
+        >
+          Clear
+        </button>
       )}
     </div>
   )
