@@ -2,6 +2,7 @@ import { createServerFn } from "@tanstack/start";
 import {
   calculatePayment,
   type PaymentRateConfig,
+  type ArticleBonusFlags,
 } from "./payment-calculator";
 
 // Update payment rate configuration
@@ -11,11 +12,11 @@ export const updatePaymentRateConfig = createServerFn({ method: "POST" })
       tier1Rate: number;
       tier2Rate: number;
       tier3Rate: number;
-      photoBonus: number;
-      graphicBonus: number;
-      videoBonus: number;
-      audioBonus: number;
-      featuredBonus: number;
+      researchBonus: number;
+      multimediaBonus: number;
+      timeSensitiveBonus: number;
+      professionalPhotoBonus: number;
+      professionalGraphicBonus: number;
       updatedBy?: string;
       notes?: string;
     }) => data
@@ -33,11 +34,11 @@ export const updatePaymentRateConfig = createServerFn({ method: "POST" })
         tier1Rate: data.tier1Rate,
         tier2Rate: data.tier2Rate,
         tier3Rate: data.tier3Rate,
-        photoBonus: data.photoBonus,
-        graphicBonus: data.graphicBonus,
-        videoBonus: data.videoBonus,
-        audioBonus: data.audioBonus,
-        featuredBonus: data.featuredBonus,
+        researchBonus: data.researchBonus,
+        multimediaBonus: data.multimediaBonus,
+        timeSensitiveBonus: data.timeSensitiveBonus,
+        professionalPhotoBonus: data.professionalPhotoBonus,
+        professionalGraphicBonus: data.professionalGraphicBonus,
         updatedAt: new Date(),
         updatedBy: data.updatedBy || null,
       };
@@ -97,17 +98,44 @@ export const calculateArticlePayment = createServerFn({ method: "POST" })
         };
       }
 
-      // Get current rate config
-      const config = await db.query.paymentRateConfig.findFirst();
+      // Get current rate config (use defaults if not found)
+      let config = await db.query.paymentRateConfig.findFirst();
       if (!config) {
-        return { success: false, error: "Payment rate configuration not found" };
+        // Use default values
+        config = {
+          id: "",
+          tier1Rate: 2000,
+          tier2Rate: 3500,
+          tier3Rate: 5000,
+          researchBonus: 1000,
+          multimediaBonus: 500,
+          timeSensitiveBonus: 500,
+          professionalPhotoBonus: 1500,
+          professionalGraphicBonus: 1500,
+          updatedAt: new Date(),
+          updatedBy: null,
+        };
       }
+
+      // Determine if article has any multimedia (photos, graphics, or video)
+      const multimediaTypes = article.multimediaTypes.map((m) => m.multimediaType);
+      const hasMultimedia = multimediaTypes.some((t) =>
+        ["Photo", "Graphic", "Video"].includes(t)
+      );
+
+      // Build bonus flags from article properties
+      const bonusFlags: ArticleBonusFlags = {
+        hasMultimedia,
+        hasResearchBonus: article.hasResearchBonus || false,
+        hasTimeSensitiveBonus: article.hasTimeSensitiveBonus || false,
+        hasProfessionalPhotos: article.hasProfessionalPhotos || false,
+        hasProfessionalGraphics: article.hasProfessionalGraphics || false,
+      };
 
       // Calculate payment
       const calculation = calculatePayment(
         article.articleTier || "Tier 1 (Basic)",
-        article.multimediaTypes.map((m) => m.multimediaType),
-        article.isFeatured || false,
+        bonusFlags,
         config as PaymentRateConfig
       );
 
@@ -160,12 +188,12 @@ export const setManualPayment = createServerFn({ method: "POST" })
     }
   });
 
-// Toggle article featured status and recalculate payment
+// Toggle article featured status (legacy - kept for compatibility)
 export const toggleArticleFeatured = createServerFn({ method: "POST" })
   .validator((data: { articleId: string; isFeatured: boolean }) => data)
   .handler(async ({ data }) => {
     try {
-      const { db, articles, paymentRateConfig } = await import("@db/index");
+      const { db, articles } = await import("@db/index");
       const { eq } = await import("drizzle-orm");
 
       // Update featured status
@@ -175,6 +203,49 @@ export const toggleArticleFeatured = createServerFn({ method: "POST" })
           isFeatured: data.isFeatured,
           updatedAt: new Date(),
         })
+        .where(eq(articles.id, data.articleId));
+
+      return { success: true };
+    } catch (error) {
+      console.error("Failed to toggle featured status:", error);
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : "Unknown error",
+      };
+    }
+  });
+
+// Update article bonus flags and recalculate payment
+export const updateArticleBonusFlags = createServerFn({ method: "POST" })
+  .validator(
+    (data: {
+      articleId: string;
+      hasResearchBonus?: boolean;
+      hasTimeSensitiveBonus?: boolean;
+      hasProfessionalPhotos?: boolean;
+      hasProfessionalGraphics?: boolean;
+    }) => data
+  )
+  .handler(async ({ data }) => {
+    try {
+      const { db, articles, paymentRateConfig } = await import("@db/index");
+      const { eq } = await import("drizzle-orm");
+
+      // Build update object
+      const updateFields: Record<string, any> = { updatedAt: new Date() };
+      if (data.hasResearchBonus !== undefined)
+        updateFields.hasResearchBonus = data.hasResearchBonus;
+      if (data.hasTimeSensitiveBonus !== undefined)
+        updateFields.hasTimeSensitiveBonus = data.hasTimeSensitiveBonus;
+      if (data.hasProfessionalPhotos !== undefined)
+        updateFields.hasProfessionalPhotos = data.hasProfessionalPhotos;
+      if (data.hasProfessionalGraphics !== undefined)
+        updateFields.hasProfessionalGraphics = data.hasProfessionalGraphics;
+
+      // Update bonus flags
+      await db
+        .update(articles)
+        .set(updateFields)
         .where(eq(articles.id, data.articleId));
 
       // Get article with multimedia types for recalculation
@@ -187,16 +258,43 @@ export const toggleArticleFeatured = createServerFn({ method: "POST" })
         return { success: true };
       }
 
-      // Recalculate payment with new featured status
-      const config = await db.query.paymentRateConfig.findFirst();
+      // Get config (use defaults if not found)
+      let config = await db.query.paymentRateConfig.findFirst();
       if (!config) {
-        return { success: true };
+        config = {
+          id: "",
+          tier1Rate: 2000,
+          tier2Rate: 3500,
+          tier3Rate: 5000,
+          researchBonus: 1000,
+          multimediaBonus: 500,
+          timeSensitiveBonus: 500,
+          professionalPhotoBonus: 1500,
+          professionalGraphicBonus: 1500,
+          updatedAt: new Date(),
+          updatedBy: null,
+        };
       }
 
+      // Determine if article has any multimedia
+      const multimediaTypes = article.multimediaTypes.map((m) => m.multimediaType);
+      const hasMultimedia = multimediaTypes.some((t) =>
+        ["Photo", "Graphic", "Video"].includes(t)
+      );
+
+      // Build bonus flags
+      const bonusFlags: ArticleBonusFlags = {
+        hasMultimedia,
+        hasResearchBonus: article.hasResearchBonus || false,
+        hasTimeSensitiveBonus: article.hasTimeSensitiveBonus || false,
+        hasProfessionalPhotos: article.hasProfessionalPhotos || false,
+        hasProfessionalGraphics: article.hasProfessionalGraphics || false,
+      };
+
+      // Recalculate payment
       const calculation = calculatePayment(
         article.articleTier || "Tier 1 (Basic)",
-        article.multimediaTypes.map((m) => m.multimediaType),
-        data.isFeatured,
+        bonusFlags,
         config as PaymentRateConfig
       );
 
@@ -211,7 +309,7 @@ export const toggleArticleFeatured = createServerFn({ method: "POST" })
 
       return { success: true, calculation };
     } catch (error) {
-      console.error("Failed to toggle featured status:", error);
+      console.error("Failed to update bonus flags:", error);
       return {
         success: false,
         error: error instanceof Error ? error.message : "Unknown error",
@@ -466,6 +564,32 @@ export const updateArticleContent = createServerFn({ method: "POST" })
       return { success: true };
     } catch (error) {
       console.error("Failed to update article content:", error);
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : "Unknown error",
+      };
+    }
+  });
+
+// Update article feedback letter (markdown)
+export const updateArticleFeedbackLetter = createServerFn({ method: "POST" })
+  .validator((data: { articleId: string; feedbackLetter: string }) => data)
+  .handler(async ({ data }) => {
+    try {
+      const { db, articles } = await import("@db/index");
+      const { eq } = await import("drizzle-orm");
+
+      await db
+        .update(articles)
+        .set({
+          feedbackLetter: data.feedbackLetter,
+          updatedAt: new Date(),
+        })
+        .where(eq(articles.id, data.articleId));
+
+      return { success: true };
+    } catch (error) {
+      console.error("Failed to update feedback letter:", error);
       return {
         success: false,
         error: error instanceof Error ? error.message : "Unknown error",

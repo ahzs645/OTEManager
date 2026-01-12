@@ -14,11 +14,11 @@ interface RateConfig {
   tier1Rate: number;
   tier2Rate: number;
   tier3Rate: number;
-  photoBonus: number;
-  graphicBonus: number;
-  videoBonus: number;
-  audioBonus: number;
-  featuredBonus: number;
+  researchBonus: number;
+  multimediaBonus: number;
+  timeSensitiveBonus: number;
+  professionalPhotoBonus: number;
+  professionalGraphicBonus: number;
 }
 
 interface HistoryEntry {
@@ -31,14 +31,14 @@ interface HistoryEntry {
 
 function SettingsPage() {
   const [config, setConfig] = useState<RateConfig>({
-    tier1Rate: 5000,
-    tier2Rate: 10000,
-    tier3Rate: 15000,
-    photoBonus: 1500,
-    graphicBonus: 2000,
-    videoBonus: 2500,
-    audioBonus: 1000,
-    featuredBonus: 5000,
+    tier1Rate: 2000, // $20.00
+    tier2Rate: 3500, // $35.00
+    tier3Rate: 5000, // $50.00
+    researchBonus: 1000, // $10.00
+    multimediaBonus: 500, // $5.00
+    timeSensitiveBonus: 500, // $5.00
+    professionalPhotoBonus: 1500, // $15.00
+    professionalGraphicBonus: 1500, // $15.00
   });
   const [originalConfig, setOriginalConfig] = useState<RateConfig | null>(null);
   const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -60,11 +60,11 @@ function SettingsPage() {
             tier1Rate: configResult.config.tier1Rate,
             tier2Rate: configResult.config.tier2Rate,
             tier3Rate: configResult.config.tier3Rate,
-            photoBonus: configResult.config.photoBonus,
-            graphicBonus: configResult.config.graphicBonus,
-            videoBonus: configResult.config.videoBonus,
-            audioBonus: configResult.config.audioBonus,
-            featuredBonus: configResult.config.featuredBonus,
+            researchBonus: configResult.config.researchBonus,
+            multimediaBonus: configResult.config.multimediaBonus,
+            timeSensitiveBonus: configResult.config.timeSensitiveBonus,
+            professionalPhotoBonus: configResult.config.professionalPhotoBonus,
+            professionalGraphicBonus: configResult.config.professionalGraphicBonus,
           };
           setConfig(loadedConfig);
           setOriginalConfig(loadedConfig);
@@ -141,8 +141,8 @@ function SettingsPage() {
     );
   }
 
-  // Calculate example payment
-  const examplePayment = config.tier2Rate + config.photoBonus + config.videoBonus;
+  // Calculate example payment (Tier 2 + Multimedia + Professional Photo)
+  const examplePayment = config.tier2Rate + config.multimediaBonus + config.professionalPhotoBonus;
 
   return (
     <div className="space-y-6">
@@ -150,7 +150,7 @@ function SettingsPage() {
       <div className="page-header">
         <h1 className="page-title">Payment Settings</h1>
         <p className="page-subtitle">
-          Configure tier rates and bonus amounts. Changes only affect new articles.
+          Configure tier rates and bonus amounts. Changes only affect new calculations.
         </p>
       </div>
 
@@ -179,18 +179,44 @@ function SettingsPage() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <RateInput
                   label="Tier 1 (Basic)"
+                  description="Short news, announcements, simple reviews"
                   value={centsToDollars(config.tier1Rate)}
                   onChange={(v) => updateRate("tier1Rate", v)}
                 />
                 <RateInput
                   label="Tier 2 (Standard)"
+                  description="General news, opinions, basic features"
                   value={centsToDollars(config.tier2Rate)}
                   onChange={(v) => updateRate("tier2Rate", v)}
                 />
                 <RateInput
                   label="Tier 3 (Advanced)"
+                  description="In-depth features, investigative pieces"
                   value={centsToDollars(config.tier3Rate)}
                   onChange={(v) => updateRate("tier3Rate", v)}
+                />
+              </div>
+            </div>
+          </Section>
+
+          {/* Content Bonuses */}
+          <Section title="Content Bonuses">
+            <div className="space-y-4">
+              <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
+                Additional payment for content quality and effort.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <RateInput
+                  label="Research Bonus"
+                  description="Extensive research or interviews (up to)"
+                  value={centsToDollars(config.researchBonus)}
+                  onChange={(v) => updateRate("researchBonus", v)}
+                />
+                <RateInput
+                  label="Time-Sensitive Bonus"
+                  description="Short notice or breaking news"
+                  value={centsToDollars(config.timeSensitiveBonus)}
+                  onChange={(v) => updateRate("timeSensitiveBonus", v)}
                 />
               </div>
             </div>
@@ -202,42 +228,24 @@ function SettingsPage() {
               <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
                 Additional payment for including multimedia content.
               </p>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <RateInput
-                  label="Photo"
-                  value={centsToDollars(config.photoBonus)}
-                  onChange={(v) => updateRate("photoBonus", v)}
+                  label="Multimedia Bonus"
+                  description="Original photos, graphics, or video"
+                  value={centsToDollars(config.multimediaBonus)}
+                  onChange={(v) => updateRate("multimediaBonus", v)}
                 />
                 <RateInput
-                  label="Graphic"
-                  value={centsToDollars(config.graphicBonus)}
-                  onChange={(v) => updateRate("graphicBonus", v)}
+                  label="Professional Photo"
+                  description="High-quality professional photos"
+                  value={centsToDollars(config.professionalPhotoBonus)}
+                  onChange={(v) => updateRate("professionalPhotoBonus", v)}
                 />
                 <RateInput
-                  label="Video"
-                  value={centsToDollars(config.videoBonus)}
-                  onChange={(v) => updateRate("videoBonus", v)}
-                />
-                <RateInput
-                  label="Audio"
-                  value={centsToDollars(config.audioBonus)}
-                  onChange={(v) => updateRate("audioBonus", v)}
-                />
-              </div>
-            </div>
-          </Section>
-
-          {/* Special Bonuses */}
-          <Section title="Special Bonuses">
-            <div className="space-y-4">
-              <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
-                Bonus for featured articles.
-              </p>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <RateInput
-                  label="Featured"
-                  value={centsToDollars(config.featuredBonus)}
-                  onChange={(v) => updateRate("featuredBonus", v)}
+                  label="Professional Graphic"
+                  description="Professional graphics/infographics"
+                  value={centsToDollars(config.professionalGraphicBonus)}
+                  onChange={(v) => updateRate("professionalGraphicBonus", v)}
                 />
               </div>
             </div>
@@ -273,7 +281,7 @@ function SettingsPage() {
           <Section title="Example Calculation">
             <div className="space-y-3">
               <p className="text-xs" style={{ color: "var(--fg-muted)" }}>
-                Tier 2 article with Photo + Video:
+                Tier 2 article with Multimedia + Pro Photo:
               </p>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
@@ -281,12 +289,12 @@ function SettingsPage() {
                   <span style={{ color: "var(--fg-default)" }}>{formatCents(config.tier2Rate)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span style={{ color: "var(--fg-muted)" }}>+ Photo</span>
-                  <span style={{ color: "var(--fg-default)" }}>{formatCents(config.photoBonus)}</span>
+                  <span style={{ color: "var(--fg-muted)" }}>+ Multimedia</span>
+                  <span style={{ color: "var(--fg-default)" }}>{formatCents(config.multimediaBonus)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span style={{ color: "var(--fg-muted)" }}>+ Video</span>
-                  <span style={{ color: "var(--fg-default)" }}>{formatCents(config.videoBonus)}</span>
+                  <span style={{ color: "var(--fg-muted)" }}>+ Pro Photo</span>
+                  <span style={{ color: "var(--fg-default)" }}>{formatCents(config.professionalPhotoBonus)}</span>
                 </div>
                 <div
                   className="flex justify-between pt-2 mt-2 font-medium"
@@ -294,6 +302,49 @@ function SettingsPage() {
                 >
                   <span style={{ color: "var(--fg-default)" }}>Total</span>
                   <span style={{ color: "var(--accent)" }}>{formatCents(examplePayment)}</span>
+                </div>
+              </div>
+            </div>
+          </Section>
+
+          {/* Rate Summary */}
+          <Section title="Rate Summary">
+            <div className="space-y-2 text-sm">
+              <div className="flex justify-between">
+                <span style={{ color: "var(--fg-muted)" }}>Tier 1</span>
+                <span style={{ color: "var(--fg-default)" }}>{formatCents(config.tier1Rate)}</span>
+              </div>
+              <div className="flex justify-between">
+                <span style={{ color: "var(--fg-muted)" }}>Tier 2</span>
+                <span style={{ color: "var(--fg-default)" }}>{formatCents(config.tier2Rate)}</span>
+              </div>
+              <div className="flex justify-between">
+                <span style={{ color: "var(--fg-muted)" }}>Tier 3</span>
+                <span style={{ color: "var(--fg-default)" }}>{formatCents(config.tier3Rate)}</span>
+              </div>
+              <div className="pt-2 mt-2" style={{ borderTop: "1px solid var(--border-default)" }}>
+                <p className="text-xs font-medium mb-2" style={{ color: "var(--fg-muted)" }}>
+                  Max Bonuses:
+                </p>
+                <div className="flex justify-between">
+                  <span style={{ color: "var(--fg-muted)" }}>Research</span>
+                  <span style={{ color: "var(--fg-default)" }}>+{formatCents(config.researchBonus)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span style={{ color: "var(--fg-muted)" }}>Multimedia</span>
+                  <span style={{ color: "var(--fg-default)" }}>+{formatCents(config.multimediaBonus)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span style={{ color: "var(--fg-muted)" }}>Time-Sensitive</span>
+                  <span style={{ color: "var(--fg-default)" }}>+{formatCents(config.timeSensitiveBonus)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span style={{ color: "var(--fg-muted)" }}>Pro Photo</span>
+                  <span style={{ color: "var(--fg-default)" }}>+{formatCents(config.professionalPhotoBonus)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span style={{ color: "var(--fg-muted)" }}>Pro Graphic</span>
+                  <span style={{ color: "var(--fg-default)" }}>+{formatCents(config.professionalGraphicBonus)}</span>
                 </div>
               </div>
             </div>
@@ -329,21 +380,28 @@ function SettingsPage() {
 // Rate Input Component
 function RateInput({
   label,
+  description,
   value,
   onChange,
 }: {
   label: string;
+  description?: string;
   value: string;
   onChange: (value: string) => void;
 }) {
   return (
     <div>
       <label
-        className="block text-xs font-medium mb-1.5"
-        style={{ color: "var(--fg-muted)" }}
+        className="block text-xs font-medium mb-1"
+        style={{ color: "var(--fg-default)" }}
       >
         {label}
       </label>
+      {description && (
+        <p className="text-xs mb-1.5" style={{ color: "var(--fg-muted)" }}>
+          {description}
+        </p>
+      )}
       <div className="relative">
         <DollarSign
           className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4"
@@ -367,7 +425,7 @@ function RateInput({
 function HistoryItem({ entry }: { entry: HistoryEntry }) {
   const [expanded, setExpanded] = useState(false);
 
-  let snapshot: RateConfig | null = null;
+  let snapshot: any = null;
   try {
     snapshot = JSON.parse(entry.ratesSnapshot);
   } catch {

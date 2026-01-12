@@ -33,7 +33,7 @@ import {
   Button,
   LoadingSpinner,
 } from '~/components/Layout'
-import { updateArticleStatus, addArticleNote, updateArticleContent, updateArticle, calculateArticlePayment, setManualPayment, toggleArticleFeatured, updateAttachmentCaption, updateArticleIssue } from '~/lib/mutations'
+import { updateArticleStatus, addArticleNote, updateArticleContent, updateArticle, calculateArticlePayment, setManualPayment, toggleArticleFeatured, updateAttachmentCaption, updateArticleIssue, markPaymentComplete, updateArticleBonusFlags, updateArticleFeedbackLetter } from '~/lib/mutations'
 import { formatCents, type PaymentCalculation } from '~/lib/payment-calculator'
 
 // Server function to fetch article data - ensures db code only runs on server
@@ -118,9 +118,12 @@ function ArticleDetailPage() {
   const [isSavingContent, setIsSavingContent] = useState(false)
   const [isConverting, setIsConverting] = useState<string | null>(null)
   const [contentSaved, setContentSaved] = useState(true)
-  const [editingCaption, setEditingCaption] = useState<string | null>(null)
+  const [editingCaption, setEditingCaption] = useState<{ id: string; name: string; caption: string; photoUrl: string } | null>(null)
   const [captionText, setCaptionText] = useState('')
   const [isSavingCaption, setIsSavingCaption] = useState(false)
+  const [feedbackLetter, setFeedbackLetter] = useState(article?.feedbackLetter || '')
+  const [isSavingFeedback, setIsSavingFeedback] = useState(false)
+  const [feedbackSaved, setFeedbackSaved] = useState(true)
 
   if (!article) {
     return (
@@ -214,10 +217,11 @@ function ArticleDetailPage() {
     setContentSaved(false)
   }
 
-  const handleSaveCaption = async (attachmentId: string) => {
+  const handleSaveCaption = async () => {
+    if (!editingCaption) return
     setIsSavingCaption(true)
     try {
-      await updateAttachmentCaption({ data: { attachmentId, caption: captionText } })
+      await updateAttachmentCaption({ data: { attachmentId: editingCaption.id, caption: captionText } })
       setEditingCaption(null)
       setCaptionText('')
       window.location.reload()
@@ -226,6 +230,41 @@ function ArticleDetailPage() {
     } finally {
       setIsSavingCaption(false)
     }
+  }
+
+  const openCaptionModal = (photo: any) => {
+    setEditingCaption({
+      id: photo.id,
+      name: photo.photoNumber ? `Photo ${photo.photoNumber}` : photo.originalFileName,
+      caption: photo.caption || '',
+      photoUrl: `/uploads/${photo.filePath}`,
+    })
+    setCaptionText(photo.caption || '')
+  }
+
+  const closeCaptionModal = () => {
+    setEditingCaption(null)
+    setCaptionText('')
+  }
+
+  const handleSaveFeedbackLetter = async () => {
+    setIsSavingFeedback(true)
+    try {
+      await updateArticleFeedbackLetter({
+        articleId: article.id,
+        feedbackLetter: feedbackLetter,
+      })
+      setFeedbackSaved(true)
+    } catch (error) {
+      console.error('Failed to save feedback letter:', error)
+    } finally {
+      setIsSavingFeedback(false)
+    }
+  }
+
+  const handleFeedbackLetterChange = (newContent: string) => {
+    setFeedbackLetter(newContent)
+    setFeedbackSaved(false)
   }
 
   const wordCount = content.trim() ? content.trim().split(/\s+/).length : 0
@@ -415,64 +454,30 @@ function ArticleDetailPage() {
                           {photo.photoNumber ? `Photo ${photo.photoNumber}` : photo.originalFileName}
                         </p>
                         {/* Caption */}
-                        {editingCaption === photo.id ? (
-                          <div className="mt-2 space-y-2">
-                            <input
-                              type="text"
-                              value={captionText}
-                              onChange={(e) => setCaptionText(e.target.value)}
-                              placeholder="Enter caption..."
-                              className="input w-full text-xs"
-                              autoFocus
-                            />
-                            <div className="flex gap-1">
-                              <button
-                                onClick={() => handleSaveCaption(photo.id)}
-                                disabled={isSavingCaption}
-                                className="btn btn-primary !py-1 !px-2 text-xs flex-1"
-                              >
-                                {isSavingCaption ? <LoadingSpinner size="sm" /> : 'Save'}
-                              </button>
-                              <button
-                                onClick={() => {
-                                  setEditingCaption(null)
-                                  setCaptionText('')
-                                }}
-                                className="btn btn-ghost !py-1 !px-2 text-xs"
-                              >
-                                Cancel
-                              </button>
-                            </div>
-                          </div>
-                        ) : (
-                          <div className="mt-1 flex items-start gap-1">
-                            {photo.caption ? (
-                              <p
-                                className="text-xs italic flex-1"
-                                style={{ color: 'var(--fg-muted)' }}
-                              >
-                                {photo.caption}
-                              </p>
-                            ) : (
-                              <p
-                                className="text-xs flex-1"
-                                style={{ color: 'var(--fg-faint)' }}
-                              >
-                                No caption
-                              </p>
-                            )}
-                            <button
-                              onClick={() => {
-                                setEditingCaption(photo.id)
-                                setCaptionText(photo.caption || '')
-                              }}
-                              className="btn btn-ghost !p-1"
-                              title="Edit caption"
+                        <div className="mt-1 flex items-start gap-1">
+                          {photo.caption ? (
+                            <p
+                              className="text-xs italic flex-1 line-clamp-2"
+                              style={{ color: 'var(--fg-muted)' }}
                             >
-                              <Edit2 className="w-3 h-3" />
-                            </button>
-                          </div>
-                        )}
+                              {photo.caption}
+                            </p>
+                          ) : (
+                            <p
+                              className="text-xs flex-1"
+                              style={{ color: 'var(--fg-faint)' }}
+                            >
+                              No caption
+                            </p>
+                          )}
+                          <button
+                            onClick={() => openCaptionModal(photo)}
+                            className="btn btn-ghost !p-1"
+                            title="Edit caption"
+                          >
+                            <Edit2 className="w-3 h-3" />
+                          </button>
+                        </div>
                         {/* Download link */}
                         <a
                           href={`/uploads/${photo.filePath}`}
@@ -527,6 +532,52 @@ function ArticleDetailPage() {
               onChange={(e) => handleContentChange(e.target.value)}
               placeholder="Paste or type article content here in markdown format..."
               className="w-full min-h-[400px] p-3 text-sm font-mono resize-y"
+              style={{
+                background: 'var(--bg-subtle)',
+                border: '1px solid var(--border-default)',
+                borderRadius: '6px',
+                color: 'var(--fg-default)',
+                lineHeight: '1.6',
+              }}
+            />
+          </Section>
+
+          {/* Feedback Letter */}
+          <Section
+            title="Feedback Letter"
+            action={
+              <div className="flex items-center gap-2">
+                <span className="text-xs" style={{ color: 'var(--fg-muted)' }}>
+                  {feedbackLetter.trim() ? feedbackLetter.trim().split(/\s+/).length : 0} words
+                </span>
+                <Button
+                  onClick={handleSaveFeedbackLetter}
+                  disabled={isSavingFeedback || feedbackSaved}
+                  variant={feedbackSaved ? 'secondary' : 'primary'}
+                  size="sm"
+                >
+                  {isSavingFeedback ? (
+                    <LoadingSpinner size="sm" />
+                  ) : feedbackSaved ? (
+                    <>
+                      <Check className="w-3 h-3" />
+                      Saved
+                    </>
+                  ) : (
+                    <>
+                      <Save className="w-3 h-3" />
+                      Save
+                    </>
+                  )}
+                </Button>
+              </div>
+            }
+          >
+            <textarea
+              value={feedbackLetter}
+              onChange={(e) => handleFeedbackLetterChange(e.target.value)}
+              placeholder="Write a feedback letter in markdown format. This can be used to communicate feedback to the author about their submission..."
+              className="w-full min-h-[300px] p-3 text-sm font-mono resize-y"
               style={{
                 background: 'var(--bg-subtle)',
                 border: '1px solid var(--border-default)',
@@ -766,6 +817,165 @@ function ArticleDetailPage() {
           </Section>
         </div>
       </div>
+
+      {/* Caption Edit Modal */}
+      {editingCaption && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 50,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '1rem',
+          }}
+        >
+          {/* Backdrop */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'rgba(0, 0, 0, 0.5)',
+              backdropFilter: 'blur(4px)',
+            }}
+            onClick={closeCaptionModal}
+          />
+
+          {/* Modal */}
+          <div
+            style={{
+              position: 'relative',
+              background: 'var(--bg-surface)',
+              borderRadius: '12px',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+              width: '100%',
+              maxWidth: '650px',
+              maxHeight: '90vh',
+              overflow: 'auto',
+            }}
+          >
+            {/* Modal Header */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '1rem 1.25rem',
+                borderBottom: '1px solid var(--border-default)',
+              }}
+            >
+              <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--fg-default)', margin: 0 }}>
+                Edit Caption
+              </h3>
+              <button
+                onClick={closeCaptionModal}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: '0.25rem',
+                  color: 'var(--fg-muted)',
+                }}
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div style={{ padding: '1.25rem' }}>
+              {/* Photo Preview */}
+              <div
+                style={{
+                  marginBottom: '1rem',
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  background: 'var(--bg-subtle)',
+                }}
+              >
+                <img
+                  src={editingCaption.photoUrl}
+                  alt={editingCaption.name}
+                  style={{
+                    width: '100%',
+                    height: '350px',
+                    objectFit: 'contain',
+                  }}
+                />
+              </div>
+
+              {/* Photo Name */}
+              <p
+                style={{
+                  fontSize: '0.875rem',
+                  fontWeight: 500,
+                  color: 'var(--fg-default)',
+                  marginBottom: '0.75rem',
+                }}
+              >
+                {editingCaption.name}
+              </p>
+
+              {/* Caption Input */}
+              <label
+                style={{
+                  display: 'block',
+                  fontSize: '0.75rem',
+                  fontWeight: 500,
+                  color: 'var(--fg-muted)',
+                  marginBottom: '0.5rem',
+                }}
+              >
+                Caption
+              </label>
+              <textarea
+                value={captionText}
+                onChange={(e) => setCaptionText(e.target.value)}
+                placeholder="Enter a descriptive caption for this photo..."
+                rows={4}
+                style={{
+                  width: '100%',
+                  padding: '0.75rem',
+                  fontSize: '0.875rem',
+                  background: 'var(--bg-surface)',
+                  border: '1px solid var(--border-default)',
+                  borderRadius: '8px',
+                  color: 'var(--fg-default)',
+                  resize: 'vertical',
+                  minHeight: '100px',
+                }}
+                autoFocus
+              />
+            </div>
+
+            {/* Modal Footer */}
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                gap: '0.5rem',
+                padding: '1rem 1.25rem',
+                borderTop: '1px solid var(--border-default)',
+                background: 'var(--bg-subtle)',
+              }}
+            >
+              <button
+                onClick={closeCaptionModal}
+                className="btn btn-secondary"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSaveCaption}
+                disabled={isSavingCaption}
+                className="btn btn-primary"
+              >
+                {isSavingCaption ? <LoadingSpinner size="sm" /> : 'Save Caption'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
@@ -1027,10 +1237,10 @@ function VolumeIssueEditor({
 // Payment Section Component with breakdown and controls
 function PaymentSection({ article }: { article: any }) {
   const [isRecalculating, setIsRecalculating] = useState(false)
-  const [isTogglingFeatured, setIsTogglingFeatured] = useState(false)
   const [showManualInput, setShowManualInput] = useState(false)
   const [manualAmount, setManualAmount] = useState('')
   const [isSavingManual, setIsSavingManual] = useState(false)
+  const [isMarkingPaid, setIsMarkingPaid] = useState(false)
 
   // Parse payment snapshot if available
   let breakdown: PaymentCalculation | null = null
@@ -1054,21 +1264,6 @@ function PaymentSection({ article }: { article: any }) {
     }
   }
 
-  const handleToggleFeatured = async () => {
-    setIsTogglingFeatured(true)
-    try {
-      await toggleArticleFeatured({
-        articleId: article.id,
-        isFeatured: !article.isFeatured,
-      })
-      window.location.reload()
-    } catch (error) {
-      console.error('Failed to toggle featured:', error)
-    } finally {
-      setIsTogglingFeatured(false)
-    }
-  }
-
   const handleSaveManual = async () => {
     const amount = parseFloat(manualAmount)
     if (isNaN(amount) || amount < 0) return
@@ -1085,6 +1280,37 @@ function PaymentSection({ article }: { article: any }) {
       console.error('Failed to set manual payment:', error)
     } finally {
       setIsSavingManual(false)
+    }
+  }
+
+  const handleMarkAsPaid = async () => {
+    if (!article.paymentAmount) return
+    setIsMarkingPaid(true)
+    try {
+      await markPaymentComplete({
+        articleId: article.id,
+        amount: article.paymentAmount,
+      })
+      window.location.reload()
+    } catch (error) {
+      console.error('Failed to mark as paid:', error)
+    } finally {
+      setIsMarkingPaid(false)
+    }
+  }
+
+  const handleMarkAsUnpaid = async () => {
+    setIsMarkingPaid(true)
+    try {
+      await updateArticle({
+        articleId: article.id,
+        paymentStatus: false,
+      })
+      window.location.reload()
+    } catch (error) {
+      console.error('Failed to mark as unpaid:', error)
+    } finally {
+      setIsMarkingPaid(false)
     }
   }
 
@@ -1157,87 +1383,230 @@ function PaymentSection({ article }: { article: any }) {
         </div>
       )}
 
-      {/* Featured Toggle */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Star
-            className={`w-4 h-4 ${article.isFeatured ? 'fill-current' : ''}`}
-            style={{ color: article.isFeatured ? 'var(--status-warning)' : 'var(--fg-faint)' }}
-          />
-          <span className="text-sm" style={{ color: 'var(--fg-muted)' }}>
-            Featured Article
-          </span>
+      {/* Bonus Toggles */}
+      <div className="space-y-2">
+        <div className="flex items-center justify-between">
+          <p className="text-xs font-medium" style={{ color: 'var(--fg-muted)' }}>
+            Bonus Eligibility
+          </p>
+          {article.paymentStatus && (
+            <span className="text-xs" style={{ color: 'var(--fg-faint)' }}>
+              Locked (paid)
+            </span>
+          )}
         </div>
-        <button
-          onClick={handleToggleFeatured}
-          disabled={isTogglingFeatured}
-          className="text-xs px-2 py-1 rounded"
-          style={{
-            background: article.isFeatured ? 'var(--status-warning-bg)' : 'var(--bg-subtle)',
-            color: article.isFeatured ? 'var(--status-warning)' : 'var(--fg-muted)',
-          }}
-        >
-          {isTogglingFeatured ? '...' : article.isFeatured ? 'Featured' : 'Not Featured'}
-        </button>
+        <BonusToggle
+          articleId={article.id}
+          label="Research Bonus"
+          description="Extensive research or interviews (+$10)"
+          field="hasResearchBonus"
+          isActive={article.hasResearchBonus || false}
+          disabled={article.paymentStatus}
+        />
+        <BonusToggle
+          articleId={article.id}
+          label="Time-Sensitive"
+          description="Short notice or breaking news (+$5)"
+          field="hasTimeSensitiveBonus"
+          isActive={article.hasTimeSensitiveBonus || false}
+          disabled={article.paymentStatus}
+        />
+        <BonusToggle
+          articleId={article.id}
+          label="Professional Photos"
+          description="High-quality professional photos (+$15)"
+          field="hasProfessionalPhotos"
+          isActive={article.hasProfessionalPhotos || false}
+          disabled={article.paymentStatus}
+        />
+        <BonusToggle
+          articleId={article.id}
+          label="Professional Graphics"
+          description="Professional graphics/infographics (+$15)"
+          field="hasProfessionalGraphics"
+          isActive={article.hasProfessionalGraphics || false}
+          disabled={article.paymentStatus}
+        />
       </div>
 
       {/* Actions */}
-      {!article.paymentStatus && (
-        <div className="flex flex-wrap gap-2">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleRecalculate}
-            disabled={isRecalculating}
-          >
-            {isRecalculating ? (
-              <LoadingSpinner size="sm" />
-            ) : (
-              <>
-                <RefreshCw className="w-3 h-3 mr-1" />
-                Recalculate
-              </>
+      <div className="flex flex-wrap gap-2">
+        {!article.paymentStatus ? (
+          <>
+            {/* Mark as Paid - only show if payment amount is set */}
+            {article.paymentAmount > 0 && (
+              <Button
+                variant="primary"
+                size="sm"
+                onClick={handleMarkAsPaid}
+                disabled={isMarkingPaid}
+              >
+                {isMarkingPaid ? (
+                  <LoadingSpinner size="sm" />
+                ) : (
+                  <>
+                    <Check className="w-3 h-3 mr-1" />
+                    Mark as Paid
+                  </>
+                )}
+              </Button>
             )}
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowManualInput(!showManualInput)}
-          >
-            <Calculator className="w-3 h-3 mr-1" />
-            {showManualInput ? 'Cancel' : 'Set Manual'}
-          </Button>
-        </div>
-      )}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleRecalculate}
+              disabled={isRecalculating}
+            >
+              {isRecalculating ? (
+                <LoadingSpinner size="sm" />
+              ) : (
+                <>
+                  <RefreshCw className="w-3 h-3 mr-1" />
+                  Recalculate
+                </>
+              )}
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowManualInput(!showManualInput)}
+            >
+              <Calculator className="w-3 h-3 mr-1" />
+              {showManualInput ? 'Cancel' : 'Set Manual'}
+            </Button>
+          </>
+        ) : (
+          /* When already paid - show Mark as Unpaid and Adjust Payment options */
+          <>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleMarkAsUnpaid}
+              disabled={isMarkingPaid}
+            >
+              {isMarkingPaid ? (
+                <LoadingSpinner size="sm" />
+              ) : (
+                <>
+                  <X className="w-3 h-3 mr-1" />
+                  Mark as Unpaid
+                </>
+              )}
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowManualInput(!showManualInput)}
+            >
+              <Edit2 className="w-3 h-3 mr-1" />
+              {showManualInput ? 'Cancel' : 'Adjust Amount'}
+            </Button>
+          </>
+        )}
+      </div>
 
       {/* Manual Amount Input */}
       {showManualInput && (
-        <div className="flex gap-2">
-          <div className="relative flex-1">
-            <DollarSign
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4"
-              style={{ color: 'var(--fg-faint)' }}
-            />
-            <input
-              type="number"
-              step="0.01"
-              min="0"
-              value={manualAmount}
-              onChange={(e) => setManualAmount(e.target.value)}
-              placeholder="0.00"
-              className="input pl-9 w-full"
-            />
+        <div className="space-y-2">
+          {article.paymentStatus && (
+            <p className="text-xs" style={{ color: 'var(--fg-muted)' }}>
+              Adjust the paid amount (for corrections only)
+            </p>
+          )}
+          <div className="flex gap-2">
+            <div className="relative flex-1">
+              <DollarSign
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4"
+                style={{ color: 'var(--fg-faint)' }}
+              />
+              <input
+                type="number"
+                step="0.01"
+                min="0"
+                value={manualAmount}
+                onChange={(e) => setManualAmount(e.target.value)}
+                placeholder={article.paymentAmount ? (article.paymentAmount / 100).toFixed(2) : '0.00'}
+                className="input pl-9 w-full"
+              />
+            </div>
+            <Button
+              variant="primary"
+              size="sm"
+              onClick={handleSaveManual}
+              disabled={isSavingManual || !manualAmount}
+            >
+              {isSavingManual ? <LoadingSpinner size="sm" /> : 'Save'}
+            </Button>
           </div>
-          <Button
-            variant="primary"
-            size="sm"
-            onClick={handleSaveManual}
-            disabled={isSavingManual || !manualAmount}
-          >
-            {isSavingManual ? <LoadingSpinner size="sm" /> : 'Save'}
-          </Button>
         </div>
       )}
+    </div>
+  )
+}
+
+// Bonus Toggle Component
+function BonusToggle({
+  articleId,
+  label,
+  description,
+  field,
+  isActive,
+  disabled = false,
+}: {
+  articleId: string
+  label: string
+  description: string
+  field: 'hasResearchBonus' | 'hasTimeSensitiveBonus' | 'hasProfessionalPhotos' | 'hasProfessionalGraphics'
+  isActive: boolean
+  disabled?: boolean
+}) {
+  const [isToggling, setIsToggling] = useState(false)
+
+  const handleToggle = async () => {
+    if (disabled) return
+    setIsToggling(true)
+    try {
+      await updateArticleBonusFlags({
+        articleId,
+        [field]: !isActive,
+      })
+      window.location.reload()
+    } catch (error) {
+      console.error('Failed to toggle bonus:', error)
+    } finally {
+      setIsToggling(false)
+    }
+  }
+
+  return (
+    <div
+      className="flex items-center justify-between p-2 rounded"
+      style={{
+        background: 'var(--bg-subtle)',
+        opacity: disabled ? 0.6 : 1,
+      }}
+    >
+      <div>
+        <p className="text-sm" style={{ color: 'var(--fg-default)' }}>
+          {label}
+        </p>
+        <p className="text-xs" style={{ color: 'var(--fg-muted)' }}>
+          {description}
+        </p>
+      </div>
+      <button
+        onClick={handleToggle}
+        disabled={isToggling || disabled}
+        className="text-xs px-2 py-1 rounded transition-colors"
+        style={{
+          background: isActive ? 'var(--status-success-bg)' : 'var(--bg-muted)',
+          color: isActive ? 'var(--status-success)' : 'var(--fg-muted)',
+          cursor: disabled ? 'not-allowed' : 'pointer',
+        }}
+        title={disabled ? 'Cannot modify bonuses after payment' : undefined}
+      >
+        {isToggling ? '...' : isActive ? 'Yes' : 'No'}
+      </button>
     </div>
   )
 }

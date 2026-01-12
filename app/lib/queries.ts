@@ -14,14 +14,14 @@ export const getPaymentRateConfig = createServerFn({ method: "GET" }).handler(
         return {
           config: {
             id: null,
-            tier1Rate: 5000,
-            tier2Rate: 10000,
-            tier3Rate: 15000,
-            photoBonus: 1500,
-            graphicBonus: 2000,
-            videoBonus: 2500,
-            audioBonus: 1000,
-            featuredBonus: 5000,
+            tier1Rate: 2000, // $20.00
+            tier2Rate: 3500, // $35.00
+            tier3Rate: 5000, // $50.00
+            researchBonus: 1000, // $10.00
+            multimediaBonus: 500, // $5.00
+            timeSensitiveBonus: 500, // $5.00
+            professionalPhotoBonus: 1500, // $15.00
+            professionalGraphicBonus: 1500, // $15.00
             updatedAt: null,
             updatedBy: null,
           } as PaymentRateConfig & { id: string | null; updatedAt: Date | null; updatedBy: string | null },
@@ -152,13 +152,15 @@ export const getArticles = createServerFn({ method: "POST" })
       volumeId?: string;
       page?: number;
       limit?: number;
+      sortBy?: string;
+      sortOrder?: string;
     }) => data
   )
   .handler(async ({ data }) => {
     console.log("getArticles called with data:", JSON.stringify(data));
     try {
-      const { db, articles, issues } = await import("@db/index");
-      const { eq, ilike, and, or, count, sql, inArray } = await import("drizzle-orm");
+      const { db, articles, issues, authors } = await import("@db/index");
+      const { eq, ilike, and, or, count, sql, inArray, asc, desc } = await import("drizzle-orm");
 
       const page = data?.page ?? 1;
       const limit = data?.limit ?? 20;
@@ -210,18 +212,53 @@ export const getArticles = createServerFn({ method: "POST" })
       const whereClause =
         conditions.length > 0 ? and(...conditions) : undefined;
 
-      // Get articles with author info
+      // Build order by clause based on sortBy and sortOrder
+      const sortOrder = data?.sortOrder === "asc" ? asc : desc;
+      const getOrderBy = () => {
+        switch (data?.sortBy) {
+          case "title":
+            return [sortOrder(articles.title)];
+          case "status":
+            return [sortOrder(articles.internalStatus)];
+          case "submitted":
+            return [sortOrder(articles.submittedAt), sortOrder(articles.createdAt)];
+          case "tier":
+            return [sortOrder(articles.articleTier)];
+          case "volume":
+            return [sortOrder(articles.volume), sortOrder(articles.issue)];
+          default:
+            return [desc(articles.createdAt)];
+        }
+      };
+
+      // Get articles with author info and publication issue
       const articleList = await db.query.articles.findMany({
         where: whereClause,
         with: {
           author: true,
           attachments: true,
           multimediaTypes: true,
+          publicationIssue: {
+            with: {
+              volume: true,
+            },
+          },
         },
-        orderBy: (articles, { desc }) => [desc(articles.createdAt)],
+        orderBy: getOrderBy(),
         limit,
         offset,
       });
+
+      // If sorting by author, we need to sort in memory since it's a relation
+      let sortedArticles = articleList;
+      if (data?.sortBy === "author") {
+        sortedArticles = [...articleList].sort((a, b) => {
+          const nameA = a.author ? `${a.author.surname} ${a.author.givenName}`.toLowerCase() : "";
+          const nameB = b.author ? `${b.author.surname} ${b.author.givenName}`.toLowerCase() : "";
+          const comparison = nameA.localeCompare(nameB);
+          return data?.sortOrder === "asc" ? comparison : -comparison;
+        });
+      }
 
       // Get total count
       const [totalResult] = await db
@@ -230,7 +267,7 @@ export const getArticles = createServerFn({ method: "POST" })
         .where(whereClause);
 
       return {
-        articles: articleList,
+        articles: sortedArticles,
         total: totalResult?.count ?? 0,
         page,
         limit,

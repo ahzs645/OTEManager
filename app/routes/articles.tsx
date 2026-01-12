@@ -10,9 +10,11 @@ import {
   DollarSign,
   EyeOff,
   ChevronDown,
+  ChevronUp,
   List,
   Columns,
   BookOpen,
+  ArrowUpDown,
 } from "lucide-react";
 import {
   StatusBadge,
@@ -27,6 +29,8 @@ import { getArticles, getIssueById, getVolumeById } from "~/lib/queries";
 
 // Search params schema
 type ViewMode = "list" | "board" | "issue";
+type SortField = "title" | "author" | "volume" | "status" | "submitted" | "tier";
+type SortOrder = "asc" | "desc";
 
 type ArticlesSearch = {
   status?: string;
@@ -39,6 +43,8 @@ type ArticlesSearch = {
   view?: ViewMode;
   volume?: number;
   issue?: number;
+  sortBy?: SortField;
+  sortOrder?: SortOrder;
 };
 
 export const Route = createFileRoute("/articles")({
@@ -59,6 +65,8 @@ export const Route = createFileRoute("/articles")({
       view: (search.view as ViewMode) || "list",
       volume: search.volume ? Number(search.volume) : undefined,
       issue: search.issue ? Number(search.issue) : undefined,
+      sortBy: search.sortBy as SortField | undefined,
+      sortOrder: search.sortOrder as SortOrder | undefined,
     };
   },
 });
@@ -139,6 +147,8 @@ function ArticlesPage() {
     if (search.authorId) params.authorId = search.authorId;
     if (search.issueId) params.issueId = search.issueId;
     if (search.volumeId) params.volumeId = search.volumeId;
+    if (search.sortBy) params.sortBy = search.sortBy;
+    if (search.sortOrder) params.sortOrder = search.sortOrder;
 
     getArticles({ data: params })
       .then((result) => {
@@ -149,7 +159,7 @@ function ArticlesPage() {
         console.error("Failed to fetch articles:", err);
         setIsLoading(false);
       });
-  }, [search.status, search.tier, search.search, search.authorId, search.issueId, search.volumeId, search.page]);
+  }, [search.status, search.tier, search.search, search.authorId, search.issueId, search.volumeId, search.page, search.sortBy, search.sortOrder]);
 
   const { articles, total, page, totalPages } = data;
 
@@ -178,10 +188,23 @@ function ArticlesPage() {
 
   const hasFilters = search.status || search.tier || search.search;
   const viewMode = search.view || "list";
+  const sortBy = search.sortBy;
+  const sortOrder = search.sortOrder || "desc";
 
   const handleViewChange = (view: ViewMode) => {
     navigate({
       search: (prev) => ({ ...prev, view, page: 1 }),
+    });
+  };
+
+  const handleSort = (field: SortField) => {
+    navigate({
+      search: (prev) => ({
+        ...prev,
+        sortBy: field,
+        sortOrder: prev.sortBy === field && prev.sortOrder === "asc" ? "desc" : "asc",
+        page: 1,
+      }),
     });
   };
 
@@ -194,23 +217,60 @@ function ArticlesPage() {
   }, {});
 
   // Group articles by volume/issue for issue view
-  const articlesByIssue = articles.reduce((acc: Record<string, any[]>, article: any) => {
-    const key = article.volume && article.issue
-      ? `Vol ${article.volume}, Issue ${article.issue}`
-      : article.volume
-        ? `Vol ${article.volume}`
-        : "Unassigned";
-    if (!acc[key]) acc[key] = [];
-    acc[key].push(article);
+  const articlesByIssue = articles.reduce((acc: Record<string, { articles: any[]; volumeNumber?: number; issueNumber?: number }>, article: any) => {
+    let key: string;
+    let volumeNumber: number | undefined;
+    let issueNumber: number | undefined;
+
+    if (article.publicationIssue) {
+      // Use new relationship
+      volumeNumber = article.publicationIssue.volume?.volumeNumber;
+      issueNumber = article.publicationIssue.issueNumber;
+      key = `vol-${volumeNumber}-issue-${issueNumber}`;
+    } else if (article.volume && article.issue) {
+      // Fallback to legacy fields
+      volumeNumber = article.volume;
+      issueNumber = article.issue;
+      key = `vol-${article.volume}-issue-${article.issue}`;
+    } else if (article.volume) {
+      volumeNumber = article.volume;
+      key = `vol-${article.volume}`;
+    } else {
+      key = "unassigned";
+    }
+
+    if (!acc[key]) {
+      acc[key] = { articles: [], volumeNumber, issueNumber };
+    }
+    acc[key].articles.push(article);
     return acc;
   }, {});
 
-  // Sort issue keys (newest first)
+  // Sort issue keys (newest volume/issue first)
   const sortedIssueKeys = Object.keys(articlesByIssue).sort((a, b) => {
-    if (a === "Unassigned") return 1;
-    if (b === "Unassigned") return -1;
-    return b.localeCompare(a);
+    if (a === "unassigned") return 1;
+    if (b === "unassigned") return -1;
+    const aData = articlesByIssue[a];
+    const bData = articlesByIssue[b];
+    // Sort by volume desc, then issue desc
+    if (aData.volumeNumber !== bData.volumeNumber) {
+      return (bData.volumeNumber || 0) - (aData.volumeNumber || 0);
+    }
+    return (bData.issueNumber || 0) - (aData.issueNumber || 0);
   });
+
+  // Helper to format issue key for display
+  const formatIssueLabel = (key: string) => {
+    if (key === "unassigned") return "Unassigned";
+    const data = articlesByIssue[key];
+    if (data.volumeNumber && data.issueNumber) {
+      return `Volume ${data.volumeNumber} · Issue ${data.issueNumber}`;
+    }
+    if (data.volumeNumber) {
+      return `Volume ${data.volumeNumber}`;
+    }
+    return key;
+  };
 
   // Build page title based on filters
   const getPageTitle = () => {
@@ -399,38 +459,47 @@ function ArticlesPage() {
         </div>
       ) : viewMode === "issue" ? (
         /* Issue View - Grouped by Volume/Issue */
-        <div className="space-y-6">
-          {sortedIssueKeys.map((issueKey) => (
-            <div key={issueKey}>
-              <div className="flex items-center gap-2 mb-3">
-                <BookOpen className="w-4 h-4" style={{ color: "var(--fg-muted)" }} />
-                <h2 className="text-sm font-semibold" style={{ color: "var(--fg-default)" }}>
-                  {issueKey}
-                </h2>
-                <span
-                  className="text-xs px-1.5 py-0.5 rounded-full"
-                  style={{ background: "var(--bg-subtle)", color: "var(--fg-muted)" }}
+        <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+          {sortedIssueKeys.map((issueKey) => {
+            const issueData = articlesByIssue[issueKey];
+            return (
+              <div key={issueKey}>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.75rem" }}>
+                  <BookOpen className="w-4 h-4" style={{ color: "var(--fg-muted)" }} />
+                  <h2 style={{ fontSize: "0.875rem", fontWeight: 600, color: "var(--fg-default)", margin: 0 }}>
+                    {formatIssueLabel(issueKey)}
+                  </h2>
+                  <span
+                    style={{
+                      fontSize: "0.75rem",
+                      padding: "0.125rem 0.5rem",
+                      borderRadius: "9999px",
+                      background: "var(--bg-subtle)",
+                      color: "var(--fg-muted)",
+                    }}
+                  >
+                    {issueData.articles.length}
+                  </span>
+                </div>
+                <div
+                  style={{
+                    background: "var(--bg-surface)",
+                    border: "1px solid var(--border-default)",
+                    borderRadius: "8px",
+                    overflow: "hidden",
+                  }}
                 >
-                  {articlesByIssue[issueKey].length}
-                </span>
+                  {issueData.articles.map((article: any, index: number) => (
+                    <IssueArticleRow
+                      key={article.id}
+                      article={article}
+                      isLast={index === issueData.articles.length - 1}
+                    />
+                  ))}
+                </div>
               </div>
-              <div
-                className="rounded-lg overflow-hidden"
-                style={{
-                  background: "var(--bg-surface)",
-                  border: "0.5px solid var(--border-default)",
-                }}
-              >
-                {articlesByIssue[issueKey].map((article: any, index: number) => (
-                  <IssueArticleRow
-                    key={article.id}
-                    article={article}
-                    isLast={index === articlesByIssue[issueKey].length - 1}
-                  />
-                ))}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       ) : (
         /* List View - Default Table */
@@ -443,18 +512,20 @@ function ArticlesPage() {
         >
           {/* Table Header */}
           <div
-            className="grid gap-4 px-4 py-2"
             style={{
+              display: "grid",
               gridTemplateColumns: "1fr 140px 70px 100px 100px 80px 60px",
+              gap: "1rem",
+              padding: "0.5rem 1rem",
               borderBottom: "0.5px solid var(--border-subtle)",
             }}
           >
-            <span className="table-header">Article</span>
-            <span className="table-header">Author</span>
-            <span className="table-header">Vol/Issue</span>
-            <span className="table-header">Status</span>
-            <span className="table-header">Submitted</span>
-            <span className="table-header">Tier</span>
+            <SortableHeader field="title" label="Article" sortBy={sortBy} sortOrder={sortOrder} onSort={handleSort} />
+            <SortableHeader field="author" label="Author" sortBy={sortBy} sortOrder={sortOrder} onSort={handleSort} />
+            <SortableHeader field="volume" label="Vol/Issue" sortBy={sortBy} sortOrder={sortOrder} onSort={handleSort} />
+            <SortableHeader field="status" label="Status" sortBy={sortBy} sortOrder={sortOrder} onSort={handleSort} />
+            <SortableHeader field="submitted" label="Submitted" sortBy={sortBy} sortOrder={sortOrder} onSort={handleSort} />
+            <SortableHeader field="tier" label="Tier" sortBy={sortBy} sortOrder={sortOrder} onSort={handleSort} />
             <span className="table-header text-right">Info</span>
           </div>
 
@@ -513,11 +584,17 @@ function ArticleRow({ article }: { article: any }) {
     <Link
       to="/article/$articleId"
       params={{ articleId: article.id }}
-      className="grid gap-4 px-4 py-3 items-center table-row"
       style={{
-        gridTemplateColumns: "1fr 140px 70px 100px 100px 80px 60px",
         display: "grid",
+        gridTemplateColumns: "1fr 140px 70px 100px 100px 80px 60px",
+        gap: "1rem",
+        padding: "0.75rem 1rem",
+        alignItems: "center",
+        borderBottom: "0.5px solid var(--border-subtle)",
+        transition: "background 150ms ease",
       }}
+      onMouseEnter={(e) => (e.currentTarget.style.background = "var(--bg-subtle)")}
+      onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
     >
       {/* Title */}
       <div className="min-w-0">
@@ -660,29 +737,42 @@ function IssueArticleRow({ article, isLast }: { article: any; isLast: boolean })
     <Link
       to="/article/$articleId"
       params={{ articleId: article.id }}
-      className="flex items-center justify-between px-4 py-3 table-row"
       style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "0.75rem 1rem",
         borderBottom: isLast ? "none" : "0.5px solid var(--border-subtle)",
+        transition: "background 150ms ease",
       }}
+      onMouseEnter={(e) => (e.currentTarget.style.background = "var(--bg-subtle)")}
+      onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
     >
-      <div className="flex-1 min-w-0">
+      <div style={{ flex: 1, minWidth: 0 }}>
         <p
-          className="text-sm font-medium truncate"
-          style={{ color: "var(--fg-default)" }}
+          style={{
+            fontSize: "0.875rem",
+            fontWeight: 500,
+            color: "var(--fg-default)",
+            margin: 0,
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+          }}
         >
           {article.title}
         </p>
-        <div className="flex items-center gap-2 mt-1">
-          <span className="text-xs" style={{ color: "var(--fg-muted)" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginTop: "0.25rem" }}>
+          <span style={{ fontSize: "0.75rem", color: "var(--fg-muted)" }}>
             {authorName}
           </span>
-          <span className="text-xs" style={{ color: "var(--fg-faint)" }}>·</span>
-          <span className="text-xs" style={{ color: "var(--fg-muted)" }}>
+          <span style={{ fontSize: "0.75rem", color: "var(--fg-faint)" }}>·</span>
+          <span style={{ fontSize: "0.75rem", color: "var(--fg-muted)" }}>
             {formatDate(article.submittedAt || article.createdAt)}
           </span>
         </div>
       </div>
-      <div className="flex items-center gap-2">
+      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
         <StatusBadge status={article.internalStatus} />
         <TierBadge tier={article.articleTier} />
         {article.paymentStatus && (
@@ -690,6 +780,56 @@ function IssueArticleRow({ article, isLast }: { article: any; isLast: boolean })
         )}
       </div>
     </Link>
+  );
+}
+
+function SortableHeader({
+  field,
+  label,
+  sortBy,
+  sortOrder,
+  onSort,
+}: {
+  field: SortField;
+  label: string;
+  sortBy?: SortField;
+  sortOrder: SortOrder;
+  onSort: (field: SortField) => void;
+}) {
+  const isActive = sortBy === field;
+
+  return (
+    <button
+      onClick={() => onSort(field)}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "0.25rem",
+        background: "none",
+        border: "none",
+        padding: 0,
+        cursor: "pointer",
+        fontSize: "11px",
+        fontWeight: 500,
+        textTransform: "uppercase",
+        letterSpacing: "0.05em",
+        color: isActive ? "var(--fg-default)" : "var(--fg-muted)",
+        transition: "color 150ms ease",
+      }}
+      onMouseEnter={(e) => (e.currentTarget.style.color = "var(--fg-default)")}
+      onMouseLeave={(e) => (e.currentTarget.style.color = isActive ? "var(--fg-default)" : "var(--fg-muted)")}
+    >
+      {label}
+      {isActive ? (
+        sortOrder === "asc" ? (
+          <ChevronUp className="w-3 h-3" />
+        ) : (
+          <ChevronDown className="w-3 h-3" />
+        )
+      ) : (
+        <ArrowUpDown className="w-3 h-3" style={{ opacity: 0.5 }} />
+      )}
+    </button>
   );
 }
 

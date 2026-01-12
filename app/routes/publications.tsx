@@ -10,7 +10,7 @@ import {
   deleteIssue,
   migrateLegacyVolumeIssues,
 } from "../lib/mutations";
-import { ChevronRight, ChevronDown, Plus, Pencil, Trash2, FileText, Calendar } from "lucide-react";
+import { ChevronRight, ChevronDown, Plus, Pencil, Trash2, FileText, Calendar, Download } from "lucide-react";
 
 export const Route = createFileRoute("/publications")({
   loader: async () => {
@@ -50,6 +50,7 @@ function PublicationsPage() {
   const [showNewVolumeForm, setShowNewVolumeForm] = useState(false);
   const [newIssueForVolume, setNewIssueForVolume] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [exportingIssue, setExportingIssue] = useState<string | null>(null);
 
   const [volumeForm, setVolumeForm] = useState({
     volumeNumber: "",
@@ -215,6 +216,35 @@ function PublicationsPage() {
   // Calculate total articles per volume
   const getVolumeArticleCount = (volume: Volume) => {
     return volume.issues.reduce((sum, issue) => sum + (issue.articleCount || 0), 0);
+  };
+
+  // Export issue as ZIP
+  const handleExportIssue = async (issueId: string, volumeNumber: number, issueNumber: number) => {
+    setExportingIssue(issueId);
+    try {
+      const response = await fetch(`/api/export-issue/${issueId}`);
+      if (!response.ok) {
+        const errorData = await response.json();
+        alert(`Export failed: ${errorData.error || "Unknown error"}`);
+        return;
+      }
+
+      // Get the blob and download it
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `Volume_${volumeNumber}_Issue_${issueNumber}_Export.zip`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error("Export failed:", error);
+      alert("Failed to export issue. Please try again.");
+    } finally {
+      setExportingIssue(null);
+    }
   };
 
   return (
@@ -641,6 +671,19 @@ function PublicationsPage() {
                                   {issue.articleCount} article{issue.articleCount !== 1 ? "s" : ""}
                                 </Link>
                                 <div style={{ display: "flex", gap: "0.25rem" }}>
+                                  <button
+                                    className="btn btn-ghost btn-sm"
+                                    onClick={() => handleExportIssue(issue.id, volume.volumeNumber, issue.issueNumber)}
+                                    disabled={exportingIssue === issue.id || issue.articleCount === 0}
+                                    title={issue.articleCount === 0 ? "No articles to export" : "Export issue as ZIP"}
+                                    style={{ color: issue.articleCount === 0 ? "var(--fg-faint)" : "var(--accent)" }}
+                                  >
+                                    {exportingIssue === issue.id ? (
+                                      <span style={{ fontSize: "0.625rem" }}>...</span>
+                                    ) : (
+                                      <Download className="w-3 h-3" />
+                                    )}
+                                  </button>
                                   <button
                                     className="btn btn-ghost btn-sm"
                                     onClick={() => startEditIssue(issue)}

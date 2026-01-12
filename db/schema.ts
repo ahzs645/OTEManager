@@ -85,6 +85,7 @@ export const articles = pgTable("articles", {
   prefersAnonymity: boolean("prefers_anonymity").default(false),
   articleFilePath: text("article_file_path"),
   content: text("content"), // Markdown content
+  feedbackLetter: text("feedback_letter"), // Markdown feedback letter for author
 
   // Publication info (legacy integer fields kept for imported data)
   volume: integer("volume"), // e.g., 12 (legacy)
@@ -99,7 +100,13 @@ export const articles = pgTable("articles", {
   paymentRateSnapshot: text("payment_rate_snapshot"), // JSON snapshot of rates used for calculation
   paymentCalculatedAt: timestamp("payment_calculated_at"), // When payment was auto-calculated
   paymentIsManual: boolean("payment_is_manual").default(false), // True if manually overridden
-  isFeatured: boolean("is_featured").default(false), // Triggers featured bonus
+
+  // Bonus eligibility flags
+  isFeatured: boolean("is_featured").default(false), // Legacy - kept for backward compatibility
+  hasResearchBonus: boolean("has_research_bonus").default(false), // Extensive research or interviews
+  hasTimeSensitiveBonus: boolean("has_time_sensitive_bonus").default(false), // Short notice or breaking news
+  hasProfessionalPhotos: boolean("has_professional_photos").default(false), // High-quality professional photos
+  hasProfessionalGraphics: boolean("has_professional_graphics").default(false), // Professional graphics/infographics
 
   // Form submission tracking
   formResponseId: text("form_response_id"), // Original MS Forms response ID
@@ -163,15 +170,15 @@ export const statusHistory = pgTable("status_history", {
 export const paymentRateConfig = pgTable("payment_rate_config", {
   id: uuid("id").primaryKey().defaultRandom(),
   // Tier base rates (in cents)
-  tier1Rate: integer("tier1_rate").notNull().default(5000), // $50.00
-  tier2Rate: integer("tier2_rate").notNull().default(10000), // $100.00
-  tier3Rate: integer("tier3_rate").notNull().default(15000), // $150.00
+  tier1Rate: integer("tier1_rate").notNull().default(2000), // $20.00 - Short news briefs, event announcements, simple reviews
+  tier2Rate: integer("tier2_rate").notNull().default(3500), // $35.00 - General news articles, opinion pieces, basic feature stories
+  tier3Rate: integer("tier3_rate").notNull().default(5000), // $50.00 - In-depth feature stories, investigative pieces, complex analyses
   // Bonus amounts (in cents)
-  photoBonus: integer("photo_bonus").notNull().default(1500), // $15.00
-  graphicBonus: integer("graphic_bonus").notNull().default(2000), // $20.00
-  videoBonus: integer("video_bonus").notNull().default(2500), // $25.00
-  audioBonus: integer("audio_bonus").notNull().default(1000), // $10.00
-  featuredBonus: integer("featured_bonus").notNull().default(5000), // $50.00
+  researchBonus: integer("research_bonus").notNull().default(1000), // $10.00 - For articles requiring extensive research or interviews
+  multimediaBonus: integer("multimedia_bonus").notNull().default(500), // $5.00 - For including original photos, graphics, or video content
+  timeSensitiveBonus: integer("time_sensitive_bonus").notNull().default(500), // $5.00 - For articles completed on short notice or covering breaking news
+  professionalPhotoBonus: integer("professional_photo_bonus").notNull().default(1500), // $15.00 - For high-quality, professional-grade photographs
+  professionalGraphicBonus: integer("professional_graphic_bonus").notNull().default(1500), // $15.00 - For original, professional-quality graphics or infographics
   // Metadata
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
   updatedBy: text("updated_by"),

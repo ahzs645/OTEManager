@@ -3,11 +3,11 @@ export interface PaymentRateConfig {
   tier1Rate: number;
   tier2Rate: number;
   tier3Rate: number;
-  photoBonus: number;
-  graphicBonus: number;
-  videoBonus: number;
-  audioBonus: number;
-  featuredBonus: number;
+  researchBonus: number;
+  multimediaBonus: number;
+  timeSensitiveBonus: number;
+  professionalPhotoBonus: number;
+  professionalGraphicBonus: number;
 }
 
 // Bonus breakdown item
@@ -34,47 +34,68 @@ const TIER_RATE_MAP: Record<string, keyof PaymentRateConfig> = {
   "Tier 3 (Advanced)": "tier3Rate",
 };
 
-// Map multimedia types to bonus config keys
-const BONUS_RATE_MAP: Record<string, keyof PaymentRateConfig> = {
-  Photo: "photoBonus",
-  Graphic: "graphicBonus",
-  Video: "videoBonus",
-  Audio: "audioBonus",
-};
+// Article bonus flags interface
+export interface ArticleBonusFlags {
+  hasMultimedia: boolean; // Has any photos, graphics, or video
+  hasResearchBonus: boolean;
+  hasTimeSensitiveBonus: boolean;
+  hasProfessionalPhotos: boolean;
+  hasProfessionalGraphics: boolean;
+}
 
 /**
- * Calculate payment for an article based on tier and multimedia types.
+ * Calculate payment for an article based on tier and bonus flags.
  * Returns a full breakdown that can be stored as a snapshot.
  */
 export function calculatePayment(
   articleTier: string,
-  multimediaTypes: string[],
-  isFeatured: boolean,
+  bonusFlags: ArticleBonusFlags,
   rateConfig: PaymentRateConfig
 ): PaymentCalculation {
   // Get tier rate
   const tierRateKey = TIER_RATE_MAP[articleTier] || "tier1Rate";
   const tierRate = rateConfig[tierRateKey];
 
-  // Calculate bonuses from multimedia types (each type only counts once)
+  // Calculate bonuses based on flags
   const bonuses: BonusItem[] = [];
-  const uniqueTypes = [...new Set(multimediaTypes)];
 
-  for (const type of uniqueTypes) {
-    const bonusKey = BONUS_RATE_MAP[type];
-    if (bonusKey && rateConfig[bonusKey]) {
-      bonuses.push({
-        type,
-        amount: rateConfig[bonusKey],
-      });
-    }
+  // Research Bonus - $10 for extensive research or interviews
+  if (bonusFlags.hasResearchBonus && rateConfig.researchBonus) {
+    bonuses.push({
+      type: "Research",
+      amount: rateConfig.researchBonus,
+    });
   }
 
-  // Add featured bonus if applicable
-  if (isFeatured && rateConfig.featuredBonus) {
+  // Multimedia Bonus - $5 for including original photos, graphics, or video
+  if (bonusFlags.hasMultimedia && rateConfig.multimediaBonus) {
     bonuses.push({
-      type: "Featured",
-      amount: rateConfig.featuredBonus,
+      type: "Multimedia",
+      amount: rateConfig.multimediaBonus,
+    });
+  }
+
+  // Time-Sensitive Bonus - $5 for short notice or breaking news
+  if (bonusFlags.hasTimeSensitiveBonus && rateConfig.timeSensitiveBonus) {
+    bonuses.push({
+      type: "Time-Sensitive",
+      amount: rateConfig.timeSensitiveBonus,
+    });
+  }
+
+  // Professional Photo Bonus - $15 for high-quality professional photos
+  if (bonusFlags.hasProfessionalPhotos && rateConfig.professionalPhotoBonus) {
+    bonuses.push({
+      type: "Professional Photos",
+      amount: rateConfig.professionalPhotoBonus,
+    });
+  }
+
+  // Professional Graphic Bonus - $15 for professional graphics/infographics
+  if (bonusFlags.hasProfessionalGraphics && rateConfig.professionalGraphicBonus) {
+    bonuses.push({
+      type: "Professional Graphics",
+      amount: rateConfig.professionalGraphicBonus,
     });
   }
 
@@ -92,14 +113,14 @@ export function calculatePayment(
 }
 
 /**
- * Format cents to dollar string (e.g., 10000 -> "$100.00")
+ * Format cents to dollar string (e.g., 2000 -> "$20.00")
  */
 export function formatCents(cents: number): string {
   return `$${(cents / 100).toFixed(2)}`;
 }
 
 /**
- * Parse dollar string to cents (e.g., "100.00" or "$100.00" -> 10000)
+ * Parse dollar string to cents (e.g., "20.00" or "$20.00" -> 2000)
  */
 export function parseToCents(value: string): number {
   const cleaned = value.replace(/[$,]/g, "");
