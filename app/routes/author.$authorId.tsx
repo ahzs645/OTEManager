@@ -126,9 +126,11 @@ function AuthorDetailPage() {
     setIsSaving(true)
     try {
       await updateAuthorPaymentInfo({
-        authorId: author.id,
-        autoDepositAvailable: editData.autoDepositAvailable,
-        etransferEmail: editData.etransferEmail || undefined,
+        data: {
+          authorId: author.id,
+          autoDepositAvailable: editData.autoDepositAvailable,
+          etransferEmail: editData.etransferEmail || undefined,
+        },
       })
       setIsEditing(false)
       window.location.reload()

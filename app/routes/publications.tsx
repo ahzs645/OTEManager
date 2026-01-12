@@ -222,7 +222,7 @@ function PublicationsPage() {
   const handleExportIssue = async (issueId: string, volumeNumber: number, issueNumber: number) => {
     setExportingIssue(issueId);
     try {
-      const response = await fetch(`/api/export-issue/${issueId}`);
+      const response = await fetch(`/api/exportIssue/${issueId}`);
       if (!response.ok) {
         const errorData = await response.json();
         alert(`Export failed: ${errorData.error || "Unknown error"}`);

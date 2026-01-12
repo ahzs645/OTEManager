@@ -25,6 +25,7 @@
     "archiver": "^7.0.1",
     "docx": "^9.5.1",
     "drizzle-orm": "0.38.3",
+    "jszip": "^3.10.1",
     "lucide-react": "0.460.0",
     "mammoth": "^1.11.0",
     "postgres": "3.4.5",

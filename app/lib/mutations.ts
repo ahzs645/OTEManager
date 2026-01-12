@@ -547,13 +547,19 @@ export const updateAuthorPaymentInfo = createServerFn({ method: "POST" })
 
 // Update article content (markdown)
 export const updateArticleContent = createServerFn({ method: "POST" })
-  .validator((data: { articleId: string; content: string }) => data)
+  .validator((data: { articleId: string; content: string }) => {
+    console.log("[updateArticleContent] Validator received:", JSON.stringify(data).slice(0, 200));
+    return data;
+  })
   .handler(async ({ data }) => {
+    console.log("[updateArticleContent] Handler received data:", JSON.stringify(data).slice(0, 200));
+    console.log("[updateArticleContent] articleId:", data.articleId);
+    console.log("[updateArticleContent] content length:", data.content?.length);
     try {
       const { db, articles } = await import("@db/index");
       const { eq } = await import("drizzle-orm");
 
-      await db
+      const result = await db
         .update(articles)
         .set({
           content: data.content,
@@ -561,6 +567,7 @@ export const updateArticleContent = createServerFn({ method: "POST" })
         })
         .where(eq(articles.id, data.articleId));
 
+      console.log("[updateArticleContent] Update result:", result);
       return { success: true };
     } catch (error) {
       console.error("Failed to update article content:", error);

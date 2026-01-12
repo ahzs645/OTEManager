@@ -87,8 +87,10 @@ function SettingsPage() {
 
     try {
       const result = await updatePaymentRateConfig({
-        ...config,
-        updatedBy: "Admin",
+        data: {
+          ...config,
+          updatedBy: "Admin",
+        },
       });
 
       if (result.success) {

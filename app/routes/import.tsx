@@ -117,7 +117,7 @@ function ImportPage() {
       setIsImporting(true);
       setResults(null);
 
-      const result = await importSharePointData({ articles });
+      const result = await importSharePointData({ data: { articles } });
       setResults(result);
     } catch (error) {
       setResults({

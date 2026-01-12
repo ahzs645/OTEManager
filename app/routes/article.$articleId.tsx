@@ -145,8 +145,10 @@ function ArticleDetailPage() {
     setIsUpdatingStatus(true)
     try {
       await updateArticleStatus({
-        articleId: article.id,
-        status: newStatus,
+        data: {
+          articleId: article.id,
+          status: newStatus,
+        },
       })
       window.location.reload()
     } catch (error) {
@@ -161,8 +163,10 @@ function ArticleDetailPage() {
     setIsAddingNote(true)
     try {
       await addArticleNote({
-        articleId: article.id,
-        content: newNote,
+        data: {
+          articleId: article.id,
+          content: newNote,
+        },
       })
       setNewNote('')
       window.location.reload()
@@ -174,15 +178,25 @@ function ArticleDetailPage() {
   }
 
   const handleSaveContent = async () => {
+    console.log('[Client] handleSaveContent called, articleId:', article.id, 'content length:', content.length)
     setIsSavingContent(true)
     try {
-      await updateArticleContent({
-        articleId: article.id,
-        content: content,
+      const result = await updateArticleContent({
+        data: {
+          articleId: article.id,
+          content: content,
+        },
       })
-      setContentSaved(true)
+      console.log('[Client] updateArticleContent result:', result)
+      if (result.success) {
+        setContentSaved(true)
+      } else {
+        console.error('Failed to save content:', result.error)
+        alert('Failed to save content: ' + (result.error || 'Unknown error'))
+      }
     } catch (error) {
       console.error('Failed to save content:', error)
+      alert('Failed to save content')
     } finally {
       setIsSavingContent(false)
     }
@@ -194,8 +208,10 @@ function ArticleDetailPage() {
       // Dynamically import to avoid bundling mammoth in client
       const { convertDocxToMarkdown } = await import('~/lib/server-mutations')
       const result = await convertDocxToMarkdown({
-        articleId: article.id,
-        attachmentId: attachmentId,
+        data: {
+          articleId: article.id,
+          attachmentId: attachmentId,
+        },
       })
       if (result.success && result.content) {
         setContent(result.content)
@@ -250,13 +266,21 @@ function ArticleDetailPage() {
   const handleSaveFeedbackLetter = async () => {
     setIsSavingFeedback(true)
     try {
-      await updateArticleFeedbackLetter({
-        articleId: article.id,
-        feedbackLetter: feedbackLetter,
+      const result = await updateArticleFeedbackLetter({
+        data: {
+          articleId: article.id,
+          feedbackLetter: feedbackLetter,
+        },
       })
-      setFeedbackSaved(true)
+      if (result.success) {
+        setFeedbackSaved(true)
+      } else {
+        console.error('Failed to save feedback letter:', result.error)
+        alert('Failed to save feedback letter: ' + (result.error || 'Unknown error'))
+      }
     } catch (error) {
       console.error('Failed to save feedback letter:', error)
+      alert('Failed to save feedback letter')
     } finally {
       setIsSavingFeedback(false)
     }
@@ -1255,7 +1279,7 @@ function PaymentSection({ article }: { article: any }) {
   const handleRecalculate = async () => {
     setIsRecalculating(true)
     try {
-      await calculateArticlePayment({ articleId: article.id, recalculate: true })
+      await calculateArticlePayment({ data: { articleId: article.id, recalculate: true } })
       window.location.reload()
     } catch (error) {
       console.error('Failed to recalculate:', error)
@@ -1271,8 +1295,10 @@ function PaymentSection({ article }: { article: any }) {
     setIsSavingManual(true)
     try {
       await setManualPayment({
-        articleId: article.id,
-        amount: Math.round(amount * 100), // Convert to cents
+        data: {
+          articleId: article.id,
+          amount: Math.round(amount * 100), // Convert to cents
+        },
       })
       setShowManualInput(false)
       window.location.reload()
@@ -1288,8 +1314,10 @@ function PaymentSection({ article }: { article: any }) {
     setIsMarkingPaid(true)
     try {
       await markPaymentComplete({
-        articleId: article.id,
-        amount: article.paymentAmount,
+        data: {
+          articleId: article.id,
+          amount: article.paymentAmount,
+        },
       })
       window.location.reload()
     } catch (error) {
@@ -1303,8 +1331,10 @@ function PaymentSection({ article }: { article: any }) {
     setIsMarkingPaid(true)
     try {
       await updateArticle({
-        articleId: article.id,
-        paymentStatus: false,
+        data: {
+          articleId: article.id,
+          paymentStatus: false,
+        },
       })
       window.location.reload()
     } catch (error) {
@@ -1567,8 +1597,10 @@ function BonusToggle({
     setIsToggling(true)
     try {
       await updateArticleBonusFlags({
-        articleId,
-        [field]: !isActive,
+        data: {
+          articleId,
+          [field]: !isActive,
+        },
       })
       window.location.reload()
     } catch (error) {
