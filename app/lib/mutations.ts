@@ -491,6 +491,32 @@ export const deleteArticleNote = createServerFn({ method: "POST" })
     }
   });
 
+// Update article tier
+export const updateArticleTier = createServerFn({ method: "POST" })
+  .validator((data: { articleId: string; tier: string }) => data)
+  .handler(async ({ data }) => {
+    try {
+      const { db, articles } = await import("@db/index");
+      const { eq } = await import("drizzle-orm");
+
+      await db
+        .update(articles)
+        .set({
+          articleTier: data.tier as any,
+          updatedAt: new Date(),
+        })
+        .where(eq(articles.id, data.articleId));
+
+      return { success: true };
+    } catch (error) {
+      console.error("Failed to update tier:", error);
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : "Unknown error",
+      };
+    }
+  });
+
 // Mark payment as complete
 export const markPaymentComplete = createServerFn({ method: "POST" })
   .validator((data: { articleId: string; amount: number }) => data)
