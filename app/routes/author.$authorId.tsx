@@ -26,7 +26,12 @@ import { updateAuthorPaymentInfo } from '~/lib/mutations'
 
 // Server function to fetch author data - ensures db code only runs on server
 const fetchAuthorData = createServerFn({ method: 'GET' })
-  .validator((authorId: string) => authorId)
+  .validator((authorId: string) => {
+    if (!authorId || typeof authorId !== 'string') {
+      throw new Error('Author ID is required')
+    }
+    return authorId
+  })
   .handler(async ({ data: authorId }) => {
     const { db, authors, articles } = await import('@db/index')
     const { eq, sum, count, and } = await import('drizzle-orm')
@@ -75,7 +80,12 @@ const fetchAuthorData = createServerFn({ method: 'GET' })
 
 export const Route = createFileRoute('/author/$authorId')({
   component: AuthorDetailPage,
-  loader: ({ params }) => fetchAuthorData(params.authorId),
+  loader: ({ params }) => {
+    if (!params.authorId) {
+      return { author: null, stats: null }
+    }
+    return fetchAuthorData({ data: params.authorId })
+  },
 })
 
 const ROLE_OPTIONS = [

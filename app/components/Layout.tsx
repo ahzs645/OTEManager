@@ -5,6 +5,7 @@ import {
   LayoutDashboard,
   Upload,
   ChevronRight,
+  Settings,
 } from "lucide-react";
 import type { ReactNode } from "react";
 
@@ -30,6 +31,7 @@ function Header() {
     { path: "/articles", label: "Articles", icon: FileText },
     { path: "/authors", label: "Authors", icon: Users },
     { path: "/import", label: "Import", icon: Upload },
+    { path: "/settings", label: "Settings", icon: Settings },
   ];
 
   return (

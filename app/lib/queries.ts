@@ -1,4 +1,60 @@
 import { createServerFn } from "@tanstack/start";
+import type { PaymentRateConfig } from "./payment-calculator";
+
+// Get payment rate configuration
+export const getPaymentRateConfig = createServerFn({ method: "GET" }).handler(
+  async () => {
+    try {
+      const { db, paymentRateConfig } = await import("@db/index");
+
+      const config = await db.query.paymentRateConfig.findFirst();
+
+      if (!config) {
+        // Return default values if no config exists
+        return {
+          config: {
+            id: null,
+            tier1Rate: 5000,
+            tier2Rate: 10000,
+            tier3Rate: 15000,
+            photoBonus: 1500,
+            graphicBonus: 2000,
+            videoBonus: 2500,
+            audioBonus: 1000,
+            featuredBonus: 5000,
+            updatedAt: null,
+            updatedBy: null,
+          } as PaymentRateConfig & { id: string | null; updatedAt: Date | null; updatedBy: string | null },
+          exists: false,
+        };
+      }
+
+      return { config, exists: true };
+    } catch (error) {
+      console.error("Failed to get payment rate config:", error);
+      return { config: null, exists: false };
+    }
+  }
+);
+
+// Get payment rate history
+export const getPaymentRateHistory = createServerFn({ method: "GET" }).handler(
+  async () => {
+    try {
+      const { db, paymentRateHistory } = await import("@db/index");
+
+      const history = await db.query.paymentRateHistory.findMany({
+        orderBy: (history, { desc }) => [desc(history.changedAt)],
+        limit: 20,
+      });
+
+      return { history };
+    } catch (error) {
+      console.error("Failed to get payment rate history:", error);
+      return { history: [] };
+    }
+  }
+);
 
 // Dashboard statistics
 export const getDashboardStats = createServerFn({ method: "GET" }).handler(

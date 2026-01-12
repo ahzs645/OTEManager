@@ -214,5 +214,29 @@ async function processSubmission(submission: ArticleSubmission): Promise<{ artic
     .set({ automationStatus: "Pending Review" })
     .where(eq(articles.id, article.id));
 
+  // 6. Calculate initial payment based on current rates
+  const { paymentRateConfig } = await import("@db/index");
+  const { calculatePayment } = await import("../../lib/payment-calculator");
+
+  const config = await db.query.paymentRateConfig.findFirst();
+  if (config) {
+    const calculation = calculatePayment(
+      submission.articleTier,
+      submission.multimediaTypes,
+      false, // Not featured by default
+      config
+    );
+
+    await db
+      .update(articles)
+      .set({
+        paymentAmount: calculation.totalAmount,
+        paymentRateSnapshot: JSON.stringify(calculation),
+        paymentCalculatedAt: new Date(),
+        paymentIsManual: false,
+      })
+      .where(eq(articles.id, article.id));
+  }
+
   return { articleId: article.id };
 }

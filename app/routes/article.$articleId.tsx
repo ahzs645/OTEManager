@@ -19,6 +19,9 @@ import {
   Plus,
   Wand2,
   Save,
+  Star,
+  RefreshCw,
+  Calculator,
 } from 'lucide-react'
 import {
   StatusBadge,
@@ -29,7 +32,8 @@ import {
   Button,
   LoadingSpinner,
 } from '~/components/Layout'
-import { updateArticleStatus, addArticleNote, updateArticleContent, updateArticle } from '~/lib/mutations'
+import { updateArticleStatus, addArticleNote, updateArticleContent, updateArticle, calculateArticlePayment, setManualPayment, toggleArticleFeatured } from '~/lib/mutations'
+import { formatCents, type PaymentCalculation } from '~/lib/payment-calculator'
 
 // Server function to fetch article data - ensures db code only runs on server
 const fetchArticleData = createServerFn({ method: 'GET' })
@@ -627,53 +631,7 @@ function ArticleDetailPage() {
 
           {/* Payment */}
           <Section title="Payment">
-            <div className="flex items-center gap-3">
-              {article.paymentStatus ? (
-                <>
-                  <div
-                    className="icon-container"
-                    style={{ background: 'var(--status-success-bg)' }}
-                  >
-                    <Check
-                      className="w-4 h-4"
-                      style={{ color: 'var(--status-success)' }}
-                    />
-                  </div>
-                  <div>
-                    <p
-                      className="text-sm font-medium"
-                      style={{ color: 'var(--status-success)' }}
-                    >
-                      Paid
-                      {article.paymentAmount && (
-                        <span className="ml-1">
-                          ${(article.paymentAmount / 100).toFixed(2)}
-                        </span>
-                      )}
-                    </p>
-                    {article.paidAt && (
-                      <p
-                        className="text-xs"
-                        style={{ color: 'var(--fg-muted)' }}
-                      >
-                        {formatDate(article.paidAt)}
-                      </p>
-                    )}
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="icon-container">
-                    <Clock className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>
-                      Not paid
-                    </p>
-                  </div>
-                </>
-              )}
-            </div>
+            <PaymentSection article={article} />
           </Section>
         </div>
       </div>
@@ -814,6 +772,224 @@ function VolumeIssueEditor({
           {volume && issue && ' · '}
           {issue && `Issue ${issue}`}
         </p>
+      )}
+    </div>
+  )
+}
+
+// Payment Section Component with breakdown and controls
+function PaymentSection({ article }: { article: any }) {
+  const [isRecalculating, setIsRecalculating] = useState(false)
+  const [isTogglingFeatured, setIsTogglingFeatured] = useState(false)
+  const [showManualInput, setShowManualInput] = useState(false)
+  const [manualAmount, setManualAmount] = useState('')
+  const [isSavingManual, setIsSavingManual] = useState(false)
+
+  // Parse payment snapshot if available
+  let breakdown: PaymentCalculation | null = null
+  try {
+    if (article.paymentRateSnapshot) {
+      breakdown = JSON.parse(article.paymentRateSnapshot)
+    }
+  } catch {
+    // Invalid JSON
+  }
+
+  const handleRecalculate = async () => {
+    setIsRecalculating(true)
+    try {
+      await calculateArticlePayment({ articleId: article.id, recalculate: true })
+      window.location.reload()
+    } catch (error) {
+      console.error('Failed to recalculate:', error)
+    } finally {
+      setIsRecalculating(false)
+    }
+  }
+
+  const handleToggleFeatured = async () => {
+    setIsTogglingFeatured(true)
+    try {
+      await toggleArticleFeatured({
+        articleId: article.id,
+        isFeatured: !article.isFeatured,
+      })
+      window.location.reload()
+    } catch (error) {
+      console.error('Failed to toggle featured:', error)
+    } finally {
+      setIsTogglingFeatured(false)
+    }
+  }
+
+  const handleSaveManual = async () => {
+    const amount = parseFloat(manualAmount)
+    if (isNaN(amount) || amount < 0) return
+
+    setIsSavingManual(true)
+    try {
+      await setManualPayment({
+        articleId: article.id,
+        amount: Math.round(amount * 100), // Convert to cents
+      })
+      setShowManualInput(false)
+      window.location.reload()
+    } catch (error) {
+      console.error('Failed to set manual payment:', error)
+    } finally {
+      setIsSavingManual(false)
+    }
+  }
+
+  return (
+    <div className="space-y-4">
+      {/* Payment Status */}
+      <div className="flex items-center gap-3">
+        {article.paymentStatus ? (
+          <>
+            <div
+              className="icon-container"
+              style={{ background: 'var(--status-success-bg)' }}
+            >
+              <Check className="w-4 h-4" style={{ color: 'var(--status-success)' }} />
+            </div>
+            <div>
+              <p className="text-sm font-medium" style={{ color: 'var(--status-success)' }}>
+                Paid
+                {article.paymentAmount && (
+                  <span className="ml-1">{formatCents(article.paymentAmount)}</span>
+                )}
+              </p>
+              {article.paidAt && (
+                <p className="text-xs" style={{ color: 'var(--fg-muted)' }}>
+                  {formatDate(article.paidAt)}
+                </p>
+              )}
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="icon-container">
+              <DollarSign className="w-4 h-4" />
+            </div>
+            <div>
+              <p className="text-sm font-medium" style={{ color: 'var(--fg-default)' }}>
+                {article.paymentAmount ? formatCents(article.paymentAmount) : 'Not set'}
+              </p>
+              <p className="text-xs" style={{ color: 'var(--fg-muted)' }}>
+                {article.paymentIsManual ? 'Manual' : 'Calculated'}
+              </p>
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* Payment Breakdown */}
+      {breakdown && !article.paymentIsManual && (
+        <div
+          className="p-3 rounded-lg text-sm space-y-2"
+          style={{ background: 'var(--bg-subtle)' }}
+        >
+          <div className="flex justify-between">
+            <span style={{ color: 'var(--fg-muted)' }}>{breakdown.tierName}</span>
+            <span style={{ color: 'var(--fg-default)' }}>{formatCents(breakdown.tierRate)}</span>
+          </div>
+          {breakdown.bonuses.map((bonus, idx) => (
+            <div key={idx} className="flex justify-between">
+              <span style={{ color: 'var(--fg-muted)' }}>+ {bonus.type}</span>
+              <span style={{ color: 'var(--fg-default)' }}>{formatCents(bonus.amount)}</span>
+            </div>
+          ))}
+          <div
+            className="flex justify-between pt-2 mt-2 font-medium"
+            style={{ borderTop: '1px solid var(--border-default)' }}
+          >
+            <span style={{ color: 'var(--fg-default)' }}>Total</span>
+            <span style={{ color: 'var(--accent)' }}>{formatCents(breakdown.totalAmount)}</span>
+          </div>
+        </div>
+      )}
+
+      {/* Featured Toggle */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Star
+            className={`w-4 h-4 ${article.isFeatured ? 'fill-current' : ''}`}
+            style={{ color: article.isFeatured ? 'var(--status-warning)' : 'var(--fg-faint)' }}
+          />
+          <span className="text-sm" style={{ color: 'var(--fg-muted)' }}>
+            Featured Article
+          </span>
+        </div>
+        <button
+          onClick={handleToggleFeatured}
+          disabled={isTogglingFeatured}
+          className="text-xs px-2 py-1 rounded"
+          style={{
+            background: article.isFeatured ? 'var(--status-warning-bg)' : 'var(--bg-subtle)',
+            color: article.isFeatured ? 'var(--status-warning)' : 'var(--fg-muted)',
+          }}
+        >
+          {isTogglingFeatured ? '...' : article.isFeatured ? 'Featured' : 'Not Featured'}
+        </button>
+      </div>
+
+      {/* Actions */}
+      {!article.paymentStatus && (
+        <div className="flex flex-wrap gap-2">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleRecalculate}
+            disabled={isRecalculating}
+          >
+            {isRecalculating ? (
+              <LoadingSpinner size="sm" />
+            ) : (
+              <>
+                <RefreshCw className="w-3 h-3 mr-1" />
+                Recalculate
+              </>
+            )}
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setShowManualInput(!showManualInput)}
+          >
+            <Calculator className="w-3 h-3 mr-1" />
+            {showManualInput ? 'Cancel' : 'Set Manual'}
+          </Button>
+        </div>
+      )}
+
+      {/* Manual Amount Input */}
+      {showManualInput && (
+        <div className="flex gap-2">
+          <div className="relative flex-1">
+            <DollarSign
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4"
+              style={{ color: 'var(--fg-faint)' }}
+            />
+            <input
+              type="number"
+              step="0.01"
+              min="0"
+              value={manualAmount}
+              onChange={(e) => setManualAmount(e.target.value)}
+              placeholder="0.00"
+              className="input pl-9 w-full"
+            />
+          </div>
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={handleSaveManual}
+            disabled={isSavingManual || !manualAmount}
+          >
+            {isSavingManual ? <LoadingSpinner size="sm" /> : 'Save'}
+          </Button>
+        </div>
       )}
     </div>
   )
