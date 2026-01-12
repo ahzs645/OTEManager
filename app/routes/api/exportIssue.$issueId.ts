@@ -41,96 +41,102 @@ async function markdownToDocx(
     }),
   )
 
+  // Helper function to clean markdown formatting from text
+  const cleanMarkdown = (text: string): string => {
+    // Remove bold (**text** or __text__)
+    text = text.replace(/\*\*(.*?)\*\*/g, '$1')
+    text = text.replace(/__(.*?)__/g, '$1')
+    // Remove italic (*text* or _text_) - but only when surrounded by non-space chars
+    text = text.replace(/(?<!\s)\*([^*]+)\*(?!\s)/g, '$1')
+    text = text.replace(/(?<!\s)_([^_]+)_(?!\s)/g, '$1')
+    // Remove links [text](url)
+    text = text.replace(/\[(.*?)\]\(.*?\)/g, '$1')
+    return text
+  }
+
   // Parse markdown content into paragraphs
   if (content) {
     const lines = content.split('\n')
-    let currentParagraph: TextRun[] = []
 
     for (const line of lines) {
       const trimmedLine = line.trim()
 
-      // Handle headings
-      if (trimmedLine.startsWith('### ')) {
-        if (currentParagraph.length > 0) {
-          paragraphs.push(new Paragraph({ children: currentParagraph }))
-          currentParagraph = []
-        }
+      // Handle empty lines - add spacing
+      if (trimmedLine === '') {
         paragraphs.push(
           new Paragraph({
-            text: trimmedLine.substring(4),
+            text: '',
+            spacing: { after: 200 },
+          }),
+        )
+      }
+      // Handle headings
+      else if (trimmedLine.startsWith('### ')) {
+        paragraphs.push(
+          new Paragraph({
+            text: cleanMarkdown(trimmedLine.substring(4)),
             heading: HeadingLevel.HEADING_3,
             spacing: { before: 200, after: 100 },
           }),
         )
       } else if (trimmedLine.startsWith('## ')) {
-        if (currentParagraph.length > 0) {
-          paragraphs.push(new Paragraph({ children: currentParagraph }))
-          currentParagraph = []
-        }
         paragraphs.push(
           new Paragraph({
-            text: trimmedLine.substring(3),
+            text: cleanMarkdown(trimmedLine.substring(3)),
             heading: HeadingLevel.HEADING_2,
             spacing: { before: 300, after: 150 },
           }),
         )
       } else if (trimmedLine.startsWith('# ')) {
-        if (currentParagraph.length > 0) {
-          paragraphs.push(new Paragraph({ children: currentParagraph }))
-          currentParagraph = []
-        }
         paragraphs.push(
           new Paragraph({
-            text: trimmedLine.substring(2),
+            text: cleanMarkdown(trimmedLine.substring(2)),
             heading: HeadingLevel.HEADING_1,
             spacing: { before: 400, after: 200 },
           }),
         )
-      } else if (trimmedLine === '') {
-        if (currentParagraph.length > 0) {
+      }
+      // Handle bullet points (* or -)
+      else if (trimmedLine.startsWith('* ') || trimmedLine.startsWith('- ')) {
+        const bulletText = cleanMarkdown(trimmedLine.substring(2))
+        paragraphs.push(
+          new Paragraph({
+            children: [
+              new TextRun({ text: '• ', size: 24 }),
+              new TextRun({ text: bulletText, size: 24 }),
+            ],
+            spacing: { after: 80 },
+            indent: { left: 360 }, // Indent bullet points
+          }),
+        )
+      }
+      // Handle numbered lists (1. 2. etc)
+      else if (/^\d+\.\s/.test(trimmedLine)) {
+        const match = trimmedLine.match(/^(\d+\.)\s(.*)$/)
+        if (match) {
           paragraphs.push(
             new Paragraph({
-              children: currentParagraph,
-              spacing: { after: 200 },
+              children: [
+                new TextRun({ text: match[1] + ' ', size: 24 }),
+                new TextRun({ text: cleanMarkdown(match[2]), size: 24 }),
+              ],
+              spacing: { after: 80 },
+              indent: { left: 360 },
             }),
           )
-          currentParagraph = []
         }
-      } else {
-        let text = trimmedLine
-        text = text.replace(/\*\*(.*?)\*\*/g, '$1')
-        text = text.replace(/__(.*?)__/g, '$1')
-        text = text.replace(/\*(.*?)\*/g, '$1')
-        text = text.replace(/_(.*?)_/g, '$1')
-        text = text.replace(/\[(.*?)\]\(.*?\)/g, '$1')
-
-        if (currentParagraph.length > 0) {
-          currentParagraph.push(new TextRun({ text: ' ' }))
-        }
-        currentParagraph.push(new TextRun({ text, size: 24 }))
+      }
+      // Regular paragraph - each line is its own paragraph
+      else {
+        const text = cleanMarkdown(trimmedLine)
+        paragraphs.push(
+          new Paragraph({
+            children: [new TextRun({ text, size: 24 })],
+            spacing: { after: 120 },
+          }),
+        )
       }
     }
-
-    if (currentParagraph.length > 0) {
-      paragraphs.push(
-        new Paragraph({
-          children: currentParagraph,
-          spacing: { after: 200 },
-        }),
-      )
-    }
-  } else {
-    paragraphs.push(
-      new Paragraph({
-        children: [
-          new TextRun({
-            text: '(No content available)',
-            italics: true,
-            color: '888888',
-          }),
-        ],
-      }),
-    )
   }
 
   const doc = new Document({
@@ -221,31 +227,18 @@ export const APIRoute = createAPIFileRoute('/api/exportIssue/$issueId')({
                 ? `${article.author.givenName} ${article.author.surname}`
                 : 'Unknown Author'
 
-            // Get word documents and photos
-            const wordDocs = article.attachments.filter(
-              (a) => a.attachmentType === 'word_document',
-            )
+            // Get photos
             const photos = article.attachments.filter(
               (a) => a.attachmentType === 'photo',
             )
 
-            // Add original word documents to the article folder
-            for (const doc of wordDocs) {
-              const fileBuffer = await storage.getFile(doc.filePath)
-              if (fileBuffer) {
-                zip.file(`${articlePath}/${doc.originalFileName}`, fileBuffer)
-              }
-            }
-
-            // Create the final article docx from markdown content
-            if (article.content) {
-              const docxBuffer = await markdownToDocx(
-                article.content,
-                article.title,
-                authorName,
-              )
-              zip.file(`${articlePath}/${articleFolder} - Final.docx`, docxBuffer)
-            }
+            // Create the article docx from markdown content (always created, even if empty)
+            const docxBuffer = await markdownToDocx(
+              article.content || '',
+              article.title,
+              authorName,
+            )
+            zip.file(`${articlePath}/${articleFolder}.docx`, docxBuffer)
 
             // Process photos
             let photoCount = 1
@@ -267,29 +260,6 @@ Caption: ${photo.caption || '(No caption provided)'}`
               photoCount++
             }
           }
-
-          // Create a summary file for the issue
-          const summaryContent = `Issue Export Summary
-====================
-
-Volume: ${issue.volume.volumeNumber}${issue.volume.year ? ` (${issue.volume.year})` : ''}
-Issue: ${issue.issueNumber}${issue.title ? ` - ${issue.title}` : ''}
-Export Date: ${new Date().toISOString()}
-
-Articles Included: ${issueArticles.length}
-
-${issueArticles
-  .map(
-    (a, i) => `${i + 1}. ${a.title}
-   Author: ${a.prefersAnonymity ? 'Anonymous' : a.author ? `${a.author.givenName} ${a.author.surname}` : 'Unknown'}
-   Photos: ${a.attachments.filter((att) => att.attachmentType === 'photo').length}
-   Documents: ${a.attachments.filter((att) => att.attachmentType === 'word_document').length}
-`,
-  )
-  .join('\n')}
-`
-
-          zip.file(`${basePath}/_Issue_Summary.txt`, summaryContent)
 
           // Generate the ZIP file
           const zipBuffer = await zip.generateAsync({

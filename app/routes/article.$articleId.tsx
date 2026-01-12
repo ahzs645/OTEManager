@@ -528,6 +528,15 @@ function ArticleDetailPage() {
                 <span className="text-xs" style={{ color: 'var(--fg-muted)' }}>
                   {wordCount} words · {charCount} chars
                 </span>
+                <a
+                  href={`/api/exportArticle/${article.id}`}
+                  download
+                  className="btn btn-ghost"
+                  style={{ padding: '0.25rem 0.5rem' }}
+                  title="Download as Word document"
+                >
+                  <Download className="w-3 h-3" />
+                </a>
                 <Button
                   onClick={handleSaveContent}
                   disabled={isSavingContent || contentSaved}
