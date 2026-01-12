@@ -86,9 +86,11 @@ export const articles = pgTable("articles", {
   articleFilePath: text("article_file_path"),
   content: text("content"), // Markdown content
 
-  // Publication info
-  volume: integer("volume"), // e.g., 12
-  issue: integer("issue"), // e.g., 3
+  // Publication info (legacy integer fields kept for imported data)
+  volume: integer("volume"), // e.g., 12 (legacy)
+  issue: integer("issue"), // e.g., 3 (legacy)
+  // New: Reference to the issues table (includes volume relationship)
+  issueId: uuid("issue_id").references(() => issues.id),
 
   // Payment info
   paymentStatus: boolean("payment_status").default(false),
@@ -184,6 +186,32 @@ export const paymentRateHistory = pgTable("payment_rate_history", {
   notes: text("notes"), // Optional reason for change
 });
 
+// Publication volumes (e.g., Volume 31)
+export const volumes = pgTable("volumes", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  volumeNumber: integer("volume_number").notNull().unique(),
+  year: integer("year"), // Primary year for this volume (e.g., 2025)
+  startDate: timestamp("start_date"), // When this volume period starts
+  endDate: timestamp("end_date"), // When this volume period ends
+  description: text("description"), // Optional description
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// Publication issues within volumes (e.g., Issue 2 of Volume 31)
+export const issues = pgTable("issues", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  volumeId: uuid("volume_id")
+    .references(() => volumes.id, { onDelete: "cascade" })
+    .notNull(),
+  issueNumber: integer("issue_number").notNull(),
+  title: text("title"), // Optional title (e.g., "Fall Edition", "Special Issue")
+  releaseDate: timestamp("release_date"), // When this issue is/was released
+  description: text("description"), // Optional description
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
 // Relations
 export const authorsRelations = relations(authors, ({ many }) => ({
   articles: many(articles),
@@ -194,10 +222,26 @@ export const articlesRelations = relations(articles, ({ one, many }) => ({
     fields: [articles.authorId],
     references: [authors.id],
   }),
+  publicationIssue: one(issues, {
+    fields: [articles.issueId],
+    references: [issues.id],
+  }),
   multimediaTypes: many(articleMultimediaTypes),
   attachments: many(attachments),
   notes: many(articleNotes),
   statusHistory: many(statusHistory),
+}));
+
+export const volumesRelations = relations(volumes, ({ many }) => ({
+  issues: many(issues),
+}));
+
+export const issuesRelations = relations(issues, ({ one, many }) => ({
+  volume: one(volumes, {
+    fields: [issues.volumeId],
+    references: [volumes.id],
+  }),
+  articles: many(articles),
 }));
 
 export const articleMultimediaTypesRelations = relations(

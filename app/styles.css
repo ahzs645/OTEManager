@@ -82,6 +82,10 @@
   box-sizing: border-box;
 }
 
+html {
+  overscroll-behavior: none;
+}
+
 body {
   font-family: var(--font-sans);
   background: var(--bg-root);
@@ -90,6 +94,7 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
 }
 
 /* ===========================================
@@ -291,6 +296,10 @@ body {
   cursor: pointer;
   white-space: nowrap;
   transition: all var(--transition-fast);
+  /* Hide native dropdown arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .select-trigger:hover {

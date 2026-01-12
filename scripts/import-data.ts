@@ -10,10 +10,10 @@ import {
 import { eq } from "drizzle-orm";
 
 // Source paths
-const SOURCE_DIR = "/Users/ahmadjalil/Downloads/New Folder With Items";
+const SOURCE_DIR = "/Users/ahmadjalil/Downloads/OTE DS";
 const JSON_FILE = path.join(SOURCE_DIR, "ote-articles-full-2026-01-11.json");
-const DOCUMENTS_DIR = path.join(SOURCE_DIR, "documents");
-const PHOTOS_DIR = path.join(SOURCE_DIR, "photos");
+const DOCUMENTS_DIR = path.join(SOURCE_DIR, "DS");
+const PHOTOS_DIR = path.join(SOURCE_DIR, "DS");
 
 // Destination
 const UPLOAD_DIR = process.env.UPLOAD_DIR || "./uploads";
@@ -37,6 +37,13 @@ interface SharePointArticle {
   Total_x0020_Payment: number | null;
   e_x002d_Transfer_x0020_Email: string;
   role: string;
+  Volume: string | null;
+  Issue: string | null;
+  Article_x0020_Content1: string | null;
+  Bonus_x0020_Type?: {
+    results: string[];
+  };
+  Bonus_x0020_Amount: number | null;
   Created: string;
   Modified: string;
   _fullName: string;
@@ -48,6 +55,7 @@ interface SharePointArticle {
     metadata: {
       ImageWidth?: number;
       ImageHeight?: number;
+      Caption?: string;
     };
   }>;
 }
@@ -183,6 +191,7 @@ async function main() {
       }
 
       // Create article
+      const hasExistingPayment = article.Total_x0020_Payment != null && article.Total_x0020_Payment > 0;
       const [newArticle] = await db
         .insert(articles)
         .values({
@@ -196,7 +205,12 @@ async function main() {
           paymentAmount: article.Total_x0020_Payment
             ? Math.round(article.Total_x0020_Payment * 100)
             : null,
+          paymentIsManual: hasExistingPayment, // Mark imported payments as manual
           submittedAt: article.Created ? new Date(article.Created) : null,
+          // New fields
+          volume: article.Volume ? parseInt(article.Volume, 10) : null,
+          issue: article.Issue ? parseInt(article.Issue, 10) : null,
+          content: article.Article_x0020_Content1 || null,
         })
         .returning();
 
@@ -214,19 +228,26 @@ async function main() {
         }
       }
 
-      // Process files
+      // Process files - all files are in a single folder per article
       const articleFolderName = article.FileLeafRef;
-      const docsFolderPath = path.join(DOCUMENTS_DIR, articleFolderName);
-      const photosFolderPath = path.join(PHOTOS_DIR, articleFolderName);
+      const articleFolderPath = path.join(DOCUMENTS_DIR, articleFolderName);
 
-      // Check for document files
       try {
-        const docFiles = await fs.readdir(docsFolderPath);
-        for (const file of docFiles) {
+        const files = await fs.readdir(articleFolderPath);
+        let photoNumber = 1;
+
+        for (const file of files) {
           if (file.startsWith(".")) continue;
 
-          const srcPath = path.join(docsFolderPath, file);
-          const destDir = path.join(UPLOAD_DIR, "documents", newArticle.id);
+          const srcPath = path.join(articleFolderPath, file);
+          const ext = path.extname(file).toLowerCase();
+          const isImage = [".jpg", ".jpeg", ".png", ".gif", ".webp"].includes(ext);
+          const isDocument = [".docx", ".doc", ".pdf", ".txt"].includes(ext);
+
+          if (!isImage && !isDocument) continue; // Skip unknown file types
+
+          const destSubDir = isImage ? "photos" : "documents";
+          const destDir = path.join(UPLOAD_DIR, destSubDir, newArticle.id);
           await ensureDir(destDir);
 
           const destPath = path.join(destDir, sanitizeFilename(file));
@@ -234,56 +255,27 @@ async function main() {
 
           if (copied) {
             const stats = await fs.stat(destPath);
-            const ext = path.extname(file).toLowerCase();
-            const isImage = [".jpg", ".jpeg", ".png", ".gif", ".webp"].includes(ext);
+
+            // Find caption from _files metadata if available
+            const fileMetadata = article._files?.find(f => f.name === file);
+            const caption = fileMetadata?.metadata?.Caption || null;
 
             await db.insert(attachments).values({
               articleId: newArticle.id,
               attachmentType: isImage ? "photo" : "word_document",
               fileName: sanitizeFilename(file),
               originalFileName: file,
-              filePath: path.join("documents", newArticle.id, sanitizeFilename(file)),
+              filePath: path.join(destSubDir, newArticle.id, sanitizeFilename(file)),
               fileSize: stats.size,
               mimeType: getMimeType(file),
+              caption: isImage ? caption : null,
+              photoNumber: isImage ? photoNumber++ : null,
             });
             importedAttachments++;
           }
         }
       } catch {
-        // No documents folder for this article
-      }
-
-      // Check for photo files
-      try {
-        const photoFiles = await fs.readdir(photosFolderPath);
-        let photoNumber = 1;
-        for (const file of photoFiles) {
-          if (file.startsWith(".")) continue;
-
-          const srcPath = path.join(photosFolderPath, file);
-          const destDir = path.join(UPLOAD_DIR, "photos", newArticle.id);
-          await ensureDir(destDir);
-
-          const destPath = path.join(destDir, sanitizeFilename(file));
-          const copied = await copyFile(srcPath, destPath);
-
-          if (copied) {
-            const stats = await fs.stat(destPath);
-            await db.insert(attachments).values({
-              articleId: newArticle.id,
-              attachmentType: "photo",
-              fileName: sanitizeFilename(file),
-              originalFileName: file,
-              filePath: path.join("photos", newArticle.id, sanitizeFilename(file)),
-              fileSize: stats.size,
-              mimeType: getMimeType(file),
-              photoNumber: photoNumber++,
-            });
-            importedAttachments++;
-          }
-        }
-      } catch {
-        // No photos folder for this article
+        // No folder for this article
       }
 
       if (importedArticles % 10 === 0) {

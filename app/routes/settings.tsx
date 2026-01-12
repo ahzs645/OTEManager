@@ -355,8 +355,8 @@ function RateInput({
           min="0"
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="input pl-9"
-          style={{ width: "100%" }}
+          className="input"
+          style={{ width: "100%", paddingLeft: "2.5rem" }}
         />
       </div>
     </div>

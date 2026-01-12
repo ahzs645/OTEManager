@@ -10,6 +10,9 @@ import {
   DollarSign,
   EyeOff,
   ChevronDown,
+  List,
+  Columns,
+  BookOpen,
 } from "lucide-react";
 import {
   StatusBadge,
@@ -20,15 +23,22 @@ import {
   Button,
   Input,
 } from "~/components/Layout";
-import { getArticles } from "~/lib/queries";
+import { getArticles, getIssueById, getVolumeById } from "~/lib/queries";
 
 // Search params schema
+type ViewMode = "list" | "board" | "issue";
+
 type ArticlesSearch = {
   status?: string;
   tier?: string;
   search?: string;
   authorId?: string;
+  issueId?: string;
+  volumeId?: string;
   page?: number;
+  view?: ViewMode;
+  volume?: number;
+  issue?: number;
 };
 
 export const Route = createFileRoute("/articles")({
@@ -43,7 +53,12 @@ export const Route = createFileRoute("/articles")({
       tier: search.tier as string | undefined,
       search: search.search as string | undefined,
       authorId: search.authorId as string | undefined,
+      issueId: search.issueId as string | undefined,
+      volumeId: search.volumeId as string | undefined,
       page: Number(search.page) || 1,
+      view: (search.view as ViewMode) || "list",
+      volume: search.volume ? Number(search.volume) : undefined,
+      issue: search.issue ? Number(search.issue) : undefined,
     };
   },
 });
@@ -79,6 +94,39 @@ function ArticlesPage() {
     totalPages: number;
   }>({ articles: [], total: 0, page: 1, totalPages: 0 });
   const [isLoading, setIsLoading] = useState(true);
+  const [filterInfo, setFilterInfo] = useState<{
+    volumeNumber?: number;
+    volumeYear?: number | null;
+    issueNumber?: number;
+    issueTitle?: string | null;
+  } | null>(null);
+
+  // Fetch filter info when filtering by volume or issue
+  useEffect(() => {
+    if (search.issueId) {
+      getIssueById({ data: { id: search.issueId } }).then((result) => {
+        if (result.issue) {
+          setFilterInfo({
+            volumeNumber: result.issue.volume?.volumeNumber,
+            volumeYear: result.issue.volume?.year,
+            issueNumber: result.issue.issueNumber,
+            issueTitle: result.issue.title,
+          });
+        }
+      });
+    } else if (search.volumeId) {
+      getVolumeById({ data: { id: search.volumeId } }).then((result) => {
+        if (result.volume) {
+          setFilterInfo({
+            volumeNumber: result.volume.volumeNumber,
+            volumeYear: result.volume.year,
+          });
+        }
+      });
+    } else {
+      setFilterInfo(null);
+    }
+  }, [search.issueId, search.volumeId]);
 
   // Fetch articles when search params change
   useEffect(() => {
@@ -89,8 +137,10 @@ function ArticlesPage() {
     if (search.tier) params.tier = search.tier;
     if (search.search) params.search = search.search;
     if (search.authorId) params.authorId = search.authorId;
+    if (search.issueId) params.issueId = search.issueId;
+    if (search.volumeId) params.volumeId = search.volumeId;
 
-    getArticles(params)
+    getArticles({ data: params })
       .then((result) => {
         setData(result);
         setIsLoading(false);
@@ -99,7 +149,7 @@ function ArticlesPage() {
         console.error("Failed to fetch articles:", err);
         setIsLoading(false);
       });
-  }, [search.status, search.tier, search.search, search.authorId, search.page]);
+  }, [search.status, search.tier, search.search, search.authorId, search.issueId, search.volumeId, search.page]);
 
   const { articles, total, page, totalPages } = data;
 
@@ -127,16 +177,111 @@ function ArticlesPage() {
   };
 
   const hasFilters = search.status || search.tier || search.search;
+  const viewMode = search.view || "list";
+
+  const handleViewChange = (view: ViewMode) => {
+    navigate({
+      search: (prev) => ({ ...prev, view, page: 1 }),
+    });
+  };
+
+  // Group articles by status for board view
+  const articlesByStatus = articles.reduce((acc: Record<string, any[]>, article: any) => {
+    const status = article.internalStatus || "Draft";
+    if (!acc[status]) acc[status] = [];
+    acc[status].push(article);
+    return acc;
+  }, {});
+
+  // Group articles by volume/issue for issue view
+  const articlesByIssue = articles.reduce((acc: Record<string, any[]>, article: any) => {
+    const key = article.volume && article.issue
+      ? `Vol ${article.volume}, Issue ${article.issue}`
+      : article.volume
+        ? `Vol ${article.volume}`
+        : "Unassigned";
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(article);
+    return acc;
+  }, {});
+
+  // Sort issue keys (newest first)
+  const sortedIssueKeys = Object.keys(articlesByIssue).sort((a, b) => {
+    if (a === "Unassigned") return 1;
+    if (b === "Unassigned") return -1;
+    return b.localeCompare(a);
+  });
+
+  // Build page title based on filters
+  const getPageTitle = () => {
+    if (filterInfo) {
+      if (filterInfo.issueNumber !== undefined) {
+        return `Volume ${filterInfo.volumeNumber} · Issue ${filterInfo.issueNumber}${filterInfo.issueTitle ? ` - ${filterInfo.issueTitle}` : ""}`;
+      }
+      return `Volume ${filterInfo.volumeNumber}${filterInfo.volumeYear ? ` (${filterInfo.volumeYear})` : ""}`;
+    }
+    return "Articles";
+  };
+
+  const clearPublicationFilter = () => {
+    navigate({
+      search: (prev) => ({
+        ...prev,
+        issueId: undefined,
+        volumeId: undefined,
+        page: 1,
+      }),
+    });
+  };
 
   return (
     <div className="space-y-4">
       {/* Page Header */}
       <div className="flex items-center justify-between">
         <div className="page-header" style={{ marginBottom: 0 }}>
-          <h1 className="page-title">Articles</h1>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+            <h1 className="page-title">{getPageTitle()}</h1>
+            {filterInfo && (
+              <button
+                onClick={clearPublicationFilter}
+                className="btn btn-ghost btn-sm"
+                style={{ color: "var(--fg-muted)" }}
+              >
+                × Clear
+              </button>
+            )}
+          </div>
           <p className="page-subtitle">
             {isLoading ? "Loading..." : `${total} ${total === 1 ? "article" : "articles"}${hasFilters ? " matching filters" : ""}`}
           </p>
+        </div>
+
+        {/* View Mode Toggle */}
+        <div
+          className="flex items-center gap-1 p-1 rounded-lg"
+          style={{ background: "var(--bg-subtle)" }}
+        >
+          <button
+            onClick={() => handleViewChange("list")}
+            className={`btn !p-2 ${viewMode === "list" ? "btn-secondary" : "btn-ghost"}`}
+            title="List View"
+          >
+            <List className="w-4 h-4" />
+          </button>
+          <button
+            onClick={() => handleViewChange("board")}
+            className={`btn !p-2 ${viewMode === "board" ? "btn-secondary" : "btn-ghost"}`}
+            title="Board View (by Status)"
+          >
+            <Columns className="w-4 h-4" />
+          </button>
+          <button
+            onClick={() => handleViewChange("issue")}
+            className={`btn !p-2 ${viewMode === "issue" ? "btn-secondary" : "btn-ghost"}`}
+            title="Issue View"
+          >
+            <BookOpen className="w-4 h-4" />
+          </button>
         </div>
       </div>
 
@@ -190,15 +335,15 @@ function ArticlesPage() {
         )}
       </div>
 
-      {/* Articles Table */}
-      <div
-        className="rounded-lg overflow-hidden"
-        style={{
-          background: "var(--bg-surface)",
-          border: "0.5px solid var(--border-default)",
-        }}
-      >
-        {articles.length === 0 ? (
+      {/* Content based on view mode */}
+      {articles.length === 0 ? (
+        <div
+          className="rounded-lg overflow-hidden"
+          style={{
+            background: "var(--bg-surface)",
+            border: "0.5px solid var(--border-default)",
+          }}
+        >
           <EmptyState
             icon={FileText}
             title="No articles found"
@@ -208,68 +353,153 @@ function ArticlesPage() {
                 : "Articles submitted via Microsoft Forms will appear here"
             }
           />
-        ) : (
-          <>
-            {/* Table Header */}
-            <div
-              className="grid gap-4 px-4 py-2"
-              style={{
-                gridTemplateColumns: "1fr 140px 70px 100px 100px 80px 60px",
-                borderBottom: "0.5px solid var(--border-subtle)",
-              }}
-            >
-              <span className="table-header">Article</span>
-              <span className="table-header">Author</span>
-              <span className="table-header">Vol/Issue</span>
-              <span className="table-header">Status</span>
-              <span className="table-header">Submitted</span>
-              <span className="table-header">Tier</span>
-              <span className="table-header text-right">Info</span>
-            </div>
-
-            {/* Table Body */}
-            <div>
-              {articles.map((article: any) => (
-                <ArticleRow key={article.id} article={article} />
-              ))}
-            </div>
-
-            {/* Pagination */}
-            {totalPages > 1 && (
+        </div>
+      ) : viewMode === "board" ? (
+        /* Board View - Kanban by Status */
+        <div className="flex gap-4 overflow-x-auto pb-4">
+          {STATUS_OPTIONS.filter(s => s.value).map((statusOpt) => {
+            const statusArticles = articlesByStatus[statusOpt.value] || [];
+            return (
               <div
-                className="flex items-center justify-between px-4 py-3"
-                style={{ borderTop: "0.5px solid var(--border-subtle)" }}
+                key={statusOpt.value}
+                className="flex-shrink-0 w-72 rounded-lg"
+                style={{
+                  background: "var(--bg-surface)",
+                  border: "0.5px solid var(--border-default)",
+                }}
               >
-                <span className="text-xs" style={{ color: "var(--fg-muted)" }}>
-                  {(page - 1) * 20 + 1}–{Math.min(page * 20, total)} of {total}
-                </span>
-                <div className="flex items-center gap-1">
-                  <button
-                    onClick={() => handlePageChange(page - 1)}
-                    disabled={page <= 1}
-                    className="btn btn-ghost !p-1.5 disabled:opacity-30"
-                  >
-                    <ChevronLeft className="w-4 h-4" />
-                  </button>
-                  <span
-                    className="text-xs px-2 tabular-nums"
-                    style={{ color: "var(--fg-muted)" }}
-                  >
-                    {page} / {totalPages}
+                <div
+                  className="px-3 py-2 flex items-center justify-between"
+                  style={{ borderBottom: "0.5px solid var(--border-subtle)" }}
+                >
+                  <span className="text-sm font-medium" style={{ color: "var(--fg-default)" }}>
+                    {statusOpt.label}
                   </span>
-                  <button
-                    onClick={() => handlePageChange(page + 1)}
-                    disabled={page >= totalPages}
-                    className="btn btn-ghost !p-1.5 disabled:opacity-30"
+                  <span
+                    className="text-xs px-1.5 py-0.5 rounded-full"
+                    style={{ background: "var(--bg-subtle)", color: "var(--fg-muted)" }}
                   >
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
+                    {statusArticles.length}
+                  </span>
+                </div>
+                <div className="p-2 space-y-2 max-h-[calc(100vh-280px)] overflow-y-auto">
+                  {statusArticles.length === 0 ? (
+                    <p className="text-xs text-center py-4" style={{ color: "var(--fg-faint)" }}>
+                      No articles
+                    </p>
+                  ) : (
+                    statusArticles.map((article: any) => (
+                      <BoardCard key={article.id} article={article} />
+                    ))
+                  )}
                 </div>
               </div>
-            )}
-          </>
-        )}
-      </div>
+            );
+          })}
+        </div>
+      ) : viewMode === "issue" ? (
+        /* Issue View - Grouped by Volume/Issue */
+        <div className="space-y-6">
+          {sortedIssueKeys.map((issueKey) => (
+            <div key={issueKey}>
+              <div className="flex items-center gap-2 mb-3">
+                <BookOpen className="w-4 h-4" style={{ color: "var(--fg-muted)" }} />
+                <h2 className="text-sm font-semibold" style={{ color: "var(--fg-default)" }}>
+                  {issueKey}
+                </h2>
+                <span
+                  className="text-xs px-1.5 py-0.5 rounded-full"
+                  style={{ background: "var(--bg-subtle)", color: "var(--fg-muted)" }}
+                >
+                  {articlesByIssue[issueKey].length}
+                </span>
+              </div>
+              <div
+                className="rounded-lg overflow-hidden"
+                style={{
+                  background: "var(--bg-surface)",
+                  border: "0.5px solid var(--border-default)",
+                }}
+              >
+                {articlesByIssue[issueKey].map((article: any, index: number) => (
+                  <IssueArticleRow
+                    key={article.id}
+                    article={article}
+                    isLast={index === articlesByIssue[issueKey].length - 1}
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        /* List View - Default Table */
+        <div
+          className="rounded-lg overflow-hidden"
+          style={{
+            background: "var(--bg-surface)",
+            border: "0.5px solid var(--border-default)",
+          }}
+        >
+          {/* Table Header */}
+          <div
+            className="grid gap-4 px-4 py-2"
+            style={{
+              gridTemplateColumns: "1fr 140px 70px 100px 100px 80px 60px",
+              borderBottom: "0.5px solid var(--border-subtle)",
+            }}
+          >
+            <span className="table-header">Article</span>
+            <span className="table-header">Author</span>
+            <span className="table-header">Vol/Issue</span>
+            <span className="table-header">Status</span>
+            <span className="table-header">Submitted</span>
+            <span className="table-header">Tier</span>
+            <span className="table-header text-right">Info</span>
+          </div>
+
+          {/* Table Body */}
+          <div>
+            {articles.map((article: any) => (
+              <ArticleRow key={article.id} article={article} />
+            ))}
+          </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div
+              className="flex items-center justify-between px-4 py-3"
+              style={{ borderTop: "0.5px solid var(--border-subtle)" }}
+            >
+              <span className="text-xs" style={{ color: "var(--fg-muted)" }}>
+                {(page - 1) * 20 + 1}–{Math.min(page * 20, total)} of {total}
+              </span>
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={() => handlePageChange(page - 1)}
+                  disabled={page <= 1}
+                  className="btn btn-ghost !p-1.5 disabled:opacity-30"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <span
+                  className="text-xs px-2 tabular-nums"
+                  style={{ color: "var(--fg-muted)" }}
+                >
+                  {page} / {totalPages}
+                </span>
+                <button
+                  onClick={() => handlePageChange(page + 1)}
+                  disabled={page >= totalPages}
+                  className="btn btn-ghost !p-1.5 disabled:opacity-30"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
@@ -378,6 +608,85 @@ function ArticleRow({ article }: { article: any }) {
           <span style={{ color: "var(--status-success)" }} title="Paid">
             <DollarSign className="w-3.5 h-3.5" />
           </span>
+        )}
+      </div>
+    </Link>
+  );
+}
+
+function BoardCard({ article }: { article: any }) {
+  const authorName = article.author
+    ? `${article.author.givenName} ${article.author.surname}`
+    : "Unknown";
+
+  return (
+    <Link
+      to="/article/$articleId"
+      params={{ articleId: article.id }}
+      className="block p-3 rounded-md transition-colors"
+      style={{
+        background: "var(--bg-default)",
+        border: "0.5px solid var(--border-subtle)",
+      }}
+    >
+      <p
+        className="text-sm font-medium line-clamp-2 mb-2"
+        style={{ color: "var(--fg-default)" }}
+      >
+        {article.title}
+      </p>
+      <div className="flex items-center gap-2 mb-2">
+        <Avatar name={authorName} size="sm" />
+        <span className="text-xs truncate" style={{ color: "var(--fg-muted)" }}>
+          {authorName}
+        </span>
+      </div>
+      <div className="flex items-center justify-between">
+        <TierBadge tier={article.articleTier} />
+        <span className="text-xs" style={{ color: "var(--fg-faint)" }}>
+          {formatDate(article.submittedAt || article.createdAt)}
+        </span>
+      </div>
+    </Link>
+  );
+}
+
+function IssueArticleRow({ article, isLast }: { article: any; isLast: boolean }) {
+  const authorName = article.author
+    ? `${article.author.givenName} ${article.author.surname}`
+    : "Unknown";
+
+  return (
+    <Link
+      to="/article/$articleId"
+      params={{ articleId: article.id }}
+      className="flex items-center justify-between px-4 py-3 table-row"
+      style={{
+        borderBottom: isLast ? "none" : "0.5px solid var(--border-subtle)",
+      }}
+    >
+      <div className="flex-1 min-w-0">
+        <p
+          className="text-sm font-medium truncate"
+          style={{ color: "var(--fg-default)" }}
+        >
+          {article.title}
+        </p>
+        <div className="flex items-center gap-2 mt-1">
+          <span className="text-xs" style={{ color: "var(--fg-muted)" }}>
+            {authorName}
+          </span>
+          <span className="text-xs" style={{ color: "var(--fg-faint)" }}>·</span>
+          <span className="text-xs" style={{ color: "var(--fg-muted)" }}>
+            {formatDate(article.submittedAt || article.createdAt)}
+          </span>
+        </div>
+      </div>
+      <div className="flex items-center gap-2">
+        <StatusBadge status={article.internalStatus} />
+        <TierBadge tier={article.articleTier} />
+        {article.paymentStatus && (
+          <DollarSign className="w-4 h-4" style={{ color: "var(--status-success)" }} />
         )}
       </div>
     </Link>

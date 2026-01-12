@@ -398,7 +398,8 @@ export function Input({
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className={`input ${Icon ? "pl-9" : ""}`}
+        className="input"
+        style={Icon ? { paddingLeft: "2.5rem" } : undefined}
       />
     </div>
   );

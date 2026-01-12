@@ -15,6 +15,8 @@ import {
   LayoutDashboard,
   Upload,
   Loader2,
+  Settings,
+  BookOpen,
 } from "lucide-react";
 import appCss from "../styles.css?url";
 
@@ -80,7 +82,9 @@ function Header({ isLoading }: { isLoading: boolean }) {
     { path: "/", label: "Dashboard", icon: LayoutDashboard },
     { path: "/articles", label: "Articles", icon: FileText },
     { path: "/authors", label: "Authors", icon: Users },
+    { path: "/publications", label: "Publications", icon: BookOpen },
     { path: "/import", label: "Import", icon: Upload },
+    { path: "/settings", label: "Settings", icon: Settings },
   ];
 
   return (

@@ -22,6 +22,7 @@ import {
   Star,
   RefreshCw,
   Calculator,
+  Edit2,
 } from 'lucide-react'
 import {
   StatusBadge,
@@ -32,27 +33,38 @@ import {
   Button,
   LoadingSpinner,
 } from '~/components/Layout'
-import { updateArticleStatus, addArticleNote, updateArticleContent, updateArticle, calculateArticlePayment, setManualPayment, toggleArticleFeatured } from '~/lib/mutations'
+import { updateArticleStatus, addArticleNote, updateArticleContent, updateArticle, calculateArticlePayment, setManualPayment, toggleArticleFeatured, updateAttachmentCaption, updateArticleIssue } from '~/lib/mutations'
 import { formatCents, type PaymentCalculation } from '~/lib/payment-calculator'
 
 // Server function to fetch article data - ensures db code only runs on server
 const fetchArticleData = createServerFn({ method: 'GET' })
-  .validator((articleId: string) => articleId)
+  .validator((articleId: string) => {
+    if (!articleId || typeof articleId !== 'string') {
+      throw new Error('Article ID is required')
+    }
+    return articleId
+  })
   .handler(async ({ data: articleId }) => {
     // Guard against undefined articleId (can happen during hot reload)
     if (!articleId) {
-      return { article: null }
+      return { article: null, volumes: [] }
     }
 
     const { db, articles } = await import('@db/index')
     const { eq } = await import('drizzle-orm')
 
+    // Fetch article with relations
     const article = await db.query.articles.findFirst({
       where: eq(articles.id, articleId),
       with: {
         author: true,
         attachments: true,
         multimediaTypes: true,
+        publicationIssue: {
+          with: {
+            volume: true,
+          },
+        },
         notes: {
           orderBy: (notes: any, { desc }: any) => [desc(notes.createdAt)],
         },
@@ -62,12 +74,27 @@ const fetchArticleData = createServerFn({ method: 'GET' })
       },
     })
 
-    return { article }
+    // Fetch all volumes with their issues for the dropdown
+    const volumes = await db.query.volumes.findMany({
+      with: {
+        issues: {
+          orderBy: (issues: any, { asc }: any) => [asc(issues.issueNumber)],
+        },
+      },
+      orderBy: (volumes: any, { desc }: any) => [desc(volumes.volumeNumber)],
+    })
+
+    return { article, volumes }
   })
 
 export const Route = createFileRoute('/article/$articleId')({
   component: ArticleDetailPage,
-  loader: ({ params }) => fetchArticleData(params.articleId),
+  loader: ({ params }) => {
+    if (!params.articleId) {
+      return { article: null, volumes: [] }
+    }
+    return fetchArticleData({ data: params.articleId })
+  },
 })
 
 const STATUS_OPTIONS = [
@@ -83,7 +110,7 @@ const STATUS_OPTIONS = [
 ]
 
 function ArticleDetailPage() {
-  const { article } = Route.useLoaderData()
+  const { article, volumes } = Route.useLoaderData()
   const [isUpdatingStatus, setIsUpdatingStatus] = useState(false)
   const [newNote, setNewNote] = useState('')
   const [isAddingNote, setIsAddingNote] = useState(false)
@@ -91,6 +118,9 @@ function ArticleDetailPage() {
   const [isSavingContent, setIsSavingContent] = useState(false)
   const [isConverting, setIsConverting] = useState<string | null>(null)
   const [contentSaved, setContentSaved] = useState(true)
+  const [editingCaption, setEditingCaption] = useState<string | null>(null)
+  const [captionText, setCaptionText] = useState('')
+  const [isSavingCaption, setIsSavingCaption] = useState(false)
 
   if (!article) {
     return (
@@ -184,6 +214,20 @@ function ArticleDetailPage() {
     setContentSaved(false)
   }
 
+  const handleSaveCaption = async (attachmentId: string) => {
+    setIsSavingCaption(true)
+    try {
+      await updateAttachmentCaption({ data: { attachmentId, caption: captionText } })
+      setEditingCaption(null)
+      setCaptionText('')
+      window.location.reload()
+    } catch (error) {
+      console.error('Failed to save caption:', error)
+    } finally {
+      setIsSavingCaption(false)
+    }
+  }
+
   const wordCount = content.trim() ? content.trim().split(/\s+/).length : 0
   const charCount = content.length
 
@@ -271,70 +315,37 @@ function ArticleDetailPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Column - Main Content */}
         <div className="lg:col-span-2 space-y-6">
-          {/* Attachments */}
-          <Section
-            title={`Attachments (${article.attachments.length})`}
-            noPadding
-          >
-            {article.attachments.length === 0 ? (
-              <div className="empty-state py-8">
-                <FileText
-                  className="w-8 h-8 mb-2"
-                  style={{ color: 'var(--fg-faint)' }}
-                />
-                <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>
-                  No attachments
-                </p>
-              </div>
-            ) : (
-              <div>
-                {article.attachments.map((attachment: any, index: number) => (
-                  <div
-                    key={attachment.id}
-                    className="flex items-center justify-between px-4 py-3"
-                    style={{
-                      borderBottom:
-                        index < article.attachments.length - 1
-                          ? '0.5px solid var(--border-subtle)'
-                          : 'none',
-                    }}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="icon-container">
-                        {attachment.attachmentType === 'photo' ? (
-                          <Image className="w-4 h-4" />
-                        ) : (
+          {/* Documents */}
+          {(() => {
+            const documents = article.attachments.filter((a: any) => a.attachmentType === 'word_document')
+            return documents.length > 0 ? (
+              <Section title={`Documents (${documents.length})`} noPadding>
+                <div>
+                  {documents.map((attachment: any, index: number) => (
+                    <div
+                      key={attachment.id}
+                      className="flex items-center justify-between px-4 py-3"
+                      style={{
+                        borderBottom:
+                          index < documents.length - 1
+                            ? '0.5px solid var(--border-subtle)'
+                            : 'none',
+                      }}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="icon-container">
                           <FileText className="w-4 h-4" />
-                        )}
-                      </div>
-                      <div>
-                        <p
-                          className="text-sm font-medium"
-                          style={{ color: 'var(--fg-default)' }}
-                        >
-                          {attachment.originalFileName}
-                        </p>
-                        <p
-                          className="text-xs"
-                          style={{ color: 'var(--fg-muted)' }}
-                        >
-                          {attachment.attachmentType}
-                          {attachment.fileSize && (
-                            <> · {(attachment.fileSize / 1024).toFixed(1)} KB</>
-                          )}
-                        </p>
-                        {attachment.caption && (
-                          <p
-                            className="text-xs mt-1 italic"
-                            style={{ color: 'var(--fg-muted)' }}
-                          >
-                            {attachment.caption}
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium" style={{ color: 'var(--fg-default)' }}>
+                            {attachment.originalFileName}
                           </p>
-                        )}
+                          <p className="text-xs" style={{ color: 'var(--fg-muted)' }}>
+                            {attachment.fileSize && <>{(attachment.fileSize / 1024).toFixed(1)} KB</>}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      {attachment.attachmentType === 'word_document' && (
+                      <div className="flex items-center gap-1">
                         <button
                           onClick={() => handleConvertFromWord(attachment.id)}
                           disabled={isConverting === attachment.id}
@@ -347,21 +358,138 @@ function ArticleDetailPage() {
                             <Wand2 className="w-4 h-4" />
                           )}
                         </button>
-                      )}
-                      <a
-                        href={`/api/files/${attachment.filePath}`}
-                        download={attachment.originalFileName}
-                        className="btn btn-ghost !p-2"
-                        title="Download"
-                      >
-                        <Download className="w-4 h-4" />
-                      </a>
+                        <a
+                          href={`/uploads/${attachment.filePath}`}
+                          download={attachment.originalFileName}
+                          className="btn btn-ghost !p-2"
+                          title="Download"
+                        >
+                          <Download className="w-4 h-4" />
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </Section>
+                  ))}
+                </div>
+              </Section>
+            ) : null
+          })()}
+
+          {/* Photos */}
+          {(() => {
+            const photos = article.attachments.filter((a: any) => a.attachmentType === 'photo')
+            return photos.length > 0 ? (
+              <Section title={`Photos (${photos.length})`}>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {photos.map((photo: any) => (
+                    <div
+                      key={photo.id}
+                      className="rounded-lg overflow-hidden"
+                      style={{ border: '0.5px solid var(--border-default)' }}
+                    >
+                      {/* Photo Preview */}
+                      <a
+                        href={`/uploads/${photo.filePath}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block aspect-square bg-gray-100 relative group"
+                      >
+                        <img
+                          src={`/uploads/${photo.filePath}`}
+                          alt={photo.originalFileName}
+                          className="w-full h-full object-cover"
+                        />
+                        <div
+                          className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                          style={{ background: 'rgba(0,0,0,0.3)' }}
+                        >
+                          <span className="text-white text-sm">View full size</span>
+                        </div>
+                      </a>
+                      {/* Photo Info */}
+                      <div className="p-3" style={{ background: 'var(--bg-subtle)' }}>
+                        <p
+                          className="text-xs font-medium truncate"
+                          style={{ color: 'var(--fg-default)' }}
+                          title={photo.originalFileName}
+                        >
+                          {photo.photoNumber ? `Photo ${photo.photoNumber}` : photo.originalFileName}
+                        </p>
+                        {/* Caption */}
+                        {editingCaption === photo.id ? (
+                          <div className="mt-2 space-y-2">
+                            <input
+                              type="text"
+                              value={captionText}
+                              onChange={(e) => setCaptionText(e.target.value)}
+                              placeholder="Enter caption..."
+                              className="input w-full text-xs"
+                              autoFocus
+                            />
+                            <div className="flex gap-1">
+                              <button
+                                onClick={() => handleSaveCaption(photo.id)}
+                                disabled={isSavingCaption}
+                                className="btn btn-primary !py-1 !px-2 text-xs flex-1"
+                              >
+                                {isSavingCaption ? <LoadingSpinner size="sm" /> : 'Save'}
+                              </button>
+                              <button
+                                onClick={() => {
+                                  setEditingCaption(null)
+                                  setCaptionText('')
+                                }}
+                                className="btn btn-ghost !py-1 !px-2 text-xs"
+                              >
+                                Cancel
+                              </button>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="mt-1 flex items-start gap-1">
+                            {photo.caption ? (
+                              <p
+                                className="text-xs italic flex-1"
+                                style={{ color: 'var(--fg-muted)' }}
+                              >
+                                {photo.caption}
+                              </p>
+                            ) : (
+                              <p
+                                className="text-xs flex-1"
+                                style={{ color: 'var(--fg-faint)' }}
+                              >
+                                No caption
+                              </p>
+                            )}
+                            <button
+                              onClick={() => {
+                                setEditingCaption(photo.id)
+                                setCaptionText(photo.caption || '')
+                              }}
+                              className="btn btn-ghost !p-1"
+                              title="Edit caption"
+                            >
+                              <Edit2 className="w-3 h-3" />
+                            </button>
+                          </div>
+                        )}
+                        {/* Download link */}
+                        <a
+                          href={`/uploads/${photo.filePath}`}
+                          download={photo.originalFileName}
+                          className="text-xs mt-2 inline-flex items-center gap-1"
+                          style={{ color: 'var(--accent)' }}
+                        >
+                          <Download className="w-3 h-3" />
+                          Download
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Section>
+            ) : null
+          })()}
 
           {/* Article Content */}
           <Section
@@ -624,8 +752,11 @@ function ArticleDetailPage() {
           <Section title="Publication">
             <VolumeIssueEditor
               articleId={article.id}
-              initialVolume={article.volume}
-              initialIssue={article.issue}
+              volumes={volumes}
+              currentIssueId={article.issueId}
+              currentIssue={article.publicationIssue}
+              legacyVolume={article.volume}
+              legacyIssue={article.issue}
             />
           </Section>
 
@@ -662,73 +793,157 @@ function DetailRow({
   )
 }
 
+type VolumeWithIssues = {
+  id: string
+  volumeNumber: number
+  year: number | null
+  issues: Array<{
+    id: string
+    issueNumber: number
+    title: string | null
+    releaseDate: Date | null
+  }>
+}
+
+type CurrentIssue = {
+  id: string
+  issueNumber: number
+  title: string | null
+  volume: {
+    id: string
+    volumeNumber: number
+  }
+} | null
+
 function VolumeIssueEditor({
   articleId,
-  initialVolume,
-  initialIssue,
+  volumes,
+  currentIssueId,
+  currentIssue,
+  legacyVolume,
+  legacyIssue,
 }: {
   articleId: string
-  initialVolume: number | null
-  initialIssue: number | null
+  volumes: VolumeWithIssues[]
+  currentIssueId: string | null
+  currentIssue: CurrentIssue
+  legacyVolume: number | null
+  legacyIssue: number | null
 }) {
-  const [volume, setVolume] = useState<string>(initialVolume?.toString() || '')
-  const [issue, setIssue] = useState<string>(initialIssue?.toString() || '')
-  const [isSaving, setIsSaving] = useState(false)
-  const [initialVol] = useState(initialVolume?.toString() || '')
-  const [initialIss] = useState(initialIssue?.toString() || '')
+  // Determine initial volume from current issue or null
+  const initialVolumeId = currentIssue?.volume?.id || ''
 
-  const hasChanges = volume !== initialVol || issue !== initialIss
+  const [selectedVolumeId, setSelectedVolumeId] = useState<string>(initialVolumeId)
+  const [selectedIssueId, setSelectedIssueId] = useState<string>(currentIssueId || '')
+  const [isSaving, setIsSaving] = useState(false)
+
+  // Get issues for the selected volume
+  const selectedVolume = volumes.find((v) => v.id === selectedVolumeId)
+  const availableIssues = selectedVolume?.issues || []
+
+  // Check if there are changes
+  const hasChanges = selectedIssueId !== (currentIssueId || '')
+
+  const handleVolumeChange = (volumeId: string) => {
+    setSelectedVolumeId(volumeId)
+    setSelectedIssueId('') // Reset issue when volume changes
+  }
+
+  const handleIssueChange = (issueId: string) => {
+    setSelectedIssueId(issueId)
+  }
 
   const handleSave = async () => {
     setIsSaving(true)
     try {
-      await updateArticle({
-        articleId,
-        volume: volume ? parseInt(volume, 10) : null,
-        issue: issue ? parseInt(issue, 10) : null,
+      await updateArticleIssue({
+        data: {
+          articleId,
+          issueId: selectedIssueId || null,
+        },
       })
-      // Reload to refresh data
       window.location.reload()
     } catch (error) {
-      console.error('Failed to save volume/issue:', error)
+      console.error('Failed to save publication info:', error)
     } finally {
       setIsSaving(false)
     }
   }
 
-  const handleVolumeChange = (value: string) => {
-    // Only allow numbers
-    if (value === '' || /^\d+$/.test(value)) {
-      setVolume(value)
+  const handleClear = async () => {
+    setIsSaving(true)
+    try {
+      await updateArticleIssue({
+        data: {
+          articleId,
+          issueId: null,
+        },
+      })
+      window.location.reload()
+    } catch (error) {
+      console.error('Failed to clear publication info:', error)
+    } finally {
+      setIsSaving(false)
     }
   }
 
-  const handleIssueChange = (value: string) => {
-    // Only allow numbers
-    if (value === '' || /^\d+$/.test(value)) {
-      setIssue(value)
-    }
+  // Show message if no volumes exist
+  if (volumes.length === 0) {
+    return (
+      <div className="space-y-3">
+        <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>
+          No publication volumes configured yet.
+        </p>
+        <Link
+          to="/publications"
+          className="text-xs"
+          style={{ color: 'var(--accent)' }}
+        >
+          Go to Publications to create volumes →
+        </Link>
+        {/* Show legacy data if present */}
+        {(legacyVolume || legacyIssue) && (
+          <p className="text-xs" style={{ color: 'var(--fg-faint)' }}>
+            Legacy: Volume {legacyVolume || '?'}, Issue {legacyIssue || '?'}
+          </p>
+        )}
+      </div>
+    )
   }
 
   return (
     <div className="space-y-3">
-      <div className="grid grid-cols-2 gap-3">
-        <div>
-          <label
-            className="block text-xs mb-1"
-            style={{ color: 'var(--fg-muted)' }}
-          >
-            Volume
-          </label>
-          <input
-            type="text"
-            value={volume}
+      {/* Volume Dropdown */}
+      <div>
+        <label
+          className="block text-xs mb-1"
+          style={{ color: 'var(--fg-muted)' }}
+        >
+          Volume
+        </label>
+        <div className="relative">
+          <select
+            value={selectedVolumeId}
             onChange={(e) => handleVolumeChange(e.target.value)}
-            placeholder="e.g., 12"
-            className="input w-full tabular-nums"
-            style={{ textAlign: 'center' }}
+            className="select-trigger w-full pr-8"
+          >
+            <option value="">Select volume...</option>
+            {volumes.map((volume) => (
+              <option key={volume.id} value={volume.id}>
+                Volume {volume.volumeNumber}
+                {volume.year ? ` (${volume.year})` : ''}
+              </option>
+            ))}
+          </select>
+          <ChevronDown
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none"
+            style={{ color: 'var(--fg-faint)' }}
           />
         </div>
+      </div>
+
+      {/* Issue Dropdown - only shown when volume is selected */}
+      {selectedVolumeId && (
         <div>
           <label
             className="block text-xs mb-1"
@@ -736,17 +951,32 @@ function VolumeIssueEditor({
           >
             Issue
           </label>
-          <input
-            type="text"
-            value={issue}
-            onChange={(e) => handleIssueChange(e.target.value)}
-            placeholder="e.g., 3"
-            className="input w-full tabular-nums"
-            style={{ textAlign: 'center' }}
-          />
+          <div className="relative">
+            <select
+              value={selectedIssueId}
+              onChange={(e) => handleIssueChange(e.target.value)}
+              className="select-trigger w-full pr-8"
+              disabled={availableIssues.length === 0}
+            >
+              <option value="">
+                {availableIssues.length === 0 ? 'No issues in this volume' : 'Select issue...'}
+              </option>
+              {availableIssues.map((issue) => (
+                <option key={issue.id} value={issue.id}>
+                  Issue {issue.issueNumber}
+                  {issue.title ? ` - ${issue.title}` : ''}
+                </option>
+              ))}
+            </select>
+            <ChevronDown
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none"
+              style={{ color: 'var(--fg-faint)' }}
+            />
+          </div>
         </div>
-      </div>
+      )}
 
+      {/* Save/Clear buttons */}
       {hasChanges && (
         <Button
           onClick={handleSave}
@@ -766,11 +996,28 @@ function VolumeIssueEditor({
         </Button>
       )}
 
-      {(volume || issue) && !hasChanges && (
-        <p className="text-xs text-center" style={{ color: 'var(--fg-muted)' }}>
-          {volume && `Volume ${volume}`}
-          {volume && issue && ' · '}
-          {issue && `Issue ${issue}`}
+      {/* Current assignment display */}
+      {currentIssue && !hasChanges && (
+        <div className="flex items-center justify-between">
+          <p className="text-xs" style={{ color: 'var(--fg-muted)' }}>
+            Volume {currentIssue.volume.volumeNumber} · Issue {currentIssue.issueNumber}
+            {currentIssue.title && ` (${currentIssue.title})`}
+          </p>
+          <button
+            onClick={handleClear}
+            disabled={isSaving}
+            className="text-xs"
+            style={{ color: 'var(--fg-faint)' }}
+          >
+            Clear
+          </button>
+        </div>
+      )}
+
+      {/* Legacy data notice */}
+      {(legacyVolume || legacyIssue) && !currentIssue && (
+        <p className="text-xs" style={{ color: 'var(--fg-faint)' }}>
+          Legacy: Volume {legacyVolume || '?'}, Issue {legacyIssue || '?'}
         </p>
       )}
     </div>

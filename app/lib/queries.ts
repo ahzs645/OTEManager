@@ -148,6 +148,8 @@ export const getArticles = createServerFn({ method: "POST" })
       tier?: string;
       search?: string;
       authorId?: string;
+      issueId?: string;
+      volumeId?: string;
       page?: number;
       limit?: number;
     }) => data
@@ -155,8 +157,8 @@ export const getArticles = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     console.log("getArticles called with data:", JSON.stringify(data));
     try {
-      const { db, articles } = await import("@db/index");
-      const { eq, ilike, and, or, count, sql } = await import("drizzle-orm");
+      const { db, articles, issues } = await import("@db/index");
+      const { eq, ilike, and, or, count, sql, inArray } = await import("drizzle-orm");
 
       const page = data?.page ?? 1;
       const limit = data?.limit ?? 20;
@@ -175,6 +177,30 @@ export const getArticles = createServerFn({ method: "POST" })
 
       if (data?.authorId) {
         conditions.push(eq(articles.authorId, data.authorId));
+      }
+
+      if (data?.issueId) {
+        conditions.push(eq(articles.issueId, data.issueId));
+      }
+
+      // For volume filtering, get all issues in that volume first
+      if (data?.volumeId) {
+        const volumeIssues = await db.query.issues.findMany({
+          where: eq(issues.volumeId, data.volumeId),
+        });
+        const issueIds = volumeIssues.map((i) => i.id);
+        if (issueIds.length > 0) {
+          conditions.push(inArray(articles.issueId, issueIds));
+        } else {
+          // No issues in this volume, return empty
+          return {
+            articles: [],
+            total: 0,
+            page,
+            limit,
+            totalPages: 0,
+          };
+        }
       }
 
       if (data?.search) {
@@ -360,5 +386,113 @@ export const getAuthors = createServerFn({ method: "GET" })
     } catch (error) {
       console.error("Failed to get authors:", error);
       return { authors: [] };
+    }
+  });
+
+// Get all volumes with their issues and article counts
+export const getVolumes = createServerFn({ method: "GET" }).handler(async () => {
+  try {
+    const { db, articles } = await import("@db/index");
+    const { eq, count } = await import("drizzle-orm");
+
+    const volumeList = await db.query.volumes.findMany({
+      with: {
+        issues: {
+          orderBy: (issues, { asc }) => [asc(issues.issueNumber)],
+        },
+      },
+      orderBy: (volumes, { desc }) => [desc(volumes.volumeNumber)],
+    });
+
+    // Get article counts for each issue
+    const volumesWithCounts = await Promise.all(
+      volumeList.map(async (volume) => {
+        const issuesWithCounts = await Promise.all(
+          volume.issues.map(async (issue) => {
+            const [countResult] = await db
+              .select({ count: count() })
+              .from(articles)
+              .where(eq(articles.issueId, issue.id));
+            return {
+              ...issue,
+              articleCount: countResult?.count ?? 0,
+            };
+          })
+        );
+        return {
+          ...volume,
+          issues: issuesWithCounts,
+        };
+      })
+    );
+
+    return { volumes: volumesWithCounts };
+  } catch (error) {
+    console.error("Failed to get volumes:", error);
+    return { volumes: [] };
+  }
+});
+
+// Get issue by ID with volume info
+export const getIssueById = createServerFn({ method: "POST" })
+  .validator((data: { id: string }) => data)
+  .handler(async ({ data }) => {
+    try {
+      const { db, issues } = await import("@db/index");
+      const { eq } = await import("drizzle-orm");
+
+      const issue = await db.query.issues.findFirst({
+        where: eq(issues.id, data.id),
+        with: {
+          volume: true,
+        },
+      });
+
+      return { issue };
+    } catch (error) {
+      console.error("Failed to get issue:", error);
+      return { issue: null };
+    }
+  });
+
+// Get volume by ID
+export const getVolumeById = createServerFn({ method: "POST" })
+  .validator((data: { id: string }) => data)
+  .handler(async ({ data }) => {
+    try {
+      const { db, volumes } = await import("@db/index");
+      const { eq } = await import("drizzle-orm");
+
+      const volume = await db.query.volumes.findFirst({
+        where: eq(volumes.id, data.id),
+      });
+
+      return { volume };
+    } catch (error) {
+      console.error("Failed to get volume:", error);
+      return { volume: null };
+    }
+  });
+
+// Get all issues (for dropdowns)
+export const getIssuesForVolume = createServerFn({ method: "POST" })
+  .validator((data: { volumeId: string }) => data)
+  .handler(async ({ data }) => {
+    try {
+      const { db, issues } = await import("@db/index");
+      const { eq } = await import("drizzle-orm");
+
+      const issueList = await db.query.issues.findMany({
+        where: eq(issues.volumeId, data.volumeId),
+        with: {
+          volume: true,
+        },
+        orderBy: (issues, { asc }) => [asc(issues.issueNumber)],
+      });
+
+      return { issues: issueList };
+    } catch (error) {
+      console.error("Failed to get issues:", error);
+      return { issues: [] };
     }
   });
