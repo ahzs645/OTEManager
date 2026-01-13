@@ -1,10 +1,14 @@
 import { createServerFn } from "@tanstack/start";
 
-// Update author payment info
+// Update author info
 export const updateAuthorPaymentInfo = createServerFn({ method: "POST" })
   .validator(
     (data: {
       authorId: string;
+      givenName?: string;
+      surname?: string;
+      email?: string;
+      authorType?: string;
       autoDepositAvailable?: boolean;
       etransferEmail?: string;
     }) => data

@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
+import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/start'
 import { useState } from 'react'
 import {
@@ -8,6 +8,7 @@ import {
   DollarSign,
   EyeOff,
   ChevronDown,
+  Trash2,
 } from 'lucide-react'
 import {
   StatusBadge,
@@ -16,8 +17,9 @@ import {
   Section,
   Avatar,
   LoadingSpinner,
+  Button,
 } from '~/components/Layout'
-import { updateArticleStatus } from '~/lib/mutations'
+import { updateArticleStatus, deleteArticle } from '~/lib/mutations'
 import {
   PaymentSection,
   VolumeIssueEditor,
@@ -101,9 +103,12 @@ const STATUS_OPTIONS = [
 
 function ArticleDetailPage() {
   const { article, volumes } = Route.useLoaderData()
+  const navigate = useNavigate()
   const [isUpdatingStatus, setIsUpdatingStatus] = useState(false)
   const [content, setContent] = useState(article?.content || '')
   const [feedbackContent, setFeedbackContent] = useState(article?.feedbackLetter || '')
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
 
   if (!article) {
     return (
@@ -135,6 +140,24 @@ function ArticleDetailPage() {
       console.error('Failed to update status:', error)
     } finally {
       setIsUpdatingStatus(false)
+    }
+  }
+
+  const handleDelete = async () => {
+    setIsDeleting(true)
+    try {
+      const result = await deleteArticle({ data: article.id })
+      if (result.success) {
+        navigate({ to: '/articles' })
+      } else {
+        alert('Failed to delete article: ' + (result.error || 'Unknown error'))
+      }
+    } catch (error) {
+      console.error('Failed to delete article:', error)
+      alert('Failed to delete article')
+    } finally {
+      setIsDeleting(false)
+      setShowDeleteConfirm(false)
     }
   }
 
@@ -197,30 +220,41 @@ function ArticleDetailPage() {
             </div>
           </div>
 
-          {/* Status Selector */}
-          <div className="relative">
-            <select
-              value={article.internalStatus}
-              onChange={(e) => handleStatusChange(e.target.value)}
-              disabled={isUpdatingStatus}
-              className="select-trigger pr-8"
-              style={{ minWidth: '140px' }}
+          {/* Status Selector & Actions */}
+          <div className="flex items-center gap-2">
+            <div className="relative">
+              <select
+                value={article.internalStatus}
+                onChange={(e) => handleStatusChange(e.target.value)}
+                disabled={isUpdatingStatus}
+                className="select-trigger pr-8"
+                style={{ minWidth: '140px' }}
+              >
+                {STATUS_OPTIONS.map((status) => (
+                  <option key={status} value={status}>
+                    {status}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown
+                className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none"
+                style={{ color: 'var(--fg-faint)' }}
+              />
+              {isUpdatingStatus && (
+                <div className="absolute inset-0 flex items-center justify-center bg-white/80 rounded-md">
+                  <LoadingSpinner size="sm" />
+                </div>
+              )}
+            </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowDeleteConfirm(true)}
+              title="Delete article"
+              style={{ color: 'var(--status-error)' }}
             >
-              {STATUS_OPTIONS.map((status) => (
-                <option key={status} value={status}>
-                  {status}
-                </option>
-              ))}
-            </select>
-            <ChevronDown
-              className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none"
-              style={{ color: 'var(--fg-faint)' }}
-            />
-            {isUpdatingStatus && (
-              <div className="absolute inset-0 flex items-center justify-center bg-white/80 rounded-md">
-                <LoadingSpinner size="sm" />
-              </div>
-            )}
+              <Trash2 className="w-4 h-4" />
+            </Button>
           </div>
         </div>
 
@@ -378,6 +412,84 @@ function ArticleDetailPage() {
           </Section>
         </div>
       </div>
+
+      {/* Delete Confirmation Modal */}
+      {showDeleteConfirm && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 100,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '1rem',
+          }}
+        >
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'rgba(0, 0, 0, 0.5)',
+              backdropFilter: 'blur(4px)',
+            }}
+            onClick={() => setShowDeleteConfirm(false)}
+          />
+          <div
+            style={{
+              position: 'relative',
+              background: 'var(--bg-surface)',
+              borderRadius: '12px',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+              width: '100%',
+              maxWidth: '400px',
+              padding: '1.5rem',
+            }}
+          >
+            <div className="flex items-start gap-3 mb-4">
+              <div
+                className="p-2 rounded-lg"
+                style={{ background: 'var(--status-error-bg)' }}
+              >
+                <Trash2 className="w-5 h-5" style={{ color: 'var(--status-error)' }} />
+              </div>
+              <div>
+                <h3
+                  className="text-base font-semibold"
+                  style={{ color: 'var(--fg-default)' }}
+                >
+                  Delete Article
+                </h3>
+                <p className="text-sm mt-1" style={{ color: 'var(--fg-muted)' }}>
+                  Are you sure you want to delete "{article.title}"? This will also delete all attached documents and photos. This action cannot be undone.
+                </p>
+              </div>
+            </div>
+            <div className="flex justify-end gap-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowDeleteConfirm(false)}
+                disabled={isDeleting}
+              >
+                Cancel
+              </Button>
+              <button
+                onClick={handleDelete}
+                disabled={isDeleting}
+                className="px-4 py-2 text-sm font-medium rounded-md"
+                style={{
+                  background: 'var(--status-error)',
+                  color: 'white',
+                  opacity: isDeleting ? 0.7 : 1,
+                }}
+              >
+                {isDeleting ? 'Deleting...' : 'Delete'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

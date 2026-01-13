@@ -96,9 +96,10 @@ function ArticlesPage() {
     // Skip if already loading or if we have a savedViewId
     if (isLoadingDefaultView || search.savedViewId) return
 
-    // Check if URL has any meaningful params (user-set filters/sort)
+    // Check if URL has any meaningful params (user-set filters/sort/specific filters)
     const hasSearchParams = search.status || search.tier || search.search ||
-                           search.sortBy || search.sortOrder || search.view !== 'list'
+                           search.sortBy || search.sortOrder || search.view !== 'list' ||
+                           search.issueId || search.volumeId || search.authorId
 
     // Only load default view if URL is "clean" (no filters, no saved view)
     if (!hasSearchParams) {
@@ -127,7 +128,7 @@ function ArticlesPage() {
         setIsLoadingDefaultView(false)
       })
     }
-  }, [search.savedViewId, search.status, search.tier, search.search, search.sortBy, search.sortOrder, search.view])
+  }, [search.savedViewId, search.status, search.tier, search.search, search.sortBy, search.sortOrder, search.view, search.issueId, search.volumeId, search.authorId])
 
   // Fetch filter info when filtering by volume or issue
   useEffect(() => {

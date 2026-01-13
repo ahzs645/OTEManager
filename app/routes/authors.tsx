@@ -146,6 +146,7 @@ function AuthorCard({
     surname: string;
     email: string;
     role: string;
+    authorType: string | null;
     articleCount: number;
     autoDepositAvailable: boolean;
     etransferEmail?: string;
@@ -167,7 +168,7 @@ function AuthorCard({
             <h3 className="font-medium" style={{ color: 'var(--fg-default)' }}>
               {author.givenName} {author.surname}
             </h3>
-            <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>{author.role}</p>
+            <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>{author.authorType || 'Student'}</p>
           </div>
         </div>
         {author.autoDepositAvailable && (

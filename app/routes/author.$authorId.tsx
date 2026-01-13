@@ -100,6 +100,7 @@ const ROLE_OPTIONS = [
 const AUTHOR_TYPE_OPTIONS = [
   'Student',
   'Faculty',
+  'Staff',
   'Organization',
   'External',
 ]
@@ -109,6 +110,8 @@ function AuthorDetailPage() {
   const [isEditing, setIsEditing] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
   const [editData, setEditData] = useState({
+    givenName: author?.givenName ?? '',
+    surname: author?.surname ?? '',
     email: author?.email ?? '',
     autoDepositAvailable: author?.autoDepositAvailable ?? false,
     etransferEmail: author?.etransferEmail ?? '',
@@ -143,6 +146,8 @@ function AuthorDetailPage() {
       await updateAuthorPaymentInfo({
         data: {
           authorId: author.id,
+          givenName: editData.givenName,
+          surname: editData.surname,
           email: editData.email,
           autoDepositAvailable: editData.autoDepositAvailable,
           etransferEmail: etransferEmail || undefined,
@@ -191,7 +196,7 @@ function AuthorDetailPage() {
                 {authorName}
               </h1>
               <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>
-                {author.role}
+                {author.authorType || 'Student'}
               </p>
               <a
                 href={`mailto:${author.email}`}
@@ -210,6 +215,8 @@ function AuthorDetailPage() {
             onClick={() => {
               if (isEditing) {
                 setEditData({
+                  givenName: author.givenName ?? '',
+                  surname: author.surname ?? '',
                   email: author.email ?? '',
                   autoDepositAvailable: author.autoDepositAvailable ?? false,
                   etransferEmail: author.etransferEmail ?? '',
@@ -370,6 +377,37 @@ function AuthorDetailPage() {
           <Section title="Author Information">
             {isEditing ? (
               <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="text-xs font-medium mb-1 block" style={{ color: 'var(--fg-muted)' }}>
+                      First Name
+                    </label>
+                    <input
+                      type="text"
+                      value={editData.givenName}
+                      onChange={(e) =>
+                        setEditData((d) => ({ ...d, givenName: e.target.value }))
+                      }
+                      placeholder="First name"
+                      className="input w-full"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium mb-1 block" style={{ color: 'var(--fg-muted)' }}>
+                      Last Name
+                    </label>
+                    <input
+                      type="text"
+                      value={editData.surname}
+                      onChange={(e) =>
+                        setEditData((d) => ({ ...d, surname: e.target.value }))
+                      }
+                      placeholder="Last name"
+                      className="input w-full"
+                    />
+                  </div>
+                </div>
+
                 <div>
                   <label className="text-xs font-medium mb-1 block" style={{ color: 'var(--fg-muted)' }}>
                     Author Type
