@@ -6,6 +6,7 @@ import {
   Wrench,
   ChevronRight,
   Settings,
+  BarChart3,
 } from "lucide-react";
 import type { ReactNode } from "react";
 
@@ -30,6 +31,7 @@ function Header() {
     { path: "/", label: "Dashboard", icon: LayoutDashboard },
     { path: "/articles", label: "Articles", icon: FileText },
     { path: "/authors", label: "Authors", icon: Users },
+    { path: "/analytics", label: "Analytics", icon: BarChart3 },
     { path: "/utilities", label: "Utilities", icon: Wrench },
     { path: "/settings", label: "Settings", icon: Settings },
   ];

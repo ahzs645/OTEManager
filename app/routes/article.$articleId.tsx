@@ -9,6 +9,9 @@ import {
   EyeOff,
   ChevronDown,
   Trash2,
+  Pencil,
+  Check,
+  X,
 } from 'lucide-react'
 import {
   StatusBadge,
@@ -19,7 +22,7 @@ import {
   LoadingSpinner,
   Button,
 } from '~/components/Layout'
-import { updateArticleStatus, deleteArticle } from '~/lib/mutations'
+import { updateArticleStatus, updateArticle, deleteArticle } from '~/lib/mutations'
 import {
   PaymentSection,
   VolumeIssueEditor,
@@ -29,6 +32,9 @@ import {
   FeedbackEditor,
   DocumentList,
   StatusHistory,
+  UnsavedChangesProvider,
+  UnsavedChangesIndicator,
+  useTrackUnsaved,
 } from '~/components/article'
 
 // Server function to fetch article data
@@ -102,13 +108,29 @@ const STATUS_OPTIONS = [
 ]
 
 function ArticleDetailPage() {
-  const { article, volumes } = Route.useLoaderData()
+  const { article: initialArticle, volumes } = Route.useLoaderData()
   const navigate = useNavigate()
+
+  // Local article state that can be updated without page reload
+  const [articleTitle, setArticleTitle] = useState(initialArticle?.title || '')
+  const [articleStatus, setArticleStatus] = useState(initialArticle?.internalStatus || '')
+  const [articleIssue, setArticleIssue] = useState(initialArticle?.publicationIssue || null)
+  const [articleIssueId, setArticleIssueId] = useState(initialArticle?.issueId || null)
+
   const [isUpdatingStatus, setIsUpdatingStatus] = useState(false)
-  const [content, setContent] = useState(article?.content || '')
-  const [feedbackContent, setFeedbackContent] = useState(article?.feedbackLetter || '')
+  const [content, setContent] = useState(initialArticle?.content || '')
+  const [feedbackContent, setFeedbackContent] = useState(initialArticle?.feedbackLetter || '')
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
+
+  // Title editing state
+  const [isEditingTitle, setIsEditingTitle] = useState(false)
+  const [editedTitle, setEditedTitle] = useState(initialArticle?.title || '')
+  const [savedTitle, setSavedTitle] = useState(initialArticle?.title || '')
+  const [isSavingTitle, setIsSavingTitle] = useState(false)
+
+  // Use initialArticle for static data, local state for editable data
+  const article = initialArticle
 
   if (!article) {
     return (
@@ -129,13 +151,17 @@ function ArticleDetailPage() {
   const handleStatusChange = async (newStatus: string) => {
     setIsUpdatingStatus(true)
     try {
-      await updateArticleStatus({
+      const result = await updateArticleStatus({
         data: {
           articleId: article.id,
           status: newStatus,
         },
       })
-      window.location.reload()
+      if (result.success) {
+        setArticleStatus(newStatus)
+      } else {
+        console.error('Failed to update status:', result.error)
+      }
     } catch (error) {
       console.error('Failed to update status:', error)
     } finally {
@@ -164,6 +190,60 @@ function ArticleDetailPage() {
   const handleConvertToMarkdown = (convertedContent: string) => {
     setContent(convertedContent)
   }
+
+  const handleSaveTitle = async () => {
+    if (!editedTitle.trim() || editedTitle === savedTitle) {
+      setIsEditingTitle(false)
+      setEditedTitle(savedTitle)
+      return
+    }
+
+    setIsSavingTitle(true)
+    try {
+      const result = await updateArticle({
+        data: {
+          articleId: article.id,
+          title: editedTitle.trim(),
+        },
+      })
+      if (result.success) {
+        setSavedTitle(editedTitle.trim())
+        setArticleTitle(editedTitle.trim())
+      } else {
+        alert('Failed to update title')
+        setEditedTitle(savedTitle)
+      }
+    } catch (error) {
+      console.error('Failed to update title:', error)
+      alert('Failed to update title')
+      setEditedTitle(savedTitle)
+    } finally {
+      setIsSavingTitle(false)
+      setIsEditingTitle(false)
+    }
+  }
+
+  const handleCancelTitleEdit = () => {
+    setIsEditingTitle(false)
+    setEditedTitle(savedTitle)
+  }
+
+  const handleTitleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      handleSaveTitle()
+    } else if (e.key === 'Escape') {
+      handleCancelTitleEdit()
+    }
+  }
+
+  const handleIssueSave = (newIssue: typeof articleIssue) => {
+    setArticleIssue(newIssue)
+    setArticleIssueId(newIssue?.id || null)
+  }
+
+  // Track unsaved title changes
+  const hasTitleChanges = editedTitle !== savedTitle && isEditingTitle
 
   const authorName = article.author
     ? `${article.author.givenName} ${article.author.surname}`
@@ -195,13 +275,67 @@ function ArticleDetailPage() {
         <div className="flex items-start justify-between gap-4 mb-4">
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-3 mb-2">
-              <h1
-                className="text-lg font-semibold truncate"
-                style={{ color: 'var(--fg-default)', letterSpacing: '-0.02em' }}
-              >
-                {article.title}
-              </h1>
-              {article.prefersAnonymity && (
+              {isEditingTitle ? (
+                <div className="flex items-center gap-2 flex-1">
+                  <input
+                    type="text"
+                    value={editedTitle}
+                    onChange={(e) => setEditedTitle(e.target.value)}
+                    onKeyDown={handleTitleKeyDown}
+                    autoFocus
+                    disabled={isSavingTitle}
+                    className="input"
+                    style={{
+                      fontSize: '1.125rem',
+                      fontWeight: 600,
+                      letterSpacing: '-0.02em',
+                      padding: '0.25rem 0.5rem',
+                      flex: 1,
+                      maxWidth: '500px',
+                    }}
+                  />
+                  <button
+                    onClick={handleSaveTitle}
+                    disabled={isSavingTitle}
+                    className="btn btn-ghost"
+                    style={{ padding: '4px' }}
+                    title="Save"
+                  >
+                    {isSavingTitle ? (
+                      <LoadingSpinner size="sm" />
+                    ) : (
+                      <Check className="w-4 h-4" style={{ color: 'var(--status-success)' }} />
+                    )}
+                  </button>
+                  <button
+                    onClick={handleCancelTitleEdit}
+                    disabled={isSavingTitle}
+                    className="btn btn-ghost"
+                    style={{ padding: '4px' }}
+                    title="Cancel"
+                  >
+                    <X className="w-4 h-4" style={{ color: 'var(--fg-muted)' }} />
+                  </button>
+                </div>
+              ) : (
+                <div className="flex items-center gap-2 group">
+                  <h1
+                    className="text-lg font-semibold truncate"
+                    style={{ color: 'var(--fg-default)', letterSpacing: '-0.02em' }}
+                  >
+                    {article.title}
+                  </h1>
+                  <button
+                    onClick={() => setIsEditingTitle(true)}
+                    className="btn btn-ghost opacity-0 group-hover:opacity-100 transition-opacity"
+                    style={{ padding: '4px' }}
+                    title="Edit title"
+                  >
+                    <Pencil className="w-3.5 h-3.5" style={{ color: 'var(--fg-muted)' }} />
+                  </button>
+                </div>
+              )}
+              {article.prefersAnonymity && !isEditingTitle && (
                 <span
                   className="badge badge-default flex items-center gap-1"
                   title="Author prefers anonymity"

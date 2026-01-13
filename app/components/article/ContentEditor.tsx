@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Check, Save, Download } from 'lucide-react'
 import { Button, LoadingSpinner, Section } from '~/components/Layout'
 import { updateArticleContent } from '~/lib/mutations'
+import { useTrackUnsaved } from './UnsavedChangesContext'
 
 interface ContentEditorProps {
   articleId: string
@@ -17,6 +18,9 @@ export function ContentEditor({ articleId, initialContent, title = 'Article Cont
 
   // Determine if current content matches what's saved
   const isSaved = content === savedContent
+
+  // Track unsaved changes globally
+  useTrackUnsaved('content', 'Content', !isSaved)
 
   // Update content when initialContent changes (e.g., from document insertion)
   useEffect(() => {

@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { Link } from '@tanstack/react-router'
-import { ChevronDown, Save } from 'lucide-react'
+import { ChevronDown, Save, Check } from 'lucide-react'
 import { Button, LoadingSpinner } from '~/components/Layout'
 import { updateArticleIssue } from '~/lib/mutations'
+import { useTrackUnsaved } from './UnsavedChangesContext'
 
 type VolumeWithIssues = {
   id: string
@@ -33,6 +34,8 @@ interface VolumeIssueEditorProps {
   currentIssue: CurrentIssue
   /** 'sidebar' shows stacked dropdowns, 'inline' shows horizontal layout */
   variant?: 'sidebar' | 'inline'
+  /** Callback when issue is saved - receives the new issue data */
+  onSave?: (newIssue: CurrentIssue) => void
 }
 
 export function VolumeIssueEditor({
@@ -41,16 +44,21 @@ export function VolumeIssueEditor({
   currentIssueId,
   currentIssue,
   variant = 'sidebar',
+  onSave,
 }: VolumeIssueEditorProps) {
   const initialVolumeId = currentIssue?.volume?.id || ''
 
   const [selectedVolumeId, setSelectedVolumeId] = useState<string>(initialVolumeId)
   const [selectedIssueId, setSelectedIssueId] = useState<string>(currentIssueId || '')
   const [isSaving, setIsSaving] = useState(false)
+  const [savedIssueId, setSavedIssueId] = useState<string>(currentIssueId || '')
 
   const selectedVolume = volumes.find((v) => v.id === selectedVolumeId)
   const availableIssues = selectedVolume?.issues || []
-  const hasChanges = selectedIssueId !== (currentIssueId || '')
+  const hasChanges = selectedIssueId !== savedIssueId
+
+  // Track unsaved changes globally
+  useTrackUnsaved('publication', 'Publication', hasChanges)
 
   const handleVolumeChange = (volumeId: string) => {
     setSelectedVolumeId(volumeId)
@@ -64,13 +72,32 @@ export function VolumeIssueEditor({
   const handleSave = async () => {
     setIsSaving(true)
     try {
-      await updateArticleIssue({
+      const result = await updateArticleIssue({
         data: {
           articleId,
           issueId: selectedIssueId || null,
         },
       })
-      window.location.reload()
+      if (result.success) {
+        setSavedIssueId(selectedIssueId)
+        // Build the new issue object for the callback
+        if (selectedIssueId && selectedVolume) {
+          const selectedIssue = availableIssues.find((i) => i.id === selectedIssueId)
+          if (selectedIssue) {
+            onSave?.({
+              id: selectedIssue.id,
+              issueNumber: selectedIssue.issueNumber,
+              title: selectedIssue.title,
+              volume: {
+                id: selectedVolume.id,
+                volumeNumber: selectedVolume.volumeNumber,
+              },
+            })
+          }
+        } else {
+          onSave?.(null)
+        }
+      }
     } catch (error) {
       console.error('Failed to save publication info:', error)
     } finally {
@@ -81,13 +108,18 @@ export function VolumeIssueEditor({
   const handleClear = async () => {
     setIsSaving(true)
     try {
-      await updateArticleIssue({
+      const result = await updateArticleIssue({
         data: {
           articleId,
           issueId: null,
         },
       })
-      window.location.reload()
+      if (result.success) {
+        setSelectedVolumeId('')
+        setSelectedIssueId('')
+        setSavedIssueId('')
+        onSave?.(null)
+      }
     } catch (error) {
       console.error('Failed to clear publication info:', error)
     } finally {
