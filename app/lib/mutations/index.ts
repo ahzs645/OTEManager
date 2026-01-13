@@ -42,3 +42,16 @@ export {
 
 // Author mutations
 export { updateAuthorPaymentInfo } from "./authorMutations";
+
+// Saved view mutations
+export {
+  getSavedViews,
+  getDefaultView,
+  createSavedView,
+  updateSavedView,
+  setDefaultView,
+  clearDefaultView,
+  deleteSavedView,
+  type SavedViewConfig,
+  type SavedView,
+} from "./savedViewMutations";

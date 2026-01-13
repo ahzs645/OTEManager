@@ -1,13 +1,15 @@
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { FileText, List, Columns, BookOpen } from 'lucide-react'
 import { EmptyState, Button } from '~/components/Layout'
 import { getArticles, getIssueById, getVolumeById } from '~/lib/queries'
+import { getDefaultView, type SavedViewConfig } from '~/lib/mutations'
 import {
   FilterBar,
   ListView,
   BoardView,
   IssueView,
+  SavedViewSelector,
   type ViewMode,
   type SortField,
   type SortOrder,
@@ -28,6 +30,7 @@ type ArticlesSearch = {
   issue?: number
   sortBy?: SortField
   sortOrder?: SortOrder
+  savedViewId?: string // Track active saved view
 }
 
 export const Route = createFileRoute('/articles')({
@@ -48,6 +51,7 @@ export const Route = createFileRoute('/articles')({
       issue: search.issue ? Number(search.issue) : undefined,
       sortBy: search.sortBy as SortField | undefined,
       sortOrder: search.sortOrder as SortOrder | undefined,
+      savedViewId: search.savedViewId as string | undefined,
     }
   },
 })
@@ -69,6 +73,42 @@ function ArticlesPage() {
     issueNumber?: number
     issueTitle?: string | null
   } | null>(null)
+  const hasLoadedDefaultView = useRef(false)
+
+  // Load default view on mount (only if no search params are set)
+  useEffect(() => {
+    if (hasLoadedDefaultView.current) return
+    hasLoadedDefaultView.current = true
+
+    // If we already have a savedViewId in URL, we're good (persisted from before)
+    if (search.savedViewId) return
+
+    const hasSearchParams = search.status || search.tier || search.search ||
+                           search.sortBy || search.view !== 'list'
+
+    if (!hasSearchParams) {
+      getDefaultView().then((result) => {
+        if (result.success && result.view) {
+          navigate({
+            search: {
+              page: 1,
+              status: result.view.status || undefined,
+              tier: result.view.tier || undefined,
+              search: result.view.search || undefined,
+              sortBy: result.view.sortBy as SortField | undefined,
+              sortOrder: result.view.sortOrder as SortOrder | undefined,
+              view: (result.view.viewMode as ViewMode) || 'list',
+              savedViewId: result.view.id,
+            },
+            replace: true,
+          })
+          if (result.view.search) {
+            setSearchInput(result.view.search)
+          }
+        }
+      })
+    }
+  }, [])
 
   // Fetch filter info when filtering by volume or issue
   useEffect(() => {
@@ -130,7 +170,7 @@ function ArticlesPage() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
     navigate({
-      search: (prev) => ({ ...prev, search: searchInput || undefined, page: 1 }),
+      search: (prev) => ({ ...prev, search: searchInput || undefined, page: 1, savedViewId: undefined }),
     })
   }
 
@@ -140,6 +180,7 @@ function ArticlesPage() {
         ...prev,
         [key]: value || undefined,
         page: 1,
+        savedViewId: undefined, // Clear active view on manual filter change
       }),
     })
   }
@@ -152,7 +193,7 @@ function ArticlesPage() {
 
   const handleViewChange = (view: ViewMode) => {
     navigate({
-      search: (prev) => ({ ...prev, view, page: 1 }),
+      search: (prev) => ({ ...prev, view, page: 1, savedViewId: undefined }),
     })
   }
 
@@ -163,8 +204,45 @@ function ArticlesPage() {
         sortBy: field,
         sortOrder: prev.sortBy === field && prev.sortOrder === 'asc' ? 'desc' : 'asc',
         page: 1,
+        savedViewId: undefined, // Clear active view on manual sort change
       }),
     })
+  }
+
+  const handleSelectView = (config: SavedViewConfig, viewId: string) => {
+    navigate({
+      search: {
+        page: 1,
+        status: config.status || undefined,
+        tier: config.tier || undefined,
+        search: config.search || undefined,
+        sortBy: config.sortBy as SortField | undefined,
+        sortOrder: config.sortOrder as SortOrder | undefined,
+        view: (config.viewMode as ViewMode) || 'list',
+        savedViewId: viewId,
+      },
+    })
+    if (config.search) {
+      setSearchInput(config.search)
+    } else {
+      setSearchInput('')
+    }
+  }
+
+  const handleActiveViewChange = (viewId: string | undefined) => {
+    navigate({
+      search: (prev) => ({ ...prev, savedViewId: viewId }),
+    })
+  }
+
+  // Build current config for saved views
+  const currentConfig: SavedViewConfig = {
+    status: search.status,
+    tier: search.tier,
+    search: search.search,
+    sortBy: search.sortBy,
+    sortOrder: search.sortOrder,
+    viewMode: viewMode,
   }
 
   const clearPublicationFilter = () => {
@@ -263,32 +341,40 @@ function ArticlesPage() {
           </p>
         </div>
 
-        {/* View Mode Toggle */}
-        <div
-          className="flex items-center gap-1 p-1 rounded-lg"
-          style={{ background: 'var(--bg-subtle)' }}
-        >
-          <button
-            onClick={() => handleViewChange('list')}
-            className={`btn !p-2 ${viewMode === 'list' ? 'btn-secondary' : 'btn-ghost'}`}
-            title="List View"
+        {/* Saved Views and View Mode Toggle */}
+        <div className="flex items-center gap-3">
+          <SavedViewSelector
+            currentConfig={currentConfig}
+            onSelectView={handleSelectView}
+            activeViewId={search.savedViewId}
+            onActiveViewChange={handleActiveViewChange}
+          />
+          <div
+            className="flex items-center gap-1 p-1 rounded-lg"
+            style={{ background: 'var(--bg-subtle)' }}
           >
-            <List className="w-4 h-4" />
-          </button>
-          <button
-            onClick={() => handleViewChange('board')}
-            className={`btn !p-2 ${viewMode === 'board' ? 'btn-secondary' : 'btn-ghost'}`}
-            title="Board View (by Status)"
-          >
-            <Columns className="w-4 h-4" />
-          </button>
-          <button
-            onClick={() => handleViewChange('issue')}
-            className={`btn !p-2 ${viewMode === 'issue' ? 'btn-secondary' : 'btn-ghost'}`}
-            title="Issue View"
-          >
-            <BookOpen className="w-4 h-4" />
-          </button>
+            <button
+              onClick={() => handleViewChange('list')}
+              className={`btn !p-2 ${viewMode === 'list' ? 'btn-secondary' : 'btn-ghost'}`}
+              title="List View"
+            >
+              <List className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => handleViewChange('board')}
+              className={`btn !p-2 ${viewMode === 'board' ? 'btn-secondary' : 'btn-ghost'}`}
+              title="Board View (by Status)"
+            >
+              <Columns className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => handleViewChange('issue')}
+              className={`btn !p-2 ${viewMode === 'issue' ? 'btn-secondary' : 'btn-ghost'}`}
+              title="Issue View"
+            >
+              <BookOpen className="w-4 h-4" />
+            </button>
+          </div>
         </div>
       </div>
 

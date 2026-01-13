@@ -103,6 +103,7 @@ function ArticleDetailPage() {
   const { article, volumes } = Route.useLoaderData()
   const [isUpdatingStatus, setIsUpdatingStatus] = useState(false)
   const [content, setContent] = useState(article?.content || '')
+  const [feedbackContent, setFeedbackContent] = useState(article?.feedbackLetter || '')
 
   if (!article) {
     return (
@@ -247,6 +248,7 @@ function ArticleDetailPage() {
             documents={documents}
             articleId={article.id}
             onConvertToMarkdown={handleConvertToMarkdown}
+            onConvertToFeedback={setFeedbackContent}
           />
 
           {/* Photos */}
@@ -261,7 +263,7 @@ function ArticleDetailPage() {
           {/* Feedback Letter */}
           <FeedbackEditor
             articleId={article.id}
-            initialContent={article.feedbackLetter || ''}
+            initialContent={feedbackContent}
           />
 
           {/* Notes */}

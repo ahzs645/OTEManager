@@ -227,6 +227,25 @@ export const issues = pgTable("issues", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
+// Saved article views for filter/sort presets
+export const savedArticleViews = pgTable("saved_article_views", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  name: text("name").notNull(),
+  isDefault: boolean("is_default").default(false),
+  // Filter state
+  status: text("status"),
+  tier: text("tier"),
+  search: text("search"),
+  // Sort state
+  sortBy: text("sort_by"),
+  sortOrder: text("sort_order"),
+  // View mode
+  viewMode: text("view_mode").default("list"),
+  // Timestamps
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
 // Relations
 export const authorsRelations = relations(authors, ({ many }) => ({
   articles: many(articles),

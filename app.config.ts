@@ -11,7 +11,7 @@ export default defineConfig({
       exclude: ["mammoth"],
     },
     ssr: {
-      noExternal: ["mammoth"],
+      external: ["mammoth"],
     },
     define: {
       // Provide Buffer polyfill for client-side
