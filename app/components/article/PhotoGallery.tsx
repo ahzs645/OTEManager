@@ -181,6 +181,10 @@ export function PhotoGallery({ photos, articleId }: PhotoGalleryProps) {
               <Upload className="w-4 h-4" />
               Upload Photos
             </button>
+            )}
+            <p className="text-xs mt-2" style={{ color: 'var(--fg-faint)' }}>
+              or drag and drop images
+            </p>
           </div>
         ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -258,6 +262,7 @@ export function PhotoGallery({ photos, articleId }: PhotoGalleryProps) {
           ))}
         </div>
         )}
+        </div>
       </Section>
 
       {/* Caption Edit Modal */}
