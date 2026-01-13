@@ -32,7 +32,7 @@ export function SpendingTrendChart({ data }: { data: TrendData[] }) {
   }
 
   return (
-    <div className="h-64">
+    <div style={{ width: "100%", height: "256px", minWidth: "200px" }}>
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
           <defs>

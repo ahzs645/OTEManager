@@ -41,7 +41,7 @@ export function TopEarnersChart({ data }: { data: TopAuthor[] }) {
   }));
 
   return (
-    <div className="h-72">
+    <div style={{ width: "100%", height: "288px", minWidth: "200px" }}>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={chartData}
@@ -106,7 +106,7 @@ export function AuthorTypeChart({ data }: { data: AuthorTypeData[] }) {
   }));
 
   return (
-    <div className="h-72">
+    <div style={{ width: "100%", height: "288px", minWidth: "200px" }}>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie

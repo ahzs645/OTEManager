@@ -49,7 +49,7 @@ export function PaymentStatusChart({ data }: { data: PaymentStatusData }) {
   }
 
   return (
-    <div className="h-64">
+    <div style={{ width: "100%", height: "256px", minWidth: "200px" }}>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
@@ -103,7 +103,7 @@ export function TierDistributionChart({ data }: { data: TierData[] }) {
   }
 
   return (
-    <div className="h-64">
+    <div style={{ width: "100%", height: "256px", minWidth: "200px" }}>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="var(--border-default)" vertical={false} />
@@ -146,7 +146,7 @@ export function TierArticleCountChart({ data }: { data: TierData[] }) {
   }
 
   return (
-    <div className="h-64">
+    <div style={{ width: "100%", height: "256px", minWidth: "200px" }}>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="var(--border-default)" vertical={false} />

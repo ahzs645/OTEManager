@@ -253,16 +253,86 @@ function ArticleDetailPage() {
   const photos = article.attachments.filter((a: any) => a.attachmentType === 'photo')
 
   return (
+    <UnsavedChangesProvider>
+      <ArticlePageContent
+        article={article}
+        volumes={volumes}
+        articleTitle={articleTitle}
+        articleStatus={articleStatus}
+        articleIssue={articleIssue}
+        articleIssueId={articleIssueId}
+        isEditingTitle={isEditingTitle}
+        setIsEditingTitle={setIsEditingTitle}
+        editedTitle={editedTitle}
+        setEditedTitle={setEditedTitle}
+        isSavingTitle={isSavingTitle}
+        handleSaveTitle={handleSaveTitle}
+        handleCancelTitleEdit={handleCancelTitleEdit}
+        handleTitleKeyDown={handleTitleKeyDown}
+        isUpdatingStatus={isUpdatingStatus}
+        handleStatusChange={handleStatusChange}
+        handleIssueSave={handleIssueSave}
+        showDeleteConfirm={showDeleteConfirm}
+        setShowDeleteConfirm={setShowDeleteConfirm}
+        isDeleting={isDeleting}
+        handleDelete={handleDelete}
+        content={content}
+        feedbackContent={feedbackContent}
+        handleConvertToMarkdown={handleConvertToMarkdown}
+        setFeedbackContent={setFeedbackContent}
+        authorName={authorName}
+        documents={documents}
+        photos={photos}
+      />
+    </UnsavedChangesProvider>
+  )
+}
+
+// Separate component to use the unsaved changes hook inside the provider
+function ArticlePageContent({
+  article,
+  volumes,
+  articleTitle,
+  articleStatus,
+  articleIssue,
+  articleIssueId,
+  isEditingTitle,
+  setIsEditingTitle,
+  editedTitle,
+  setEditedTitle,
+  isSavingTitle,
+  handleSaveTitle,
+  handleCancelTitleEdit,
+  handleTitleKeyDown,
+  isUpdatingStatus,
+  handleStatusChange,
+  handleIssueSave,
+  showDeleteConfirm,
+  setShowDeleteConfirm,
+  isDeleting,
+  handleDelete,
+  content,
+  feedbackContent,
+  handleConvertToMarkdown,
+  setFeedbackContent,
+  authorName,
+  documents,
+  photos,
+}: any) {
+  return (
     <div className="space-y-6">
-      {/* Back Link */}
-      <Link
-        to="/articles"
-        className="inline-flex items-center gap-1.5 text-sm"
-        style={{ color: 'var(--fg-muted)' }}
-      >
-        <ArrowLeft className="w-4 h-4" />
-        Articles
-      </Link>
+      {/* Back Link + Unsaved Indicator */}
+      <div className="flex items-center justify-between">
+        <Link
+          to="/articles"
+          className="inline-flex items-center gap-1.5 text-sm"
+          style={{ color: 'var(--fg-muted)' }}
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Articles
+        </Link>
+        <UnsavedChangesIndicator />
+      </div>
 
       {/* Header */}
       <div
@@ -323,7 +393,7 @@ function ArticleDetailPage() {
                     className="text-lg font-semibold truncate"
                     style={{ color: 'var(--fg-default)', letterSpacing: '-0.02em' }}
                   >
-                    {article.title}
+                    {articleTitle}
                   </h1>
                   <button
                     onClick={() => setIsEditingTitle(true)}
@@ -346,7 +416,7 @@ function ArticleDetailPage() {
               )}
             </div>
             <div className="flex items-center gap-3">
-              <StatusBadge status={article.internalStatus} />
+              <StatusBadge status={articleStatus} />
               <TierBadge tier={article.articleTier} />
               <span className="text-xs" style={{ color: 'var(--fg-muted)' }}>
                 Submitted {formatDate(article.submittedAt || article.createdAt)}
@@ -358,7 +428,7 @@ function ArticleDetailPage() {
           <div className="flex items-center gap-2">
             <div className="relative">
               <select
-                value={article.internalStatus}
+                value={articleStatus}
                 onChange={(e) => handleStatusChange(e.target.value)}
                 disabled={isUpdatingStatus}
                 className="select-trigger pr-8"
@@ -400,9 +470,10 @@ function ArticleDetailPage() {
           <VolumeIssueEditor
             articleId={article.id}
             volumes={volumes}
-            currentIssueId={article.issueId}
-            currentIssue={article.publicationIssue}
+            currentIssueId={articleIssueId}
+            currentIssue={articleIssue}
             variant="inline"
+            onSave={handleIssueSave}
           />
         </div>
       </div>
@@ -595,7 +666,7 @@ function ArticleDetailPage() {
                   Delete Article
                 </h3>
                 <p className="text-sm mt-1" style={{ color: 'var(--fg-muted)' }}>
-                  Are you sure you want to delete "{article.title}"? This will also delete all attached documents and photos. This action cannot be undone.
+                  Are you sure you want to delete "{articleTitle}"? This will also delete all attached documents and photos. This action cannot be undone.
                 </p>
               </div>
             </div>
