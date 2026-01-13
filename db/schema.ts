@@ -62,9 +62,13 @@ export const attachmentTypeEnum = pgEnum("attachment_type", [
 export const authorTypeEnum = pgEnum("author_type", [
   "Student",
   "Faculty",
+  "Staff",
   "Organization",
   "External",
 ]);
+
+// Author types that are NOT eligible for payment (e.g., university employees)
+export const NON_PAID_AUTHOR_TYPES = ["Faculty", "Staff"] as const;
 
 // Authors/Contributors table
 export const authors = pgTable("authors", {

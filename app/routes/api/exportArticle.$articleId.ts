@@ -1,17 +1,78 @@
 import { createAPIFileRoute } from '@tanstack/start/api'
-import { Document, Packer, Paragraph, TextRun, HeadingLevel } from 'docx'
+import { Document, Packer, Paragraph, TextRun, HeadingLevel, ExternalHyperlink } from 'docx'
 
-// Helper function to clean markdown formatting from text
-const cleanMarkdown = (text: string): string => {
-  // Remove bold (**text** or __text__)
-  text = text.replace(/\*\*(.*?)\*\*/g, '$1')
-  text = text.replace(/__(.*?)__/g, '$1')
-  // Remove italic (*text* or _text_) - but only when surrounded by non-space chars
-  text = text.replace(/(?<!\s)\*([^*]+)\*(?!\s)/g, '$1')
-  text = text.replace(/(?<!\s)_([^_]+)_(?!\s)/g, '$1')
-  // Remove links [text](url)
-  text = text.replace(/\[(.*?)\]\(.*?\)/g, '$1')
-  return text
+interface TextSegment {
+  text: string
+  bold?: boolean
+  italic?: boolean
+  link?: string
+}
+
+// Parse inline markdown formatting and return styled TextRun segments
+function parseInlineMarkdown(text: string): TextSegment[] {
+  const segments: TextSegment[] = []
+
+  // Combined regex to match bold+italic, bold, italic, and links
+  // Order matters: check bold+italic first, then bold, then italic
+  const patterns = [
+    { regex: /\*\*\*(.+?)\*\*\*/g, bold: true, italic: true },      // ***bold italic***
+    { regex: /___(.+?)___/g, bold: true, italic: true },            // ___bold italic___
+    { regex: /\*\*(.+?)\*\*/g, bold: true, italic: false },         // **bold**
+    { regex: /__(.+?)__/g, bold: true, italic: false },             // __bold__
+    { regex: /\*([^*]+)\*/g, bold: false, italic: true },           // *italic*
+    { regex: /_([^_]+)_/g, bold: false, italic: true },             // _italic_
+    { regex: /\[([^\]]+)\]\(([^)]+)\)/g, bold: false, italic: false, isLink: true }, // [text](url)
+  ]
+
+  // Create a combined pattern to split text
+  const combinedPattern = /(\*\*\*.+?\*\*\*|___.+?___|__[^_]+__|_[^_]+_|\*\*[^*]+\*\*|\*[^*]+\*|\[[^\]]+\]\([^)]+\))/g
+
+  const parts = text.split(combinedPattern)
+
+  for (const part of parts) {
+    if (!part) continue
+
+    let matched = false
+
+    // Check if this part matches any pattern
+    for (const pattern of patterns) {
+      const match = part.match(new RegExp(`^${pattern.regex.source}$`))
+      if (match) {
+        if (pattern.isLink) {
+          segments.push({
+            text: match[1],
+            link: match[2],
+          })
+        } else {
+          segments.push({
+            text: match[1],
+            bold: pattern.bold,
+            italic: pattern.italic,
+          })
+        }
+        matched = true
+        break
+      }
+    }
+
+    if (!matched) {
+      segments.push({ text: part })
+    }
+  }
+
+  return segments
+}
+
+// Convert segments to TextRun objects
+function segmentsToTextRuns(segments: TextSegment[], baseSize: number = 24): TextRun[] {
+  return segments.map(seg =>
+    new TextRun({
+      text: seg.text,
+      bold: seg.bold,
+      italics: seg.italic,
+      size: baseSize,
+    })
+  )
 }
 
 // Convert markdown content to docx document
@@ -71,25 +132,31 @@ async function markdownToDocx(
       }
       // Handle headings
       else if (trimmedLine.startsWith('### ')) {
+        const headingText = trimmedLine.substring(4)
+        const segments = parseInlineMarkdown(headingText)
         paragraphs.push(
           new Paragraph({
-            text: cleanMarkdown(trimmedLine.substring(4)),
+            children: segmentsToTextRuns(segments),
             heading: HeadingLevel.HEADING_3,
             spacing: { before: 200, after: 100 },
           }),
         )
       } else if (trimmedLine.startsWith('## ')) {
+        const headingText = trimmedLine.substring(3)
+        const segments = parseInlineMarkdown(headingText)
         paragraphs.push(
           new Paragraph({
-            text: cleanMarkdown(trimmedLine.substring(3)),
+            children: segmentsToTextRuns(segments),
             heading: HeadingLevel.HEADING_2,
             spacing: { before: 300, after: 150 },
           }),
         )
       } else if (trimmedLine.startsWith('# ')) {
+        const headingText = trimmedLine.substring(2)
+        const segments = parseInlineMarkdown(headingText)
         paragraphs.push(
           new Paragraph({
-            text: cleanMarkdown(trimmedLine.substring(2)),
+            children: segmentsToTextRuns(segments),
             heading: HeadingLevel.HEADING_1,
             spacing: { before: 400, after: 200 },
           }),
@@ -97,12 +164,13 @@ async function markdownToDocx(
       }
       // Handle bullet points (* or -)
       else if (trimmedLine.startsWith('* ') || trimmedLine.startsWith('- ')) {
-        const bulletText = cleanMarkdown(trimmedLine.substring(2))
+        const bulletText = trimmedLine.substring(2)
+        const segments = parseInlineMarkdown(bulletText)
         paragraphs.push(
           new Paragraph({
             children: [
               new TextRun({ text: '• ', size: 24 }),
-              new TextRun({ text: bulletText, size: 24 }),
+              ...segmentsToTextRuns(segments),
             ],
             spacing: { after: 80 },
             indent: { left: 360 }, // Indent bullet points
@@ -113,11 +181,12 @@ async function markdownToDocx(
       else if (/^\d+\.\s/.test(trimmedLine)) {
         const match = trimmedLine.match(/^(\d+\.)\s(.*)$/)
         if (match) {
+          const segments = parseInlineMarkdown(match[2])
           paragraphs.push(
             new Paragraph({
               children: [
                 new TextRun({ text: match[1] + ' ', size: 24 }),
-                new TextRun({ text: cleanMarkdown(match[2]), size: 24 }),
+                ...segmentsToTextRuns(segments),
               ],
               spacing: { after: 80 },
               indent: { left: 360 },
@@ -125,12 +194,12 @@ async function markdownToDocx(
           )
         }
       }
-      // Regular paragraph - each line is its own paragraph
+      // Regular paragraph
       else {
-        const text = cleanMarkdown(trimmedLine)
+        const segments = parseInlineMarkdown(trimmedLine)
         paragraphs.push(
           new Paragraph({
-            children: [new TextRun({ text, size: 24 })],
+            children: segmentsToTextRuns(segments),
             spacing: { after: 120 },
           }),
         )

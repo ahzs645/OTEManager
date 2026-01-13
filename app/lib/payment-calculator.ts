@@ -127,3 +127,25 @@ export function parseToCents(value: string): number {
   const parsed = parseFloat(cleaned);
   return Math.round(parsed * 100);
 }
+
+// Author types that are NOT eligible for payment
+const NON_PAID_AUTHOR_TYPES = ["Faculty", "Staff"] as const;
+
+/**
+ * Check if an author type is eligible for payment
+ */
+export function isAuthorEligibleForPayment(authorType: string | null | undefined): boolean {
+  if (!authorType) return true; // Default to eligible if unknown
+  return !NON_PAID_AUTHOR_TYPES.includes(authorType as any);
+}
+
+/**
+ * Get a message explaining why an author isn't eligible for payment
+ */
+export function getPaymentIneligibilityReason(authorType: string | null | undefined): string | null {
+  if (!authorType) return null;
+  if (NON_PAID_AUTHOR_TYPES.includes(authorType as any)) {
+    return `${authorType} members are not eligible for article payment`;
+  }
+  return null;
+}

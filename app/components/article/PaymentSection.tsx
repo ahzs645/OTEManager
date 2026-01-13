@@ -6,9 +6,10 @@ import {
   RefreshCw,
   Calculator,
   Edit2,
+  AlertCircle,
 } from 'lucide-react'
 import { Button, LoadingSpinner } from '~/components/Layout'
-import { formatCents, type PaymentCalculation } from '~/lib/payment-calculator'
+import { formatCents, isAuthorEligibleForPayment, getPaymentIneligibilityReason, type PaymentCalculation } from '~/lib/payment-calculator'
 import {
   calculateArticlePayment,
   setManualPayment,
@@ -32,6 +33,9 @@ interface PaymentSectionProps {
     hasTimeSensitiveBonus: boolean | null
     hasProfessionalPhotos: boolean | null
     hasProfessionalGraphics: boolean | null
+    author?: {
+      authorType: string | null
+    } | null
   }
 }
 
@@ -41,6 +45,11 @@ export function PaymentSection({ article }: PaymentSectionProps) {
   const [manualAmount, setManualAmount] = useState('')
   const [isSavingManual, setIsSavingManual] = useState(false)
   const [isMarkingPaid, setIsMarkingPaid] = useState(false)
+
+  // Check if author is eligible for payment
+  const authorType = article.author?.authorType
+  const isEligibleForPayment = isAuthorEligibleForPayment(authorType)
+  const ineligibilityReason = getPaymentIneligibilityReason(authorType)
 
   // Parse payment snapshot if available
   let breakdown: PaymentCalculation | null = null
@@ -122,6 +131,24 @@ export function PaymentSection({ article }: PaymentSectionProps) {
 
   return (
     <div className="space-y-4">
+      {/* Not Eligible for Payment Warning */}
+      {!isEligibleForPayment && (
+        <div
+          className="flex items-start gap-3 p-3 rounded-lg"
+          style={{ background: 'var(--status-warning-bg)' }}
+        >
+          <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: 'var(--status-warning)' }} />
+          <div>
+            <p className="text-sm font-medium" style={{ color: 'var(--status-warning)' }}>
+              Not Eligible for Payment
+            </p>
+            <p className="text-xs mt-0.5" style={{ color: 'var(--fg-muted)' }}>
+              {ineligibilityReason}
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Payment Status */}
       <div className="flex items-center gap-3">
         {article.paymentStatus ? (

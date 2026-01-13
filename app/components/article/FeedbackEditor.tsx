@@ -11,17 +11,20 @@ interface FeedbackEditorProps {
 export function FeedbackEditor({ articleId, initialContent }: FeedbackEditorProps) {
   const [content, setContent] = useState(initialContent)
   const [isSaving, setIsSaving] = useState(false)
-  const [isSaved, setIsSaved] = useState(true)
+  // Track what's actually saved in the database
+  const [savedContent, setSavedContent] = useState(initialContent)
 
-  // Reset saved state when initial content changes
+  // Determine if current content matches what's saved
+  const isSaved = content === savedContent
+
+  // Update content when initialContent changes (e.g., from document insertion)
   useEffect(() => {
     setContent(initialContent)
-    setIsSaved(true)
+    // Don't update savedContent - the new content isn't saved yet
   }, [initialContent])
 
   const handleContentChange = (newContent: string) => {
     setContent(newContent)
-    setIsSaved(false)
   }
 
   const handleSave = async () => {
@@ -34,7 +37,7 @@ export function FeedbackEditor({ articleId, initialContent }: FeedbackEditorProp
         },
       })
       if (result.success) {
-        setIsSaved(true)
+        setSavedContent(content)
       } else {
         console.error('Failed to save feedback letter:', result.error)
         alert('Failed to save feedback letter: ' + (result.error || 'Unknown error'))

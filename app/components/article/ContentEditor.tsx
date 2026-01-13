@@ -12,17 +12,20 @@ interface ContentEditorProps {
 export function ContentEditor({ articleId, initialContent, title = 'Article Content' }: ContentEditorProps) {
   const [content, setContent] = useState(initialContent)
   const [isSaving, setIsSaving] = useState(false)
-  const [isSaved, setIsSaved] = useState(true)
+  // Track what's actually saved in the database
+  const [savedContent, setSavedContent] = useState(initialContent)
 
-  // Reset saved state when initial content changes
+  // Determine if current content matches what's saved
+  const isSaved = content === savedContent
+
+  // Update content when initialContent changes (e.g., from document insertion)
   useEffect(() => {
     setContent(initialContent)
-    setIsSaved(true)
+    // Don't update savedContent - the new content isn't saved yet unless it matches original
   }, [initialContent])
 
   const handleContentChange = (newContent: string) => {
     setContent(newContent)
-    setIsSaved(false)
   }
 
   const handleSave = async () => {
@@ -35,7 +38,8 @@ export function ContentEditor({ articleId, initialContent, title = 'Article Cont
         },
       })
       if (result.success) {
-        setIsSaved(true)
+        // Update the saved content to current content
+        setSavedContent(content)
       } else {
         console.error('Failed to save content:', result.error)
         alert('Failed to save content: ' + (result.error || 'Unknown error'))

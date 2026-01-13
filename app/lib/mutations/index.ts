@@ -11,6 +11,7 @@ export {
 
 // Article mutations
 export {
+  createArticle,
   updateArticleStatus,
   updateArticle,
   updateArticleContent,

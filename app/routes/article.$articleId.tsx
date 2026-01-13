@@ -252,7 +252,7 @@ function ArticleDetailPage() {
           />
 
           {/* Photos */}
-          <PhotoGallery photos={photos} />
+          <PhotoGallery photos={photos} articleId={article.id} />
 
           {/* Article Content */}
           <ContentEditor

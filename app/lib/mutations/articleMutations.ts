@@ -1,5 +1,87 @@
 import { createServerFn } from "@tanstack/start";
 
+// Create a new article manually
+export const createArticle = createServerFn({ method: "POST" })
+  .validator(
+    (data: {
+      title: string;
+      authorId?: string;
+      // If no authorId, create a new author with these fields
+      authorGivenName?: string;
+      authorSurname?: string;
+      authorEmail?: string;
+      articleTier?: string;
+      prefersAnonymity?: boolean;
+    }) => data
+  )
+  .handler(async ({ data }) => {
+    try {
+      const { db, articles, authors, statusHistory } = await import("@db/index");
+      const { eq } = await import("drizzle-orm");
+
+      let authorId = data.authorId;
+
+      // If no authorId provided, create or find author
+      if (!authorId) {
+        if (!data.authorEmail || !data.authorGivenName || !data.authorSurname) {
+          return { success: false, error: "Author information is required" };
+        }
+
+        // Check if author with this email already exists
+        const existingAuthor = await db.query.authors.findFirst({
+          where: eq(authors.email, data.authorEmail),
+        });
+
+        if (existingAuthor) {
+          authorId = existingAuthor.id;
+        } else {
+          // Create new author
+          const [newAuthor] = await db
+            .insert(authors)
+            .values({
+              givenName: data.authorGivenName,
+              surname: data.authorSurname,
+              email: data.authorEmail,
+              role: "Guest Contributor",
+            })
+            .returning();
+          authorId = newAuthor.id;
+        }
+      }
+
+      // Create the article
+      const [newArticle] = await db
+        .insert(articles)
+        .values({
+          title: data.title,
+          authorId: authorId,
+          articleTier: (data.articleTier as any) || "Tier 1 (Basic)",
+          prefersAnonymity: data.prefersAnonymity || false,
+          internalStatus: "Draft",
+          automationStatus: "Completed",
+          submittedAt: new Date(),
+        })
+        .returning();
+
+      // Add initial status history
+      await db.insert(statusHistory).values({
+        articleId: newArticle.id,
+        fromStatus: null,
+        toStatus: "Draft",
+        changedBy: "Manual Entry",
+        notes: "Article created manually",
+      });
+
+      return { success: true, articleId: newArticle.id };
+    } catch (error) {
+      console.error("Failed to create article:", error);
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : "Unknown error",
+      };
+    }
+  });
+
 // Update article status
 export const updateArticleStatus = createServerFn({ method: "POST" })
   .validator(

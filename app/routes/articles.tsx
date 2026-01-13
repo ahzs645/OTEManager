@@ -1,9 +1,9 @@
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { useState, useEffect, useRef } from 'react'
-import { FileText, List, Columns, BookOpen } from 'lucide-react'
-import { EmptyState, Button } from '~/components/Layout'
-import { getArticles, getIssueById, getVolumeById } from '~/lib/queries'
-import { getDefaultView, type SavedViewConfig } from '~/lib/mutations'
+import { FileText, List, Columns, BookOpen, Plus, X } from 'lucide-react'
+import { EmptyState, Button, LoadingSpinner } from '~/components/Layout'
+import { getArticles, getIssueById, getVolumeById, getAuthors } from '~/lib/queries'
+import { getDefaultView, createArticle, type SavedViewConfig } from '~/lib/mutations'
 import {
   FilterBar,
   ListView,
@@ -74,6 +74,22 @@ function ArticlesPage() {
     issueTitle?: string | null
   } | null>(null)
   const hasLoadedDefaultView = useRef(false)
+
+  // Add Article Modal State
+  const [showAddModal, setShowAddModal] = useState(false)
+  const [authors, setAuthors] = useState<{ id: string; givenName: string; surname: string; email: string }[]>([])
+  const [isLoadingAuthors, setIsLoadingAuthors] = useState(false)
+  const [isCreating, setIsCreating] = useState(false)
+  const [newArticle, setNewArticle] = useState({
+    title: '',
+    authorId: '',
+    authorGivenName: '',
+    authorSurname: '',
+    authorEmail: '',
+    articleTier: 'Tier 1 (Basic)',
+    prefersAnonymity: false,
+    useNewAuthor: false,
+  })
 
   // Load default view on mount (only if no search params are set)
   useEffect(() => {
@@ -260,6 +276,77 @@ function ArticlesPage() {
     navigate({ search: { page: 1 } })
   }
 
+  // Load authors when modal opens
+  const handleOpenAddModal = async () => {
+    setShowAddModal(true)
+    setIsLoadingAuthors(true)
+    try {
+      const result = await getAuthors()
+      setAuthors(result.authors || [])
+    } catch (error) {
+      console.error('Failed to load authors:', error)
+    } finally {
+      setIsLoadingAuthors(false)
+    }
+  }
+
+  const handleCloseAddModal = () => {
+    setShowAddModal(false)
+    setNewArticle({
+      title: '',
+      authorId: '',
+      authorGivenName: '',
+      authorSurname: '',
+      authorEmail: '',
+      articleTier: 'Tier 1 (Basic)',
+      prefersAnonymity: false,
+      useNewAuthor: false,
+    })
+  }
+
+  const handleCreateArticle = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!newArticle.title) {
+      alert('Title is required')
+      return
+    }
+    if (!newArticle.useNewAuthor && !newArticle.authorId) {
+      alert('Please select an author or create a new one')
+      return
+    }
+    if (newArticle.useNewAuthor && (!newArticle.authorGivenName || !newArticle.authorSurname || !newArticle.authorEmail)) {
+      alert('Please fill in all author fields')
+      return
+    }
+
+    setIsCreating(true)
+    try {
+      const result = await createArticle({
+        data: {
+          title: newArticle.title,
+          authorId: newArticle.useNewAuthor ? undefined : newArticle.authorId,
+          authorGivenName: newArticle.useNewAuthor ? newArticle.authorGivenName : undefined,
+          authorSurname: newArticle.useNewAuthor ? newArticle.authorSurname : undefined,
+          authorEmail: newArticle.useNewAuthor ? newArticle.authorEmail : undefined,
+          articleTier: newArticle.articleTier,
+          prefersAnonymity: newArticle.prefersAnonymity,
+        },
+      })
+      if (result.success && result.articleId) {
+        handleCloseAddModal()
+        // Navigate to the new article
+        navigate({ to: '/article/$articleId', params: { articleId: result.articleId } })
+      } else {
+        alert('Failed to create article: ' + (result.error || 'Unknown error'))
+      }
+    } catch (error) {
+      console.error('Failed to create article:', error)
+      alert('Failed to create article')
+    } finally {
+      setIsCreating(false)
+    }
+  }
+
   // Group articles by status for board view
   const articlesByStatus = articles.reduce((acc: Record<string, Article[]>, article) => {
     const status = article.internalStatus || 'Draft'
@@ -341,8 +428,12 @@ function ArticlesPage() {
           </p>
         </div>
 
-        {/* Saved Views and View Mode Toggle */}
+        {/* Add Article Button, Saved Views, and View Mode Toggle */}
         <div className="flex items-center gap-3">
+          <Button onClick={handleOpenAddModal} variant="primary" size="sm">
+            <Plus className="w-4 h-4" />
+            Add Article
+          </Button>
           <SavedViewSelector
             currentConfig={currentConfig}
             onSelectView={handleSelectView}
@@ -424,6 +515,164 @@ function ArticlesPage() {
           onSort={handleSort}
           onPageChange={handlePageChange}
         />
+      )}
+
+      {/* Add Article Modal */}
+      {showAddModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{ background: 'rgba(0, 0, 0, 0.5)' }}
+          onClick={handleCloseAddModal}
+        >
+          <div
+            className="w-full max-w-lg rounded-lg shadow-xl"
+            style={{ background: 'var(--bg-surface)' }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div
+              className="flex items-center justify-between px-4 py-3"
+              style={{ borderBottom: '1px solid var(--border-default)' }}
+            >
+              <h2 className="font-semibold" style={{ color: 'var(--fg-default)' }}>
+                Add New Article
+              </h2>
+              <button onClick={handleCloseAddModal} className="btn btn-ghost !p-2">
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <form onSubmit={handleCreateArticle} className="p-4 space-y-4">
+              {/* Title */}
+              <div>
+                <label className="block text-sm font-medium mb-1" style={{ color: 'var(--fg-default)' }}>
+                  Title <span style={{ color: 'var(--status-error)' }}>*</span>
+                </label>
+                <input
+                  type="text"
+                  value={newArticle.title}
+                  onChange={(e) => setNewArticle({ ...newArticle, title: e.target.value })}
+                  className="input w-full"
+                  placeholder="Article title"
+                  required
+                />
+              </div>
+
+              {/* Author Selection */}
+              <div>
+                <label className="block text-sm font-medium mb-1" style={{ color: 'var(--fg-default)' }}>
+                  Author <span style={{ color: 'var(--status-error)' }}>*</span>
+                </label>
+
+                <div className="flex items-center gap-4 mb-2">
+                  <label className="flex items-center gap-2 text-sm cursor-pointer">
+                    <input
+                      type="radio"
+                      checked={!newArticle.useNewAuthor}
+                      onChange={() => setNewArticle({ ...newArticle, useNewAuthor: false })}
+                    />
+                    Existing Author
+                  </label>
+                  <label className="flex items-center gap-2 text-sm cursor-pointer">
+                    <input
+                      type="radio"
+                      checked={newArticle.useNewAuthor}
+                      onChange={() => setNewArticle({ ...newArticle, useNewAuthor: true })}
+                    />
+                    New Author
+                  </label>
+                </div>
+
+                {!newArticle.useNewAuthor ? (
+                  isLoadingAuthors ? (
+                    <div className="flex items-center gap-2 py-2">
+                      <LoadingSpinner size="sm" />
+                      <span className="text-sm" style={{ color: 'var(--fg-muted)' }}>Loading authors...</span>
+                    </div>
+                  ) : (
+                    <select
+                      value={newArticle.authorId}
+                      onChange={(e) => setNewArticle({ ...newArticle, authorId: e.target.value })}
+                      className="select-trigger w-full"
+                    >
+                      <option value="">Select an author...</option>
+                      {authors.map((author) => (
+                        <option key={author.id} value={author.id}>
+                          {author.givenName} {author.surname} ({author.email})
+                        </option>
+                      ))}
+                    </select>
+                  )
+                ) : (
+                  <div className="space-y-2">
+                    <div className="grid grid-cols-2 gap-2">
+                      <input
+                        type="text"
+                        value={newArticle.authorGivenName}
+                        onChange={(e) => setNewArticle({ ...newArticle, authorGivenName: e.target.value })}
+                        className="input"
+                        placeholder="First name"
+                      />
+                      <input
+                        type="text"
+                        value={newArticle.authorSurname}
+                        onChange={(e) => setNewArticle({ ...newArticle, authorSurname: e.target.value })}
+                        className="input"
+                        placeholder="Last name"
+                      />
+                    </div>
+                    <input
+                      type="email"
+                      value={newArticle.authorEmail}
+                      onChange={(e) => setNewArticle({ ...newArticle, authorEmail: e.target.value })}
+                      className="input w-full"
+                      placeholder="Email address"
+                    />
+                  </div>
+                )}
+              </div>
+
+              {/* Tier */}
+              <div>
+                <label className="block text-sm font-medium mb-1" style={{ color: 'var(--fg-default)' }}>
+                  Article Tier
+                </label>
+                <select
+                  value={newArticle.articleTier}
+                  onChange={(e) => setNewArticle({ ...newArticle, articleTier: e.target.value })}
+                  className="select-trigger w-full"
+                >
+                  <option value="Tier 1 (Basic)">Tier 1 (Basic)</option>
+                  <option value="Tier 2 (Standard)">Tier 2 (Standard)</option>
+                  <option value="Tier 3 (Advanced)">Tier 3 (Advanced)</option>
+                </select>
+              </div>
+
+              {/* Anonymity */}
+              <div>
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={newArticle.prefersAnonymity}
+                    onChange={(e) => setNewArticle({ ...newArticle, prefersAnonymity: e.target.checked })}
+                  />
+                  <span className="text-sm" style={{ color: 'var(--fg-default)' }}>
+                    Author prefers anonymity
+                  </span>
+                </label>
+              </div>
+
+              {/* Actions */}
+              <div className="flex justify-end gap-2 pt-2">
+                <Button type="button" variant="secondary" onClick={handleCloseAddModal}>
+                  Cancel
+                </Button>
+                <Button type="submit" variant="primary" disabled={isCreating}>
+                  {isCreating ? <LoadingSpinner size="sm" /> : 'Create Article'}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
       )}
     </div>
   )
