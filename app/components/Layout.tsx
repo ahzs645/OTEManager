@@ -3,7 +3,7 @@ import {
   FileText,
   Users,
   LayoutDashboard,
-  Upload,
+  Wrench,
   ChevronRight,
   Settings,
 } from "lucide-react";
@@ -30,7 +30,7 @@ function Header() {
     { path: "/", label: "Dashboard", icon: LayoutDashboard },
     { path: "/articles", label: "Articles", icon: FileText },
     { path: "/authors", label: "Authors", icon: Users },
-    { path: "/import", label: "Import", icon: Upload },
+    { path: "/utilities", label: "Utilities", icon: Wrench },
     { path: "/settings", label: "Settings", icon: Settings },
   ];
 
