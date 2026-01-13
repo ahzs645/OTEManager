@@ -66,12 +66,24 @@ export const APIRoute = createAPIFileRoute('/api/convertDocx/$attachmentId')({
       // Convert using mammoth
       const mammoth = await import('mammoth')
 
+      // Custom image converter that skips images (they're handled separately in PhotoGallery)
+      // This prevents huge base64 data from being embedded in the markdown
+      const imageHandler = {
+        convertImage: mammoth.images.imgElement(() => {
+          // Return empty object to skip the image entirely
+          // Images should be managed through the PhotoGallery component
+          return Promise.resolve({ src: '' })
+        }),
+      }
+
       if (format === 'html') {
-        const result = await mammoth.convertToHtml({ buffer: fileBuffer })
+        const result = await mammoth.convertToHtml({ buffer: fileBuffer }, imageHandler)
+        // Remove empty img tags left from skipped images
+        const cleanedHtml = result.value.replace(/<img[^>]*src=""[^>]*>/g, '')
         return new Response(
           JSON.stringify({
             success: true,
-            content: result.value,
+            content: cleanedHtml,
             messages: result.messages,
             format: 'html',
           }),
@@ -81,12 +93,17 @@ export const APIRoute = createAPIFileRoute('/api/convertDocx/$attachmentId')({
           },
         )
       } else {
-        const result = await mammoth.convertToMarkdown({ buffer: fileBuffer })
-        const cleanedMarkdown = cleanMarkdownEscapes(result.value)
+        const result = await mammoth.convertToMarkdown({ buffer: fileBuffer }, imageHandler)
+        // Clean up markdown and remove empty image references
+        let cleanedMarkdown = cleanMarkdownEscapes(result.value)
+        // Remove empty markdown image syntax left from skipped images
+        cleanedMarkdown = cleanedMarkdown.replace(/!\[\]\(\)/g, '')
+        // Remove any remaining empty lines from removed images
+        cleanedMarkdown = cleanedMarkdown.replace(/\n{3,}/g, '\n\n')
         return new Response(
           JSON.stringify({
             success: true,
-            content: cleanedMarkdown,
+            content: cleanedMarkdown.trim(),
             messages: result.messages,
             format: 'markdown',
           }),
