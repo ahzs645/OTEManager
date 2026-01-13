@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
-import { History, DollarSign, Save, RefreshCw } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { History, DollarSign, Save, RefreshCw, Download, Upload, Archive, AlertCircle, CheckCircle } from "lucide-react";
 import { Section, Button, LoadingSpinner, formatDate } from "~/components/Layout";
 import { getPaymentRateConfig, getPaymentRateHistory } from "~/lib/queries";
 import { updatePaymentRateConfig } from "~/lib/mutations";
@@ -275,6 +275,9 @@ function SettingsPage() {
               </Button>
             )}
           </div>
+
+          {/* Backup & Restore */}
+          <BackupRestoreSection />
         </div>
 
         {/* Sidebar */}
@@ -508,5 +511,375 @@ function HistoryItem({ entry }: { entry: HistoryEntry }) {
         </div>
       )}
     </div>
+  );
+}
+
+// Backup & Restore Section
+interface ImportResult {
+  success: boolean;
+  message?: string;
+  error?: string;
+  stats?: {
+    authors: { imported: number; skipped: number };
+    volumes: { imported: number; skipped: number };
+    issues: { imported: number; skipped: number };
+    articles: { imported: number; skipped: number };
+    attachments: { imported: number; skipped: number; filesRestored: number };
+  };
+  backupInfo?: {
+    exportedAt: string;
+    version: string;
+  };
+}
+
+function BackupRestoreSection() {
+  const [isExporting, setIsExporting] = useState(false);
+  const [isImporting, setIsImporting] = useState(false);
+  const [importResult, setImportResult] = useState<ImportResult | null>(null);
+  const [importMode, setImportMode] = useState<"merge" | "replace">("merge");
+  const [showConfirmReplace, setShowConfirmReplace] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleExport = async () => {
+    setIsExporting(true);
+    try {
+      const response = await fetch("/api/backup/export");
+      if (!response.ok) {
+        throw new Error("Export failed");
+      }
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `otemanager-backup-${new Date().toISOString().slice(0, 10)}.zip`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Export error:", error);
+      alert("Failed to export backup");
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setSelectedFile(file);
+      setImportResult(null);
+    }
+  };
+
+  const handleImport = async () => {
+    if (!selectedFile) return;
+
+    // If replace mode, show confirmation first
+    if (importMode === "replace" && !showConfirmReplace) {
+      setShowConfirmReplace(true);
+      return;
+    }
+
+    setIsImporting(true);
+    setShowConfirmReplace(false);
+    setImportResult(null);
+
+    try {
+      const formData = new FormData();
+      formData.append("backup", selectedFile);
+      formData.append("mode", importMode);
+
+      const response = await fetch("/api/backup/import", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+      setImportResult(result);
+
+      if (result.success) {
+        setSelectedFile(null);
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
+      }
+    } catch (error) {
+      console.error("Import error:", error);
+      setImportResult({
+        success: false,
+        error: "Failed to import backup",
+      });
+    } finally {
+      setIsImporting(false);
+    }
+  };
+
+  return (
+    <Section title="Backup & Restore">
+      <div className="space-y-4">
+        <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
+          Export all articles, authors, settings, and attachments as a ZIP file. Import to restore data.
+        </p>
+
+        {/* Export */}
+        <div
+          className="p-4 rounded-lg"
+          style={{ background: "var(--bg-subtle)", border: "1px solid var(--border-default)" }}
+        >
+          <div className="flex items-start gap-3">
+            <div
+              className="p-2 rounded-lg"
+              style={{ background: "var(--bg-surface)" }}
+            >
+              <Download className="w-5 h-5" style={{ color: "var(--accent)" }} />
+            </div>
+            <div className="flex-1">
+              <h4 className="text-sm font-medium" style={{ color: "var(--fg-default)" }}>
+                Export Backup
+              </h4>
+              <p className="text-xs mt-0.5" style={{ color: "var(--fg-muted)" }}>
+                Download a complete backup of all data and files
+              </p>
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={handleExport}
+                disabled={isExporting}
+                className="mt-3"
+              >
+                {isExporting ? (
+                  <>
+                    <LoadingSpinner size="sm" />
+                    <span className="ml-2">Exporting...</span>
+                  </>
+                ) : (
+                  <>
+                    <Archive className="w-4 h-4 mr-2" />
+                    Download Backup
+                  </>
+                )}
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Import */}
+        <div
+          className="p-4 rounded-lg"
+          style={{ background: "var(--bg-subtle)", border: "1px solid var(--border-default)" }}
+        >
+          <div className="flex items-start gap-3">
+            <div
+              className="p-2 rounded-lg"
+              style={{ background: "var(--bg-surface)" }}
+            >
+              <Upload className="w-5 h-5" style={{ color: "var(--fg-muted)" }} />
+            </div>
+            <div className="flex-1">
+              <h4 className="text-sm font-medium" style={{ color: "var(--fg-default)" }}>
+                Restore from Backup
+              </h4>
+              <p className="text-xs mt-0.5" style={{ color: "var(--fg-muted)" }}>
+                Import data from a previously exported backup file
+              </p>
+
+              {/* Hidden file input */}
+              <input
+                type="file"
+                ref={fileInputRef}
+                onChange={handleFileSelect}
+                accept=".zip"
+                className="hidden"
+              />
+
+              <div className="mt-3 space-y-3">
+                {/* File selection */}
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => fileInputRef.current?.click()}
+                  >
+                    Choose File
+                  </Button>
+                  {selectedFile && (
+                    <span className="text-xs" style={{ color: "var(--fg-muted)" }}>
+                      {selectedFile.name} ({(selectedFile.size / 1024 / 1024).toFixed(2)} MB)
+                    </span>
+                  )}
+                </div>
+
+                {/* Import mode selection */}
+                {selectedFile && (
+                  <div className="space-y-2">
+                    <p className="text-xs font-medium" style={{ color: "var(--fg-muted)" }}>
+                      Import mode:
+                    </p>
+                    <div className="flex gap-4">
+                      <label className="flex items-center gap-2 cursor-pointer">
+                        <input
+                          type="radio"
+                          name="importMode"
+                          value="merge"
+                          checked={importMode === "merge"}
+                          onChange={() => setImportMode("merge")}
+                          className="w-4 h-4"
+                        />
+                        <span className="text-sm" style={{ color: "var(--fg-default)" }}>
+                          Merge
+                        </span>
+                        <span className="text-xs" style={{ color: "var(--fg-muted)" }}>
+                          (skip existing)
+                        </span>
+                      </label>
+                      <label className="flex items-center gap-2 cursor-pointer">
+                        <input
+                          type="radio"
+                          name="importMode"
+                          value="replace"
+                          checked={importMode === "replace"}
+                          onChange={() => setImportMode("replace")}
+                          className="w-4 h-4"
+                        />
+                        <span className="text-sm" style={{ color: "var(--fg-default)" }}>
+                          Replace
+                        </span>
+                        <span className="text-xs" style={{ color: "var(--status-error)" }}>
+                          (delete all first)
+                        </span>
+                      </label>
+                    </div>
+
+                    {/* Replace confirmation */}
+                    {showConfirmReplace && (
+                      <div
+                        className="p-3 rounded-lg mt-2"
+                        style={{ background: "var(--status-error-bg)" }}
+                      >
+                        <div className="flex items-start gap-2">
+                          <AlertCircle
+                            className="w-4 h-4 mt-0.5 flex-shrink-0"
+                            style={{ color: "var(--status-error)" }}
+                          />
+                          <div>
+                            <p className="text-sm font-medium" style={{ color: "var(--status-error)" }}>
+                              This will delete all existing data
+                            </p>
+                            <p className="text-xs mt-1" style={{ color: "var(--fg-muted)" }}>
+                              All current articles, authors, and files will be permanently removed before importing.
+                            </p>
+                            <div className="flex gap-2 mt-2">
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => setShowConfirmReplace(false)}
+                              >
+                                Cancel
+                              </Button>
+                              <button
+                                onClick={handleImport}
+                                disabled={isImporting}
+                                className="px-3 py-1.5 text-xs font-medium rounded-md"
+                                style={{
+                                  background: "var(--status-error)",
+                                  color: "white",
+                                }}
+                              >
+                                {isImporting ? "Importing..." : "Yes, Replace All"}
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Import button */}
+                    {!showConfirmReplace && (
+                      <Button
+                        variant="primary"
+                        size="sm"
+                        onClick={handleImport}
+                        disabled={isImporting}
+                      >
+                        {isImporting ? (
+                          <>
+                            <LoadingSpinner size="sm" />
+                            <span className="ml-2">Importing...</span>
+                          </>
+                        ) : (
+                          <>
+                            <Upload className="w-4 h-4 mr-2" />
+                            Import Backup
+                          </>
+                        )}
+                      </Button>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Import result */}
+              {importResult && (
+                <div
+                  className="mt-3 p-3 rounded-lg"
+                  style={{
+                    background: importResult.success
+                      ? "var(--status-success-bg)"
+                      : "var(--status-error-bg)",
+                  }}
+                >
+                  <div className="flex items-start gap-2">
+                    {importResult.success ? (
+                      <CheckCircle
+                        className="w-4 h-4 mt-0.5 flex-shrink-0"
+                        style={{ color: "var(--status-success)" }}
+                      />
+                    ) : (
+                      <AlertCircle
+                        className="w-4 h-4 mt-0.5 flex-shrink-0"
+                        style={{ color: "var(--status-error)" }}
+                      />
+                    )}
+                    <div className="flex-1">
+                      <p
+                        className="text-sm font-medium"
+                        style={{
+                          color: importResult.success
+                            ? "var(--status-success)"
+                            : "var(--status-error)",
+                        }}
+                      >
+                        {importResult.success ? "Import Successful" : "Import Failed"}
+                      </p>
+                      {importResult.error && (
+                        <p className="text-xs mt-1" style={{ color: "var(--fg-muted)" }}>
+                          {importResult.error}
+                        </p>
+                      )}
+                      {importResult.stats && (
+                        <div className="mt-2 text-xs space-y-0.5" style={{ color: "var(--fg-muted)" }}>
+                          <p>Authors: {importResult.stats.authors.imported} imported, {importResult.stats.authors.skipped} skipped</p>
+                          <p>Volumes: {importResult.stats.volumes.imported} imported, {importResult.stats.volumes.skipped} skipped</p>
+                          <p>Issues: {importResult.stats.issues.imported} imported, {importResult.stats.issues.skipped} skipped</p>
+                          <p>Articles: {importResult.stats.articles.imported} imported, {importResult.stats.articles.skipped} skipped</p>
+                          <p>Attachments: {importResult.stats.attachments.imported} imported, {importResult.stats.attachments.filesRestored} files restored</p>
+                        </div>
+                      )}
+                      {importResult.backupInfo && (
+                        <p className="text-xs mt-2" style={{ color: "var(--fg-faint)" }}>
+                          Backup from: {new Date(importResult.backupInfo.exportedAt).toLocaleString()}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </Section>
   );
 }
