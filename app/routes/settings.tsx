@@ -379,7 +379,7 @@ function SettingsPage() {
   );
 }
 
-// Rate Input Component
+// Rate Input Component - Using text input for better UX
 function RateInput({
   label,
   description,
@@ -391,6 +391,38 @@ function RateInput({
   value: string;
   onChange: (value: string) => void;
 }) {
+  const [localValue, setLocalValue] = useState(value);
+
+  // Sync local value when prop changes (e.g., on reset)
+  useEffect(() => {
+    setLocalValue(value);
+  }, [value]);
+
+  const handleBlur = () => {
+    // Parse and format on blur
+    const parsed = parseFloat(localValue);
+    if (!isNaN(parsed) && parsed >= 0) {
+      const formatted = parsed.toFixed(2);
+      setLocalValue(formatted);
+      onChange(formatted);
+    } else {
+      // Reset to original value if invalid
+      setLocalValue(value);
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    // Allow typing freely - only validate on blur
+    setLocalValue(newValue);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      (e.target as HTMLInputElement).blur();
+    }
+  };
+
   return (
     <div>
       <label
@@ -410,13 +442,15 @@ function RateInput({
           style={{ color: "var(--fg-faint)" }}
         />
         <input
-          type="number"
-          step="0.01"
-          min="0"
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
+          type="text"
+          inputMode="decimal"
+          value={localValue}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
           className="input"
           style={{ width: "100%", paddingLeft: "2.5rem" }}
+          placeholder="0.00"
         />
       </div>
     </div>

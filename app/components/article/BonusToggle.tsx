@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { LoadingSpinner } from '~/components/Layout'
 import { updateArticleBonusFlags } from '~/lib/mutations'
 
-type BonusField = 'hasResearchBonus' | 'hasTimeSensitiveBonus' | 'hasProfessionalPhotos' | 'hasProfessionalGraphics'
+type BonusField = 'hasResearchBonus' | 'hasTimeSensitiveBonus' | 'hasMultimediaBonus' | 'hasProfessionalPhotos' | 'hasProfessionalGraphics'
 
 interface BonusToggleProps {
   articleId: string

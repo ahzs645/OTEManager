@@ -119,11 +119,17 @@ export const calculateArticlePayment = createServerFn({ method: "POST" })
         config = { ...DEFAULT_PAYMENT_CONFIG };
       }
 
-      // Determine if article has any multimedia (photos, graphics, or video)
-      const multimediaTypes = article.multimediaTypes.map((m) => m.multimediaType);
-      const hasMultimedia = multimediaTypes.some((t) =>
-        ["Photo", "Graphic", "Video"].includes(t)
-      );
+      // Determine if article has multimedia bonus
+      // If hasMultimediaBonus is explicitly set, use that; otherwise auto-detect from attachments
+      let hasMultimedia: boolean;
+      if (article.hasMultimediaBonus !== null) {
+        hasMultimedia = article.hasMultimediaBonus;
+      } else {
+        const multimediaTypes = article.multimediaTypes.map((m) => m.multimediaType);
+        hasMultimedia = multimediaTypes.some((t) =>
+          ["Photo", "Graphic", "Video"].includes(t)
+        );
+      }
 
       // Build bonus flags from article properties
       const bonusFlags: ArticleBonusFlags = {
@@ -267,11 +273,17 @@ export const updateArticleBonusFlags = createServerFn({ method: "POST" })
         config = { ...DEFAULT_PAYMENT_CONFIG };
       }
 
-      // Determine if article has any multimedia
-      const multimediaTypes = article.multimediaTypes.map((m) => m.multimediaType);
-      const hasMultimedia = multimediaTypes.some((t) =>
-        ["Photo", "Graphic", "Video"].includes(t)
-      );
+      // Determine if article has multimedia bonus
+      // If hasMultimediaBonus is explicitly set, use that; otherwise auto-detect
+      let hasMultimedia: boolean;
+      if (article.hasMultimediaBonus !== null) {
+        hasMultimedia = article.hasMultimediaBonus;
+      } else {
+        const multimediaTypes = article.multimediaTypes.map((m) => m.multimediaType);
+        hasMultimedia = multimediaTypes.some((t) =>
+          ["Photo", "Graphic", "Video"].includes(t)
+        );
+      }
 
       // Build bonus flags
       const bonusFlags: ArticleBonusFlags = {

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   DollarSign,
   Check,
@@ -16,9 +16,22 @@ import {
   markPaymentComplete,
   updateArticle,
 } from '~/lib/mutations'
+import { getPaymentRateConfig } from '~/lib/queries'
 import { BonusToggle } from './BonusToggle'
 import { TierSelector } from './TierSelector'
 import { formatDate } from '~/components/Layout'
+
+// Rate config type
+interface RateConfig {
+  tier1Rate: number
+  tier2Rate: number
+  tier3Rate: number
+  researchBonus: number
+  multimediaBonus: number
+  timeSensitiveBonus: number
+  professionalPhotoBonus: number
+  professionalGraphicBonus: number
+}
 
 interface PaymentSectionProps {
   article: {
@@ -33,10 +46,26 @@ interface PaymentSectionProps {
     hasTimeSensitiveBonus: boolean | null
     hasProfessionalPhotos: boolean | null
     hasProfessionalGraphics: boolean | null
+    hasMultimediaBonus: boolean | null
     author?: {
       authorType: string | null
     } | null
+    multimediaTypes?: {
+      multimediaType: string | null
+    }[]
   }
+}
+
+// Default rate config (used while loading)
+const DEFAULT_RATES: RateConfig = {
+  tier1Rate: 2000,
+  tier2Rate: 3500,
+  tier3Rate: 5000,
+  researchBonus: 1000,
+  multimediaBonus: 500,
+  timeSensitiveBonus: 500,
+  professionalPhotoBonus: 1500,
+  professionalGraphicBonus: 1500,
 }
 
 export function PaymentSection({ article }: PaymentSectionProps) {
@@ -45,11 +74,50 @@ export function PaymentSection({ article }: PaymentSectionProps) {
   const [manualAmount, setManualAmount] = useState('')
   const [isSavingManual, setIsSavingManual] = useState(false)
   const [isMarkingPaid, setIsMarkingPaid] = useState(false)
+  const [rateConfig, setRateConfig] = useState<RateConfig>(DEFAULT_RATES)
+
+  // Fetch rate config on mount
+  useEffect(() => {
+    getPaymentRateConfig().then((result) => {
+      if (result.config) {
+        setRateConfig({
+          tier1Rate: result.config.tier1Rate,
+          tier2Rate: result.config.tier2Rate,
+          tier3Rate: result.config.tier3Rate,
+          researchBonus: result.config.researchBonus,
+          multimediaBonus: result.config.multimediaBonus,
+          timeSensitiveBonus: result.config.timeSensitiveBonus,
+          professionalPhotoBonus: result.config.professionalPhotoBonus,
+          professionalGraphicBonus: result.config.professionalGraphicBonus,
+        })
+      }
+    })
+  }, [])
 
   // Check if author is eligible for payment
   const authorType = article.author?.authorType
   const isEligibleForPayment = isAuthorEligibleForPayment(authorType)
   const ineligibilityReason = getPaymentIneligibilityReason(authorType)
+
+  // Check if article has multimedia - use explicit value if set, otherwise auto-detect
+  const autoDetectedMultimedia = article.multimediaTypes?.some((t) =>
+    ['Photo', 'Graphic', 'Video'].includes(t.multimediaType || '')
+  ) || false
+
+  // If hasMultimediaBonus is explicitly set, use that; otherwise use auto-detected value
+  const hasMultimediaBonus = article.hasMultimediaBonus !== null
+    ? article.hasMultimediaBonus
+    : autoDetectedMultimedia
+
+  // Get base rate for current tier
+  const getTierBaseRate = () => {
+    switch (article.articleTier) {
+      case 'Tier 1 (Basic)': return rateConfig.tier1Rate
+      case 'Tier 2 (Standard)': return rateConfig.tier2Rate
+      case 'Tier 3 (Advanced)': return rateConfig.tier3Rate
+      default: return rateConfig.tier1Rate
+    }
+  }
 
   // Parse payment snapshot if available
   let breakdown: PaymentCalculation | null = null
@@ -233,13 +301,24 @@ export function PaymentSection({ article }: PaymentSectionProps) {
         <TierSelector
           articleId={article.id}
           currentTier={article.articleTier}
+          baseRate={getTierBaseRate()}
+          disabled={article.paymentStatus}
+        />
+
+        {/* Multimedia Bonus */}
+        <BonusToggle
+          articleId={article.id}
+          label={`Multimedia Bonus${article.hasMultimediaBonus === null && autoDetectedMultimedia ? ' (auto)' : ''}`}
+          description={`Original photos, graphics, or video (+${formatCents(rateConfig.multimediaBonus)})`}
+          field="hasMultimediaBonus"
+          isActive={hasMultimediaBonus}
           disabled={article.paymentStatus}
         />
 
         <BonusToggle
           articleId={article.id}
           label="Research Bonus"
-          description="Extensive research or interviews (+$10)"
+          description={`Extensive research or interviews (+${formatCents(rateConfig.researchBonus)})`}
           field="hasResearchBonus"
           isActive={article.hasResearchBonus || false}
           disabled={article.paymentStatus}
@@ -247,7 +326,7 @@ export function PaymentSection({ article }: PaymentSectionProps) {
         <BonusToggle
           articleId={article.id}
           label="Time-Sensitive"
-          description="Short notice or breaking news (+$5)"
+          description={`Short notice or breaking news (+${formatCents(rateConfig.timeSensitiveBonus)})`}
           field="hasTimeSensitiveBonus"
           isActive={article.hasTimeSensitiveBonus || false}
           disabled={article.paymentStatus}
@@ -255,7 +334,7 @@ export function PaymentSection({ article }: PaymentSectionProps) {
         <BonusToggle
           articleId={article.id}
           label="Professional Photos"
-          description="High-quality professional photos (+$15)"
+          description={`High-quality professional photos (+${formatCents(rateConfig.professionalPhotoBonus)})`}
           field="hasProfessionalPhotos"
           isActive={article.hasProfessionalPhotos || false}
           disabled={article.paymentStatus}
@@ -263,7 +342,7 @@ export function PaymentSection({ article }: PaymentSectionProps) {
         <BonusToggle
           articleId={article.id}
           label="Professional Graphics"
-          description="Professional graphics/infographics (+$15)"
+          description={`Professional graphics/infographics (+${formatCents(rateConfig.professionalGraphicBonus)})`}
           field="hasProfessionalGraphics"
           isActive={article.hasProfessionalGraphics || false}
           disabled={article.paymentStatus}

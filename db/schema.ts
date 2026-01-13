@@ -117,6 +117,7 @@ export const articles = pgTable("articles", {
   isFeatured: boolean("is_featured").default(false), // Legacy - kept for backward compatibility
   hasResearchBonus: boolean("has_research_bonus").default(false), // Extensive research or interviews
   hasTimeSensitiveBonus: boolean("has_time_sensitive_bonus").default(false), // Short notice or breaking news
+  hasMultimediaBonus: boolean("has_multimedia_bonus"), // Original photos, graphics, or video (null = auto-detect from attachments)
   hasProfessionalPhotos: boolean("has_professional_photos").default(false), // High-quality professional photos
   hasProfessionalGraphics: boolean("has_professional_graphics").default(false), // Professional graphics/infographics
 

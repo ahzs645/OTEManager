@@ -1,22 +1,25 @@
 import { useState } from 'react'
 import { LoadingSpinner } from '~/components/Layout'
 import { updateArticleTier } from '~/lib/mutations'
+import { formatCents } from '~/lib/payment-calculator'
 
 const TIER_OPTIONS = [
-  { value: 'Tier 1 (Basic)', label: 'Tier 1 (Basic)', rate: '$25' },
-  { value: 'Tier 2 (Standard)', label: 'Tier 2 (Standard)', rate: '$40' },
-  { value: 'Tier 3 (Advanced)', label: 'Tier 3 (Advanced)', rate: '$60' },
+  { value: 'Tier 1 (Basic)', label: 'Tier 1 (Basic)' },
+  { value: 'Tier 2 (Standard)', label: 'Tier 2 (Standard)' },
+  { value: 'Tier 3 (Advanced)', label: 'Tier 3 (Advanced)' },
 ]
 
 interface TierSelectorProps {
   articleId: string
   currentTier: string
+  baseRate?: number // In cents
   disabled?: boolean
 }
 
 export function TierSelector({
   articleId,
   currentTier,
+  baseRate,
   disabled = false,
 }: TierSelectorProps) {
   const [isUpdating, setIsUpdating] = useState(false)
@@ -39,8 +42,6 @@ export function TierSelector({
     }
   }
 
-  const currentOption = TIER_OPTIONS.find(t => t.value === currentTier)
-
   return (
     <div
       className="flex items-center justify-between p-2 rounded"
@@ -54,7 +55,7 @@ export function TierSelector({
           Article Tier
         </p>
         <p className="text-xs" style={{ color: 'var(--fg-muted)' }}>
-          Base rate: {currentOption?.rate || '$25'}
+          Base rate: {baseRate ? formatCents(baseRate) : '—'}
         </p>
       </div>
       <div className="relative">

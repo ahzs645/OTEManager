@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { FileText, List, Columns, BookOpen, Plus, X } from 'lucide-react'
 import { EmptyState, Button, LoadingSpinner } from '~/components/Layout'
 import { getArticles, getIssueById, getVolumeById, getAuthors } from '~/lib/queries'
@@ -73,7 +73,7 @@ function ArticlesPage() {
     issueNumber?: number
     issueTitle?: string | null
   } | null>(null)
-  const hasLoadedDefaultView = useRef(false)
+  const [isLoadingDefaultView, setIsLoadingDefaultView] = useState(false)
 
   // Add Article Modal State
   const [showAddModal, setShowAddModal] = useState(false)
@@ -91,18 +91,18 @@ function ArticlesPage() {
     useNewAuthor: false,
   })
 
-  // Load default view on mount (only if no search params are set)
+  // Load default view when navigating to /articles with no params
   useEffect(() => {
-    if (hasLoadedDefaultView.current) return
-    hasLoadedDefaultView.current = true
+    // Skip if already loading or if we have a savedViewId
+    if (isLoadingDefaultView || search.savedViewId) return
 
-    // If we already have a savedViewId in URL, we're good (persisted from before)
-    if (search.savedViewId) return
-
+    // Check if URL has any meaningful params (user-set filters/sort)
     const hasSearchParams = search.status || search.tier || search.search ||
-                           search.sortBy || search.view !== 'list'
+                           search.sortBy || search.sortOrder || search.view !== 'list'
 
+    // Only load default view if URL is "clean" (no filters, no saved view)
     if (!hasSearchParams) {
+      setIsLoadingDefaultView(true)
       getDefaultView().then((result) => {
         if (result.success && result.view) {
           navigate({
@@ -122,9 +122,12 @@ function ArticlesPage() {
             setSearchInput(result.view.search)
           }
         }
+        setIsLoadingDefaultView(false)
+      }).catch(() => {
+        setIsLoadingDefaultView(false)
       })
     }
-  }, [])
+  }, [search.savedViewId, search.status, search.tier, search.search, search.sortBy, search.sortOrder, search.view])
 
   // Fetch filter info when filtering by volume or issue
   useEffect(() => {
