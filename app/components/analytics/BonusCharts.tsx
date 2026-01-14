@@ -9,12 +9,18 @@ import {
   Cell,
 } from "recharts";
 
+// Format cents to dollars
+function formatCents(cents: number): string {
+  return `$${(cents / 100).toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+}
+
 const COLORS = ["#2563eb", "#3b82f6", "#60a5fa", "#93c5fd", "#bfdbfe"];
 
 interface BonusData {
   name: string;
   count: number;
   percentage: number;
+  totalAmount: number;
 }
 
 interface BonusFrequencyChartProps {
@@ -47,7 +53,7 @@ export function BonusFrequencyChart({ data, totalArticles, onBarClick }: BonusFr
         <BarChart
           data={sortedData}
           layout="vertical"
-          margin={{ top: 10, right: 30, left: 80, bottom: 0 }}
+          margin={{ top: 10, right: 30, left: 100, bottom: 0 }}
         >
           <CartesianGrid strokeDasharray="3 3" stroke="var(--border-default)" horizontal={false} />
           <XAxis
@@ -62,11 +68,11 @@ export function BonusFrequencyChart({ data, totalArticles, onBarClick }: BonusFr
             tick={{ fill: "var(--fg-muted)", fontSize: 12 }}
             axisLine={false}
             tickLine={false}
-            width={75}
+            width={95}
           />
           <Tooltip
             formatter={(value, name, entry) => [
-              `${value} articles (${entry.payload.percentage}%)`,
+              `${value} articles (${entry.payload.percentage}%) — ${formatCents(entry.payload.totalAmount)}`,
               "Count",
             ]}
             contentStyle={{

@@ -285,14 +285,22 @@ export function Section({
   action,
   children,
   noPadding,
+  highlight,
 }: {
   title?: string;
   action?: ReactNode;
   children: ReactNode;
   noPadding?: boolean;
+  highlight?: boolean;
 }) {
   return (
-    <div className="section">
+    <div
+      className="section"
+      style={highlight ? {
+        borderColor: "var(--accent)",
+        boxShadow: "0 0 0 1px var(--accent)",
+      } : undefined}
+    >
       {title && (
         <div className="section-header">
           <h2 className="section-title">{title}</h2>

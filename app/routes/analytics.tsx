@@ -5,6 +5,8 @@ import {
   TrendingUp,
   CheckCircle,
   Clock,
+  X,
+  Filter,
 } from "lucide-react";
 import { Section } from "~/components/Layout";
 import { DateRangePicker, getDateRange } from "~/components/analytics/DateRangePicker";
@@ -24,6 +26,7 @@ import {
   getEarningsByStudentType,
   getMonthlySpendingTrends,
   getSemesterBreakdown,
+  getAllAnalyticsWithCrossFilter,
   // Drill-down queries
   getArticlesByTier,
   getArticlesByBonus,
@@ -52,6 +55,15 @@ const TABS: Tab[] = [
   { id: "authors", label: "Authors" },
   { id: "trends", label: "Trends" },
 ];
+
+// Cross-filter types
+type CrossFilterType = "tier" | "bonus" | "authorType" | "studentType" | "paymentStatus" | "semester" | null;
+
+interface CrossFilter {
+  type: CrossFilterType;
+  label: string;
+  value: any;
+}
 
 export const Route = createFileRoute("/analytics")({
   component: AnalyticsPage,
@@ -109,11 +121,14 @@ interface DrillDownState {
 }
 
 function AnalyticsPage() {
-  const data = Route.useLoaderData();
+  const initialData = Route.useLoaderData();
   const [dateRange, setDateRange] = useState({ startDate: "", endDate: "" });
   const [isLoading, setIsLoading] = useState(false);
-  const [filteredData, setFilteredData] = useState(data);
+  const [filteredData, setFilteredData] = useState(initialData);
   const [activeTab, setActiveTab] = useState<TabId>("payments");
+
+  // Cross-filter state
+  const [crossFilter, setCrossFilter] = useState<CrossFilter | null>(null);
 
   // Drill-down modal state
   const [drillDown, setDrillDown] = useState<DrillDownState>({
@@ -122,41 +137,101 @@ function AnalyticsPage() {
     data: null,
   });
 
+  // Apply cross-filter and refetch data
+  const applyCrossFilter = async (filter: CrossFilter | null) => {
+    setCrossFilter(filter);
+    setIsLoading(true);
+
+    try {
+      const crossFilterData: any = {};
+      if (filter) {
+        switch (filter.type) {
+          case "tier":
+            crossFilterData.tier = filter.value;
+            break;
+          case "bonus":
+            crossFilterData.bonus = filter.value;
+            break;
+          case "authorType":
+            crossFilterData.authorType = filter.value;
+            break;
+          case "studentType":
+            crossFilterData.studentType = filter.value;
+            break;
+          case "paymentStatus":
+            crossFilterData.paymentStatus = filter.value;
+            break;
+          case "semester":
+            crossFilterData.semester = filter.value;
+            break;
+        }
+      }
+
+      const result = await getAllAnalyticsWithCrossFilter({
+        data: {
+          startDate: dateRange.startDate || undefined,
+          endDate: dateRange.endDate || undefined,
+          crossFilter: filter ? crossFilterData : undefined,
+        },
+      });
+
+      setFilteredData({
+        ...filteredData,
+        paymentStats: result.paymentStats,
+        statusBreakdown: result.statusBreakdown,
+        tierAnalytics: result.tierAnalytics,
+        bonusFrequency: result.bonusFrequency as any,
+        topAuthors: result.topAuthors,
+        authorTypeEarnings: result.authorTypeEarnings,
+        studentTypeEarnings: result.studentTypeEarnings,
+      });
+    } catch (error) {
+      console.error("Failed to apply cross-filter:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Clear cross-filter
+  const clearCrossFilter = () => {
+    applyCrossFilter(null);
+  };
+
   // Handle date range changes
   const handleDateChange = async (startDate: string, endDate: string) => {
     setDateRange({ startDate, endDate });
     setIsLoading(true);
 
     try {
-      const filter = { startDate: startDate || undefined, endDate: endDate || undefined };
+      const crossFilterData: any = {};
+      if (crossFilter) {
+        switch (crossFilter.type) {
+          case "tier": crossFilterData.tier = crossFilter.value; break;
+          case "bonus": crossFilterData.bonus = crossFilter.value; break;
+          case "authorType": crossFilterData.authorType = crossFilter.value; break;
+          case "studentType": crossFilterData.studentType = crossFilter.value; break;
+          case "paymentStatus": crossFilterData.paymentStatus = crossFilter.value; break;
+          case "semester": crossFilterData.semester = crossFilter.value; break;
+        }
+      }
 
-      const [
-        paymentStats,
-        statusBreakdown,
-        tierAnalytics,
-        bonusFrequency,
-        topAuthors,
-        authorTypeEarnings,
-        studentTypeEarnings,
-      ] = await Promise.all([
-        getPaymentStats({ data: filter }),
-        getPaymentStatusBreakdown({ data: filter }),
-        getTierAnalytics({ data: filter }),
-        getBonusFrequency({ data: filter }),
-        getTopEarningAuthors({ data: { ...filter, limit: 10 } }),
-        getEarningsByAuthorType({ data: filter }),
-        getEarningsByStudentType({ data: filter }),
-      ]);
+      const result = await getAllAnalyticsWithCrossFilter({
+        data: {
+          startDate: startDate || undefined,
+          endDate: endDate || undefined,
+          crossFilter: crossFilter ? crossFilterData : undefined,
+        },
+      });
 
       setFilteredData({
-        ...data,
-        paymentStats,
-        statusBreakdown,
-        tierAnalytics,
-        bonusFrequency,
-        topAuthors,
-        authorTypeEarnings,
-        studentTypeEarnings,
+        ...filteredData,
+        paymentStats: result.paymentStats,
+        statusBreakdown: result.statusBreakdown,
+        tierAnalytics: result.tierAnalytics,
+        bonusFrequency: result.bonusFrequency as any,
+        topAuthors: result.topAuthors,
+        authorTypeEarnings: result.authorTypeEarnings,
+        studentTypeEarnings: result.studentTypeEarnings,
       });
     } catch (error) {
       console.error("Failed to fetch filtered data:", error);
@@ -170,67 +245,61 @@ function AnalyticsPage() {
     handleDateChange(range.startDate, range.endDate);
   };
 
-  // ========== DRILL-DOWN HANDLERS ==========
+  // ========== CROSS-FILTER HANDLERS (single click) ==========
 
-  const openDrillDown = (title: string, subtitle?: string) => {
-    setDrillDown({ isOpen: true, isLoading: true, data: { type: "tier", title, subtitle } });
-  };
-
-  const closeDrillDown = () => {
-    setDrillDown({ isOpen: false, isLoading: false, data: null });
-  };
-
-  // Tier drill-down
-  const handleTierClick = async (tier: string) => {
+  const handleTierFilter = (tier: string) => {
     const tierLabel = tier.replace(" (Basic)", "").replace(" (Standard)", "").replace(" (Advanced)", "");
-    openDrillDown(`${tierLabel} Articles`, `Articles in ${tierLabel}`);
-    try {
-      const result = await getArticlesByTier({ data: { tier } });
-      setDrillDown({
-        isOpen: true,
-        isLoading: false,
-        data: { type: "tier", title: `${tierLabel} Articles`, subtitle: `${result.articles.length} articles`, articles: result.articles },
-      });
-    } catch (error) {
-      console.error("Tier drill-down failed:", error);
-      closeDrillDown();
+    if (crossFilter?.type === "tier" && crossFilter.value === tier) {
+      // Same filter clicked - open drill-down
+      handleTierDrillDown(tier);
+    } else {
+      applyCrossFilter({ type: "tier", label: tierLabel, value: tier });
     }
   };
 
-  // Bonus drill-down
-  const handleBonusClick = async (bonusName: string) => {
-    openDrillDown(`${bonusName} Bonus Articles`);
-    try {
-      const result = await getArticlesByBonus({ data: { bonusType: bonusName } });
-      setDrillDown({
-        isOpen: true,
-        isLoading: false,
-        data: { type: "bonus", title: `${bonusName} Bonus`, subtitle: `${result.articles.length} articles`, articles: result.articles },
-      });
-    } catch (error) {
-      console.error("Bonus drill-down failed:", error);
-      closeDrillDown();
+  const handleBonusFilter = (bonusName: string) => {
+    if (crossFilter?.type === "bonus" && crossFilter.value === bonusName) {
+      handleBonusDrillDown(bonusName);
+    } else {
+      applyCrossFilter({ type: "bonus", label: bonusName, value: bonusName });
     }
   };
 
-  // Payment status drill-down
-  const handlePaymentStatusClick = async (paid: boolean) => {
-    const status = paid ? "Paid" : "Unpaid";
-    openDrillDown(`${status} Articles`);
-    try {
-      const result = await getArticlesByPaymentStatus({ data: { paid } });
-      setDrillDown({
-        isOpen: true,
-        isLoading: false,
-        data: { type: "paymentStatus", title: `${status} Articles`, subtitle: `${result.articles.length} articles`, articles: result.articles },
-      });
-    } catch (error) {
-      console.error("Payment status drill-down failed:", error);
-      closeDrillDown();
+  const handlePaymentStatusFilter = (paid: boolean) => {
+    const label = paid ? "Paid" : "Unpaid";
+    if (crossFilter?.type === "paymentStatus" && crossFilter.value === paid) {
+      handlePaymentStatusDrillDown(paid);
+    } else {
+      applyCrossFilter({ type: "paymentStatus", label, value: paid });
     }
   };
 
-  // Top earner drill-down
+  const handleAuthorTypeFilter = (authorType: string) => {
+    if (crossFilter?.type === "authorType" && crossFilter.value === authorType) {
+      handleAuthorTypeDrillDown(authorType);
+    } else {
+      applyCrossFilter({ type: "authorType", label: authorType, value: authorType });
+    }
+  };
+
+  const handleStudentTypeFilter = (studentType: string) => {
+    if (crossFilter?.type === "studentType" && crossFilter.value === studentType) {
+      handleStudentTypeDrillDown(studentType);
+    } else {
+      applyCrossFilter({ type: "studentType", label: studentType, value: studentType });
+    }
+  };
+
+  const handleSemesterFilter = (semester: string, year: number) => {
+    const label = `${semester} ${year}`;
+    if (crossFilter?.type === "semester" && crossFilter.value?.semester === semester && crossFilter.value?.year === year) {
+      handleSemesterDrillDown(semester, year);
+    } else {
+      applyCrossFilter({ type: "semester", label, value: { semester, year } });
+    }
+  };
+
+  // Top earner always opens drill-down (shows author details)
   const handleTopEarnerClick = async (authorId: string) => {
     openDrillDown("Author Details");
     try {
@@ -255,8 +324,64 @@ function AnalyticsPage() {
     }
   };
 
-  // Author type drill-down
-  const handleAuthorTypeClick = async (authorType: string) => {
+  // ========== DRILL-DOWN HANDLERS (when same filter clicked twice) ==========
+
+  const openDrillDown = (title: string, subtitle?: string) => {
+    setDrillDown({ isOpen: true, isLoading: true, data: { type: "tier", title, subtitle } });
+  };
+
+  const closeDrillDown = () => {
+    setDrillDown({ isOpen: false, isLoading: false, data: null });
+  };
+
+  const handleTierDrillDown = async (tier: string) => {
+    const tierLabel = tier.replace(" (Basic)", "").replace(" (Standard)", "").replace(" (Advanced)", "");
+    openDrillDown(`${tierLabel} Articles`);
+    try {
+      const result = await getArticlesByTier({ data: { tier } });
+      setDrillDown({
+        isOpen: true,
+        isLoading: false,
+        data: { type: "tier", title: `${tierLabel} Articles`, subtitle: `${result.articles.length} articles`, articles: result.articles },
+      });
+    } catch (error) {
+      console.error("Tier drill-down failed:", error);
+      closeDrillDown();
+    }
+  };
+
+  const handleBonusDrillDown = async (bonusName: string) => {
+    openDrillDown(`${bonusName} Bonus Articles`);
+    try {
+      const result = await getArticlesByBonus({ data: { bonusType: bonusName } });
+      setDrillDown({
+        isOpen: true,
+        isLoading: false,
+        data: { type: "bonus", title: `${bonusName} Bonus`, subtitle: `${result.articles.length} articles`, articles: result.articles },
+      });
+    } catch (error) {
+      console.error("Bonus drill-down failed:", error);
+      closeDrillDown();
+    }
+  };
+
+  const handlePaymentStatusDrillDown = async (paid: boolean) => {
+    const status = paid ? "Paid" : "Unpaid";
+    openDrillDown(`${status} Articles`);
+    try {
+      const result = await getArticlesByPaymentStatus({ data: { paid } });
+      setDrillDown({
+        isOpen: true,
+        isLoading: false,
+        data: { type: "paymentStatus", title: `${status} Articles`, subtitle: `${result.articles.length} articles`, articles: result.articles },
+      });
+    } catch (error) {
+      console.error("Payment status drill-down failed:", error);
+      closeDrillDown();
+    }
+  };
+
+  const handleAuthorTypeDrillDown = async (authorType: string) => {
     openDrillDown(`${authorType} Authors`);
     try {
       const result = await getAuthorsByType({ data: { authorType } });
@@ -271,8 +396,7 @@ function AnalyticsPage() {
     }
   };
 
-  // Student type drill-down
-  const handleStudentTypeClick = async (studentType: string) => {
+  const handleStudentTypeDrillDown = async (studentType: string) => {
     openDrillDown(`${studentType} Students`);
     try {
       const result = await getAuthorsByStudentType({ data: { studentType } });
@@ -287,8 +411,7 @@ function AnalyticsPage() {
     }
   };
 
-  // Semester drill-down
-  const handleSemesterClick = async (semester: string, year: number) => {
+  const handleSemesterDrillDown = async (semester: string, year: number) => {
     openDrillDown(`${semester} ${year}`);
     try {
       const result = await getArticlesBySemester({ data: { semester, year } });
@@ -321,6 +444,30 @@ function AnalyticsPage() {
           onPresetSelect={handlePresetSelect}
         />
       </div>
+
+      {/* Active Cross-Filter Badge */}
+      {crossFilter && (
+        <div
+          className="flex items-center gap-2 px-3 py-2 rounded-lg"
+          style={{ background: "var(--accent-light, #dbeafe)", border: "1px solid var(--accent)" }}
+        >
+          <Filter className="w-4 h-4" style={{ color: "var(--accent)" }} />
+          <span className="text-sm font-medium" style={{ color: "var(--accent)" }}>
+            Filtered by: {crossFilter.label}
+          </span>
+          <span className="text-xs" style={{ color: "var(--fg-muted)" }}>
+            (Click same chart again to see details)
+          </span>
+          <button
+            onClick={clearCrossFilter}
+            className="ml-auto flex items-center gap-1 px-2 py-1 rounded text-xs font-medium transition-colors hover:bg-white/50"
+            style={{ color: "var(--accent)" }}
+          >
+            <X className="w-3 h-3" />
+            Clear Filter
+          </button>
+        </div>
+      )}
 
       {/* Loading overlay */}
       {isLoading && (
@@ -422,20 +569,20 @@ function AnalyticsPage() {
         <div className="space-y-6">
           {/* Payment Status & Tier */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Section title="Payment Status">
-              <PaymentStatusChart data={statusBreakdown} onSliceClick={handlePaymentStatusClick} />
+            <Section title="Payment Status" highlight={crossFilter?.type === "paymentStatus"}>
+              <PaymentStatusChart data={statusBreakdown} onSliceClick={handlePaymentStatusFilter} />
             </Section>
-            <Section title="Average Payment by Tier">
-              <TierDistributionChart data={tierAnalytics.tierStats} onBarClick={handleTierClick} />
+            <Section title="Average Payment by Tier" highlight={crossFilter?.type === "tier"}>
+              <TierDistributionChart data={tierAnalytics.tierStats} onBarClick={handleTierFilter} />
             </Section>
           </div>
 
           {/* Bonus Analytics */}
-          <Section title="Bonus Usage">
+          <Section title="Bonus Usage" highlight={crossFilter?.type === "bonus"}>
             <BonusFrequencyChart
               data={bonusFrequency.bonuses}
               totalArticles={bonusFrequency.totalArticles}
-              onBarClick={handleBonusClick}
+              onBarClick={handleBonusFilter}
             />
           </Section>
         </div>
@@ -448,18 +595,18 @@ function AnalyticsPage() {
             <Section title="Top Earners">
               <TopEarnersChart data={topAuthors.topAuthors} onBarClick={handleTopEarnerClick} />
             </Section>
-            <Section title="Earnings by Author Type">
-              <AuthorTypeChart data={authorTypeEarnings.byType} onSliceClick={handleAuthorTypeClick} />
+            <Section title="Earnings by Author Type" highlight={crossFilter?.type === "authorType"}>
+              <AuthorTypeChart data={authorTypeEarnings.byType} onSliceClick={handleAuthorTypeFilter} />
             </Section>
           </div>
 
           {/* Student Type */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Section title="Earnings by Student Type">
-              <StudentTypeChart data={studentTypeEarnings.byStudentType} onSliceClick={handleStudentTypeClick} />
+            <Section title="Earnings by Student Type" highlight={crossFilter?.type === "studentType"}>
+              <StudentTypeChart data={studentTypeEarnings.byStudentType} onSliceClick={handleStudentTypeFilter} />
             </Section>
-            <Section title="Articles by Tier">
-              <TierArticleCountChart data={tierAnalytics.tierStats} onBarClick={handleTierClick} />
+            <Section title="Articles by Tier" highlight={crossFilter?.type === "tier"}>
+              <TierArticleCountChart data={tierAnalytics.tierStats} onBarClick={handleTierFilter} />
             </Section>
           </div>
         </div>
@@ -472,8 +619,8 @@ function AnalyticsPage() {
             <Section title="Monthly Spending">
               <SpendingTrendChart data={monthlyTrends.trends} />
             </Section>
-            <Section title="Semester Breakdown">
-              <SemesterBreakdownChart data={semesterBreakdown.semesters} onBarClick={handleSemesterClick} />
+            <Section title="Semester Breakdown" highlight={crossFilter?.type === "semester"}>
+              <SemesterBreakdownChart data={semesterBreakdown.semesters} onBarClick={handleSemesterFilter} />
             </Section>
           </div>
         </div>

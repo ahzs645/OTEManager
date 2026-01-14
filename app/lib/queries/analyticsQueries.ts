@@ -6,6 +6,316 @@ interface DateRangeFilter {
   endDate?: string;
 }
 
+// Cross-filter type for Power BI-style filtering
+interface CrossFilter {
+  tier?: string;
+  bonus?: string;
+  authorType?: string;
+  studentType?: string;
+  paymentStatus?: boolean;
+  semester?: { semester: string; year: number };
+}
+
+type FilterWithCross = DateRangeFilter & { crossFilter?: CrossFilter };
+
+// Helper function to build cross-filter conditions
+async function buildCrossFilterConditions(crossFilter: CrossFilter | undefined, articles: any, authors: any) {
+  if (!crossFilter) return [];
+
+  const { eq, and, gte, lte, isNotNull, sql, or } = await import("drizzle-orm");
+  const conditions: any[] = [];
+
+  if (crossFilter.tier) {
+    conditions.push(eq(articles.articleTier, crossFilter.tier));
+  }
+
+  if (crossFilter.bonus) {
+    const bonusFieldMap: Record<string, string> = {
+      "Research": "hasResearchBonus",
+      "Time-Sensitive": "hasTimeSensitiveBonus",
+      "Multimedia": "hasMultimediaBonus",
+      "Pro Photos": "hasProfessionalPhotos",
+      "Pro Graphics": "hasProfessionalGraphics",
+    };
+    const field = bonusFieldMap[crossFilter.bonus];
+    if (field) {
+      conditions.push(eq((articles as any)[field], true));
+    }
+  }
+
+  if (crossFilter.authorType && authors) {
+    conditions.push(eq(authors.authorType, crossFilter.authorType));
+  }
+
+  if (crossFilter.studentType && authors) {
+    if (crossFilter.studentType === "Unknown") {
+      conditions.push(sql`${authors.studentType} IS NULL`);
+    } else {
+      conditions.push(eq(authors.studentType, crossFilter.studentType));
+    }
+  }
+
+  if (crossFilter.paymentStatus !== undefined) {
+    conditions.push(eq(articles.paymentStatus, crossFilter.paymentStatus));
+  }
+
+  if (crossFilter.semester) {
+    const { semester, year } = crossFilter.semester;
+    let startMonth: number, endMonth: number;
+    switch (semester) {
+      case "Fall": startMonth = 9; endMonth = 12; break;
+      case "Winter": startMonth = 1; endMonth = 4; break;
+      case "Summer": startMonth = 5; endMonth = 8; break;
+      default: break;
+    }
+    if (startMonth! && endMonth!) {
+      const startDate = new Date(year, startMonth - 1, 1);
+      const endDate = new Date(year, endMonth, 0);
+      conditions.push(
+        or(
+          and(isNotNull(articles.submittedAt), gte(articles.submittedAt, startDate), lte(articles.submittedAt, endDate)),
+          and(sql`${articles.submittedAt} IS NULL`, gte(articles.createdAt, startDate), lte(articles.createdAt, endDate))
+        )
+      );
+    }
+  }
+
+  return conditions;
+}
+
+// Get all analytics with cross-filter support (Power BI style)
+export const getAllAnalyticsWithCrossFilter = createServerFn({ method: "POST" })
+  .validator((data: FilterWithCross) => data)
+  .handler(async ({ data }) => {
+    try {
+      const { db, articles, authors } = await import("@db/index");
+      const { sum, count, avg, eq, and, gte, lte, isNotNull, desc, sql, or } = await import("drizzle-orm");
+
+      const crossFilterConditions = await buildCrossFilterConditions(data?.crossFilter, articles, authors);
+      const needsAuthorJoin = data?.crossFilter?.authorType || data?.crossFilter?.studentType;
+
+      // Build base conditions
+      const dateConditions: any[] = [];
+      if (data?.startDate) {
+        dateConditions.push(gte(articles.createdAt, new Date(data.startDate)));
+      }
+      if (data?.endDate) {
+        dateConditions.push(lte(articles.createdAt, new Date(data.endDate)));
+      }
+
+      const baseConditions = [...dateConditions, ...crossFilterConditions];
+
+      // ===== Payment Stats =====
+      let paidQuery, unpaidQuery;
+      if (needsAuthorJoin) {
+        paidQuery = db
+          .select({
+            totalPayments: sum(articles.paymentAmount),
+            avgPayment: avg(articles.paymentAmount),
+            count: count(),
+          })
+          .from(articles)
+          .innerJoin(authors, eq(articles.authorId, authors.id))
+          .where(and(eq(articles.paymentStatus, true), isNotNull(articles.paymentAmount), ...baseConditions));
+
+        unpaidQuery = db
+          .select({ count: count(), totalAmount: sum(articles.paymentAmount) })
+          .from(articles)
+          .innerJoin(authors, eq(articles.authorId, authors.id))
+          .where(and(eq(articles.paymentStatus, false), isNotNull(articles.paymentAmount), ...baseConditions));
+      } else {
+        paidQuery = db
+          .select({
+            totalPayments: sum(articles.paymentAmount),
+            avgPayment: avg(articles.paymentAmount),
+            count: count(),
+          })
+          .from(articles)
+          .where(and(eq(articles.paymentStatus, true), isNotNull(articles.paymentAmount), ...baseConditions));
+
+        unpaidQuery = db
+          .select({ count: count(), totalAmount: sum(articles.paymentAmount) })
+          .from(articles)
+          .where(and(eq(articles.paymentStatus, false), isNotNull(articles.paymentAmount), ...baseConditions));
+      }
+
+      const [[paidResult], [unpaidResult]] = await Promise.all([paidQuery, unpaidQuery]);
+
+      const paymentStats = {
+        totalPayments: Number(paidResult?.totalPayments) || 0,
+        avgPayment: Math.round(Number(paidResult?.avgPayment)) || 0,
+        paidCount: paidResult?.count || 0,
+        unpaidCount: unpaidResult?.count || 0,
+        unpaidAmount: Number(unpaidResult?.totalAmount) || 0,
+      };
+
+      // ===== Payment Status Breakdown =====
+      const statusBreakdown = {
+        paid: { count: paidResult?.count || 0, amount: Number(paidResult?.totalPayments) || 0 },
+        unpaid: { count: unpaidResult?.count || 0, amount: Number(unpaidResult?.totalAmount) || 0 },
+      };
+
+      // ===== Tier Analytics =====
+      const tiers = ["Tier 1 (Basic)", "Tier 2 (Standard)", "Tier 3 (Advanced)"] as const;
+      const tierResults = await Promise.all(
+        tiers.map(async (tier) => {
+          let query;
+          if (needsAuthorJoin) {
+            query = db
+              .select({ articleCount: count(), totalPayment: sum(articles.paymentAmount), avgPayment: avg(articles.paymentAmount) })
+              .from(articles)
+              .innerJoin(authors, eq(articles.authorId, authors.id))
+              .where(and(eq(articles.articleTier, tier), isNotNull(articles.paymentAmount), ...baseConditions));
+          } else {
+            query = db
+              .select({ articleCount: count(), totalPayment: sum(articles.paymentAmount), avgPayment: avg(articles.paymentAmount) })
+              .from(articles)
+              .where(and(eq(articles.articleTier, tier), isNotNull(articles.paymentAmount), ...baseConditions));
+          }
+          const [result] = await query;
+          return {
+            tier,
+            tierLabel: tier.replace(" (Basic)", "").replace(" (Standard)", "").replace(" (Advanced)", ""),
+            articleCount: result?.articleCount || 0,
+            totalPayment: Number(result?.totalPayment) || 0,
+            avgPayment: Math.round(Number(result?.avgPayment)) || 0,
+          };
+        })
+      );
+
+      // ===== Bonus Frequency =====
+      const bonusTypes = [
+        { name: "Research", field: "hasResearchBonus" },
+        { name: "Time-Sensitive", field: "hasTimeSensitiveBonus" },
+        { name: "Multimedia", field: "hasMultimediaBonus" },
+        { name: "Pro Photos", field: "hasProfessionalPhotos" },
+        { name: "Pro Graphics", field: "hasProfessionalGraphics" },
+      ];
+
+      let totalArticlesQuery;
+      if (needsAuthorJoin) {
+        totalArticlesQuery = db
+          .select({ count: count() })
+          .from(articles)
+          .innerJoin(authors, eq(articles.authorId, authors.id))
+          .where(and(...baseConditions.length > 0 ? baseConditions : [sql`1=1`]));
+      } else {
+        totalArticlesQuery = db
+          .select({ count: count() })
+          .from(articles)
+          .where(and(...baseConditions.length > 0 ? baseConditions : [sql`1=1`]));
+      }
+      const [totalArticlesResult] = await totalArticlesQuery;
+      const total = totalArticlesResult?.count || 1;
+
+      const bonusResults = await Promise.all(
+        bonusTypes.map(async ({ name, field }) => {
+          let query;
+          if (needsAuthorJoin) {
+            query = db
+              .select({ count: count(), totalAmount: sum(articles.paymentAmount) })
+              .from(articles)
+              .innerJoin(authors, eq(articles.authorId, authors.id))
+              .where(and(eq((articles as any)[field], true), ...baseConditions));
+          } else {
+            query = db
+              .select({ count: count(), totalAmount: sum(articles.paymentAmount) })
+              .from(articles)
+              .where(and(eq((articles as any)[field], true), ...baseConditions));
+          }
+          const [result] = await query;
+          return {
+            name,
+            count: result?.count || 0,
+            percentage: Math.round(((result?.count || 0) / total) * 100),
+            totalAmount: Number(result?.totalAmount) || 0,
+          };
+        })
+      );
+
+      // ===== Top Earning Authors =====
+      const topAuthorsQuery = db
+        .select({
+          authorId: articles.authorId,
+          givenName: authors.givenName,
+          surname: authors.surname,
+          authorType: authors.authorType,
+          totalEarnings: sum(articles.paymentAmount),
+          articleCount: count(),
+        })
+        .from(articles)
+        .innerJoin(authors, eq(articles.authorId, authors.id))
+        .where(and(eq(articles.paymentStatus, true), ...baseConditions))
+        .groupBy(articles.authorId, authors.givenName, authors.surname, authors.authorType)
+        .orderBy(desc(sum(articles.paymentAmount)))
+        .limit(10);
+
+      const topAuthorsResult = await topAuthorsQuery;
+      const topAuthors = topAuthorsResult.map((a) => ({
+        ...a,
+        name: `${a.givenName} ${a.surname}`,
+        totalEarnings: Number(a.totalEarnings) || 0,
+      }));
+
+      // ===== Earnings by Author Type =====
+      const authorTypeQuery = db
+        .select({
+          authorType: authors.authorType,
+          totalEarnings: sum(articles.paymentAmount),
+          articleCount: count(),
+        })
+        .from(articles)
+        .innerJoin(authors, eq(articles.authorId, authors.id))
+        .where(and(eq(articles.paymentStatus, true), ...baseConditions))
+        .groupBy(authors.authorType);
+
+      const authorTypeResult = await authorTypeQuery;
+      const authorTypeEarnings = authorTypeResult.map((t) => ({
+        ...t,
+        totalEarnings: Number(t.totalEarnings) || 0,
+      }));
+
+      // ===== Earnings by Student Type =====
+      const studentTypeQuery = db
+        .select({
+          studentType: authors.studentType,
+          totalEarnings: sum(articles.paymentAmount),
+          articleCount: count(),
+        })
+        .from(articles)
+        .innerJoin(authors, eq(articles.authorId, authors.id))
+        .where(and(eq(articles.paymentStatus, true), eq(authors.authorType, "Student"), ...baseConditions))
+        .groupBy(authors.studentType);
+
+      const studentTypeResult = await studentTypeQuery;
+      const studentTypeEarnings = studentTypeResult.map((t) => ({
+        ...t,
+        totalEarnings: Number(t.totalEarnings) || 0,
+      }));
+
+      return {
+        paymentStats,
+        statusBreakdown,
+        tierAnalytics: { tierStats: tierResults },
+        bonusFrequency: { bonuses: bonusResults, totalArticles: total },
+        topAuthors: { topAuthors },
+        authorTypeEarnings: { byType: authorTypeEarnings },
+        studentTypeEarnings: { byStudentType: studentTypeEarnings },
+      };
+    } catch (error) {
+      console.error("Failed to get analytics with cross-filter:", error);
+      return {
+        paymentStats: { totalPayments: 0, avgPayment: 0, paidCount: 0, unpaidCount: 0, unpaidAmount: 0 },
+        statusBreakdown: { paid: { count: 0, amount: 0 }, unpaid: { count: 0, amount: 0 } },
+        tierAnalytics: { tierStats: [] },
+        bonusFrequency: { bonuses: [], totalArticles: 0 },
+        topAuthors: { topAuthors: [] },
+        authorTypeEarnings: { byType: [] },
+        studentTypeEarnings: { byStudentType: [] },
+      };
+    }
+  });
+
 // Get overall payment statistics
 export const getPaymentStats = createServerFn({ method: "POST" })
   .validator((data: DateRangeFilter) => data)
@@ -167,13 +477,13 @@ export const getTierAnalytics = createServerFn({ method: "POST" })
     }
   });
 
-// Get bonus frequency (bar chart data)
+// Get bonus frequency with amounts (bar chart data)
 export const getBonusFrequency = createServerFn({ method: "POST" })
   .validator((data: DateRangeFilter) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles } = await import("@db/index");
-      const { count, eq, and, gte, lte } = await import("drizzle-orm");
+      const { count, eq, and, gte, lte, sum } = await import("drizzle-orm");
 
       const conditions = [];
       if (data?.startDate) {
@@ -185,26 +495,26 @@ export const getBonusFrequency = createServerFn({ method: "POST" })
 
       const baseWhere = conditions.length > 0 ? and(...conditions) : undefined;
 
-      // Count each bonus type
+      // Count and sum each bonus type
       const [research, timeSensitive, multimedia, proPhotos, proGraphics, totalArticles] = await Promise.all([
         db
-          .select({ count: count() })
+          .select({ count: count(), totalAmount: sum(articles.paymentAmount) })
           .from(articles)
           .where(and(eq(articles.hasResearchBonus, true), baseWhere)),
         db
-          .select({ count: count() })
+          .select({ count: count(), totalAmount: sum(articles.paymentAmount) })
           .from(articles)
           .where(and(eq(articles.hasTimeSensitiveBonus, true), baseWhere)),
         db
-          .select({ count: count() })
+          .select({ count: count(), totalAmount: sum(articles.paymentAmount) })
           .from(articles)
           .where(and(eq(articles.hasMultimediaBonus, true), baseWhere)),
         db
-          .select({ count: count() })
+          .select({ count: count(), totalAmount: sum(articles.paymentAmount) })
           .from(articles)
           .where(and(eq(articles.hasProfessionalPhotos, true), baseWhere)),
         db
-          .select({ count: count() })
+          .select({ count: count(), totalAmount: sum(articles.paymentAmount) })
           .from(articles)
           .where(and(eq(articles.hasProfessionalGraphics, true), baseWhere)),
         db
@@ -217,11 +527,11 @@ export const getBonusFrequency = createServerFn({ method: "POST" })
 
       return {
         bonuses: [
-          { name: "Research", count: research[0]?.count || 0, percentage: Math.round(((research[0]?.count || 0) / total) * 100) },
-          { name: "Time-Sensitive", count: timeSensitive[0]?.count || 0, percentage: Math.round(((timeSensitive[0]?.count || 0) / total) * 100) },
-          { name: "Multimedia", count: multimedia[0]?.count || 0, percentage: Math.round(((multimedia[0]?.count || 0) / total) * 100) },
-          { name: "Pro Photos", count: proPhotos[0]?.count || 0, percentage: Math.round(((proPhotos[0]?.count || 0) / total) * 100) },
-          { name: "Pro Graphics", count: proGraphics[0]?.count || 0, percentage: Math.round(((proGraphics[0]?.count || 0) / total) * 100) },
+          { name: "Research", count: research[0]?.count || 0, percentage: Math.round(((research[0]?.count || 0) / total) * 100), totalAmount: Number(research[0]?.totalAmount) || 0 },
+          { name: "Time-Sensitive", count: timeSensitive[0]?.count || 0, percentage: Math.round(((timeSensitive[0]?.count || 0) / total) * 100), totalAmount: Number(timeSensitive[0]?.totalAmount) || 0 },
+          { name: "Multimedia", count: multimedia[0]?.count || 0, percentage: Math.round(((multimedia[0]?.count || 0) / total) * 100), totalAmount: Number(multimedia[0]?.totalAmount) || 0 },
+          { name: "Pro Photos", count: proPhotos[0]?.count || 0, percentage: Math.round(((proPhotos[0]?.count || 0) / total) * 100), totalAmount: Number(proPhotos[0]?.totalAmount) || 0 },
+          { name: "Pro Graphics", count: proGraphics[0]?.count || 0, percentage: Math.round(((proGraphics[0]?.count || 0) / total) * 100), totalAmount: Number(proGraphics[0]?.totalAmount) || 0 },
         ],
         totalArticles: total,
       };
@@ -380,35 +690,40 @@ function getSemesterYear(date: Date): string {
 }
 
 // Get semester breakdown (UNBC: Fall Sep-Dec, Winter Jan-Apr, Summer May-Aug)
+// Uses submittedAt date for proper semester attribution
 export const getSemesterBreakdown = createServerFn({ method: "POST" })
   .validator((data: { years?: number }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles } = await import("@db/index");
-      const { sql, sum, count, gte, eq, and, isNotNull } = await import("drizzle-orm");
+      const { sql, sum, count, gte, eq, and, isNotNull, or } = await import("drizzle-orm");
 
       const yearsBack = data?.years || 3;
       const startDate = new Date();
       startDate.setFullYear(startDate.getFullYear() - yearsBack);
 
-      // Get all paid articles with their creation dates
+      // Get all paid articles with their submitted dates (fall back to createdAt if submittedAt is null)
       const articleData = await db
         .select({
+          submittedAt: articles.submittedAt,
           createdAt: articles.createdAt,
           paymentAmount: articles.paymentAmount,
         })
         .from(articles)
         .where(and(
-          gte(articles.createdAt, startDate),
+          or(
+            gte(articles.submittedAt, startDate),
+            and(isNotNull(articles.createdAt), gte(articles.createdAt, startDate))
+          ),
           eq(articles.paymentStatus, true),
           isNotNull(articles.paymentAmount)
         ));
 
-      // Group by semester
+      // Group by semester using submittedAt (or createdAt as fallback)
       const semesterMap = new Map<string, { totalSpent: number; articleCount: number; semester: Semester; year: number }>();
 
       for (const article of articleData) {
-        const date = new Date(article.createdAt);
+        const date = article.submittedAt ? new Date(article.submittedAt) : new Date(article.createdAt);
         const month = date.getMonth() + 1;
         const year = date.getFullYear();
         const semester = getSemesterFromMonth(month);
@@ -661,13 +976,13 @@ export const getAuthorsByType = createServerFn({ method: "POST" })
     }
   });
 
-// Get articles by semester
+// Get articles by semester (uses submittedAt date)
 export const getArticlesBySemester = createServerFn({ method: "POST" })
   .validator((data: { semester: string; year: number; limit?: number }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles } = await import("@db/index");
-      const { and, gte, lte, desc, eq, isNotNull } = await import("drizzle-orm");
+      const { and, gte, lte, desc, eq, isNotNull, or, sql } = await import("drizzle-orm");
 
       // Calculate date range for semester
       let startMonth: number, endMonth: number;
@@ -691,15 +1006,26 @@ export const getArticlesBySemester = createServerFn({ method: "POST" })
       const startDate = new Date(data.year, startMonth - 1, 1);
       const endDate = new Date(data.year, endMonth, 0); // Last day of end month
 
+      // Use submittedAt if available, otherwise createdAt
       const articleList = await db.query.articles.findMany({
         where: and(
-          gte(articles.createdAt, startDate),
-          lte(articles.createdAt, endDate),
+          or(
+            and(
+              isNotNull(articles.submittedAt),
+              gte(articles.submittedAt, startDate),
+              lte(articles.submittedAt, endDate)
+            ),
+            and(
+              sql`${articles.submittedAt} IS NULL`,
+              gte(articles.createdAt, startDate),
+              lte(articles.createdAt, endDate)
+            )
+          ),
           eq(articles.paymentStatus, true),
           isNotNull(articles.paymentAmount)
         ),
         with: { author: true },
-        orderBy: [desc(articles.createdAt)],
+        orderBy: [desc(articles.submittedAt), desc(articles.createdAt)],
         limit: data.limit || 30,
       });
 
