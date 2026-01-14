@@ -29,7 +29,12 @@ interface SemesterData {
   articleCount: number;
 }
 
-export function SemesterBreakdownChart({ data }: { data: SemesterData[] }) {
+interface SemesterBreakdownChartProps {
+  data: SemesterData[];
+  onBarClick?: (semester: string, year: number) => void;
+}
+
+export function SemesterBreakdownChart({ data, onBarClick }: SemesterBreakdownChartProps) {
   if (data.length === 0) {
     return (
       <div className="h-64 flex items-center justify-center" style={{ color: "var(--fg-muted)" }}>
@@ -59,8 +64,8 @@ export function SemesterBreakdownChart({ data }: { data: SemesterData[] }) {
             tickFormatter={(value) => formatCents(value)}
           />
           <Tooltip
-            formatter={(value: number, name: string, entry: any) => [
-              `${formatCents(value)} (${entry.payload.articleCount} articles)`,
+            formatter={(value, name, entry) => [
+              `${formatCents(Number(value) || 0)} (${entry.payload.articleCount} articles)`,
               "Total Spent",
             ]}
             contentStyle={{
@@ -70,7 +75,16 @@ export function SemesterBreakdownChart({ data }: { data: SemesterData[] }) {
               fontSize: "12px",
             }}
           />
-          <Bar dataKey="totalSpent" radius={[4, 4, 0, 0]}>
+          <Bar
+            dataKey="totalSpent"
+            radius={[4, 4, 0, 0]}
+            onClick={(data: any) => {
+              if (onBarClick && data?.semester && data?.year) {
+                onBarClick(data.semester, data.year);
+              }
+            }}
+            style={{ cursor: onBarClick ? "pointer" : "default" }}
+          >
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={SEMESTER_COLORS[entry.semester] || "#94a3b8"} />
             ))}

@@ -105,6 +105,13 @@ const AUTHOR_TYPE_OPTIONS = [
   'External',
 ]
 
+const STUDENT_TYPE_OPTIONS = [
+  'Undergrad',
+  'Grad',
+  'Alumni',
+  'Other',
+]
+
 function AuthorDetailPage() {
   const { author, stats } = Route.useLoaderData()
   const [isEditing, setIsEditing] = useState(false)
@@ -117,6 +124,7 @@ function AuthorDetailPage() {
     etransferEmail: author?.etransferEmail ?? '',
     sameAsContactEmail: !author?.etransferEmail || author?.etransferEmail === author?.email,
     authorType: author?.authorType ?? 'Student',
+    studentType: author?.studentType ?? '',
   })
 
   if (!author) {
@@ -152,6 +160,7 @@ function AuthorDetailPage() {
           autoDepositAvailable: editData.autoDepositAvailable,
           etransferEmail: etransferEmail || undefined,
           authorType: editData.authorType,
+          studentType: editData.authorType === 'Student' ? editData.studentType || null : null,
         },
       })
       setIsEditing(false)
@@ -222,6 +231,7 @@ function AuthorDetailPage() {
                   etransferEmail: author.etransferEmail ?? '',
                   sameAsContactEmail: !author.etransferEmail || author.etransferEmail === author.email,
                   authorType: author.authorType ?? 'Student',
+                  studentType: author.studentType ?? '',
                 })
               }
               setIsEditing(!isEditing)
@@ -415,7 +425,7 @@ function AuthorDetailPage() {
                   <select
                     value={editData.authorType}
                     onChange={(e) =>
-                      setEditData((d) => ({ ...d, authorType: e.target.value }))
+                      setEditData((d) => ({ ...d, authorType: e.target.value, studentType: e.target.value === 'Student' ? d.studentType : '' }))
                     }
                     className="input w-full"
                   >
@@ -426,6 +436,28 @@ function AuthorDetailPage() {
                     ))}
                   </select>
                 </div>
+
+                {editData.authorType === 'Student' && (
+                  <div>
+                    <label className="text-xs font-medium mb-1 block" style={{ color: 'var(--fg-muted)' }}>
+                      Student Type
+                    </label>
+                    <select
+                      value={editData.studentType}
+                      onChange={(e) =>
+                        setEditData((d) => ({ ...d, studentType: e.target.value }))
+                      }
+                      className="input w-full"
+                    >
+                      <option value="">Select type...</option>
+                      {STUDENT_TYPE_OPTIONS.map((type) => (
+                        <option key={type} value={type}>
+                          {type}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
 
                 <div>
                   <label className="text-xs font-medium mb-1 block" style={{ color: 'var(--fg-muted)' }}>
@@ -517,6 +549,17 @@ function AuthorDetailPage() {
                     {author.authorType || 'Student'}
                   </span>
                 </div>
+
+                {author.authorType === 'Student' && (
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm" style={{ color: 'var(--fg-muted)' }}>
+                      Student Type
+                    </span>
+                    <span className="text-sm" style={{ color: 'var(--fg-default)' }}>
+                      {author.studentType || '—'}
+                    </span>
+                  </div>
+                )}
 
                 <div className="flex items-center justify-between">
                   <span className="text-sm" style={{ color: 'var(--fg-muted)' }}>

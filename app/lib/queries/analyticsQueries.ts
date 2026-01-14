@@ -445,3 +445,312 @@ function formatMonthLabel(yearMonth: string): string {
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   return `${monthNames[parseInt(month, 10) - 1]} ${year}`;
 }
+
+// Get earnings by student type (for students only)
+export const getEarningsByStudentType = createServerFn({ method: "POST" })
+  .validator((data: DateRangeFilter) => data)
+  .handler(async ({ data }) => {
+    try {
+      const { db, articles, authors } = await import("@db/index");
+      const { sum, count, eq, and, gte, lte } = await import("drizzle-orm");
+
+      const conditions = [
+        eq(articles.paymentStatus, true),
+        eq(authors.authorType, "Student"),
+      ];
+      if (data?.startDate) {
+        conditions.push(gte(articles.paidAt, new Date(data.startDate)));
+      }
+      if (data?.endDate) {
+        conditions.push(lte(articles.paidAt, new Date(data.endDate)));
+      }
+
+      const whereClause = and(...conditions);
+
+      const byStudentType = await db
+        .select({
+          studentType: authors.studentType,
+          totalEarnings: sum(articles.paymentAmount),
+          articleCount: count(),
+        })
+        .from(articles)
+        .innerJoin(authors, eq(articles.authorId, authors.id))
+        .where(whereClause)
+        .groupBy(authors.studentType);
+
+      return {
+        byStudentType: byStudentType.map((t) => ({
+          ...t,
+          totalEarnings: Number(t.totalEarnings) || 0,
+        })),
+      };
+    } catch (error) {
+      console.error("Failed to get earnings by student type:", error);
+      return { byStudentType: [] };
+    }
+  });
+
+// ============================================
+// DRILL-DOWN QUERIES
+// ============================================
+
+// Get articles by tier
+export const getArticlesByTier = createServerFn({ method: "POST" })
+  .validator((data: { tier: string; limit?: number }) => data)
+  .handler(async ({ data }) => {
+    try {
+      const { db, articles } = await import("@db/index");
+      const { eq, desc, isNotNull } = await import("drizzle-orm");
+
+      const articleList = await db.query.articles.findMany({
+        where: eq(articles.articleTier, data.tier as any),
+        with: { author: true },
+        orderBy: [desc(articles.createdAt)],
+        limit: data.limit || 20,
+      });
+
+      return { articles: articleList };
+    } catch (error) {
+      console.error("Failed to get articles by tier:", error);
+      return { articles: [] };
+    }
+  });
+
+// Get articles by bonus type
+export const getArticlesByBonus = createServerFn({ method: "POST" })
+  .validator((data: { bonusType: string; limit?: number }) => data)
+  .handler(async ({ data }) => {
+    try {
+      const { db, articles } = await import("@db/index");
+      const { eq, desc } = await import("drizzle-orm");
+
+      // Map bonus name to field
+      const bonusFieldMap: Record<string, keyof typeof articles> = {
+        "Research": "hasResearchBonus",
+        "Time-Sensitive": "hasTimeSensitiveBonus",
+        "Multimedia": "hasMultimediaBonus",
+        "Pro Photos": "hasProfessionalPhotos",
+        "Pro Graphics": "hasProfessionalGraphics",
+      };
+
+      const field = bonusFieldMap[data.bonusType];
+      if (!field) {
+        return { articles: [] };
+      }
+
+      const articleList = await db.query.articles.findMany({
+        where: eq(articles[field] as any, true),
+        with: { author: true },
+        orderBy: [desc(articles.createdAt)],
+        limit: data.limit || 20,
+      });
+
+      return { articles: articleList };
+    } catch (error) {
+      console.error("Failed to get articles by bonus:", error);
+      return { articles: [] };
+    }
+  });
+
+// Get articles by payment status
+export const getArticlesByPaymentStatus = createServerFn({ method: "POST" })
+  .validator((data: { paid: boolean; limit?: number }) => data)
+  .handler(async ({ data }) => {
+    try {
+      const { db, articles } = await import("@db/index");
+      const { eq, desc, and, isNotNull } = await import("drizzle-orm");
+
+      const articleList = await db.query.articles.findMany({
+        where: and(
+          eq(articles.paymentStatus, data.paid),
+          isNotNull(articles.paymentAmount)
+        ),
+        with: { author: true },
+        orderBy: [desc(articles.createdAt)],
+        limit: data.limit || 20,
+      });
+
+      return { articles: articleList };
+    } catch (error) {
+      console.error("Failed to get articles by payment status:", error);
+      return { articles: [] };
+    }
+  });
+
+// Get author with their articles
+export const getAuthorWithArticles = createServerFn({ method: "POST" })
+  .validator((data: { authorId: string; limit?: number }) => data)
+  .handler(async ({ data }) => {
+    try {
+      const { db, authors, articles } = await import("@db/index");
+      const { eq, desc, sum, count, and } = await import("drizzle-orm");
+
+      const author = await db.query.authors.findFirst({
+        where: eq(authors.id, data.authorId),
+        with: {
+          articles: {
+            orderBy: [desc(articles.createdAt)],
+            limit: data.limit || 10,
+          },
+        },
+      });
+
+      if (!author) {
+        return { author: null };
+      }
+
+      // Get stats
+      const [statsResult] = await db
+        .select({
+          totalEarnings: sum(articles.paymentAmount),
+          articleCount: count(),
+        })
+        .from(articles)
+        .where(and(eq(articles.authorId, data.authorId), eq(articles.paymentStatus, true)));
+
+      return {
+        author: {
+          ...author,
+          totalEarnings: Number(statsResult?.totalEarnings) || 0,
+          articleCount: Number(statsResult?.articleCount) || 0,
+        },
+      };
+    } catch (error) {
+      console.error("Failed to get author with articles:", error);
+      return { author: null };
+    }
+  });
+
+// Get authors by type
+export const getAuthorsByType = createServerFn({ method: "POST" })
+  .validator((data: { authorType: string; limit?: number }) => data)
+  .handler(async ({ data }) => {
+    try {
+      const { db, authors, articles } = await import("@db/index");
+      const { eq, desc, sum, count, and } = await import("drizzle-orm");
+
+      const authorList = await db.query.authors.findMany({
+        where: eq(authors.authorType, data.authorType as any),
+        orderBy: [desc(authors.createdAt)],
+        limit: data.limit || 20,
+      });
+
+      // Get article counts and earnings for each author
+      const authorsWithStats = await Promise.all(
+        authorList.map(async (author) => {
+          const [stats] = await db
+            .select({
+              articleCount: count(),
+              totalEarnings: sum(articles.paymentAmount),
+            })
+            .from(articles)
+            .where(and(eq(articles.authorId, author.id), eq(articles.paymentStatus, true)));
+
+          return {
+            ...author,
+            articleCount: Number(stats?.articleCount) || 0,
+            totalEarnings: Number(stats?.totalEarnings) || 0,
+          };
+        })
+      );
+
+      return { authors: authorsWithStats };
+    } catch (error) {
+      console.error("Failed to get authors by type:", error);
+      return { authors: [] };
+    }
+  });
+
+// Get articles by semester
+export const getArticlesBySemester = createServerFn({ method: "POST" })
+  .validator((data: { semester: string; year: number; limit?: number }) => data)
+  .handler(async ({ data }) => {
+    try {
+      const { db, articles } = await import("@db/index");
+      const { and, gte, lte, desc, eq, isNotNull } = await import("drizzle-orm");
+
+      // Calculate date range for semester
+      let startMonth: number, endMonth: number;
+      switch (data.semester) {
+        case "Fall":
+          startMonth = 9; // September
+          endMonth = 12;  // December
+          break;
+        case "Winter":
+          startMonth = 1; // January
+          endMonth = 4;   // April
+          break;
+        case "Summer":
+          startMonth = 5; // May
+          endMonth = 8;   // August
+          break;
+        default:
+          return { articles: [] };
+      }
+
+      const startDate = new Date(data.year, startMonth - 1, 1);
+      const endDate = new Date(data.year, endMonth, 0); // Last day of end month
+
+      const articleList = await db.query.articles.findMany({
+        where: and(
+          gte(articles.createdAt, startDate),
+          lte(articles.createdAt, endDate),
+          eq(articles.paymentStatus, true),
+          isNotNull(articles.paymentAmount)
+        ),
+        with: { author: true },
+        orderBy: [desc(articles.createdAt)],
+        limit: data.limit || 30,
+      });
+
+      return { articles: articleList };
+    } catch (error) {
+      console.error("Failed to get articles by semester:", error);
+      return { articles: [] };
+    }
+  });
+
+// Get authors by student type
+export const getAuthorsByStudentType = createServerFn({ method: "POST" })
+  .validator((data: { studentType: string; limit?: number }) => data)
+  .handler(async ({ data }) => {
+    try {
+      const { db, authors, articles } = await import("@db/index");
+      const { eq, desc, sum, count, and, isNull } = await import("drizzle-orm");
+
+      // Handle "Unknown" student type as null
+      const whereCondition = data.studentType === "Unknown"
+        ? and(eq(authors.authorType, "Student"), isNull(authors.studentType))
+        : eq(authors.studentType, data.studentType as any);
+
+      const authorList = await db.query.authors.findMany({
+        where: whereCondition,
+        orderBy: [desc(authors.createdAt)],
+        limit: data.limit || 20,
+      });
+
+      // Get article counts and earnings for each author
+      const authorsWithStats = await Promise.all(
+        authorList.map(async (author) => {
+          const [stats] = await db
+            .select({
+              articleCount: count(),
+              totalEarnings: sum(articles.paymentAmount),
+            })
+            .from(articles)
+            .where(and(eq(articles.authorId, author.id), eq(articles.paymentStatus, true)));
+
+          return {
+            ...author,
+            articleCount: Number(stats?.articleCount) || 0,
+            totalEarnings: Number(stats?.totalEarnings) || 0,
+          };
+        })
+      );
+
+      return { authors: authorsWithStats };
+    } catch (error) {
+      console.error("Failed to get authors by student type:", error);
+      return { authors: [] };
+    }
+  });

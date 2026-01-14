@@ -9,6 +9,7 @@ export const updateAuthorPaymentInfo = createServerFn({ method: "POST" })
       surname?: string;
       email?: string;
       authorType?: string;
+      studentType?: string | null;
       autoDepositAvailable?: boolean;
       etransferEmail?: string;
     }) => data
@@ -19,6 +20,11 @@ export const updateAuthorPaymentInfo = createServerFn({ method: "POST" })
       const { eq } = await import("drizzle-orm");
 
       const { authorId, ...updateData } = data;
+
+      // Clear studentType if authorType is not Student
+      if (updateData.authorType && updateData.authorType !== "Student") {
+        updateData.studentType = null;
+      }
 
       await db
         .update(authors)

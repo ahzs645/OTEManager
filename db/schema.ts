@@ -67,6 +67,13 @@ export const authorTypeEnum = pgEnum("author_type", [
   "External",
 ]);
 
+export const studentTypeEnum = pgEnum("student_type", [
+  "Undergrad",
+  "Grad",
+  "Alumni",
+  "Other",
+]);
+
 // Author types that are NOT eligible for payment (e.g., university employees)
 export const NON_PAID_AUTHOR_TYPES = ["Faculty", "Staff"] as const;
 
@@ -78,6 +85,7 @@ export const authors = pgTable("authors", {
   email: text("email").notNull().unique(),
   role: contributorRoleEnum("role").default("Guest Contributor"),
   authorType: authorTypeEnum("author_type").default("Student"),
+  studentType: studentTypeEnum("student_type"), // Only applicable when authorType is "Student"
   autoDepositAvailable: boolean("auto_deposit_available").default(false),
   etransferEmail: text("etransfer_email"),
   createdAt: timestamp("created_at").defaultNow().notNull(),

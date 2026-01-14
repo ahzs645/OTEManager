@@ -17,7 +17,13 @@ interface BonusData {
   percentage: number;
 }
 
-export function BonusFrequencyChart({ data, totalArticles }: { data: BonusData[]; totalArticles: number }) {
+interface BonusFrequencyChartProps {
+  data: BonusData[];
+  totalArticles: number;
+  onBarClick?: (bonusName: string) => void;
+}
+
+export function BonusFrequencyChart({ data, totalArticles, onBarClick }: BonusFrequencyChartProps) {
   // Sort by count descending
   const sortedData = [...data].sort((a, b) => b.count - a.count);
 
@@ -28,6 +34,12 @@ export function BonusFrequencyChart({ data, totalArticles }: { data: BonusData[]
       </div>
     );
   }
+
+  const handleClick = (data: any) => {
+    if (onBarClick && data?.name) {
+      onBarClick(data.name);
+    }
+  };
 
   return (
     <div style={{ width: "100%", height: "256px", minWidth: "200px" }}>
@@ -53,7 +65,7 @@ export function BonusFrequencyChart({ data, totalArticles }: { data: BonusData[]
             width={75}
           />
           <Tooltip
-            formatter={(value: number, name: string, entry: any) => [
+            formatter={(value, name, entry) => [
               `${value} articles (${entry.payload.percentage}%)`,
               "Count",
             ]}
@@ -64,15 +76,21 @@ export function BonusFrequencyChart({ data, totalArticles }: { data: BonusData[]
               fontSize: "12px",
             }}
           />
-          <Bar dataKey="count" radius={[0, 4, 4, 0]}>
+          <Bar
+            dataKey="count"
+            radius={[0, 4, 4, 0]}
+            onClick={handleClick}
+            style={{ cursor: onBarClick ? "pointer" : "default" }}
+          >
             {sortedData.map((_, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
           </Bar>
         </BarChart>
       </ResponsiveContainer>
-      <div className="text-xs text-center mt-2" style={{ color: "var(--fg-muted)" }}>
-        Based on {totalArticles} total articles
+      <div className="flex items-center justify-between text-xs mt-2" style={{ color: "var(--fg-muted)" }}>
+        <span>Based on {totalArticles} total articles</span>
+        {onBarClick && <span style={{ color: "var(--fg-faint)" }}>Click a bar to see articles</span>}
       </div>
     </div>
   );

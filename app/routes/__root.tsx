@@ -13,10 +13,9 @@ import {
   FileText,
   Users,
   LayoutDashboard,
-  Upload,
+  Wrench,
   Loader2,
   Settings,
-  BookOpen,
   BarChart3,
 } from "lucide-react";
 import appCss from "../styles.css?url";
@@ -84,8 +83,7 @@ function Header({ isLoading }: { isLoading: boolean }) {
     { path: "/articles", label: "Articles", icon: FileText },
     { path: "/authors", label: "Authors", icon: Users },
     { path: "/analytics", label: "Analytics", icon: BarChart3 },
-    { path: "/publications", label: "Publications", icon: BookOpen },
-    { path: "/import", label: "Import", icon: Upload },
+    { path: "/utilities", label: "Utilities", icon: Wrench },
     { path: "/settings", label: "Settings", icon: Settings },
   ];
 

@@ -25,24 +25,43 @@ const importSharePointData = createServerFn({ method: 'POST' })
 
     for (const item of data.articles) {
       try {
+        // Support both old format (ContactEmail) and new format (Contact_x0020_Email)
+        const email = item.ContactEmail || item.Contact_x0020_Email
+        const givenName = item.GivenName || item.Given_x0020_Name || 'Unknown'
+        const surname = item.Surname || 'Unknown'
+        const etransferEmail = item.EtransferEmail || item['e_x002d_Transfer_x0020_Email']
+        const autoDeposit = item.Auto_x002d_depositAvailability || item.Autodeposit || false
+
+        // Handle role - could be an object with Value or a direct string
+        const roleValue = typeof item.role === 'object' ? item.role?.Value : item.role
+        const studentType = mapRoleToStudentType(roleValue)
+
         // Find or create author
         let author = await db.query.authors.findFirst({
-          where: eq(authors.email, item.ContactEmail),
+          where: eq(authors.email, email),
         })
 
         if (!author) {
           const [newAuthor] = await db
             .insert(authors)
             .values({
-              givenName: item.GivenName || 'Unknown',
-              surname: item.Surname || 'Unknown',
-              email: item.ContactEmail,
-              role: item.role?.Value || 'Guest Contributor',
-              autoDepositAvailable: item.Auto_x002d_depositAvailability || false,
-              etransferEmail: item.EtransferEmail,
+              givenName,
+              surname,
+              email,
+              role: 'Guest Contributor',
+              authorType: 'Student',
+              studentType: studentType as any,
+              autoDepositAvailable: autoDeposit,
+              etransferEmail,
             })
             .returning()
           author = newAuthor
+        } else if (studentType && !author.studentType) {
+          // Update existing author's studentType if not already set
+          await db
+            .update(authors)
+            .set({ studentType: studentType as any, updatedAt: new Date() })
+            .where(eq(authors.id, author.id))
         }
 
         // Create article
@@ -98,6 +117,21 @@ function mapStatus(status: string | undefined): any {
     Archived: 'Archived',
   }
   return statusMap[status || ''] || 'Pending Review'
+}
+
+// Map role values to studentType (for Student authors)
+function mapRoleToStudentType(role: string | undefined): string | null {
+  if (!role) return null
+
+  const roleMap: Record<string, string> = {
+    'Undergrad': 'Undergrad',
+    'Grad': 'Grad',
+    'Graduate': 'Grad',
+    'Alumni': 'Alumni',
+    'Other': 'Other',
+  }
+
+  return roleMap[role] || null
 }
 
 export const Route = createFileRoute('/utilities/import')({

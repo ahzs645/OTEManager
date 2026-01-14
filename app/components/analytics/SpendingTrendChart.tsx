@@ -56,8 +56,8 @@ export function SpendingTrendChart({ data }: { data: TrendData[] }) {
             tickFormatter={(value) => formatCents(value)}
           />
           <Tooltip
-            formatter={(value: number, name: string, entry: any) => [
-              `${formatCents(value)} (${entry.payload.articleCount} articles)`,
+            formatter={(value, name, entry) => [
+              `${formatCents(Number(value) || 0)} (${entry.payload.articleCount} articles)`,
               "Spent",
             ]}
             labelFormatter={(label) => label}

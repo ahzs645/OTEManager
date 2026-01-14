@@ -9,7 +9,6 @@ import {
   PieChart,
   Pie,
   Cell,
-  Legend,
 } from "recharts";
 
 // Format cents to dollars
@@ -32,10 +31,15 @@ interface PaymentStatusData {
   unpaid: { count: number; amount: number };
 }
 
-export function PaymentStatusChart({ data }: { data: PaymentStatusData }) {
+interface PaymentStatusChartProps {
+  data: PaymentStatusData;
+  onSliceClick?: (paid: boolean) => void;
+}
+
+export function PaymentStatusChart({ data, onSliceClick }: PaymentStatusChartProps) {
   const chartData = [
-    { name: "Paid", value: data.paid.count, amount: data.paid.amount },
-    { name: "Unpaid", value: data.unpaid.count, amount: data.unpaid.amount },
+    { name: "Paid", value: data.paid.count, amount: data.paid.amount, paid: true },
+    { name: "Unpaid", value: data.unpaid.count, amount: data.unpaid.amount, paid: false },
   ];
 
   const total = data.paid.count + data.unpaid.count;
@@ -47,6 +51,12 @@ export function PaymentStatusChart({ data }: { data: PaymentStatusData }) {
       </div>
     );
   }
+
+  const handleClick = (data: any) => {
+    if (onSliceClick && data) {
+      onSliceClick(data.paid);
+    }
+  };
 
   return (
     <div style={{ width: "100%", height: "256px", minWidth: "200px" }}>
@@ -60,15 +70,17 @@ export function PaymentStatusChart({ data }: { data: PaymentStatusData }) {
             outerRadius={80}
             paddingAngle={2}
             dataKey="value"
-            label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+            label={({ name, percent }) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}
             labelLine={false}
+            onClick={handleClick}
+            style={{ cursor: onSliceClick ? "pointer" : "default" }}
           >
             {chartData.map((_, index) => (
               <Cell key={`cell-${index}`} fill={PIE_COLORS[index]} />
             ))}
           </Pie>
           <Tooltip
-            formatter={(value: number, name: string, entry: any) => [
+            formatter={(value, name, entry) => [
               `${value} articles (${formatCents(entry.payload.amount)})`,
               name,
             ]}
@@ -81,6 +93,11 @@ export function PaymentStatusChart({ data }: { data: PaymentStatusData }) {
           />
         </PieChart>
       </ResponsiveContainer>
+      {onSliceClick && (
+        <div className="text-xs text-center mt-1" style={{ color: "var(--fg-faint)" }}>
+          Click a slice to see articles
+        </div>
+      )}
     </div>
   );
 }
@@ -93,7 +110,12 @@ interface TierData {
   avgPayment: number;
 }
 
-export function TierDistributionChart({ data }: { data: TierData[] }) {
+interface TierDistributionChartProps {
+  data: TierData[];
+  onBarClick?: (tier: string) => void;
+}
+
+export function TierDistributionChart({ data, onBarClick }: TierDistributionChartProps) {
   if (data.length === 0 || data.every((d) => d.articleCount === 0)) {
     return (
       <div className="h-64 flex items-center justify-center" style={{ color: "var(--fg-muted)" }}>
@@ -101,6 +123,12 @@ export function TierDistributionChart({ data }: { data: TierData[] }) {
       </div>
     );
   }
+
+  const handleClick = (data: any) => {
+    if (onBarClick && data?.tier) {
+      onBarClick(data.tier);
+    }
+  };
 
   return (
     <div style={{ width: "100%", height: "256px", minWidth: "200px" }}>
@@ -120,7 +148,10 @@ export function TierDistributionChart({ data }: { data: TierData[] }) {
             tickFormatter={(value) => formatCents(value)}
           />
           <Tooltip
-            formatter={(value: number) => [formatCents(value), "Avg Payment"]}
+            formatter={(value, name, entry) => [
+              `${formatCents(Number(value) || 0)} (${entry.payload.articleCount} articles)`,
+              "Avg Payment",
+            ]}
             contentStyle={{
               background: "var(--bg-surface)",
               border: "1px solid var(--border-default)",
@@ -129,14 +160,25 @@ export function TierDistributionChart({ data }: { data: TierData[] }) {
             }}
             labelFormatter={(label) => `${label}`}
           />
-          <Bar dataKey="avgPayment" fill={COLORS.primary} radius={[4, 4, 0, 0]} />
+          <Bar
+            dataKey="avgPayment"
+            fill={COLORS.primary}
+            radius={[4, 4, 0, 0]}
+            onClick={handleClick}
+            style={{ cursor: onBarClick ? "pointer" : "default" }}
+          />
         </BarChart>
       </ResponsiveContainer>
+      {onBarClick && (
+        <div className="text-xs text-center mt-1" style={{ color: "var(--fg-faint)" }}>
+          Click a bar to see articles
+        </div>
+      )}
     </div>
   );
 }
 
-export function TierArticleCountChart({ data }: { data: TierData[] }) {
+export function TierArticleCountChart({ data, onBarClick }: TierDistributionChartProps) {
   if (data.length === 0 || data.every((d) => d.articleCount === 0)) {
     return (
       <div className="h-64 flex items-center justify-center" style={{ color: "var(--fg-muted)" }}>
@@ -144,6 +186,12 @@ export function TierArticleCountChart({ data }: { data: TierData[] }) {
       </div>
     );
   }
+
+  const handleClick = (data: any) => {
+    if (onBarClick && data?.tier) {
+      onBarClick(data.tier);
+    }
+  };
 
   return (
     <div style={{ width: "100%", height: "256px", minWidth: "200px" }}>
@@ -162,7 +210,7 @@ export function TierArticleCountChart({ data }: { data: TierData[] }) {
             tickLine={false}
           />
           <Tooltip
-            formatter={(value: number) => [value, "Articles"]}
+            formatter={(value) => [value, "Articles"]}
             contentStyle={{
               background: "var(--bg-surface)",
               border: "1px solid var(--border-default)",
@@ -170,7 +218,13 @@ export function TierArticleCountChart({ data }: { data: TierData[] }) {
               fontSize: "12px",
             }}
           />
-          <Bar dataKey="articleCount" fill={COLORS.success} radius={[4, 4, 0, 0]} />
+          <Bar
+            dataKey="articleCount"
+            fill={COLORS.success}
+            radius={[4, 4, 0, 0]}
+            onClick={handleClick}
+            style={{ cursor: onBarClick ? "pointer" : "default" }}
+          />
         </BarChart>
       </ResponsiveContainer>
     </div>

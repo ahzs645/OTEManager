@@ -4,6 +4,7 @@ import {
   Upload,
   Database,
   ChevronRight,
+  GraduationCap,
 } from 'lucide-react'
 
 export const Route = createFileRoute('/utilities/')({
@@ -24,6 +25,13 @@ const utilities = [
     title: 'Import from SharePoint',
     description: 'Migrate existing article data from SharePoint JSON export',
     icon: Upload,
+  },
+  {
+    id: 'update-student-types',
+    path: '/utilities/update-student-types',
+    title: 'Update Student Types',
+    description: 'Re-import student type data (Undergrad/Grad) for existing authors',
+    icon: GraduationCap,
   },
   {
     id: 'backup',
