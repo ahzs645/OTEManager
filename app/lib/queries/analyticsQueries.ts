@@ -320,28 +320,33 @@ export const getEarningsByAuthorType = createServerFn({ method: "POST" })
     }
   });
 
-// Get monthly spending trends
+// Get monthly spending trends (uses createdAt for grouping, paymentAmount for totals)
 export const getMonthlySpendingTrends = createServerFn({ method: "POST" })
   .validator((data: { months?: number }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles } = await import("@db/index");
-      const { sql, sum, count, gte, eq, and } = await import("drizzle-orm");
+      const { sql, sum, count, gte, eq, and, isNotNull } = await import("drizzle-orm");
 
       const monthsBack = data?.months || 12;
       const startDate = new Date();
       startDate.setMonth(startDate.getMonth() - monthsBack);
 
+      // Use createdAt for grouping (always populated), filter by paymentStatus
       const trends = await db
         .select({
-          month: sql<string>`to_char(${articles.paidAt}, 'YYYY-MM')`,
+          month: sql<string>`to_char(${articles.createdAt}, 'YYYY-MM')`,
           totalSpent: sum(articles.paymentAmount),
           articleCount: count(),
         })
         .from(articles)
-        .where(and(gte(articles.paidAt, startDate), eq(articles.paymentStatus, true)))
-        .groupBy(sql`to_char(${articles.paidAt}, 'YYYY-MM')`)
-        .orderBy(sql`to_char(${articles.paidAt}, 'YYYY-MM')`);
+        .where(and(
+          gte(articles.createdAt, startDate),
+          eq(articles.paymentStatus, true),
+          isNotNull(articles.paymentAmount)
+        ))
+        .groupBy(sql`to_char(${articles.createdAt}, 'YYYY-MM')`)
+        .orderBy(sql`to_char(${articles.createdAt}, 'YYYY-MM')`);
 
       return {
         trends: trends.map((t) => ({
@@ -353,6 +358,84 @@ export const getMonthlySpendingTrends = createServerFn({ method: "POST" })
     } catch (error) {
       console.error("Failed to get monthly spending trends:", error);
       return { trends: [] };
+    }
+  });
+
+// UNBC Semester definitions
+// Fall: Sep-Dec, Winter: Jan-Apr, Summer: May-Aug
+type Semester = "Fall" | "Winter" | "Summer";
+
+function getSemesterFromMonth(month: number): Semester {
+  if (month >= 9 && month <= 12) return "Fall";
+  if (month >= 1 && month <= 4) return "Winter";
+  return "Summer";
+}
+
+function getSemesterYear(date: Date): string {
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  const semester = getSemesterFromMonth(month);
+  // For Fall semester, use current year. For Winter/Summer, use current year.
+  return `${semester} ${year}`;
+}
+
+// Get semester breakdown (UNBC: Fall Sep-Dec, Winter Jan-Apr, Summer May-Aug)
+export const getSemesterBreakdown = createServerFn({ method: "POST" })
+  .validator((data: { years?: number }) => data)
+  .handler(async ({ data }) => {
+    try {
+      const { db, articles } = await import("@db/index");
+      const { sql, sum, count, gte, eq, and, isNotNull } = await import("drizzle-orm");
+
+      const yearsBack = data?.years || 3;
+      const startDate = new Date();
+      startDate.setFullYear(startDate.getFullYear() - yearsBack);
+
+      // Get all paid articles with their creation dates
+      const articleData = await db
+        .select({
+          createdAt: articles.createdAt,
+          paymentAmount: articles.paymentAmount,
+        })
+        .from(articles)
+        .where(and(
+          gte(articles.createdAt, startDate),
+          eq(articles.paymentStatus, true),
+          isNotNull(articles.paymentAmount)
+        ));
+
+      // Group by semester
+      const semesterMap = new Map<string, { totalSpent: number; articleCount: number; semester: Semester; year: number }>();
+
+      for (const article of articleData) {
+        const date = new Date(article.createdAt);
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
+        const semester = getSemesterFromMonth(month);
+        const key = `${semester} ${year}`;
+
+        const existing = semesterMap.get(key) || { totalSpent: 0, articleCount: 0, semester, year };
+        existing.totalSpent += article.paymentAmount || 0;
+        existing.articleCount += 1;
+        semesterMap.set(key, existing);
+      }
+
+      // Convert to array and sort by year and semester order
+      const semesterOrder: Record<Semester, number> = { Winter: 0, Summer: 1, Fall: 2 };
+      const semesters = Array.from(semesterMap.entries())
+        .map(([label, data]) => ({
+          label,
+          ...data,
+        }))
+        .sort((a, b) => {
+          if (a.year !== b.year) return a.year - b.year;
+          return semesterOrder[a.semester] - semesterOrder[b.semester];
+        });
+
+      return { semesters };
+    } catch (error) {
+      console.error("Failed to get semester breakdown:", error);
+      return { semesters: [] };
     }
   });
 

@@ -5,15 +5,14 @@ import {
   TrendingUp,
   CheckCircle,
   Clock,
-  Gift,
-  Users,
 } from "lucide-react";
-import { StatCard, Section } from "~/components/Layout";
+import { Section } from "~/components/Layout";
 import { DateRangePicker, getDateRange } from "~/components/analytics/DateRangePicker";
 import { PaymentStatusChart, TierDistributionChart } from "~/components/analytics/PaymentCharts";
 import { BonusFrequencyChart } from "~/components/analytics/BonusCharts";
 import { TopEarnersChart, AuthorTypeChart } from "~/components/analytics/AuthorCharts";
 import { SpendingTrendChart } from "~/components/analytics/SpendingTrendChart";
+import { SemesterBreakdownChart } from "~/components/analytics/SemesterChart";
 import {
   getPaymentStats,
   getPaymentStatusBreakdown,
@@ -22,6 +21,7 @@ import {
   getTopEarningAuthors,
   getEarningsByAuthorType,
   getMonthlySpendingTrends,
+  getSemesterBreakdown,
 } from "~/lib/queries/analyticsQueries";
 
 // Format cents to dollars
@@ -43,6 +43,7 @@ export const Route = createFileRoute("/analytics")({
       topAuthors,
       authorTypeEarnings,
       monthlyTrends,
+      semesterBreakdown,
     ] = await Promise.all([
       getPaymentStats({}),
       getPaymentStatusBreakdown({}),
@@ -51,6 +52,7 @@ export const Route = createFileRoute("/analytics")({
       getTopEarningAuthors({ limit: 10 }),
       getEarningsByAuthorType({}),
       getMonthlySpendingTrends({ months: 12 }),
+      getSemesterBreakdown({ years: 3 }),
     ]);
 
     return {
@@ -61,6 +63,7 @@ export const Route = createFileRoute("/analytics")({
       topAuthors,
       authorTypeEarnings,
       monthlyTrends,
+      semesterBreakdown,
     };
   },
 });
@@ -118,7 +121,7 @@ function AnalyticsPage() {
     handleDateChange(range.startDate, range.endDate);
   };
 
-  const { paymentStats, statusBreakdown, tierAnalytics, bonusFrequency, topAuthors, authorTypeEarnings, monthlyTrends } = filteredData;
+  const { paymentStats, statusBreakdown, tierAnalytics, bonusFrequency, topAuthors, authorTypeEarnings, monthlyTrends, semesterBreakdown } = filteredData;
 
   return (
     <div className="space-y-6">
@@ -150,38 +153,17 @@ function AnalyticsPage() {
         </div>
       )}
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <StatCard
-          title="Total Paid"
-          value={paymentStats.totalPayments}
-          icon={DollarSign}
-        />
-        <StatCard
-          title="Avg/Article"
-          value={paymentStats.avgPayment}
-          icon={TrendingUp}
-        />
-        <StatCard
-          title="Paid Articles"
-          value={paymentStats.paidCount}
-          icon={CheckCircle}
-        />
-        <StatCard
-          title="Unpaid"
-          value={paymentStats.unpaidCount}
-          icon={Clock}
-        />
-      </div>
-
       {/* Summary cards with formatted amounts */}
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <div
           className="p-4 rounded-lg"
           style={{ background: "var(--bg-surface)", border: "0.5px solid var(--border-default)" }}
         >
-          <div className="text-xs uppercase tracking-wide mb-1" style={{ color: "var(--fg-muted)" }}>
-            Total Paid Out
+          <div className="flex items-center gap-2 mb-1">
+            <DollarSign className="w-4 h-4" style={{ color: "var(--status-success)" }} />
+            <div className="text-xs uppercase tracking-wide" style={{ color: "var(--fg-muted)" }}>
+              Total Paid Out
+            </div>
           </div>
           <div className="text-2xl font-semibold" style={{ color: "var(--status-success)" }}>
             {formatCents(paymentStats.totalPayments)}
@@ -191,11 +173,44 @@ function AnalyticsPage() {
           className="p-4 rounded-lg"
           style={{ background: "var(--bg-surface)", border: "0.5px solid var(--border-default)" }}
         >
-          <div className="text-xs uppercase tracking-wide mb-1" style={{ color: "var(--fg-muted)" }}>
-            Pending Payments
+          <div className="flex items-center gap-2 mb-1">
+            <TrendingUp className="w-4 h-4" style={{ color: "var(--fg-muted)" }} />
+            <div className="text-xs uppercase tracking-wide" style={{ color: "var(--fg-muted)" }}>
+              Avg per Article
+            </div>
+          </div>
+          <div className="text-2xl font-semibold" style={{ color: "var(--fg-default)" }}>
+            {formatCents(paymentStats.avgPayment)}
+          </div>
+        </div>
+        <div
+          className="p-4 rounded-lg"
+          style={{ background: "var(--bg-surface)", border: "0.5px solid var(--border-default)" }}
+        >
+          <div className="flex items-center gap-2 mb-1">
+            <Clock className="w-4 h-4" style={{ color: "var(--status-pending)" }} />
+            <div className="text-xs uppercase tracking-wide" style={{ color: "var(--fg-muted)" }}>
+              Pending Payments
+            </div>
           </div>
           <div className="text-2xl font-semibold" style={{ color: "var(--status-pending)" }}>
             {formatCents(paymentStats.unpaidAmount)}
+          </div>
+        </div>
+        <div
+          className="p-4 rounded-lg"
+          style={{ background: "var(--bg-surface)", border: "0.5px solid var(--border-default)" }}
+        >
+          <div className="flex items-center gap-2 mb-1">
+            <CheckCircle className="w-4 h-4" style={{ color: "var(--fg-muted)" }} />
+            <div className="text-xs uppercase tracking-wide" style={{ color: "var(--fg-muted)" }}>
+              Articles
+            </div>
+          </div>
+          <div className="text-2xl font-semibold" style={{ color: "var(--fg-default)" }}>
+            {paymentStats.paidCount} <span className="text-sm font-normal" style={{ color: "var(--fg-muted)" }}>paid</span>
+            {" / "}
+            {paymentStats.unpaidCount} <span className="text-sm font-normal" style={{ color: "var(--fg-muted)" }}>unpaid</span>
           </div>
         </div>
       </div>
@@ -229,9 +244,14 @@ function AnalyticsPage() {
       </div>
 
       {/* Spending Trends */}
-      <Section title="Monthly Spending">
-        <SpendingTrendChart data={monthlyTrends.trends} />
-      </Section>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Section title="Monthly Spending">
+          <SpendingTrendChart data={monthlyTrends.trends} />
+        </Section>
+        <Section title="Semester Breakdown">
+          <SemesterBreakdownChart data={semesterBreakdown.semesters} />
+        </Section>
+      </div>
     </div>
   );
 }
