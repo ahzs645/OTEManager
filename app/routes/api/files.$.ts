@@ -7,10 +7,9 @@ export const APIRoute = createAPIFileRoute("/api/files/$")({
       const storage = getStorage();
 
       // Get the file path from the wildcard param
-      const filePath = params._ || params._splat || params['*'];
+      const filePath = params._splat || params._ || params['*'];
 
       if (!filePath) {
-        console.error("No file path found in params:", JSON.stringify(params));
         return new Response("File path required", { status: 400 });
       }
 
