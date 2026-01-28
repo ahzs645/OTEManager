@@ -102,6 +102,17 @@ export class LocalStorageProvider implements StorageProvider {
     }
   }
 
+  async saveFile(filePath: string, buffer: Buffer): Promise<boolean> {
+    try {
+      const fullPath = path.join(this.baseDir, filePath);
+      await this.ensureDirectory(path.dirname(fullPath));
+      await fs.writeFile(fullPath, buffer);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
   getUrl(filePath: string): string {
     return `${this.baseUrl}/${filePath}`;
   }

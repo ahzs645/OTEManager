@@ -39,6 +39,13 @@ export interface StorageProvider {
   exists(path: string): Promise<boolean>;
 
   /**
+   * Save a file to a specific path (used for backup restore)
+   * @param path Full path to save the file
+   * @param buffer File content as a Buffer
+   */
+  saveFile(path: string, buffer: Buffer): Promise<boolean>;
+
+  /**
    * Get a public URL for the file (if applicable)
    * @param path Full path to the file
    */

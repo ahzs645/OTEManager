@@ -147,6 +147,25 @@ export class S3StorageProvider implements StorageProvider {
     }
   }
 
+  async saveFile(filePath: string, buffer: Buffer): Promise<boolean> {
+    try {
+      const ext = path.extname(filePath).toLowerCase();
+      const mimeType = this.getMimeType(filePath);
+
+      await this.client.send(
+        new PutObjectCommand({
+          Bucket: this.bucket,
+          Key: filePath,
+          Body: buffer,
+          ContentType: mimeType,
+        })
+      );
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
   getUrl(filePath: string): string {
     return `/api/files/${filePath}`;
   }
