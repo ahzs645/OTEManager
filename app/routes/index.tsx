@@ -183,7 +183,7 @@ function ArticleListItem({
         >
           <span>{authorName}</span>
           <span>·</span>
-          <span>{formatRelativeTime(article.submittedAt || article.createdAt)}</span>
+          <span suppressHydrationWarning>{formatRelativeTime(article.submittedAt || article.createdAt)}</span>
         </div>
       </div>
 
