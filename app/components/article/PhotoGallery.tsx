@@ -109,7 +109,7 @@ export function PhotoGallery({ photos, articleId }: PhotoGalleryProps) {
       id: photo.id,
       name: photo.photoNumber ? `Photo ${photo.photoNumber}` : photo.originalFileName,
       caption: photo.caption || '',
-      photoUrl: `/uploads/${photo.filePath}`,
+      photoUrl: `/api/files/${photo.filePath}`,
     })
     setCaptionText(photo.caption || '')
   }
@@ -196,13 +196,13 @@ export function PhotoGallery({ photos, articleId }: PhotoGalleryProps) {
             >
               {/* Photo Preview */}
               <a
-                href={`/uploads/${photo.filePath}`}
+                href={`/api/files/${photo.filePath}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block aspect-square bg-gray-100 relative group"
               >
                 <img
-                  src={`/uploads/${photo.filePath}`}
+                  src={`/api/files/${photo.filePath}`}
                   alt={photo.originalFileName}
                   className="w-full h-full object-cover"
                 />
@@ -249,7 +249,7 @@ export function PhotoGallery({ photos, articleId }: PhotoGalleryProps) {
                 </div>
                 {/* Download link */}
                 <a
-                  href={`/uploads/${photo.filePath}`}
+                  href={`/api/files/${photo.filePath}`}
                   download={photo.originalFileName}
                   className="text-xs mt-2 inline-flex items-center gap-1"
                   style={{ color: 'var(--accent)' }}

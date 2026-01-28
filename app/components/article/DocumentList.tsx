@@ -363,7 +363,7 @@ export function DocumentList({
                   </>
                 )}
                 <a
-                  href={`/uploads/${attachment.filePath}`}
+                  href={`/api/files/${attachment.filePath}`}
                   download={attachment.originalFileName}
                   className="btn btn-ghost !p-2"
                   title="Download"
