@@ -19,6 +19,7 @@ export const Route = createFileRoute('/utilities/backup')({
 function BackupPage() {
   const [isExporting, setIsExporting] = useState(false)
   const [isImporting, setIsImporting] = useState(false)
+  const [exportProgress, setExportProgress] = useState<{ stage: string; percent: number } | null>(null)
   const [exportResult, setExportResult] = useState<{ success: boolean; message: string } | null>(
     null
   )
@@ -26,31 +27,76 @@ function BackupPage() {
     null
   )
   const [importMode, setImportMode] = useState<'merge' | 'replace'>('merge')
+  const [backupType, setBackupType] = useState<'both' | 'database' | 'files'>('both')
+  const [restoreType, setRestoreType] = useState<'both' | 'database' | 'files'>('both')
 
   const handleBackupExport = async () => {
     setIsExporting(true)
     setExportResult(null)
+    setExportProgress({ stage: 'Preparing backup...', percent: 10 })
 
     try {
-      const response = await fetch('/api/backup/export')
+      // Start the fetch
+      setExportProgress({ stage: 'Fetching data...', percent: 20 })
+      const response = await fetch(`/api/backup/export?type=${backupType}`)
 
       if (!response.ok) {
         throw new Error('Backup export failed')
       }
 
-      const blob = await response.blob()
-      const filename =
-        response.headers.get('Content-Disposition')?.match(/filename="(.+)"/)?.[1] || 'backup.zip'
+      // Get content length for progress tracking
+      const contentLength = response.headers.get('Content-Length')
+      const totalBytes = contentLength ? parseInt(contentLength, 10) : 0
 
-      const url = window.URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      a.download = filename
-      document.body.appendChild(a)
-      a.click()
-      window.URL.revokeObjectURL(url)
-      document.body.removeChild(a)
+      if (totalBytes && response.body) {
+        // Stream the response with progress
+        setExportProgress({ stage: 'Downloading...', percent: 30 })
+        const reader = response.body.getReader()
+        const chunks: Uint8Array[] = []
+        let receivedBytes = 0
 
+        while (true) {
+          const { done, value } = await reader.read()
+          if (done) break
+          chunks.push(value)
+          receivedBytes += value.length
+          const percent = Math.min(30 + Math.round((receivedBytes / totalBytes) * 60), 90)
+          setExportProgress({ stage: 'Downloading...', percent })
+        }
+
+        // Combine chunks into blob
+        setExportProgress({ stage: 'Finalizing...', percent: 95 })
+        const blob = new Blob(chunks)
+        const filename =
+          response.headers.get('Content-Disposition')?.match(/filename="(.+)"/)?.[1] || 'backup.zip'
+
+        const url = window.URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = filename
+        document.body.appendChild(a)
+        a.click()
+        window.URL.revokeObjectURL(url)
+        document.body.removeChild(a)
+      } else {
+        // Fallback for when content-length is not available
+        setExportProgress({ stage: 'Processing...', percent: 50 })
+        const blob = await response.blob()
+        setExportProgress({ stage: 'Finalizing...', percent: 90 })
+        const filename =
+          response.headers.get('Content-Disposition')?.match(/filename="(.+)"/)?.[1] || 'backup.zip'
+
+        const url = window.URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = filename
+        document.body.appendChild(a)
+        a.click()
+        window.URL.revokeObjectURL(url)
+        document.body.removeChild(a)
+      }
+
+      setExportProgress({ stage: 'Complete!', percent: 100 })
       setExportResult({ success: true, message: 'Backup downloaded successfully' })
     } catch (error) {
       setExportResult({
@@ -59,6 +105,7 @@ function BackupPage() {
       })
     } finally {
       setIsExporting(false)
+      setTimeout(() => setExportProgress(null), 1500)
     }
   }
 
@@ -71,8 +118,9 @@ function BackupPage() {
 
     try {
       const formData = new FormData()
-      formData.append('file', file)
+      formData.append('backup', file)
       formData.append('mode', importMode)
+      formData.append('type', restoreType)
 
       const response = await fetch('/api/backup/import', {
         method: 'POST',
@@ -85,9 +133,19 @@ function BackupPage() {
         throw new Error(result.error || 'Import failed')
       }
 
+      const messages: string[] = []
+      if (result.stats?.articles?.imported !== undefined) {
+        messages.push(`${result.stats.articles.imported} articles`)
+      }
+      if (result.stats?.authors?.imported !== undefined) {
+        messages.push(`${result.stats.authors.imported} authors`)
+      }
+      if (result.stats?.attachments?.filesRestored !== undefined && result.stats.attachments.filesRestored > 0) {
+        messages.push(`${result.stats.attachments.filesRestored} files`)
+      }
       setImportResult({
         success: true,
-        message: `Restored successfully: ${result.stats?.articles?.imported || 0} articles, ${result.stats?.authors?.imported || 0} authors`,
+        message: `Restored successfully: ${messages.join(', ') || 'backup processed'}`,
       })
     } catch (error) {
       setImportResult({
@@ -180,9 +238,85 @@ function BackupPage() {
           </div>
 
           <p style={{ fontSize: '0.875rem', color: 'var(--fg-muted)', marginBottom: '1rem' }}>
-            Download a complete backup of your database including all articles, authors, volumes,
-            issues, and uploaded files. The backup is saved as a ZIP file with a JSON manifest.
+            Download a backup of your database and/or uploaded files. The backup is saved as a ZIP file with a JSON manifest.
           </p>
+
+          {/* Backup Type Selection */}
+          <div style={{ marginBottom: '1rem' }}>
+            <label
+              style={{
+                display: 'block',
+                fontSize: '0.8125rem',
+                fontWeight: 500,
+                color: 'var(--fg-default)',
+                marginBottom: '0.5rem',
+              }}
+            >
+              What to Include
+            </label>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <label
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  cursor: 'pointer',
+                }}
+              >
+                <input
+                  type="radio"
+                  name="backupType"
+                  value="both"
+                  checked={backupType === 'both'}
+                  onChange={() => setBackupType('both')}
+                  style={{ accentColor: 'var(--accent)' }}
+                />
+                <span style={{ fontSize: '0.875rem', color: 'var(--fg-default)' }}>
+                  Database & Files
+                </span>
+              </label>
+              <label
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  cursor: 'pointer',
+                }}
+              >
+                <input
+                  type="radio"
+                  name="backupType"
+                  value="database"
+                  checked={backupType === 'database'}
+                  onChange={() => setBackupType('database')}
+                  style={{ accentColor: 'var(--accent)' }}
+                />
+                <span style={{ fontSize: '0.875rem', color: 'var(--fg-default)' }}>
+                  Database Only
+                </span>
+              </label>
+              <label
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  cursor: 'pointer',
+                }}
+              >
+                <input
+                  type="radio"
+                  name="backupType"
+                  value="files"
+                  checked={backupType === 'files'}
+                  onChange={() => setBackupType('files')}
+                  style={{ accentColor: 'var(--accent)' }}
+                />
+                <span style={{ fontSize: '0.875rem', color: 'var(--fg-default)' }}>
+                  Files Only
+                </span>
+              </label>
+            </div>
+          </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <button
@@ -204,7 +338,7 @@ function BackupPage() {
               )}
             </button>
 
-            {exportResult && (
+            {exportResult && !isExporting && (
               <div
                 style={{
                   display: 'flex',
@@ -223,6 +357,38 @@ function BackupPage() {
               </div>
             )}
           </div>
+
+          {/* Export Progress Bar */}
+          {exportProgress && (
+            <div style={{ marginTop: '1rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                <span style={{ fontSize: '0.8125rem', color: 'var(--fg-muted)' }}>
+                  {exportProgress.stage}
+                </span>
+                <span style={{ fontSize: '0.8125rem', color: 'var(--fg-muted)' }}>
+                  {exportProgress.percent}%
+                </span>
+              </div>
+              <div
+                style={{
+                  height: '6px',
+                  background: 'var(--bg-subtle)',
+                  borderRadius: '3px',
+                  overflow: 'hidden',
+                }}
+              >
+                <div
+                  style={{
+                    height: '100%',
+                    width: `${exportProgress.percent}%`,
+                    background: exportProgress.percent === 100 ? 'var(--status-success)' : 'var(--accent)',
+                    borderRadius: '3px',
+                    transition: 'width 0.3s ease, background 0.3s ease',
+                  }}
+                />
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Import Section */}
@@ -252,6 +418,83 @@ function BackupPage() {
             Restore your database from a previously exported backup file. Choose between merging
             with existing data or replacing all data.
           </p>
+
+          {/* What to Restore Selection */}
+          <div style={{ marginBottom: '1rem' }}>
+            <label
+              style={{
+                display: 'block',
+                fontSize: '0.8125rem',
+                fontWeight: 500,
+                color: 'var(--fg-default)',
+                marginBottom: '0.5rem',
+              }}
+            >
+              What to Restore
+            </label>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <label
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  cursor: 'pointer',
+                }}
+              >
+                <input
+                  type="radio"
+                  name="restoreType"
+                  value="both"
+                  checked={restoreType === 'both'}
+                  onChange={() => setRestoreType('both')}
+                  style={{ accentColor: 'var(--accent)' }}
+                />
+                <span style={{ fontSize: '0.875rem', color: 'var(--fg-default)' }}>
+                  Database & Files
+                </span>
+              </label>
+              <label
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  cursor: 'pointer',
+                }}
+              >
+                <input
+                  type="radio"
+                  name="restoreType"
+                  value="database"
+                  checked={restoreType === 'database'}
+                  onChange={() => setRestoreType('database')}
+                  style={{ accentColor: 'var(--accent)' }}
+                />
+                <span style={{ fontSize: '0.875rem', color: 'var(--fg-default)' }}>
+                  Database Only
+                </span>
+              </label>
+              <label
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  cursor: 'pointer',
+                }}
+              >
+                <input
+                  type="radio"
+                  name="restoreType"
+                  value="files"
+                  checked={restoreType === 'files'}
+                  onChange={() => setRestoreType('files')}
+                  style={{ accentColor: 'var(--accent)' }}
+                />
+                <span style={{ fontSize: '0.875rem', color: 'var(--fg-default)' }}>
+                  Files Only
+                </span>
+              </label>
+            </div>
+          </div>
 
           {/* Import Mode Selection */}
           <div style={{ marginBottom: '1rem' }}>

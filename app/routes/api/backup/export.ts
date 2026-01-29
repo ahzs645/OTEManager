@@ -3,8 +3,11 @@ import archiver from 'archiver'
 import { PassThrough } from 'stream'
 
 export const APIRoute = createAPIFileRoute('/api/backup/export')({
-  GET: async () => {
+  GET: async ({ request }) => {
     try {
+      const url = new URL(request.url)
+      const backupType = url.searchParams.get('type') || 'both' // 'both', 'database', or 'files'
+
       const { db } = await import('@db/index')
       const { getStorage } = await import('../../../../storage')
       const storage = getStorage()
@@ -34,18 +37,22 @@ export const APIRoute = createAPIFileRoute('/api/backup/export')({
         db.query.savedArticleViews.findMany(),
       ])
 
-      // Create manifest with all data
+      // Create manifest based on backup type
+      const includeDatabase = backupType === 'both' || backupType === 'database'
+      const includeFiles = backupType === 'both' || backupType === 'files'
+
       const manifest = {
         exportVersion: '1.0',
         exportedAt: new Date().toISOString(),
+        backupType,
         counts: {
-          articles: articles.length,
-          authors: authors.length,
-          volumes: volumes.length,
-          issues: issues.length,
-          attachments: attachments.length,
+          articles: includeDatabase ? articles.length : 0,
+          authors: includeDatabase ? authors.length : 0,
+          volumes: includeDatabase ? volumes.length : 0,
+          issues: includeDatabase ? issues.length : 0,
+          attachments: attachments.length, // Always include for file references
         },
-        data: {
+        data: includeDatabase ? {
           authors,
           volumes,
           issues,
@@ -56,6 +63,9 @@ export const APIRoute = createAPIFileRoute('/api/backup/export')({
           statusHistory,
           paymentConfig: paymentConfig || null,
           savedViews,
+        } : {
+          // For files-only backup, we still need attachment metadata to restore files
+          attachments,
         },
       }
 
@@ -72,15 +82,17 @@ export const APIRoute = createAPIFileRoute('/api/backup/export')({
       // Add manifest
       archive.append(JSON.stringify(manifest, null, 2), { name: 'manifest.json' })
 
-      // Add all attachment files
-      for (const attachment of attachments) {
-        try {
-          const fileBuffer = await storage.getFile(attachment.filePath)
-          if (fileBuffer) {
-            archive.append(fileBuffer, { name: `files/${attachment.filePath}` })
+      // Add attachment files if including files
+      if (includeFiles) {
+        for (const attachment of attachments) {
+          try {
+            const fileBuffer = await storage.getFile(attachment.filePath)
+            if (fileBuffer) {
+              archive.append(fileBuffer, { name: `files/${attachment.filePath}` })
+            }
+          } catch (err) {
+            console.warn(`Could not include file ${attachment.filePath}:`, err)
           }
-        } catch (err) {
-          console.warn(`Could not include file ${attachment.filePath}:`, err)
         }
       }
 
@@ -94,12 +106,13 @@ export const APIRoute = createAPIFileRoute('/api/backup/export')({
 
       const zipBuffer = Buffer.concat(chunks)
       const timestamp = new Date().toISOString().slice(0, 10)
+      const typeSuffix = backupType === 'both' ? '' : `-${backupType}`
 
       return new Response(zipBuffer, {
         status: 200,
         headers: {
           'Content-Type': 'application/zip',
-          'Content-Disposition': `attachment; filename="otemanager-backup-${timestamp}.zip"`,
+          'Content-Disposition': `attachment; filename="otemanager-backup${typeSuffix}-${timestamp}.zip"`,
           'Content-Length': zipBuffer.length.toString(),
         },
       })

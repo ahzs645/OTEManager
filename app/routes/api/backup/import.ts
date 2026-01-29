@@ -4,6 +4,7 @@ import JSZip from 'jszip'
 interface BackupManifest {
   exportVersion: string
   exportedAt: string
+  backupType?: 'both' | 'database' | 'files'
   counts: {
     articles: number
     authors: number
@@ -12,16 +13,16 @@ interface BackupManifest {
     attachments: number
   }
   data: {
-    authors: any[]
-    volumes: any[]
-    issues: any[]
-    articles: any[]
-    attachments: any[]
-    articleMultimediaTypes: any[]
-    articleNotes: any[]
-    statusHistory: any[]
-    paymentConfig: any | null
-    savedViews: any[]
+    authors?: any[]
+    volumes?: any[]
+    issues?: any[]
+    articles?: any[]
+    attachments?: any[]
+    articleMultimediaTypes?: any[]
+    articleNotes?: any[]
+    statusHistory?: any[]
+    paymentConfig?: any | null
+    savedViews?: any[]
   }
 }
 
@@ -31,6 +32,7 @@ export const APIRoute = createAPIFileRoute('/api/backup/import')({
       const formData = await request.formData()
       const file = formData.get('backup') as File
       const mode = formData.get('mode') as string || 'merge' // 'merge' or 'replace'
+      const restoreType = formData.get('type') as string || 'both' // 'both', 'database', or 'files'
 
       if (!file) {
         return new Response(
@@ -90,8 +92,13 @@ export const APIRoute = createAPIFileRoute('/api/backup/import')({
         statusHistory: { imported: 0, skipped: 0 },
       }
 
+      // Determine what to import based on user selection and what's in the backup
+      const backupHasDatabase = manifest.data.authors !== undefined
+      const importDatabase = (restoreType === 'both' || restoreType === 'database') && backupHasDatabase
+      const importFiles = restoreType === 'both' || restoreType === 'files'
+
       // If replace mode, clear existing data (in reverse dependency order)
-      if (mode === 'replace') {
+      if (mode === 'replace' && importDatabase) {
         const { sql } = await import('drizzle-orm')
         await db.delete(statusHistory)
         await db.delete(articleNotes)
@@ -108,8 +115,10 @@ export const APIRoute = createAPIFileRoute('/api/backup/import')({
       // Helper to check if record exists
       const { eq } = await import('drizzle-orm')
 
+      // Import database records if requested
+      if (importDatabase) {
       // Import authors
-      for (const author of manifest.data.authors) {
+      for (const author of manifest.data.authors || []) {
         const existing = await db.query.authors.findFirst({
           where: eq(authors.id, author.id),
         })
@@ -126,7 +135,7 @@ export const APIRoute = createAPIFileRoute('/api/backup/import')({
       }
 
       // Import volumes
-      for (const volume of manifest.data.volumes) {
+      for (const volume of manifest.data.volumes || []) {
         const existing = await db.query.volumes.findFirst({
           where: eq(volumes.id, volume.id),
         })
@@ -145,7 +154,7 @@ export const APIRoute = createAPIFileRoute('/api/backup/import')({
       }
 
       // Import issues
-      for (const issue of manifest.data.issues) {
+      for (const issue of manifest.data.issues || []) {
         const existing = await db.query.issues.findFirst({
           where: eq(issues.id, issue.id),
         })
@@ -163,7 +172,7 @@ export const APIRoute = createAPIFileRoute('/api/backup/import')({
       }
 
       // Import articles
-      for (const article of manifest.data.articles) {
+      for (const article of manifest.data.articles || []) {
         const existing = await db.query.articles.findFirst({
           where: eq(articles.id, article.id),
         })
@@ -182,8 +191,8 @@ export const APIRoute = createAPIFileRoute('/api/backup/import')({
         }
       }
 
-      // Import attachments and restore files
-      for (const attachment of manifest.data.attachments) {
+      // Import attachments (database records)
+      for (const attachment of manifest.data.attachments || []) {
         const existing = await db.query.attachments.findFirst({
           where: eq(attachments.id, attachment.id),
         })
@@ -193,21 +202,13 @@ export const APIRoute = createAPIFileRoute('/api/backup/import')({
             createdAt: new Date(attachment.createdAt),
           })
           stats.attachments.imported++
-
-          // Restore file from ZIP
-          const fileInZip = zip.file(`files/${attachment.filePath}`)
-          if (fileInZip) {
-            const fileBuffer = await fileInZip.async('nodebuffer')
-            await storage.saveFile(attachment.filePath, fileBuffer)
-            stats.attachments.filesRestored++
-          }
         } else {
           stats.attachments.skipped++
         }
       }
 
       // Import multimedia types
-      for (const mt of manifest.data.articleMultimediaTypes) {
+      for (const mt of manifest.data.articleMultimediaTypes || []) {
         const existing = await db.query.articleMultimediaTypes.findFirst({
           where: eq(articleMultimediaTypes.id, mt.id),
         })
@@ -220,7 +221,7 @@ export const APIRoute = createAPIFileRoute('/api/backup/import')({
       }
 
       // Import notes
-      for (const note of manifest.data.articleNotes) {
+      for (const note of manifest.data.articleNotes || []) {
         const existing = await db.query.articleNotes.findFirst({
           where: eq(articleNotes.id, note.id),
         })
@@ -236,7 +237,7 @@ export const APIRoute = createAPIFileRoute('/api/backup/import')({
       }
 
       // Import status history
-      for (const history of manifest.data.statusHistory) {
+      for (const history of manifest.data.statusHistory || []) {
         const existing = await db.query.statusHistory.findFirst({
           where: eq(statusHistory.id, history.id),
         })
@@ -263,7 +264,7 @@ export const APIRoute = createAPIFileRoute('/api/backup/import')({
       }
 
       // Import saved views
-      for (const view of manifest.data.savedViews) {
+      for (const view of manifest.data.savedViews || []) {
         const existing = await db.query.savedArticleViews.findFirst({
           where: eq(savedArticleViews.id, view.id),
         })
@@ -273,6 +274,19 @@ export const APIRoute = createAPIFileRoute('/api/backup/import')({
             createdAt: new Date(view.createdAt),
             updatedAt: new Date(view.updatedAt),
           })
+        }
+      }
+      } // End of importDatabase block
+
+      // Restore files if requested
+      if (importFiles) {
+        for (const attachment of manifest.data.attachments || []) {
+          const fileInZip = zip.file(`files/${attachment.filePath}`)
+          if (fileInZip) {
+            const fileBuffer = await fileInZip.async('nodebuffer')
+            await storage.saveFile(attachment.filePath, fileBuffer)
+            stats.attachments.filesRestored++
+          }
         }
       }
 
