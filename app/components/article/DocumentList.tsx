@@ -432,18 +432,22 @@ export function DocumentList({
       </Section>
 
       {/* Styles for docx-preview */}
-      <style>{`
-        .docx-preview-container .docx-wrapper {
-          background: white;
-          padding: 16px;
-        }
-        .docx-preview-container .docx-wrapper > section.docx {
-          box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-          margin: 16px auto;
-          background: white;
-          border-radius: 4px;
-        }
-      `}</style>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            .docx-preview-container .docx-wrapper {
+              background: white;
+              padding: 16px;
+            }
+            .docx-preview-container .docx-wrapper > section.docx {
+              box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+              margin: 16px auto;
+              background: white;
+              border-radius: 4px;
+            }
+          `,
+        }}
+      />
     </>
   )
 }

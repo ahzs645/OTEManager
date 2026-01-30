@@ -117,6 +117,49 @@ function isDocumentFile(filename: string): boolean {
   return ['.docx', '.doc', '.pdf', '.txt'].includes(ext)
 }
 
+// Normalize folder name for matching (handle encoding issues with special chars)
+function normalizeFolderName(name: string): string {
+  return name
+    .normalize('NFKD')
+    .replace(/[\u2018\u2019\u201A\u201B\u0060\u00B4]/g, "'") // Normalize various apostrophe types
+    .replace(/[\u201C\u201D\u201E\u201F]/g, '"') // Normalize various quote types
+    .replace(/[^\x20-\x7E]/g, '') // Remove non-ASCII chars that might be corrupted
+    .trim()
+}
+
+// Find matching folder in a directory, handling encoding differences
+async function findMatchingFolder(baseDir: string, targetName: string): Promise<string | null> {
+  try {
+    const folders = await fs.readdir(baseDir)
+    const normalizedTarget = normalizeFolderName(targetName)
+
+    // First try exact match
+    if (folders.includes(targetName)) {
+      return path.join(baseDir, targetName)
+    }
+
+    // Then try normalized match
+    for (const folder of folders) {
+      if (normalizeFolderName(folder) === normalizedTarget) {
+        return path.join(baseDir, folder)
+      }
+    }
+
+    // Finally try a fuzzy match - strip all non-alphanumeric
+    const fuzzyTarget = targetName.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()
+    for (const folder of folders) {
+      const fuzzyFolder = folder.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()
+      if (fuzzyFolder === fuzzyTarget) {
+        return path.join(baseDir, folder)
+      }
+    }
+
+    return null
+  } catch {
+    return null
+  }
+}
+
 export const APIRoute = createAPIFileRoute('/api/sharepoint/import')({
   POST: async ({ request }) => {
     try {
@@ -141,13 +184,11 @@ export const APIRoute = createAPIFileRoute('/api/sharepoint/import')({
       let documentsDir: string | null = null
       let photosDir: string | null = null
       let tempDir: string | null = null
-      let zipInstance: JSZip | null = null
 
       // Handle ZIP file upload
       if (file && file.size > 0) {
         const arrayBuffer = await file.arrayBuffer()
         const zip = await JSZip.loadAsync(arrayBuffer)
-        zipInstance = zip
 
         // Find the JSON file
         const jsonFile = Object.keys(zip.files).find(
@@ -163,13 +204,22 @@ export const APIRoute = createAPIFileRoute('/api/sharepoint/import')({
         const jsonContent = await zip.files[jsonFile].async('string')
         articlesData = JSON.parse(jsonContent)
 
-        // Check for documents and photos folders in ZIP
-        const hasDocuments = Object.keys(zip.files).some((name) =>
-          name.toLowerCase().startsWith('documents/')
-        )
-        const hasPhotos = Object.keys(zip.files).some((name) =>
-          name.toLowerCase().startsWith('photos/')
-        )
+        // Detect root folder prefix (e.g., "ote-export-2026-01-30-214907/")
+        // by looking at the JSON file path
+        const jsonDir = path.dirname(jsonFile)
+        const rootPrefix = jsonDir && jsonDir !== '.' ? jsonDir + '/' : ''
+
+        // Check for documents and photos folders in ZIP (with or without root prefix)
+        const hasDocuments = Object.keys(zip.files).some((name) => {
+          const lowerName = name.toLowerCase()
+          return lowerName.startsWith('documents/') ||
+                 lowerName.startsWith(rootPrefix.toLowerCase() + 'documents/')
+        })
+        const hasPhotos = Object.keys(zip.files).some((name) => {
+          const lowerName = name.toLowerCase()
+          return lowerName.startsWith('photos/') ||
+                 lowerName.startsWith(rootPrefix.toLowerCase() + 'photos/')
+        })
 
         if (hasDocuments || hasPhotos) {
           // Extract to temp directory for file processing
@@ -179,7 +229,11 @@ export const APIRoute = createAPIFileRoute('/api/sharepoint/import')({
           for (const [filename, zipEntry] of Object.entries(zip.files)) {
             if (zipEntry.dir || filename.startsWith('__MACOSX')) continue
             const content = await zipEntry.async('nodebuffer')
-            const filePath = path.join(tempDir, filename)
+            // Strip the root prefix when extracting so paths are normalized
+            const normalizedFilename = rootPrefix && filename.startsWith(rootPrefix)
+              ? filename.slice(rootPrefix.length)
+              : filename
+            const filePath = path.join(tempDir, normalizedFilename)
             await fs.mkdir(path.dirname(filePath), { recursive: true })
             await fs.writeFile(filePath, content)
           }
@@ -312,24 +366,28 @@ export const APIRoute = createAPIFileRoute('/api/sharepoint/import')({
           const articleFolderName = article.FileLeafRef
 
           if (documentsDir) {
-            const docFolder = path.join(documentsDir, articleFolderName)
-            try {
-              const docFiles = await fs.readdir(docFolder)
-              docCount = docFiles.filter(f => !f.startsWith('.') && isDocumentFile(f)).length
-              previewStats.files.documents += docCount
-            } catch {
-              // No documents folder
+            const docFolder = await findMatchingFolder(documentsDir, articleFolderName)
+            if (docFolder) {
+              try {
+                const docFiles = await fs.readdir(docFolder)
+                docCount = docFiles.filter(f => !f.startsWith('.') && isDocumentFile(f)).length
+                previewStats.files.documents += docCount
+              } catch {
+                // No documents folder
+              }
             }
           }
 
           if (photosDir) {
-            const photoFolder = path.join(photosDir, articleFolderName)
-            try {
-              const photoFiles = await fs.readdir(photoFolder)
-              photoCount = photoFiles.filter(f => !f.startsWith('.') && isImageFile(f)).length
-              previewStats.files.photos += photoCount
-            } catch {
-              // No photos folder
+            const photoFolder = await findMatchingFolder(photosDir, articleFolderName)
+            if (photoFolder) {
+              try {
+                const photoFiles = await fs.readdir(photoFolder)
+                photoCount = photoFiles.filter(f => !f.startsWith('.') && isImageFile(f)).length
+                previewStats.files.photos += photoCount
+              } catch {
+                // No photos folder
+              }
             }
           }
 
@@ -467,81 +525,85 @@ export const APIRoute = createAPIFileRoute('/api/sharepoint/import')({
 
           // Process documents
           if (documentsDir) {
-            const docFolder = path.join(documentsDir, articleFolderName)
-            try {
-              const docFiles = await fs.readdir(docFolder)
-              for (const fileName of docFiles) {
-                if (fileName.startsWith('.')) continue
-                if (!isDocumentFile(fileName)) continue
+            const docFolder = await findMatchingFolder(documentsDir, articleFolderName)
+            if (docFolder) {
+              try {
+                const docFiles = await fs.readdir(docFolder)
+                for (const fileName of docFiles) {
+                  if (fileName.startsWith('.')) continue
+                  if (!isDocumentFile(fileName)) continue
 
-                const srcPath = path.join(docFolder, fileName)
-                const fileBuffer = await fs.readFile(srcPath)
-                const sanitizedName = sanitizeFilename(fileName)
-                const destSubDir = 'documents'
-                const destPath = `${destSubDir}/${newArticleId}/${sanitizedName}`
+                  const srcPath = path.join(docFolder, fileName)
+                  const fileBuffer = await fs.readFile(srcPath)
+                  const sanitizedName = sanitizeFilename(fileName)
+                  const destSubDir = 'documents'
+                  const destPath = `${destSubDir}/${newArticleId}/${sanitizedName}`
 
-                // Upload using storage provider
-                await storage.saveFile(destPath, fileBuffer)
+                  // Upload using storage provider
+                  await storage.saveFile(destPath, fileBuffer)
 
-                // Create attachment record
-                await db.insert(attachments).values({
-                  articleId: newArticleId,
-                  attachmentType: 'word_document',
-                  fileName: sanitizedName,
-                  originalFileName: fileName,
-                  filePath: destPath,
-                  fileSize: fileBuffer.length,
-                  mimeType: getMimeType(fileName),
-                })
-                stats.attachments.imported++
+                  // Create attachment record
+                  await db.insert(attachments).values({
+                    articleId: newArticleId,
+                    attachmentType: 'word_document',
+                    fileName: sanitizedName,
+                    originalFileName: fileName,
+                    filePath: destPath,
+                    fileSize: fileBuffer.length,
+                    mimeType: getMimeType(fileName),
+                  })
+                  stats.attachments.imported++
+                }
+              } catch {
+                // No documents folder for this article
               }
-            } catch {
-              // No documents folder for this article
             }
           }
 
           // Process photos
           if (photosDir) {
-            const photoFolder = path.join(photosDir, articleFolderName)
-            try {
-              const photoFiles = await fs.readdir(photoFolder)
-              let photoNumber = 1
+            const photoFolder = await findMatchingFolder(photosDir, articleFolderName)
+            if (photoFolder) {
+              try {
+                const photoFiles = await fs.readdir(photoFolder)
+                let photoNumber = 1
 
-              for (const fileName of photoFiles) {
-                if (fileName.startsWith('.')) continue
-                if (!isImageFile(fileName)) continue
+                for (const fileName of photoFiles) {
+                  if (fileName.startsWith('.')) continue
+                  if (!isImageFile(fileName)) continue
 
-                const srcPath = path.join(photoFolder, fileName)
-                const fileBuffer = await fs.readFile(srcPath)
-                const sanitizedName = sanitizeFilename(fileName)
-                const destSubDir = 'photos'
-                const destPath = `${destSubDir}/${newArticleId}/${sanitizedName}`
+                  const srcPath = path.join(photoFolder, fileName)
+                  const fileBuffer = await fs.readFile(srcPath)
+                  const sanitizedName = sanitizeFilename(fileName)
+                  const destSubDir = 'photos'
+                  const destPath = `${destSubDir}/${newArticleId}/${sanitizedName}`
 
-                // Upload using storage provider
-                await storage.saveFile(destPath, fileBuffer)
+                  // Upload using storage provider
+                  await storage.saveFile(destPath, fileBuffer)
 
-                // Find caption from metadata if available
-                const imageMetadata = article._images?.find(
-                  (img) => img.name === fileName
-                )
-                const caption = imageMetadata?.metadata?.Caption || null
+                  // Find caption from metadata if available
+                  const imageMetadata = article._images?.find(
+                    (img) => img.name === fileName
+                  )
+                  const caption = imageMetadata?.metadata?.Caption || null
 
-                // Create attachment record
-                await db.insert(attachments).values({
-                  articleId: newArticleId,
-                  attachmentType: 'photo',
-                  fileName: sanitizedName,
-                  originalFileName: fileName,
-                  filePath: destPath,
-                  fileSize: fileBuffer.length,
-                  mimeType: getMimeType(fileName),
-                  caption: caption,
-                  photoNumber: photoNumber++,
-                })
-                stats.attachments.imported++
+                  // Create attachment record
+                  await db.insert(attachments).values({
+                    articleId: newArticleId,
+                    attachmentType: 'photo',
+                    fileName: sanitizedName,
+                    originalFileName: fileName,
+                    filePath: destPath,
+                    fileSize: fileBuffer.length,
+                    mimeType: getMimeType(fileName),
+                    caption: caption,
+                    photoNumber: photoNumber++,
+                  })
+                  stats.attachments.imported++
+                }
+              } catch {
+                // No photos folder for this article
               }
-            } catch {
-              // No photos folder for this article
             }
           }
 

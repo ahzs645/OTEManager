@@ -8,22 +8,35 @@ import {
 import path from "path";
 import type { StorageProvider, UploadResult } from "./types";
 
+interface S3Config {
+  endpoint?: string;
+  region?: string;
+  bucket?: string;
+  accessKeyId?: string;
+  secretAccessKey?: string;
+}
+
 export class S3StorageProvider implements StorageProvider {
   private client: S3Client;
   private bucket: string;
   private endpoint: string;
 
-  constructor() {
-    this.endpoint = process.env.S3_ENDPOINT || "http://localhost:9000";
-    this.bucket = process.env.S3_BUCKET || "ote-articles";
+  constructor(config?: S3Config) {
+    // Use provided config, fall back to environment variables
+    this.endpoint = config?.endpoint || process.env.S3_ENDPOINT || "http://localhost:9000";
+    this.bucket = config?.bucket || process.env.S3_BUCKET || "ote-articles";
+
+    const region = config?.region || process.env.S3_REGION || "us-east-1";
+    const accessKeyId = config?.accessKeyId || process.env.AWS_ACCESS_KEY_ID || "";
+    const secretAccessKey = config?.secretAccessKey || process.env.AWS_SECRET_ACCESS_KEY || "";
 
     this.client = new S3Client({
-      region: process.env.S3_REGION || "us-east-1",
+      region,
       endpoint: this.endpoint,
       forcePathStyle: true,
       credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID || "",
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || "",
+        accessKeyId,
+        secretAccessKey,
       },
     });
   }

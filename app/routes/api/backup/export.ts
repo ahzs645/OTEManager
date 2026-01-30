@@ -83,7 +83,10 @@ export const APIRoute = createAPIFileRoute('/api/backup/export')({
       archive.append(JSON.stringify(manifest, null, 2), { name: 'manifest.json' })
 
       // Add attachment files if including files (process in parallel batches for speed)
+      let filesIncluded = 0
+      let filesMissing = 0
       if (includeFiles && attachments.length > 0) {
+        console.log(`[Backup Export] Processing ${attachments.length} attachments...`)
         const BATCH_SIZE = 10 // Process 10 files at a time
         for (let i = 0; i < attachments.length; i += BATCH_SIZE) {
           const batch = attachments.slice(i, i + BATCH_SIZE)
@@ -91,9 +94,12 @@ export const APIRoute = createAPIFileRoute('/api/backup/export')({
             batch.map(async (attachment) => {
               try {
                 const fileBuffer = await storage.getFile(attachment.filePath)
+                if (!fileBuffer) {
+                  console.warn(`[Backup Export] File not found: ${attachment.filePath}`)
+                }
                 return { attachment, fileBuffer }
               } catch (err) {
-                console.warn(`Could not include file ${attachment.filePath}:`, err)
+                console.warn(`[Backup Export] Error reading file ${attachment.filePath}:`, err)
                 return { attachment, fileBuffer: null }
               }
             })
@@ -102,9 +108,13 @@ export const APIRoute = createAPIFileRoute('/api/backup/export')({
           for (const { attachment, fileBuffer } of results) {
             if (fileBuffer) {
               archive.append(fileBuffer, { name: `files/${attachment.filePath}` })
+              filesIncluded++
+            } else {
+              filesMissing++
             }
           }
         }
+        console.log(`[Backup Export] Files included: ${filesIncluded}, missing: ${filesMissing}`)
       }
 
       // Finalize and wait for completion
