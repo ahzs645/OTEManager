@@ -320,6 +320,7 @@ function ArticlePageContent({
   photos,
 }: any) {
   return (
+    <>
     <div className="space-y-6">
       {/* Back Link + Unsaved Indicator */}
       <div className="flex items-center justify-between">
@@ -617,6 +618,7 @@ function ArticlePageContent({
           </Section>
         </div>
       </div>
+    </div>
 
       {/* Delete Confirmation Modal */}
       {showDeleteConfirm && (
@@ -695,7 +697,7 @@ function ArticlePageContent({
           </div>
         </div>
       )}
-    </div>
+    </>
   )
 }
 

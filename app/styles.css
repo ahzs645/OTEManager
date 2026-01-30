@@ -87,6 +87,7 @@ html {
 }
 
 body {
+  margin: 0;
   font-family: var(--font-sans);
   background: var(--bg-root);
   color: var(--fg-default);
