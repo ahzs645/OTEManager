@@ -5,6 +5,7 @@ import {
   Database,
   ChevronRight,
   GraduationCap,
+  Copy,
 } from 'lucide-react'
 
 export const Route = createFileRoute('/utilities/')({
@@ -39,6 +40,13 @@ const utilities = [
     title: 'Backup & Restore',
     description: 'Export or restore your entire database including all files',
     icon: Database,
+  },
+  {
+    id: 'deduplicate',
+    path: '/utilities/deduplicate',
+    title: 'Find Duplicates',
+    description: 'Detect and remove duplicate articles with the same title and author',
+    icon: Copy,
   },
 ]
 

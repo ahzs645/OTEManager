@@ -36,8 +36,8 @@ function BackupPage() {
     setExportProgress({ stage: 'Preparing backup...', percent: 10 })
 
     try {
-      // Start the fetch
-      setExportProgress({ stage: 'Fetching data...', percent: 20 })
+      // Start the fetch - server builds the entire ZIP before responding
+      setExportProgress({ stage: 'Building backup on server...', percent: 20 })
       const response = await fetch(`/api/backup/export?type=${backupType}`)
 
       if (!response.ok) {
@@ -80,9 +80,9 @@ function BackupPage() {
         document.body.removeChild(a)
       } else {
         // Fallback for when content-length is not available
-        setExportProgress({ stage: 'Processing...', percent: 50 })
+        setExportProgress({ stage: 'Receiving backup data...', percent: 50 })
         const blob = await response.blob()
-        setExportProgress({ stage: 'Finalizing...', percent: 90 })
+        setExportProgress({ stage: 'Preparing download...', percent: 90 })
         const filename =
           response.headers.get('Content-Disposition')?.match(/filename="(.+)"/)?.[1] || 'backup.zip'
 

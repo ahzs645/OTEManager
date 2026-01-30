@@ -124,6 +124,7 @@ export const APIRoute = createAPIFileRoute('/api/sharepoint/import')({
       const file = formData.get('file') as File | null
       const folderPath = formData.get('folderPath') as string | null
       const mode = (formData.get('mode') as string) || 'merge'
+      const previewOnly = formData.get('preview') === 'true'
 
       const stats = {
         authors: { imported: 0, skipped: 0 },
@@ -242,6 +243,120 @@ export const APIRoute = createAPIFileRoute('/api/sharepoint/import')({
           { error: 'Invalid JSON format - expected array of articles' },
           { status: 400 }
         )
+      }
+
+      // Preview mode - calculate what will happen without importing
+      if (previewOnly) {
+        const previewStats = {
+          articles: { new: 0, update: 0, skip: 0 },
+          authors: { new: 0, existing: 0 },
+          files: { documents: 0, photos: 0 },
+          articlePreviews: [] as Array<{
+            title: string
+            author: string
+            email: string
+            status: 'new' | 'update' | 'skip'
+            documents: number
+            photos: number
+          }>,
+        }
+
+        const seenEmails = new Set<string>()
+        const existingAuthorsCache = new Map<string, boolean>()
+
+        for (const article of articlesData) {
+          const email = article.Contact_x0020_Email?.toLowerCase().trim()
+          if (!email) {
+            previewStats.articles.skip++
+            continue
+          }
+
+          // Check author
+          if (!seenEmails.has(email)) {
+            seenEmails.add(email)
+            if (!existingAuthorsCache.has(email)) {
+              const existingAuthor = await db.query.authors.findFirst({
+                where: eq(authors.email, email),
+              })
+              existingAuthorsCache.set(email, !!existingAuthor)
+            }
+            if (existingAuthorsCache.get(email)) {
+              previewStats.authors.existing++
+            } else {
+              previewStats.authors.new++
+            }
+          }
+
+          // Check article
+          const sharePointId = `sp-${article.Id}`
+          const existingArticle = await db.query.articles.findFirst({
+            where: eq(articles.formResponseId, sharePointId),
+          })
+
+          let articleStatus: 'new' | 'update' | 'skip' = 'new'
+          if (existingArticle) {
+            if (mode === 'merge') {
+              articleStatus = 'skip'
+              previewStats.articles.skip++
+            } else {
+              articleStatus = 'update'
+              previewStats.articles.update++
+            }
+          } else {
+            previewStats.articles.new++
+          }
+
+          // Count files
+          let docCount = 0
+          let photoCount = 0
+          const articleFolderName = article.FileLeafRef
+
+          if (documentsDir) {
+            const docFolder = path.join(documentsDir, articleFolderName)
+            try {
+              const docFiles = await fs.readdir(docFolder)
+              docCount = docFiles.filter(f => !f.startsWith('.') && isDocumentFile(f)).length
+              previewStats.files.documents += docCount
+            } catch {
+              // No documents folder
+            }
+          }
+
+          if (photosDir) {
+            const photoFolder = path.join(photosDir, articleFolderName)
+            try {
+              const photoFiles = await fs.readdir(photoFolder)
+              photoCount = photoFiles.filter(f => !f.startsWith('.') && isImageFile(f)).length
+              previewStats.files.photos += photoCount
+            } catch {
+              // No photos folder
+            }
+          }
+
+          previewStats.articlePreviews.push({
+            title: article.Title || article.FileLeafRef,
+            author: `${article.Given_x0020_Name || ''} ${article.Surname || ''}`.trim() || 'Unknown',
+            email,
+            status: articleStatus,
+            documents: docCount,
+            photos: photoCount,
+          })
+        }
+
+        // Cleanup temp directory if we created one
+        if (tempDir) {
+          try {
+            await fs.rm(tempDir, { recursive: true, force: true })
+          } catch {
+            // Ignore cleanup errors
+          }
+        }
+
+        return Response.json({
+          success: true,
+          preview: true,
+          stats: previewStats,
+        })
       }
 
       // Track authors by email to avoid duplicates

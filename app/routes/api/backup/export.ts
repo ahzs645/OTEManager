@@ -1,6 +1,5 @@
 import { createAPIFileRoute } from '@tanstack/start/api'
 import archiver from 'archiver'
-import { PassThrough } from 'stream'
 
 export const APIRoute = createAPIFileRoute('/api/backup/export')({
   GET: async ({ request }) => {
@@ -71,40 +70,46 @@ export const APIRoute = createAPIFileRoute('/api/backup/export')({
 
       // Create ZIP archive
       const archive = archiver('zip', { zlib: { level: 9 } })
-      const passthrough = new PassThrough()
-
-      // Collect chunks for response
       const chunks: Buffer[] = []
-      passthrough.on('data', (chunk) => chunks.push(chunk))
 
-      archive.pipe(passthrough)
+      // Create a promise that resolves when archiving is complete
+      const archiveComplete = new Promise<Buffer>((resolve, reject) => {
+        archive.on('data', (chunk) => chunks.push(chunk))
+        archive.on('end', () => resolve(Buffer.concat(chunks)))
+        archive.on('error', (err) => reject(err))
+      })
 
       // Add manifest
       archive.append(JSON.stringify(manifest, null, 2), { name: 'manifest.json' })
 
-      // Add attachment files if including files
-      if (includeFiles) {
-        for (const attachment of attachments) {
-          try {
-            const fileBuffer = await storage.getFile(attachment.filePath)
+      // Add attachment files if including files (process in parallel batches for speed)
+      if (includeFiles && attachments.length > 0) {
+        const BATCH_SIZE = 10 // Process 10 files at a time
+        for (let i = 0; i < attachments.length; i += BATCH_SIZE) {
+          const batch = attachments.slice(i, i + BATCH_SIZE)
+          const results = await Promise.all(
+            batch.map(async (attachment) => {
+              try {
+                const fileBuffer = await storage.getFile(attachment.filePath)
+                return { attachment, fileBuffer }
+              } catch (err) {
+                console.warn(`Could not include file ${attachment.filePath}:`, err)
+                return { attachment, fileBuffer: null }
+              }
+            })
+          )
+          // Add successfully fetched files to archive
+          for (const { attachment, fileBuffer } of results) {
             if (fileBuffer) {
               archive.append(fileBuffer, { name: `files/${attachment.filePath}` })
             }
-          } catch (err) {
-            console.warn(`Could not include file ${attachment.filePath}:`, err)
           }
         }
       }
 
       // Finalize and wait for completion
-      await archive.finalize()
-
-      // Wait for all data to be collected
-      await new Promise<void>((resolve) => {
-        passthrough.on('end', resolve)
-      })
-
-      const zipBuffer = Buffer.concat(chunks)
+      archive.finalize()
+      const zipBuffer = await archiveComplete
       const timestamp = new Date().toISOString().slice(0, 10)
       const typeSuffix = backupType === 'both' ? '' : `-${backupType}`
 
