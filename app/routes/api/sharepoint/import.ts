@@ -341,11 +341,33 @@ export const APIRoute = createAPIFileRoute('/api/sharepoint/import')({
             }
           }
 
-          // Check article
+          // Check article - first by SharePoint ID, then by title + author
           const sharePointId = `sp-${article.Id}`
-          const existingArticle = await db.query.articles.findFirst({
+          let existingArticle = await db.query.articles.findFirst({
             where: eq(articles.formResponseId, sharePointId),
           })
+
+          // If no match by SharePoint ID, check by title + author email
+          const articleTitle = (article.Title || article.FileLeafRef || '').toLowerCase().trim()
+          if (!existingArticle && articleTitle) {
+            const { and, sql } = await import('drizzle-orm')
+            // Find article with same title and same author email
+            const titleMatch = await db
+              .select({ id: articles.id })
+              .from(articles)
+              .leftJoin(authors, eq(articles.authorId, authors.id))
+              .where(
+                and(
+                  sql`LOWER(${articles.title}) = ${articleTitle}`,
+                  sql`LOWER(${authors.email}) = ${email}`
+                )
+              )
+              .limit(1)
+
+            if (titleMatch.length > 0) {
+              existingArticle = { id: titleMatch[0].id } as any
+            }
+          }
 
           let articleStatus: 'new' | 'update' | 'skip' = 'new'
           if (existingArticle) {
@@ -430,11 +452,35 @@ export const APIRoute = createAPIFileRoute('/api/sharepoint/import')({
             continue
           }
 
-          // Check for existing article by SharePoint ID
+          // Check for existing article - first by SharePoint ID, then by title + author
           const sharePointId = `sp-${article.Id}`
-          const existingArticle = await db.query.articles.findFirst({
+          let existingArticle = await db.query.articles.findFirst({
             where: eq(articles.formResponseId, sharePointId),
           })
+
+          // If no match by SharePoint ID, check by title + author email
+          const articleTitle = (article.Title || article.FileLeafRef || '').toLowerCase().trim()
+          if (!existingArticle && articleTitle) {
+            const { and, sql } = await import('drizzle-orm')
+            const titleMatch = await db
+              .select({
+                id: articles.id,
+                formResponseId: articles.formResponseId,
+              })
+              .from(articles)
+              .leftJoin(authors, eq(articles.authorId, authors.id))
+              .where(
+                and(
+                  sql`LOWER(${articles.title}) = ${articleTitle}`,
+                  sql`LOWER(${authors.email}) = ${email}`
+                )
+              )
+              .limit(1)
+
+            if (titleMatch.length > 0) {
+              existingArticle = titleMatch[0] as any
+            }
+          }
 
           if (existingArticle && mode === 'merge') {
             stats.articles.skipped++

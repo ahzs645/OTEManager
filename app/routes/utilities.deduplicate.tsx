@@ -119,6 +119,92 @@ const deleteArticle = createServerFn({ method: 'POST' })
     return { success: true }
   })
 
+// Server function to merge articles (keep one, delete others, preserve IDs)
+const mergeArticles = createServerFn({ method: 'POST' })
+  .validator((data: { keepId: string; deleteIds: string[] }) => data)
+  .handler(async ({ data }) => {
+    const { db } = await import('@db/index')
+    const { articles, attachments, articleMultimediaTypes } = await import(
+      '@db/schema'
+    )
+    const { eq, inArray, sql } = await import('drizzle-orm')
+    const { getStorage } = await import('../../storage')
+
+    // Get the article to keep
+    const keepArticle = await db.query.articles.findFirst({
+      where: eq(articles.id, data.keepId),
+    })
+    if (!keepArticle) {
+      throw new Error('Article to keep not found')
+    }
+
+    // Get articles to delete
+    const deleteArticles = await db.query.articles.findMany({
+      where: inArray(articles.id, data.deleteIds),
+    })
+
+    // Collect all formResponseIds from articles being deleted
+    const allFormResponseIds: string[] = []
+    if (keepArticle.formResponseId) {
+      allFormResponseIds.push(keepArticle.formResponseId)
+    }
+    for (const article of deleteArticles) {
+      if (article.formResponseId && !allFormResponseIds.includes(article.formResponseId)) {
+        allFormResponseIds.push(article.formResponseId)
+      }
+    }
+
+    // Update the kept article with combined formResponseIds
+    // Store multiple IDs separated by comma for future duplicate prevention
+    if (allFormResponseIds.length > 0) {
+      const combinedIds = allFormResponseIds.join(',')
+      await db
+        .update(articles)
+        .set({
+          formResponseId: combinedIds,
+          updatedAt: new Date(),
+        })
+        .where(eq(articles.id, data.keepId))
+    }
+
+    // Move attachments from deleted articles to kept article
+    for (const deleteId of data.deleteIds) {
+      await db
+        .update(attachments)
+        .set({ articleId: data.keepId })
+        .where(eq(attachments.articleId, deleteId))
+
+      // Move multimedia types (ignore duplicates)
+      const existingTypes = await db.query.articleMultimediaTypes.findMany({
+        where: eq(articleMultimediaTypes.articleId, data.keepId),
+      })
+      const existingTypeSet = new Set(existingTypes.map((t) => t.multimediaType))
+
+      const typesToMove = await db.query.articleMultimediaTypes.findMany({
+        where: eq(articleMultimediaTypes.articleId, deleteId),
+      })
+
+      for (const type of typesToMove) {
+        if (!existingTypeSet.has(type.multimediaType)) {
+          await db.insert(articleMultimediaTypes).values({
+            articleId: data.keepId,
+            multimediaType: type.multimediaType,
+          })
+        }
+      }
+
+      // Delete multimedia types from deleted article
+      await db
+        .delete(articleMultimediaTypes)
+        .where(eq(articleMultimediaTypes.articleId, deleteId))
+
+      // Delete the duplicate article
+      await db.delete(articles).where(eq(articles.id, deleteId))
+    }
+
+    return { success: true, mergedCount: data.deleteIds.length }
+  })
+
 export const Route = createFileRoute('/utilities/deduplicate')({
   component: DeduplicatePage,
 })
@@ -146,6 +232,8 @@ function DeduplicatePage() {
   const [totalArticles, setTotalArticles] = useState(0)
   const [totalDuplicates, setTotalDuplicates] = useState(0)
   const [deletingId, setDeletingId] = useState<string | null>(null)
+  const [mergingGroup, setMergingGroup] = useState<string | null>(null)
+  const [selectedToKeep, setSelectedToKeep] = useState<Record<string, string>>({}) // groupKey -> articleId to keep
   const [error, setError] = useState<string | null>(null)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const [filter, setFilter] = useState('')
@@ -200,6 +288,49 @@ function DeduplicatePage() {
       setError(err instanceof Error ? err.message : 'Failed to delete article')
     } finally {
       setDeletingId(null)
+    }
+  }
+
+  const handleMerge = async (group: DuplicateGroup) => {
+    const keepId = selectedToKeep[group.key]
+    if (!keepId) {
+      setError('Please select which article to keep')
+      return
+    }
+
+    const keepArticle = group.articles.find((a) => a.id === keepId)
+    const deleteIds = group.articles.filter((a) => a.id !== keepId).map((a) => a.id)
+
+    if (
+      !confirm(
+        `Merge ${group.articles.length} articles into "${keepArticle?.title}"?\n\nThis will:\n• Keep the selected article with status "${keepArticle?.internalStatus}"\n• Move attachments from other copies to this article\n• Preserve all IDs to prevent future duplicates\n• Delete ${deleteIds.length} duplicate(s)`
+      )
+    ) {
+      return
+    }
+
+    setMergingGroup(group.key)
+    setError(null)
+
+    try {
+      await mergeArticles({ data: { keepId, deleteIds } })
+
+      // Update local state - remove the group entirely
+      setDuplicateGroups((groups) => groups.filter((g) => g.key !== group.key))
+      setTotalDuplicates((prev) => prev - deleteIds.length)
+      setSuccessMessage(`Merged ${group.articles.length} articles into one`)
+      setTimeout(() => setSuccessMessage(null), 3000)
+
+      // Clean up selection
+      setSelectedToKeep((prev) => {
+        const next = { ...prev }
+        delete next[group.key]
+        return next
+      })
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to merge articles')
+    } finally {
+      setMergingGroup(null)
     }
   }
 
@@ -311,10 +442,10 @@ function DeduplicatePage() {
               marginBottom: '0.25rem',
             }}
           >
-            How Duplicates Are Detected
+            How Duplicates Are Detected & Merged
           </div>
           <p style={{ fontSize: '0.8125rem', color: 'var(--fg-muted)', margin: 0 }}>
-            Articles are considered duplicates if they have the same title (case-insensitive) and the same author email. Review each group carefully before deleting.
+            Articles are considered duplicates if they have the same title and author email. Select which version to <strong>keep</strong> (usually the one with the most progress), then click <strong>Merge</strong>. This will preserve all IDs from both articles to prevent future duplicates during imports, and move any attachments to the kept article.
           </p>
         </div>
       </div>
@@ -562,11 +693,33 @@ function DeduplicatePage() {
                           style={{
                             fontSize: '0.75rem',
                             color: 'var(--fg-muted)',
-                            marginLeft: 'auto',
                           }}
                         >
-                          Keep 1, delete {group.articles.length - 1}
+                          — Select one to keep, then merge
                         </span>
+                        <button
+                          onClick={() => handleMerge(group)}
+                          disabled={!selectedToKeep[group.key] || mergingGroup === group.key}
+                          className="btn btn-primary"
+                          style={{
+                            marginLeft: 'auto',
+                            padding: '0.25rem 0.75rem',
+                            fontSize: '0.75rem',
+                            gap: '0.375rem',
+                          }}
+                        >
+                          {mergingGroup === group.key ? (
+                            <>
+                              <LoadingSpinner size="sm" />
+                              Merging...
+                            </>
+                          ) : (
+                            <>
+                              <Merge className="w-3 h-3" />
+                              Merge
+                            </>
+                          )}
+                        </button>
                       </div>
 
                       {/* Articles in Group */}
@@ -581,7 +734,18 @@ function DeduplicatePage() {
                           <tr style={{ background: 'var(--bg-subtle)' }}>
                             <th
                               style={{
-                                padding: '0.5rem 1rem',
+                                padding: '0.5rem 0.5rem',
+                                textAlign: 'center',
+                                fontWeight: 500,
+                                color: 'var(--fg-muted)',
+                                width: '50px',
+                              }}
+                            >
+                              Keep
+                            </th>
+                            <th
+                              style={{
+                                padding: '0.5rem 0.75rem',
                                 textAlign: 'left',
                                 fontWeight: 500,
                                 color: 'var(--fg-muted)',
@@ -635,7 +799,7 @@ function DeduplicatePage() {
                                 textAlign: 'center',
                                 fontWeight: 500,
                                 color: 'var(--fg-muted)',
-                                width: '80px',
+                                width: '70px',
                               }}
                             >
                               Action
@@ -643,7 +807,9 @@ function DeduplicatePage() {
                           </tr>
                         </thead>
                         <tbody>
-                          {group.articles.map((article, idx) => (
+                          {group.articles.map((article, idx) => {
+                            const isSelected = selectedToKeep[group.key] === article.id
+                            return (
                             <tr
                               key={article.id}
                               style={{
@@ -651,11 +817,36 @@ function DeduplicatePage() {
                                   idx > 0
                                     ? '0.5px solid var(--border-subtle)'
                                     : 'none',
+                                background: isSelected ? 'rgba(34, 197, 94, 0.05)' : 'transparent',
                               }}
                             >
                               <td
                                 style={{
-                                  padding: '0.75rem 1rem',
+                                  padding: '0.75rem 0.5rem',
+                                  textAlign: 'center',
+                                }}
+                              >
+                                <input
+                                  type="radio"
+                                  name={`keep-${group.key}`}
+                                  checked={isSelected}
+                                  onChange={() =>
+                                    setSelectedToKeep((prev) => ({
+                                      ...prev,
+                                      [group.key]: article.id,
+                                    }))
+                                  }
+                                  style={{
+                                    accentColor: 'var(--status-success)',
+                                    width: '16px',
+                                    height: '16px',
+                                    cursor: 'pointer',
+                                  }}
+                                />
+                              </td>
+                              <td
+                                style={{
+                                  padding: '0.75rem 0.75rem',
                                   color: 'var(--fg-default)',
                                 }}
                               >
@@ -733,7 +924,7 @@ function DeduplicatePage() {
                                 </button>
                               </td>
                             </tr>
-                          ))}
+                          )})}
                         </tbody>
                       </table>
                     </div>
