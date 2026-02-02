@@ -14,6 +14,7 @@ interface TierSelectorProps {
   currentTier: string
   baseRate?: number // In cents
   disabled?: boolean
+  onTierChange?: (newTier: string) => void
 }
 
 export function TierSelector({
@@ -21,11 +22,15 @@ export function TierSelector({
   currentTier,
   baseRate,
   disabled = false,
+  onTierChange,
 }: TierSelectorProps) {
   const [isUpdating, setIsUpdating] = useState(false)
+  const [localTier, setLocalTier] = useState(currentTier)
 
   const handleTierChange = async (newTier: string) => {
-    if (disabled || newTier === currentTier) return
+    if (disabled || newTier === localTier) return
+    const previousTier = localTier
+    setLocalTier(newTier) // Optimistic update
     setIsUpdating(true)
     try {
       await updateArticleTier({
@@ -34,9 +39,10 @@ export function TierSelector({
           tier: newTier,
         },
       })
-      window.location.reload()
+      onTierChange?.(newTier)
     } catch (error) {
       console.error('Failed to update tier:', error)
+      setLocalTier(previousTier) // Revert on error
     } finally {
       setIsUpdating(false)
     }
@@ -60,7 +66,7 @@ export function TierSelector({
       </div>
       <div className="relative">
         <select
-          value={currentTier}
+          value={localTier}
           onChange={(e) => handleTierChange(e.target.value)}
           disabled={disabled || isUpdating}
           className="text-xs px-2 py-1 rounded appearance-none pr-6"

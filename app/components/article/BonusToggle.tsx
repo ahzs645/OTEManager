@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { LoadingSpinner } from '~/components/Layout'
 import { updateArticleBonusFlags } from '~/lib/mutations'
 
 type BonusField = 'hasResearchBonus' | 'hasTimeSensitiveBonus' | 'hasMultimediaBonus' | 'hasProfessionalPhotos' | 'hasProfessionalGraphics'
@@ -11,6 +10,7 @@ interface BonusToggleProps {
   field: BonusField
   isActive: boolean
   disabled?: boolean
+  onToggle?: (field: BonusField, newValue: boolean) => void
 }
 
 export function BonusToggle({
@@ -20,22 +20,27 @@ export function BonusToggle({
   field,
   isActive,
   disabled = false,
+  onToggle,
 }: BonusToggleProps) {
   const [isToggling, setIsToggling] = useState(false)
+  const [localActive, setLocalActive] = useState(isActive)
 
   const handleToggle = async () => {
-    if (disabled) return
+    if (disabled || isToggling) return
+    const newValue = !localActive
+    setLocalActive(newValue) // Optimistic update
     setIsToggling(true)
     try {
       await updateArticleBonusFlags({
         data: {
           articleId,
-          [field]: !isActive,
+          [field]: newValue,
         },
       })
-      window.location.reload()
+      onToggle?.(field, newValue)
     } catch (error) {
       console.error('Failed to toggle bonus:', error)
+      setLocalActive(!newValue) // Revert on error
     } finally {
       setIsToggling(false)
     }
@@ -58,17 +63,18 @@ export function BonusToggle({
         </p>
       </div>
       <button
+        type="button"
         onClick={handleToggle}
         disabled={isToggling || disabled}
         className="text-xs px-2 py-1 rounded transition-colors"
         style={{
-          background: isActive ? 'var(--status-success-bg)' : 'var(--bg-muted)',
-          color: isActive ? 'var(--status-success)' : 'var(--fg-muted)',
+          background: localActive ? 'var(--status-success-bg)' : 'var(--bg-muted)',
+          color: localActive ? 'var(--status-success)' : 'var(--fg-muted)',
           cursor: disabled ? 'not-allowed' : 'pointer',
         }}
         title={disabled ? 'Cannot modify bonuses after payment' : undefined}
       >
-        {isToggling ? '...' : isActive ? 'Yes' : 'No'}
+        {isToggling ? '...' : localActive ? 'Yes' : 'No'}
       </button>
     </div>
   )

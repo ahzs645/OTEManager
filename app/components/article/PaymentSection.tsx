@@ -76,6 +76,16 @@ export function PaymentSection({ article }: PaymentSectionProps) {
   const [isMarkingPaid, setIsMarkingPaid] = useState(false)
   const [rateConfig, setRateConfig] = useState<RateConfig>(DEFAULT_RATES)
 
+  // Local state for payment that can update without page reload
+  const [localPaymentAmount, setLocalPaymentAmount] = useState(article.paymentAmount)
+  const [localBreakdown, setLocalBreakdown] = useState<PaymentCalculation | null>(() => {
+    try {
+      return article.paymentRateSnapshot ? JSON.parse(article.paymentRateSnapshot) : null
+    } catch {
+      return null
+    }
+  })
+
   // Fetch rate config on mount
   useEffect(() => {
     getPaymentRateConfig().then((result) => {
@@ -119,21 +129,17 @@ export function PaymentSection({ article }: PaymentSectionProps) {
     }
   }
 
-  // Parse payment snapshot if available
-  let breakdown: PaymentCalculation | null = null
-  try {
-    if (article.paymentRateSnapshot) {
-      breakdown = JSON.parse(article.paymentRateSnapshot)
-    }
-  } catch {
-    // Invalid JSON
-  }
+  // Use local breakdown state
+  const breakdown = localBreakdown
 
   const handleRecalculate = async () => {
     setIsRecalculating(true)
     try {
-      await calculateArticlePayment({ data: { articleId: article.id, recalculate: true } })
-      window.location.reload()
+      const result = await calculateArticlePayment({ data: { articleId: article.id, recalculate: true } })
+      if (result.success && result.calculation) {
+        setLocalBreakdown(result.calculation)
+        setLocalPaymentAmount(result.calculation.totalAmount)
+      }
     } catch (error) {
       console.error('Failed to recalculate:', error)
     } finally {
@@ -163,13 +169,13 @@ export function PaymentSection({ article }: PaymentSectionProps) {
   }
 
   const handleMarkAsPaid = async () => {
-    if (!article.paymentAmount) return
+    if (!localPaymentAmount) return
     setIsMarkingPaid(true)
     try {
       await markPaymentComplete({
         data: {
           articleId: article.id,
-          amount: article.paymentAmount,
+          amount: localPaymentAmount,
         },
       })
       window.location.reload()
@@ -230,8 +236,8 @@ export function PaymentSection({ article }: PaymentSectionProps) {
             <div>
               <p className="text-sm font-medium" style={{ color: 'var(--status-success)' }}>
                 Paid
-                {article.paymentAmount && (
-                  <span className="ml-1">{formatCents(article.paymentAmount)}</span>
+                {localPaymentAmount && (
+                  <span className="ml-1">{formatCents(localPaymentAmount)}</span>
                 )}
               </p>
               {article.paidAt && (
@@ -248,7 +254,7 @@ export function PaymentSection({ article }: PaymentSectionProps) {
             </div>
             <div>
               <p className="text-sm font-medium" style={{ color: 'var(--fg-default)' }}>
-                {article.paymentAmount ? formatCents(article.paymentAmount) : 'Not set'}
+                {localPaymentAmount ? formatCents(localPaymentAmount) : 'Not set'}
               </p>
               <p className="text-xs" style={{ color: 'var(--fg-muted)' }}>
                 {article.paymentIsManual ? 'Manual' : 'Calculated'}
@@ -303,6 +309,7 @@ export function PaymentSection({ article }: PaymentSectionProps) {
           currentTier={article.articleTier}
           baseRate={getTierBaseRate()}
           disabled={article.paymentStatus}
+          onTierChange={handleRecalculate}
         />
 
         {/* Multimedia Bonus */}
@@ -313,6 +320,7 @@ export function PaymentSection({ article }: PaymentSectionProps) {
           field="hasMultimediaBonus"
           isActive={hasMultimediaBonus}
           disabled={article.paymentStatus}
+          onToggle={handleRecalculate}
         />
 
         <BonusToggle
@@ -322,6 +330,7 @@ export function PaymentSection({ article }: PaymentSectionProps) {
           field="hasResearchBonus"
           isActive={article.hasResearchBonus || false}
           disabled={article.paymentStatus}
+          onToggle={handleRecalculate}
         />
         <BonusToggle
           articleId={article.id}
@@ -330,6 +339,7 @@ export function PaymentSection({ article }: PaymentSectionProps) {
           field="hasTimeSensitiveBonus"
           isActive={article.hasTimeSensitiveBonus || false}
           disabled={article.paymentStatus}
+          onToggle={handleRecalculate}
         />
         <BonusToggle
           articleId={article.id}
@@ -338,6 +348,7 @@ export function PaymentSection({ article }: PaymentSectionProps) {
           field="hasProfessionalPhotos"
           isActive={article.hasProfessionalPhotos || false}
           disabled={article.paymentStatus}
+          onToggle={handleRecalculate}
         />
         <BonusToggle
           articleId={article.id}
@@ -346,6 +357,7 @@ export function PaymentSection({ article }: PaymentSectionProps) {
           field="hasProfessionalGraphics"
           isActive={article.hasProfessionalGraphics || false}
           disabled={article.paymentStatus}
+          onToggle={handleRecalculate}
         />
       </div>
 
@@ -354,7 +366,7 @@ export function PaymentSection({ article }: PaymentSectionProps) {
         {!article.paymentStatus ? (
           <>
             {/* Mark as Paid - only show if payment amount is set */}
-            {article.paymentAmount && article.paymentAmount > 0 && (
+            {localPaymentAmount && localPaymentAmount > 0 && (
               <Button
                 variant="primary"
                 size="sm"
@@ -445,7 +457,7 @@ export function PaymentSection({ article }: PaymentSectionProps) {
                 min="0"
                 value={manualAmount}
                 onChange={(e) => setManualAmount(e.target.value)}
-                placeholder={article.paymentAmount ? (article.paymentAmount / 100).toFixed(2) : '0.00'}
+                placeholder={localPaymentAmount ? (localPaymentAmount / 100).toFixed(2) : '0.00'}
                 className="input pl-9 w-full"
               />
             </div>

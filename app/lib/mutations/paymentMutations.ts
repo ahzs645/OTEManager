@@ -233,6 +233,7 @@ export const updateArticleBonusFlags = createServerFn({ method: "POST" })
       hasTimeSensitiveBonus?: boolean;
       hasProfessionalPhotos?: boolean;
       hasProfessionalGraphics?: boolean;
+      hasMultimediaBonus?: boolean;
     }) => data
   )
   .handler(async ({ data }) => {
@@ -250,6 +251,8 @@ export const updateArticleBonusFlags = createServerFn({ method: "POST" })
         updateFields.hasProfessionalPhotos = data.hasProfessionalPhotos;
       if (data.hasProfessionalGraphics !== undefined)
         updateFields.hasProfessionalGraphics = data.hasProfessionalGraphics;
+      if (data.hasMultimediaBonus !== undefined)
+        updateFields.hasMultimediaBonus = data.hasMultimediaBonus;
 
       // Update bonus flags
       await db
