@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { Check, Save, Download } from 'lucide-react'
 import { Button, LoadingSpinner, Section } from '~/components/Layout'
 import { updateArticleContent } from '~/lib/mutations'
@@ -15,6 +15,22 @@ export function ContentEditor({ articleId, initialContent, title = 'Article Cont
   const [isSaving, setIsSaving] = useState(false)
   // Track what's actually saved in the database
   const [savedContent, setSavedContent] = useState(initialContent)
+  // Track last save time for auto-save status
+  const [lastSavedAt, setLastSavedAt] = useState<Date | null>(null)
+
+  // Refs for auto-save
+  const contentRef = useRef(content)
+  const savedContentRef = useRef(savedContent)
+  const isSavingRef = useRef(false)
+
+  // Keep refs in sync
+  useEffect(() => {
+    contentRef.current = content
+  }, [content])
+
+  useEffect(() => {
+    savedContentRef.current = savedContent
+  }, [savedContent])
 
   // Determine if current content matches what's saved
   const isSaved = content === savedContent
@@ -25,36 +41,54 @@ export function ContentEditor({ articleId, initialContent, title = 'Article Cont
   // Update content when initialContent changes (e.g., from document insertion)
   useEffect(() => {
     setContent(initialContent)
-    // Don't update savedContent - the new content isn't saved yet unless it matches original
+    setSavedContent(initialContent) // Also update savedContent since this came from auto-save on insert
   }, [initialContent])
 
   const handleContentChange = (newContent: string) => {
     setContent(newContent)
   }
 
-  const handleSave = async () => {
+  const handleSave = useCallback(async (contentToSave?: string) => {
+    const saveContent = contentToSave ?? contentRef.current
+
+    // Don't save if already saving or if content matches saved
+    if (isSavingRef.current || saveContent === savedContentRef.current) {
+      return
+    }
+
+    isSavingRef.current = true
     setIsSaving(true)
     try {
       const result = await updateArticleContent({
         data: {
           articleId,
-          content,
+          content: saveContent,
         },
       })
       if (result.success) {
-        // Update the saved content to current content
-        setSavedContent(content)
+        setSavedContent(saveContent)
+        setLastSavedAt(new Date())
       } else {
         console.error('Failed to save content:', result.error)
-        alert('Failed to save content: ' + (result.error || 'Unknown error'))
       }
     } catch (error) {
       console.error('Failed to save content:', error)
-      alert('Failed to save content')
     } finally {
+      isSavingRef.current = false
       setIsSaving(false)
     }
-  }
+  }, [articleId])
+
+  // Auto-save every 5 seconds if there are unsaved changes
+  useEffect(() => {
+    const autoSaveInterval = setInterval(() => {
+      if (contentRef.current !== savedContentRef.current && !isSavingRef.current) {
+        handleSave()
+      }
+    }, 5000)
+
+    return () => clearInterval(autoSaveInterval)
+  }, [handleSave])
 
   const wordCount = content.trim() ? content.trim().split(/\s+/).length : 0
   const charCount = content.length
@@ -77,13 +111,16 @@ export function ContentEditor({ articleId, initialContent, title = 'Article Cont
             <Download className="w-3 h-3" />
           </a>
           <Button
-            onClick={handleSave}
+            onClick={() => handleSave()}
             disabled={isSaving || isSaved}
             variant={isSaved ? 'secondary' : 'primary'}
             size="sm"
           >
             {isSaving ? (
-              <LoadingSpinner size="sm" />
+              <>
+                <LoadingSpinner size="sm" />
+                Saving...
+              </>
             ) : isSaved ? (
               <>
                 <Check className="w-3 h-3" />
