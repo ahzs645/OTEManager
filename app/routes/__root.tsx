@@ -17,6 +17,7 @@ import {
   Loader2,
   Settings,
   BarChart3,
+  BookOpen,
 } from "lucide-react";
 import appCss from "../styles.css?url";
 
@@ -81,6 +82,7 @@ function Header({ isLoading }: { isLoading: boolean }) {
   const navItems = [
     { path: "/", label: "Dashboard", icon: LayoutDashboard },
     { path: "/articles", label: "Articles", icon: FileText },
+    { path: "/publications", label: "Publications", icon: BookOpen },
     { path: "/authors", label: "Authors", icon: Users },
     { path: "/analytics", label: "Analytics", icon: BarChart3 },
     { path: "/utilities", label: "Utilities", icon: Wrench },

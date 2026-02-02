@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from '@tanstack/react-router'
-import { ChevronDown, Save, Check } from 'lucide-react'
-import { Button, LoadingSpinner } from '~/components/Layout'
+import { ChevronDown } from 'lucide-react'
+import { LoadingSpinner } from '~/components/Layout'
 import { updateArticleIssue } from '~/lib/mutations'
 import { useTrackUnsaved } from './UnsavedChangesContext'
 
@@ -65,32 +65,37 @@ export function VolumeIssueEditor({
     setSelectedIssueId('')
   }
 
-  const handleIssueChange = (issueId: string) => {
+  const handleIssueChange = async (issueId: string) => {
     setSelectedIssueId(issueId)
+    // Auto-save when issue is selected
+    if (issueId) {
+      await saveIssue(issueId)
+    }
   }
 
-  const handleSave = async () => {
+  const saveIssue = async (issueId: string) => {
     setIsSaving(true)
     try {
       const result = await updateArticleIssue({
         data: {
           articleId,
-          issueId: selectedIssueId || null,
+          issueId: issueId || null,
         },
       })
       if (result.success) {
-        setSavedIssueId(selectedIssueId)
+        setSavedIssueId(issueId)
         // Build the new issue object for the callback
-        if (selectedIssueId && selectedVolume) {
-          const selectedIssue = availableIssues.find((i) => i.id === selectedIssueId)
-          if (selectedIssue) {
+        const volume = volumes.find((v) => v.id === selectedVolumeId)
+        if (issueId && volume) {
+          const issue = volume.issues.find((i) => i.id === issueId)
+          if (issue) {
             onSave?.({
-              id: selectedIssue.id,
-              issueNumber: selectedIssue.issueNumber,
-              title: selectedIssue.title,
+              id: issue.id,
+              issueNumber: issue.issueNumber,
+              title: issue.title,
               volume: {
-                id: selectedVolume.id,
-                volumeNumber: selectedVolume.volumeNumber,
+                id: volume.id,
+                volumeNumber: volume.volumeNumber,
               },
             })
           }
@@ -219,20 +224,13 @@ export function VolumeIssueEditor({
           </div>
         )}
 
-        {/* Save Button */}
-        {hasChanges && (
-          <Button
-            onClick={handleSave}
-            disabled={isSaving}
-            variant="primary"
-            size="sm"
-          >
-            {isSaving ? <LoadingSpinner size="sm" /> : 'Save'}
-          </Button>
+        {/* Saving indicator */}
+        {isSaving && (
+          <LoadingSpinner size="sm" />
         )}
 
         {/* Current assignment + Clear */}
-        {currentIssue && !hasChanges && (
+        {currentIssue && !isSaving && (
           <button
             onClick={handleClear}
             disabled={isSaving}
@@ -313,28 +311,15 @@ export function VolumeIssueEditor({
         </div>
       )}
 
-      {/* Save/Clear buttons */}
-      {hasChanges && (
-        <Button
-          onClick={handleSave}
-          disabled={isSaving}
-          variant="primary"
-          size="sm"
-          className="w-full"
-        >
-          {isSaving ? (
-            <LoadingSpinner size="sm" />
-          ) : (
-            <>
-              <Save className="w-3 h-3" />
-              Save Changes
-            </>
-          )}
-        </Button>
+      {/* Saving indicator */}
+      {isSaving && (
+        <div className="flex items-center justify-center py-1">
+          <LoadingSpinner size="sm" />
+        </div>
       )}
 
       {/* Current assignment display */}
-      {currentIssue && !hasChanges && (
+      {currentIssue && !isSaving && (
         <div className="flex items-center justify-between">
           <p className="text-xs" style={{ color: 'var(--fg-muted)' }}>
             Volume {currentIssue.volume.volumeNumber} · Issue {currentIssue.issueNumber}

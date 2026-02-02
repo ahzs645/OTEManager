@@ -22,7 +22,7 @@ import {
   LoadingSpinner,
   Button,
 } from '~/components/Layout'
-import { updateArticleStatus, updateArticle, deleteArticle } from '~/lib/mutations'
+import { updateArticleStatus, updateArticle, deleteArticle, updateArticleContent, updateArticleFeedbackLetter } from '~/lib/mutations'
 import {
   PaymentSection,
   VolumeIssueEditor,
@@ -187,8 +187,34 @@ function ArticleDetailPage() {
     }
   }
 
-  const handleConvertToMarkdown = (convertedContent: string) => {
+  const handleConvertToMarkdown = async (convertedContent: string) => {
     setContent(convertedContent)
+    // Auto-save the content
+    try {
+      await updateArticleContent({
+        data: {
+          articleId: article.id,
+          content: convertedContent,
+        },
+      })
+    } catch (error) {
+      console.error('Failed to auto-save content:', error)
+    }
+  }
+
+  const handleConvertToFeedback = async (convertedContent: string) => {
+    setFeedbackContent(convertedContent)
+    // Auto-save the feedback letter
+    try {
+      await updateArticleFeedbackLetter({
+        data: {
+          articleId: article.id,
+          feedbackLetter: convertedContent,
+        },
+      })
+    } catch (error) {
+      console.error('Failed to auto-save feedback letter:', error)
+    }
   }
 
   const handleSaveTitle = async () => {
@@ -279,7 +305,7 @@ function ArticleDetailPage() {
         content={content}
         feedbackContent={feedbackContent}
         handleConvertToMarkdown={handleConvertToMarkdown}
-        setFeedbackContent={setFeedbackContent}
+        handleConvertToFeedback={handleConvertToFeedback}
         authorName={authorName}
         documents={documents}
         photos={photos}
@@ -314,7 +340,7 @@ function ArticlePageContent({
   content,
   feedbackContent,
   handleConvertToMarkdown,
-  setFeedbackContent,
+  handleConvertToFeedback,
   authorName,
   documents,
   photos,
@@ -488,7 +514,7 @@ function ArticlePageContent({
             documents={documents}
             articleId={article.id}
             onConvertToMarkdown={handleConvertToMarkdown}
-            onConvertToFeedback={setFeedbackContent}
+            onConvertToFeedback={handleConvertToFeedback}
           />
 
           {/* Photos */}
