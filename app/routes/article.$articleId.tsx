@@ -391,14 +391,14 @@ function ArticlePageContent({
               ) : (
                 <div className="flex items-center gap-2 group">
                   <h1
-                    className="text-lg font-semibold truncate"
+                    className="text-lg font-semibold"
                     style={{ color: 'var(--fg-default)', letterSpacing: '-0.02em' }}
                   >
                     {articleTitle}
                   </h1>
                   <button
                     onClick={() => setIsEditingTitle(true)}
-                    className="btn btn-ghost opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="btn btn-ghost opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0"
                     style={{ padding: '4px' }}
                     title="Edit title"
                   >

@@ -75,8 +75,8 @@ export const getConnectionConfig = createServerFn({ method: "GET" }).handler(
     const databaseUrl = process.env.DATABASE_URL || "";
     const dbConfig = parseDatabaseUrl(databaseUrl);
 
-    // Determine storage type
-    const useS3 = !!(process.env.S3_BUCKET && process.env.AWS_ACCESS_KEY_ID);
+    // Determine storage type from saved config first, then env vars
+    const storageType = savedConfig.storage?.type || (process.env.S3_BUCKET && process.env.AWS_ACCESS_KEY_ID ? "s3" : "local");
 
     const config: ConnectionConfig = {
       database: {
@@ -87,7 +87,7 @@ export const getConnectionConfig = createServerFn({ method: "GET" }).handler(
         password: savedConfig.database?.password || dbConfig.password,
       },
       storage: {
-        type: useS3 ? "s3" : "local",
+        type: storageType,
         uploadDir:
           savedConfig.storage?.uploadDir ||
           process.env.UPLOAD_DIR ||
@@ -122,9 +122,10 @@ export const getConnectionConfig = createServerFn({ method: "GET" }).handler(
     let dbConnected = false;
     let storageConnected = false;
 
-    // Test database connection
+    // Test database connection using the resolved config
     try {
-      const testClient = postgres(databaseUrl, { max: 1 });
+      const testUrl = buildDatabaseUrl(config.database);
+      const testClient = postgres(testUrl, { max: 1, connect_timeout: 5 });
       await testClient`SELECT 1`;
       await testClient.end();
       dbConnected = true;
@@ -132,16 +133,16 @@ export const getConnectionConfig = createServerFn({ method: "GET" }).handler(
       dbConnected = false;
     }
 
-    // Test storage connection
-    if (useS3) {
+    // Test storage connection using the resolved config
+    if (storageType === "s3") {
       try {
         const s3Client = new S3Client({
           region: config.storage.region,
           endpoint: config.storage.endpoint,
           forcePathStyle: true,
           credentials: {
-            accessKeyId: process.env.AWS_ACCESS_KEY_ID || "",
-            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || "",
+            accessKeyId: config.storage.accessKeyId,
+            secretAccessKey: config.storage.secretAccessKey,
           },
         });
         await s3Client.send(new ListBucketsCommand({}));
@@ -167,7 +168,7 @@ export const getConnectionConfig = createServerFn({ method: "GET" }).handler(
       status: {
         dbConnected,
         storageConnected,
-        usingS3: useS3,
+        usingS3: storageType === "s3",
       },
     };
   }
