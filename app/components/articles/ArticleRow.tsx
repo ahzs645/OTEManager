@@ -53,21 +53,28 @@ export function ArticleRow({ article }: ArticleRowProps) {
 
       {/* Volume/Issue */}
       <div>
-        {article.volume || article.issue ? (
-          <span
-            className="text-xs tabular-nums px-1.5 py-0.5 rounded"
-            style={{
-              background: 'var(--bg-subtle)',
-              color: 'var(--fg-muted)',
-            }}
-          >
-            {article.volume && `V${article.volume}`}
-            {article.volume && article.issue && '/'}
-            {article.issue && `#${article.issue}`}
-          </span>
-        ) : (
-          <span className="text-xs" style={{ color: 'var(--fg-faint)' }}>—</span>
-        )}
+        {(() => {
+          // Check new publicationIssue relationship first, then fall back to legacy fields
+          const volNum = article.publicationIssue?.volume?.volumeNumber ?? article.volume
+          const issNum = article.publicationIssue?.issueNumber ?? article.issue
+
+          if (volNum || issNum) {
+            return (
+              <span
+                className="text-xs tabular-nums px-1.5 py-0.5 rounded"
+                style={{
+                  background: 'var(--bg-subtle)',
+                  color: 'var(--fg-muted)',
+                }}
+              >
+                {volNum && `V${volNum}`}
+                {volNum && issNum && '/'}
+                {issNum && `#${issNum}`}
+              </span>
+            )
+          }
+          return <span className="text-xs" style={{ color: 'var(--fg-faint)' }}>—</span>
+        })()}
       </div>
 
       {/* Status */}
