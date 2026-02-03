@@ -37,16 +37,23 @@ export function getStorage(): StorageProvider {
   if (!storageInstance) {
     const savedConfig = loadSavedConfig();
 
-    // Check saved config first, then fall back to environment variables
-    const useS3FromConfig = savedConfig?.storage?.type === "s3";
+    // Environment variables take priority over saved config
     const useS3FromEnv = !!(process.env.S3_BUCKET && process.env.AWS_ACCESS_KEY_ID);
-    const useS3 = useS3FromConfig || useS3FromEnv;
+    const useS3FromConfig = savedConfig?.storage?.type === "s3";
+    const useS3 = useS3FromEnv || useS3FromConfig;
 
     if (useS3) {
-      // Pass saved config to S3 provider if available
-      storageInstance = new S3StorageProvider(savedConfig?.storage);
+      // Build config with env vars taking priority over saved config
+      const s3Config = {
+        endpoint: process.env.S3_ENDPOINT || savedConfig?.storage?.endpoint,
+        region: process.env.S3_REGION || savedConfig?.storage?.region,
+        bucket: process.env.S3_BUCKET || savedConfig?.storage?.bucket,
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID || savedConfig?.storage?.accessKeyId,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || savedConfig?.storage?.secretAccessKey,
+      };
+      storageInstance = new S3StorageProvider(s3Config);
     } else {
-      const uploadDir = savedConfig?.storage?.uploadDir || process.env.UPLOAD_DIR;
+      const uploadDir = process.env.UPLOAD_DIR || savedConfig?.storage?.uploadDir;
       storageInstance = new LocalStorageProvider(uploadDir);
     }
   }

@@ -7,7 +7,8 @@ export class LocalStorageProvider implements StorageProvider {
   private baseUrl: string;
 
   constructor(baseDir?: string, baseUrl?: string) {
-    this.baseDir = baseDir || process.env.UPLOAD_DIR || "./uploads";
+    // Environment variables take priority over provided config
+    this.baseDir = process.env.UPLOAD_DIR || baseDir || "./uploads";
     this.baseUrl = baseUrl || "/api/files";
   }
 

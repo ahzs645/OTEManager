@@ -22,13 +22,13 @@ export class S3StorageProvider implements StorageProvider {
   private endpoint: string;
 
   constructor(config?: S3Config) {
-    // Use provided config, fall back to environment variables
-    this.endpoint = config?.endpoint || process.env.S3_ENDPOINT || "http://localhost:9000";
-    this.bucket = config?.bucket || process.env.S3_BUCKET || "ote-articles";
+    // Environment variables take priority over provided config
+    this.endpoint = process.env.S3_ENDPOINT || config?.endpoint || "http://localhost:9000";
+    this.bucket = process.env.S3_BUCKET || config?.bucket || "ote-articles";
 
-    const region = config?.region || process.env.S3_REGION || "us-east-1";
-    const accessKeyId = config?.accessKeyId || process.env.AWS_ACCESS_KEY_ID || "";
-    const secretAccessKey = config?.secretAccessKey || process.env.AWS_SECRET_ACCESS_KEY || "";
+    const region = process.env.S3_REGION || config?.region || "us-east-1";
+    const accessKeyId = process.env.AWS_ACCESS_KEY_ID || config?.accessKeyId || "";
+    const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY || config?.secretAccessKey || "";
 
     this.client = new S3Client({
       region,

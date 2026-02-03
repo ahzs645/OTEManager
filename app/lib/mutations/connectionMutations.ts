@@ -74,46 +74,50 @@ export const getConnectionConfig = createServerFn({ method: "GET" }).handler(
     // Parse current DATABASE_URL
     const databaseUrl = process.env.DATABASE_URL || "";
     const dbConfig = parseDatabaseUrl(databaseUrl);
+    const hasEnvDatabaseUrl = !!process.env.DATABASE_URL;
 
-    // Determine storage type from saved config first, then env vars
-    const storageType = savedConfig.storage?.type || (process.env.S3_BUCKET && process.env.AWS_ACCESS_KEY_ID ? "s3" : "local");
+    // Determine storage type: env vars take priority, then saved config
+    const hasEnvS3Config = !!(process.env.S3_BUCKET && process.env.AWS_ACCESS_KEY_ID);
+    const storageType = hasEnvS3Config ? "s3" : (savedConfig.storage?.type || "local");
 
+    // Environment variables take priority over saved config
     const config: ConnectionConfig = {
       database: {
-        host: savedConfig.database?.host || dbConfig.host,
-        port: savedConfig.database?.port || dbConfig.port,
-        database: savedConfig.database?.database || dbConfig.database,
-        username: savedConfig.database?.username || dbConfig.username,
-        password: savedConfig.database?.password || dbConfig.password,
+        host: hasEnvDatabaseUrl ? dbConfig.host : (savedConfig.database?.host || dbConfig.host),
+        port: hasEnvDatabaseUrl ? dbConfig.port : (savedConfig.database?.port || dbConfig.port),
+        database: hasEnvDatabaseUrl ? dbConfig.database : (savedConfig.database?.database || dbConfig.database),
+        username: hasEnvDatabaseUrl ? dbConfig.username : (savedConfig.database?.username || dbConfig.username),
+        password: hasEnvDatabaseUrl ? dbConfig.password : (savedConfig.database?.password || dbConfig.password),
       },
       storage: {
         type: storageType,
         uploadDir:
-          savedConfig.storage?.uploadDir ||
           process.env.UPLOAD_DIR ||
+          savedConfig.storage?.uploadDir ||
           "./uploads",
         maxFileSize:
+          (process.env.MAX_FILE_SIZE ? parseInt(process.env.MAX_FILE_SIZE) : null) ||
           savedConfig.storage?.maxFileSize ||
-          parseInt(process.env.MAX_FILE_SIZE || "52428800"),
+          52428800,
         endpoint:
-          savedConfig.storage?.endpoint ||
           process.env.S3_ENDPOINT ||
+          savedConfig.storage?.endpoint ||
           "http://localhost:9000",
         region:
-          savedConfig.storage?.region ||
           process.env.S3_REGION ||
+          savedConfig.storage?.region ||
           "us-east-1",
         bucket:
-          savedConfig.storage?.bucket ||
           process.env.S3_BUCKET ||
+          savedConfig.storage?.bucket ||
           "ote-articles",
         accessKeyId:
-          savedConfig.storage?.accessKeyId ||
           process.env.AWS_ACCESS_KEY_ID ||
+          savedConfig.storage?.accessKeyId ||
           "",
         secretAccessKey:
-          savedConfig.storage?.secretAccessKey ||
           process.env.AWS_SECRET_ACCESS_KEY ||
+          savedConfig.storage?.secretAccessKey ||
           "",
       },
     };
