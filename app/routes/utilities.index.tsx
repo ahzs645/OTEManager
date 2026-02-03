@@ -6,6 +6,7 @@ import {
   ChevronRight,
   GraduationCap,
   Copy,
+  Files,
 } from 'lucide-react'
 
 export const Route = createFileRoute('/utilities/')({
@@ -47,6 +48,13 @@ const utilities = [
     title: 'Find Duplicates',
     description: 'Detect and remove duplicate articles with the same title and author',
     icon: Copy,
+  },
+  {
+    id: 'deduplicate-files',
+    path: '/utilities/deduplicate-files',
+    title: 'Find Duplicate Files',
+    description: 'Detect and merge or delete duplicate photos and documents in the library',
+    icon: Files,
   },
 ]
 
