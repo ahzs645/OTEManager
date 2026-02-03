@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
-import { Download, Edit2, Upload, ImageIcon } from 'lucide-react'
+import { Download, Edit2, Upload, ImageIcon, Trash2 } from 'lucide-react'
 import { Section, LoadingSpinner } from '~/components/Layout'
-import { updateAttachmentCaption } from '~/lib/mutations'
+import { updateAttachmentCaption, deleteAttachment } from '~/lib/mutations'
 import { CaptionModal } from './CaptionModal'
 
 interface Photo {
@@ -28,7 +28,27 @@ export function PhotoGallery({ photos, articleId }: PhotoGalleryProps) {
   const [isSavingCaption, setIsSavingCaption] = useState(false)
   const [isUploading, setIsUploading] = useState(false)
   const [isDragOver, setIsDragOver] = useState(false)
+  const [isDeleting, setIsDeleting] = useState<string | null>(null)
+  const [localPhotos, setLocalPhotos] = useState(photos)
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const handleDelete = async (attachmentId: string) => {
+    if (!confirm('Are you sure you want to delete this photo?')) return
+    setIsDeleting(attachmentId)
+    try {
+      const result = await deleteAttachment({ data: { attachmentId } })
+      if (result.success) {
+        setLocalPhotos((prev) => prev.filter((p) => p.id !== attachmentId))
+      } else {
+        alert('Failed to delete photo: ' + (result.error || 'Unknown error'))
+      }
+    } catch (error) {
+      console.error('Failed to delete photo:', error)
+      alert('Failed to delete photo')
+    } finally {
+      setIsDeleting(null)
+    }
+  }
 
   const handleUploadClick = () => {
     fileInputRef.current?.click()
@@ -147,7 +167,7 @@ export function PhotoGallery({ photos, articleId }: PhotoGalleryProps) {
       />
 
       <Section
-        title={`Photos (${photos.length})`}
+        title={`Photos (${localPhotos.length})`}
         action={
           <button
             onClick={handleUploadClick}
@@ -166,7 +186,7 @@ export function PhotoGallery({ photos, articleId }: PhotoGalleryProps) {
           className={isDragOver ? 'ring-2 ring-inset rounded-lg' : ''}
           style={isDragOver ? { ringColor: 'var(--accent)', background: 'var(--accent-subtle)' } : {}}
         >
-        {photos.length === 0 ? (
+        {localPhotos.length === 0 ? (
           <div className={`py-8 text-center transition-colors ${isDragOver ? 'bg-[var(--accent-subtle)]' : ''}`}>
             <ImageIcon className="w-10 h-10 mx-auto mb-2" style={{ color: isDragOver ? 'var(--accent)' : 'var(--fg-faint)' }} />
             <p className="text-sm" style={{ color: isDragOver ? 'var(--accent)' : 'var(--fg-muted)' }}>
@@ -188,7 +208,7 @@ export function PhotoGallery({ photos, articleId }: PhotoGalleryProps) {
           </div>
         ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {photos.map((photo) => (
+          {localPhotos.map((photo) => (
             <div
               key={photo.id}
               className="rounded-lg overflow-hidden"
@@ -247,16 +267,31 @@ export function PhotoGallery({ photos, articleId }: PhotoGalleryProps) {
                     <Edit2 className="w-3 h-3" />
                   </button>
                 </div>
-                {/* Download link */}
-                <a
-                  href={`/api/files/${photo.filePath}`}
-                  download={photo.originalFileName}
-                  className="text-xs mt-2 inline-flex items-center gap-1"
-                  style={{ color: 'var(--accent)' }}
-                >
-                  <Download className="w-3 h-3" />
-                  Download
-                </a>
+                {/* Download and Delete */}
+                <div className="flex items-center justify-between mt-2">
+                  <a
+                    href={`/api/files/${photo.filePath}`}
+                    download={photo.originalFileName}
+                    className="text-xs inline-flex items-center gap-1"
+                    style={{ color: 'var(--accent)' }}
+                  >
+                    <Download className="w-3 h-3" />
+                    Download
+                  </a>
+                  <button
+                    onClick={() => handleDelete(photo.id)}
+                    disabled={isDeleting === photo.id}
+                    className="btn btn-ghost !p-1"
+                    title="Delete photo"
+                    style={{ color: 'var(--status-error)' }}
+                  >
+                    {isDeleting === photo.id ? (
+                      <LoadingSpinner size="sm" />
+                    ) : (
+                      <Trash2 className="w-3 h-3" />
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
           ))}

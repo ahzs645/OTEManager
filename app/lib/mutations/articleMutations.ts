@@ -357,6 +357,41 @@ export const updateAttachmentCaption = createServerFn({ method: "POST" })
     }
   });
 
+// Delete attachment (document or photo)
+export const deleteAttachment = createServerFn({ method: "POST" })
+  .validator((data: { attachmentId: string }) => data)
+  .handler(async ({ data }) => {
+    try {
+      const { db, attachments } = await import("@db/index");
+      const { eq } = await import("drizzle-orm");
+      const { getStorage } = await import("../../../storage");
+
+      // Get the attachment first to get the file path
+      const attachment = await db.query.attachments.findFirst({
+        where: eq(attachments.id, data.attachmentId),
+      });
+
+      if (!attachment) {
+        return { success: false, error: "Attachment not found" };
+      }
+
+      // Delete file from storage
+      const storage = getStorage();
+      await storage.delete(attachment.filePath);
+
+      // Delete from database
+      await db.delete(attachments).where(eq(attachments.id, data.attachmentId));
+
+      return { success: true };
+    } catch (error) {
+      console.error("Failed to delete attachment:", error);
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : "Unknown error",
+      };
+    }
+  });
+
 // Update article's issue assignment
 export const updateArticleIssue = createServerFn({ method: "POST" })
   .validator((data: { articleId: string; issueId: string | null }) => data)

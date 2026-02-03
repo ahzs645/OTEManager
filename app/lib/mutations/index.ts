@@ -29,6 +29,7 @@ export {
   toggleArticleFeatured,
   deleteArticle,
   updateAttachmentCaption,
+  deleteAttachment,
   updateArticleIssue,
 } from "./articleMutations";
 

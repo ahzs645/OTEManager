@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
-import { FileText, Download, Wand2, Eye, FileEdit, MessageSquare, X, Upload } from 'lucide-react'
+import { FileText, Download, Wand2, Eye, FileEdit, MessageSquare, X, Upload, Trash2 } from 'lucide-react'
 import { Section, LoadingSpinner } from '~/components/Layout'
+import { deleteAttachment } from '~/lib/mutations'
 
 interface Document {
   id: string
@@ -29,8 +30,32 @@ export function DocumentList({
   const [isLoadingPreview, setIsLoadingPreview] = useState(false)
   const [isUploading, setIsUploading] = useState(false)
   const [isDragOver, setIsDragOver] = useState(false)
+  const [isDeleting, setIsDeleting] = useState<string | null>(null)
+  const [localDocuments, setLocalDocuments] = useState(documents)
   const previewContainerRef = useRef<HTMLDivElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const handleDelete = async (attachmentId: string) => {
+    if (!confirm('Are you sure you want to delete this document?')) return
+    setIsDeleting(attachmentId)
+    try {
+      const result = await deleteAttachment({ data: { attachmentId } })
+      if (result.success) {
+        setLocalDocuments((prev) => prev.filter((d) => d.id !== attachmentId))
+        if (previewAttachmentId === attachmentId) {
+          setPreviewAttachmentId(null)
+          setPreviewFileName(null)
+        }
+      } else {
+        alert('Failed to delete document: ' + (result.error || 'Unknown error'))
+      }
+    } catch (error) {
+      console.error('Failed to delete document:', error)
+      alert('Failed to delete document')
+    } finally {
+      setIsDeleting(null)
+    }
+  }
 
   const handleUploadClick = () => {
     fileInputRef.current?.click()
@@ -231,7 +256,7 @@ export function DocumentList({
       />
 
       <Section
-        title={`Documents (${documents.length})`}
+        title={`Documents (${localDocuments.length})`}
         noPadding
         action={
           <button
@@ -274,13 +299,13 @@ export function DocumentList({
               </p>
             </div>
           ) : null}
-          {documents.map((attachment, index) => (
+          {localDocuments.map((attachment, index) => (
             <div
               key={attachment.id}
               className="flex items-center justify-between px-4 py-3"
               style={{
                 borderBottom:
-                  index < documents.length - 1 || previewAttachmentId
+                  index < localDocuments.length - 1 || previewAttachmentId
                     ? '0.5px solid var(--border-subtle)'
                     : 'none',
               }}
@@ -370,6 +395,19 @@ export function DocumentList({
                 >
                   <Download className="w-4 h-4" />
                 </a>
+                <button
+                  onClick={() => handleDelete(attachment.id)}
+                  disabled={isDeleting === attachment.id}
+                  className="btn btn-ghost !p-2"
+                  title="Delete document"
+                  style={{ color: 'var(--status-error)' }}
+                >
+                  {isDeleting === attachment.id ? (
+                    <LoadingSpinner size="sm" />
+                  ) : (
+                    <Trash2 className="w-4 h-4" />
+                  )}
+                </button>
               </div>
             </div>
           ))}
