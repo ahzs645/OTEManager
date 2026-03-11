@@ -49,8 +49,8 @@ function buildConnectionString(): string {
 // Database connection string from environment or saved config
 const connectionString = buildConnectionString();
 
-// Create postgres client
-const client = postgres(connectionString);
+// Create postgres client (ssl: 'require' needed when pg_hba.conf rejects non-encrypted connections)
+const client = postgres(connectionString, { ssl: 'require' });
 
 // Create drizzle instance with schema
 export const db = drizzle(client, { schema });

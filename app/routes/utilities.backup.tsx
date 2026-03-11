@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import {
   Download,
   Upload,
@@ -16,6 +16,22 @@ export const Route = createFileRoute('/utilities/backup')({
   component: BackupPage,
 })
 
+interface ImportResult {
+  success: boolean
+  error?: string
+  stats?: {
+    authors: { imported: number; skipped: number }
+    volumes: { imported: number; skipped: number }
+    issues: { imported: number; skipped: number }
+    articles: { imported: number; skipped: number }
+    attachments: { imported: number; skipped: number; filesRestored: number }
+  }
+  backupInfo?: {
+    exportedAt: string
+    version: string
+  }
+}
+
 function BackupPage() {
   const [isExporting, setIsExporting] = useState(false)
   const [isImporting, setIsImporting] = useState(false)
@@ -23,12 +39,13 @@ function BackupPage() {
   const [exportResult, setExportResult] = useState<{ success: boolean; message: string } | null>(
     null
   )
-  const [importResult, setImportResult] = useState<{ success: boolean; message: string } | null>(
-    null
-  )
+  const [importResult, setImportResult] = useState<ImportResult | null>(null)
   const [importMode, setImportMode] = useState<'merge' | 'replace'>('merge')
   const [backupType, setBackupType] = useState<'both' | 'database' | 'files'>('both')
   const [restoreType, setRestoreType] = useState<'both' | 'database' | 'files'>('both')
+  const [selectedFile, setSelectedFile] = useState<File | null>(null)
+  const [showConfirmReplace, setShowConfirmReplace] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const handleBackupExport = async () => {
     setIsExporting(true)
@@ -109,16 +126,31 @@ function BackupPage() {
     }
   }
 
-  const handleBackupImport = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
-    if (!file) return
+    if (file) {
+      setSelectedFile(file)
+      setImportResult(null)
+      setShowConfirmReplace(false)
+    }
+  }
+
+  const handleBackupImport = async () => {
+    if (!selectedFile) return
+
+    // If replace mode, show confirmation first
+    if (importMode === 'replace' && !showConfirmReplace) {
+      setShowConfirmReplace(true)
+      return
+    }
 
     setIsImporting(true)
+    setShowConfirmReplace(false)
     setImportResult(null)
 
     try {
       const formData = new FormData()
-      formData.append('backup', file)
+      formData.append('backup', selectedFile)
       formData.append('mode', importMode)
       formData.append('type', restoreType)
 
@@ -130,32 +162,26 @@ function BackupPage() {
       const result = await response.json()
 
       if (!response.ok) {
-        throw new Error(result.error || 'Import failed')
+        setImportResult({
+          success: false,
+          error: result.error || 'Import failed',
+        })
+      } else {
+        setImportResult(result)
+        if (result.success) {
+          setSelectedFile(null)
+          if (fileInputRef.current) {
+            fileInputRef.current.value = ''
+          }
+        }
       }
-
-      const messages: string[] = []
-      if (result.stats?.articles?.imported !== undefined) {
-        messages.push(`${result.stats.articles.imported} articles`)
-      }
-      if (result.stats?.authors?.imported !== undefined) {
-        messages.push(`${result.stats.authors.imported} authors`)
-      }
-      if (result.stats?.attachments?.filesRestored !== undefined && result.stats.attachments.filesRestored > 0) {
-        messages.push(`${result.stats.attachments.filesRestored} files`)
-      }
-      setImportResult({
-        success: true,
-        message: `Restored successfully: ${messages.join(', ') || 'backup processed'}`,
-      })
     } catch (error) {
       setImportResult({
         success: false,
-        message: error instanceof Error ? error.message : 'Import failed',
+        error: error instanceof Error ? error.message : 'Import failed',
       })
     } finally {
       setIsImporting(false)
-      // Reset file input
-      e.target.value = ''
     }
   }
 
@@ -523,7 +549,7 @@ function BackupPage() {
                   name="importMode"
                   value="merge"
                   checked={importMode === 'merge'}
-                  onChange={() => setImportMode('merge')}
+                  onChange={() => { setImportMode('merge'); setShowConfirmReplace(false) }}
                   style={{ accentColor: 'var(--accent)' }}
                 />
                 <span style={{ fontSize: '0.875rem', color: 'var(--fg-default)' }}>
@@ -554,7 +580,7 @@ function BackupPage() {
           </div>
 
           {/* Warning for Replace mode */}
-          {importMode === 'replace' && (
+          {importMode === 'replace' && !showConfirmReplace && (
             <div
               style={{
                 display: 'flex',
@@ -575,48 +601,156 @@ function BackupPage() {
             </div>
           )}
 
-          {/* File Upload */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <label className="btn btn-secondary" style={{ gap: '0.5rem', cursor: 'pointer' }}>
-              {isImporting ? (
-                <>
-                  <LoadingSpinner size="sm" />
-                  Importing...
-                </>
-              ) : (
-                <>
-                  <Upload className="w-4 h-4" />
-                  Choose Backup File
-                </>
-              )}
-              <input
-                type="file"
-                accept=".zip"
-                onChange={handleBackupImport}
-                disabled={isImporting}
-                style={{ display: 'none' }}
-              />
-            </label>
-
-            {importResult && (
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  fontSize: '0.875rem',
-                  color: importResult.success ? 'var(--status-success)' : 'var(--status-error)',
-                }}
-              >
-                {importResult.success ? (
-                  <CheckCircle className="w-4 h-4" />
-                ) : (
-                  <AlertCircle className="w-4 h-4" />
-                )}
-                {importResult.message}
+          {/* Replace Confirmation */}
+          {showConfirmReplace && (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: '0.75rem',
+                padding: '1rem',
+                background: 'rgba(239, 68, 68, 0.08)',
+                border: '0.5px solid rgba(239, 68, 68, 0.25)',
+                borderRadius: '6px',
+                marginBottom: '1rem',
+              }}
+            >
+              <AlertCircle className="w-4 h-4" style={{ color: 'var(--status-error)', flexShrink: 0, marginTop: '2px' }} />
+              <div>
+                <p style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--status-error)', margin: '0 0 0.25rem 0' }}>
+                  This will delete all existing data
+                </p>
+                <p style={{ fontSize: '0.8125rem', color: 'var(--fg-muted)', margin: '0 0 0.75rem 0' }}>
+                  All current articles, authors, and files will be permanently removed before importing.
+                </p>
+                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                  <button
+                    onClick={() => setShowConfirmReplace(false)}
+                    className="btn btn-secondary"
+                    style={{ fontSize: '0.8125rem' }}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleBackupImport}
+                    disabled={isImporting}
+                    style={{
+                      padding: '0.375rem 0.75rem',
+                      fontSize: '0.8125rem',
+                      fontWeight: 500,
+                      borderRadius: '6px',
+                      border: 'none',
+                      background: 'var(--status-error)',
+                      color: 'white',
+                      cursor: isImporting ? 'not-allowed' : 'pointer',
+                      opacity: isImporting ? 0.6 : 1,
+                    }}
+                  >
+                    {isImporting ? 'Importing...' : 'Yes, Replace All'}
+                  </button>
+                </div>
               </div>
+            </div>
+          )}
+
+          {/* File Selection & Import */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+            <input
+              type="file"
+              ref={fileInputRef}
+              accept=".zip"
+              onChange={handleFileSelect}
+              style={{ display: 'none' }}
+            />
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              className="btn btn-secondary"
+              style={{ gap: '0.5rem' }}
+            >
+              <Upload className="w-4 h-4" />
+              Choose Backup File
+            </button>
+
+            {selectedFile && (
+              <>
+                <span style={{ fontSize: '0.8125rem', color: 'var(--fg-muted)' }}>
+                  {selectedFile.name} ({(selectedFile.size / 1024 / 1024).toFixed(2)} MB)
+                </span>
+                {!showConfirmReplace && (
+                  <button
+                    onClick={handleBackupImport}
+                    disabled={isImporting}
+                    className="btn btn-primary"
+                    style={{ gap: '0.5rem' }}
+                  >
+                    {isImporting ? (
+                      <>
+                        <LoadingSpinner size="sm" />
+                        Importing...
+                      </>
+                    ) : (
+                      <>
+                        <Upload className="w-4 h-4" />
+                        Import Backup
+                      </>
+                    )}
+                  </button>
+                )}
+              </>
             )}
           </div>
+
+          {/* Import Result */}
+          {importResult && (
+            <div
+              style={{
+                marginTop: '1rem',
+                padding: '1rem',
+                borderRadius: '6px',
+                background: importResult.success ? 'rgba(34, 197, 94, 0.08)' : 'rgba(239, 68, 68, 0.08)',
+                border: `0.5px solid ${importResult.success ? 'rgba(34, 197, 94, 0.25)' : 'rgba(239, 68, 68, 0.25)'}`,
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                {importResult.success ? (
+                  <CheckCircle className="w-4 h-4" style={{ color: 'var(--status-success)', flexShrink: 0, marginTop: '2px' }} />
+                ) : (
+                  <AlertCircle className="w-4 h-4" style={{ color: 'var(--status-error)', flexShrink: 0, marginTop: '2px' }} />
+                )}
+                <div style={{ flex: 1 }}>
+                  <p
+                    style={{
+                      fontSize: '0.875rem',
+                      fontWeight: 600,
+                      color: importResult.success ? 'var(--status-success)' : 'var(--status-error)',
+                      margin: '0 0 0.25rem 0',
+                    }}
+                  >
+                    {importResult.success ? 'Import Successful' : 'Import Failed'}
+                  </p>
+                  {importResult.error && (
+                    <p style={{ fontSize: '0.8125rem', color: 'var(--fg-muted)', margin: '0 0 0.5rem 0' }}>
+                      {importResult.error}
+                    </p>
+                  )}
+                  {importResult.stats && (
+                    <div style={{ fontSize: '0.8125rem', color: 'var(--fg-muted)', lineHeight: 1.6 }}>
+                      <p style={{ margin: 0 }}>Authors: {importResult.stats.authors.imported} imported, {importResult.stats.authors.skipped} skipped</p>
+                      <p style={{ margin: 0 }}>Volumes: {importResult.stats.volumes.imported} imported, {importResult.stats.volumes.skipped} skipped</p>
+                      <p style={{ margin: 0 }}>Issues: {importResult.stats.issues.imported} imported, {importResult.stats.issues.skipped} skipped</p>
+                      <p style={{ margin: 0 }}>Articles: {importResult.stats.articles.imported} imported, {importResult.stats.articles.skipped} skipped</p>
+                      <p style={{ margin: 0 }}>Attachments: {importResult.stats.attachments.imported} imported, {importResult.stats.attachments.filesRestored} files restored</p>
+                    </div>
+                  )}
+                  {importResult.backupInfo && (
+                    <p style={{ fontSize: '0.75rem', color: 'var(--fg-faint)', margin: '0.5rem 0 0 0' }}>
+                      Backup from: {new Date(importResult.backupInfo.exportedAt).toLocaleString()}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Info Section */}
