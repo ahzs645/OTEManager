@@ -18,10 +18,10 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.975.0",
     "@tanstack/react-query": "5.62.16",
-    "@tanstack/react-router": "1.93.0",
-    "@tanstack/router-generator": "1.93.0",
-    "@tanstack/router-plugin": "1.93.0",
-    "@tanstack/start": "1.93.0",
+    "@tanstack/react-router": "1.111.7",
+    "@tanstack/router-generator": "1.111.7",
+    "@tanstack/router-plugin": "1.111.7",
+    "@tanstack/start": "1.111.9",
     "@types/archiver": "^7.0.0",
     "archiver": "^7.0.1",
     "docx": "^9.5.1",
@@ -34,11 +34,11 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "recharts": "^3.6.0",
-    "vinxi": "0.5.1",
+    "vinxi": "0.5.3",
     "zod": "3.24.2"
   },
   "devDependencies": {
-    "@tanstack/router-cli": "1.93.0",
+    "@tanstack/router-cli": "1.111.7",
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
     "autoprefixer": "10.4.20",
@@ -47,13 +47,25 @@
     "postcss": "8.4.49",
     "tailwindcss": "3.4.16",
     "typescript": "5.7.2",
-    "vite": "5.4.11",
+    "vite": "6.4.1",
     "vite-tsconfig-paths": "^6.0.4"
   },
   "overrides": {
-    "@tanstack/router-generator": "1.93.0",
-    "@tanstack/router-plugin": "1.93.0",
-    "@tanstack/react-router": "1.93.0",
-    "@tanstack/router-core": "1.93.0"
+    "@tanstack/router-generator": "1.111.7",
+    "@tanstack/router-plugin": "1.111.7",
+    "@tanstack/react-router": "1.111.7",
+    "@tanstack/router-core": "1.111.7",
+    "@tanstack/start-plugin": "1.111.2",
+    "@tanstack/server-functions-plugin": "1.111.2",
+    "@tanstack/start-client": "1.111.9",
+    "@tanstack/start-server": "1.111.9",
+    "@tanstack/start-api-routes": "1.111.9",
+    "@tanstack/start-router-manifest": "1.111.7",
+    "@tanstack/start-server-functions-client": "1.111.9",
+    "@tanstack/start-server-functions-handler": "1.111.9",
+    "@tanstack/start-server-functions-ssr": "1.111.9",
+    "@tanstack/start-server-functions-server": "1.111.10",
+    "@tanstack/start-server-functions-fetcher": "1.111.9",
+    "@tanstack/start-config": "1.111.9"
   }
 }
