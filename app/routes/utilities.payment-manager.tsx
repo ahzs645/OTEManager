@@ -215,8 +215,10 @@ function PaymentManagerPage() {
     })
   }, [])
 
-  // Apply filter to get working list
+  // Apply filter to get working list (exclude ineligible authors)
   const filteredArticles = articles.filter((a) => {
+    // Hide Faculty/Staff — they are not eligible for payment
+    if (['Faculty', 'Staff'].includes(a.author.authorType || '')) return false
     if (!filter) return true
     const searchLower = filter.toLowerCase()
     const issueLabel = getIssueLabel(a).toLowerCase()
