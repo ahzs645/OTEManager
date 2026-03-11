@@ -1,8 +1,8 @@
-import { createServerFn } from "@tanstack/start";
+import { createServerFn } from "@tanstack/react-start";
 
 // Add note to article
 export const addArticleNote = createServerFn({ method: "POST" })
-  .validator(
+  .inputValidator(
     (data: { articleId: string; content: string; createdBy?: string }) => data
   )
   .handler(async ({ data }) => {
@@ -30,7 +30,7 @@ export const addArticleNote = createServerFn({ method: "POST" })
 
 // Update an article note
 export const updateArticleNote = createServerFn({ method: "POST" })
-  .validator((data: { noteId: string; content: string }) => data)
+  .inputValidator((data: { noteId: string; content: string }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articleNotes } = await import("@db/index");
@@ -56,7 +56,7 @@ export const updateArticleNote = createServerFn({ method: "POST" })
 
 // Delete an article note
 export const deleteArticleNote = createServerFn({ method: "POST" })
-  .validator((data: { noteId: string }) => data)
+  .inputValidator((data: { noteId: string }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articleNotes } = await import("@db/index");

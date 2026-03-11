@@ -1,5 +1,4 @@
-import { json } from "@tanstack/start";
-import { createAPIFileRoute } from "@tanstack/start/api";
+import { createFileRoute } from '@tanstack/react-router'
 import { z } from "zod";
 
 // Schema for validating incoming webhook data from Power Automate
@@ -63,54 +62,58 @@ const ArticleSubmissionSchema = z.object({
 
 type ArticleSubmission = z.infer<typeof ArticleSubmissionSchema>;
 
-export const APIRoute = createAPIFileRoute("/api/submissions")({
-  POST: async ({ request }) => {
-    try {
-      // Optional: Verify webhook secret
-      const webhookSecret = process.env.WEBHOOK_SECRET;
-      if (webhookSecret) {
-        const authHeader = request.headers.get("X-Webhook-Secret");
-        if (authHeader !== webhookSecret) {
-          return json({ error: "Unauthorized" }, { status: 401 });
+export const Route = createFileRoute('/api/submissions')({
+  server: {
+    handlers: {
+      POST: async ({ request }) => {
+        try {
+          // Optional: Verify webhook secret
+          const webhookSecret = process.env.WEBHOOK_SECRET;
+          if (webhookSecret) {
+            const authHeader = request.headers.get("X-Webhook-Secret");
+            if (authHeader !== webhookSecret) {
+              return Response.json({ error: "Unauthorized" }, { status: 401 });
+            }
+          }
+
+          // Parse and validate request body
+          const body = await request.json();
+          const validationResult = ArticleSubmissionSchema.safeParse(body);
+
+          if (!validationResult.success) {
+            return Response.json(
+              {
+                error: "Validation failed",
+                details: validationResult.error.errors,
+              },
+              { status: 400 }
+            );
+          }
+
+          const submission = validationResult.data;
+
+          // Process the submission
+          const result = await processSubmission(submission);
+
+          return Response.json({
+            success: true,
+            message: "Article submission received",
+            articleId: result.articleId,
+          });
+        } catch (error) {
+          console.error("Webhook error:", error);
+          return Response.json(
+            {
+              error: "Internal server error",
+              message: error instanceof Error ? error.message : "Unknown error",
+            },
+            { status: 500 }
+          );
         }
-      }
-
-      // Parse and validate request body
-      const body = await request.json();
-      const validationResult = ArticleSubmissionSchema.safeParse(body);
-
-      if (!validationResult.success) {
-        return json(
-          {
-            error: "Validation failed",
-            details: validationResult.error.errors,
-          },
-          { status: 400 }
-        );
-      }
-
-      const submission = validationResult.data;
-
-      // Process the submission
-      const result = await processSubmission(submission);
-
-      return json({
-        success: true,
-        message: "Article submission received",
-        articleId: result.articleId,
-      });
-    } catch (error) {
-      console.error("Webhook error:", error);
-      return json(
-        {
-          error: "Internal server error",
-          message: error instanceof Error ? error.message : "Unknown error",
-        },
-        { status: 500 }
-      );
-    }
+      },
+    },
   },
-});
+})
 
 async function processSubmission(submission: ArticleSubmission): Promise<{ articleId: string }> {
   const { db, authors, articles, attachments, articleMultimediaTypes } =

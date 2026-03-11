@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
-import { createServerFn } from '@tanstack/start'
+import { createServerFn } from '@tanstack/react-start'
 import { useState } from 'react'
 import {
   ArrowLeft,
@@ -39,7 +39,7 @@ import {
 
 // Server function to fetch article data
 const fetchArticleData = createServerFn({ method: 'GET' })
-  .validator((articleId: string) => {
+  .inputValidator((articleId: string) => {
     if (!articleId || typeof articleId !== 'string') {
       throw new Error('Article ID is required')
     }

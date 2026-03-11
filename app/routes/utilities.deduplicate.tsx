@@ -10,7 +10,7 @@ import {
   Search,
   Merge,
 } from 'lucide-react'
-import { createServerFn } from '@tanstack/start'
+import { createServerFn } from '@tanstack/react-start'
 import { LoadingSpinner } from '~/components/Layout'
 
 // Server function to find duplicates
@@ -81,7 +81,7 @@ const findDuplicates = createServerFn({ method: 'GET' }).handler(async () => {
 
 // Server function to delete an article
 const deleteArticle = createServerFn({ method: 'POST' })
-  .validator((data: { articleId: string }) => data)
+  .inputValidator((data: { articleId: string }) => data)
   .handler(async ({ data }) => {
     const { db } = await import('@db/index')
     const { articles, attachments, articleMultimediaTypes } = await import(
@@ -121,7 +121,7 @@ const deleteArticle = createServerFn({ method: 'POST' })
 
 // Server function to merge articles (keep one, delete others, preserve IDs)
 const mergeArticles = createServerFn({ method: 'POST' })
-  .validator((data: { keepId: string; deleteIds: string[] }) => data)
+  .inputValidator((data: { keepId: string; deleteIds: string[] }) => data)
   .handler(async ({ data }) => {
     const { db } = await import('@db/index')
     const { articles, attachments, articleMultimediaTypes } = await import(

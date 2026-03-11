@@ -1,4 +1,4 @@
-import { createAPIFileRoute } from '@tanstack/start/api'
+import { createFileRoute } from '@tanstack/react-router'
 import JSZip from 'jszip'
 import { Document, Packer, Paragraph, TextRun, HeadingLevel } from 'docx'
 
@@ -151,8 +151,10 @@ async function markdownToDocx(
   return await Packer.toBuffer(doc)
 }
 
-export const APIRoute = createAPIFileRoute('/api/exportIssue/$issueId')({
-  GET: async ({ params }) => {
+export const Route = createFileRoute('/api/exportIssue/$issueId')({
+  server: {
+    handlers: {
+      GET: async ({ params }) => {
         const { issueId } = params
 
         if (!issueId) {
@@ -291,6 +293,8 @@ Caption: ${photo.caption || '(No caption provided)'}`
               headers: { 'Content-Type': 'application/json' },
             },
           )
-    }
+        }
+      },
+    },
   },
 })

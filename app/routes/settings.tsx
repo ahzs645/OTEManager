@@ -978,7 +978,7 @@ function ConnectionConfigSection() {
       const result = await testDatabaseConnection({ data: config.database });
       setDbTestResult({
         success: result.success,
-        message: result.success ? result.message : result.error || "Connection failed",
+        message: result.success ? (result.message || "Connected") : result.error || "Connection failed",
         helpText: result.helpText,
       });
     } catch (error) {
@@ -1009,7 +1009,7 @@ function ConnectionConfigSection() {
       });
       setStorageTestResult({
         success: result.success,
-        message: result.success ? result.message : result.error || "Connection failed",
+        message: result.success ? (result.message || "Connected") : result.error || "Connection failed",
         helpText: result.helpText,
       });
     } catch (error) {

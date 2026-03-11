@@ -8,7 +8,7 @@ import {
   Upload,
   RefreshCw,
 } from 'lucide-react'
-import { createServerFn } from '@tanstack/start'
+import { createServerFn } from '@tanstack/react-start'
 import { LoadingSpinner } from '~/components/Layout'
 
 // Map role values from SharePoint to our studentType enum
@@ -28,7 +28,7 @@ function mapRoleToStudentType(role: string | undefined): string | null {
 
 // Server function to update student types
 const updateStudentTypes = createServerFn({ method: 'POST' })
-  .validator((data: { articles: any[] }) => data)
+  .inputValidator((data: { articles: any[] }) => data)
   .handler(async ({ data }) => {
     const { db, authors } = await import('@db/index')
     const { eq } = await import('drizzle-orm')

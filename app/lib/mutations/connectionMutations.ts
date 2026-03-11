@@ -1,11 +1,4 @@
-import { createServerFn } from "@tanstack/start";
-import fs from "fs";
-import path from "path";
-import postgres from "postgres";
-import { S3Client, ListBucketsCommand } from "@aws-sdk/client-s3";
-
-// Path to local config file (for storing connection settings)
-const CONFIG_FILE_PATH = path.join(process.cwd(), ".env.local.json");
+import { createServerFn } from "@tanstack/react-start";
 
 export interface ConnectionConfig {
   database: {
@@ -60,11 +53,15 @@ function buildDatabaseUrl(config: ConnectionConfig["database"]): string {
 // Get current connection configuration from environment
 export const getConnectionConfig = createServerFn({ method: "GET" }).handler(
   async () => {
+    const fs = await import("fs");
+    const path = await import("path");
+    const configFilePath = path.join(process.cwd(), ".env.local.json");
+
     // Try to load saved config first
     let savedConfig: Partial<ConnectionConfig> = {};
     try {
-      if (fs.existsSync(CONFIG_FILE_PATH)) {
-        const content = fs.readFileSync(CONFIG_FILE_PATH, "utf-8");
+      if (fs.existsSync(configFilePath)) {
+        const content = fs.readFileSync(configFilePath, "utf-8");
         savedConfig = JSON.parse(content);
       }
     } catch {
@@ -128,8 +125,9 @@ export const getConnectionConfig = createServerFn({ method: "GET" }).handler(
 
     // Test database connection using the resolved config
     try {
+      const { default: pg } = await import("postgres");
       const testUrl = buildDatabaseUrl(config.database);
-      const testClient = postgres(testUrl, { max: 1, connect_timeout: 5 });
+      const testClient = pg(testUrl, { max: 1, connect_timeout: 5 });
       await testClient`SELECT 1`;
       await testClient.end();
       dbConnected = true;
@@ -140,6 +138,7 @@ export const getConnectionConfig = createServerFn({ method: "GET" }).handler(
     // Test storage connection using the resolved config
     if (storageType === "s3") {
       try {
+        const { S3Client, ListBucketsCommand } = await import("@aws-sdk/client-s3");
         const s3Client = new S3Client({
           region: config.storage.region,
           endpoint: config.storage.endpoint,
@@ -180,12 +179,16 @@ export const getConnectionConfig = createServerFn({ method: "GET" }).handler(
 
 // Save connection configuration
 export const saveConnectionConfig = createServerFn({ method: "POST" })
-  .validator((data: { config: ConnectionConfig }) => data)
+  .inputValidator((data: { config: ConnectionConfig }) => data)
   .handler(async ({ data }) => {
+    const fs = await import("fs");
+    const path = await import("path");
+    const configFilePath = path.join(process.cwd(), ".env.local.json");
+
     try {
       // Save to local JSON config file
       fs.writeFileSync(
-        CONFIG_FILE_PATH,
+        configFilePath,
         JSON.stringify(data.config, null, 2),
         "utf-8"
       );
@@ -223,7 +226,7 @@ AWS_SECRET_ACCESS_KEY=${data.config.storage.secretAccessKey}
 
 // Test database connection with provided credentials
 export const testDatabaseConnection = createServerFn({ method: "POST" })
-  .validator(
+  .inputValidator(
     (data: {
       host: string;
       port: number;
@@ -234,8 +237,9 @@ export const testDatabaseConnection = createServerFn({ method: "POST" })
   )
   .handler(async ({ data }) => {
     try {
+      const { default: pg } = await import("postgres");
       const connectionUrl = buildDatabaseUrl(data);
-      const testClient = postgres(connectionUrl, {
+      const testClient = pg(connectionUrl, {
         max: 1,
         connect_timeout: 10,
         idle_timeout: 5,
@@ -294,7 +298,7 @@ export const testDatabaseConnection = createServerFn({ method: "POST" })
 
 // Test S3/MinIO connection with provided credentials
 export const testStorageConnection = createServerFn({ method: "POST" })
-  .validator(
+  .inputValidator(
     (data: {
       type: "local" | "s3";
       endpoint?: string;
@@ -308,6 +312,8 @@ export const testStorageConnection = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     if (data.type === "local") {
       try {
+        const fs = await import("fs");
+        const path = await import("path");
         const uploadDir = data.uploadDir || "./uploads";
         if (!fs.existsSync(uploadDir)) {
           fs.mkdirSync(uploadDir, { recursive: true });
@@ -334,6 +340,7 @@ export const testStorageConnection = createServerFn({ method: "POST" })
 
     // Test S3/MinIO connection
     try {
+      const { S3Client, ListBucketsCommand } = await import("@aws-sdk/client-s3");
       const s3Client = new S3Client({
         region: data.region || "us-east-1",
         endpoint: data.endpoint || "http://localhost:9000",

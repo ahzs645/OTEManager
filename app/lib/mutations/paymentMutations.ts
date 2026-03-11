@@ -1,4 +1,4 @@
-import { createServerFn } from "@tanstack/start";
+import { createServerFn } from "@tanstack/react-start";
 import {
   calculatePayment,
   type PaymentRateConfig,
@@ -22,7 +22,7 @@ const DEFAULT_PAYMENT_CONFIG = {
 
 // Update payment rate configuration
 export const updatePaymentRateConfig = createServerFn({ method: "POST" })
-  .validator(
+  .inputValidator(
     (data: {
       tier1Rate: number;
       tier2Rate: number;
@@ -89,7 +89,7 @@ export const updatePaymentRateConfig = createServerFn({ method: "POST" })
 
 // Calculate and save payment for an article
 export const calculateArticlePayment = createServerFn({ method: "POST" })
-  .validator((data: { articleId: string; recalculate?: boolean }) => data)
+  .inputValidator((data: { articleId: string; recalculate?: boolean }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles, paymentRateConfig } = await import("@db/index");
@@ -171,7 +171,7 @@ export const calculateArticlePayment = createServerFn({ method: "POST" })
 
 // Set manual payment amount (overrides calculated)
 export const setManualPayment = createServerFn({ method: "POST" })
-  .validator((data: { articleId: string; amount: number }) => data)
+  .inputValidator((data: { articleId: string; amount: number }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles } = await import("@db/index");
@@ -198,7 +198,7 @@ export const setManualPayment = createServerFn({ method: "POST" })
 
 // Mark payment as complete
 export const markPaymentComplete = createServerFn({ method: "POST" })
-  .validator((data: { articleId: string; amount: number }) => data)
+  .inputValidator((data: { articleId: string; amount: number }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles } = await import("@db/index");
@@ -226,7 +226,7 @@ export const markPaymentComplete = createServerFn({ method: "POST" })
 
 // Update article bonus flags and recalculate payment
 export const updateArticleBonusFlags = createServerFn({ method: "POST" })
-  .validator(
+  .inputValidator(
     (data: {
       articleId: string;
       hasResearchBonus?: boolean;

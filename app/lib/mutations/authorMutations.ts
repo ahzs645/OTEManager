@@ -1,8 +1,8 @@
-import { createServerFn } from "@tanstack/start";
+import { createServerFn } from "@tanstack/react-start";
 
 // Update author info
 export const updateAuthorPaymentInfo = createServerFn({ method: "POST" })
-  .validator(
+  .inputValidator(
     (data: {
       authorId: string;
       givenName?: string;

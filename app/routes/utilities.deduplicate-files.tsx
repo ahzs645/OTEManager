@@ -12,7 +12,7 @@ import {
   FileText,
   ExternalLink,
 } from 'lucide-react'
-import { createServerFn } from '@tanstack/start'
+import { createServerFn } from '@tanstack/react-start'
 import { LoadingSpinner } from '~/components/Layout'
 
 type DuplicateFile = {
@@ -186,7 +186,7 @@ const findDuplicateFiles = createServerFn({ method: 'GET' }).handler(async () =>
 
 // Server function to delete a file
 const deleteFile = createServerFn({ method: 'POST' })
-  .validator((data: { attachmentId: string }) => data)
+  .inputValidator((data: { attachmentId: string }) => data)
   .handler(async ({ data }) => {
     const { db } = await import('@db/index')
     const { attachments } = await import('@db/schema')
@@ -218,7 +218,7 @@ const deleteFile = createServerFn({ method: 'POST' })
 
 // Server function to delete multiple files at once
 const deleteFiles = createServerFn({ method: 'POST' })
-  .validator((data: { attachmentIds: string[] }) => data)
+  .inputValidator((data: { attachmentIds: string[] }) => data)
   .handler(async ({ data }) => {
     const { db } = await import('@db/index')
     const { attachments } = await import('@db/schema')

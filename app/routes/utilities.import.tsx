@@ -10,12 +10,12 @@ import {
   FileArchive,
   Info,
 } from 'lucide-react'
-import { createServerFn } from '@tanstack/start'
+import { createServerFn } from '@tanstack/react-start'
 import { LoadingSpinner } from '~/components/Layout'
 
 // Server function to import data (legacy JSON-only import)
 const importSharePointData = createServerFn({ method: 'POST' })
-  .validator((data: { articles: any[] }) => data)
+  .inputValidator((data: { articles: any[] }) => data)
   .handler(async ({ data }) => {
     const { db, authors, articles, articleMultimediaTypes } = await import('@db/index')
     const { eq } = await import('drizzle-orm')

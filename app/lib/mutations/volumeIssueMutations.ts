@@ -1,8 +1,8 @@
-import { createServerFn } from "@tanstack/start";
+import { createServerFn } from "@tanstack/react-start";
 
 // Create a new volume
 export const createVolume = createServerFn({ method: "POST" })
-  .validator(
+  .inputValidator(
     (data: {
       volumeNumber: number;
       year?: number;
@@ -38,7 +38,7 @@ export const createVolume = createServerFn({ method: "POST" })
 
 // Update a volume
 export const updateVolume = createServerFn({ method: "POST" })
-  .validator(
+  .inputValidator(
     (data: {
       id: string;
       volumeNumber?: number;
@@ -77,7 +77,7 @@ export const updateVolume = createServerFn({ method: "POST" })
 
 // Delete a volume (cascades to issues)
 export const deleteVolume = createServerFn({ method: "POST" })
-  .validator((data: { id: string }) => data)
+  .inputValidator((data: { id: string }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, volumes } = await import("@db/index");
@@ -97,7 +97,7 @@ export const deleteVolume = createServerFn({ method: "POST" })
 
 // Create a new issue
 export const createIssue = createServerFn({ method: "POST" })
-  .validator(
+  .inputValidator(
     (data: {
       volumeId: string;
       issueNumber: number;
@@ -133,7 +133,7 @@ export const createIssue = createServerFn({ method: "POST" })
 
 // Update an issue
 export const updateIssue = createServerFn({ method: "POST" })
-  .validator(
+  .inputValidator(
     (data: {
       id: string;
       issueNumber?: number;
@@ -170,7 +170,7 @@ export const updateIssue = createServerFn({ method: "POST" })
 
 // Delete an issue
 export const deleteIssue = createServerFn({ method: "POST" })
-  .validator((data: { id: string }) => data)
+  .inputValidator((data: { id: string }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, issues } = await import("@db/index");

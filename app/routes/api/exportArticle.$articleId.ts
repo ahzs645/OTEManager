@@ -1,4 +1,4 @@
-import { createAPIFileRoute } from '@tanstack/start/api'
+import { createFileRoute } from '@tanstack/react-router'
 import { Document, Packer, Paragraph, TextRun, HeadingLevel, ExternalHyperlink } from 'docx'
 
 interface TextSegment {
@@ -219,77 +219,81 @@ async function markdownToDocx(
   return await Packer.toBuffer(doc)
 }
 
-export const APIRoute = createAPIFileRoute('/api/exportArticle/$articleId')({
-  GET: async ({ params }) => {
-    const { articleId } = params
+export const Route = createFileRoute('/api/exportArticle/$articleId')({
+  server: {
+    handlers: {
+      GET: async ({ params }) => {
+        const { articleId } = params
 
-    if (!articleId) {
-      return new Response(JSON.stringify({ error: 'Article ID is required' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      })
-    }
+        if (!articleId) {
+          return new Response(JSON.stringify({ error: 'Article ID is required' }), {
+            status: 400,
+            headers: { 'Content-Type': 'application/json' },
+          })
+        }
 
-    try {
-      const { db, articles } = await import('@db/index')
-      const { eq } = await import('drizzle-orm')
+        try {
+          const { db, articles } = await import('@db/index')
+          const { eq } = await import('drizzle-orm')
 
-      // Get the article with author
-      const article = await db.query.articles.findFirst({
-        where: eq(articles.id, articleId),
-        with: {
-          author: true,
-        },
-      })
+          // Get the article with author
+          const article = await db.query.articles.findFirst({
+            where: eq(articles.id, articleId),
+            with: {
+              author: true,
+            },
+          })
 
-      if (!article) {
-        return new Response(JSON.stringify({ error: 'Article not found' }), {
-          status: 404,
-          headers: { 'Content-Type': 'application/json' },
-        })
-      }
+          if (!article) {
+            return new Response(JSON.stringify({ error: 'Article not found' }), {
+              status: 404,
+              headers: { 'Content-Type': 'application/json' },
+            })
+          }
 
-      // Determine author name based on anonymity preference
-      const authorName = article.prefersAnonymity
-        ? 'Anonymous'
-        : article.author
-          ? `${article.author.givenName} ${article.author.surname}`
-          : 'Unknown Author'
+          // Determine author name based on anonymity preference
+          const authorName = article.prefersAnonymity
+            ? 'Anonymous'
+            : article.author
+              ? `${article.author.givenName} ${article.author.surname}`
+              : 'Unknown Author'
 
-      // Generate the docx
-      const docxBuffer = await markdownToDocx(
-        article.content || '',
-        article.title,
-        authorName,
-      )
+          // Generate the docx
+          const docxBuffer = await markdownToDocx(
+            article.content || '',
+            article.title,
+            authorName,
+          )
 
-      // Sanitize filename
-      const filename = article.title
-        .replace(/[<>:"/\\|?*]/g, '-')
-        .replace(/\s+/g, ' ')
-        .trim()
-        .substring(0, 100)
+          // Sanitize filename
+          const filename = article.title
+            .replace(/[<>:"/\\|?*]/g, '-')
+            .replace(/\s+/g, ' ')
+            .trim()
+            .substring(0, 100)
 
-      return new Response(docxBuffer, {
-        status: 200,
-        headers: {
-          'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-          'Content-Disposition': `attachment; filename="${filename}.docx"`,
-          'Content-Length': docxBuffer.length.toString(),
-        },
-      })
-    } catch (error) {
-      console.error('Export error:', error)
-      return new Response(
-        JSON.stringify({
-          error: 'Failed to generate export',
-          details: error instanceof Error ? error.message : 'Unknown error',
-        }),
-        {
-          status: 500,
-          headers: { 'Content-Type': 'application/json' },
-        },
-      )
-    }
+          return new Response(docxBuffer, {
+            status: 200,
+            headers: {
+              'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+              'Content-Disposition': `attachment; filename="${filename}.docx"`,
+              'Content-Length': docxBuffer.length.toString(),
+            },
+          })
+        } catch (error) {
+          console.error('Export error:', error)
+          return new Response(
+            JSON.stringify({
+              error: 'Failed to generate export',
+              details: error instanceof Error ? error.message : 'Unknown error',
+            }),
+            {
+              status: 500,
+              headers: { 'Content-Type': 'application/json' },
+            },
+          )
+        }
+      },
+    },
   },
 })

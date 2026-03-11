@@ -1,13 +1,12 @@
 /// <reference types="vite/client" />
 import {
   Link,
-  Outlet,
-  ScrollRestoration,
+  HeadContent,
+  Scripts,
   createRootRoute,
   useLocation,
   useRouterState,
 } from "@tanstack/react-router";
-import { Meta, Scripts } from "@tanstack/start";
 import type { ReactNode } from "react";
 import {
   FileText,
@@ -30,8 +29,8 @@ export const Route = createRootRoute({
     ],
     links: [{ rel: "stylesheet", href: appCss }],
   }),
-  component: RootComponent,
   notFoundComponent: NotFoundComponent,
+  shellComponent: RootDocument,
 });
 
 function NotFoundComponent() {
@@ -57,21 +56,6 @@ function NotFoundComponent() {
         Go to Dashboard
       </Link>
     </div>
-  );
-}
-
-function RootComponent() {
-  const isLoading = useRouterState({ select: (s) => s.isLoading });
-
-  return (
-    <RootDocument>
-      <div className="min-h-screen" style={{ background: "var(--bg-root)" }}>
-        <Header isLoading={isLoading} />
-        <main className="max-w-6xl mx-auto px-6 py-6">
-          <Outlet />
-        </main>
-      </div>
-    </RootDocument>
   );
 }
 
@@ -182,10 +166,12 @@ function Header({ isLoading }: { isLoading: boolean }) {
 }
 
 function RootDocument({ children }: { children: ReactNode }) {
+  const isLoading = useRouterState({ select: (s) => s.isLoading });
+
   return (
     <html lang="en">
       <head>
-        <Meta />
+        <HeadContent />
         <style
           dangerouslySetInnerHTML={{
             __html: `
@@ -211,8 +197,12 @@ function RootDocument({ children }: { children: ReactNode }) {
         />
       </head>
       <body style={{ background: "var(--bg-root, #f8fafc)" }}>
-        {children}
-        <ScrollRestoration />
+        <div className="min-h-screen" style={{ background: "var(--bg-root)" }}>
+          <Header isLoading={isLoading} />
+          <main className="max-w-6xl mx-auto px-6 py-6">
+            {children}
+          </main>
+        </div>
         <Scripts />
       </body>
     </html>

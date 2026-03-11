@@ -1,4 +1,4 @@
-import { createServerFn } from "@tanstack/start";
+import { createServerFn } from "@tanstack/react-start";
 import type { PaymentRateConfig } from "./payment-calculator";
 
 // Get payment rate configuration
@@ -142,7 +142,7 @@ export const getRecentArticles = createServerFn({ method: "GET" }).handler(
 
 // All articles with filters
 export const getArticles = createServerFn({ method: "POST" })
-  .validator(
+  .inputValidator(
     (data: {
       status?: string;
       tier?: string;
@@ -287,7 +287,7 @@ export const getArticles = createServerFn({ method: "POST" })
 
 // Get single article by ID
 export const getArticleById = createServerFn({ method: "POST" })
-  .validator((data: { id: string }) => data)
+  .inputValidator((data: { id: string }) => data)
   .handler(async ({ data }) => {
     console.log("getArticleById called with data:", data);
     try {
@@ -323,7 +323,7 @@ export const getArticleById = createServerFn({ method: "POST" })
 
 // Get single author with stats
 export const getAuthorById = createServerFn({ method: "POST" })
-  .validator((data: { id: string }) => data)
+  .inputValidator((data: { id: string }) => data)
   .handler(async ({ data }) => {
     console.log("getAuthorById called with data:", JSON.stringify(data));
     try {
@@ -383,7 +383,7 @@ export const getAuthorById = createServerFn({ method: "POST" })
 
 // Get all authors
 export const getAuthors = createServerFn({ method: "GET" })
-  .validator((data?: { search?: string }) => data)
+  .inputValidator((data?: { search?: string }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, authors, articles } = await import("@db/index");
@@ -472,7 +472,7 @@ export const getVolumes = createServerFn({ method: "GET" }).handler(async () => 
 
 // Get issue by ID with volume info
 export const getIssueById = createServerFn({ method: "POST" })
-  .validator((data: { id: string }) => data)
+  .inputValidator((data: { id: string }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, issues } = await import("@db/index");
@@ -494,7 +494,7 @@ export const getIssueById = createServerFn({ method: "POST" })
 
 // Get volume by ID
 export const getVolumeById = createServerFn({ method: "POST" })
-  .validator((data: { id: string }) => data)
+  .inputValidator((data: { id: string }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, volumes } = await import("@db/index");
@@ -513,7 +513,7 @@ export const getVolumeById = createServerFn({ method: "POST" })
 
 // Get all issues (for dropdowns)
 export const getIssuesForVolume = createServerFn({ method: "POST" })
-  .validator((data: { volumeId: string }) => data)
+  .inputValidator((data: { volumeId: string }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, issues } = await import("@db/index");

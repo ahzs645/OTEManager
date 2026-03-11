@@ -1,4 +1,4 @@
-import { createServerFn } from "@tanstack/start";
+import { createServerFn } from "@tanstack/react-start";
 
 // Type for view configuration
 export type SavedViewConfig = {
@@ -61,7 +61,7 @@ export const getDefaultView = createServerFn({ method: "GET" }).handler(
 
 // Create a new saved view
 export const createSavedView = createServerFn({ method: "POST" })
-  .validator(
+  .inputValidator(
     (data: { name: string; config: SavedViewConfig; setAsDefault?: boolean }) =>
       data
   )
@@ -104,7 +104,7 @@ export const createSavedView = createServerFn({ method: "POST" })
 
 // Update a saved view
 export const updateSavedView = createServerFn({ method: "POST" })
-  .validator(
+  .inputValidator(
     (data: { id: string; name?: string; config?: SavedViewConfig }) => data
   )
   .handler(async ({ data }) => {
@@ -148,7 +148,7 @@ export const updateSavedView = createServerFn({ method: "POST" })
 
 // Set a view as default
 export const setDefaultView = createServerFn({ method: "POST" })
-  .validator((data: { id: string }) => data)
+  .inputValidator((data: { id: string }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, savedArticleViews } = await import("@db/index");
@@ -201,7 +201,7 @@ export const clearDefaultView = createServerFn({ method: "POST" }).handler(
 
 // Delete a saved view
 export const deleteSavedView = createServerFn({ method: "POST" })
-  .validator((data: { id: string }) => data)
+  .inputValidator((data: { id: string }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, savedArticleViews } = await import("@db/index");

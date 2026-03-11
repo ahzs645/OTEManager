@@ -1,4 +1,4 @@
-import { createServerFn } from "@tanstack/start";
+import { createServerFn } from "@tanstack/react-start";
 
 // Date range filter type
 interface DateRangeFilter {
@@ -85,7 +85,7 @@ async function buildCrossFilterConditions(crossFilter: CrossFilter | undefined, 
 
 // Get all analytics with cross-filter support (Power BI style)
 export const getAllAnalyticsWithCrossFilter = createServerFn({ method: "POST" })
-  .validator((data: FilterWithCross) => data)
+  .inputValidator((data: FilterWithCross) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles, authors } = await import("@db/index");
@@ -318,7 +318,7 @@ export const getAllAnalyticsWithCrossFilter = createServerFn({ method: "POST" })
 
 // Get overall payment statistics
 export const getPaymentStats = createServerFn({ method: "POST" })
-  .validator((data: DateRangeFilter) => data)
+  .inputValidator((data: DateRangeFilter) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles } = await import("@db/index");
@@ -379,7 +379,7 @@ export const getPaymentStats = createServerFn({ method: "POST" })
 
 // Get payment status breakdown (pie chart data)
 export const getPaymentStatusBreakdown = createServerFn({ method: "POST" })
-  .validator((data: DateRangeFilter) => data)
+  .inputValidator((data: DateRangeFilter) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles } = await import("@db/index");
@@ -429,7 +429,7 @@ export const getPaymentStatusBreakdown = createServerFn({ method: "POST" })
 
 // Get tier distribution and average payment per tier
 export const getTierAnalytics = createServerFn({ method: "POST" })
-  .validator((data: DateRangeFilter) => data)
+  .inputValidator((data: DateRangeFilter) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles } = await import("@db/index");
@@ -479,7 +479,7 @@ export const getTierAnalytics = createServerFn({ method: "POST" })
 
 // Get bonus frequency with amounts (bar chart data)
 export const getBonusFrequency = createServerFn({ method: "POST" })
-  .validator((data: DateRangeFilter) => data)
+  .inputValidator((data: DateRangeFilter) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles } = await import("@db/index");
@@ -543,7 +543,7 @@ export const getBonusFrequency = createServerFn({ method: "POST" })
 
 // Get top earning authors
 export const getTopEarningAuthors = createServerFn({ method: "POST" })
-  .validator((data: DateRangeFilter & { limit?: number }) => data)
+  .inputValidator((data: DateRangeFilter & { limit?: number }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles, authors } = await import("@db/index");
@@ -591,7 +591,7 @@ export const getTopEarningAuthors = createServerFn({ method: "POST" })
 
 // Get earnings by author type
 export const getEarningsByAuthorType = createServerFn({ method: "POST" })
-  .validator((data: DateRangeFilter) => data)
+  .inputValidator((data: DateRangeFilter) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles, authors } = await import("@db/index");
@@ -632,7 +632,7 @@ export const getEarningsByAuthorType = createServerFn({ method: "POST" })
 
 // Get monthly spending trends (uses createdAt for grouping, paymentAmount for totals)
 export const getMonthlySpendingTrends = createServerFn({ method: "POST" })
-  .validator((data: { months?: number }) => data)
+  .inputValidator((data: { months?: number }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles } = await import("@db/index");
@@ -692,7 +692,7 @@ function getSemesterYear(date: Date): string {
 // Get semester breakdown (UNBC: Fall Sep-Dec, Winter Jan-Apr, Summer May-Aug)
 // Uses submittedAt date for proper semester attribution
 export const getSemesterBreakdown = createServerFn({ method: "POST" })
-  .validator((data: { years?: number }) => data)
+  .inputValidator((data: { years?: number }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles } = await import("@db/index");
@@ -763,7 +763,7 @@ function formatMonthLabel(yearMonth: string): string {
 
 // Get earnings by student type (for students only)
 export const getEarningsByStudentType = createServerFn({ method: "POST" })
-  .validator((data: DateRangeFilter) => data)
+  .inputValidator((data: DateRangeFilter) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles, authors } = await import("@db/index");
@@ -811,7 +811,7 @@ export const getEarningsByStudentType = createServerFn({ method: "POST" })
 
 // Get articles by tier
 export const getArticlesByTier = createServerFn({ method: "POST" })
-  .validator((data: { tier: string; limit?: number }) => data)
+  .inputValidator((data: { tier: string; limit?: number }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles } = await import("@db/index");
@@ -833,7 +833,7 @@ export const getArticlesByTier = createServerFn({ method: "POST" })
 
 // Get articles by bonus type
 export const getArticlesByBonus = createServerFn({ method: "POST" })
-  .validator((data: { bonusType: string; limit?: number }) => data)
+  .inputValidator((data: { bonusType: string; limit?: number }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles } = await import("@db/index");
@@ -869,7 +869,7 @@ export const getArticlesByBonus = createServerFn({ method: "POST" })
 
 // Get articles by payment status
 export const getArticlesByPaymentStatus = createServerFn({ method: "POST" })
-  .validator((data: { paid: boolean; limit?: number }) => data)
+  .inputValidator((data: { paid: boolean; limit?: number }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles } = await import("@db/index");
@@ -894,7 +894,7 @@ export const getArticlesByPaymentStatus = createServerFn({ method: "POST" })
 
 // Get author with their articles
 export const getAuthorWithArticles = createServerFn({ method: "POST" })
-  .validator((data: { authorId: string; limit?: number }) => data)
+  .inputValidator((data: { authorId: string; limit?: number }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, authors, articles } = await import("@db/index");
@@ -938,7 +938,7 @@ export const getAuthorWithArticles = createServerFn({ method: "POST" })
 
 // Get authors by type
 export const getAuthorsByType = createServerFn({ method: "POST" })
-  .validator((data: { authorType: string; limit?: number }) => data)
+  .inputValidator((data: { authorType: string; limit?: number }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, authors, articles } = await import("@db/index");
@@ -978,7 +978,7 @@ export const getAuthorsByType = createServerFn({ method: "POST" })
 
 // Get articles by semester (uses submittedAt date)
 export const getArticlesBySemester = createServerFn({ method: "POST" })
-  .validator((data: { semester: string; year: number; limit?: number }) => data)
+  .inputValidator((data: { semester: string; year: number; limit?: number }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles } = await import("@db/index");
@@ -1038,7 +1038,7 @@ export const getArticlesBySemester = createServerFn({ method: "POST" })
 
 // Get authors by student type
 export const getAuthorsByStudentType = createServerFn({ method: "POST" })
-  .validator((data: { studentType: string; limit?: number }) => data)
+  .inputValidator((data: { studentType: string; limit?: number }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, authors, articles } = await import("@db/index");

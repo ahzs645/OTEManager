@@ -1,8 +1,8 @@
-import { createServerFn } from "@tanstack/start";
+import { createServerFn } from "@tanstack/react-start";
 
 // Create a new article manually
 export const createArticle = createServerFn({ method: "POST" })
-  .validator(
+  .inputValidator(
     (data: {
       title: string;
       authorId?: string;
@@ -84,7 +84,7 @@ export const createArticle = createServerFn({ method: "POST" })
 
 // Update article status
 export const updateArticleStatus = createServerFn({ method: "POST" })
-  .validator(
+  .inputValidator(
     (data: {
       articleId: string;
       status: string;
@@ -136,7 +136,7 @@ export const updateArticleStatus = createServerFn({ method: "POST" })
 
 // Update article details
 export const updateArticle = createServerFn({ method: "POST" })
-  .validator(
+  .inputValidator(
     (data: {
       articleId: string;
       title?: string;
@@ -184,7 +184,7 @@ export const updateArticle = createServerFn({ method: "POST" })
 
 // Update article content (markdown)
 export const updateArticleContent = createServerFn({ method: "POST" })
-  .validator((data: { articleId: string; content: string }) => {
+  .inputValidator((data: { articleId: string; content: string }) => {
     console.log("[updateArticleContent] Validator received:", JSON.stringify(data).slice(0, 200));
     return data;
   })
@@ -217,7 +217,7 @@ export const updateArticleContent = createServerFn({ method: "POST" })
 
 // Update article feedback letter (markdown)
 export const updateArticleFeedbackLetter = createServerFn({ method: "POST" })
-  .validator((data: { articleId: string; feedbackLetter: string }) => data)
+  .inputValidator((data: { articleId: string; feedbackLetter: string }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles } = await import("@db/index");
@@ -243,7 +243,7 @@ export const updateArticleFeedbackLetter = createServerFn({ method: "POST" })
 
 // Update article tier
 export const updateArticleTier = createServerFn({ method: "POST" })
-  .validator((data: { articleId: string; tier: string }) => data)
+  .inputValidator((data: { articleId: string; tier: string }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles } = await import("@db/index");
@@ -269,7 +269,7 @@ export const updateArticleTier = createServerFn({ method: "POST" })
 
 // Toggle article featured status (legacy - kept for compatibility)
 export const toggleArticleFeatured = createServerFn({ method: "POST" })
-  .validator((data: { articleId: string; isFeatured: boolean }) => data)
+  .inputValidator((data: { articleId: string; isFeatured: boolean }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles } = await import("@db/index");
@@ -296,7 +296,7 @@ export const toggleArticleFeatured = createServerFn({ method: "POST" })
 
 // Delete article
 export const deleteArticle = createServerFn({ method: "POST" })
-  .validator((articleId: string) => articleId)
+  .inputValidator((articleId: string) => articleId)
   .handler(async ({ data: articleId }) => {
     try {
       const { db, articles } = await import("@db/index");
@@ -334,7 +334,7 @@ export const deleteArticle = createServerFn({ method: "POST" })
 
 // Update attachment caption
 export const updateAttachmentCaption = createServerFn({ method: "POST" })
-  .validator((data: { attachmentId: string; caption: string }) => data)
+  .inputValidator((data: { attachmentId: string; caption: string }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, attachments } = await import("@db/index");
@@ -359,7 +359,7 @@ export const updateAttachmentCaption = createServerFn({ method: "POST" })
 
 // Delete attachment (document or photo)
 export const deleteAttachment = createServerFn({ method: "POST" })
-  .validator((data: { attachmentId: string }) => data)
+  .inputValidator((data: { attachmentId: string }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, attachments } = await import("@db/index");
@@ -394,7 +394,7 @@ export const deleteAttachment = createServerFn({ method: "POST" })
 
 // Update article's issue assignment
 export const updateArticleIssue = createServerFn({ method: "POST" })
-  .validator((data: { articleId: string; issueId: string | null }) => data)
+  .inputValidator((data: { articleId: string; issueId: string | null }) => data)
   .handler(async ({ data }) => {
     try {
       const { db, articles } = await import("@db/index");

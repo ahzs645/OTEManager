@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { createServerFn } from '@tanstack/start'
+import { createServerFn } from '@tanstack/react-start'
 import { useState } from 'react'
 import {
   ArrowLeft,
@@ -26,7 +26,7 @@ import { updateAuthorPaymentInfo } from '~/lib/mutations'
 
 // Server function to fetch author data - ensures db code only runs on server
 const fetchAuthorData = createServerFn({ method: 'GET' })
-  .validator((authorId: string) => {
+  .inputValidator((authorId: string) => {
     if (!authorId || typeof authorId !== 'string') {
       throw new Error('Author ID is required')
     }
