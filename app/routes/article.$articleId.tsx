@@ -351,20 +351,12 @@ function ArticlePageContent({
       {/* Back Link + Unsaved Indicator */}
       <div className="flex items-center justify-between">
         <button
-          onClick={() => navigate({ to: '/articles' })}
-          onMouseDown={(e) => {
-            // Middle-click or ctrl/cmd-click: open in new tab via fallback
-            if (e.button === 1 || e.ctrlKey || e.metaKey) return
-            e.preventDefault()
-          }}
-          onClick={(e) => {
-            if (e.ctrlKey || e.metaKey) {
-              // Let default Link behavior handle new tab
-              window.open('/articles', '_blank')
-              return
+          onClick={() => {
+            if (window.history.length > 1) {
+              window.history.back()
+            } else {
+              navigate({ to: '/articles' })
             }
-            e.preventDefault()
-            window.history.back()
           }}
           className="inline-flex items-center gap-1.5 text-sm"
           style={{ color: 'var(--fg-muted)', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
