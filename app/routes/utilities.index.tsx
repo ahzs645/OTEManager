@@ -7,6 +7,7 @@ import {
   GraduationCap,
   Copy,
   Files,
+  Banknote,
 } from 'lucide-react'
 
 export const Route = createFileRoute('/utilities/')({
@@ -55,6 +56,13 @@ const utilities = [
     title: 'Find Duplicate Files',
     description: 'Detect and merge or delete duplicate photos and documents in the library',
     icon: Files,
+  },
+  {
+    id: 'payment-manager',
+    path: '/utilities/payment-manager',
+    title: 'Payment Manager',
+    description: 'Review and process payments for approved, unpaid articles by issue',
+    icon: Banknote,
   },
 ]
 

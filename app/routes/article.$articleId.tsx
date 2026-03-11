@@ -350,14 +350,28 @@ function ArticlePageContent({
     <div className="space-y-6">
       {/* Back Link + Unsaved Indicator */}
       <div className="flex items-center justify-between">
-        <Link
-          to="/articles"
+        <button
+          onClick={() => navigate({ to: '/articles' })}
+          onMouseDown={(e) => {
+            // Middle-click or ctrl/cmd-click: open in new tab via fallback
+            if (e.button === 1 || e.ctrlKey || e.metaKey) return
+            e.preventDefault()
+          }}
+          onClick={(e) => {
+            if (e.ctrlKey || e.metaKey) {
+              // Let default Link behavior handle new tab
+              window.open('/articles', '_blank')
+              return
+            }
+            e.preventDefault()
+            window.history.back()
+          }}
           className="inline-flex items-center gap-1.5 text-sm"
-          style={{ color: 'var(--fg-muted)' }}
+          style={{ color: 'var(--fg-muted)', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
         >
           <ArrowLeft className="w-4 h-4" />
           Articles
-        </Link>
+        </button>
         <UnsavedChangesIndicator />
       </div>
 
@@ -548,7 +562,12 @@ function ArticlePageContent({
           <Section title="Author">
             {article.author ? (
               <div className="space-y-3">
-                <div className="flex items-center gap-3">
+                <Link
+                  to="/author/$authorId"
+                  params={{ authorId: article.author.id }}
+                  className="flex items-center gap-3"
+                  style={{ textDecoration: 'none' }}
+                >
                   <Avatar name={authorName} />
                   <div>
                     <p
@@ -561,7 +580,7 @@ function ArticlePageContent({
                       {article.author.role}
                     </p>
                   </div>
-                </div>
+                </Link>
 
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
@@ -595,12 +614,12 @@ function ArticlePageContent({
                 </div>
 
                 <Link
-                  to="/articles"
-                  search={{ authorId: article.author.id }}
+                  to="/author/$authorId"
+                  params={{ authorId: article.author.id }}
                   className="text-xs"
                   style={{ color: 'var(--accent)' }}
                 >
-                  View all articles by this author →
+                  View author profile →
                 </Link>
               </div>
             ) : (
