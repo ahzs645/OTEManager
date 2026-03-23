@@ -65,21 +65,27 @@ export const Route = createFileRoute('/api/convertDocx/$attachmentId')({
             })
           }
 
-          // Convert using mammoth
-          const mammoth = await import('mammoth')
+          // Use mammoth's browser build to avoid bluebird/promisify bundling issues
+          const mammoth = await import('mammoth/mammoth.browser')
+
+          // Convert Node Buffer to ArrayBuffer for the browser build
+          const arrayBuffer = fileBuffer.buffer.slice(
+            fileBuffer.byteOffset,
+            fileBuffer.byteOffset + fileBuffer.byteLength,
+          )
 
           // Custom image converter that skips images (they're handled separately in PhotoGallery)
-          // This prevents huge base64 data from being embedded in the markdown
           const imageHandler = {
             convertImage: mammoth.images.imgElement(() => {
-              // Return empty object to skip the image entirely
-              // Images should be managed through the PhotoGallery component
               return Promise.resolve({ src: '' })
             }),
           }
 
           if (format === 'html') {
-            const result = await mammoth.convertToHtml({ buffer: fileBuffer }, imageHandler)
+            const result = await mammoth.convertToHtml(
+              { arrayBuffer },
+              imageHandler,
+            )
             // Remove empty img tags left from skipped images
             const cleanedHtml = result.value.replace(/<img[^>]*src=""[^>]*>/g, '')
             return new Response(
@@ -95,7 +101,10 @@ export const Route = createFileRoute('/api/convertDocx/$attachmentId')({
               },
             )
           } else {
-            const result = await mammoth.convertToMarkdown({ buffer: fileBuffer }, imageHandler)
+            const result = await mammoth.convertToMarkdown(
+              { arrayBuffer },
+              imageHandler,
+            )
             // Clean up markdown and remove empty image references
             let cleanedMarkdown = cleanMarkdownEscapes(result.value)
             // Remove empty markdown image syntax left from skipped images
