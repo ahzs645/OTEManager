@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
+import { createPortal } from 'react-dom'
 import { FileText, Download, Wand2, Eye, FileEdit, MessageSquare, X, Upload, Trash2 } from 'lucide-react'
 import { Section, LoadingSpinner } from '~/components/Layout'
 import { deleteAttachment } from '~/lib/mutations'
@@ -25,6 +26,20 @@ export function DocumentList({
 }: DocumentListProps) {
   const [isConverting, setIsConverting] = useState<string | null>(null)
   const [showMenu, setShowMenu] = useState<string | null>(null)
+  const menuButtonRefs = useRef<Record<string, HTMLButtonElement>>({})
+
+  const getMenuPosition = useCallback(
+    (attachmentId: string) => {
+      const btn = menuButtonRefs.current[attachmentId]
+      if (!btn) return {}
+      const rect = btn.getBoundingClientRect()
+      return {
+        top: rect.bottom + 4,
+        right: window.innerWidth - rect.right,
+      }
+    },
+    [],
+  )
   const [previewAttachmentId, setPreviewAttachmentId] = useState<string | null>(null)
   const [previewFileName, setPreviewFileName] = useState<string | null>(null)
   const [isLoadingPreview, setIsLoadingPreview] = useState(false)
@@ -342,6 +357,9 @@ export function DocumentList({
                     {/* Convert Options Menu */}
                     <div className="relative">
                       <button
+                        ref={(el) => {
+                          if (el) menuButtonRefs.current[attachment.id] = el
+                        }}
                         onClick={() =>
                           setShowMenu(showMenu === attachment.id ? null : attachment.id)
                         }
@@ -350,40 +368,43 @@ export function DocumentList({
                       >
                         <Wand2 className="w-4 h-4" />
                       </button>
-                      {showMenu === attachment.id && (
-                        <>
-                          <div
-                            className="fixed inset-0 z-10"
-                            onClick={() => setShowMenu(null)}
-                          />
-                          <div
-                            className="absolute right-0 top-full mt-1 z-20 min-w-[200px] py-1 rounded-md shadow-lg"
-                            style={{
-                              background: 'var(--bg-surface)',
-                              border: '1px solid var(--border-default)',
-                            }}
-                          >
-                            <button
-                              onClick={() => handleConvertToContent(attachment.id)}
-                              className="w-full flex items-center gap-2 px-3 py-2 text-sm text-left hover:bg-[var(--bg-subtle)]"
-                              style={{ color: 'var(--fg-default)' }}
+                      {showMenu === attachment.id &&
+                        createPortal(
+                          <>
+                            <div
+                              className="fixed inset-0 z-[9999]"
+                              onClick={() => setShowMenu(null)}
+                            />
+                            <div
+                              className="fixed z-[10000] min-w-[200px] py-1 rounded-md shadow-lg"
+                              style={{
+                                background: 'var(--bg-surface)',
+                                border: '1px solid var(--border-default)',
+                                ...getMenuPosition(attachment.id),
+                              }}
                             >
-                              <FileEdit className="w-4 h-4" />
-                              Insert to Article Content
-                            </button>
-                            {onConvertToFeedback && (
                               <button
-                                onClick={() => handleConvertToFeedback(attachment.id)}
+                                onClick={() => handleConvertToContent(attachment.id)}
                                 className="w-full flex items-center gap-2 px-3 py-2 text-sm text-left hover:bg-[var(--bg-subtle)]"
                                 style={{ color: 'var(--fg-default)' }}
                               >
-                                <MessageSquare className="w-4 h-4" />
-                                Insert to Feedback Letter
+                                <FileEdit className="w-4 h-4" />
+                                Insert to Article Content
                               </button>
-                            )}
-                          </div>
-                        </>
-                      )}
+                              {onConvertToFeedback && (
+                                <button
+                                  onClick={() => handleConvertToFeedback(attachment.id)}
+                                  className="w-full flex items-center gap-2 px-3 py-2 text-sm text-left hover:bg-[var(--bg-subtle)]"
+                                  style={{ color: 'var(--fg-default)' }}
+                                >
+                                  <MessageSquare className="w-4 h-4" />
+                                  Insert to Feedback Letter
+                                </button>
+                              )}
+                            </div>
+                          </>,
+                          document.body,
+                        )}
                     </div>
                   </>
                 )}
