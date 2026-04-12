@@ -127,7 +127,7 @@ export const getConnectionConfig = createServerFn({ method: "GET" }).handler(
     try {
       const { default: pg } = await import("postgres");
       const testUrl = buildDatabaseUrl(config.database);
-      const testClient = pg(testUrl, { max: 1, connect_timeout: 5, ssl: 'require' });
+      const testClient = pg(testUrl, { max: 1, connect_timeout: 5, ssl: process.env.DATABASE_SSL !== 'false' ? 'require' : false });
       await testClient`SELECT 1`;
       await testClient.end();
       dbConnected = true;
@@ -243,7 +243,7 @@ export const testDatabaseConnection = createServerFn({ method: "POST" })
         max: 1,
         connect_timeout: 10,
         idle_timeout: 5,
-        ssl: 'require',
+        ssl: process.env.DATABASE_SSL !== 'false' ? 'require' : false,
       });
 
       // Try a simple query

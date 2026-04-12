@@ -49,8 +49,11 @@ function buildConnectionString(): string {
 // Database connection string from environment or saved config
 const connectionString = buildConnectionString();
 
-// Create postgres client (ssl: 'require' needed when pg_hba.conf rejects non-encrypted connections)
-const client = postgres(connectionString, { ssl: 'require' });
+// Create postgres client
+// SSL defaults to 'require' — set DATABASE_SSL=false for local development without SSL
+const client = postgres(connectionString, {
+  ssl: process.env.DATABASE_SSL !== 'false' ? 'require' : false,
+});
 
 // Create drizzle instance with schema
 export const db = drizzle(client, { schema });

@@ -225,8 +225,13 @@ async function processSubmission(submission: ArticleSubmission): Promise<{ artic
   if (config) {
     const calculation = calculatePayment(
       submission.articleTier,
-      submission.multimediaTypes,
-      false, // Not featured by default
+      {
+        hasMultimedia: submission.multimediaTypes.length > 0,
+        hasResearchBonus: false,
+        hasTimeSensitiveBonus: false,
+        hasProfessionalPhotos: false,
+        hasProfessionalGraphics: false,
+      },
       config
     );
 

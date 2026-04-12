@@ -128,8 +128,8 @@ export function parseToCents(value: string): number {
   return Math.round(parsed * 100);
 }
 
-// Author types that are NOT eligible for payment
-const NON_PAID_AUTHOR_TYPES = ["Faculty", "Staff"] as const;
+// Canonical list is in db/schema.ts — keep in sync
+const NON_PAID_AUTHOR_TYPES: readonly string[] = ["Faculty", "Staff"];
 
 /**
  * Check if an author type is eligible for payment
