@@ -15,6 +15,11 @@ export const Route = createFileRoute('/api/files/$')({
             return new Response("File path required", { status: 400 });
           }
 
+          // Prevent path traversal attacks
+          if (filePath.includes('..') || filePath.startsWith('/')) {
+            return new Response("Invalid file path", { status: 403 });
+          }
+
           // Check if file exists
           const exists = await storage.exists(filePath);
           if (!exists) {

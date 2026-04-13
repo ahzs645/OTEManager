@@ -38,17 +38,17 @@ export const Route = createFileRoute('/api/uploadAttachment')({
             )
           }
 
-          // Validate file size (10MB max)
-          const maxSize = 10 * 1024 * 1024
+          // Validate file size (defaults to 10MB, configurable via MAX_FILE_SIZE env var)
+          const maxSize = parseInt(process.env.MAX_FILE_SIZE || '') || 10 * 1024 * 1024
           if (file.size > maxSize) {
             return new Response(
-              JSON.stringify({ error: 'File too large. Maximum size is 10MB' }),
+              JSON.stringify({ error: `File too large. Maximum size is ${Math.round(maxSize / 1024 / 1024)}MB` }),
               { status: 400, headers: { 'Content-Type': 'application/json' } },
             )
           }
 
           const { db, attachments, articles } = await import('@db/index')
-          const { eq, count } = await import('drizzle-orm')
+          const { eq, count, and } = await import('drizzle-orm')
           const { getStorage } = await import('../../../storage')
 
           // Verify article exists
@@ -85,7 +85,7 @@ export const Route = createFileRoute('/api/uploadAttachment')({
             const [photoCountResult] = await db
               .select({ count: count() })
               .from(attachments)
-              .where(eq(attachments.articleId, articleId))
+              .where(and(eq(attachments.articleId, articleId), eq(attachments.attachmentType, 'photo')))
             photoNumber = (photoCountResult?.count || 0) + 1
           }
 
