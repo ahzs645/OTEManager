@@ -322,18 +322,30 @@ export const getPaymentStats = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     try {
       const { db, articles } = await import("@db/index");
-      const { sum, count, avg, eq, and, gte, lte } = await import("drizzle-orm");
+      const { sum, count, avg, eq, and, gte, lte, sql } = await import("drizzle-orm");
 
-      // Build date filter conditions
-      const conditions = [];
+      // Paid articles are filtered by when they were paid
+      const paidConditions = [];
       if (data?.startDate) {
-        conditions.push(gte(articles.paidAt, new Date(data.startDate)));
+        paidConditions.push(gte(articles.paidAt, new Date(data.startDate)));
       }
       if (data?.endDate) {
-        conditions.push(lte(articles.paidAt, new Date(data.endDate)));
+        paidConditions.push(lte(articles.paidAt, new Date(data.endDate)));
       }
+      const paidWhere = paidConditions.length > 0 ? and(...paidConditions) : undefined;
 
-      const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+      // Unpaid articles have no paidAt, so filter them by submission date —
+      // filtering on paidAt would exclude every unpaid row whenever a date
+      // range is set
+      const submissionDate = sql`COALESCE(${articles.submittedAt}, ${articles.createdAt})`;
+      const unpaidConditions = [];
+      if (data?.startDate) {
+        unpaidConditions.push(gte(submissionDate, new Date(data.startDate)));
+      }
+      if (data?.endDate) {
+        unpaidConditions.push(lte(submissionDate, new Date(data.endDate)));
+      }
+      const unpaidWhere = unpaidConditions.length > 0 ? and(...unpaidConditions) : undefined;
 
       // Run queries in parallel
       const [totalResult, paidResult, unpaidResult] = await Promise.all([
@@ -345,17 +357,17 @@ export const getPaymentStats = createServerFn({ method: "POST" })
             totalArticles: count(),
           })
           .from(articles)
-          .where(and(eq(articles.paymentStatus, true), whereClause)),
+          .where(and(eq(articles.paymentStatus, true), paidWhere)),
         // Paid count
         db
           .select({ count: count() })
           .from(articles)
-          .where(and(eq(articles.paymentStatus, true), whereClause)),
+          .where(and(eq(articles.paymentStatus, true), paidWhere)),
         // Unpaid with calculated payment
         db
           .select({ count: count(), totalAmount: sum(articles.paymentAmount) })
           .from(articles)
-          .where(and(eq(articles.paymentStatus, false), whereClause)),
+          .where(and(eq(articles.paymentStatus, false), unpaidWhere)),
       ]);
 
       return {

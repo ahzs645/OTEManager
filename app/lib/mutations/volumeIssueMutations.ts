@@ -80,10 +80,26 @@ export const deleteVolume = createServerFn({ method: "POST" })
   .inputValidator((data: { id: string }) => data)
   .handler(async ({ data }) => {
     try {
-      const { db, volumes } = await import("@db/index");
-      const { eq } = await import("drizzle-orm");
+      const { db, volumes, issues, articles } = await import("@db/index");
+      const { eq, inArray } = await import("drizzle-orm");
 
-      await db.delete(volumes).where(eq(volumes.id, data.id));
+      // Unassign articles from this volume's issues first — articles.issueId
+      // has no ON DELETE action, so the delete would otherwise fail with an
+      // FK violation as soon as any article is assigned
+      await db.transaction(async (tx) => {
+        const volumeIssues = await tx
+          .select({ id: issues.id })
+          .from(issues)
+          .where(eq(issues.volumeId, data.id));
+        const issueIds = volumeIssues.map((i) => i.id);
+        if (issueIds.length > 0) {
+          await tx
+            .update(articles)
+            .set({ issueId: null, updatedAt: new Date() })
+            .where(inArray(articles.issueId, issueIds));
+        }
+        await tx.delete(volumes).where(eq(volumes.id, data.id));
+      });
 
       return { success: true };
     } catch (error) {
@@ -173,10 +189,18 @@ export const deleteIssue = createServerFn({ method: "POST" })
   .inputValidator((data: { id: string }) => data)
   .handler(async ({ data }) => {
     try {
-      const { db, issues } = await import("@db/index");
+      const { db, issues, articles } = await import("@db/index");
       const { eq } = await import("drizzle-orm");
 
-      await db.delete(issues).where(eq(issues.id, data.id));
+      // Unassign articles first — articles.issueId has no ON DELETE action,
+      // so the delete would otherwise fail with an FK violation
+      await db.transaction(async (tx) => {
+        await tx
+          .update(articles)
+          .set({ issueId: null, updatedAt: new Date() })
+          .where(eq(articles.issueId, data.id));
+        await tx.delete(issues).where(eq(issues.id, data.id));
+      });
 
       return { success: true };
     } catch (error) {

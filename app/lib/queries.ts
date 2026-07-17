@@ -218,6 +218,15 @@ export const getArticles = createServerFn({ method: "POST" })
         switch (data?.sortBy) {
           case "title":
             return [sortOrder(articles.title)];
+          case "author":
+            // Sort by the related author's name in SQL so ordering happens
+            // before pagination (sorting the fetched page in memory only
+            // alphabetizes within each page)
+            return [
+              sortOrder(
+                sql`(SELECT LOWER(${authors.surname} || ' ' || ${authors.givenName}) FROM ${authors} WHERE ${authors.id} = ${articles.authorId})`
+              ),
+            ];
           case "status":
             return [sortOrder(articles.internalStatus)];
           case "submitted":
@@ -249,16 +258,7 @@ export const getArticles = createServerFn({ method: "POST" })
         offset,
       });
 
-      // If sorting by author, we need to sort in memory since it's a relation
-      let sortedArticles = articleList;
-      if (data?.sortBy === "author") {
-        sortedArticles = [...articleList].sort((a, b) => {
-          const nameA = a.author ? `${a.author.surname} ${a.author.givenName}`.toLowerCase() : "";
-          const nameB = b.author ? `${b.author.surname} ${b.author.givenName}`.toLowerCase() : "";
-          const comparison = nameA.localeCompare(nameB);
-          return data?.sortOrder === "asc" ? comparison : -comparison;
-        });
-      }
+      const sortedArticles = articleList;
 
       // Get total count
       const [totalResult] = await db
