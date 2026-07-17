@@ -169,7 +169,7 @@ export const Route = createFileRoute('/api/sharepoint/import')({
             articleMultimediaTypes,
             attachments,
           } = await import('@db/schema')
-          const { eq } = await import('drizzle-orm')
+          const { eq, sql } = await import('drizzle-orm')
           const { promises: fs } = await import('fs')
           const pathMod = await import('path')
 
@@ -351,8 +351,10 @@ export const Route = createFileRoute('/api/sharepoint/import')({
               if (!seenEmails.has(email)) {
                 seenEmails.add(email)
                 if (!existingAuthorsCache.has(email)) {
+                  // email is lowercased above; compare case-insensitively so
+                  // mixed-case emails already in the DB still match
                   const existingAuthor = await db.query.authors.findFirst({
-                    where: eq(authors.email, email),
+                    where: sql`LOWER(${authors.email}) = ${email}`,
                   })
                   existingAuthorsCache.set(email, !!existingAuthor)
                 }
@@ -512,8 +514,10 @@ export const Route = createFileRoute('/api/sharepoint/import')({
               // Get or create author
               let authorId = authorCache.get(email)
               if (!authorId) {
+                // email is lowercased above; compare case-insensitively so
+                // mixed-case emails already in the DB still match
                 const existingAuthor = await db.query.authors.findFirst({
-                  where: eq(authors.email, email),
+                  where: sql`LOWER(${authors.email}) = ${email}`,
                 })
 
                 if (existingAuthor) {

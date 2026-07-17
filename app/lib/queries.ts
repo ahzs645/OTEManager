@@ -404,20 +404,18 @@ export const getAuthors = createServerFn({ method: "GET" })
         orderBy: (authors, { asc }) => [asc(authors.surname)],
       });
 
-      // Get article counts for each author
-      const authorsWithCounts = await Promise.all(
-        authorList.map(async (author) => {
-          const [countResult] = await db
-            .select({ count: count() })
-            .from(articles)
-            .where(eq(articles.authorId, author.id));
+      // Get article counts for all authors in one grouped query instead of
+      // one query per author
+      const countRows = await db
+        .select({ authorId: articles.authorId, count: count() })
+        .from(articles)
+        .groupBy(articles.authorId);
+      const countByAuthor = new Map(countRows.map((r) => [r.authorId, r.count]));
 
-          return {
-            ...author,
-            articleCount: countResult?.count ?? 0,
-          };
-        })
-      );
+      const authorsWithCounts = authorList.map((author) => ({
+        ...author,
+        articleCount: countByAuthor.get(author.id) ?? 0,
+      }));
 
       return { authors: authorsWithCounts };
     } catch (error) {
@@ -441,27 +439,21 @@ export const getVolumes = createServerFn({ method: "GET" }).handler(async () => 
       orderBy: (volumes, { desc }) => [desc(volumes.volumeNumber)],
     });
 
-    // Get article counts for each issue
-    const volumesWithCounts = await Promise.all(
-      volumeList.map(async (volume) => {
-        const issuesWithCounts = await Promise.all(
-          volume.issues.map(async (issue) => {
-            const [countResult] = await db
-              .select({ count: count() })
-              .from(articles)
-              .where(eq(articles.issueId, issue.id));
-            return {
-              ...issue,
-              articleCount: countResult?.count ?? 0,
-            };
-          })
-        );
-        return {
-          ...volume,
-          issues: issuesWithCounts,
-        };
-      })
-    );
+    // Get article counts for all issues in one grouped query instead of one
+    // query per issue
+    const countRows = await db
+      .select({ issueId: articles.issueId, count: count() })
+      .from(articles)
+      .groupBy(articles.issueId);
+    const countByIssue = new Map(countRows.map((r) => [r.issueId, r.count]));
+
+    const volumesWithCounts = volumeList.map((volume) => ({
+      ...volume,
+      issues: volume.issues.map((issue) => ({
+        ...issue,
+        articleCount: countByIssue.get(issue.id) ?? 0,
+      })),
+    }));
 
     return { volumes: volumesWithCounts };
   } catch (error) {

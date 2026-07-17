@@ -6,6 +6,17 @@ interface DateRangeFilter {
   endDate?: string;
 }
 
+// Parse an end-date filter inclusively. Date-only strings ("2026-07-17")
+// parse to midnight, which would exclude everything that happened later that
+// day, so roll date-only values forward to the end of the day.
+function endOfDay(dateStr: string): Date {
+  const d = new Date(dateStr);
+  if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr.trim())) {
+    d.setUTCHours(23, 59, 59, 999);
+  }
+  return d;
+}
+
 // Cross-filter type for Power BI-style filtering
 interface CrossFilter {
   tier?: string;
@@ -70,7 +81,8 @@ async function buildCrossFilterConditions(crossFilter: CrossFilter | undefined, 
     }
     if (startMonth! && endMonth!) {
       const startDate = new Date(year, startMonth - 1, 1);
-      const endDate = new Date(year, endMonth, 0);
+      // Last day of the end month, at end of day so same-day activity counts
+      const endDate = new Date(year, endMonth, 0, 23, 59, 59, 999);
       conditions.push(
         or(
           and(isNotNull(articles.submittedAt), gte(articles.submittedAt, startDate), lte(articles.submittedAt, endDate)),
@@ -100,7 +112,7 @@ export const getAllAnalyticsWithCrossFilter = createServerFn({ method: "POST" })
         dateConditions.push(gte(articles.createdAt, new Date(data.startDate)));
       }
       if (data?.endDate) {
-        dateConditions.push(lte(articles.createdAt, new Date(data.endDate)));
+        dateConditions.push(lte(articles.createdAt, endOfDay(data.endDate)));
       }
 
       const baseConditions = [...dateConditions, ...crossFilterConditions];
@@ -330,7 +342,7 @@ export const getPaymentStats = createServerFn({ method: "POST" })
         paidConditions.push(gte(articles.paidAt, new Date(data.startDate)));
       }
       if (data?.endDate) {
-        paidConditions.push(lte(articles.paidAt, new Date(data.endDate)));
+        paidConditions.push(lte(articles.paidAt, endOfDay(data.endDate)));
       }
       const paidWhere = paidConditions.length > 0 ? and(...paidConditions) : undefined;
 
@@ -343,7 +355,7 @@ export const getPaymentStats = createServerFn({ method: "POST" })
         unpaidConditions.push(gte(submissionDate, new Date(data.startDate)));
       }
       if (data?.endDate) {
-        unpaidConditions.push(lte(submissionDate, new Date(data.endDate)));
+        unpaidConditions.push(lte(submissionDate, endOfDay(data.endDate)));
       }
       const unpaidWhere = unpaidConditions.length > 0 ? and(...unpaidConditions) : undefined;
 
@@ -402,7 +414,7 @@ export const getPaymentStatusBreakdown = createServerFn({ method: "POST" })
         conditions.push(gte(articles.createdAt, new Date(data.startDate)));
       }
       if (data?.endDate) {
-        conditions.push(lte(articles.createdAt, new Date(data.endDate)));
+        conditions.push(lte(articles.createdAt, endOfDay(data.endDate)));
       }
       // Only articles with calculated payment
       conditions.push(isNotNull(articles.paymentAmount));
@@ -452,7 +464,7 @@ export const getTierAnalytics = createServerFn({ method: "POST" })
         conditions.push(gte(articles.createdAt, new Date(data.startDate)));
       }
       if (data?.endDate) {
-        conditions.push(lte(articles.createdAt, new Date(data.endDate)));
+        conditions.push(lte(articles.createdAt, endOfDay(data.endDate)));
       }
       conditions.push(isNotNull(articles.paymentAmount));
 
@@ -502,7 +514,7 @@ export const getBonusFrequency = createServerFn({ method: "POST" })
         conditions.push(gte(articles.createdAt, new Date(data.startDate)));
       }
       if (data?.endDate) {
-        conditions.push(lte(articles.createdAt, new Date(data.endDate)));
+        conditions.push(lte(articles.createdAt, endOfDay(data.endDate)));
       }
 
       const baseWhere = conditions.length > 0 ? and(...conditions) : undefined;
@@ -566,7 +578,7 @@ export const getTopEarningAuthors = createServerFn({ method: "POST" })
         conditions.push(gte(articles.paidAt, new Date(data.startDate)));
       }
       if (data?.endDate) {
-        conditions.push(lte(articles.paidAt, new Date(data.endDate)));
+        conditions.push(lte(articles.paidAt, endOfDay(data.endDate)));
       }
 
       const whereClause = and(...conditions);
@@ -614,7 +626,7 @@ export const getEarningsByAuthorType = createServerFn({ method: "POST" })
         conditions.push(gte(articles.paidAt, new Date(data.startDate)));
       }
       if (data?.endDate) {
-        conditions.push(lte(articles.paidAt, new Date(data.endDate)));
+        conditions.push(lte(articles.paidAt, endOfDay(data.endDate)));
       }
 
       const whereClause = and(...conditions);
@@ -789,7 +801,7 @@ export const getEarningsByStudentType = createServerFn({ method: "POST" })
         conditions.push(gte(articles.paidAt, new Date(data.startDate)));
       }
       if (data?.endDate) {
-        conditions.push(lte(articles.paidAt, new Date(data.endDate)));
+        conditions.push(lte(articles.paidAt, endOfDay(data.endDate)));
       }
 
       const whereClause = and(...conditions);
@@ -954,7 +966,7 @@ export const getAuthorsByType = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     try {
       const { db, authors, articles } = await import("@db/index");
-      const { eq, desc, sum, count, and } = await import("drizzle-orm");
+      const { eq, desc, sum, count, and, inArray } = await import("drizzle-orm");
 
       const authorList = await db.query.authors.findMany({
         where: eq(authors.authorType, data.authorType as any),
@@ -962,24 +974,30 @@ export const getAuthorsByType = createServerFn({ method: "POST" })
         limit: data.limit || 20,
       });
 
-      // Get article counts and earnings for each author
-      const authorsWithStats = await Promise.all(
-        authorList.map(async (author) => {
-          const [stats] = await db
+      // Get paid article counts and earnings for all authors in one grouped
+      // query instead of one query per author
+      const authorIds = authorList.map((a) => a.id);
+      const statRows = authorIds.length
+        ? await db
             .select({
+              authorId: articles.authorId,
               articleCount: count(),
               totalEarnings: sum(articles.paymentAmount),
             })
             .from(articles)
-            .where(and(eq(articles.authorId, author.id), eq(articles.paymentStatus, true)));
+            .where(and(inArray(articles.authorId, authorIds), eq(articles.paymentStatus, true)))
+            .groupBy(articles.authorId)
+        : [];
+      const statsByAuthor = new Map(statRows.map((r) => [r.authorId, r]));
 
-          return {
-            ...author,
-            articleCount: Number(stats?.articleCount) || 0,
-            totalEarnings: Number(stats?.totalEarnings) || 0,
-          };
-        })
-      );
+      const authorsWithStats = authorList.map((author) => {
+        const stats = statsByAuthor.get(author.id);
+        return {
+          ...author,
+          articleCount: Number(stats?.articleCount) || 0,
+          totalEarnings: Number(stats?.totalEarnings) || 0,
+        };
+      });
 
       return { authors: authorsWithStats };
     } catch (error) {
@@ -1016,7 +1034,8 @@ export const getArticlesBySemester = createServerFn({ method: "POST" })
       }
 
       const startDate = new Date(data.year, startMonth - 1, 1);
-      const endDate = new Date(data.year, endMonth, 0); // Last day of end month
+      // Last day of the end month, at end of day so same-day activity counts
+      const endDate = new Date(data.year, endMonth, 0, 23, 59, 59, 999);
 
       // Use submittedAt if available, otherwise createdAt
       const articleList = await db.query.articles.findMany({
@@ -1054,7 +1073,7 @@ export const getAuthorsByStudentType = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     try {
       const { db, authors, articles } = await import("@db/index");
-      const { eq, desc, sum, count, and, isNull } = await import("drizzle-orm");
+      const { eq, desc, sum, count, and, isNull, inArray } = await import("drizzle-orm");
 
       // Handle "Unknown" student type as null
       const whereCondition = data.studentType === "Unknown"
@@ -1067,24 +1086,30 @@ export const getAuthorsByStudentType = createServerFn({ method: "POST" })
         limit: data.limit || 20,
       });
 
-      // Get article counts and earnings for each author
-      const authorsWithStats = await Promise.all(
-        authorList.map(async (author) => {
-          const [stats] = await db
+      // Get paid article counts and earnings for all authors in one grouped
+      // query instead of one query per author
+      const authorIds = authorList.map((a) => a.id);
+      const statRows = authorIds.length
+        ? await db
             .select({
+              authorId: articles.authorId,
               articleCount: count(),
               totalEarnings: sum(articles.paymentAmount),
             })
             .from(articles)
-            .where(and(eq(articles.authorId, author.id), eq(articles.paymentStatus, true)));
+            .where(and(inArray(articles.authorId, authorIds), eq(articles.paymentStatus, true)))
+            .groupBy(articles.authorId)
+        : [];
+      const statsByAuthor = new Map(statRows.map((r) => [r.authorId, r]));
 
-          return {
-            ...author,
-            articleCount: Number(stats?.articleCount) || 0,
-            totalEarnings: Number(stats?.totalEarnings) || 0,
-          };
-        })
-      );
+      const authorsWithStats = authorList.map((author) => {
+        const stats = statsByAuthor.get(author.id);
+        return {
+          ...author,
+          articleCount: Number(stats?.articleCount) || 0,
+          totalEarnings: Number(stats?.totalEarnings) || 0,
+        };
+      });
 
       return { authors: authorsWithStats };
     } catch (error) {

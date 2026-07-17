@@ -146,13 +146,14 @@ async function processSubmission(submission: ArticleSubmission): Promise<{ artic
   const { db, authors, articles, attachments, articleMultimediaTypes } =
     await import("@db/index");
   const { getStorage } = await import("../../../storage");
-  const { eq } = await import("drizzle-orm");
+  const { eq, sql } = await import("drizzle-orm");
 
   const storage = getStorage();
 
-  // 1. Find or create author
+  // 1. Find or create author (email match is case-insensitive so the same
+  // person submitting as Jane@X.com and jane@x.com stays one author)
   let author = await db.query.authors.findFirst({
-    where: eq(authors.email, submission.author.email),
+    where: sql`LOWER(${authors.email}) = LOWER(${submission.author.email.trim()})`,
   });
 
   if (!author) {

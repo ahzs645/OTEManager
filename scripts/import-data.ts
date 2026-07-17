@@ -7,7 +7,7 @@ import {
   articleMultimediaTypes,
   attachments,
 } from "../db/schema";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 
 // Source paths
 const SOURCE_DIR = "/Users/ahmadjalil/Downloads/OTE DS";
@@ -163,9 +163,10 @@ async function main() {
       // Get or create author
       let authorId = authorCache.get(email);
       if (!authorId) {
-        // Check if author exists in DB
+        // Check if author exists in DB (email is lowercased above; compare
+        // case-insensitively so mixed-case emails already in the DB match)
         const existingAuthor = await db.query.authors.findFirst({
-          where: eq(authors.email, email),
+          where: sql`LOWER(${authors.email}) = ${email}`,
         });
 
         if (existingAuthor) {
