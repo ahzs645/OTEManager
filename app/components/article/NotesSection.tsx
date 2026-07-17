@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useRouter } from '@tanstack/react-router'
 import { Send, Edit2, Trash2 } from 'lucide-react'
 import { Button, LoadingSpinner, formatDate, Section } from '~/components/Layout'
 import { addArticleNote, updateArticleNote, deleteArticleNote } from '~/lib/mutations'
@@ -16,6 +17,7 @@ interface NotesSectionProps {
 }
 
 export function NotesSection({ articleId, notes }: NotesSectionProps) {
+  const router = useRouter()
   const [newNote, setNewNote] = useState('')
   const [isAddingNote, setIsAddingNote] = useState(false)
   const [editingNote, setEditingNote] = useState<{ id: string; content: string } | null>(null)
@@ -34,7 +36,7 @@ export function NotesSection({ articleId, notes }: NotesSectionProps) {
         },
       })
       setNewNote('')
-      window.location.reload()
+      await router.invalidate()
     } catch (error) {
       console.error('Failed to add note:', error)
     } finally {
@@ -59,7 +61,7 @@ export function NotesSection({ articleId, notes }: NotesSectionProps) {
       })
       setEditingNote(null)
       setEditNoteContent('')
-      window.location.reload()
+      await router.invalidate()
     } catch (error) {
       console.error('Failed to update note:', error)
     } finally {
@@ -77,7 +79,7 @@ export function NotesSection({ articleId, notes }: NotesSectionProps) {
     setIsDeletingNote(noteId)
     try {
       await deleteArticleNote({ data: { noteId } })
-      window.location.reload()
+      await router.invalidate()
     } catch (error) {
       console.error('Failed to delete note:', error)
     } finally {

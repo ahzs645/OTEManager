@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from '@tanstack/react-router'
+import { Link, useRouter } from '@tanstack/react-router'
 import { ChevronRight, ChevronDown, FileText, Pencil, Trash2, Plus } from 'lucide-react'
 import { VolumeForm } from './VolumeForm'
 import { IssueForm } from './IssueForm'
@@ -27,6 +27,7 @@ interface VolumeCardProps {
 }
 
 export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
+  const router = useRouter()
   const [isEditing, setIsEditing] = useState(false)
   const [editingIssueId, setEditingIssueId] = useState<string | null>(null)
   const [showNewIssueForm, setShowNewIssueForm] = useState(false)
@@ -65,7 +66,7 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
         },
       })
       setIsEditing(false)
-      window.location.reload()
+      await router.invalidate()
     } catch (error) {
       console.error('Failed to update volume:', error)
     } finally {
@@ -78,7 +79,7 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
     setIsLoading(true)
     try {
       await deleteVolume({ data: { id: volume.id } })
-      window.location.reload()
+      await router.invalidate()
     } catch (error) {
       console.error('Failed to delete volume:', error)
     } finally {
@@ -111,7 +112,7 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
       })
       setShowNewIssueForm(false)
       setIssueForm(emptyIssueForm)
-      window.location.reload()
+      await router.invalidate()
     } catch (error) {
       console.error('Failed to create issue:', error)
     } finally {
@@ -133,7 +134,7 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
         },
       })
       setEditingIssueId(null)
-      window.location.reload()
+      await router.invalidate()
     } catch (error) {
       console.error('Failed to update issue:', error)
     } finally {
@@ -146,7 +147,7 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
     setIsLoading(true)
     try {
       await deleteIssue({ data: { id: issueId } })
-      window.location.reload()
+      await router.invalidate()
     } catch (error) {
       console.error('Failed to delete issue:', error)
     } finally {

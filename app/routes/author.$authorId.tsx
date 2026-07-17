@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
+import { createFileRoute, Link, useRouter } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { useState } from 'react'
 import {
@@ -114,6 +114,7 @@ const STUDENT_TYPE_OPTIONS = [
 ]
 
 function AuthorDetailPage() {
+  const router = useRouter()
   const { author, stats } = Route.useLoaderData()
   const [isEditing, setIsEditing] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
@@ -165,7 +166,7 @@ function AuthorDetailPage() {
         },
       })
       setIsEditing(false)
-      window.location.reload()
+      await router.invalidate()
     } catch (error) {
       console.error('Failed to update author:', error)
     } finally {
