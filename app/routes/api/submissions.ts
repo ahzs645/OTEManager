@@ -44,18 +44,31 @@ const ArticleSubmissionSchema = z.object({
   formResponseId: z.string().optional(),
   submittedAt: z.string().optional(), // ISO date string
 
-  // Attachments (base64 encoded)
+  // Attachments (base64 encoded). Size is bounded to prevent memory
+  // exhaustion: base64 is ~4/3 of the raw size, so the per-attachment cap
+  // mirrors the MAX_FILE_SIZE limit used by the upload endpoint.
   attachments: z
     .array(
       z.object({
-        name: z.string(),
+        name: z.string().max(255),
         type: z.enum(["word_document", "photo", "graphic", "other"]),
-        content: z.string(), // Base64 encoded content
+        content: z
+          .string()
+          .max(
+            Math.ceil(
+              ((parseInt(process.env.MAX_FILE_SIZE || "") ||
+                10 * 1024 * 1024) *
+                4) /
+                3
+            ),
+            "Attachment exceeds maximum file size"
+          ), // Base64 encoded content
         mimeType: z.string().optional(),
         caption: z.string().optional(), // For photos
         photoNumber: z.number().optional(),
       })
     )
+    .max(50, "Too many attachments")
     .optional()
     .default([]),
 });
@@ -74,6 +87,20 @@ export const Route = createFileRoute('/api/submissions')({
             if (authHeader !== webhookSecret) {
               return Response.json({ error: "Unauthorized" }, { status: 401 });
             }
+          }
+
+          // Reject oversized payloads before buffering the body into memory
+          // (defaults to 50MB, configurable via MAX_WEBHOOK_BODY env var)
+          const maxBody =
+            parseInt(process.env.MAX_WEBHOOK_BODY || "") || 50 * 1024 * 1024;
+          const contentLength = parseInt(
+            request.headers.get("content-length") || ""
+          );
+          if (contentLength && contentLength > maxBody) {
+            return Response.json(
+              { error: "Payload too large" },
+              { status: 413 }
+            );
           }
 
           // Parse and validate request body
