@@ -17,62 +17,69 @@ export const createArticle = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     try {
       const { db, articles, authors, statusHistory } = await import("@db/index");
-      const { eq } = await import("drizzle-orm");
+      const { sql } = await import("drizzle-orm");
 
-      let authorId = data.authorId;
+      // Author find-or-create, article insert, and initial status history
+      // run in one transaction so a failure can't leave partial records
+      const articleId = await db.transaction(async (tx) => {
+        let authorId = data.authorId;
 
-      // If no authorId provided, create or find author
-      if (!authorId) {
-        if (!data.authorEmail || !data.authorGivenName || !data.authorSurname) {
-          return { success: false, error: "Author information is required" };
+        // If no authorId provided, create or find author
+        if (!authorId) {
+          if (!data.authorEmail || !data.authorGivenName || !data.authorSurname) {
+            throw new Error("Author information is required");
+          }
+
+          // Check if author with this email already exists — compare
+          // case-insensitively so Jane@X.com doesn't duplicate jane@x.com
+          const existingAuthor = await tx.query.authors.findFirst({
+            where: sql`LOWER(${authors.email}) = LOWER(${data.authorEmail.trim()})`,
+          });
+
+          if (existingAuthor) {
+            authorId = existingAuthor.id;
+          } else {
+            // Create new author
+            const [newAuthor] = await tx
+              .insert(authors)
+              .values({
+                givenName: data.authorGivenName,
+                surname: data.authorSurname,
+                email: data.authorEmail.trim(),
+                role: "Guest Contributor",
+              })
+              .returning();
+            authorId = newAuthor.id;
+          }
         }
 
-        // Check if author with this email already exists
-        const existingAuthor = await db.query.authors.findFirst({
-          where: eq(authors.email, data.authorEmail),
+        // Create the article
+        const [newArticle] = await tx
+          .insert(articles)
+          .values({
+            title: data.title,
+            authorId: authorId,
+            articleTier: (data.articleTier as any) || "Tier 1 (Basic)",
+            prefersAnonymity: data.prefersAnonymity || false,
+            internalStatus: "Draft",
+            automationStatus: "Completed",
+            submittedAt: new Date(),
+          })
+          .returning();
+
+        // Add initial status history
+        await tx.insert(statusHistory).values({
+          articleId: newArticle.id,
+          fromStatus: null,
+          toStatus: "Draft",
+          changedBy: "Manual Entry",
+          notes: "Article created manually",
         });
 
-        if (existingAuthor) {
-          authorId = existingAuthor.id;
-        } else {
-          // Create new author
-          const [newAuthor] = await db
-            .insert(authors)
-            .values({
-              givenName: data.authorGivenName,
-              surname: data.authorSurname,
-              email: data.authorEmail,
-              role: "Guest Contributor",
-            })
-            .returning();
-          authorId = newAuthor.id;
-        }
-      }
-
-      // Create the article
-      const [newArticle] = await db
-        .insert(articles)
-        .values({
-          title: data.title,
-          authorId: authorId,
-          articleTier: (data.articleTier as any) || "Tier 1 (Basic)",
-          prefersAnonymity: data.prefersAnonymity || false,
-          internalStatus: "Draft",
-          automationStatus: "Completed",
-          submittedAt: new Date(),
-        })
-        .returning();
-
-      // Add initial status history
-      await db.insert(statusHistory).values({
-        articleId: newArticle.id,
-        fromStatus: null,
-        toStatus: "Draft",
-        changedBy: "Manual Entry",
-        notes: "Article created manually",
+        return newArticle.id;
       });
 
-      return { success: true, articleId: newArticle.id };
+      return { success: true, articleId };
     } catch (error) {
       console.error("Failed to create article:", error);
       return {
@@ -97,34 +104,41 @@ export const updateArticleStatus = createServerFn({ method: "POST" })
       const { db, articles, statusHistory } = await import("@db/index");
       const { eq } = await import("drizzle-orm");
 
-      // Get current article
-      const currentArticle = await db.query.articles.findFirst({
-        where: eq(articles.id, data.articleId),
+      // Read + update + history in one transaction, with the row locked so
+      // two concurrent status changes can't both record the same fromStatus
+      const result = await db.transaction(async (tx) => {
+        const [currentArticle] = await tx
+          .select({ internalStatus: articles.internalStatus })
+          .from(articles)
+          .where(eq(articles.id, data.articleId))
+          .for("update");
+
+        if (!currentArticle) {
+          return { success: false as const, error: "Article not found" };
+        }
+
+        // Update article status
+        await tx
+          .update(articles)
+          .set({
+            internalStatus: data.status as any,
+            updatedAt: new Date(),
+          })
+          .where(eq(articles.id, data.articleId));
+
+        // Add to status history
+        await tx.insert(statusHistory).values({
+          articleId: data.articleId,
+          fromStatus: currentArticle.internalStatus,
+          toStatus: data.status as any,
+          changedBy: data.changedBy,
+          notes: data.notes,
+        });
+
+        return { success: true as const };
       });
 
-      if (!currentArticle) {
-        return { success: false, error: "Article not found" };
-      }
-
-      // Update article status
-      await db
-        .update(articles)
-        .set({
-          internalStatus: data.status as any,
-          updatedAt: new Date(),
-        })
-        .where(eq(articles.id, data.articleId));
-
-      // Add to status history
-      await db.insert(statusHistory).values({
-        articleId: data.articleId,
-        fromStatus: currentArticle.internalStatus,
-        toStatus: data.status as any,
-        changedBy: data.changedBy,
-        notes: data.notes,
-      });
-
-      return { success: true };
+      return result;
     } catch (error) {
       console.error("Failed to update article status:", error);
       return {

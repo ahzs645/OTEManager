@@ -92,6 +92,10 @@ export function SavedViewSelector({
 
   const handleDeleteView = async (e: React.MouseEvent, viewId: string) => {
     e.stopPropagation()
+    const view = views.find((v) => v.id === viewId)
+    if (!confirm(`Delete saved view${view ? ` "${view.name}"` : ''}? This cannot be undone.`)) {
+      return
+    }
     const result = await deleteSavedView({ data: { id: viewId } })
     if (result.success) {
       await loadViews()

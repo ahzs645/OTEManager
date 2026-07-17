@@ -12,6 +12,17 @@ export class LocalStorageProvider implements StorageProvider {
     this.baseUrl = baseUrl || "/api/files";
   }
 
+  // Resolve a stored file path against the base directory, refusing any
+  // path (absolute or with ".." segments) that would escape it.
+  private resolveSafePath(filePath: string): string | null {
+    const root = path.resolve(this.baseDir);
+    const fullPath = path.resolve(root, filePath);
+    if (fullPath !== root && !fullPath.startsWith(root + path.sep)) {
+      return null;
+    }
+    return fullPath;
+  }
+
   private async ensureDirectory(dir: string): Promise<void> {
     try {
       await fs.mkdir(dir, { recursive: true });
@@ -76,7 +87,8 @@ export class LocalStorageProvider implements StorageProvider {
 
   async getFile(filePath: string): Promise<Buffer | null> {
     try {
-      const fullPath = path.join(this.baseDir, filePath);
+      const fullPath = this.resolveSafePath(filePath);
+      if (!fullPath) return null;
       return await fs.readFile(fullPath);
     } catch {
       return null;
@@ -85,7 +97,8 @@ export class LocalStorageProvider implements StorageProvider {
 
   async delete(filePath: string): Promise<boolean> {
     try {
-      const fullPath = path.join(this.baseDir, filePath);
+      const fullPath = this.resolveSafePath(filePath);
+      if (!fullPath) return false;
       await fs.unlink(fullPath);
       return true;
     } catch {
@@ -95,7 +108,8 @@ export class LocalStorageProvider implements StorageProvider {
 
   async exists(filePath: string): Promise<boolean> {
     try {
-      const fullPath = path.join(this.baseDir, filePath);
+      const fullPath = this.resolveSafePath(filePath);
+      if (!fullPath) return false;
       await fs.access(fullPath);
       return true;
     } catch {
@@ -105,7 +119,8 @@ export class LocalStorageProvider implements StorageProvider {
 
   async saveFile(filePath: string, buffer: Buffer): Promise<boolean> {
     try {
-      const fullPath = path.join(this.baseDir, filePath);
+      const fullPath = this.resolveSafePath(filePath);
+      if (!fullPath) return false;
       await this.ensureDirectory(path.dirname(fullPath));
       await fs.writeFile(fullPath, buffer);
       return true;

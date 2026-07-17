@@ -67,6 +67,9 @@ export const authorTypeEnum = pgEnum("author_type", [
   "External",
 ]);
 
+export type AuthorType = (typeof authorTypeEnum.enumValues)[number];
+export type StudentType = (typeof studentTypeEnum.enumValues)[number];
+
 export const studentTypeEnum = pgEnum("student_type", [
   "Undergrad",
   "Grad",

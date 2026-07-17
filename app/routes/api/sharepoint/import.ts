@@ -159,6 +159,8 @@ export const Route = createFileRoute('/api/sharepoint/import')({
   server: {
     handlers: {
       POST: async ({ request }) => {
+        // Declared outside the try so the catch can clean it up on failure
+        let tempDir: string | null = null
         try {
           const { db } = await import('@db/index')
           const {
@@ -167,7 +169,7 @@ export const Route = createFileRoute('/api/sharepoint/import')({
             articleMultimediaTypes,
             attachments,
           } = await import('@db/schema')
-          const { eq } = await import('drizzle-orm')
+          const { eq, sql } = await import('drizzle-orm')
           const { promises: fs } = await import('fs')
           const pathMod = await import('path')
 
@@ -191,7 +193,6 @@ export const Route = createFileRoute('/api/sharepoint/import')({
           let articlesData: SharePointArticle[] = []
           let documentsDir: string | null = null
           let photosDir: string | null = null
-          let tempDir: string | null = null
 
           // Handle ZIP file upload
           if (file && file.size > 0) {
@@ -236,12 +237,18 @@ export const Route = createFileRoute('/api/sharepoint/import')({
 
               for (const [filename, zipEntry] of Object.entries(zip.files)) {
                 if (zipEntry.dir || filename.startsWith('__MACOSX')) continue
-                const content = await zipEntry.async('nodebuffer')
                 // Strip the root prefix when extracting so paths are normalized
                 const normalizedFilename = rootPrefix && filename.startsWith(rootPrefix)
                   ? filename.slice(rootPrefix.length)
                   : filename
-                const filePath = pathMod.join(tempDir, normalizedFilename)
+                // Guard against zip-slip: resolve the entry path and make sure
+                // it stays inside the temp directory
+                const filePath = pathMod.resolve(tempDir, normalizedFilename)
+                if (!filePath.startsWith(tempDir + pathMod.sep)) {
+                  console.warn(`Skipping unsafe ZIP entry: ${filename}`)
+                  continue
+                }
+                const content = await zipEntry.async('nodebuffer')
                 await fs.mkdir(pathMod.dirname(filePath), { recursive: true })
                 await fs.writeFile(filePath, content)
               }
@@ -301,6 +308,13 @@ export const Route = createFileRoute('/api/sharepoint/import')({
           }
 
           if (!Array.isArray(articlesData)) {
+            if (tempDir) {
+              try {
+                await fs.rm(tempDir, { recursive: true, force: true })
+              } catch {
+                // Ignore cleanup errors
+              }
+            }
             return Response.json(
               { error: 'Invalid JSON format - expected array of articles' },
               { status: 400 }
@@ -337,8 +351,10 @@ export const Route = createFileRoute('/api/sharepoint/import')({
               if (!seenEmails.has(email)) {
                 seenEmails.add(email)
                 if (!existingAuthorsCache.has(email)) {
+                  // email is lowercased above; compare case-insensitively so
+                  // mixed-case emails already in the DB still match
                   const existingAuthor = await db.query.authors.findFirst({
-                    where: eq(authors.email, email),
+                    where: sql`LOWER(${authors.email}) = ${email}`,
                   })
                   existingAuthorsCache.set(email, !!existingAuthor)
                 }
@@ -498,8 +514,10 @@ export const Route = createFileRoute('/api/sharepoint/import')({
               // Get or create author
               let authorId = authorCache.get(email)
               if (!authorId) {
+                // email is lowercased above; compare case-insensitively so
+                // mixed-case emails already in the DB still match
                 const existingAuthor = await db.query.authors.findFirst({
-                  where: eq(authors.email, email),
+                  where: sql`LOWER(${authors.email}) = ${email}`,
                 })
 
                 if (existingAuthor) {
@@ -711,6 +729,15 @@ export const Route = createFileRoute('/api/sharepoint/import')({
           })
         } catch (error) {
           console.error('SharePoint import error:', error)
+          // Clean up the extracted temp directory even when the import fails
+          if (tempDir) {
+            try {
+              const { promises: fs } = await import('fs')
+              await fs.rm(tempDir, { recursive: true, force: true })
+            } catch {
+              // Ignore cleanup errors
+            }
+          }
           return Response.json(
             {
               error:

@@ -180,7 +180,7 @@ const findDuplicateFiles = createServerFn({ method: 'GET' }).handler(async () =>
   return {
     totalFiles: allAttachments.length,
     duplicateGroups,
-    totalDuplicates: duplicateGroups.reduce((sum, g) => sum + g.files.length - 1, 0),
+    totalDuplicates: duplicateGroups.reduce<number>((sum, g) => sum + g.files.length - 1, 0),
   }
 })
 
@@ -306,6 +306,15 @@ function DeduplicateFilesPage() {
           }))
           .filter((g) => g.files.length > 1)
       )
+      // Drop any keep-selection pointing at the deleted file, otherwise
+      // "Delete Others" would delete every remaining file in the group
+      setSelectedToKeep((prev) => {
+        const next = { ...prev }
+        for (const [key, id] of Object.entries(next)) {
+          if (id === file.id) delete next[key]
+        }
+        return next
+      })
       setTotalDuplicates((prev) => prev - 1)
       setSuccessMessage(`Deleted "${file.originalFileName}"`)
       setTimeout(() => setSuccessMessage(null), 3000)
@@ -324,6 +333,10 @@ function DeduplicateFilesPage() {
     }
 
     const keepFile = group.files.find((f) => f.id === keepId)
+    if (!keepFile) {
+      setError('The selected file to keep no longer exists — please select again')
+      return
+    }
     const deleteIds = group.files.filter((f) => f.id !== keepId).map((f) => f.id)
 
     if (

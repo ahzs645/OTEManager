@@ -58,13 +58,15 @@ function Dashboard() {
           title="Pending"
           value={stats.pendingReview}
           icon={Clock}
-          href="/articles?status=Pending+Review"
+          href="/articles"
+          search={{ status: "Pending Review" }}
         />
         <StatCard
           title="In Progress"
           value={stats.inProgress}
           icon={TrendingUp}
-          href="/articles?status=In+Review"
+          href="/articles"
+          search={{ status: "In Review" }}
         />
         <StatCard
           title="Published"

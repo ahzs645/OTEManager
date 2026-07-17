@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useRouter } from '@tanstack/react-router'
 import { useState } from 'react'
 import { Plus } from 'lucide-react'
 import { getVolumes } from '../lib/queries'
@@ -21,6 +21,7 @@ export const Route = createFileRoute('/publications')({
 })
 
 function PublicationsPage() {
+  const router = useRouter()
   const { volumes } = Route.useLoaderData()
   const [expandedVolumes, setExpandedVolumes] = useState<Set<string>>(
     new Set(volumes.map((v: Volume) => v.id))
@@ -54,7 +55,7 @@ function PublicationsPage() {
       })
       setShowNewVolumeForm(false)
       setVolumeForm(emptyVolumeForm)
-      window.location.reload()
+      await router.invalidate()
     } catch (error) {
       console.error('Failed to create volume:', error)
     } finally {

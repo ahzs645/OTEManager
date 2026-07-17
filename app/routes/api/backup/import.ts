@@ -283,11 +283,26 @@ export const Route = createFileRoute('/api/backup/import')({
           // Restore files if requested
           if (importFiles) {
             for (const attachment of manifest.data.attachments || []) {
-              const fileInZip = zip.file(`files/${attachment.filePath}`)
+              // Reject manifest paths that could escape the uploads directory
+              // (the storage layer also enforces this, but skip early and
+              // avoid counting unsafe entries as restored)
+              const filePath = String(attachment.filePath || '')
+              if (
+                !filePath ||
+                filePath.startsWith('/') ||
+                filePath.includes('..') ||
+                filePath.includes('\0')
+              ) {
+                console.warn(`Skipping unsafe attachment path in backup: ${filePath}`)
+                continue
+              }
+              const fileInZip = zip.file(`files/${filePath}`)
               if (fileInZip) {
                 const fileBuffer = await fileInZip.async('nodebuffer')
-                await storage.saveFile(attachment.filePath, fileBuffer)
-                stats.attachments.filesRestored++
+                const saved = await storage.saveFile(filePath, fileBuffer)
+                if (saved) {
+                  stats.attachments.filesRestored++
+                }
               }
             }
           }

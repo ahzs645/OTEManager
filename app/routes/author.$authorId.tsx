@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
+import { createFileRoute, Link, useRouter } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { useState } from 'react'
 import {
@@ -23,6 +23,7 @@ import {
   LoadingSpinner,
 } from '~/components/Layout'
 import { updateAuthorPaymentInfo } from '~/lib/mutations'
+import type { AuthorType, StudentType } from '@db/schema'
 
 // Server function to fetch author data - ensures db code only runs on server
 const fetchAuthorData = createServerFn({ method: 'GET' })
@@ -97,7 +98,7 @@ const ROLE_OPTIONS = [
   'Other',
 ]
 
-const AUTHOR_TYPE_OPTIONS = [
+const AUTHOR_TYPE_OPTIONS: AuthorType[] = [
   'Student',
   'Faculty',
   'Staff',
@@ -113,6 +114,7 @@ const STUDENT_TYPE_OPTIONS = [
 ]
 
 function AuthorDetailPage() {
+  const router = useRouter()
   const { author, stats } = Route.useLoaderData()
   const [isEditing, setIsEditing] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
@@ -160,11 +162,11 @@ function AuthorDetailPage() {
           autoDepositAvailable: editData.autoDepositAvailable,
           etransferEmail: etransferEmail || undefined,
           authorType: editData.authorType,
-          studentType: editData.authorType === 'Student' ? editData.studentType || null : null,
+          studentType: editData.authorType === 'Student' ? (editData.studentType as StudentType) || null : null,
         },
       })
       setIsEditing(false)
-      window.location.reload()
+      await router.invalidate()
     } catch (error) {
       console.error('Failed to update author:', error)
     } finally {
@@ -425,7 +427,7 @@ function AuthorDetailPage() {
                   <select
                     value={editData.authorType}
                     onChange={(e) =>
-                      setEditData((d) => ({ ...d, authorType: e.target.value, studentType: e.target.value === 'Student' ? d.studentType : '' }))
+                      setEditData((d) => ({ ...d, authorType: e.target.value as AuthorType, studentType: e.target.value === 'Student' ? d.studentType : '' }))
                     }
                     className="input w-full"
                   >

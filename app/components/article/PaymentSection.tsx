@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useRouter } from '@tanstack/react-router'
 import {
   DollarSign,
   Check,
@@ -69,6 +70,7 @@ const DEFAULT_RATES: RateConfig = {
 }
 
 export function PaymentSection({ article }: PaymentSectionProps) {
+  const router = useRouter()
   const [isRecalculating, setIsRecalculating] = useState(false)
   const [showManualInput, setShowManualInput] = useState(false)
   const [manualAmount, setManualAmount] = useState('')
@@ -85,6 +87,16 @@ export function PaymentSection({ article }: PaymentSectionProps) {
       return null
     }
   })
+
+  // Keep local payment state in sync when the route data is refreshed
+  useEffect(() => {
+    setLocalPaymentAmount(article.paymentAmount)
+    try {
+      setLocalBreakdown(article.paymentRateSnapshot ? JSON.parse(article.paymentRateSnapshot) : null)
+    } catch {
+      setLocalBreakdown(null)
+    }
+  }, [article.paymentAmount, article.paymentRateSnapshot])
 
   // Fetch rate config on mount
   useEffect(() => {
@@ -160,7 +172,7 @@ export function PaymentSection({ article }: PaymentSectionProps) {
         },
       })
       setShowManualInput(false)
-      window.location.reload()
+      await router.invalidate()
     } catch (error) {
       console.error('Failed to set manual payment:', error)
     } finally {
@@ -178,7 +190,7 @@ export function PaymentSection({ article }: PaymentSectionProps) {
           amount: localPaymentAmount,
         },
       })
-      window.location.reload()
+      await router.invalidate()
     } catch (error) {
       console.error('Failed to mark as paid:', error)
     } finally {
@@ -195,7 +207,7 @@ export function PaymentSection({ article }: PaymentSectionProps) {
           paymentStatus: false,
         },
       })
-      window.location.reload()
+      await router.invalidate()
     } catch (error) {
       console.error('Failed to mark as unpaid:', error)
     } finally {

@@ -5,14 +5,14 @@ export type SortOrder = 'asc' | 'desc'
 export type Article = {
   id: string
   title: string
-  internalStatus: string
-  articleTier: string
+  internalStatus: string | null
+  articleTier: string | null
   volume: number | null
   issue: number | null
   submittedAt: Date | null
   createdAt: Date
-  prefersAnonymity: boolean
-  paymentStatus: boolean
+  prefersAnonymity: boolean | null
+  paymentStatus: boolean | null
   author: {
     id: string
     givenName: string

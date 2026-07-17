@@ -666,6 +666,9 @@ function ArticleReviewCard({
   const [isSavingManual, setIsSavingManual] = useState(false)
   const [isMarkingPaid, setIsMarkingPaid] = useState(false)
   const [localPaymentAmount, setLocalPaymentAmount] = useState(article.paymentAmount)
+  // Optimistic tier so the dropdown and base-rate label reflect a tier
+  // change immediately (the articles list itself is not refetched)
+  const [localTier, setLocalTier] = useState(article.articleTier)
   const [localBreakdown, setLocalBreakdown] = useState(() => {
     try {
       return article.paymentRateSnapshot ? JSON.parse(article.paymentRateSnapshot) : null
@@ -677,6 +680,7 @@ function ArticleReviewCard({
   // Reset state when article changes
   useEffect(() => {
     setLocalPaymentAmount(article.paymentAmount)
+    setLocalTier(article.articleTier)
     setShowManualInput(false)
     setManualAmount('')
     try {
@@ -690,7 +694,7 @@ function ArticleReviewCard({
   const issueLabel = getIssueLabel(article)
 
   const getTierBaseRate = () => {
-    switch (article.articleTier) {
+    switch (localTier) {
       case 'Tier 1 (Basic)': return rateConfig.tier1Rate
       case 'Tier 2 (Standard)': return rateConfig.tier2Rate
       case 'Tier 3 (Advanced)': return rateConfig.tier3Rate
@@ -945,13 +949,17 @@ function ArticleReviewCard({
                 </p>
               </div>
               <select
-                value={article.articleTier}
+                value={localTier ?? 'Tier 1 (Basic)'}
                 onChange={async (e) => {
+                  const previousTier = localTier
+                  const newTier = e.target.value
+                  setLocalTier(newTier)
                   try {
-                    await updateArticleTier({ data: { articleId: article.id, tier: e.target.value } })
+                    await updateArticleTier({ data: { articleId: article.id, tier: newTier } })
                     handleRecalculate()
                   } catch (err) {
                     console.error('Failed to update tier:', err)
+                    setLocalTier(previousTier)
                   }
                 }}
                 className="text-xs px-2 py-1 rounded appearance-none pr-6"

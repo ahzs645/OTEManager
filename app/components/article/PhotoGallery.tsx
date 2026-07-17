@@ -1,4 +1,5 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import { useRouter } from '@tanstack/react-router'
 import { Download, Edit2, Upload, ImageIcon, Trash2 } from 'lucide-react'
 import { Section, LoadingSpinner } from '~/components/Layout'
 import { updateAttachmentCaption, deleteAttachment } from '~/lib/mutations'
@@ -31,6 +32,12 @@ export function PhotoGallery({ photos, articleId }: PhotoGalleryProps) {
   const [isDeleting, setIsDeleting] = useState<string | null>(null)
   const [localPhotos, setLocalPhotos] = useState(photos)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const router = useRouter()
+
+  // Keep local photos in sync when the route data is refreshed
+  useEffect(() => {
+    setLocalPhotos(photos)
+  }, [photos])
 
   const handleDelete = async (attachmentId: string) => {
     if (!confirm('Are you sure you want to delete this photo?')) return
@@ -73,7 +80,7 @@ export function PhotoGallery({ photos, articleId }: PhotoGalleryProps) {
           alert(data.error || `Failed to upload ${file.name}`)
         }
       }
-      window.location.reload()
+      await router.invalidate()
     } catch (error) {
       console.error('Upload error:', error)
       alert('Failed to upload photos')
@@ -144,9 +151,13 @@ export function PhotoGallery({ photos, articleId }: PhotoGalleryProps) {
     setIsSavingCaption(true)
     try {
       await updateAttachmentCaption({ data: { attachmentId: editingCaption.id, caption: captionText } })
+      // Update the caption locally right away, then refresh route data
+      setLocalPhotos((prev) =>
+        prev.map((p) => (p.id === editingCaption.id ? { ...p, caption: captionText } : p))
+      )
       setEditingCaption(null)
       setCaptionText('')
-      window.location.reload()
+      await router.invalidate()
     } catch (error) {
       console.error('Failed to save caption:', error)
     } finally {
@@ -184,7 +195,7 @@ export function PhotoGallery({ photos, articleId }: PhotoGalleryProps) {
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
           className={isDragOver ? 'ring-2 ring-inset rounded-lg' : ''}
-          style={isDragOver ? { ringColor: 'var(--accent)', background: 'var(--accent-subtle)' } : {}}
+          style={isDragOver ? { '--tw-ring-color': 'var(--accent)', background: 'var(--accent-subtle)' } as React.CSSProperties : {}}
         >
         {localPhotos.length === 0 ? (
           <div className={`py-8 text-center transition-colors ${isDragOver ? 'bg-[var(--accent-subtle)]' : ''}`}>

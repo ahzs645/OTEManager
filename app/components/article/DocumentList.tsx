@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
+import { useRouter } from '@tanstack/react-router'
 import { createPortal } from 'react-dom'
 import { FileText, Download, Wand2, Eye, FileEdit, MessageSquare, X, Upload, Trash2 } from 'lucide-react'
 import { Section, LoadingSpinner } from '~/components/Layout'
@@ -49,6 +50,12 @@ export function DocumentList({
   const [localDocuments, setLocalDocuments] = useState(documents)
   const previewContainerRef = useRef<HTMLDivElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const router = useRouter()
+
+  // Keep local documents in sync when the route data is refreshed
+  useEffect(() => {
+    setLocalDocuments(documents)
+  }, [documents])
 
   const handleDelete = async (attachmentId: string) => {
     if (!confirm('Are you sure you want to delete this document?')) return
@@ -93,7 +100,7 @@ export function DocumentList({
       if (!response.ok) {
         alert(data.error || 'Failed to upload document')
       } else {
-        window.location.reload()
+        await router.invalidate()
       }
     } catch (error) {
       console.error('Upload error:', error)
@@ -289,9 +296,9 @@ export function DocumentList({
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
           className={isDragOver ? 'ring-2 ring-inset rounded-lg' : ''}
-          style={isDragOver ? { ringColor: 'var(--accent)', background: 'var(--accent-subtle)' } : {}}
+          style={isDragOver ? { '--tw-ring-color': 'var(--accent)', background: 'var(--accent-subtle)' } as React.CSSProperties : {}}
         >
-          {documents.length === 0 ? (
+          {localDocuments.length === 0 ? (
             <div
               className={`px-4 py-6 text-center transition-colors ${isDragOver ? 'bg-[var(--accent-subtle)]' : ''}`}
             >

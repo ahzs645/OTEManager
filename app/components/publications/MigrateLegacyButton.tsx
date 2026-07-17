@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useRouter } from '@tanstack/react-router'
 import { migrateLegacyVolumeIssues } from '~/lib/mutations'
 
 interface MigrationResult {
@@ -9,6 +10,7 @@ interface MigrationResult {
 }
 
 export function MigrateLegacyButton() {
+  const router = useRouter()
   const [isMigrating, setIsMigrating] = useState(false)
   const [result, setResult] = useState<MigrationResult | null>(null)
 
@@ -19,7 +21,8 @@ export function MigrateLegacyButton() {
       const res = await migrateLegacyVolumeIssues()
       setResult(res)
       if (res.success && res.created && (res.created.volumes > 0 || res.created.issues > 0)) {
-        setTimeout(() => window.location.reload(), 1500)
+        // Show the success message briefly, then refresh route data in place
+        setTimeout(() => router.invalidate(), 1500)
       }
     } catch (error) {
       setResult({

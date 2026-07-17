@@ -105,6 +105,15 @@ export const calculateArticlePayment = createServerFn({ method: "POST" })
         return { success: false, error: "Article not found" };
       }
 
+      // Never overwrite the recorded amount of a completed payment — it
+      // reflects what was actually paid out
+      if (article.paymentStatus) {
+        return {
+          success: false,
+          error: "Payment has already been completed for this article. The recorded amount cannot be recalculated.",
+        };
+      }
+
       // Don't recalculate if already has a manual amount (unless forced)
       if (article.paymentIsManual && !data.recalculate) {
         return {
@@ -266,7 +275,9 @@ export const updateArticleBonusFlags = createServerFn({ method: "POST" })
         with: { multimediaTypes: true },
       });
 
-      if (!article || article.paymentIsManual) {
+      // Keep the flag update, but never rewrite the amount for manual
+      // payments or completed payments (the paid amount is a financial record)
+      if (!article || article.paymentIsManual || article.paymentStatus) {
         return { success: true };
       }
 

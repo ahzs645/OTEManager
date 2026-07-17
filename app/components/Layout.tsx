@@ -9,7 +9,7 @@ import {
   BarChart3,
   BookOpen,
 } from "lucide-react";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 interface LayoutProps {
   children: ReactNode;
@@ -124,21 +124,22 @@ const STATUS_STYLES: Record<string, { badge: string; dot?: string }> = {
   Archived: { badge: "badge-default" },
 };
 
-export function StatusBadge({ status }: { status: string }) {
-  const style = STATUS_STYLES[status] || { badge: "badge-default" };
+export function StatusBadge({ status }: { status: string | null }) {
+  const label = status ?? "Unknown";
+  const style = STATUS_STYLES[label] || { badge: "badge-default" };
 
-  return <span className={`badge ${style.badge}`}>{status}</span>;
+  return <span className={`badge ${style.badge}`}>{label}</span>;
 }
 
 // ===========================================
 // Tier Badge - Monospace, subtle differentiation
 // ===========================================
-export function TierBadge({ tier }: { tier: string }) {
+export function TierBadge({ tier }: { tier: string | null }) {
   // Extract tier number for display
-  const tierNum = tier.match(/Tier (\d)/)?.[1] || "?";
+  const tierNum = tier?.match(/Tier (\d)/)?.[1] || "?";
 
   return (
-    <span className="badge badge-tier" title={tier}>
+    <span className="badge badge-tier" title={tier ?? "No tier"}>
       T{tierNum}
     </span>
   );
@@ -177,12 +178,14 @@ export function StatCard({
   icon: Icon,
   trend,
   href,
+  search,
 }: {
   title: string;
   value: number;
   icon: React.ComponentType<{ className?: string }>;
   trend?: { value: number; label: string };
   href?: string;
+  search?: Record<string, unknown>;
 }) {
   const content = (
     <div className="stat-card group">
@@ -225,7 +228,7 @@ export function StatCard({
 
   if (href) {
     return (
-      <Link to={href} className="block">
+      <Link to={href} search={search} className="block">
         {content}
       </Link>
     );
@@ -322,7 +325,7 @@ export function Avatar({
   size = "md",
 }: {
   name: string;
-  size?: "sm" | "md";
+  size?: "sm" | "md" | "lg";
 }) {
   const initials = name
     .split(" ")
@@ -331,8 +334,10 @@ export function Avatar({
     .slice(0, 2)
     .toUpperCase();
 
+  const sizeClass = size === "sm" ? "avatar-sm" : size === "lg" ? "avatar-lg" : "";
+
   return (
-    <div className={`avatar ${size === "sm" ? "avatar-sm" : ""}`}>{initials}</div>
+    <div className={`avatar ${sizeClass}`}>{initials}</div>
   );
 }
 
@@ -347,6 +352,8 @@ export function Button({
   onClick,
   type = "button",
   className = "",
+  title,
+  style,
 }: {
   children: ReactNode;
   variant?: "primary" | "secondary" | "ghost";
@@ -355,6 +362,8 @@ export function Button({
   onClick?: () => void;
   type?: "button" | "submit";
   className?: string;
+  title?: string;
+  style?: CSSProperties;
 }) {
   const variants = {
     primary: "btn-primary",
@@ -372,6 +381,8 @@ export function Button({
       type={type}
       onClick={onClick}
       disabled={disabled}
+      title={title}
+      style={style}
       className={`btn ${variants[variant]} ${sizes[size]} ${className} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
     >
       {children}
@@ -394,7 +405,7 @@ export function Input({
   value: string;
   onChange: (value: string) => void;
   type?: "text" | "email" | "search";
-  icon?: React.ComponentType<{ className?: string }>;
+  icon?: React.ComponentType<{ className?: string; style?: CSSProperties }>;
   className?: string;
 }) {
   return (
