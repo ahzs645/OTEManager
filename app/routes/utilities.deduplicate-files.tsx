@@ -180,7 +180,7 @@ const findDuplicateFiles = createServerFn({ method: 'GET' }).handler(async () =>
   return {
     totalFiles: allAttachments.length,
     duplicateGroups,
-    totalDuplicates: duplicateGroups.reduce((sum, g) => sum + g.files.length - 1, 0),
+    totalDuplicates: duplicateGroups.reduce<number>((sum, g) => sum + g.files.length - 1, 0),
   }
 })
 

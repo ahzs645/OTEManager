@@ -184,7 +184,7 @@ export function PhotoGallery({ photos, articleId }: PhotoGalleryProps) {
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
           className={isDragOver ? 'ring-2 ring-inset rounded-lg' : ''}
-          style={isDragOver ? { ringColor: 'var(--accent)', background: 'var(--accent-subtle)' } : {}}
+          style={isDragOver ? { '--tw-ring-color': 'var(--accent)', background: 'var(--accent-subtle)' } as React.CSSProperties : {}}
         >
         {localPhotos.length === 0 ? (
           <div className={`py-8 text-center transition-colors ${isDragOver ? 'bg-[var(--accent-subtle)]' : ''}`}>

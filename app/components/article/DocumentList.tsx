@@ -289,7 +289,7 @@ export function DocumentList({
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
           className={isDragOver ? 'ring-2 ring-inset rounded-lg' : ''}
-          style={isDragOver ? { ringColor: 'var(--accent)', background: 'var(--accent-subtle)' } : {}}
+          style={isDragOver ? { '--tw-ring-color': 'var(--accent)', background: 'var(--accent-subtle)' } as React.CSSProperties : {}}
         >
           {documents.length === 0 ? (
             <div

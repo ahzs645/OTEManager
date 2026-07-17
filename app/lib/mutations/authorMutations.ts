@@ -1,4 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
+import type { AuthorType, StudentType } from "@db/schema";
 
 // Update author info
 export const updateAuthorPaymentInfo = createServerFn({ method: "POST" })
@@ -8,8 +9,8 @@ export const updateAuthorPaymentInfo = createServerFn({ method: "POST" })
       givenName?: string;
       surname?: string;
       email?: string;
-      authorType?: string;
-      studentType?: string | null;
+      authorType?: AuthorType;
+      studentType?: StudentType | null;
       autoDepositAvailable?: boolean;
       etransferEmail?: string;
     }) => data

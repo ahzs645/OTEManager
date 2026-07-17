@@ -72,7 +72,7 @@ const findDuplicates = createServerFn({ method: 'GET' }).handler(async () => {
   return {
     totalArticles: allArticles.length,
     duplicateGroups,
-    totalDuplicates: duplicateGroups.reduce(
+    totalDuplicates: duplicateGroups.reduce<number>(
       (sum, g) => sum + g.articles.length - 1,
       0
     ),
