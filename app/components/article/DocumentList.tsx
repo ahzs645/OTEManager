@@ -291,7 +291,7 @@ export function DocumentList({
           className={isDragOver ? 'ring-2 ring-inset rounded-lg' : ''}
           style={isDragOver ? { '--tw-ring-color': 'var(--accent)', background: 'var(--accent-subtle)' } as React.CSSProperties : {}}
         >
-          {documents.length === 0 ? (
+          {localDocuments.length === 0 ? (
             <div
               className={`px-4 py-6 text-center transition-colors ${isDragOver ? 'bg-[var(--accent-subtle)]' : ''}`}
             >

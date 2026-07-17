@@ -178,12 +178,14 @@ export function StatCard({
   icon: Icon,
   trend,
   href,
+  search,
 }: {
   title: string;
   value: number;
   icon: React.ComponentType<{ className?: string }>;
   trend?: { value: number; label: string };
   href?: string;
+  search?: Record<string, unknown>;
 }) {
   const content = (
     <div className="stat-card group">
@@ -226,7 +228,7 @@ export function StatCard({
 
   if (href) {
     return (
-      <Link to={href} className="block">
+      <Link to={href} search={search} className="block">
         {content}
       </Link>
     );

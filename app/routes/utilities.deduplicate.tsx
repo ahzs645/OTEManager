@@ -281,6 +281,15 @@ function DeduplicatePage() {
           }))
           .filter((g) => g.articles.length > 1)
       )
+      // Drop any keep-selection pointing at the deleted article so a later
+      // merge can't target an article that no longer exists
+      setSelectedToKeep((prev) => {
+        const next = { ...prev }
+        for (const [key, id] of Object.entries(next)) {
+          if (id === articleId) delete next[key]
+        }
+        return next
+      })
       setTotalDuplicates((prev) => prev - 1)
       setSuccessMessage(`Deleted "${title}"`)
       setTimeout(() => setSuccessMessage(null), 3000)
@@ -299,6 +308,10 @@ function DeduplicatePage() {
     }
 
     const keepArticle = group.articles.find((a) => a.id === keepId)
+    if (!keepArticle) {
+      setError('The selected article to keep no longer exists — please select again')
+      return
+    }
     const deleteIds = group.articles.filter((a) => a.id !== keepId).map((a) => a.id)
 
     if (

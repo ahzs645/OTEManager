@@ -188,6 +188,15 @@ function ArticleDetailPage() {
   }
 
   const handleConvertToMarkdown = async (convertedContent: string) => {
+    // Replacing is destructive and auto-saves — confirm when content exists
+    if (
+      content.trim() &&
+      !confirm(
+        'This will replace the existing article content with the converted document and save immediately. Continue?'
+      )
+    ) {
+      return
+    }
     setContent(convertedContent)
     // Auto-save the content
     try {
@@ -203,6 +212,15 @@ function ArticleDetailPage() {
   }
 
   const handleConvertToFeedback = async (convertedContent: string) => {
+    // Replacing is destructive and auto-saves — confirm when content exists
+    if (
+      feedbackContent.trim() &&
+      !confirm(
+        'This will replace the existing feedback letter with the converted document and save immediately. Continue?'
+      )
+    ) {
+      return
+    }
     setFeedbackContent(convertedContent)
     // Auto-save the feedback letter
     try {

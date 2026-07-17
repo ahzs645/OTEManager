@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { FileText, List, Columns, BookOpen, Plus, X } from 'lucide-react'
 import { EmptyState, Button, LoadingSpinner } from '~/components/Layout'
 import { getArticles, getIssueById, getVolumeById, getAuthors } from '~/lib/queries'
@@ -91,10 +91,15 @@ function ArticlesPage() {
     useNewAuthor: false,
   })
 
-  // Load default view when navigating to /articles with no params
+  // Load default view when navigating to /articles with no params.
+  // Applied at most once per mount — otherwise clearing filters produces a
+  // "clean" URL and the default view instantly re-applies itself, making it
+  // impossible to see the unfiltered list.
+  const defaultViewAttempted = useRef(false)
   useEffect(() => {
     // Skip if already loading or if we have a savedViewId
     if (isLoadingDefaultView || search.savedViewId) return
+    if (defaultViewAttempted.current) return
 
     // Check if URL has any meaningful params (user-set filters/sort/specific filters)
     const hasSearchParams = search.status || search.tier || search.search ||
@@ -103,6 +108,7 @@ function ArticlesPage() {
 
     // Only load default view if URL is "clean" (no filters, no saved view)
     if (!hasSearchParams) {
+      defaultViewAttempted.current = true
       setIsLoadingDefaultView(true)
       getDefaultView().then((result) => {
         if (result.success && result.view) {
@@ -132,9 +138,10 @@ function ArticlesPage() {
 
   // Fetch filter info when filtering by volume or issue
   useEffect(() => {
+    let cancelled = false
     if (search.issueId) {
       getIssueById({ data: { id: search.issueId } }).then((result) => {
-        if (result.issue) {
+        if (!cancelled && result.issue) {
           setFilterInfo({
             volumeNumber: result.issue.volume?.volumeNumber,
             volumeYear: result.issue.volume?.year,
@@ -145,7 +152,7 @@ function ArticlesPage() {
       })
     } else if (search.volumeId) {
       getVolumeById({ data: { id: search.volumeId } }).then((result) => {
-        if (result.volume) {
+        if (!cancelled && result.volume) {
           setFilterInfo({
             volumeNumber: result.volume.volumeNumber,
             volumeYear: result.volume.year,
@@ -155,10 +162,16 @@ function ArticlesPage() {
     } else {
       setFilterInfo(null)
     }
+    return () => {
+      cancelled = true
+    }
   }, [search.issueId, search.volumeId])
 
   // Fetch articles when search params change
   useEffect(() => {
+    // Ignore out-of-order responses: without this, a slow earlier request
+    // can resolve after a newer one and overwrite it with stale results
+    let cancelled = false
     setIsLoading(true)
     const params: Record<string, any> = { page: search.page || 1 }
     if (search.status) params.status = search.status
@@ -172,13 +185,19 @@ function ArticlesPage() {
 
     getArticles({ data: params })
       .then((result) => {
+        if (cancelled) return
         setData(result)
         setIsLoading(false)
       })
       .catch((err) => {
+        if (cancelled) return
         console.error('Failed to fetch articles:', err)
         setIsLoading(false)
       })
+
+    return () => {
+      cancelled = true
+    }
   }, [search.status, search.tier, search.search, search.authorId, search.issueId, search.volumeId, search.page, search.sortBy, search.sortOrder])
 
   const { articles, total, page, totalPages } = data
@@ -277,6 +296,7 @@ function ArticlesPage() {
   }
 
   const handleClearFilters = () => {
+    setSearchInput('')
     navigate({ search: { page: 1 } })
   }
 
