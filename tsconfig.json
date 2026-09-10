@@ -12,10 +12,16 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./app/*"],
-      "@db/*": ["./db/*"]
+      "~/*": ["./app/*"]
     }
   },
-  "include": ["app/**/*", "db/**/*", "storage/**/*", "*.config.ts"],
+  "include": [
+    "app/**/*",
+    "convex/**/*",
+    "server/**/*",
+    "shared/**/*",
+    "storage/**/*",
+    "*.config.ts"
+  ],
   "exclude": ["node_modules"]
 }

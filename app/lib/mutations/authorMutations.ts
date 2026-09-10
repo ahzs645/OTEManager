@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import type { AuthorType, StudentType } from "@db/schema";
+import type { AuthorType, StudentType } from "../../../shared/model";
 
 // Update author info
 export const updateAuthorPaymentInfo = createServerFn({ method: "POST" })
@@ -13,34 +13,9 @@ export const updateAuthorPaymentInfo = createServerFn({ method: "POST" })
       studentType?: StudentType | null;
       autoDepositAvailable?: boolean;
       etransferEmail?: string;
-    }) => data
+    }) => data,
   )
   .handler(async ({ data }) => {
-    try {
-      const { db, authors } = await import("@db/index");
-      const { eq } = await import("drizzle-orm");
-
-      const { authorId, ...updateData } = data;
-
-      // Clear studentType if authorType is not Student
-      if (updateData.authorType && updateData.authorType !== "Student") {
-        updateData.studentType = null;
-      }
-
-      await db
-        .update(authors)
-        .set({
-          ...updateData,
-          updatedAt: new Date(),
-        })
-        .where(eq(authors.id, authorId));
-
-      return { success: true };
-    } catch (error) {
-      console.error("Failed to update author:", error);
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : "Unknown error",
-      };
-    }
+    const { mutationResult } = await import("../../../server/convex");
+    return mutationResult("updateAuthorPaymentInfo", data);
   });

@@ -21,200 +21,60 @@ export type SavedView = {
 // Get all saved views
 export const getSavedViews = createServerFn({ method: "GET" }).handler(
   async () => {
-    try {
-      const { db, savedArticleViews } = await import("@db/index");
-      const { desc } = await import("drizzle-orm");
-
-      const views = await db
-        .select()
-        .from(savedArticleViews)
-        .orderBy(desc(savedArticleViews.isDefault), desc(savedArticleViews.updatedAt));
-
-      return { success: true, views };
-    } catch (error) {
-      console.error("Failed to get saved views:", error);
-      return { success: false, views: [] };
-    }
-  }
+    const { query } = await import("../../../server/convex");
+    return query("getSavedViews");
+  },
 );
 
 // Get default view (for initial page load)
 export const getDefaultView = createServerFn({ method: "GET" }).handler(
   async () => {
-    try {
-      const { db, savedArticleViews } = await import("@db/index");
-      const { eq } = await import("drizzle-orm");
-
-      const [defaultView] = await db
-        .select()
-        .from(savedArticleViews)
-        .where(eq(savedArticleViews.isDefault, true))
-        .limit(1);
-
-      return { success: true, view: defaultView || null };
-    } catch (error) {
-      console.error("Failed to get default view:", error);
-      return { success: false, view: null };
-    }
-  }
+    const { query } = await import("../../../server/convex");
+    return query("getDefaultView");
+  },
 );
 
 // Create a new saved view
 export const createSavedView = createServerFn({ method: "POST" })
   .inputValidator(
     (data: { name: string; config: SavedViewConfig; setAsDefault?: boolean }) =>
-      data
+      data,
   )
   .handler(async ({ data }) => {
-    try {
-      const { db, savedArticleViews } = await import("@db/index");
-      const { eq } = await import("drizzle-orm");
-
-      // If setting as default, clear other defaults first
-      if (data.setAsDefault) {
-        await db
-          .update(savedArticleViews)
-          .set({ isDefault: false })
-          .where(eq(savedArticleViews.isDefault, true));
-      }
-
-      const [newView] = await db
-        .insert(savedArticleViews)
-        .values({
-          name: data.name,
-          isDefault: data.setAsDefault || false,
-          status: data.config.status || null,
-          tier: data.config.tier || null,
-          search: data.config.search || null,
-          sortBy: data.config.sortBy || null,
-          sortOrder: data.config.sortOrder || null,
-          viewMode: data.config.viewMode || "list",
-        })
-        .returning();
-
-      return { success: true, view: newView };
-    } catch (error) {
-      console.error("Failed to create saved view:", error);
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : "Unknown error",
-      };
-    }
+    const { mutationResult } = await import("../../../server/convex");
+    return mutationResult("createSavedView", data);
   });
 
 // Update a saved view
 export const updateSavedView = createServerFn({ method: "POST" })
   .inputValidator(
-    (data: { id: string; name?: string; config?: SavedViewConfig }) => data
+    (data: { id: string; name?: string; config?: SavedViewConfig }) => data,
   )
   .handler(async ({ data }) => {
-    try {
-      const { db, savedArticleViews } = await import("@db/index");
-      const { eq } = await import("drizzle-orm");
-
-      const updateData: Record<string, unknown> = { updatedAt: new Date() };
-
-      if (data.name !== undefined) updateData.name = data.name;
-      if (data.config) {
-        if (data.config.status !== undefined)
-          updateData.status = data.config.status || null;
-        if (data.config.tier !== undefined)
-          updateData.tier = data.config.tier || null;
-        if (data.config.search !== undefined)
-          updateData.search = data.config.search || null;
-        if (data.config.sortBy !== undefined)
-          updateData.sortBy = data.config.sortBy || null;
-        if (data.config.sortOrder !== undefined)
-          updateData.sortOrder = data.config.sortOrder || null;
-        if (data.config.viewMode !== undefined)
-          updateData.viewMode = data.config.viewMode || "list";
-      }
-
-      const [updatedView] = await db
-        .update(savedArticleViews)
-        .set(updateData)
-        .where(eq(savedArticleViews.id, data.id))
-        .returning();
-
-      return { success: true, view: updatedView };
-    } catch (error) {
-      console.error("Failed to update saved view:", error);
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : "Unknown error",
-      };
-    }
+    const { mutationResult } = await import("../../../server/convex");
+    return mutationResult("updateSavedView", data);
   });
 
 // Set a view as default
 export const setDefaultView = createServerFn({ method: "POST" })
   .inputValidator((data: { id: string }) => data)
   .handler(async ({ data }) => {
-    try {
-      const { db, savedArticleViews } = await import("@db/index");
-      const { eq } = await import("drizzle-orm");
-
-      // Clear all defaults
-      await db
-        .update(savedArticleViews)
-        .set({ isDefault: false })
-        .where(eq(savedArticleViews.isDefault, true));
-
-      // Set new default
-      await db
-        .update(savedArticleViews)
-        .set({ isDefault: true, updatedAt: new Date() })
-        .where(eq(savedArticleViews.id, data.id));
-
-      return { success: true };
-    } catch (error) {
-      console.error("Failed to set default view:", error);
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : "Unknown error",
-      };
-    }
+    const { mutationResult } = await import("../../../server/convex");
+    return mutationResult("setDefaultView", data);
   });
 
 // Clear default view
 export const clearDefaultView = createServerFn({ method: "POST" }).handler(
   async () => {
-    try {
-      const { db, savedArticleViews } = await import("@db/index");
-      const { eq } = await import("drizzle-orm");
-
-      await db
-        .update(savedArticleViews)
-        .set({ isDefault: false })
-        .where(eq(savedArticleViews.isDefault, true));
-
-      return { success: true };
-    } catch (error) {
-      console.error("Failed to clear default view:", error);
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : "Unknown error",
-      };
-    }
-  }
+    const { mutationResult } = await import("../../../server/convex");
+    return mutationResult("clearDefaultView");
+  },
 );
 
 // Delete a saved view
 export const deleteSavedView = createServerFn({ method: "POST" })
   .inputValidator((data: { id: string }) => data)
   .handler(async ({ data }) => {
-    try {
-      const { db, savedArticleViews } = await import("@db/index");
-      const { eq } = await import("drizzle-orm");
-
-      await db.delete(savedArticleViews).where(eq(savedArticleViews.id, data.id));
-
-      return { success: true };
-    } catch (error) {
-      console.error("Failed to delete saved view:", error);
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : "Unknown error",
-      };
-    }
+    const { mutationResult } = await import("../../../server/convex");
+    return mutationResult("deleteSavedView", data);
   });

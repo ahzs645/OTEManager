@@ -1,324 +1,335 @@
-import { createFileRoute } from '@tanstack/react-router'
-import JSZip from 'jszip'
+import { createFileRoute } from "@tanstack/react-router";
+import JSZip from "jszip";
 
 // SharePoint article type from export
 interface SharePointArticle {
-  Id: number
-  FileLeafRef: string
-  Title: string
-  Internal_x0020_Status?: string
-  Given_x0020_Name?: string
-  Surname?: string
-  Payment_x0020_Status?: boolean
-  Article_x0020_Tier?: string
-  Multimedia_x0020_Types?: string | null
-  Prefers_x0020_Anonymity?: boolean
-  Contact_x0020_Email?: string
-  Autodeposit?: boolean
-  Total_x0020_Payment?: number | null
-  e_x002d_Transfer_x0020_Email?: string
-  role?: string
-  Volume?: string | number | null
-  Issue?: string | number | null
-  Article_x0020_Content1?: string | null
-  Bonus_x0020_Type?: string | null
-  Created?: string
-  Modified?: string
-  _fullName?: string
+  Id: number;
+  FileLeafRef: string;
+  Title: string;
+  Internal_x0020_Status?: string;
+  Given_x0020_Name?: string;
+  Surname?: string;
+  Payment_x0020_Status?: boolean;
+  Article_x0020_Tier?: string;
+  Multimedia_x0020_Types?: string | null;
+  Prefers_x0020_Anonymity?: boolean;
+  Contact_x0020_Email?: string;
+  Autodeposit?: boolean;
+  Total_x0020_Payment?: number | null;
+  e_x002d_Transfer_x0020_Email?: string;
+  role?: string | { Value?: string };
+  Volume?: string | number | null;
+  Issue?: string | number | null;
+  Article_x0020_Content1?: string | null;
+  Bonus_x0020_Type?: string | null;
+  Created?: string;
+  Modified?: string;
+  _fullName?: string;
   _files?: Array<{
-    name: string
-    size: number
-    isImage: boolean
-    isDocument: boolean
+    name: string;
+    size: number;
+    isImage: boolean;
+    isDocument: boolean;
     metadata?: {
-      Caption?: string
-    }
-  }>
+      Caption?: string;
+    };
+  }>;
   _images?: Array<{
-    name: string
+    name: string;
     metadata?: {
-      Caption?: string
-    }
-  }>
+      Caption?: string;
+    };
+  }>;
   _documents?: Array<{
-    name: string
-  }>
+    name: string;
+  }>;
 }
 
 // Status mapping from SharePoint to our schema
 const STATUS_MAP: Record<string, string> = {
-  Draft: 'Draft',
-  Accepted: 'Approved',
-  Rejected: 'Archived',
-  Backlog: 'Pending Review',
-  'Pending Review': 'Pending Review',
-  'In Progress': 'In Review',
-  'In Review': 'In Review',
-  'Needs Revision': 'Needs Revision',
-  Approved: 'Approved',
-  'In Editing': 'In Editing',
-  'Ready for Publication': 'Ready for Publication',
-  Published: 'Published',
-  Archived: 'Archived',
-}
+  Draft: "Draft",
+  Accepted: "Approved",
+  Rejected: "Archived",
+  Backlog: "Pending Review",
+  "Pending Review": "Pending Review",
+  "In Progress": "In Review",
+  "In Review": "In Review",
+  "Needs Revision": "Needs Revision",
+  Approved: "Approved",
+  "In Editing": "In Editing",
+  "Ready for Publication": "Ready for Publication",
+  Published: "Published",
+  Archived: "Archived",
+};
 
 // Role mapping
 const STUDENT_TYPE_MAP: Record<string, string> = {
-  Undergrad: 'Undergrad',
-  Grad: 'Grad',
-  Graduate: 'Grad',
-  Alumni: 'Alumni',
-  Faculty: 'Other',
-  Staff: 'Other',
-  Other: 'Other',
-}
+  Undergrad: "Undergrad",
+  Grad: "Grad",
+  Graduate: "Grad",
+  Alumni: "Alumni",
+  Faculty: "Other",
+  Staff: "Other",
+  Other: "Other",
+};
 
 function sanitizeFilename(filename: string): string {
   return filename
-    .replace(/[^a-zA-Z0-9._-]/g, '_')
-    .replace(/_{2,}/g, '_')
-    .substring(0, 255)
+    .replace(/[^a-zA-Z0-9._-]/g, "_")
+    .replace(/_{2,}/g, "_")
+    .substring(0, 255);
 }
 
-function getMimeType(filename: string, pathMod: typeof import('path')): string {
-  const ext = pathMod.extname(filename).toLowerCase()
+function getMimeType(filename: string, pathMod: typeof import("path")): string {
+  const ext = pathMod.extname(filename).toLowerCase();
   const mimeTypes: Record<string, string> = {
-    '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-    '.doc': 'application/msword',
-    '.pdf': 'application/pdf',
-    '.txt': 'text/plain',
-    '.jpg': 'image/jpeg',
-    '.jpeg': 'image/jpeg',
-    '.png': 'image/png',
-    '.gif': 'image/gif',
-    '.webp': 'image/webp',
-    '.heic': 'image/heic',
-  }
-  return mimeTypes[ext] || 'application/octet-stream'
+    ".docx":
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    ".doc": "application/msword",
+    ".pdf": "application/pdf",
+    ".txt": "text/plain",
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".png": "image/png",
+    ".gif": "image/gif",
+    ".webp": "image/webp",
+    ".heic": "image/heic",
+  };
+  return mimeTypes[ext] || "application/octet-stream";
 }
 
-function isImageFile(filename: string, pathMod: typeof import('path')): boolean {
-  const ext = pathMod.extname(filename).toLowerCase()
-  return ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.heic'].includes(ext)
+function isImageFile(
+  filename: string,
+  pathMod: typeof import("path"),
+): boolean {
+  const ext = pathMod.extname(filename).toLowerCase();
+  return [".jpg", ".jpeg", ".png", ".gif", ".webp", ".heic"].includes(ext);
 }
 
-function isDocumentFile(filename: string, pathMod: typeof import('path')): boolean {
-  const ext = pathMod.extname(filename).toLowerCase()
-  return ['.docx', '.doc', '.pdf', '.txt'].includes(ext)
+function isDocumentFile(
+  filename: string,
+  pathMod: typeof import("path"),
+): boolean {
+  const ext = pathMod.extname(filename).toLowerCase();
+  return [".docx", ".doc", ".pdf", ".txt"].includes(ext);
 }
 
 // Normalize folder name for matching (handle encoding issues with special chars)
 function normalizeFolderName(name: string): string {
   return name
-    .normalize('NFKD')
+    .normalize("NFKD")
     .replace(/[\u2018\u2019\u201A\u201B\u0060\u00B4]/g, "'") // Normalize various apostrophe types
     .replace(/[\u201C\u201D\u201E\u201F]/g, '"') // Normalize various quote types
-    .replace(/[^\x20-\x7E]/g, '') // Remove non-ASCII chars that might be corrupted
-    .trim()
+    .replace(/[^\x20-\x7E]/g, "") // Remove non-ASCII chars that might be corrupted
+    .trim();
 }
 
 // Find matching folder in a directory, handling encoding differences
 async function findMatchingFolder(
   baseDir: string,
   targetName: string,
-  fs: typeof import('fs').promises,
-  pathMod: typeof import('path'),
+  fs: typeof import("fs").promises,
+  pathMod: typeof import("path"),
 ): Promise<string | null> {
   try {
-    const folders = await fs.readdir(baseDir)
-    const normalizedTarget = normalizeFolderName(targetName)
+    const folders = await fs.readdir(baseDir);
+    const normalizedTarget = normalizeFolderName(targetName);
 
     // First try exact match
     if (folders.includes(targetName)) {
-      return pathMod.join(baseDir, targetName)
+      return pathMod.join(baseDir, targetName);
     }
 
     // Then try normalized match
     for (const folder of folders) {
       if (normalizeFolderName(folder) === normalizedTarget) {
-        return pathMod.join(baseDir, folder)
+        return pathMod.join(baseDir, folder);
       }
     }
 
     // Finally try a fuzzy match - strip all non-alphanumeric
-    const fuzzyTarget = targetName.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()
+    const fuzzyTarget = targetName.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
     for (const folder of folders) {
-      const fuzzyFolder = folder.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()
+      const fuzzyFolder = folder.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
       if (fuzzyFolder === fuzzyTarget) {
-        return pathMod.join(baseDir, folder)
+        return pathMod.join(baseDir, folder);
       }
     }
 
-    return null
+    return null;
   } catch {
-    return null
+    return null;
   }
 }
 
-export const Route = createFileRoute('/api/sharepoint/import')({
+export const Route = createFileRoute("/api/sharepoint/import")({
   server: {
     handlers: {
       POST: async ({ request }) => {
         // Declared outside the try so the catch can clean it up on failure
-        let tempDir: string | null = null
+        let tempDir: string | null = null;
         try {
-          const { db } = await import('@db/index')
-          const {
-            authors,
-            articles,
-            articleMultimediaTypes,
-            attachments,
-          } = await import('@db/schema')
-          const { eq, sql } = await import('drizzle-orm')
-          const { promises: fs } = await import('fs')
-          const pathMod = await import('path')
+          const records = await import("../../../../server/records");
 
-          const formData = await request.formData()
-          const file = formData.get('file') as File | null
-          const folderPath = formData.get('folderPath') as string | null
-          const mode = (formData.get('mode') as string) || 'merge'
-          const previewOnly = formData.get('preview') === 'true'
+          const { promises: fs } = await import("fs");
+          const pathMod = await import("path");
+
+          const formData = await request.formData();
+          const file = formData.get("file") as File | null;
+          const folderPath = formData.get("folderPath") as string | null;
+          const mode = (formData.get("mode") as string) || "merge";
+          const previewOnly = formData.get("preview") === "true";
+          if (mode !== "merge" && mode !== "replace")
+            return Response.json(
+              { error: "Invalid import mode" },
+              { status: 400 },
+            );
 
           const stats = {
             authors: { imported: 0, skipped: 0 },
             articles: { imported: 0, skipped: 0, updated: 0 },
             attachments: { imported: 0, skipped: 0 },
             errors: [] as string[],
-          }
+          };
 
           // Get storage provider
-          const { getStorage } = await import('../../../../storage')
-          const storage = getStorage()
+          const { getStorage } = await import("../../../../storage");
+          const storage = getStorage();
 
-          let articlesData: SharePointArticle[] = []
-          let documentsDir: string | null = null
-          let photosDir: string | null = null
+          let articlesData: SharePointArticle[] = [];
+          let documentsDir: string | null = null;
+          let photosDir: string | null = null;
 
           // Handle ZIP file upload
           if (file && file.size > 0) {
-            const arrayBuffer = await file.arrayBuffer()
-            const zip = await JSZip.loadAsync(arrayBuffer)
+            const arrayBuffer = await file.arrayBuffer();
+            const zip = await JSZip.loadAsync(arrayBuffer);
 
             // Find the JSON file
             const jsonFile = Object.keys(zip.files).find(
-              (name) => name.endsWith('.json') && !name.startsWith('__MACOSX')
-            )
+              (name) => name.endsWith(".json") && !name.startsWith("__MACOSX"),
+            );
             if (!jsonFile) {
               return Response.json(
-                { error: 'No JSON file found in ZIP' },
-                { status: 400 }
-              )
+                { error: "No JSON file found in ZIP" },
+                { status: 400 },
+              );
             }
 
-            const jsonContent = await zip.files[jsonFile].async('string')
-            articlesData = JSON.parse(jsonContent)
+            const jsonContent = await zip.files[jsonFile].async("string");
+            articlesData = JSON.parse(jsonContent);
 
             // Detect root folder prefix (e.g., "ote-export-2026-01-30-214907/")
             // by looking at the JSON file path
-            const jsonDir = pathMod.dirname(jsonFile)
-            const rootPrefix = jsonDir && jsonDir !== '.' ? jsonDir + '/' : ''
+            const jsonDir = pathMod.dirname(jsonFile);
+            const rootPrefix = jsonDir && jsonDir !== "." ? jsonDir + "/" : "";
 
             // Check for documents and photos folders in ZIP (with or without root prefix)
             const hasDocuments = Object.keys(zip.files).some((name) => {
-              const lowerName = name.toLowerCase()
-              return lowerName.startsWith('documents/') ||
-                     lowerName.startsWith(rootPrefix.toLowerCase() + 'documents/')
-            })
+              const lowerName = name.toLowerCase();
+              return (
+                lowerName.startsWith("documents/") ||
+                lowerName.startsWith(rootPrefix.toLowerCase() + "documents/")
+              );
+            });
             const hasPhotos = Object.keys(zip.files).some((name) => {
-              const lowerName = name.toLowerCase()
-              return lowerName.startsWith('photos/') ||
-                     lowerName.startsWith(rootPrefix.toLowerCase() + 'photos/')
-            })
+              const lowerName = name.toLowerCase();
+              return (
+                lowerName.startsWith("photos/") ||
+                lowerName.startsWith(rootPrefix.toLowerCase() + "photos/")
+              );
+            });
 
             if (hasDocuments || hasPhotos) {
               // Extract to temp directory for file processing
-              tempDir = `/tmp/sharepoint-import-${Date.now()}`
-              await fs.mkdir(tempDir, { recursive: true })
+              tempDir = `/tmp/sharepoint-import-${Date.now()}`;
+              await fs.mkdir(tempDir, { recursive: true });
 
               for (const [filename, zipEntry] of Object.entries(zip.files)) {
-                if (zipEntry.dir || filename.startsWith('__MACOSX')) continue
+                if (zipEntry.dir || filename.startsWith("__MACOSX")) continue;
                 // Strip the root prefix when extracting so paths are normalized
-                const normalizedFilename = rootPrefix && filename.startsWith(rootPrefix)
-                  ? filename.slice(rootPrefix.length)
-                  : filename
+                const normalizedFilename =
+                  rootPrefix && filename.startsWith(rootPrefix)
+                    ? filename.slice(rootPrefix.length)
+                    : filename;
                 // Guard against zip-slip: resolve the entry path and make sure
                 // it stays inside the temp directory
-                const filePath = pathMod.resolve(tempDir, normalizedFilename)
+                const filePath = pathMod.resolve(tempDir, normalizedFilename);
                 if (!filePath.startsWith(tempDir + pathMod.sep)) {
-                  console.warn(`Skipping unsafe ZIP entry: ${filename}`)
-                  continue
+                  console.warn(`Skipping unsafe ZIP entry: ${filename}`);
+                  continue;
                 }
-                const content = await zipEntry.async('nodebuffer')
-                await fs.mkdir(pathMod.dirname(filePath), { recursive: true })
-                await fs.writeFile(filePath, content)
+                const content = await zipEntry.async("nodebuffer");
+                await fs.mkdir(pathMod.dirname(filePath), { recursive: true });
+                await fs.writeFile(filePath, content);
               }
 
-              documentsDir = pathMod.join(tempDir, 'documents')
-              photosDir = pathMod.join(tempDir, 'photos')
+              documentsDir = pathMod.join(tempDir, "documents");
+              photosDir = pathMod.join(tempDir, "photos");
             }
           }
           // Handle folder path
           else if (folderPath) {
             // Validate folder exists
             try {
-              await fs.access(folderPath)
+              await fs.access(folderPath);
             } catch {
               return Response.json(
                 { error: `Folder not found: ${folderPath}` },
-                { status: 400 }
-              )
+                { status: 400 },
+              );
             }
 
             // Find JSON file in folder
-            const files = await fs.readdir(folderPath)
-            const jsonFile = files.find((f) => f.endsWith('.json'))
+            const files = await fs.readdir(folderPath);
+            const jsonFile = files.find((f) => f.endsWith(".json"));
             if (!jsonFile) {
               return Response.json(
-                { error: 'No JSON file found in folder' },
-                { status: 400 }
-              )
+                { error: "No JSON file found in folder" },
+                { status: 400 },
+              );
             }
 
             const jsonContent = await fs.readFile(
               pathMod.join(folderPath, jsonFile),
-              'utf-8'
-            )
-            articlesData = JSON.parse(jsonContent)
+              "utf-8",
+            );
+            articlesData = JSON.parse(jsonContent);
 
             // Check for documents and photos folders
-            documentsDir = pathMod.join(folderPath, 'documents')
-            photosDir = pathMod.join(folderPath, 'photos')
+            documentsDir = pathMod.join(folderPath, "documents");
+            photosDir = pathMod.join(folderPath, "photos");
 
             try {
-              await fs.access(documentsDir)
+              await fs.access(documentsDir);
             } catch {
-              documentsDir = null
+              documentsDir = null;
             }
 
             try {
-              await fs.access(photosDir)
+              await fs.access(photosDir);
             } catch {
-              photosDir = null
+              photosDir = null;
             }
           } else {
             return Response.json(
-              { error: 'No file or folder path provided' },
-              { status: 400 }
-            )
+              { error: "No file or folder path provided" },
+              { status: 400 },
+            );
           }
 
           if (!Array.isArray(articlesData)) {
             if (tempDir) {
               try {
-                await fs.rm(tempDir, { recursive: true, force: true })
+                await fs.rm(tempDir, { recursive: true, force: true });
               } catch {
                 // Ignore cleanup errors
               }
             }
             return Response.json(
-              { error: 'Invalid JSON format - expected array of articles' },
-              { status: 400 }
-            )
+              { error: "Invalid JSON format - expected array of articles" },
+              { status: 400 },
+            );
           }
 
           // Preview mode - calculate what will happen without importing
@@ -328,96 +339,116 @@ export const Route = createFileRoute('/api/sharepoint/import')({
               authors: { new: 0, existing: 0 },
               files: { documents: 0, photos: 0 },
               articlePreviews: [] as Array<{
-                title: string
-                author: string
-                email: string
-                status: 'new' | 'update' | 'skip'
-                documents: number
-                photos: number
+                title: string;
+                author: string;
+                email: string;
+                status: "new" | "update" | "skip";
+                documents: number;
+                photos: number;
               }>,
-            }
+            };
 
-            const seenEmails = new Set<string>()
-            const existingAuthorsCache = new Map<string, boolean>()
+            const seenEmails = new Set<string>();
+            const existingAuthorsCache = new Map<string, boolean>();
 
             for (const article of articlesData) {
-              const email = article.Contact_x0020_Email?.toLowerCase().trim()
+              const email = article.Contact_x0020_Email?.toLowerCase().trim();
               if (!email) {
-                previewStats.articles.skip++
-                continue
+                previewStats.articles.skip++;
+                continue;
               }
 
               // Check author
               if (!seenEmails.has(email)) {
-                seenEmails.add(email)
+                seenEmails.add(email);
                 if (!existingAuthorsCache.has(email)) {
                   // email is lowercased above; compare case-insensitively so
                   // mixed-case emails already in the DB still match
-                  const existingAuthor = await db.query.authors.findFirst({
-                    where: sql`LOWER(${authors.email}) = ${email}`,
-                  })
-                  existingAuthorsCache.set(email, !!existingAuthor)
+                  const existingAuthor = await records
+                    .list("authors")
+                    .then((rows) =>
+                      rows.find(
+                        (row) =>
+                          row.email.toLowerCase() === email.toLowerCase(),
+                      ),
+                    );
+                  existingAuthorsCache.set(email, !!existingAuthor);
                 }
                 if (existingAuthorsCache.get(email)) {
-                  previewStats.authors.existing++
+                  previewStats.authors.existing++;
                 } else {
-                  previewStats.authors.new++
+                  previewStats.authors.new++;
                 }
               }
 
               // Check article - first by SharePoint ID, then by title + author
-              const sharePointId = `sp-${article.Id}`
-              let existingArticle = await db.query.articles.findFirst({
-                where: eq(articles.formResponseId, sharePointId),
-              })
+              const sharePointId = `sp-${article.Id}`;
+              let existingArticle = await records
+                .list("articles")
+                .then((rows) =>
+                  rows.find((row) =>
+                    (row.formResponseId || "")
+                      .split(",")
+                      .includes(sharePointId),
+                  ),
+                );
 
               // If no match by SharePoint ID, check by title + author email
-              const articleTitle = (article.Title || article.FileLeafRef || '').toLowerCase().trim()
+              const articleTitle = (article.Title || article.FileLeafRef || "")
+                .toLowerCase()
+                .trim();
               if (!existingArticle && articleTitle) {
-                const { and, sql } = await import('drizzle-orm')
                 // Find article with same title and same author email
-                const titleMatch = await db
-                  .select({ id: articles.id })
-                  .from(articles)
-                  .leftJoin(authors, eq(articles.authorId, authors.id))
-                  .where(
-                    and(
-                      sql`LOWER(${articles.title}) = ${articleTitle}`,
-                      sql`LOWER(${authors.email}) = ${email}`
-                    )
+                const matchingAuthors = new Set(
+                  (await records.list("authors"))
+                    .filter((a) => a.email.toLowerCase() === email)
+                    .map((a) => a.id),
+                );
+                const titleMatch = (await records.list("articles"))
+                  .filter(
+                    (a) =>
+                      a.title.toLowerCase().trim() === articleTitle &&
+                      matchingAuthors.has(a.authorId),
                   )
-                  .limit(1)
+                  .slice(0, 1);
 
                 if (titleMatch.length > 0) {
-                  existingArticle = { id: titleMatch[0].id } as any
+                  existingArticle = { id: titleMatch[0].id } as any;
                 }
               }
 
-              let articleStatus: 'new' | 'update' | 'skip' = 'new'
+              let articleStatus: "new" | "update" | "skip" = "new";
               if (existingArticle) {
-                if (mode === 'merge') {
-                  articleStatus = 'skip'
-                  previewStats.articles.skip++
+                if (mode === "merge") {
+                  articleStatus = "skip";
+                  previewStats.articles.skip++;
                 } else {
-                  articleStatus = 'update'
-                  previewStats.articles.update++
+                  articleStatus = "update";
+                  previewStats.articles.update++;
                 }
               } else {
-                previewStats.articles.new++
+                previewStats.articles.new++;
               }
 
               // Count files
-              let docCount = 0
-              let photoCount = 0
-              const articleFolderName = article.FileLeafRef
+              let docCount = 0;
+              let photoCount = 0;
+              const articleFolderName = article.FileLeafRef;
 
               if (documentsDir) {
-                const docFolder = await findMatchingFolder(documentsDir, articleFolderName, fs, pathMod)
+                const docFolder = await findMatchingFolder(
+                  documentsDir,
+                  articleFolderName,
+                  fs,
+                  pathMod,
+                );
                 if (docFolder) {
                   try {
-                    const docFiles = await fs.readdir(docFolder)
-                    docCount = docFiles.filter(f => !f.startsWith('.') && isDocumentFile(f, pathMod)).length
-                    previewStats.files.documents += docCount
+                    const docFiles = await fs.readdir(docFolder);
+                    docCount = docFiles.filter(
+                      (f) => !f.startsWith(".") && isDocumentFile(f, pathMod),
+                    ).length;
+                    previewStats.files.documents += docCount;
                   } catch {
                     // No documents folder
                   }
@@ -425,12 +456,19 @@ export const Route = createFileRoute('/api/sharepoint/import')({
               }
 
               if (photosDir) {
-                const photoFolder = await findMatchingFolder(photosDir, articleFolderName, fs, pathMod)
+                const photoFolder = await findMatchingFolder(
+                  photosDir,
+                  articleFolderName,
+                  fs,
+                  pathMod,
+                );
                 if (photoFolder) {
                   try {
-                    const photoFiles = await fs.readdir(photoFolder)
-                    photoCount = photoFiles.filter(f => !f.startsWith('.') && isImageFile(f, pathMod)).length
-                    previewStats.files.photos += photoCount
+                    const photoFiles = await fs.readdir(photoFolder);
+                    photoCount = photoFiles.filter(
+                      (f) => !f.startsWith(".") && isImageFile(f, pathMod),
+                    ).length;
+                    previewStats.files.photos += photoCount;
                   } catch {
                     // No photos folder
                   }
@@ -439,18 +477,20 @@ export const Route = createFileRoute('/api/sharepoint/import')({
 
               previewStats.articlePreviews.push({
                 title: article.Title || article.FileLeafRef,
-                author: `${article.Given_x0020_Name || ''} ${article.Surname || ''}`.trim() || 'Unknown',
+                author:
+                  `${article.Given_x0020_Name || ""} ${article.Surname || ""}`.trim() ||
+                  "Unknown",
                 email,
                 status: articleStatus,
                 documents: docCount,
                 photos: photoCount,
-              })
+              });
             }
 
             // Cleanup temp directory if we created one
             if (tempDir) {
               try {
-                await fs.rm(tempDir, { recursive: true, force: true })
+                await fs.rm(tempDir, { recursive: true, force: true });
               } catch {
                 // Ignore cleanup errors
               }
@@ -460,103 +500,118 @@ export const Route = createFileRoute('/api/sharepoint/import')({
               success: true,
               preview: true,
               stats: previewStats,
-            })
+            });
           }
 
           // Track authors by email to avoid duplicates
-          const authorCache = new Map<string, string>() // email -> id
+          const authorCache = new Map<string, string>(); // email -> id
 
           for (const article of articlesData) {
             try {
-              const email = article.Contact_x0020_Email?.toLowerCase().trim()
+              const email = article.Contact_x0020_Email?.toLowerCase().trim();
               if (!email) {
                 stats.errors.push(
-                  `Skipping "${article.Title}" - no email address`
-                )
-                continue
+                  `Skipping "${article.Title}" - no email address`,
+                );
+                continue;
               }
 
               // Check for existing article - first by SharePoint ID, then by title + author
-              const sharePointId = `sp-${article.Id}`
-              let existingArticle = await db.query.articles.findFirst({
-                where: eq(articles.formResponseId, sharePointId),
-              })
+              const sharePointId = `sp-${article.Id}`;
+              let existingArticle = await records
+                .list("articles")
+                .then((rows) =>
+                  rows.find((row) =>
+                    (row.formResponseId || "")
+                      .split(",")
+                      .includes(sharePointId),
+                  ),
+                );
 
               // If no match by SharePoint ID, check by title + author email
-              const articleTitle = (article.Title || article.FileLeafRef || '').toLowerCase().trim()
+              const articleTitle = (article.Title || article.FileLeafRef || "")
+                .toLowerCase()
+                .trim();
               if (!existingArticle && articleTitle) {
-                const { and, sql } = await import('drizzle-orm')
-                const titleMatch = await db
-                  .select({
-                    id: articles.id,
-                    formResponseId: articles.formResponseId,
-                  })
-                  .from(articles)
-                  .leftJoin(authors, eq(articles.authorId, authors.id))
-                  .where(
-                    and(
-                      sql`LOWER(${articles.title}) = ${articleTitle}`,
-                      sql`LOWER(${authors.email}) = ${email}`
-                    )
+                const matchingAuthors = new Set(
+                  (await records.list("authors"))
+                    .filter((a) => a.email.toLowerCase() === email)
+                    .map((a) => a.id),
+                );
+                const titleMatch = (await records.list("articles"))
+                  .filter(
+                    (a) =>
+                      a.title.toLowerCase().trim() === articleTitle &&
+                      matchingAuthors.has(a.authorId),
                   )
-                  .limit(1)
+                  .slice(0, 1);
 
                 if (titleMatch.length > 0) {
-                  existingArticle = titleMatch[0] as any
+                  existingArticle = titleMatch[0] as any;
                 }
               }
 
-              if (existingArticle && mode === 'merge') {
-                stats.articles.skipped++
-                continue
-              }
+              const skipArticle = !!existingArticle && mode === "merge";
+              if (skipArticle) stats.articles.skipped++;
 
               // Get or create author
-              let authorId = authorCache.get(email)
+              let authorId = skipArticle
+                ? existingArticle!.authorId
+                : authorCache.get(email);
               if (!authorId) {
                 // email is lowercased above; compare case-insensitively so
                 // mixed-case emails already in the DB still match
-                const existingAuthor = await db.query.authors.findFirst({
-                  where: sql`LOWER(${authors.email}) = ${email}`,
-                })
+                const existingAuthor = await records
+                  .list("authors")
+                  .then((rows) =>
+                    rows.find(
+                      (row) => row.email.toLowerCase() === email.toLowerCase(),
+                    ),
+                  );
 
                 if (existingAuthor) {
-                  authorId = existingAuthor.id
-                  stats.authors.skipped++
+                  authorId = existingAuthor.id;
+                  stats.authors.skipped++;
                 } else {
-                  const studentType = STUDENT_TYPE_MAP[article.role || ''] || null
-                  const [newAuthor] = await db
-                    .insert(authors)
-                    .values({
-                      givenName: article.Given_x0020_Name || 'Unknown',
-                      surname: article.Surname || '',
+                  const studentType =
+                    STUDENT_TYPE_MAP[
+                      (typeof article.role === "object"
+                        ? article.role?.Value
+                        : article.role) || ""
+                    ] || null;
+                  const [newAuthor] = await records
+                    .insert("authors", {
+                      givenName: article.Given_x0020_Name || "Unknown",
+                      surname: article.Surname || "",
                       email: email,
-                      role: 'Guest Contributor',
-                      authorType: 'Student',
+                      role: "Guest Contributor",
+                      authorType: "Student",
                       studentType: studentType as any,
                       autoDepositAvailable: article.Autodeposit || false,
-                      etransferEmail: article.e_x002d_Transfer_x0020_Email || null,
+                      etransferEmail:
+                        article.e_x002d_Transfer_x0020_Email || null,
                     })
-                    .returning()
-                  authorId = newAuthor.id
-                  stats.authors.imported++
+                    .then((row) => [row]);
+                  authorId = newAuthor.id;
+                  stats.authors.imported++;
                 }
-                authorCache.set(email, authorId)
+                authorCache.set(email, authorId);
               }
 
               // Create or update article
               const hasExistingPayment =
                 article.Total_x0020_Payment != null &&
-                article.Total_x0020_Payment > 0
+                article.Total_x0020_Payment > 0;
 
               const articleValues = {
                 title: article.Title || article.FileLeafRef,
                 authorId: authorId,
-                articleTier: (article.Article_x0020_Tier as any) || 'Tier 1 (Basic)',
+                articleTier:
+                  (article.Article_x0020_Tier as any) || "Tier 1 (Basic)",
                 internalStatus:
-                  (STATUS_MAP[article.Internal_x0020_Status || ''] as any) ||
-                  'Pending Review',
-                automationStatus: 'Completed' as const,
+                  (STATUS_MAP[article.Internal_x0020_Status || ""] as any) ||
+                  "Pending Review",
+                automationStatus: "Completed" as const,
                 prefersAnonymity: article.Prefers_x0020_Anonymity || false,
                 paymentStatus: article.Payment_x0020_Status || false,
                 paymentAmount: article.Total_x0020_Payment
@@ -565,116 +620,131 @@ export const Route = createFileRoute('/api/sharepoint/import')({
                 paymentIsManual: hasExistingPayment,
                 submittedAt: article.Created ? new Date(article.Created) : null,
                 volume:
-                  article.Volume != null ? parseInt(String(article.Volume), 10) : null,
+                  article.Volume != null
+                    ? parseInt(String(article.Volume), 10)
+                    : null,
                 issue:
-                  article.Issue != null ? parseInt(String(article.Issue), 10) : null,
+                  article.Issue != null
+                    ? parseInt(String(article.Issue), 10)
+                    : null,
                 content: article.Article_x0020_Content1 || null,
-                formResponseId: sharePointId,
-              }
+                formResponseId: [
+                  ...new Set([
+                    ...(existingArticle?.formResponseId || "")
+                      .split(",")
+                      .filter(Boolean),
+                    sharePointId,
+                  ]),
+                ].join(","),
+              };
 
-              let newArticleId: string
+              let newArticleId: string;
 
-              if (existingArticle && mode === 'replace') {
+              if (skipArticle) {
+                newArticleId = existingArticle!.id;
+              } else if (existingArticle && mode === "replace") {
                 // Update existing article
-                await db
-                  .update(articles)
-                  .set({ ...articleValues, updatedAt: new Date() })
-                  .where(eq(articles.id, existingArticle.id))
-                newArticleId = existingArticle.id
-                stats.articles.updated++
+                await records.patch("articles", existingArticle.id, {
+                  ...articleValues,
+                  updatedAt: new Date(),
+                });
+                newArticleId = existingArticle.id;
+                stats.articles.updated++;
               } else {
                 // Create new article
-                const [newArticle] = await db
-                  .insert(articles)
-                  .values(articleValues)
-                  .returning()
-                newArticleId = newArticle.id
-                stats.articles.imported++
+                const [newArticle] = await records
+                  .insert("articles", articleValues)
+                  .then((row) => [row]);
+                newArticleId = newArticle.id;
+                stats.articles.imported++;
               }
 
-              // Process files for this article
-              const articleFolderName = article.FileLeafRef
-
-              // Process documents
-              if (documentsDir) {
-                const docFolder = await findMatchingFolder(documentsDir, articleFolderName, fs, pathMod)
-                if (docFolder) {
-                  try {
-                    const docFiles = await fs.readdir(docFolder)
-                    for (const fileName of docFiles) {
-                      if (fileName.startsWith('.')) continue
-                      if (!isDocumentFile(fileName, pathMod)) continue
-
-                      const srcPath = pathMod.join(docFolder, fileName)
-                      const fileBuffer = await fs.readFile(srcPath)
-                      const sanitizedName = sanitizeFilename(fileName)
-                      const destSubDir = 'documents'
-                      const destPath = `${destSubDir}/${newArticleId}/${sanitizedName}`
-
-                      // Upload using storage provider
-                      await storage.saveFile(destPath, fileBuffer)
-
-                      // Create attachment record
-                      await db.insert(attachments).values({
-                        articleId: newArticleId,
-                        attachmentType: 'word_document',
-                        fileName: sanitizedName,
-                        originalFileName: fileName,
-                        filePath: destPath,
-                        fileSize: fileBuffer.length,
-                        mimeType: getMimeType(fileName, pathMod),
-                      })
-                      stats.attachments.imported++
-                    }
-                  } catch {
-                    // No documents folder for this article
-                  }
+              // A merge retries missing files while retaining existing article metadata.
+              // Replacement updates each attachment at its stable destination path.
+              const existingAttachments = (
+                await records.list("attachments")
+              ).filter((a) => a.articleId === newArticleId);
+              for (const [baseDir, kind] of [
+                [documentsDir, "documents"],
+                [photosDir, "photos"],
+              ] as const) {
+                if (!baseDir) continue;
+                const folder = await findMatchingFolder(
+                  baseDir,
+                  article.FileLeafRef,
+                  fs,
+                  pathMod,
+                );
+                if (!folder) continue;
+                let names: string[];
+                try {
+                  names = await fs.readdir(folder);
+                } catch (error) {
+                  stats.errors.push(
+                    `Cannot read ${kind} for "${article.Title}": ${error instanceof Error ? error.message : String(error)}`,
+                  );
+                  continue;
                 }
-              }
-
-              // Process photos
-              if (photosDir) {
-                const photoFolder = await findMatchingFolder(photosDir, articleFolderName, fs, pathMod)
-                if (photoFolder) {
+                let photoNumber = 1;
+                for (const fileName of names) {
+                  if (
+                    fileName.startsWith(".") ||
+                    !(kind === "photos"
+                      ? isImageFile(fileName, pathMod)
+                      : isDocumentFile(fileName, pathMod))
+                  )
+                    continue;
                   try {
-                    const photoFiles = await fs.readdir(photoFolder)
-                    let photoNumber = 1
-
-                    for (const fileName of photoFiles) {
-                      if (fileName.startsWith('.')) continue
-                      if (!isImageFile(fileName, pathMod)) continue
-
-                      const srcPath = pathMod.join(photoFolder, fileName)
-                      const fileBuffer = await fs.readFile(srcPath)
-                      const sanitizedName = sanitizeFilename(fileName)
-                      const destSubDir = 'photos'
-                      const destPath = `${destSubDir}/${newArticleId}/${sanitizedName}`
-
-                      // Upload using storage provider
-                      await storage.saveFile(destPath, fileBuffer)
-
-                      // Find caption from metadata if available
-                      const imageMetadata = article._images?.find(
-                        (img) => img.name === fileName
-                      )
-                      const caption = imageMetadata?.metadata?.Caption || null
-
-                      // Create attachment record
-                      await db.insert(attachments).values({
-                        articleId: newArticleId,
-                        attachmentType: 'photo',
-                        fileName: sanitizedName,
-                        originalFileName: fileName,
-                        filePath: destPath,
-                        fileSize: fileBuffer.length,
-                        mimeType: getMimeType(fileName, pathMod),
-                        caption: caption,
-                        photoNumber: photoNumber++,
-                      })
-                      stats.attachments.imported++
+                    const sanitizedName = sanitizeFilename(fileName);
+                    const destPath = `${kind}/${newArticleId}/${sanitizedName}`;
+                    const existing = existingAttachments.find(
+                      (a) => a.filePath === destPath,
+                    );
+                    if (
+                      existing &&
+                      mode === "merge" &&
+                      (await storage.exists(destPath))
+                    ) {
+                      stats.attachments.skipped++;
+                      if (kind === "photos") photoNumber++;
+                      continue;
                     }
-                  } catch {
-                    // No photos folder for this article
+                    const fileBuffer = await fs.readFile(
+                      pathMod.join(folder, fileName),
+                    );
+                    await storage.saveFile(destPath, fileBuffer);
+                    const values = {
+                      articleId: newArticleId,
+                      attachmentType:
+                        kind === "photos"
+                          ? ("photo" as const)
+                          : ("word_document" as const),
+                      fileName: sanitizedName,
+                      originalFileName: fileName,
+                      filePath: destPath,
+                      fileSize: fileBuffer.length,
+                      mimeType: getMimeType(fileName, pathMod),
+                      ...(kind === "photos"
+                        ? {
+                            caption:
+                              article._images?.find(
+                                (img) => img.name === fileName,
+                              )?.metadata?.Caption || null,
+                            photoNumber: photoNumber++,
+                          }
+                        : {}),
+                    };
+                    if (existing)
+                      await records.patch("attachments", existing.id, values);
+                    else
+                      existingAttachments.push(
+                        await records.insert("attachments", values),
+                      );
+                    stats.attachments.imported++;
+                  } catch (error) {
+                    stats.errors.push(
+                      `Failed to import "${fileName}" for "${article.Title}": ${error instanceof Error ? error.message : String(error)}`,
+                    );
                   }
                 }
               }
@@ -682,24 +752,26 @@ export const Route = createFileRoute('/api/sharepoint/import')({
               // Add multimedia types if present
               if (article.Multimedia_x0020_Types) {
                 const types =
-                  typeof article.Multimedia_x0020_Types === 'string'
-                    ? article.Multimedia_x0020_Types.split(',').map((t) => t.trim())
-                    : []
+                  typeof article.Multimedia_x0020_Types === "string"
+                    ? article.Multimedia_x0020_Types.split(",").map((t) =>
+                        t.trim(),
+                      )
+                    : [];
 
                 for (const type of types) {
                   const mappedType = {
-                    Photo: 'Photo',
-                    Graphic: 'Graphic',
-                    Video: 'Video',
-                    Audio: 'Audio',
-                  }[type]
+                    Photo: "Photo",
+                    Graphic: "Graphic",
+                    Video: "Video",
+                    Audio: "Audio",
+                  }[type];
 
                   if (mappedType) {
                     try {
-                      await db.insert(articleMultimediaTypes).values({
+                      await records.insert("articleMultimediaTypes", {
                         articleId: newArticleId,
                         multimediaType: mappedType as any,
-                      })
+                      });
                     } catch {
                       // Ignore duplicate multimedia type entries
                     }
@@ -708,15 +780,15 @@ export const Route = createFileRoute('/api/sharepoint/import')({
               }
             } catch (error) {
               stats.errors.push(
-                `Error importing "${article.Title}": ${error instanceof Error ? error.message : 'Unknown error'}`
-              )
+                `Error importing "${article.Title}": ${error instanceof Error ? error.message : "Unknown error"}`,
+              );
             }
           }
 
           // Cleanup temp directory if we created one
           if (tempDir) {
             try {
-              await fs.rm(tempDir, { recursive: true, force: true })
+              await fs.rm(tempDir, { recursive: true, force: true });
             } catch {
               // Ignore cleanup errors
             }
@@ -726,27 +798,26 @@ export const Route = createFileRoute('/api/sharepoint/import')({
             success: true,
             stats,
             message: `Imported ${stats.articles.imported} articles, ${stats.authors.imported} authors, ${stats.attachments.imported} files`,
-          })
+          });
         } catch (error) {
-          console.error('SharePoint import error:', error)
+          console.error("SharePoint import error:", error);
           // Clean up the extracted temp directory even when the import fails
           if (tempDir) {
             try {
-              const { promises: fs } = await import('fs')
-              await fs.rm(tempDir, { recursive: true, force: true })
+              const { promises: fs } = await import("fs");
+              await fs.rm(tempDir, { recursive: true, force: true });
             } catch {
               // Ignore cleanup errors
             }
           }
           return Response.json(
             {
-              error:
-                error instanceof Error ? error.message : 'Import failed',
+              error: error instanceof Error ? error.message : "Import failed",
             },
-            { status: 500 }
-          )
+            { status: 500 },
+          );
         }
       },
     },
   },
-})
+});

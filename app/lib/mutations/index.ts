@@ -1,13 +1,7 @@
 // Re-export all mutations from domain-specific files
 
 // Connection/Configuration mutations
-export {
-  getConnectionConfig,
-  saveConnectionConfig,
-  testDatabaseConnection,
-  testStorageConnection,
-  type ConnectionConfig,
-} from "./connectionMutations";
+export { getConnectionConfig } from "./connectionMutations";
 
 // Payment mutations
 export {

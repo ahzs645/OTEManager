@@ -50,7 +50,7 @@ export interface ArticleBonusFlags {
 export function calculatePayment(
   articleTier: string,
   bonusFlags: ArticleBonusFlags,
-  rateConfig: PaymentRateConfig
+  rateConfig: PaymentRateConfig,
 ): PaymentCalculation {
   // Get tier rate
   const tierRateKey = TIER_RATE_MAP[articleTier] || "tier1Rate";
@@ -92,7 +92,10 @@ export function calculatePayment(
   }
 
   // Professional Graphic Bonus - $15 for professional graphics/infographics
-  if (bonusFlags.hasProfessionalGraphics && rateConfig.professionalGraphicBonus) {
+  if (
+    bonusFlags.hasProfessionalGraphics &&
+    rateConfig.professionalGraphicBonus
+  ) {
     bonuses.push({
       type: "Professional Graphics",
       amount: rateConfig.professionalGraphicBonus,
@@ -128,13 +131,14 @@ export function parseToCents(value: string): number {
   return Math.round(parsed * 100);
 }
 
-// Canonical list is in db/schema.ts — keep in sync
-const NON_PAID_AUTHOR_TYPES: readonly string[] = ["Faculty", "Staff"];
+import { NON_PAID_AUTHOR_TYPES } from "../../shared/model";
 
 /**
  * Check if an author type is eligible for payment
  */
-export function isAuthorEligibleForPayment(authorType: string | null | undefined): boolean {
+export function isAuthorEligibleForPayment(
+  authorType: string | null | undefined,
+): boolean {
   if (!authorType) return true; // Default to eligible if unknown
   return !NON_PAID_AUTHOR_TYPES.includes(authorType as any);
 }
@@ -142,7 +146,9 @@ export function isAuthorEligibleForPayment(authorType: string | null | undefined
 /**
  * Get a message explaining why an author isn't eligible for payment
  */
-export function getPaymentIneligibilityReason(authorType: string | null | undefined): string | null {
+export function getPaymentIneligibilityReason(
+  authorType: string | null | undefined,
+): string | null {
   if (!authorType) return null;
   if (NON_PAID_AUTHOR_TYPES.includes(authorType as any)) {
     return `${authorType} members are not eligible for article payment`;

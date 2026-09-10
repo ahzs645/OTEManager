@@ -1,6 +1,6 @@
-import { createFileRoute, Link, useRouter } from '@tanstack/react-router'
-import { createServerFn } from '@tanstack/react-start'
-import { useState } from 'react'
+import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
+import { createServerFn } from "@tanstack/react-start";
+import { useState } from "react";
 import {
   ArrowLeft,
   User,
@@ -11,7 +11,7 @@ import {
   Check,
   X,
   ChevronRight,
-} from 'lucide-react'
+} from "lucide-react";
 import {
   StatusBadge,
   TierBadge,
@@ -21,117 +21,72 @@ import {
   Button,
   Input,
   LoadingSpinner,
-} from '~/components/Layout'
-import { updateAuthorPaymentInfo } from '~/lib/mutations'
-import type { AuthorType, StudentType } from '@db/schema'
+} from "~/components/Layout";
+import { updateAuthorPaymentInfo } from "~/lib/mutations";
+import type { AuthorType, StudentType } from "../../shared/model";
 
 // Server function to fetch author data - ensures db code only runs on server
-const fetchAuthorData = createServerFn({ method: 'GET' })
+const fetchAuthorData = createServerFn({ method: "GET" })
   .inputValidator((authorId: string) => {
-    if (!authorId || typeof authorId !== 'string') {
-      throw new Error('Author ID is required')
+    if (!authorId || typeof authorId !== "string") {
+      throw new Error("Author ID is required");
     }
-    return authorId
+    return authorId;
   })
-  .handler(async ({ data: authorId }) => {
-    const { db, authors, articles } = await import('@db/index')
-    const { eq, sum, count, and } = await import('drizzle-orm')
+  .handler(async ({ data }) => {
+    const { query } = await import("../../server/convex");
+    return query("getAuthorById", { id: data });
+  });
 
-    const author = await db.query.authors.findFirst({
-      where: eq(authors.id, authorId),
-      with: {
-        articles: {
-          with: {
-            attachments: true,
-          },
-          orderBy: (articles: any, { desc }: any) => [desc(articles.createdAt)],
-        },
-      },
-    })
-
-    if (!author) {
-      return { author: null, stats: null }
-    }
-
-    // Calculate stats
-    const [statsResult] = await db
-      .select({
-        totalArticles: count(),
-        totalPaid: sum(articles.paymentAmount),
-      })
-      .from(articles)
-      .where(
-        and(eq(articles.authorId, authorId), eq(articles.paymentStatus, true))
-      )
-
-    const [allArticlesCount] = await db
-      .select({ count: count() })
-      .from(articles)
-      .where(eq(articles.authorId, authorId))
-
-    return {
-      author,
-      stats: {
-        totalArticles: allArticlesCount?.count ?? 0,
-        paidArticles: Number(statsResult?.totalArticles) || 0,
-        totalEarnings: Number(statsResult?.totalPaid) || 0,
-      },
-    }
-  })
-
-export const Route = createFileRoute('/author/$authorId')({
+export const Route = createFileRoute("/author/$authorId")({
   component: AuthorDetailPage,
   loader: ({ params }) => {
     if (!params.authorId) {
-      return { author: null, stats: null }
+      return { author: null, stats: null };
     }
-    return fetchAuthorData({ data: params.authorId })
+    return fetchAuthorData({ data: params.authorId });
   },
-})
+});
 
 const ROLE_OPTIONS = [
-  'Staff Writer',
-  'Guest Contributor',
-  'Editor',
-  'Photographer',
-  'Graphic Designer',
-  'Other',
-]
+  "Staff Writer",
+  "Guest Contributor",
+  "Editor",
+  "Photographer",
+  "Graphic Designer",
+  "Other",
+];
 
 const AUTHOR_TYPE_OPTIONS: AuthorType[] = [
-  'Student',
-  'Faculty',
-  'Staff',
-  'Organization',
-  'External',
-]
+  "Student",
+  "Faculty",
+  "Staff",
+  "Organization",
+  "External",
+];
 
-const STUDENT_TYPE_OPTIONS = [
-  'Undergrad',
-  'Grad',
-  'Alumni',
-  'Other',
-]
+const STUDENT_TYPE_OPTIONS = ["Undergrad", "Grad", "Alumni", "Other"];
 
 function AuthorDetailPage() {
-  const router = useRouter()
-  const { author, stats } = Route.useLoaderData()
-  const [isEditing, setIsEditing] = useState(false)
-  const [isSaving, setIsSaving] = useState(false)
+  const router = useRouter();
+  const { author, stats } = Route.useLoaderData();
+  const [isEditing, setIsEditing] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const [editData, setEditData] = useState({
-    givenName: author?.givenName ?? '',
-    surname: author?.surname ?? '',
-    email: author?.email ?? '',
+    givenName: author?.givenName ?? "",
+    surname: author?.surname ?? "",
+    email: author?.email ?? "",
     autoDepositAvailable: author?.autoDepositAvailable ?? false,
-    etransferEmail: author?.etransferEmail ?? '',
-    sameAsContactEmail: !author?.etransferEmail || author?.etransferEmail === author?.email,
-    authorType: author?.authorType ?? 'Student',
-    studentType: author?.studentType ?? '',
-  })
+    etransferEmail: author?.etransferEmail ?? "",
+    sameAsContactEmail:
+      !author?.etransferEmail || author?.etransferEmail === author?.email,
+    authorType: author?.authorType ?? "Student",
+    studentType: author?.studentType ?? "",
+  });
 
   if (!author) {
     return (
-      <div className="empty-state" style={{ minHeight: '400px' }}>
+      <div className="empty-state" style={{ minHeight: "400px" }}>
         <User className="empty-state-icon" />
         <h2 className="empty-state-title">Author not found</h2>
         <p className="empty-state-description">
@@ -142,16 +97,16 @@ function AuthorDetailPage() {
           Back to authors
         </Link>
       </div>
-    )
+    );
   }
 
   const handleSave = async () => {
-    setIsSaving(true)
+    setIsSaving(true);
     try {
       // If "same as contact email" is checked, use the contact email for e-transfer
       const etransferEmail = editData.sameAsContactEmail
         ? editData.email
-        : editData.etransferEmail
+        : editData.etransferEmail;
 
       await updateAuthorPaymentInfo({
         data: {
@@ -162,19 +117,22 @@ function AuthorDetailPage() {
           autoDepositAvailable: editData.autoDepositAvailable,
           etransferEmail: etransferEmail || undefined,
           authorType: editData.authorType,
-          studentType: editData.authorType === 'Student' ? (editData.studentType as StudentType) || null : null,
+          studentType:
+            editData.authorType === "Student"
+              ? (editData.studentType as StudentType) || null
+              : null,
         },
-      })
-      setIsEditing(false)
-      await router.invalidate()
+      });
+      setIsEditing(false);
+      await router.invalidate();
     } catch (error) {
-      console.error('Failed to update author:', error)
+      console.error("Failed to update author:", error);
     } finally {
-      setIsSaving(false)
+      setIsSaving(false);
     }
-  }
+  };
 
-  const authorName = `${author.givenName} ${author.surname}`
+  const authorName = `${author.givenName} ${author.surname}`;
 
   return (
     <div className="space-y-6">
@@ -182,7 +140,7 @@ function AuthorDetailPage() {
       <Link
         to="/authors"
         className="inline-flex items-center gap-1.5 text-sm"
-        style={{ color: 'var(--fg-muted)' }}
+        style={{ color: "var(--fg-muted)" }}
       >
         <ArrowLeft className="w-4 h-4" />
         Authors
@@ -192,8 +150,8 @@ function AuthorDetailPage() {
       <div
         className="p-4 rounded-lg"
         style={{
-          background: 'var(--bg-surface)',
-          border: '0.5px solid var(--border-default)',
+          background: "var(--bg-surface)",
+          border: "0.5px solid var(--border-default)",
         }}
       >
         <div className="flex items-start justify-between gap-4">
@@ -202,17 +160,17 @@ function AuthorDetailPage() {
             <div>
               <h1
                 className="text-lg font-semibold"
-                style={{ color: 'var(--fg-default)', letterSpacing: '-0.02em' }}
+                style={{ color: "var(--fg-default)", letterSpacing: "-0.02em" }}
               >
                 {authorName}
               </h1>
-              <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>
-                {author.authorType || 'Student'}
+              <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
+                {author.authorType || "Student"}
               </p>
               <a
                 href={`mailto:${author.email}`}
                 className="text-sm flex items-center gap-1 mt-1"
-                style={{ color: 'var(--accent)' }}
+                style={{ color: "var(--accent)" }}
               >
                 <Mail className="w-3 h-3" />
                 {author.email}
@@ -221,22 +179,24 @@ function AuthorDetailPage() {
           </div>
 
           <Button
-            variant={isEditing ? 'ghost' : 'secondary'}
+            variant={isEditing ? "ghost" : "secondary"}
             size="sm"
             onClick={() => {
               if (isEditing) {
                 setEditData({
-                  givenName: author.givenName ?? '',
-                  surname: author.surname ?? '',
-                  email: author.email ?? '',
+                  givenName: author.givenName ?? "",
+                  surname: author.surname ?? "",
+                  email: author.email ?? "",
                   autoDepositAvailable: author.autoDepositAvailable ?? false,
-                  etransferEmail: author.etransferEmail ?? '',
-                  sameAsContactEmail: !author.etransferEmail || author.etransferEmail === author.email,
-                  authorType: author.authorType ?? 'Student',
-                  studentType: author.studentType ?? '',
-                })
+                  etransferEmail: author.etransferEmail ?? "",
+                  sameAsContactEmail:
+                    !author.etransferEmail ||
+                    author.etransferEmail === author.email,
+                  authorType: author.authorType ?? "Student",
+                  studentType: author.studentType ?? "",
+                });
               }
-              setIsEditing(!isEditing)
+              setIsEditing(!isEditing);
             }}
           >
             {isEditing ? (
@@ -259,19 +219,22 @@ function AuthorDetailPage() {
         <div
           className="p-4 rounded-lg"
           style={{
-            background: 'var(--bg-surface)',
-            border: '0.5px solid var(--border-default)',
+            background: "var(--bg-surface)",
+            border: "0.5px solid var(--border-default)",
           }}
         >
           <div className="flex items-center gap-2 mb-1">
-            <FileText className="w-4 h-4" style={{ color: 'var(--fg-muted)' }} />
-            <span className="text-xs" style={{ color: 'var(--fg-muted)' }}>
+            <FileText
+              className="w-4 h-4"
+              style={{ color: "var(--fg-muted)" }}
+            />
+            <span className="text-xs" style={{ color: "var(--fg-muted)" }}>
               Total Articles
             </span>
           </div>
           <p
             className="text-2xl font-semibold"
-            style={{ color: 'var(--fg-default)' }}
+            style={{ color: "var(--fg-default)" }}
           >
             {stats?.totalArticles ?? 0}
           </p>
@@ -280,19 +243,22 @@ function AuthorDetailPage() {
         <div
           className="p-4 rounded-lg"
           style={{
-            background: 'var(--bg-surface)',
-            border: '0.5px solid var(--border-default)',
+            background: "var(--bg-surface)",
+            border: "0.5px solid var(--border-default)",
           }}
         >
           <div className="flex items-center gap-2 mb-1">
-            <Check className="w-4 h-4" style={{ color: 'var(--status-success)' }} />
-            <span className="text-xs" style={{ color: 'var(--fg-muted)' }}>
+            <Check
+              className="w-4 h-4"
+              style={{ color: "var(--status-success)" }}
+            />
+            <span className="text-xs" style={{ color: "var(--fg-muted)" }}>
               Paid Articles
             </span>
           </div>
           <p
             className="text-2xl font-semibold"
-            style={{ color: 'var(--fg-default)' }}
+            style={{ color: "var(--fg-default)" }}
           >
             {stats?.paidArticles ?? 0}
           </p>
@@ -301,19 +267,22 @@ function AuthorDetailPage() {
         <div
           className="p-4 rounded-lg"
           style={{
-            background: 'var(--bg-surface)',
-            border: '0.5px solid var(--border-default)',
+            background: "var(--bg-surface)",
+            border: "0.5px solid var(--border-default)",
           }}
         >
           <div className="flex items-center gap-2 mb-1">
-            <DollarSign className="w-4 h-4" style={{ color: 'var(--status-success)' }} />
-            <span className="text-xs" style={{ color: 'var(--fg-muted)' }}>
+            <DollarSign
+              className="w-4 h-4"
+              style={{ color: "var(--status-success)" }}
+            />
+            <span className="text-xs" style={{ color: "var(--fg-muted)" }}>
               Total Earnings
             </span>
           </div>
           <p
             className="text-2xl font-semibold"
-            style={{ color: 'var(--status-success)' }}
+            style={{ color: "var(--status-success)" }}
           >
             ${((stats?.totalEarnings ?? 0) / 100).toFixed(2)}
           </p>
@@ -323,14 +292,17 @@ function AuthorDetailPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Column - Articles */}
         <div className="lg:col-span-2">
-          <Section title={`Articles (${author.articles?.length ?? 0})`} noPadding>
+          <Section
+            title={`Articles (${author.articles?.length ?? 0})`}
+            noPadding
+          >
             {!author.articles || author.articles.length === 0 ? (
               <div className="empty-state py-8">
                 <FileText
                   className="w-8 h-8 mb-2"
-                  style={{ color: 'var(--fg-faint)' }}
+                  style={{ color: "var(--fg-faint)" }}
                 />
-                <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>
+                <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
                   No articles yet
                 </p>
               </div>
@@ -345,20 +317,20 @@ function AuthorDetailPage() {
                     style={{
                       borderBottom:
                         index < author.articles.length - 1
-                          ? '0.5px solid var(--border-subtle)'
-                          : 'none',
+                          ? "0.5px solid var(--border-subtle)"
+                          : "none",
                     }}
                   >
                     <div className="flex-1 min-w-0">
                       <p
                         className="text-sm font-medium truncate"
-                        style={{ color: 'var(--fg-default)' }}
+                        style={{ color: "var(--fg-default)" }}
                       >
                         {article.title}
                       </p>
                       <p
                         className="text-xs mt-0.5"
-                        style={{ color: 'var(--fg-muted)' }}
+                        style={{ color: "var(--fg-muted)" }}
                       >
                         {formatDate(article.submittedAt || article.createdAt)}
                       </p>
@@ -369,12 +341,12 @@ function AuthorDetailPage() {
                       {article.paymentStatus && (
                         <DollarSign
                           className="w-4 h-4"
-                          style={{ color: 'var(--status-success)' }}
+                          style={{ color: "var(--status-success)" }}
                         />
                       )}
                       <ChevronRight
                         className="w-4 h-4"
-                        style={{ color: 'var(--fg-faint)' }}
+                        style={{ color: "var(--fg-faint)" }}
                       />
                     </div>
                   </Link>
@@ -391,21 +363,30 @@ function AuthorDetailPage() {
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="text-xs font-medium mb-1 block" style={{ color: 'var(--fg-muted)' }}>
+                    <label
+                      className="text-xs font-medium mb-1 block"
+                      style={{ color: "var(--fg-muted)" }}
+                    >
                       First Name
                     </label>
                     <input
                       type="text"
                       value={editData.givenName}
                       onChange={(e) =>
-                        setEditData((d) => ({ ...d, givenName: e.target.value }))
+                        setEditData((d) => ({
+                          ...d,
+                          givenName: e.target.value,
+                        }))
                       }
                       placeholder="First name"
                       className="input w-full"
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-medium mb-1 block" style={{ color: 'var(--fg-muted)' }}>
+                    <label
+                      className="text-xs font-medium mb-1 block"
+                      style={{ color: "var(--fg-muted)" }}
+                    >
                       Last Name
                     </label>
                     <input
@@ -421,13 +402,21 @@ function AuthorDetailPage() {
                 </div>
 
                 <div>
-                  <label className="text-xs font-medium mb-1 block" style={{ color: 'var(--fg-muted)' }}>
+                  <label
+                    className="text-xs font-medium mb-1 block"
+                    style={{ color: "var(--fg-muted)" }}
+                  >
                     Author Type
                   </label>
                   <select
                     value={editData.authorType}
                     onChange={(e) =>
-                      setEditData((d) => ({ ...d, authorType: e.target.value as AuthorType, studentType: e.target.value === 'Student' ? d.studentType : '' }))
+                      setEditData((d) => ({
+                        ...d,
+                        authorType: e.target.value as AuthorType,
+                        studentType:
+                          e.target.value === "Student" ? d.studentType : "",
+                      }))
                     }
                     className="input w-full"
                   >
@@ -439,15 +428,21 @@ function AuthorDetailPage() {
                   </select>
                 </div>
 
-                {editData.authorType === 'Student' && (
+                {editData.authorType === "Student" && (
                   <div>
-                    <label className="text-xs font-medium mb-1 block" style={{ color: 'var(--fg-muted)' }}>
+                    <label
+                      className="text-xs font-medium mb-1 block"
+                      style={{ color: "var(--fg-muted)" }}
+                    >
                       Student Type
                     </label>
                     <select
                       value={editData.studentType}
                       onChange={(e) =>
-                        setEditData((d) => ({ ...d, studentType: e.target.value }))
+                        setEditData((d) => ({
+                          ...d,
+                          studentType: e.target.value,
+                        }))
                       }
                       className="input w-full"
                     >
@@ -462,7 +457,10 @@ function AuthorDetailPage() {
                 )}
 
                 <div>
-                  <label className="text-xs font-medium mb-1 block" style={{ color: 'var(--fg-muted)' }}>
+                  <label
+                    className="text-xs font-medium mb-1 block"
+                    style={{ color: "var(--fg-muted)" }}
+                  >
                     Contact Email
                   </label>
                   <input
@@ -477,7 +475,10 @@ function AuthorDetailPage() {
                 </div>
 
                 <div>
-                  <label className="text-xs font-medium mb-1 block" style={{ color: 'var(--fg-muted)' }}>
+                  <label
+                    className="text-xs font-medium mb-1 block"
+                    style={{ color: "var(--fg-muted)" }}
+                  >
                     E-Transfer Email
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer mb-2">
@@ -488,12 +489,17 @@ function AuthorDetailPage() {
                         setEditData((d) => ({
                           ...d,
                           sameAsContactEmail: e.target.checked,
-                          etransferEmail: e.target.checked ? d.email : d.etransferEmail,
+                          etransferEmail: e.target.checked
+                            ? d.email
+                            : d.etransferEmail,
                         }))
                       }
                       className="w-4 h-4 rounded border-gray-300"
                     />
-                    <span className="text-sm" style={{ color: 'var(--fg-default)' }}>
+                    <span
+                      className="text-sm"
+                      style={{ color: "var(--fg-default)" }}
+                    >
                       Same as contact email
                     </span>
                   </label>
@@ -502,7 +508,10 @@ function AuthorDetailPage() {
                       type="email"
                       value={editData.etransferEmail}
                       onChange={(e) =>
-                        setEditData((d) => ({ ...d, etransferEmail: e.target.value }))
+                        setEditData((d) => ({
+                          ...d,
+                          etransferEmail: e.target.value,
+                        }))
                       }
                       placeholder="payment@example.com"
                       className="input w-full"
@@ -511,7 +520,10 @@ function AuthorDetailPage() {
                 </div>
 
                 <div>
-                  <label className="text-xs font-medium mb-1 block" style={{ color: 'var(--fg-muted)' }}>
+                  <label
+                    className="text-xs font-medium mb-1 block"
+                    style={{ color: "var(--fg-muted)" }}
+                  >
                     Auto-Deposit Available
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer">
@@ -526,7 +538,10 @@ function AuthorDetailPage() {
                       }
                       className="w-4 h-4 rounded border-gray-300"
                     />
-                    <span className="text-sm" style={{ color: 'var(--fg-default)' }}>
+                    <span
+                      className="text-sm"
+                      style={{ color: "var(--fg-default)" }}
+                    >
                       Enabled
                     </span>
                   </label>
@@ -538,48 +553,76 @@ function AuthorDetailPage() {
                   variant="primary"
                   className="w-full"
                 >
-                  {isSaving ? <LoadingSpinner size="sm" /> : 'Save Changes'}
+                  {isSaving ? <LoadingSpinner size="sm" /> : "Save Changes"}
                 </Button>
               </div>
             ) : (
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm" style={{ color: 'var(--fg-muted)' }}>
+                  <span
+                    className="text-sm"
+                    style={{ color: "var(--fg-muted)" }}
+                  >
                     Author Type
                   </span>
-                  <span className="text-sm" style={{ color: 'var(--fg-default)' }}>
-                    {author.authorType || 'Student'}
+                  <span
+                    className="text-sm"
+                    style={{ color: "var(--fg-default)" }}
+                  >
+                    {author.authorType || "Student"}
                   </span>
                 </div>
 
-                {author.authorType === 'Student' && (
+                {author.authorType === "Student" && (
                   <div className="flex items-center justify-between">
-                    <span className="text-sm" style={{ color: 'var(--fg-muted)' }}>
+                    <span
+                      className="text-sm"
+                      style={{ color: "var(--fg-muted)" }}
+                    >
                       Student Type
                     </span>
-                    <span className="text-sm" style={{ color: 'var(--fg-default)' }}>
-                      {author.studentType || '—'}
+                    <span
+                      className="text-sm"
+                      style={{ color: "var(--fg-default)" }}
+                    >
+                      {author.studentType || "—"}
                     </span>
                   </div>
                 )}
 
                 <div className="flex items-center justify-between">
-                  <span className="text-sm" style={{ color: 'var(--fg-muted)' }}>
+                  <span
+                    className="text-sm"
+                    style={{ color: "var(--fg-muted)" }}
+                  >
                     Contact Email
                   </span>
-                  <span className="text-sm" style={{ color: 'var(--fg-default)' }}>
+                  <span
+                    className="text-sm"
+                    style={{ color: "var(--fg-default)" }}
+                  >
                     {author.email}
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <span className="text-sm" style={{ color: 'var(--fg-muted)' }}>
+                  <span
+                    className="text-sm"
+                    style={{ color: "var(--fg-muted)" }}
+                  >
                     E-Transfer Email
                   </span>
-                  <span className="text-sm" style={{ color: 'var(--fg-default)' }}>
+                  <span
+                    className="text-sm"
+                    style={{ color: "var(--fg-default)" }}
+                  >
                     {author.etransferEmail || author.email}
-                    {(!author.etransferEmail || author.etransferEmail === author.email) && (
-                      <span className="text-xs ml-1" style={{ color: 'var(--fg-faint)' }}>
+                    {(!author.etransferEmail ||
+                      author.etransferEmail === author.email) && (
+                      <span
+                        className="text-xs ml-1"
+                        style={{ color: "var(--fg-faint)" }}
+                      >
                         (same)
                       </span>
                     )}
@@ -587,26 +630,35 @@ function AuthorDetailPage() {
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <span className="text-sm" style={{ color: 'var(--fg-muted)' }}>
+                  <span
+                    className="text-sm"
+                    style={{ color: "var(--fg-muted)" }}
+                  >
                     Auto-Deposit
                   </span>
                   <span
                     className="text-sm font-medium"
                     style={{
                       color: author.autoDepositAvailable
-                        ? 'var(--status-success)'
-                        : 'var(--fg-muted)',
+                        ? "var(--status-success)"
+                        : "var(--fg-muted)",
                     }}
                   >
-                    {author.autoDepositAvailable ? 'Enabled' : 'Disabled'}
+                    {author.autoDepositAvailable ? "Enabled" : "Disabled"}
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <span className="text-sm" style={{ color: 'var(--fg-muted)' }}>
+                  <span
+                    className="text-sm"
+                    style={{ color: "var(--fg-muted)" }}
+                  >
                     Member Since
                   </span>
-                  <span className="text-sm" style={{ color: 'var(--fg-default)' }}>
+                  <span
+                    className="text-sm"
+                    style={{ color: "var(--fg-default)" }}
+                  >
                     {formatDate(author.createdAt)}
                   </span>
                 </div>
@@ -616,5 +668,5 @@ function AuthorDetailPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

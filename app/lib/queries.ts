@@ -4,140 +4,33 @@ import type { PaymentRateConfig } from "./payment-calculator";
 // Get payment rate configuration
 export const getPaymentRateConfig = createServerFn({ method: "GET" }).handler(
   async () => {
-    try {
-      const { db, paymentRateConfig } = await import("@db/index");
-
-      const config = await db.query.paymentRateConfig.findFirst();
-
-      if (!config) {
-        // Return default values if no config exists
-        return {
-          config: {
-            id: null,
-            tier1Rate: 2000, // $20.00
-            tier2Rate: 3500, // $35.00
-            tier3Rate: 5000, // $50.00
-            researchBonus: 1000, // $10.00
-            multimediaBonus: 500, // $5.00
-            timeSensitiveBonus: 500, // $5.00
-            professionalPhotoBonus: 1500, // $15.00
-            professionalGraphicBonus: 1500, // $15.00
-            updatedAt: null,
-            updatedBy: null,
-          } as PaymentRateConfig & { id: string | null; updatedAt: Date | null; updatedBy: string | null },
-          exists: false,
-        };
-      }
-
-      return { config, exists: true };
-    } catch (error) {
-      console.error("Failed to get payment rate config:", error);
-      return { config: null, exists: false };
-    }
-  }
+    const { query } = await import("../../server/convex");
+    return query("getPaymentRateConfig");
+  },
 );
 
 // Get payment rate history
 export const getPaymentRateHistory = createServerFn({ method: "GET" }).handler(
   async () => {
-    try {
-      const { db, paymentRateHistory } = await import("@db/index");
-
-      const history = await db.query.paymentRateHistory.findMany({
-        orderBy: (history, { desc }) => [desc(history.changedAt)],
-        limit: 20,
-      });
-
-      return { history };
-    } catch (error) {
-      console.error("Failed to get payment rate history:", error);
-      return { history: [] };
-    }
-  }
+    const { query } = await import("../../server/convex");
+    return query("getPaymentRateHistory");
+  },
 );
 
 // Dashboard statistics
 export const getDashboardStats = createServerFn({ method: "GET" }).handler(
   async () => {
-    try {
-      const { db, articles, authors } = await import("@db/index");
-      const { count, eq, gte, and } = await import("drizzle-orm");
-
-      // Get current month start
-      const now = new Date();
-      const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
-
-      // Run queries in parallel
-      const [
-        totalArticlesResult,
-        pendingReviewResult,
-        inProgressResult,
-        publishedResult,
-        totalAuthorsResult,
-        thisMonthResult,
-      ] = await Promise.all([
-        db.select({ count: count() }).from(articles),
-        db
-          .select({ count: count() })
-          .from(articles)
-          .where(eq(articles.internalStatus, "Pending Review")),
-        db
-          .select({ count: count() })
-          .from(articles)
-          .where(eq(articles.internalStatus, "In Review")),
-        db
-          .select({ count: count() })
-          .from(articles)
-          .where(eq(articles.internalStatus, "Published")),
-        db.select({ count: count() }).from(authors),
-        db
-          .select({ count: count() })
-          .from(articles)
-          .where(gte(articles.createdAt, monthStart)),
-      ]);
-
-      return {
-        totalArticles: totalArticlesResult[0]?.count ?? 0,
-        pendingReview: pendingReviewResult[0]?.count ?? 0,
-        inProgress: inProgressResult[0]?.count ?? 0,
-        published: publishedResult[0]?.count ?? 0,
-        totalAuthors: totalAuthorsResult[0]?.count ?? 0,
-        thisMonth: thisMonthResult[0]?.count ?? 0,
-      };
-    } catch (error) {
-      console.error("Failed to get dashboard stats:", error);
-      return {
-        totalArticles: 0,
-        pendingReview: 0,
-        inProgress: 0,
-        published: 0,
-        totalAuthors: 0,
-        thisMonth: 0,
-      };
-    }
-  }
+    const { query } = await import("../../server/convex");
+    return query("getDashboardStats");
+  },
 );
 
 // Recent articles for dashboard
 export const getRecentArticles = createServerFn({ method: "GET" }).handler(
   async () => {
-    try {
-      const { db } = await import("@db/index");
-
-      const recentArticles = await db.query.articles.findMany({
-        with: {
-          author: true,
-        },
-        orderBy: (articles, { desc }) => [desc(articles.createdAt)],
-        limit: 5,
-      });
-
-      return { articles: recentArticles };
-    } catch (error) {
-      console.error("Failed to get recent articles:", error);
-      return { articles: [] };
-    }
-  }
+    const { query } = await import("../../server/convex");
+    return query("getRecentArticles");
+  },
 );
 
 // All articles with filters
@@ -154,374 +47,65 @@ export const getArticles = createServerFn({ method: "POST" })
       limit?: number;
       sortBy?: string;
       sortOrder?: string;
-    }) => data
+    }) => data,
   )
   .handler(async ({ data }) => {
-    console.log("getArticles called with data:", JSON.stringify(data));
-    try {
-      const { db, articles, issues, authors } = await import("@db/index");
-      const { eq, ilike, and, or, count, sql, inArray, asc, desc } = await import("drizzle-orm");
-
-      const page = data?.page ?? 1;
-      const limit = data?.limit ?? 20;
-      const offset = (page - 1) * limit;
-
-      // Build where conditions
-      const conditions = [];
-
-      if (data?.status) {
-        conditions.push(eq(articles.internalStatus, data.status as any));
-      }
-
-      if (data?.tier) {
-        conditions.push(eq(articles.articleTier, data.tier as any));
-      }
-
-      if (data?.authorId) {
-        conditions.push(eq(articles.authorId, data.authorId));
-      }
-
-      if (data?.issueId) {
-        conditions.push(eq(articles.issueId, data.issueId));
-      }
-
-      // For volume filtering, get all issues in that volume first
-      if (data?.volumeId) {
-        const volumeIssues = await db.query.issues.findMany({
-          where: eq(issues.volumeId, data.volumeId),
-        });
-        const issueIds = volumeIssues.map((i) => i.id);
-        if (issueIds.length > 0) {
-          conditions.push(inArray(articles.issueId, issueIds));
-        } else {
-          // No issues in this volume, return empty
-          return {
-            articles: [],
-            total: 0,
-            page,
-            limit,
-            totalPages: 0,
-          };
-        }
-      }
-
-      if (data?.search) {
-        conditions.push(ilike(articles.title, `%${data.search}%`));
-      }
-
-      const whereClause =
-        conditions.length > 0 ? and(...conditions) : undefined;
-
-      // Build order by clause based on sortBy and sortOrder
-      const sortOrder = data?.sortOrder === "asc" ? asc : desc;
-      const getOrderBy = () => {
-        switch (data?.sortBy) {
-          case "title":
-            return [sortOrder(articles.title)];
-          case "author":
-            // Sort by the related author's name in SQL so ordering happens
-            // before pagination (sorting the fetched page in memory only
-            // alphabetizes within each page)
-            return [
-              sortOrder(
-                sql`(SELECT LOWER(${authors.surname} || ' ' || ${authors.givenName}) FROM ${authors} WHERE ${authors.id} = ${articles.authorId})`
-              ),
-            ];
-          case "status":
-            return [sortOrder(articles.internalStatus)];
-          case "submitted":
-            return [sortOrder(articles.submittedAt), sortOrder(articles.createdAt)];
-          case "tier":
-            return [sortOrder(articles.articleTier)];
-          case "volume":
-            return [sortOrder(articles.volume), sortOrder(articles.issue)];
-          default:
-            return [desc(articles.createdAt)];
-        }
-      };
-
-      // Get articles with author info and publication issue
-      const articleList = await db.query.articles.findMany({
-        where: whereClause,
-        with: {
-          author: true,
-          attachments: true,
-          multimediaTypes: true,
-          publicationIssue: {
-            with: {
-              volume: true,
-            },
-          },
-        },
-        orderBy: getOrderBy(),
-        limit,
-        offset,
-      });
-
-      const sortedArticles = articleList;
-
-      // Get total count
-      const [totalResult] = await db
-        .select({ count: count() })
-        .from(articles)
-        .where(whereClause);
-
-      return {
-        articles: sortedArticles,
-        total: totalResult?.count ?? 0,
-        page,
-        limit,
-        totalPages: Math.ceil((totalResult?.count ?? 0) / limit),
-      };
-    } catch (error) {
-      console.error("Failed to get articles:", error);
-      return {
-        articles: [],
-        total: 0,
-        page: 1,
-        limit: 20,
-        totalPages: 0,
-      };
-    }
+    const { query } = await import("../../server/convex");
+    return query("getArticles", data);
   });
 
 // Get single article by ID
 export const getArticleById = createServerFn({ method: "POST" })
   .inputValidator((data: { id: string }) => data)
   .handler(async ({ data }) => {
-    console.log("getArticleById called with data:", data);
-    try {
-      if (!data?.id) {
-        console.error("Article ID is undefined or empty");
-        return { article: null };
-      }
-      const { db, articles } = await import("@db/index");
-      const { eq } = await import("drizzle-orm");
-      const id = data.id;
-
-      const article = await db.query.articles.findFirst({
-        where: eq(articles.id, id),
-        with: {
-          author: true,
-          attachments: true,
-          multimediaTypes: true,
-          notes: {
-            orderBy: (notes, { desc }) => [desc(notes.createdAt)],
-          },
-          statusHistory: {
-            orderBy: (history, { desc }) => [desc(history.changedAt)],
-          },
-        },
-      });
-
-      return { article };
-    } catch (error) {
-      console.error("Failed to get article:", error);
-      return { article: null };
-    }
+    const { query } = await import("../../server/convex");
+    return query("getArticleById", data);
   });
 
 // Get single author with stats
 export const getAuthorById = createServerFn({ method: "POST" })
   .inputValidator((data: { id: string }) => data)
   .handler(async ({ data }) => {
-    console.log("getAuthorById called with data:", JSON.stringify(data));
-    try {
-      if (!data?.id) {
-        console.error("Author ID is undefined or empty");
-        return { author: null, stats: null };
-      }
-      const { db, authors, articles } = await import("@db/index");
-      const { eq, sum, count, and } = await import("drizzle-orm");
-      const id = data.id;
-
-      const author = await db.query.authors.findFirst({
-        where: eq(authors.id, id),
-        with: {
-          articles: {
-            with: {
-              attachments: true,
-            },
-            orderBy: (articles, { desc }) => [desc(articles.createdAt)],
-          },
-        },
-      });
-
-      if (!author) {
-        return { author: null, stats: null };
-      }
-
-      // Calculate stats
-      const [statsResult] = await db
-        .select({
-          totalArticles: count(),
-          totalPaid: sum(articles.paymentAmount),
-        })
-        .from(articles)
-        .where(
-          and(eq(articles.authorId, id), eq(articles.paymentStatus, true))
-        );
-
-      const [allArticlesCount] = await db
-        .select({ count: count() })
-        .from(articles)
-        .where(eq(articles.authorId, id));
-
-      return {
-        author,
-        stats: {
-          totalArticles: allArticlesCount?.count ?? 0,
-          paidArticles: Number(statsResult?.totalArticles) || 0,
-          totalEarnings: Number(statsResult?.totalPaid) || 0,
-        },
-      };
-    } catch (error) {
-      console.error("Failed to get author:", error);
-      return { author: null, stats: null };
-    }
+    const { query } = await import("../../server/convex");
+    return query("getAuthorById", data);
   });
 
 // Get all authors
 export const getAuthors = createServerFn({ method: "GET" })
   .inputValidator((data?: { search?: string }) => data)
   .handler(async ({ data }) => {
-    try {
-      const { db, authors, articles } = await import("@db/index");
-      const { ilike, count, eq, sql } = await import("drizzle-orm");
-
-      let whereClause;
-      if (data?.search) {
-        const { or } = await import("drizzle-orm");
-        whereClause = or(
-          ilike(authors.givenName, `%${data.search}%`),
-          ilike(authors.surname, `%${data.search}%`),
-          ilike(authors.email, `%${data.search}%`)
-        );
-      }
-
-      const authorList = await db.query.authors.findMany({
-        where: whereClause,
-        orderBy: (authors, { asc }) => [asc(authors.surname)],
-      });
-
-      // Get article counts for all authors in one grouped query instead of
-      // one query per author
-      const countRows = await db
-        .select({ authorId: articles.authorId, count: count() })
-        .from(articles)
-        .groupBy(articles.authorId);
-      const countByAuthor = new Map(countRows.map((r) => [r.authorId, r.count]));
-
-      const authorsWithCounts = authorList.map((author) => ({
-        ...author,
-        articleCount: countByAuthor.get(author.id) ?? 0,
-      }));
-
-      return { authors: authorsWithCounts };
-    } catch (error) {
-      console.error("Failed to get authors:", error);
-      return { authors: [] };
-    }
+    const { query } = await import("../../server/convex");
+    return query("getAuthors", data);
   });
 
 // Get all volumes with their issues and article counts
-export const getVolumes = createServerFn({ method: "GET" }).handler(async () => {
-  try {
-    const { db, articles } = await import("@db/index");
-    const { eq, count } = await import("drizzle-orm");
-
-    const volumeList = await db.query.volumes.findMany({
-      with: {
-        issues: {
-          orderBy: (issues, { asc }) => [asc(issues.issueNumber)],
-        },
-      },
-      orderBy: (volumes, { desc }) => [desc(volumes.volumeNumber)],
-    });
-
-    // Get article counts for all issues in one grouped query instead of one
-    // query per issue
-    const countRows = await db
-      .select({ issueId: articles.issueId, count: count() })
-      .from(articles)
-      .groupBy(articles.issueId);
-    const countByIssue = new Map(countRows.map((r) => [r.issueId, r.count]));
-
-    const volumesWithCounts = volumeList.map((volume) => ({
-      ...volume,
-      issues: volume.issues.map((issue) => ({
-        ...issue,
-        articleCount: countByIssue.get(issue.id) ?? 0,
-      })),
-    }));
-
-    return { volumes: volumesWithCounts };
-  } catch (error) {
-    console.error("Failed to get volumes:", error);
-    return { volumes: [] };
-  }
-});
+export const getVolumes = createServerFn({ method: "GET" }).handler(
+  async () => {
+    const { query } = await import("../../server/convex");
+    return query("getVolumes");
+  },
+);
 
 // Get issue by ID with volume info
 export const getIssueById = createServerFn({ method: "POST" })
   .inputValidator((data: { id: string }) => data)
   .handler(async ({ data }) => {
-    try {
-      const { db, issues } = await import("@db/index");
-      const { eq } = await import("drizzle-orm");
-
-      const issue = await db.query.issues.findFirst({
-        where: eq(issues.id, data.id),
-        with: {
-          volume: true,
-        },
-      });
-
-      return { issue };
-    } catch (error) {
-      console.error("Failed to get issue:", error);
-      return { issue: null };
-    }
+    const { query } = await import("../../server/convex");
+    return query("getIssueById", data);
   });
 
 // Get volume by ID
 export const getVolumeById = createServerFn({ method: "POST" })
   .inputValidator((data: { id: string }) => data)
   .handler(async ({ data }) => {
-    try {
-      const { db, volumes } = await import("@db/index");
-      const { eq } = await import("drizzle-orm");
-
-      const volume = await db.query.volumes.findFirst({
-        where: eq(volumes.id, data.id),
-      });
-
-      return { volume };
-    } catch (error) {
-      console.error("Failed to get volume:", error);
-      return { volume: null };
-    }
+    const { query } = await import("../../server/convex");
+    return query("getVolumeById", data);
   });
 
 // Get all issues (for dropdowns)
 export const getIssuesForVolume = createServerFn({ method: "POST" })
   .inputValidator((data: { volumeId: string }) => data)
   .handler(async ({ data }) => {
-    try {
-      const { db, issues } = await import("@db/index");
-      const { eq } = await import("drizzle-orm");
-
-      const issueList = await db.query.issues.findMany({
-        where: eq(issues.volumeId, data.volumeId),
-        with: {
-          volume: true,
-        },
-        orderBy: (issues, { asc }) => [asc(issues.issueNumber)],
-      });
-
-      return { issues: issueList };
-    } catch (error) {
-      console.error("Failed to get issues:", error);
-      return { issues: [] };
-    }
+    const { query } = await import("../../server/convex");
+    return query("getIssuesForVolume", data);
   });

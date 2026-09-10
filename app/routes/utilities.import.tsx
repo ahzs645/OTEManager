@@ -1,5 +1,5 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
-import { useState } from 'react'
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import {
   Upload,
   ChevronLeft,
@@ -9,275 +9,152 @@ import {
   FolderOpen,
   FileArchive,
   Info,
-} from 'lucide-react'
-import { createServerFn } from '@tanstack/react-start'
-import { LoadingSpinner } from '~/components/Layout'
+} from "lucide-react";
+import { createServerFn } from "@tanstack/react-start";
+import { LoadingSpinner } from "~/components/Layout";
 
 // Server function to import data (legacy JSON-only import)
-const importSharePointData = createServerFn({ method: 'POST' })
+const importSharePointData = createServerFn({ method: "POST" })
   .inputValidator((data: { articles: any[] }) => data)
   .handler(async ({ data }) => {
-    const { db, authors, articles, articleMultimediaTypes } = await import('@db/index')
-    const { eq } = await import('drizzle-orm')
+    const { importSharePointJson } =
+      await import("../../server/sharepoint-json");
+    return importSharePointJson(data);
+  });
 
-    const results = {
-      success: 0,
-      failed: 0,
-      skipped: 0,
-      errors: [] as string[],
-    }
-
-    for (const item of data.articles) {
-      try {
-        // Support both old format (ContactEmail) and new format (Contact_x0020_Email)
-        const email = item.ContactEmail || item.Contact_x0020_Email
-        const givenName = item.GivenName || item.Given_x0020_Name || 'Unknown'
-        const surname = item.Surname || 'Unknown'
-        const etransferEmail = item.EtransferEmail || item['e_x002d_Transfer_x0020_Email']
-        const autoDeposit = item.Auto_x002d_depositAvailability || item.Autodeposit || false
-
-        // Handle role - could be an object with Value or a direct string
-        const roleValue = typeof item.role === 'object' ? item.role?.Value : item.role
-        const studentType = mapRoleToStudentType(roleValue)
-
-        // Check for existing article by SharePoint ID
-        const sharePointId = item.Id ? `sp-${item.Id}` : null
-        if (sharePointId) {
-          const existingArticle = await db.query.articles.findFirst({
-            where: eq(articles.formResponseId, sharePointId),
-          })
-          if (existingArticle) {
-            results.skipped++
-            continue
-          }
-        }
-
-        // Find or create author
-        let author = await db.query.authors.findFirst({
-          where: eq(authors.email, email),
-        })
-
-        if (!author) {
-          const [newAuthor] = await db
-            .insert(authors)
-            .values({
-              givenName,
-              surname,
-              email,
-              role: 'Guest Contributor',
-              authorType: 'Student',
-              studentType: studentType as any,
-              autoDepositAvailable: autoDeposit,
-              etransferEmail,
-            })
-            .returning()
-          author = newAuthor
-        } else if (studentType && !author.studentType) {
-          // Update existing author's studentType if not already set
-          await db
-            .update(authors)
-            .set({ studentType: studentType as any, updatedAt: new Date() })
-            .where(eq(authors.id, author.id))
-        }
-
-        // Create article
-        const [article] = await db
-          .insert(articles)
-          .values({
-            title: item.Title,
-            authorId: author.id,
-            articleTier: item.ArticleTier?.Value || item.Article_x0020_Tier || 'Tier 1 (Basic)',
-            internalStatus: mapStatus(item.InternalStaus?.Value || item.Internal_x0020_Status),
-            automationStatus: item.AutomationStatus?.Value || 'Completed',
-            prefersAnonymity: item.PrefersAnonymity || item.Prefers_x0020_Anonymity || false,
-            paymentStatus: item.PaymentStatus || item.Payment_x0020_Status || false,
-            articleFilePath: item.ArticleFileName,
-            submittedAt: item.Created ? new Date(item.Created) : new Date(),
-            formResponseId: sharePointId,
-          })
-          .returning()
-
-        // Add multimedia types if present
-        if (item.MultimediaType_x0028_s_x0029_?.results) {
-          for (const type of item.MultimediaType_x0028_s_x0029_.results) {
-            await db.insert(articleMultimediaTypes).values({
-              articleId: article.id,
-              multimediaType: type.Value,
-            })
-          }
-        }
-
-        results.success++
-      } catch (error) {
-        results.failed++
-        results.errors.push(
-          `Failed to import "${item.Title}": ${error instanceof Error ? error.message : 'Unknown error'}`
-        )
-      }
-    }
-
-    return results
-  })
-
-function mapStatus(status: string | undefined): any {
-  const statusMap: Record<string, string> = {
-    Draft: 'Draft',
-    'Not Started': 'Pending Review',
-    'Pending Review': 'Pending Review',
-    'In Progress': 'In Review',
-    'In Review': 'In Review',
-    'Needs Revision': 'Needs Revision',
-    Approved: 'Approved',
-    'In Editing': 'In Editing',
-    'Ready for Publication': 'Ready for Publication',
-    Published: 'Published',
-    Archived: 'Archived',
-  }
-  return statusMap[status || ''] || 'Pending Review'
-}
-
-// Map role values to studentType (for Student authors)
-function mapRoleToStudentType(role: string | undefined): string | null {
-  if (!role) return null
-
-  const roleMap: Record<string, string> = {
-    Undergrad: 'Undergrad',
-    Grad: 'Grad',
-    Graduate: 'Grad',
-    Alumni: 'Alumni',
-    Other: 'Other',
-  }
-
-  return roleMap[role] || null
-}
-
-export const Route = createFileRoute('/utilities/import')({
+export const Route = createFileRoute("/utilities/import")({
   component: ImportPage,
-})
+});
 
 type ImportStats = {
-  authors: { imported: number; skipped: number }
-  articles: { imported: number; skipped: number; updated: number }
-  attachments: { imported: number; skipped: number }
-  errors: string[]
-}
+  authors: { imported: number; skipped: number };
+  articles: { imported: number; skipped: number; updated: number };
+  attachments: { imported: number; skipped: number };
+  errors: string[];
+};
 
 type PreviewStats = {
-  articles: { new: number; update: number; skip: number }
-  authors: { new: number; existing: number }
-  files: { documents: number; photos: number }
+  articles: { new: number; update: number; skip: number };
+  authors: { new: number; existing: number };
+  files: { documents: number; photos: number };
   articlePreviews: Array<{
-    title: string
-    author: string
-    email: string
-    status: 'new' | 'update' | 'skip'
-    documents: number
-    photos: number
-  }>
-}
+    title: string;
+    author: string;
+    email: string;
+    status: "new" | "update" | "skip";
+    documents: number;
+    photos: number;
+  }>;
+};
 
 function ImportPage() {
-  const [importMethod, setImportMethod] = useState<'json' | 'zip' | 'folder'>('zip')
-  const [jsonData, setJsonData] = useState('')
-  const [folderPath, setFolderPath] = useState('')
-  const [importMode, setImportMode] = useState<'merge' | 'replace'>('merge')
-  const [isImporting, setIsImporting] = useState(false)
-  const [isPreviewing, setIsPreviewing] = useState(false)
-  const [pendingFile, setPendingFile] = useState<File | null>(null)
-  const [previewStats, setPreviewStats] = useState<PreviewStats | null>(null)
+  const [importMethod, setImportMethod] = useState<"json" | "zip" | "folder">(
+    "zip",
+  );
+  const [jsonData, setJsonData] = useState("");
+  const [folderPath, setFolderPath] = useState("");
+  const [importMode, setImportMode] = useState<"merge" | "replace">("merge");
+  const [isImporting, setIsImporting] = useState(false);
+  const [isPreviewing, setIsPreviewing] = useState(false);
+  const [pendingFile, setPendingFile] = useState<File | null>(null);
+  const [previewStats, setPreviewStats] = useState<PreviewStats | null>(null);
   const [results, setResults] = useState<{
-    success: number
-    failed: number
-    skipped?: number
-    errors: string[]
-    stats?: ImportStats
-  } | null>(null)
+    success: number;
+    failed: number;
+    skipped?: number;
+    errors: string[];
+    stats?: ImportStats;
+  } | null>(null);
 
   // Legacy JSON import
   const handleJsonImport = async () => {
-    if (!jsonData.trim()) return
+    if (!jsonData.trim()) return;
 
     try {
-      const parsed = JSON.parse(jsonData)
-      const articles = Array.isArray(parsed) ? parsed : parsed.value || [parsed]
+      const parsed = JSON.parse(jsonData);
+      const articles = Array.isArray(parsed)
+        ? parsed
+        : parsed.value || [parsed];
 
-      setIsImporting(true)
-      setResults(null)
+      setIsImporting(true);
+      setResults(null);
 
-      const result = await importSharePointData({ data: { articles } })
-      setResults(result)
+      const result = await importSharePointData({ data: { articles } });
+      setResults(result);
     } catch (error) {
       setResults({
         success: 0,
         failed: 1,
-        errors: [`JSON parse error: ${error instanceof Error ? error.message : 'Invalid JSON'}`],
-      })
+        errors: [
+          `JSON parse error: ${error instanceof Error ? error.message : "Invalid JSON"}`,
+        ],
+      });
     } finally {
-      setIsImporting(false)
+      setIsImporting(false);
     }
-  }
+  };
 
   // ZIP file preview - parse and show what will be imported
   const handleZipPreview = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (!file) return
+    const file = e.target.files?.[0];
+    if (!file) return;
 
-    setIsPreviewing(true)
-    setResults(null)
-    setPreviewStats(null)
-    setPendingFile(file)
+    setIsPreviewing(true);
+    setResults(null);
+    setPreviewStats(null);
+    setPendingFile(file);
 
     try {
-      const formData = new FormData()
-      formData.append('file', file)
-      formData.append('mode', importMode)
-      formData.append('preview', 'true')
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("mode", importMode);
+      formData.append("preview", "true");
 
-      const response = await fetch('/api/sharepoint/import', {
-        method: 'POST',
+      const response = await fetch("/api/sharepoint/import", {
+        method: "POST",
         body: formData,
-      })
+      });
 
-      const result = await response.json()
+      const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.error || 'Preview failed')
+        throw new Error(result.error || "Preview failed");
       }
 
-      setPreviewStats(result.stats)
+      setPreviewStats(result.stats);
     } catch (error) {
       setResults({
         success: 0,
         failed: 1,
-        errors: [error instanceof Error ? error.message : 'Preview failed'],
-      })
-      setPendingFile(null)
+        errors: [error instanceof Error ? error.message : "Preview failed"],
+      });
+      setPendingFile(null);
     } finally {
-      setIsPreviewing(false)
-      e.target.value = ''
+      setIsPreviewing(false);
+      e.target.value = "";
     }
-  }
+  };
 
   // Confirm and execute the actual import
   const handleConfirmImport = async () => {
-    if (!pendingFile) return
+    if (!pendingFile) return;
 
-    setIsImporting(true)
+    setIsImporting(true);
 
     try {
-      const formData = new FormData()
-      formData.append('file', pendingFile)
-      formData.append('mode', importMode)
+      const formData = new FormData();
+      formData.append("file", pendingFile);
+      formData.append("mode", importMode);
 
-      const response = await fetch('/api/sharepoint/import', {
-        method: 'POST',
+      const response = await fetch("/api/sharepoint/import", {
+        method: "POST",
         body: formData,
-      })
+      });
 
-      const result = await response.json()
+      const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.error || 'Import failed')
+        throw new Error(result.error || "Import failed");
       }
 
       setResults({
@@ -286,83 +163,83 @@ function ImportPage() {
         skipped: result.stats.articles.skipped,
         errors: result.stats.errors || [],
         stats: result.stats,
-      })
-      setPreviewStats(null)
-      setPendingFile(null)
+      });
+      setPreviewStats(null);
+      setPendingFile(null);
     } catch (error) {
       setResults({
         success: 0,
         failed: 1,
-        errors: [error instanceof Error ? error.message : 'Import failed'],
-      })
+        errors: [error instanceof Error ? error.message : "Import failed"],
+      });
     } finally {
-      setIsImporting(false)
+      setIsImporting(false);
     }
-  }
+  };
 
   // Cancel the pending import
   const handleCancelImport = () => {
-    setPendingFile(null)
-    setPreviewStats(null)
-  }
+    setPendingFile(null);
+    setPreviewStats(null);
+  };
 
   // Folder path preview
   const handleFolderPreview = async () => {
-    if (!folderPath.trim()) return
+    if (!folderPath.trim()) return;
 
-    setIsPreviewing(true)
-    setResults(null)
-    setPreviewStats(null)
+    setIsPreviewing(true);
+    setResults(null);
+    setPreviewStats(null);
 
     try {
-      const formData = new FormData()
-      formData.append('folderPath', folderPath)
-      formData.append('mode', importMode)
-      formData.append('preview', 'true')
+      const formData = new FormData();
+      formData.append("folderPath", folderPath);
+      formData.append("mode", importMode);
+      formData.append("preview", "true");
 
-      const response = await fetch('/api/sharepoint/import', {
-        method: 'POST',
+      const response = await fetch("/api/sharepoint/import", {
+        method: "POST",
         body: formData,
-      })
+      });
 
-      const result = await response.json()
+      const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.error || 'Preview failed')
+        throw new Error(result.error || "Preview failed");
       }
 
-      setPreviewStats(result.stats)
+      setPreviewStats(result.stats);
     } catch (error) {
       setResults({
         success: 0,
         failed: 1,
-        errors: [error instanceof Error ? error.message : 'Preview failed'],
-      })
+        errors: [error instanceof Error ? error.message : "Preview failed"],
+      });
     } finally {
-      setIsPreviewing(false)
+      setIsPreviewing(false);
     }
-  }
+  };
 
   // Folder path import
   const handleFolderImport = async () => {
-    if (!folderPath.trim()) return
+    if (!folderPath.trim()) return;
 
-    setIsImporting(true)
+    setIsImporting(true);
 
     try {
-      const formData = new FormData()
-      formData.append('folderPath', folderPath)
-      formData.append('mode', importMode)
+      const formData = new FormData();
+      formData.append("folderPath", folderPath);
+      formData.append("mode", importMode);
 
-      const response = await fetch('/api/sharepoint/import', {
-        method: 'POST',
+      const response = await fetch("/api/sharepoint/import", {
+        method: "POST",
         body: formData,
-      })
+      });
 
-      const result = await response.json()
+      const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.error || 'Import failed')
+        throw new Error(result.error || "Import failed");
       }
 
       setResults({
@@ -371,77 +248,81 @@ function ImportPage() {
         skipped: result.stats.articles.skipped,
         errors: result.stats.errors || [],
         stats: result.stats,
-      })
-      setPreviewStats(null)
+      });
+      setPreviewStats(null);
     } catch (error) {
       setResults({
         success: 0,
         failed: 1,
-        errors: [error instanceof Error ? error.message : 'Import failed'],
-      })
+        errors: [error instanceof Error ? error.message : "Import failed"],
+      });
     } finally {
-      setIsImporting(false)
+      setIsImporting(false);
     }
-  }
+  };
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (!file) return
+    const file = e.target.files?.[0];
+    if (!file) return;
 
-    const reader = new FileReader()
+    const reader = new FileReader();
     reader.onload = (event) => {
-      setJsonData(event.target?.result as string)
-    }
-    reader.readAsText(file)
-  }
+      setJsonData(event.target?.result as string);
+    };
+    reader.readAsText(file);
+  };
 
   return (
     <div className="page-container">
       {/* Header with back button */}
-      <div style={{ marginBottom: '1.5rem' }}>
+      <div style={{ marginBottom: "1.5rem" }}>
         <Link
           to="/utilities"
           style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.25rem',
-            fontSize: '0.8125rem',
-            color: 'var(--fg-muted)',
-            textDecoration: 'none',
-            marginBottom: '0.75rem',
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.25rem",
+            fontSize: "0.8125rem",
+            color: "var(--fg-muted)",
+            textDecoration: "none",
+            marginBottom: "0.75rem",
           }}
         >
           <ChevronLeft className="w-4 h-4" />
           Back to Utilities
         </Link>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
           <div
             style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '10px',
-              background: 'var(--bg-subtle)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              width: "40px",
+              height: "40px",
+              borderRadius: "10px",
+              background: "var(--bg-subtle)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
-            <Upload className="w-5 h-5" style={{ color: 'var(--fg-muted)' }} />
+            <Upload className="w-5 h-5" style={{ color: "var(--fg-muted)" }} />
           </div>
           <div>
             <h1
               style={{
-                fontSize: '1.25rem',
+                fontSize: "1.25rem",
                 fontWeight: 600,
-                color: 'var(--fg-default)',
+                color: "var(--fg-default)",
                 margin: 0,
-                letterSpacing: '-0.02em',
+                letterSpacing: "-0.02em",
               }}
             >
               Import from SharePoint
             </h1>
             <p
-              style={{ fontSize: '0.875rem', color: 'var(--fg-muted)', margin: '0.25rem 0 0 0' }}
+              style={{
+                fontSize: "0.875rem",
+                color: "var(--fg-muted)",
+                margin: "0.25rem 0 0 0",
+              }}
             >
               Migrate existing article data from SharePoint export
             </p>
@@ -452,30 +333,41 @@ function ImportPage() {
       {/* Duplicate Detection Info */}
       <div
         style={{
-          padding: '1rem 1.25rem',
-          background: 'rgba(37, 99, 235, 0.05)',
-          border: '0.5px solid rgba(37, 99, 235, 0.15)',
-          borderRadius: '8px',
-          marginBottom: '1.5rem',
-          display: 'flex',
-          gap: '0.75rem',
+          padding: "1rem 1.25rem",
+          background: "rgba(37, 99, 235, 0.05)",
+          border: "0.5px solid rgba(37, 99, 235, 0.15)",
+          borderRadius: "8px",
+          marginBottom: "1.5rem",
+          display: "flex",
+          gap: "0.75rem",
         }}
       >
-        <Info className="w-4 h-4" style={{ color: 'rgb(37, 99, 235)', flexShrink: 0, marginTop: '2px' }} />
+        <Info
+          className="w-4 h-4"
+          style={{ color: "rgb(37, 99, 235)", flexShrink: 0, marginTop: "2px" }}
+        />
         <div>
           <div
             style={{
-              fontSize: '0.875rem',
+              fontSize: "0.875rem",
               fontWeight: 500,
-              color: 'var(--fg-default)',
-              marginBottom: '0.25rem',
+              color: "var(--fg-default)",
+              marginBottom: "0.25rem",
             }}
           >
             Duplicate Detection
           </div>
-          <p style={{ fontSize: '0.8125rem', color: 'var(--fg-muted)', margin: 0 }}>
-            Articles are identified by their SharePoint ID. Existing articles will be <strong>skipped</strong> in
-            merge mode or <strong>updated</strong> in replace mode. Authors are matched by email address.
+          <p
+            style={{
+              fontSize: "0.8125rem",
+              color: "var(--fg-muted)",
+              margin: 0,
+            }}
+          >
+            Articles are identified by their SharePoint ID. Existing articles
+            will be <strong>skipped</strong> in merge mode or{" "}
+            <strong>updated</strong> in replace mode. Authors are matched by
+            email address.
           </p>
         </div>
       </div>
@@ -483,122 +375,142 @@ function ImportPage() {
       {/* Import Method Selection */}
       <div
         style={{
-          background: 'var(--bg-surface)',
-          border: '0.5px solid var(--border-default)',
-          borderRadius: '8px',
-          padding: '1.5rem',
-          marginBottom: '1.5rem',
+          background: "var(--bg-surface)",
+          border: "0.5px solid var(--border-default)",
+          borderRadius: "8px",
+          padding: "1.5rem",
+          marginBottom: "1.5rem",
         }}
       >
         <label
           style={{
-            display: 'block',
-            fontSize: '0.8125rem',
+            display: "block",
+            fontSize: "0.8125rem",
             fontWeight: 500,
-            color: 'var(--fg-default)',
-            marginBottom: '0.75rem',
+            color: "var(--fg-default)",
+            marginBottom: "0.75rem",
           }}
         >
           Import Method
         </label>
-        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+        <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
           <button
-            onClick={() => setImportMethod('zip')}
+            onClick={() => setImportMethod("zip")}
             disabled={!!previewStats || isImporting}
-            className={`btn ${importMethod === 'zip' ? 'btn-primary' : 'btn-secondary'}`}
-            style={{ gap: '0.5rem' }}
+            className={`btn ${importMethod === "zip" ? "btn-primary" : "btn-secondary"}`}
+            style={{ gap: "0.5rem" }}
           >
             <FileArchive className="w-4 h-4" />
             ZIP File
           </button>
           <button
-            onClick={() => setImportMethod('folder')}
+            onClick={() => setImportMethod("folder")}
             disabled={!!previewStats || isImporting}
-            className={`btn ${importMethod === 'folder' ? 'btn-primary' : 'btn-secondary'}`}
-            style={{ gap: '0.5rem' }}
+            className={`btn ${importMethod === "folder" ? "btn-primary" : "btn-secondary"}`}
+            style={{ gap: "0.5rem" }}
           >
             <FolderOpen className="w-4 h-4" />
             Folder Path
           </button>
           <button
-            onClick={() => setImportMethod('json')}
+            onClick={() => setImportMethod("json")}
             disabled={!!previewStats || isImporting}
-            className={`btn ${importMethod === 'json' ? 'btn-primary' : 'btn-secondary'}`}
-            style={{ gap: '0.5rem' }}
+            className={`btn ${importMethod === "json" ? "btn-primary" : "btn-secondary"}`}
+            style={{ gap: "0.5rem" }}
           >
             <FileJson className="w-4 h-4" />
             JSON Only
           </button>
         </div>
-        <p style={{ fontSize: '0.75rem', color: 'var(--fg-muted)', marginTop: '0.5rem', marginBottom: 0 }}>
-          {importMethod === 'zip' && 'Upload a ZIP containing JSON + documents/ and photos/ folders'}
-          {importMethod === 'folder' && 'Enter the path to an unzipped SharePoint export folder'}
-          {importMethod === 'json' && 'Paste or upload JSON data only (no file attachments)'}
+        <p
+          style={{
+            fontSize: "0.75rem",
+            color: "var(--fg-muted)",
+            marginTop: "0.5rem",
+            marginBottom: 0,
+          }}
+        >
+          {importMethod === "zip" &&
+            "Upload a ZIP containing JSON + documents/ and photos/ folders"}
+          {importMethod === "folder" &&
+            "Enter the path to an unzipped SharePoint export folder"}
+          {importMethod === "json" &&
+            "Paste or upload JSON data only (no file attachments)"}
         </p>
       </div>
 
       {/* Import Mode (for ZIP and Folder) */}
-      {importMethod !== 'json' && (
+      {importMethod !== "json" && (
         <div
           style={{
-            background: 'var(--bg-surface)',
-            border: '0.5px solid var(--border-default)',
-            borderRadius: '8px',
-            padding: '1.5rem',
-            marginBottom: '1.5rem',
+            background: "var(--bg-surface)",
+            border: "0.5px solid var(--border-default)",
+            borderRadius: "8px",
+            padding: "1.5rem",
+            marginBottom: "1.5rem",
           }}
         >
           <label
             style={{
-              display: 'block',
-              fontSize: '0.8125rem',
+              display: "block",
+              fontSize: "0.8125rem",
               fontWeight: 500,
-              color: 'var(--fg-default)',
-              marginBottom: '0.5rem',
+              color: "var(--fg-default)",
+              marginBottom: "0.5rem",
             }}
           >
             Import Mode
           </label>
-          <div style={{ display: 'flex', gap: '1rem', opacity: previewStats ? 0.5 : 1 }}>
+          <div
+            style={{
+              display: "flex",
+              gap: "1rem",
+              opacity: previewStats ? 0.5 : 1,
+            }}
+          >
             <label
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                cursor: previewStats ? 'not-allowed' : 'pointer',
+                display: "flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                cursor: previewStats ? "not-allowed" : "pointer",
               }}
             >
               <input
                 type="radio"
                 name="importMode"
                 value="merge"
-                checked={importMode === 'merge'}
-                onChange={() => setImportMode('merge')}
+                checked={importMode === "merge"}
+                onChange={() => setImportMode("merge")}
                 disabled={!!previewStats || isImporting}
-                style={{ accentColor: 'var(--accent)' }}
+                style={{ accentColor: "var(--accent)" }}
               />
-              <span style={{ fontSize: '0.875rem', color: 'var(--fg-default)' }}>
+              <span
+                style={{ fontSize: "0.875rem", color: "var(--fg-default)" }}
+              >
                 Merge (skip existing)
               </span>
             </label>
             <label
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                cursor: previewStats ? 'not-allowed' : 'pointer',
+                display: "flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                cursor: previewStats ? "not-allowed" : "pointer",
               }}
             >
               <input
                 type="radio"
                 name="importMode"
                 value="replace"
-                checked={importMode === 'replace'}
-                onChange={() => setImportMode('replace')}
+                checked={importMode === "replace"}
+                onChange={() => setImportMode("replace")}
                 disabled={!!previewStats || isImporting}
-                style={{ accentColor: 'var(--accent)' }}
+                style={{ accentColor: "var(--accent)" }}
               />
-              <span style={{ fontSize: '0.875rem', color: 'var(--fg-default)' }}>
+              <span
+                style={{ fontSize: "0.875rem", color: "var(--fg-default)" }}
+              >
                 Replace (update existing)
               </span>
             </label>
@@ -609,33 +521,71 @@ function ImportPage() {
       {/* Main Content */}
       <div
         style={{
-          background: 'var(--bg-surface)',
-          border: '0.5px solid var(--border-default)',
-          borderRadius: '8px',
-          padding: '1.5rem',
+          background: "var(--bg-surface)",
+          border: "0.5px solid var(--border-default)",
+          borderRadius: "8px",
+          padding: "1.5rem",
         }}
       >
         {/* ZIP Upload */}
-        {importMethod === 'zip' && !previewStats && (
+        {importMethod === "zip" && !previewStats && (
           <>
-            <div style={{ marginBottom: '1.5rem' }}>
+            <div style={{ marginBottom: "1.5rem" }}>
               <label
                 style={{
-                  display: 'block',
-                  fontSize: '0.8125rem',
+                  display: "block",
+                  fontSize: "0.8125rem",
                   fontWeight: 500,
-                  color: 'var(--fg-default)',
-                  marginBottom: '0.5rem',
+                  color: "var(--fg-default)",
+                  marginBottom: "0.5rem",
                 }}
               >
                 Upload ZIP File
               </label>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--fg-muted)', marginBottom: '0.75rem' }}>
-                ZIP should contain: <code style={{ background: 'var(--bg-subtle)', padding: '0.125rem 0.375rem', borderRadius: '3px' }}>*.json</code>,
-                <code style={{ background: 'var(--bg-subtle)', padding: '0.125rem 0.375rem', borderRadius: '3px', marginLeft: '0.25rem' }}>documents/</code>, and
-                <code style={{ background: 'var(--bg-subtle)', padding: '0.125rem 0.375rem', borderRadius: '3px', marginLeft: '0.25rem' }}>photos/</code>
+              <p
+                style={{
+                  fontSize: "0.8125rem",
+                  color: "var(--fg-muted)",
+                  marginBottom: "0.75rem",
+                }}
+              >
+                ZIP should contain:{" "}
+                <code
+                  style={{
+                    background: "var(--bg-subtle)",
+                    padding: "0.125rem 0.375rem",
+                    borderRadius: "3px",
+                  }}
+                >
+                  *.json
+                </code>
+                ,
+                <code
+                  style={{
+                    background: "var(--bg-subtle)",
+                    padding: "0.125rem 0.375rem",
+                    borderRadius: "3px",
+                    marginLeft: "0.25rem",
+                  }}
+                >
+                  documents/
+                </code>
+                , and
+                <code
+                  style={{
+                    background: "var(--bg-subtle)",
+                    padding: "0.125rem 0.375rem",
+                    borderRadius: "3px",
+                    marginLeft: "0.25rem",
+                  }}
+                >
+                  photos/
+                </code>
               </p>
-              <label className="btn btn-secondary" style={{ gap: '0.5rem', cursor: 'pointer' }}>
+              <label
+                className="btn btn-secondary"
+                style={{ gap: "0.5rem", cursor: "pointer" }}
+              >
                 {isPreviewing ? (
                   <>
                     <LoadingSpinner size="sm" />
@@ -652,7 +602,7 @@ function ImportPage() {
                   accept=".zip"
                   onChange={handleZipPreview}
                   disabled={isPreviewing || isImporting}
-                  style={{ display: 'none' }}
+                  style={{ display: "none" }}
                 />
               </label>
             </div>
@@ -660,21 +610,27 @@ function ImportPage() {
         )}
 
         {/* Folder Path */}
-        {importMethod === 'folder' && !previewStats && (
+        {importMethod === "folder" && !previewStats && (
           <>
-            <div style={{ marginBottom: '1.5rem' }}>
+            <div style={{ marginBottom: "1.5rem" }}>
               <label
                 style={{
-                  display: 'block',
-                  fontSize: '0.8125rem',
+                  display: "block",
+                  fontSize: "0.8125rem",
                   fontWeight: 500,
-                  color: 'var(--fg-default)',
-                  marginBottom: '0.5rem',
+                  color: "var(--fg-default)",
+                  marginBottom: "0.5rem",
                 }}
               >
                 Folder Path
               </label>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--fg-muted)', marginBottom: '0.75rem' }}>
+              <p
+                style={{
+                  fontSize: "0.8125rem",
+                  color: "var(--fg-muted)",
+                  marginBottom: "0.75rem",
+                }}
+              >
                 Enter the full path to the unzipped SharePoint export folder
               </p>
               <input
@@ -684,9 +640,9 @@ function ImportPage() {
                 placeholder="/Users/you/Downloads/ote-export-2026-01-29"
                 className="input"
                 style={{
-                  width: '100%',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.8125rem',
+                  width: "100%",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.8125rem",
                 }}
               />
             </div>
@@ -694,7 +650,7 @@ function ImportPage() {
               onClick={handleFolderPreview}
               disabled={isPreviewing || isImporting || !folderPath.trim()}
               className="btn btn-primary"
-              style={{ gap: '0.5rem' }}
+              style={{ gap: "0.5rem" }}
             >
               {isPreviewing ? (
                 <>
@@ -712,224 +668,356 @@ function ImportPage() {
         )}
 
         {/* Preview Confirmation */}
-        {previewStats && (importMethod === 'zip' || importMethod === 'folder') && (
-          <div>
-            <div style={{ marginBottom: '1.25rem' }}>
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  marginBottom: '0.5rem',
-                }}
-              >
-                <Info className="w-4 h-4" style={{ color: 'rgb(37, 99, 235)' }} />
-                <span
+        {previewStats &&
+          (importMethod === "zip" || importMethod === "folder") && (
+            <div>
+              <div style={{ marginBottom: "1.25rem" }}>
+                <div
                   style={{
-                    fontSize: '0.875rem',
-                    fontWeight: 500,
-                    color: 'var(--fg-default)',
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    marginBottom: "0.5rem",
                   }}
                 >
-                  Import Preview
-                </span>
-                {pendingFile && (
+                  <Info
+                    className="w-4 h-4"
+                    style={{ color: "rgb(37, 99, 235)" }}
+                  />
                   <span
                     style={{
-                      fontSize: '0.75rem',
-                      color: 'var(--fg-muted)',
-                      padding: '0.125rem 0.5rem',
-                      background: 'var(--bg-subtle)',
-                      borderRadius: '4px',
+                      fontSize: "0.875rem",
+                      fontWeight: 500,
+                      color: "var(--fg-default)",
                     }}
                   >
-                    {pendingFile.name}
+                    Import Preview
                   </span>
-                )}
-              </div>
-              <p style={{ fontSize: '0.8125rem', color: 'var(--fg-muted)', margin: 0 }}>
-                Review the changes below before confirming the import.
-              </p>
-            </div>
-
-            {/* Summary Stats */}
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
-                gap: '0.75rem',
-                marginBottom: '1.25rem',
-              }}
-            >
-              <div
-                style={{
-                  padding: '0.75rem',
-                  background: 'var(--bg-subtle)',
-                  borderRadius: '6px',
-                }}
-              >
-                <div style={{ fontSize: '0.75rem', color: 'var(--fg-muted)', marginBottom: '0.25rem' }}>
-                  Articles
-                </div>
-                <div style={{ fontSize: '0.875rem', color: 'var(--fg-default)' }}>
-                  <span style={{ color: 'var(--status-success)', fontWeight: 500 }}>{previewStats.articles.new} new</span>
-                  {previewStats.articles.update > 0 && (
-                    <span style={{ color: 'rgb(37, 99, 235)' }}>, {previewStats.articles.update} update</span>
-                  )}
-                  {previewStats.articles.skip > 0 && (
-                    <span style={{ color: 'var(--fg-muted)' }}>, {previewStats.articles.skip} skip</span>
-                  )}
-                </div>
-              </div>
-              <div
-                style={{
-                  padding: '0.75rem',
-                  background: 'var(--bg-subtle)',
-                  borderRadius: '6px',
-                }}
-              >
-                <div style={{ fontSize: '0.75rem', color: 'var(--fg-muted)', marginBottom: '0.25rem' }}>
-                  Authors
-                </div>
-                <div style={{ fontSize: '0.875rem', color: 'var(--fg-default)' }}>
-                  <span style={{ color: 'var(--status-success)', fontWeight: 500 }}>{previewStats.authors.new} new</span>
-                  {previewStats.authors.existing > 0 && (
-                    <span style={{ color: 'var(--fg-muted)' }}>, {previewStats.authors.existing} existing</span>
-                  )}
-                </div>
-              </div>
-              <div
-                style={{
-                  padding: '0.75rem',
-                  background: 'var(--bg-subtle)',
-                  borderRadius: '6px',
-                }}
-              >
-                <div style={{ fontSize: '0.75rem', color: 'var(--fg-muted)', marginBottom: '0.25rem' }}>
-                  Files
-                </div>
-                <div style={{ fontSize: '0.875rem', color: 'var(--fg-default)' }}>
-                  {previewStats.files.documents + previewStats.files.photos} total
-                  <span style={{ color: 'var(--fg-muted)', fontSize: '0.75rem' }}>
-                    {' '}({previewStats.files.documents} docs, {previewStats.files.photos} photos)
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Article List */}
-            <div
-              style={{
-                border: '0.5px solid var(--border-default)',
-                borderRadius: '6px',
-                marginBottom: '1.25rem',
-                maxHeight: '300px',
-                overflow: 'auto',
-              }}
-            >
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.8125rem' }}>
-                <thead>
-                  <tr style={{ background: 'var(--bg-subtle)', position: 'sticky', top: 0 }}>
-                    <th style={{ padding: '0.5rem 0.75rem', textAlign: 'left', fontWeight: 500, color: 'var(--fg-muted)' }}>Title</th>
-                    <th style={{ padding: '0.5rem 0.75rem', textAlign: 'left', fontWeight: 500, color: 'var(--fg-muted)' }}>Author</th>
-                    <th style={{ padding: '0.5rem 0.75rem', textAlign: 'center', fontWeight: 500, color: 'var(--fg-muted)' }}>Files</th>
-                    <th style={{ padding: '0.5rem 0.75rem', textAlign: 'center', fontWeight: 500, color: 'var(--fg-muted)' }}>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {previewStats.articlePreviews.map((article, i) => (
-                    <tr
-                      key={i}
+                  {pendingFile && (
+                    <span
                       style={{
-                        borderTop: '0.5px solid var(--border-subtle)',
-                        opacity: article.status === 'skip' ? 0.5 : 1,
+                        fontSize: "0.75rem",
+                        color: "var(--fg-muted)",
+                        padding: "0.125rem 0.5rem",
+                        background: "var(--bg-subtle)",
+                        borderRadius: "4px",
                       }}
                     >
-                      <td style={{ padding: '0.5rem 0.75rem', color: 'var(--fg-default)' }}>
-                        {article.title}
-                      </td>
-                      <td style={{ padding: '0.5rem 0.75rem', color: 'var(--fg-muted)' }}>
-                        {article.author}
-                      </td>
-                      <td style={{ padding: '0.5rem 0.75rem', textAlign: 'center', color: 'var(--fg-muted)' }}>
-                        {article.documents + article.photos > 0 ? (
-                          <span>{article.documents + article.photos}</span>
-                        ) : (
-                          <span style={{ color: 'var(--fg-subtle)' }}>-</span>
-                        )}
-                      </td>
-                      <td style={{ padding: '0.5rem 0.75rem', textAlign: 'center' }}>
-                        <span
+                      {pendingFile.name}
+                    </span>
+                  )}
+                </div>
+                <p
+                  style={{
+                    fontSize: "0.8125rem",
+                    color: "var(--fg-muted)",
+                    margin: 0,
+                  }}
+                >
+                  Review the changes below before confirming the import.
+                </p>
+              </div>
+
+              {/* Summary Stats */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
+                  gap: "0.75rem",
+                  marginBottom: "1.25rem",
+                }}
+              >
+                <div
+                  style={{
+                    padding: "0.75rem",
+                    background: "var(--bg-subtle)",
+                    borderRadius: "6px",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: "0.75rem",
+                      color: "var(--fg-muted)",
+                      marginBottom: "0.25rem",
+                    }}
+                  >
+                    Articles
+                  </div>
+                  <div
+                    style={{ fontSize: "0.875rem", color: "var(--fg-default)" }}
+                  >
+                    <span
+                      style={{
+                        color: "var(--status-success)",
+                        fontWeight: 500,
+                      }}
+                    >
+                      {previewStats.articles.new} new
+                    </span>
+                    {previewStats.articles.update > 0 && (
+                      <span style={{ color: "rgb(37, 99, 235)" }}>
+                        , {previewStats.articles.update} update
+                      </span>
+                    )}
+                    {previewStats.articles.skip > 0 && (
+                      <span style={{ color: "var(--fg-muted)" }}>
+                        , {previewStats.articles.skip} skip
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <div
+                  style={{
+                    padding: "0.75rem",
+                    background: "var(--bg-subtle)",
+                    borderRadius: "6px",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: "0.75rem",
+                      color: "var(--fg-muted)",
+                      marginBottom: "0.25rem",
+                    }}
+                  >
+                    Authors
+                  </div>
+                  <div
+                    style={{ fontSize: "0.875rem", color: "var(--fg-default)" }}
+                  >
+                    <span
+                      style={{
+                        color: "var(--status-success)",
+                        fontWeight: 500,
+                      }}
+                    >
+                      {previewStats.authors.new} new
+                    </span>
+                    {previewStats.authors.existing > 0 && (
+                      <span style={{ color: "var(--fg-muted)" }}>
+                        , {previewStats.authors.existing} existing
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <div
+                  style={{
+                    padding: "0.75rem",
+                    background: "var(--bg-subtle)",
+                    borderRadius: "6px",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: "0.75rem",
+                      color: "var(--fg-muted)",
+                      marginBottom: "0.25rem",
+                    }}
+                  >
+                    Files
+                  </div>
+                  <div
+                    style={{ fontSize: "0.875rem", color: "var(--fg-default)" }}
+                  >
+                    {previewStats.files.documents + previewStats.files.photos}{" "}
+                    total
+                    <span
+                      style={{ color: "var(--fg-muted)", fontSize: "0.75rem" }}
+                    >
+                      {" "}
+                      ({previewStats.files.documents} docs,{" "}
+                      {previewStats.files.photos} photos)
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Article List */}
+              <div
+                style={{
+                  border: "0.5px solid var(--border-default)",
+                  borderRadius: "6px",
+                  marginBottom: "1.25rem",
+                  maxHeight: "300px",
+                  overflow: "auto",
+                }}
+              >
+                <table
+                  style={{
+                    width: "100%",
+                    borderCollapse: "collapse",
+                    fontSize: "0.8125rem",
+                  }}
+                >
+                  <thead>
+                    <tr
+                      style={{
+                        background: "var(--bg-subtle)",
+                        position: "sticky",
+                        top: 0,
+                      }}
+                    >
+                      <th
+                        style={{
+                          padding: "0.5rem 0.75rem",
+                          textAlign: "left",
+                          fontWeight: 500,
+                          color: "var(--fg-muted)",
+                        }}
+                      >
+                        Title
+                      </th>
+                      <th
+                        style={{
+                          padding: "0.5rem 0.75rem",
+                          textAlign: "left",
+                          fontWeight: 500,
+                          color: "var(--fg-muted)",
+                        }}
+                      >
+                        Author
+                      </th>
+                      <th
+                        style={{
+                          padding: "0.5rem 0.75rem",
+                          textAlign: "center",
+                          fontWeight: 500,
+                          color: "var(--fg-muted)",
+                        }}
+                      >
+                        Files
+                      </th>
+                      <th
+                        style={{
+                          padding: "0.5rem 0.75rem",
+                          textAlign: "center",
+                          fontWeight: 500,
+                          color: "var(--fg-muted)",
+                        }}
+                      >
+                        Action
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {previewStats.articlePreviews.map((article, i) => (
+                      <tr
+                        key={i}
+                        style={{
+                          borderTop: "0.5px solid var(--border-subtle)",
+                          opacity: article.status === "skip" ? 0.5 : 1,
+                        }}
+                      >
+                        <td
                           style={{
-                            padding: '0.125rem 0.5rem',
-                            borderRadius: '4px',
-                            fontSize: '0.75rem',
-                            fontWeight: 500,
-                            background:
-                              article.status === 'new'
-                                ? 'rgba(34, 197, 94, 0.1)'
-                                : article.status === 'update'
-                                  ? 'rgba(37, 99, 235, 0.1)'
-                                  : 'rgba(156, 163, 175, 0.1)',
-                            color:
-                              article.status === 'new'
-                                ? 'var(--status-success)'
-                                : article.status === 'update'
-                                  ? 'rgb(37, 99, 235)'
-                                  : 'var(--fg-muted)',
+                            padding: "0.5rem 0.75rem",
+                            color: "var(--fg-default)",
                           }}
                         >
-                          {article.status === 'new' ? 'Create' : article.status === 'update' ? 'Update' : 'Skip'}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                          {article.title}
+                        </td>
+                        <td
+                          style={{
+                            padding: "0.5rem 0.75rem",
+                            color: "var(--fg-muted)",
+                          }}
+                        >
+                          {article.author}
+                        </td>
+                        <td
+                          style={{
+                            padding: "0.5rem 0.75rem",
+                            textAlign: "center",
+                            color: "var(--fg-muted)",
+                          }}
+                        >
+                          {article.documents + article.photos > 0 ? (
+                            <span>{article.documents + article.photos}</span>
+                          ) : (
+                            <span style={{ color: "var(--fg-subtle)" }}>-</span>
+                          )}
+                        </td>
+                        <td
+                          style={{
+                            padding: "0.5rem 0.75rem",
+                            textAlign: "center",
+                          }}
+                        >
+                          <span
+                            style={{
+                              padding: "0.125rem 0.5rem",
+                              borderRadius: "4px",
+                              fontSize: "0.75rem",
+                              fontWeight: 500,
+                              background:
+                                article.status === "new"
+                                  ? "rgba(34, 197, 94, 0.1)"
+                                  : article.status === "update"
+                                    ? "rgba(37, 99, 235, 0.1)"
+                                    : "rgba(156, 163, 175, 0.1)",
+                              color:
+                                article.status === "new"
+                                  ? "var(--status-success)"
+                                  : article.status === "update"
+                                    ? "rgb(37, 99, 235)"
+                                    : "var(--fg-muted)",
+                            }}
+                          >
+                            {article.status === "new"
+                              ? "Create"
+                              : article.status === "update"
+                                ? "Update"
+                                : "Skip"}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
 
-            {/* Action Buttons */}
-            <div style={{ display: 'flex', gap: '0.75rem' }}>
-              <button
-                onClick={handleConfirmImport}
-                disabled={isImporting}
-                className="btn btn-primary"
-                style={{ gap: '0.5rem' }}
-              >
-                {isImporting ? (
-                  <>
-                    <LoadingSpinner size="sm" />
-                    Importing...
-                  </>
-                ) : (
-                  <>
-                    <CheckCircle className="w-4 h-4" />
-                    Confirm Import
-                  </>
-                )}
-              </button>
-              <button
-                onClick={handleCancelImport}
-                disabled={isImporting}
-                className="btn btn-secondary"
-              >
-                Cancel
-              </button>
+              {/* Action Buttons */}
+              <div style={{ display: "flex", gap: "0.75rem" }}>
+                <button
+                  onClick={handleConfirmImport}
+                  disabled={isImporting}
+                  className="btn btn-primary"
+                  style={{ gap: "0.5rem" }}
+                >
+                  {isImporting ? (
+                    <>
+                      <LoadingSpinner size="sm" />
+                      Importing...
+                    </>
+                  ) : (
+                    <>
+                      <CheckCircle className="w-4 h-4" />
+                      Confirm Import
+                    </>
+                  )}
+                </button>
+                <button
+                  onClick={handleCancelImport}
+                  disabled={isImporting}
+                  className="btn btn-secondary"
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
         {/* JSON Input */}
-        {importMethod === 'json' && (
+        {importMethod === "json" && (
           <>
-            <div style={{ marginBottom: '1.5rem' }}>
+            <div style={{ marginBottom: "1.5rem" }}>
               <label
                 style={{
-                  display: 'block',
-                  fontSize: '0.8125rem',
+                  display: "block",
+                  fontSize: "0.8125rem",
                   fontWeight: 500,
-                  color: 'var(--fg-default)',
-                  marginBottom: '0.5rem',
+                  color: "var(--fg-default)",
+                  marginBottom: "0.5rem",
                 }}
               >
                 Upload JSON file
@@ -939,20 +1027,20 @@ function ImportPage() {
                 accept=".json"
                 onChange={handleFileUpload}
                 style={{
-                  fontSize: '0.875rem',
-                  color: 'var(--fg-muted)',
+                  fontSize: "0.875rem",
+                  color: "var(--fg-muted)",
                 }}
               />
             </div>
 
-            <div style={{ marginBottom: '1.5rem' }}>
+            <div style={{ marginBottom: "1.5rem" }}>
               <label
                 style={{
-                  display: 'block',
-                  fontSize: '0.8125rem',
+                  display: "block",
+                  fontSize: "0.8125rem",
                   fontWeight: 500,
-                  color: 'var(--fg-default)',
-                  marginBottom: '0.5rem',
+                  color: "var(--fg-default)",
+                  marginBottom: "0.5rem",
                 }}
               >
                 Or paste JSON data
@@ -964,25 +1052,25 @@ function ImportPage() {
                 rows={10}
                 className="input"
                 style={{
-                  width: '100%',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.8125rem',
-                  resize: 'vertical',
+                  width: "100%",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.8125rem",
+                  resize: "vertical",
                 }}
               />
             </div>
 
             <div
               style={{
-                paddingTop: '0.5rem',
-                borderTop: '0.5px solid var(--border-subtle)',
+                paddingTop: "0.5rem",
+                borderTop: "0.5px solid var(--border-subtle)",
               }}
             >
               <button
                 onClick={handleJsonImport}
                 disabled={isImporting || !jsonData.trim()}
                 className="btn btn-primary"
-                style={{ gap: '0.5rem' }}
+                style={{ gap: "0.5rem" }}
               >
                 {isImporting ? (
                   <>
@@ -1004,29 +1092,54 @@ function ImportPage() {
         {results && !previewStats && (
           <div
             style={{
-              marginTop: '1.5rem',
-              padding: '1rem',
-              borderRadius: '6px',
+              marginTop: "1.5rem",
+              padding: "1rem",
+              borderRadius: "6px",
               background:
-                results.failed > 0 ? 'rgba(239, 68, 68, 0.05)' : 'rgba(34, 197, 94, 0.05)',
-              border: `0.5px solid ${results.failed > 0 ? 'rgba(239, 68, 68, 0.2)' : 'rgba(34, 197, 94, 0.2)'}`,
+                results.failed > 0
+                  ? "rgba(239, 68, 68, 0.05)"
+                  : "rgba(34, 197, 94, 0.05)",
+              border: `0.5px solid ${results.failed > 0 ? "rgba(239, 68, 68, 0.2)" : "rgba(34, 197, 94, 0.2)"}`,
             }}
           >
             {/* Summary Stats */}
             {results.stats && (
-              <div style={{ marginBottom: '1rem' }}>
-                <div style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--fg-default)', marginBottom: '0.5rem' }}>
+              <div style={{ marginBottom: "1rem" }}>
+                <div
+                  style={{
+                    fontSize: "0.875rem",
+                    fontWeight: 500,
+                    color: "var(--fg-default)",
+                    marginBottom: "0.5rem",
+                  }}
+                >
                   Import Summary
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '0.5rem' }}>
-                  <div style={{ fontSize: '0.8125rem', color: 'var(--fg-muted)' }}>
-                    <strong>Articles:</strong> {results.stats.articles.imported} new, {results.stats.articles.updated} updated, {results.stats.articles.skipped} skipped
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
+                    gap: "0.5rem",
+                  }}
+                >
+                  <div
+                    style={{ fontSize: "0.8125rem", color: "var(--fg-muted)" }}
+                  >
+                    <strong>Articles:</strong> {results.stats.articles.imported}{" "}
+                    new, {results.stats.articles.updated} updated,{" "}
+                    {results.stats.articles.skipped} skipped
                   </div>
-                  <div style={{ fontSize: '0.8125rem', color: 'var(--fg-muted)' }}>
-                    <strong>Authors:</strong> {results.stats.authors.imported} new, {results.stats.authors.skipped} existing
+                  <div
+                    style={{ fontSize: "0.8125rem", color: "var(--fg-muted)" }}
+                  >
+                    <strong>Authors:</strong> {results.stats.authors.imported}{" "}
+                    new, {results.stats.authors.skipped} existing
                   </div>
-                  <div style={{ fontSize: '0.8125rem', color: 'var(--fg-muted)' }}>
-                    <strong>Files:</strong> {results.stats.attachments.imported} imported
+                  <div
+                    style={{ fontSize: "0.8125rem", color: "var(--fg-muted)" }}
+                  >
+                    <strong>Files:</strong> {results.stats.attachments.imported}{" "}
+                    imported
                   </div>
                 </div>
               </div>
@@ -1034,20 +1147,20 @@ function ImportPage() {
 
             <div
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '1rem',
-                marginBottom: results.errors.length > 0 ? '1rem' : 0,
+                display: "flex",
+                alignItems: "center",
+                gap: "1rem",
+                marginBottom: results.errors.length > 0 ? "1rem" : 0,
               }}
             >
               {results.success > 0 && (
                 <div
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    fontSize: '0.875rem',
-                    color: 'var(--status-success)',
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    fontSize: "0.875rem",
+                    color: "var(--status-success)",
                   }}
                 >
                   <CheckCircle className="w-4 h-4" />
@@ -1057,11 +1170,11 @@ function ImportPage() {
               {(results.skipped ?? 0) > 0 && (
                 <div
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    fontSize: '0.875rem',
-                    color: 'var(--fg-muted)',
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    fontSize: "0.875rem",
+                    color: "var(--fg-muted)",
                   }}
                 >
                   {results.skipped} skipped (already exist)
@@ -1070,11 +1183,11 @@ function ImportPage() {
               {results.failed > 0 && (
                 <div
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    fontSize: '0.875rem',
-                    color: 'var(--status-error)',
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    fontSize: "0.875rem",
+                    color: "var(--status-error)",
                   }}
                 >
                   <AlertCircle className="w-4 h-4" />
@@ -1084,14 +1197,18 @@ function ImportPage() {
             </div>
 
             {results.errors.length > 0 && (
-              <div style={{ fontSize: '0.8125rem', color: 'var(--status-error)' }}>
+              <div
+                style={{ fontSize: "0.8125rem", color: "var(--status-error)" }}
+              >
                 {results.errors.slice(0, 10).map((error, i) => (
-                  <div key={i} style={{ marginTop: i > 0 ? '0.25rem' : 0 }}>
+                  <div key={i} style={{ marginTop: i > 0 ? "0.25rem" : 0 }}>
                     {error}
                   </div>
                 ))}
                 {results.errors.length > 10 && (
-                  <div style={{ marginTop: '0.5rem', color: 'var(--fg-muted)' }}>
+                  <div
+                    style={{ marginTop: "0.5rem", color: "var(--fg-muted)" }}
+                  >
                     ... and {results.errors.length - 10} more errors
                   </div>
                 )}
@@ -1102,48 +1219,58 @@ function ImportPage() {
       </div>
 
       {/* Expected Format (for JSON import) */}
-      {importMethod === 'json' && (
+      {importMethod === "json" && (
         <div
           style={{
-            marginTop: '1.5rem',
-            background: 'var(--bg-surface)',
-            border: '0.5px solid var(--border-default)',
-            borderRadius: '8px',
-            padding: '1.25rem',
+            marginTop: "1.5rem",
+            background: "var(--bg-surface)",
+            border: "0.5px solid var(--border-default)",
+            borderRadius: "8px",
+            padding: "1.25rem",
           }}
         >
           <div
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              marginBottom: '0.75rem',
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              marginBottom: "0.75rem",
             }}
           >
-            <FileJson className="w-4 h-4" style={{ color: 'var(--fg-muted)' }} />
+            <FileJson
+              className="w-4 h-4"
+              style={{ color: "var(--fg-muted)" }}
+            />
             <span
               style={{
-                fontSize: '0.875rem',
+                fontSize: "0.875rem",
                 fontWeight: 500,
-                color: 'var(--fg-default)',
+                color: "var(--fg-default)",
               }}
             >
               Expected JSON Format
             </span>
           </div>
-          <p style={{ fontSize: '0.8125rem', color: 'var(--fg-muted)', margin: '0 0 0.75rem 0' }}>
-            Based on your SharePoint list structure, the import expects these fields:
+          <p
+            style={{
+              fontSize: "0.8125rem",
+              color: "var(--fg-muted)",
+              margin: "0 0 0.75rem 0",
+            }}
+          >
+            Based on your SharePoint list structure, the import expects these
+            fields:
           </p>
           <pre
             style={{
-              fontSize: '0.75rem',
-              color: 'var(--fg-muted)',
+              fontSize: "0.75rem",
+              color: "var(--fg-muted)",
               margin: 0,
-              padding: '1rem',
-              background: 'var(--bg-subtle)',
-              borderRadius: '6px',
-              overflow: 'auto',
-              fontFamily: 'var(--font-mono)',
+              padding: "1rem",
+              background: "var(--bg-subtle)",
+              borderRadius: "6px",
+              overflow: "auto",
+              fontFamily: "var(--font-mono)",
             }}
           >
             {`{
@@ -1164,30 +1291,33 @@ function ImportPage() {
       )}
 
       {/* Folder Structure (for ZIP/Folder import) */}
-      {importMethod !== 'json' && (
+      {importMethod !== "json" && (
         <div
           style={{
-            marginTop: '1.5rem',
-            background: 'var(--bg-surface)',
-            border: '0.5px solid var(--border-default)',
-            borderRadius: '8px',
-            padding: '1.25rem',
+            marginTop: "1.5rem",
+            background: "var(--bg-surface)",
+            border: "0.5px solid var(--border-default)",
+            borderRadius: "8px",
+            padding: "1.25rem",
           }}
         >
           <div
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              marginBottom: '0.75rem',
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              marginBottom: "0.75rem",
             }}
           >
-            <FolderOpen className="w-4 h-4" style={{ color: 'var(--fg-muted)' }} />
+            <FolderOpen
+              className="w-4 h-4"
+              style={{ color: "var(--fg-muted)" }}
+            />
             <span
               style={{
-                fontSize: '0.875rem',
+                fontSize: "0.875rem",
                 fontWeight: 500,
-                color: 'var(--fg-default)',
+                color: "var(--fg-default)",
               }}
             >
               Expected Folder Structure
@@ -1195,14 +1325,14 @@ function ImportPage() {
           </div>
           <pre
             style={{
-              fontSize: '0.75rem',
-              color: 'var(--fg-muted)',
+              fontSize: "0.75rem",
+              color: "var(--fg-muted)",
               margin: 0,
-              padding: '1rem',
-              background: 'var(--bg-subtle)',
-              borderRadius: '6px',
-              overflow: 'auto',
-              fontFamily: 'var(--font-mono)',
+              padding: "1rem",
+              background: "var(--bg-subtle)",
+              borderRadius: "6px",
+              overflow: "auto",
+              fontFamily: "var(--font-mono)",
             }}
           >
             {`ote-export-2026-01-29/
@@ -1222,5 +1352,5 @@ function ImportPage() {
         </div>
       )}
     </div>
-  )
+  );
 }

@@ -38,3 +38,7 @@ db/migrations/
 
 # Testing
 coverage/
+
+# Local Convex deployment and private import reports
+.convex/
+artifacts/
