@@ -33,16 +33,8 @@ interface ImportResult {
 }
 
 function BackupPage() {
-  const [isExporting, setIsExporting] = useState(false);
   const [isImporting, setIsImporting] = useState(false);
-  const [exportProgress, setExportProgress] = useState<{
-    stage: string;
-    percent: number;
-  } | null>(null);
-  const [exportResult, setExportResult] = useState<{
-    success: boolean;
-    message: string;
-  } | null>(null);
+  const [downloadRequested, setDownloadRequested] = useState(false);
   const [importResult, setImportResult] = useState<ImportResult | null>(null);
   const [importMode, setImportMode] = useState<"merge" | "replace">("merge");
   const [backupType, setBackupType] = useState<"both" | "database" | "files">(
@@ -54,95 +46,6 @@ function BackupPage() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [showConfirmReplace, setShowConfirmReplace] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const handleBackupExport = async () => {
-    setIsExporting(true);
-    setExportResult(null);
-    setExportProgress({ stage: "Preparing backup...", percent: 10 });
-
-    try {
-      // Start the fetch - server streams the ZIP while fetching files
-      setExportProgress({ stage: "Preparing backup stream...", percent: 20 });
-      const response = await fetch(`/api/backup/export?type=${backupType}`);
-
-      if (!response.ok) {
-        throw new Error("Backup export failed");
-      }
-
-      // Get content length for progress tracking
-      const contentLength = response.headers.get("Content-Length");
-      const totalBytes = contentLength ? parseInt(contentLength, 10) : 0;
-
-      if (totalBytes && response.body) {
-        // Stream the response with progress
-        setExportProgress({ stage: "Downloading...", percent: 30 });
-        const reader = response.body.getReader();
-        const chunks: Uint8Array[] = [];
-        let receivedBytes = 0;
-
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          chunks.push(value);
-          receivedBytes += value.length;
-          const percent = Math.min(
-            30 + Math.round((receivedBytes / totalBytes) * 60),
-            90,
-          );
-          setExportProgress({ stage: "Downloading...", percent });
-        }
-
-        // Combine chunks into blob
-        setExportProgress({ stage: "Finalizing...", percent: 95 });
-        const blob = new Blob(chunks);
-        const filename =
-          response.headers
-            .get("Content-Disposition")
-            ?.match(/filename="(.+)"/)?.[1] || "backup.zip";
-
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-        document.body.removeChild(a);
-      } else {
-        // Fallback for when content-length is not available
-        setExportProgress({ stage: "Receiving backup data...", percent: 50 });
-        const blob = await response.blob();
-        setExportProgress({ stage: "Preparing download...", percent: 90 });
-        const filename =
-          response.headers
-            .get("Content-Disposition")
-            ?.match(/filename="(.+)"/)?.[1] || "backup.zip";
-
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-        document.body.removeChild(a);
-      }
-
-      setExportProgress({ stage: "Complete!", percent: 100 });
-      setExportResult({
-        success: true,
-        message: "Backup downloaded successfully",
-      });
-    } catch (error) {
-      setExportResult({
-        success: false,
-        message: error instanceof Error ? error.message : "Backup failed",
-      });
-    } finally {
-      setIsExporting(false);
-      setTimeout(() => setExportProgress(null), 1500);
-    }
-  };
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -391,91 +294,29 @@ function BackupPage() {
             </div>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-            <button
-              onClick={handleBackupExport}
-              disabled={isExporting}
-              className="btn btn-primary"
-              style={{ gap: "0.5rem" }}
+          <a
+            href={`/api/backup/export?type=${backupType}`}
+            download
+            onClick={() => setDownloadRequested(true)}
+            className="btn btn-primary"
+            style={{ gap: "0.5rem", textDecoration: "none" }}
+          >
+            <FileArchive className="w-4 h-4" />
+            Download Backup
+          </a>
+
+          {downloadRequested && (
+            <p
+              role="status"
+              style={{
+                marginTop: "0.75rem",
+                fontSize: "0.875rem",
+                color: "var(--fg-muted)",
+              }}
             >
-              {isExporting ? (
-                <>
-                  <LoadingSpinner size="sm" />
-                  Exporting...
-                </>
-              ) : (
-                <>
-                  <FileArchive className="w-4 h-4" />
-                  Download Backup
-                </>
-              )}
-            </button>
-
-            {exportResult && !isExporting && (
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
-                  fontSize: "0.875rem",
-                  color: exportResult.success
-                    ? "var(--status-success)"
-                    : "var(--status-error)",
-                }}
-              >
-                {exportResult.success ? (
-                  <CheckCircle className="w-4 h-4" />
-                ) : (
-                  <AlertCircle className="w-4 h-4" />
-                )}
-                {exportResult.message}
-              </div>
-            )}
-          </div>
-
-          {/* Export Progress Bar */}
-          {exportProgress && (
-            <div style={{ marginTop: "1rem" }}>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  marginBottom: "0.5rem",
-                }}
-              >
-                <span
-                  style={{ fontSize: "0.8125rem", color: "var(--fg-muted)" }}
-                >
-                  {exportProgress.stage}
-                </span>
-                <span
-                  style={{ fontSize: "0.8125rem", color: "var(--fg-muted)" }}
-                >
-                  {exportProgress.percent}%
-                </span>
-              </div>
-              <div
-                style={{
-                  height: "6px",
-                  background: "var(--bg-subtle)",
-                  borderRadius: "3px",
-                  overflow: "hidden",
-                }}
-              >
-                <div
-                  style={{
-                    height: "100%",
-                    width: `${exportProgress.percent}%`,
-                    background:
-                      exportProgress.percent === 100
-                        ? "var(--status-success)"
-                        : "var(--accent)",
-                    borderRadius: "3px",
-                    transition: "width 0.3s ease, background 0.3s ease",
-                  }}
-                />
-              </div>
-            </div>
+              Download requested. Check your browser’s Downloads for progress
+              and completion.
+            </p>
           )}
         </div>
 
