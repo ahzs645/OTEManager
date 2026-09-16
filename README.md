@@ -59,6 +59,20 @@ npm start
 
 The web app still needs a Node host. It calls Convex through a server-only bridge; the bridge authenticates every operation and never sends the secret to the browser. The app retains its existing access model; configure access to the web app at the hosting layer. No cloud project or production data is changed by local setup or testing.
 
+## Deploy to self-hosted K3s
+
+An alternative to Convex Cloud: the app and a self-hosted Convex backend both run on a single-node K3s cluster, so no Convex project is involved and no data leaves the network. The `Dockerfile` at the repo root builds the app in two stages — Nitro emits a self-contained `.output`, so the runtime stage carries no `node_modules`. Node 24 is pinned for the reason given above.
+
+The image is built on the cluster node and imported directly into containerd; nothing is pushed to a registry. One command builds the current working tree, including uncommitted changes, and rolls it out:
+
+```sh
+./scripts/otemanager-deploy.sh   # in the infrastructure repo
+```
+
+A self-hosted Convex backend starts empty and needs three things before the app works: an admin key, the deployed functions and schema, and `CONVEX_SERVER_SECRET` set *inside* Convex so it matches what the app sends. `CONVEX_CLOUD_ORIGIN` and `CONVEX_SITE_ORIGIN` are also required — without them Convex returns a relative upload URL and every file upload fails while records still import cleanly.
+
+Full instructions, the first-time bootstrap, restoring a backup into the cluster, and the storage durability caveat: **[docs/DEPLOY-K3S.md](docs/DEPLOY-K3S.md)**.
+
 ## Implementation and checks
 
 - `convex/schema.ts`: Convex tables, indexes, and file path mappings.

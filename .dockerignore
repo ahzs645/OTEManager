@@ -1,0 +1,12 @@
+.git
+.github
+node_modules
+.output
+.convex
+.tanstack
+artifacts
+*.zip
+.env
+.env.local
+.env.*.local
+.DS_Store
