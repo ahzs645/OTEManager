@@ -558,15 +558,15 @@ function AuthorDetailPage() {
               </div>
             ) : (
               <div className="space-y-3">
-                <div className="flex items-center justify-between">
+                <div className="flex items-start justify-between gap-4">
                   <span
-                    className="text-sm"
+                    className="text-sm shrink-0"
                     style={{ color: "var(--fg-muted)" }}
                   >
                     Author Type
                   </span>
                   <span
-                    className="text-sm"
+                    className="text-sm text-right min-w-0 break-words"
                     style={{ color: "var(--fg-default)" }}
                   >
                     {author.authorType || "Student"}
@@ -574,15 +574,15 @@ function AuthorDetailPage() {
                 </div>
 
                 {author.authorType === "Student" && (
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-start justify-between gap-4">
                     <span
-                      className="text-sm"
+                      className="text-sm shrink-0"
                       style={{ color: "var(--fg-muted)" }}
                     >
                       Student Type
                     </span>
                     <span
-                      className="text-sm"
+                      className="text-sm text-right min-w-0 break-words"
                       style={{ color: "var(--fg-default)" }}
                     >
                       {author.studentType || "—"}
@@ -590,37 +590,37 @@ function AuthorDetailPage() {
                   </div>
                 )}
 
-                <div className="flex items-center justify-between">
+                <div className="flex items-start justify-between gap-4">
                   <span
-                    className="text-sm"
+                    className="text-sm shrink-0"
                     style={{ color: "var(--fg-muted)" }}
                   >
                     Contact Email
                   </span>
                   <span
-                    className="text-sm"
+                    className="text-sm text-right min-w-0 break-words"
                     style={{ color: "var(--fg-default)" }}
                   >
                     {author.email}
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between">
+                <div className="flex items-start justify-between gap-4">
                   <span
-                    className="text-sm"
+                    className="text-sm shrink-0"
                     style={{ color: "var(--fg-muted)" }}
                   >
                     E-Transfer Email
                   </span>
                   <span
-                    className="text-sm"
+                    className="text-sm text-right min-w-0 break-words"
                     style={{ color: "var(--fg-default)" }}
                   >
                     {author.etransferEmail || author.email}
                     {(!author.etransferEmail ||
                       author.etransferEmail === author.email) && (
                       <span
-                        className="text-xs ml-1"
+                        className="text-xs ml-1 whitespace-nowrap"
                         style={{ color: "var(--fg-faint)" }}
                       >
                         (same)
@@ -648,15 +648,15 @@ function AuthorDetailPage() {
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between">
+                <div className="flex items-start justify-between gap-4">
                   <span
-                    className="text-sm"
+                    className="text-sm shrink-0"
                     style={{ color: "var(--fg-muted)" }}
                   >
                     Member Since
                   </span>
                   <span
-                    className="text-sm"
+                    className="text-sm text-right min-w-0 break-words"
                     style={{ color: "var(--fg-default)" }}
                   >
                     {formatDate(author.createdAt)}

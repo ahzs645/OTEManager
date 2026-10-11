@@ -6,10 +6,11 @@ interface MigrationResult {
   success: boolean
   message?: string
   created?: { volumes: number; issues: number }
+  linked?: number
   error?: string
 }
 
-export function MigrateLegacyButton() {
+export function MigrateLegacyButton({ label = 'Import from Articles' }: { label?: string }) {
   const router = useRouter()
   const [isMigrating, setIsMigrating] = useState(false)
   const [result, setResult] = useState<MigrationResult | null>(null)
@@ -20,7 +21,7 @@ export function MigrateLegacyButton() {
     try {
       const res = await migrateLegacyVolumeIssues()
       setResult(res)
-      if (res.success && res.created && (res.created.volumes > 0 || res.created.issues > 0)) {
+      if (res.success && res.linked) {
         // Show the success message briefly, then refresh route data in place
         setTimeout(() => router.invalidate(), 1500)
       }
@@ -37,7 +38,7 @@ export function MigrateLegacyButton() {
   return (
     <div style={{ display: 'inline-block' }}>
       <button className="btn btn-secondary" onClick={handleMigrate} disabled={isMigrating}>
-        {isMigrating ? 'Importing...' : 'Import from Articles'}
+        {isMigrating ? 'Linking...' : label}
       </button>
       {result && (
         <p
@@ -48,9 +49,12 @@ export function MigrateLegacyButton() {
           }}
         >
           {result.success
-            ? result.created?.volumes === 0 && result.created?.issues === 0
+            ? !result.linked
               ? 'No legacy data found'
-              : `Created ${result.created?.volumes} volumes and ${result.created?.issues} issues`
+              : `Linked ${result.linked} article${result.linked === 1 ? '' : 's'}` +
+                (result.created?.volumes || result.created?.issues
+                  ? ` (created ${result.created.volumes} volumes and ${result.created.issues} issues)`
+                  : '')
             : result.error}
         </p>
       )}

@@ -204,7 +204,11 @@ function ArticlesPage() {
     // can resolve after a newer one and overwrite it with stale results
     let cancelled = false;
     setIsLoading(true);
-    const params: Record<string, any> = { page: search.page || 1 };
+    // Board and issue views group everything that matches, so they skip paging
+    const showsAll = search.view === "board" || search.view === "issue";
+    const params: Record<string, any> = showsAll
+      ? { page: 1, limit: 1000 }
+      : { page: search.page || 1 };
     if (search.status) params.status = search.status;
     if (search.tier) params.tier = search.tier;
     if (search.search) params.search = search.search;
@@ -239,6 +243,7 @@ function ArticlesPage() {
     search.page,
     search.sortBy,
     search.sortOrder,
+    search.view,
   ]);
 
   const { articles, total, page, totalPages } = data;
@@ -509,7 +514,7 @@ function ArticlesPage() {
   return (
     <div className="space-y-4">
       {/* Page Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="page-header" style={{ marginBottom: 0 }}>
           <div
             style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}
@@ -586,7 +591,17 @@ function ArticlesPage() {
       />
 
       {/* Content based on view mode */}
-      {articles.length === 0 ? (
+      {isLoading && articles.length === 0 ? (
+        <div
+          className="rounded-lg flex items-center justify-center py-16"
+          style={{
+            background: "var(--bg-surface)",
+            border: "0.5px solid var(--border-default)",
+          }}
+        >
+          <LoadingSpinner />
+        </div>
+      ) : articles.length === 0 ? (
         <div
           className="rounded-lg overflow-hidden"
           style={{
@@ -605,7 +620,10 @@ function ArticlesPage() {
           />
         </div>
       ) : viewMode === "board" ? (
-        <BoardView articlesByStatus={articlesByStatus} />
+        <BoardView
+          articlesByStatus={articlesByStatus}
+          statusFilter={search.status}
+        />
       ) : viewMode === "issue" ? (
         <IssueView
           articlesByIssue={articlesByIssue}

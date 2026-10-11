@@ -81,10 +81,10 @@ function Header({ isLoading }: { isLoading: boolean }) {
         borderBottom: "0.5px solid var(--border-default)",
       }}
     >
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-14">
           {/* Logo / Brand */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3 sm:gap-6">
             <Link to="/" className="flex items-center gap-2">
               <div
                 className="w-7 h-7 rounded-md flex items-center justify-center text-white font-semibold text-xs"
@@ -119,6 +119,8 @@ function Header({ isLoading }: { isLoading: boolean }) {
                     key={path}
                     to={path}
                     className={`nav-item ${isActive ? "nav-item-active" : ""}`}
+                    title={label}
+                    aria-label={label}
                   >
                     <Icon className="w-4 h-4" />
                     <span className="hidden sm:inline">{label}</span>
@@ -138,7 +140,7 @@ function Header({ isLoading }: { isLoading: boolean }) {
               />
             )}
             <span
-              className="text-xs px-2 py-1 rounded"
+              className="text-xs px-2 py-1 rounded hidden sm:inline"
               style={{
                 background: "var(--bg-subtle)",
                 color: "var(--fg-muted)",
@@ -199,7 +201,7 @@ function RootDocument({ children }: { children: ReactNode }) {
       <body style={{ background: "var(--bg-root, #f8fafc)" }}>
         <div className="min-h-screen" style={{ background: "var(--bg-root)" }}>
           <Header isLoading={isLoading} />
-          <main className="max-w-6xl mx-auto px-6 py-6">
+          <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6">
             {children}
           </main>
         </div>

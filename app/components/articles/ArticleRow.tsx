@@ -16,12 +16,9 @@ export function ArticleRow({ article }: ArticleRowProps) {
     <Link
       to="/article/$articleId"
       params={{ articleId: article.id }}
+      className="article-grid"
       style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 140px 70px 100px 100px 80px 60px',
-        gap: '1rem',
         padding: '0.75rem 1rem',
-        alignItems: 'center',
         borderBottom: '0.5px solid var(--border-subtle)',
         transition: 'background 150ms ease',
       }}
@@ -33,18 +30,24 @@ export function ArticleRow({ article }: ArticleRowProps) {
         <span
           className="text-sm font-medium truncate block"
           style={{ color: 'var(--fg-default)' }}
+          title={article.title}
         >
           {article.title}
+        </span>
+        {/* Phones hide the author and date columns, so show them here */}
+        <span className="text-xs truncate block md:hidden" style={{ color: 'var(--fg-muted)' }}>
+          {authorName} · {formatDate(article.submittedAt || article.createdAt)}
         </span>
       </div>
 
       {/* Author */}
-      <div className="flex items-center gap-2 min-w-0">
+      <div className="flex items-center gap-2 min-w-0 article-col-wide">
         <Avatar name={authorName} size="sm" />
         <div className="min-w-0">
           <span
             className="text-sm truncate block"
             style={{ color: 'var(--fg-default)' }}
+            title={authorName}
           >
             {authorName}
           </span>
@@ -52,7 +55,7 @@ export function ArticleRow({ article }: ArticleRowProps) {
       </div>
 
       {/* Volume/Issue */}
-      <div>
+      <div className="article-col-wide">
         {(() => {
           // Check new publicationIssue relationship first, then fall back to legacy fields
           const volNum = article.publicationIssue?.volume?.volumeNumber ?? article.volume
@@ -83,7 +86,7 @@ export function ArticleRow({ article }: ArticleRowProps) {
       </div>
 
       {/* Date */}
-      <div>
+      <div className="article-col-wide">
         <span
           className="text-xs tabular-nums"
           style={{ color: 'var(--fg-muted)' }}
@@ -93,12 +96,12 @@ export function ArticleRow({ article }: ArticleRowProps) {
       </div>
 
       {/* Tier */}
-      <div>
+      <div className="article-col-wide">
         <TierBadge tier={article.articleTier} />
       </div>
 
       {/* Info Icons */}
-      <div className="flex items-center justify-end gap-1">
+      <div className="flex items-center justify-end gap-1 article-col-wide">
         {article.attachments?.length > 0 && (
           <span
             style={{ color: 'var(--fg-faint)' }}

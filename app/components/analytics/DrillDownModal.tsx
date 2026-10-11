@@ -1,16 +1,10 @@
 import { X, FileText, User, DollarSign, Calendar, ExternalLink } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import { StatusBadge, TierBadge, Avatar } from "~/components/Layout";
+import { StatusBadge, TierBadge, Avatar, formatDate } from "~/components/Layout";
 
 // Format cents to dollars
 function formatCents(cents: number): string {
   return `$${(cents / 100).toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
-}
-
-function formatDate(date: Date | string | null | undefined): string {
-  if (!date) return "—";
-  const d = typeof date === "string" ? new Date(date) : date;
-  return d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
 }
 
 export type DrillDownType =

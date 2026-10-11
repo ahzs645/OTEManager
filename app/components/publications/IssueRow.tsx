@@ -42,7 +42,9 @@ export function IssueRow({
         {issue.releaseDate && (
           <span style={{ fontSize: '0.75rem', color: 'var(--fg-faint)', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
             <Calendar className="w-3 h-3" />
+            {/* Release dates are stored as UTC midnight; formatting in local time shows the day before */}
             {new Date(issue.releaseDate).toLocaleDateString('en-US', {
+              timeZone: 'UTC',
               month: 'short',
               day: 'numeric',
               year: 'numeric',
@@ -80,7 +82,7 @@ export function IssueRow({
             className="btn btn-ghost btn-sm"
             onClick={onExport}
             disabled={isExporting || issue.articleCount === 0}
-            title={issue.articleCount === 0 ? 'No articles to export' : 'Export issue as ZIP'}
+            title={issue.articleCount === 0 ? 'No articles to export' : 'Choose photos and export issue as ZIP'}
             style={{ color: issue.articleCount === 0 ? 'var(--fg-faint)' : 'var(--accent)' }}
           >
             {isExporting ? (

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { stripBookmarkAnchors } from "../../../shared/docx-markdown";
 import JSZip from "jszip";
 import { Document, Packer, Paragraph, TextRun, HeadingLevel } from "docx";
 
@@ -45,10 +46,11 @@ async function markdownToDocx(
   const cleanMarkdown = (text: string): string => {
     // Remove bold (**text** or __text__)
     text = text.replace(/\*\*(.*?)\*\*/g, "$1");
-    text = text.replace(/__(.*?)__/g, "$1");
-    // Remove italic (*text* or _text_) - but only when surrounded by non-space chars
-    text = text.replace(/(?<!\s)\*([^*]+)\*(?!\s)/g, "$1");
-    text = text.replace(/(?<!\s)_([^_]+)_(?!\s)/g, "$1");
+    text = text.replace(/(?<!\w)__(.*?)__(?!\w)/g, "$1");
+    // Remove italic (*text* or _text_). Underscores only count at word edges,
+    // so names like snake_case_names keep them.
+    text = text.replace(/\*([^*\s][^*]*?)\*/g, "$1");
+    text = text.replace(/(?<!\w)_([^_\s][^_]*?)_(?!\w)/g, "$1");
     // Remove links [text](url)
     text = text.replace(/\[(.*?)\]\(.*?\)/g, "$1");
     return text;
@@ -247,14 +249,14 @@ export const Route = createFileRoute("/api/exportIssue/$issueId")({
                 ? `${article.author.givenName} ${article.author.surname}`
                 : "Unknown Author";
 
-            // Get photos
+            // Get the photos selected for export (older rows have no flag and are included)
             const photos = article.attachments.filter(
-              (a) => a.attachmentType === "photo",
+              (a) => a.attachmentType === "photo" && a.includeInExport !== false,
             );
 
             // Create the article docx from markdown content (always created, even if empty)
             const docxBuffer = await markdownToDocx(
-              article.content || "",
+              stripBookmarkAnchors(article.content || ""),
               article.title,
               authorName,
             );

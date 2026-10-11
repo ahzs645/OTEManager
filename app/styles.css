@@ -402,6 +402,32 @@ body {
   border-radius: var(--radius-lg);
 }
 
+/* Articles list: full table on wide screens, title + status on phones */
+.article-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 140px 70px 100px 100px 80px 60px;
+  gap: 1rem;
+  align-items: center;
+}
+
+@media (max-width: 767px) {
+  .article-grid {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.75rem;
+  }
+  .article-grid > .article-col-wide {
+    display: none;
+  }
+}
+
+.stat-card-link .stat-card {
+  transition: border-color 0.15s;
+}
+
+.stat-card-link:hover .stat-card {
+  border-color: var(--accent);
+}
+
 .stat-value {
   font-size: 24px;
   font-weight: 600;

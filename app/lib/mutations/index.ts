@@ -23,6 +23,7 @@ export {
   toggleArticleFeatured,
   deleteArticle,
   updateAttachmentCaption,
+  setAttachmentsIncludeInExport,
   deleteAttachment,
   updateArticleIssue,
 } from "./articleMutations";

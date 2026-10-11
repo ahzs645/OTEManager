@@ -14,15 +14,15 @@ import {
 
 export const Route = createFileRoute('/publications')({
   loader: async () => {
-    const { volumes } = await getVolumes()
-    return { volumes }
+    const { volumes, unlinkedArticleCount } = await getVolumes()
+    return { volumes, unlinkedArticleCount }
   },
   component: PublicationsPage,
 })
 
 function PublicationsPage() {
   const router = useRouter()
-  const { volumes } = Route.useLoaderData()
+  const { volumes, unlinkedArticleCount } = Route.useLoaderData()
   const [expandedVolumes, setExpandedVolumes] = useState<Set<string>>(
     new Set(volumes.map((v: Volume) => v.id))
   )
@@ -114,6 +114,30 @@ function PublicationsPage() {
             submitLabel="Create Volume"
             title="Create New Volume"
           />
+        </div>
+      )}
+
+      {/* Articles with volume/issue numbers that aren't linked to an issue record */}
+      {unlinkedArticleCount > 0 && volumes.length > 0 && (
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1rem',
+            padding: '0.75rem 1rem',
+            marginBottom: '1rem',
+            borderRadius: '8px',
+            background: 'var(--status-pending-bg)',
+            border: '0.5px solid var(--border-default)',
+          }}
+        >
+          <p style={{ flex: 1, fontSize: '0.875rem', color: 'var(--fg-default)' }}>
+            <strong>{unlinkedArticleCount}</strong>{' '}
+            {unlinkedArticleCount === 1 ? 'article has' : 'articles have'} a volume and issue number
+            but {unlinkedArticleCount === 1 ? "isn't" : "aren't"} linked to that issue, so{' '}
+            {unlinkedArticleCount === 1 ? "it's" : "they're"} missing from issue counts and exports.
+          </p>
+          <MigrateLegacyButton label="Link articles" />
         </div>
       )}
 

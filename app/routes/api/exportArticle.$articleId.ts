@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { stripBookmarkAnchors } from "../../../shared/docx-markdown";
 import {
   Document,
   Packer,
@@ -36,9 +37,10 @@ function parseInlineMarkdown(text: string): TextSegment[] {
     }, // [text](url)
   ];
 
-  // Create a combined pattern to split text
+  // Create a combined pattern to split text. Underscore emphasis only counts at
+  // word edges, so names like snake_case_names stay as written.
   const combinedPattern =
-    /(\*\*\*.+?\*\*\*|___.+?___|__[^_]+__|_[^_]+_|\*\*[^*]+\*\*|\*[^*]+\*|\[[^\]]+\]\([^)]+\))/g;
+    /(\*\*\*.+?\*\*\*|(?<!\w)___.+?___(?!\w)|(?<!\w)__[^_]+__(?!\w)|(?<!\w)_[^_]+_(?!\w)|\*\*[^*]+\*\*|\*[^*]+\*|\[[^\]]+\]\([^)]+\))/g;
 
   const parts = text.split(combinedPattern);
 
@@ -280,7 +282,7 @@ export const Route = createFileRoute("/api/exportArticle/$articleId")({
 
           // Generate the docx
           const docxBuffer = await markdownToDocx(
-            article.content || "",
+            stripBookmarkAnchors(article.content || ""),
             article.title,
             authorName,
           );

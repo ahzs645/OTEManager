@@ -506,6 +506,18 @@ export const Route = createFileRoute("/api/sharepoint/import")({
           // Track authors by email to avoid duplicates
           const authorCache = new Map<string, string>(); // email -> id
 
+          // Link imported volume/issue numbers to existing issue records, so the
+          // articles show up in issue counts and exports
+          const volumeNumbers = new Map(
+            (await records.list("volumes")).map((v) => [v.id, v.volumeNumber]),
+          );
+          const issueIdsByNumber = new Map(
+            (await records.list("issues")).map((i) => [
+              `${volumeNumbers.get(i.volumeId)}-${i.issueNumber}`,
+              i.id,
+            ]),
+          );
+
           for (const article of articlesData) {
             try {
               const email = article.Contact_x0020_Email?.toLowerCase().trim();
@@ -637,6 +649,15 @@ export const Route = createFileRoute("/api/sharepoint/import")({
                   ]),
                 ].join(","),
               };
+
+              const linkedIssueId =
+                articleValues.volume != null && articleValues.issue != null
+                  ? issueIdsByNumber.get(
+                      `${articleValues.volume}-${articleValues.issue}`,
+                    )
+                  : undefined;
+              if (linkedIssueId)
+                Object.assign(articleValues, { issueId: linkedIssueId });
 
               let newArticleId: string;
 

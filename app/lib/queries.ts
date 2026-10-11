@@ -94,6 +94,14 @@ export const getIssueById = createServerFn({ method: "POST" })
     return query("getIssueById", data);
   });
 
+// Get an issue's articles with their attachments and authors
+export const getIssueArticles = createServerFn({ method: "POST" })
+  .inputValidator((data: { issueId: string }) => data)
+  .handler(async ({ data }) => {
+    const { query } = await import("../../server/convex");
+    return query("getIssueArticles", data);
+  });
+
 // Get volume by ID
 export const getVolumeById = createServerFn({ method: "POST" })
   .inputValidator((data: { id: string }) => data)

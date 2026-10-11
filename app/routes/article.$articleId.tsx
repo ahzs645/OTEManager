@@ -14,7 +14,6 @@ import {
   X,
 } from "lucide-react";
 import {
-  StatusBadge,
   TierBadge,
   formatDate,
   Section,
@@ -42,6 +41,7 @@ import {
   UnsavedChangesIndicator,
   useTrackUnsaved,
 } from "~/components/article";
+import { stripLeadingTitle } from "../../shared/docx-markdown";
 
 // Server function to fetch article data
 const fetchArticleData = createServerFn({ method: "GET" })
@@ -170,7 +170,9 @@ function ArticleDetailPage() {
     }
   };
 
-  const handleConvertToMarkdown = async (convertedContent: string) => {
+  const handleConvertToMarkdown = async (converted: string) => {
+    // The article already has its title, so drop it from the top of the body
+    const convertedContent = stripLeadingTitle(converted, articleTitle);
     // Replacing is destructive and auto-saves — confirm when content exists
     if (
       content.trim() &&
@@ -473,7 +475,6 @@ function ArticlePageContent({
                 )}
               </div>
               <div className="flex items-center gap-3">
-                <StatusBadge status={articleStatus} />
                 <TierBadge tier={article.articleTier} />
                 <span className="text-xs" style={{ color: "var(--fg-muted)" }}>
                   Submitted{" "}

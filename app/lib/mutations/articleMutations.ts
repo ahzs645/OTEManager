@@ -107,6 +107,16 @@ export const updateAttachmentCaption = createServerFn({ method: "POST" })
     return mutationResult("updateAttachmentCaption", data);
   });
 
+// Choose which photos are included in issue and WordPress exports
+export const setAttachmentsIncludeInExport = createServerFn({ method: "POST" })
+  .inputValidator(
+    (data: { attachmentIds: string[]; includeInExport: boolean }) => data,
+  )
+  .handler(async ({ data }) => {
+    const { mutationResult } = await import("../../../server/convex");
+    return mutationResult("setAttachmentsIncludeInExport", data);
+  });
+
 // Delete attachment (document or photo)
 export const deleteAttachment = createServerFn({ method: "POST" })
   .inputValidator((data: { attachmentId: string }) => data)

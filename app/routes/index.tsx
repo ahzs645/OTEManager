@@ -66,12 +66,15 @@ function Dashboard() {
           value={stats.inProgress}
           icon={TrendingUp}
           href="/articles"
-          search={{ status: "In Review" }}
+          search={{ status: "In Progress" }}
         />
+        {/* The team finishes articles at Approved; nothing is marked Published */}
         <StatCard
-          title="Published"
-          value={stats.published}
+          title={stats.published > 0 ? "Published" : "Approved"}
+          value={stats.published > 0 ? stats.published : stats.approved}
           icon={CheckCircle}
+          href="/articles"
+          search={{ status: stats.published > 0 ? "Published" : "Approved" }}
         />
         <StatCard
           title="Authors"
@@ -97,7 +100,8 @@ function Dashboard() {
         >
           <Clock className="w-4 h-4" style={{ color: "var(--status-pending)" }} />
           <span className="text-sm" style={{ color: "var(--fg-default)" }}>
-            <strong>{stats.pendingReview}</strong> articles waiting for review
+            <strong>{stats.pendingReview}</strong>{" "}
+            {stats.pendingReview === 1 ? "article is" : "articles are"} waiting for review
           </span>
           <Link
             to="/articles"

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { stripBookmarkAnchors } from "../../../shared/docx-markdown";
 import JSZip from "jszip";
 
 interface ExportArticle {
@@ -116,9 +117,10 @@ export const Route = createFileRoute("/api/exportBundle")({
               // Get author role
               const authorRole = article.author?.role || "Guest Contributor";
 
-              // Get photos for this article
+              // Get the photos selected for export (older rows have no flag and are included)
               const photos = article.attachments.filter(
-                (a) => a.attachmentType === "photo",
+                (a) =>
+                  a.attachmentType === "photo" && a.includeInExport !== false,
               );
 
               // Build photo array
@@ -136,7 +138,7 @@ export const Route = createFileRoute("/api/exportBundle")({
                 volume: volume.volumeNumber.toString(),
                 issue: issue.issueNumber.toString(),
                 photo: photoArray,
-                content: article.content || "",
+                content: stripBookmarkAnchors(article.content || ""),
               };
 
               exportArticles.push(exportArticle);

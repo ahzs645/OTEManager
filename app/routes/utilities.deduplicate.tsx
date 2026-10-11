@@ -11,7 +11,7 @@ import {
   Merge,
 } from "lucide-react";
 import { createServerFn } from "@tanstack/react-start";
-import { LoadingSpinner } from "~/components/Layout";
+import { LoadingSpinner, formatDate } from "~/components/Layout";
 
 // Server function to find duplicates
 const findDuplicates = createServerFn({ method: "GET" }).handler(
@@ -198,15 +198,6 @@ function DeduplicatePage() {
         a.authorEmail?.toLowerCase().includes(searchLower),
     );
   });
-
-  const formatDate = (dateStr: string | null) => {
-    if (!dateStr) return "—";
-    return new Date(dateStr).toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    });
-  };
 
   return (
     <div className="page-container">

@@ -24,7 +24,7 @@ export function DateRangePicker({
   onPresetSelect,
 }: DateRangePickerProps) {
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex flex-wrap items-center gap-3">
       {/* Preset buttons */}
       <div className="flex items-center gap-1">
         {PRESETS.map((preset) => (
@@ -83,30 +83,35 @@ export function DateRangePicker({
   );
 }
 
+// YYYY-MM-DD in the viewer's time zone. toISOString() uses UTC, which is
+// already tomorrow on Pacific time evenings.
+const localDate = (d: Date) =>
+  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+
 // Helper to calculate date ranges
 export function getDateRange(preset: string): { startDate: string; endDate: string } {
   const today = new Date();
-  const endDate = today.toISOString().split("T")[0];
+  const endDate = localDate(today);
 
   switch (preset) {
     case "7d": {
       const start = new Date(today);
       start.setDate(start.getDate() - 7);
-      return { startDate: start.toISOString().split("T")[0], endDate };
+      return { startDate: localDate(start), endDate };
     }
     case "30d": {
       const start = new Date(today);
       start.setDate(start.getDate() - 30);
-      return { startDate: start.toISOString().split("T")[0], endDate };
+      return { startDate: localDate(start), endDate };
     }
     case "90d": {
       const start = new Date(today);
       start.setDate(start.getDate() - 90);
-      return { startDate: start.toISOString().split("T")[0], endDate };
+      return { startDate: localDate(start), endDate };
     }
     case "ytd": {
       const start = new Date(today.getFullYear(), 0, 1);
-      return { startDate: start.toISOString().split("T")[0], endDate };
+      return { startDate: localDate(start), endDate };
     }
     case "all":
     default:

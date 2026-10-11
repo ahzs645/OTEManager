@@ -1,14 +1,25 @@
 import { BoardCard } from './BoardCard'
 import { STATUS_OPTIONS, type Article } from './types'
+import { IN_PROGRESS_FILTER, IN_PROGRESS_STATUSES } from '../../../shared/model'
 
 interface BoardViewProps {
   articlesByStatus: Record<string, Article[]>
+  statusFilter?: string
 }
 
-export function BoardView({ articlesByStatus }: BoardViewProps) {
+// One column per real status; with a status filter, only the matching columns
+function boardColumns(statusFilter?: string) {
+  const statuses = STATUS_OPTIONS.filter((s) => s.value && s.value !== IN_PROGRESS_FILTER)
+  if (!statusFilter) return statuses
+  if (statusFilter === IN_PROGRESS_FILTER)
+    return statuses.filter((s) => (IN_PROGRESS_STATUSES as readonly string[]).includes(s.value))
+  return statuses.filter((s) => s.value === statusFilter)
+}
+
+export function BoardView({ articlesByStatus, statusFilter }: BoardViewProps) {
   return (
     <div className="flex gap-4 overflow-x-auto pb-4">
-      {STATUS_OPTIONS.filter((s) => s.value).map((statusOpt) => {
+      {boardColumns(statusFilter).map((statusOpt) => {
         const statusArticles = articlesByStatus[statusOpt.value] || []
         return (
           <div

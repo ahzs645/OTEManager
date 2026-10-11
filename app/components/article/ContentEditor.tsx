@@ -3,6 +3,7 @@ import { Check, Save, Download } from 'lucide-react'
 import { Button, LoadingSpinner, Section } from '~/components/Layout'
 import { updateArticleContent } from '~/lib/mutations'
 import { useTrackUnsaved } from './UnsavedChangesContext'
+import { EditPreviewToggle, MarkdownPreview } from './MarkdownPreview'
 
 interface ContentEditorProps {
   articleId: string
@@ -17,6 +18,7 @@ export function ContentEditor({ articleId, initialContent, title = 'Article Cont
   const [savedContent, setSavedContent] = useState(initialContent)
   // Track last save time for auto-save status
   const [lastSavedAt, setLastSavedAt] = useState<Date | null>(null)
+  const [showPreview, setShowPreview] = useState(false)
 
   // Refs for auto-save
   const contentRef = useRef(content)
@@ -101,6 +103,7 @@ export function ContentEditor({ articleId, initialContent, title = 'Article Cont
           <span className="text-xs" style={{ color: 'var(--fg-muted)' }}>
             {wordCount} words · {charCount} chars
           </span>
+          <EditPreviewToggle preview={showPreview} onChange={setShowPreview} />
           <a
             href={`/api/exportArticle/${articleId}`}
             download
@@ -136,6 +139,14 @@ export function ContentEditor({ articleId, initialContent, title = 'Article Cont
         </div>
       }
     >
+      {showPreview ? (
+        <div
+          className="min-h-[400px] p-4"
+          style={{ border: '1px solid var(--border-default)', borderRadius: '6px' }}
+        >
+          <MarkdownPreview content={content} />
+        </div>
+      ) : (
       <textarea
         value={content}
         onChange={(e) => handleContentChange(e.target.value)}
@@ -149,6 +160,7 @@ export function ContentEditor({ articleId, initialContent, title = 'Article Cont
           lineHeight: '1.6',
         }}
       />
+      )}
     </Section>
   )
 }

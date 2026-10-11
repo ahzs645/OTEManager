@@ -195,6 +195,16 @@ export const mutations = {
     await s.patch("attachments", data.attachmentId, { caption: data.caption });
     return success;
   },
+  async setAttachmentsIncludeInExport(
+    s: Store,
+    data: { attachmentIds: string[]; includeInExport: boolean },
+  ) {
+    for (const id of data.attachmentIds)
+      await s.patch("attachments", id, {
+        includeInExport: data.includeInExport,
+      });
+    return success;
+  },
   async deleteAttachment(s: Store, data: { attachmentId: string }) {
     return deleteAttachmentRecord(s, data.attachmentId);
   },
@@ -360,6 +370,7 @@ export const mutations = {
   },
   async migrateLegacyVolumeIssues(s: Store) {
     const created = { volumes: 0, issues: 0 };
+    let linked = 0;
     for (const a of await s.all("articles")) {
       if (a.volume === null || a.issue === null || a.issueId) continue;
       let v = (await s.by("volumes", "volumeNumber", a.volume))[0];
@@ -375,8 +386,9 @@ export const mutations = {
         created.issues++;
       }
       await updateArticle(s, a.id, { issueId: i.id });
+      linked++;
     }
-    return { ...success, message: "Migration complete", created };
+    return { ...success, message: "Migration complete", created, linked };
   },
   async createSavedView(s: Store, data: any) {
     if (data.setAsDefault) await clearDefaults(s);

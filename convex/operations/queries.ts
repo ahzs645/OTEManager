@@ -1,5 +1,9 @@
 import { Store, newest, sumPayments } from "../lib/store";
-import type { Articles } from "../../shared/model";
+import {
+  IN_PROGRESS_FILTER,
+  IN_PROGRESS_STATUSES,
+  type Articles,
+} from "../../shared/model";
 export const DEFAULT_RATES = {
   tier1Rate: 2000,
   tier2Rate: 3500,
@@ -22,6 +26,34 @@ export async function articleDetails(s: Store, a: Articles) {
       : null,
   };
 }
+// Search titles and author names, e.g. "bears" or "jorden evens"
+const matchesSearch = (
+  a: Articles,
+  author: { givenName: string; surname: string; email: string } | undefined,
+  search: string,
+) => {
+  const haystack = [
+    a.title,
+    author && `${author.givenName} ${author.surname}`,
+    author?.email,
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+  return search
+    .toLowerCase()
+    .split(/\s+/)
+    .filter(Boolean)
+    .every((word) => haystack.includes(word));
+};
+
+const isInProgress = (status: string | null) =>
+  (IN_PROGRESS_STATUSES as readonly (string | null)[]).includes(status);
+
+// Imported articles are created long after they were submitted, so recency
+// follows the submission date when there is one
+const submittedOrCreated = (a: Articles) =>
+  (a.submittedAt ?? a.createdAt).getTime();
 export const queries = {
   async getIssueArticles(s: Store, data: { issueId: string }) {
     return {
@@ -60,16 +92,18 @@ export const queries = {
       totalArticles: a.length,
       pendingReview: a.filter((a) => a.internalStatus === "Pending Review")
         .length,
-      inProgress: a.filter((a) => a.internalStatus === "In Review").length,
+      inProgress: a.filter((a) => isInProgress(a.internalStatus)).length,
+      approved: a.filter((a) => a.internalStatus === "Approved").length,
       published: a.filter((a) => a.internalStatus === "Published").length,
       totalAuthors: (await s.all("authors")).length,
-      thisMonth: a.filter((a) => a.createdAt >= d).length,
+      thisMonth: a.filter((a) => submittedOrCreated(a) >= d.getTime()).length,
     };
   },
   async getRecentArticles(s: Store) {
     return {
       articles: await Promise.all(
-        newest(await s.all("articles"))
+        (await s.all("articles"))
+          .sort((a, b) => submittedOrCreated(b) - submittedOrCreated(a))
           .slice(0, 5)
           .map((a) => articleDetails(s, a)),
       ),
@@ -100,13 +134,15 @@ export const queries = {
     const authors = new Map((await s.all("authors")).map((a) => [a.id, a]));
     const rows = (await s.all("articles")).filter(
       (a) =>
-        (!data.status || a.internalStatus === data.status) &&
+        (!data.status ||
+          a.internalStatus === data.status ||
+          (data.status === IN_PROGRESS_FILTER &&
+            isInProgress(a.internalStatus))) &&
         (!data.tier || a.articleTier === data.tier) &&
         (!data.authorId || a.authorId === data.authorId) &&
         (!data.issueId || a.issueId === data.issueId) &&
         (!issueIds || issueIds.has(a.issueId!)) &&
-        (!data.search ||
-          a.title.toLowerCase().includes(data.search.toLowerCase())),
+        (!data.search || matchesSearch(a, authors.get(a.authorId), data.search)),
     );
     const key = (a: Articles): any[] => {
       switch (data.sortBy) {
@@ -209,6 +245,11 @@ export const queries = {
     const articles = await s.all("articles"),
       issues = await s.all("issues");
     return {
+      // Articles with volume/issue numbers but no issue record (older imports).
+      // They're missing from issue counts and exports until linked.
+      unlinkedArticleCount: articles.filter(
+        (a) => a.volume !== null && a.issue !== null && !a.issueId,
+      ).length,
       volumes: (await s.all("volumes"))
         .sort((a, b) => b.volumeNumber - a.volumeNumber)
         .map((v) => ({

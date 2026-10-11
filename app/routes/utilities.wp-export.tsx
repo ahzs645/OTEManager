@@ -359,7 +359,7 @@ function WPExportPage() {
                     margin: '0.25rem 0 0 0',
                   }}
                 >
-                  Photos will be organized by article in a separate folder within the ZIP
+                  Only photos selected for export on each article are included, organized by article in a separate folder within the ZIP
                 </p>
               </div>
             </label>

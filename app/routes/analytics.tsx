@@ -431,7 +431,7 @@ function AnalyticsPage() {
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <div className="flex items-start justify-between">
+      <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="page-header">
           <h1 className="page-title">Analytics</h1>
           <p className="page-subtitle">Payment and contributor insights</p>

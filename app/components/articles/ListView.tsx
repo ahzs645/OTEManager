@@ -34,21 +34,19 @@ export function ListView({
     >
       {/* Table Header */}
       <div
+        className="article-grid"
         style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 140px 70px 100px 100px 80px 60px',
-          gap: '1rem',
           padding: '0.5rem 1rem',
           borderBottom: '0.5px solid var(--border-subtle)',
         }}
       >
         <SortableHeader field="title" label="Article" sortBy={sortBy} sortOrder={sortOrder} onSort={onSort} />
-        <SortableHeader field="author" label="Author" sortBy={sortBy} sortOrder={sortOrder} onSort={onSort} />
-        <SortableHeader field="volume" label="Vol/Issue" sortBy={sortBy} sortOrder={sortOrder} onSort={onSort} />
+        <div className="article-col-wide"><SortableHeader field="author" label="Author" sortBy={sortBy} sortOrder={sortOrder} onSort={onSort} /></div>
+        <div className="article-col-wide"><SortableHeader field="volume" label="Vol/Issue" sortBy={sortBy} sortOrder={sortOrder} onSort={onSort} /></div>
         <SortableHeader field="status" label="Status" sortBy={sortBy} sortOrder={sortOrder} onSort={onSort} />
-        <SortableHeader field="submitted" label="Submitted" sortBy={sortBy} sortOrder={sortOrder} onSort={onSort} />
-        <SortableHeader field="tier" label="Tier" sortBy={sortBy} sortOrder={sortOrder} onSort={onSort} />
-        <span className="table-header text-right">Info</span>
+        <div className="article-col-wide"><SortableHeader field="submitted" label="Submitted" sortBy={sortBy} sortOrder={sortOrder} onSort={onSort} /></div>
+        <div className="article-col-wide"><SortableHeader field="tier" label="Tier" sortBy={sortBy} sortOrder={sortOrder} onSort={onSort} /></div>
+        <span className="table-header text-right article-col-wide">Info</span>
       </div>
 
       {/* Table Body */}

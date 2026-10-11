@@ -82,6 +82,8 @@ export interface Attachments {
   mimeType: string | null;
   caption: string | null;
   photoNumber: number | null;
+  /** Whether a photo goes into issue and WordPress exports. Null on older rows means included. */
+  includeInExport: boolean | null;
   createdAt: Date;
 }
 
@@ -251,6 +253,7 @@ export const recordDefaults: Record<TableName, Record<string, unknown>> = {
     mimeType: null,
     caption: null,
     photoNumber: null,
+    includeInExport: true,
     createdAt: "$now",
   },
   articleNotes: {
@@ -616,6 +619,11 @@ export const recordFields = {
       nullable: true,
       enum: null,
     },
+    includeInExport: {
+      kind: "boolean",
+      nullable: true,
+      enum: null,
+    },
     createdAt: {
       kind: "timestamp",
       nullable: false,
@@ -935,3 +943,11 @@ export const recordFields = {
 export type AuthorType = NonNullable<Authors["authorType"]>;
 export type StudentType = NonNullable<Authors["studentType"]>;
 export const NON_PAID_AUTHOR_TYPES = ["Faculty", "Staff"] as const;
+/** Statuses between "Pending Review" and "Approved"; the "In Progress" filter matches any of them. */
+export const IN_PROGRESS_STATUSES = [
+  "In Review",
+  "Needs Revision",
+  "In Editing",
+  "Ready for Publication",
+] as const;
+export const IN_PROGRESS_FILTER = "In Progress";

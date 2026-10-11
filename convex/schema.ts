@@ -138,6 +138,8 @@ export default defineSchema({
     mimeType: v.union(v.string(), v.null()),
     caption: v.union(v.string(), v.null()),
     photoNumber: v.union(v.number(), v.null()),
+    // Optional so rows written before this field existed stay valid.
+    includeInExport: v.optional(v.union(v.boolean(), v.null())),
     createdAt: v.number(),
   })
     .index("by_legacy_id", ["id"])

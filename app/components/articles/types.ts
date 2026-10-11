@@ -30,6 +30,7 @@ export type Article = {
 
 export const STATUS_OPTIONS = [
   { value: '', label: 'All Statuses' },
+  { value: 'In Progress', label: 'In Progress (any)' },
   { value: 'Draft', label: 'Draft' },
   { value: 'Pending Review', label: 'Pending Review' },
   { value: 'In Review', label: 'In Review' },

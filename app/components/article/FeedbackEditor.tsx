@@ -3,6 +3,7 @@ import { Check, Save } from 'lucide-react'
 import { Button, LoadingSpinner, Section } from '~/components/Layout'
 import { updateArticleFeedbackLetter } from '~/lib/mutations'
 import { useTrackUnsaved } from './UnsavedChangesContext'
+import { EditPreviewToggle, MarkdownPreview } from './MarkdownPreview'
 
 interface FeedbackEditorProps {
   articleId: string
@@ -87,6 +88,7 @@ export function FeedbackEditor({ articleId, initialContent }: FeedbackEditorProp
   }, [handleSave])
 
   const wordCount = content.trim() ? content.trim().split(/\s+/).length : 0
+  const [showPreview, setShowPreview] = useState(false)
 
   return (
     <Section
@@ -96,6 +98,7 @@ export function FeedbackEditor({ articleId, initialContent }: FeedbackEditorProp
           <span className="text-xs" style={{ color: 'var(--fg-muted)' }}>
             {wordCount} words
           </span>
+          <EditPreviewToggle preview={showPreview} onChange={setShowPreview} />
           <Button
             onClick={() => handleSave()}
             disabled={isSaving || isSaved}
@@ -122,6 +125,14 @@ export function FeedbackEditor({ articleId, initialContent }: FeedbackEditorProp
         </div>
       }
     >
+      {showPreview ? (
+        <div
+          className="min-h-[300px] p-4"
+          style={{ border: '1px solid var(--border-default)', borderRadius: '6px' }}
+        >
+          <MarkdownPreview content={content} />
+        </div>
+      ) : (
       <textarea
         value={content}
         onChange={(e) => handleContentChange(e.target.value)}
@@ -135,6 +146,7 @@ export function FeedbackEditor({ articleId, initialContent }: FeedbackEditorProp
           lineHeight: '1.6',
         }}
       />
+      )}
     </Section>
   )
 }

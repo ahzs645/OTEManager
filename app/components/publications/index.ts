@@ -2,6 +2,7 @@
 export { VolumeForm } from './VolumeForm'
 export { IssueForm } from './IssueForm'
 export { IssueRow } from './IssueRow'
+export { IssueExportModal } from './IssueExportModal'
 export { VolumeCard } from './VolumeCard'
 export { MigrateLegacyButton } from './MigrateLegacyButton'
 export * from './types'

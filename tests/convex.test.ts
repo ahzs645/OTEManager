@@ -161,6 +161,89 @@ test("keeps a shared file until its last attachment is deleted", async () => {
   ).toBeNull();
 });
 
+test("photos are included in exports by default and the selection can be changed", async () => {
+  const { t, write, read } = setup();
+  const { articleId } = await write("createArticle", input());
+  const photo = (name: string) => ({
+    articleId,
+    attachmentType: "photo",
+    fileName: name,
+    originalFileName: name,
+    filePath: name,
+  });
+  const { attachment } = await write("addAttachment", photo("new.jpg"));
+  expect(attachment.includeInExport).toBe(true);
+  // Rows written before the flag existed have no value at all
+  await t.run((ctx) =>
+    ctx.db.insert("attachments", {
+      id: "legacy-photo",
+      ...photo("legacy.jpg"),
+      fileSize: null,
+      mimeType: null,
+      caption: null,
+      photoNumber: 2,
+      createdAt: Date.now(),
+    } as any),
+  );
+  await write("setAttachmentsIncludeInExport", {
+    attachmentIds: [attachment.id, "legacy-photo"],
+    includeInExport: false,
+  });
+  const { article } = await read("getArticleById", { id: articleId });
+  expect(
+    article.attachments.map((a: any) => [a.fileName, a.includeInExport]),
+  ).toEqual([
+    ["new.jpg", false],
+    ["legacy.jpg", false],
+  ]);
+});
+
+test("recent submissions follow the submission date, not the import date", async () => {
+  const { write, read } = setup();
+  const submit = (title: string, submittedAt: string) =>
+    write("submitArticle", {
+      title,
+      articleTier: "Tier 1 (Basic)",
+      author: { givenName: "Test", surname: "Writer", email: "writer@example.test" },
+      submittedAt: new Date(submittedAt),
+    });
+  // Imported in the opposite order to when they were submitted
+  await submit("Newest", "2026-09-25T12:00:00Z");
+  await submit("Oldest", "2026-01-10T12:00:00Z");
+  const { articles } = await read("getRecentArticles");
+  expect(articles.map((a: any) => a.title)).toEqual(["Newest", "Oldest"]);
+});
+
+test("the In Progress filter and stat cover every status between review and approval", async () => {
+  const { write, read } = setup();
+  for (const [title, status] of [
+    ["Reviewing", "In Review"],
+    ["Revising", "Needs Revision"],
+    ["Done", "Approved"],
+  ]) {
+    const { articleId } = await write("createArticle", input(title));
+    await write("updateArticleStatus", { articleId, status });
+  }
+  const { articles } = await read("getArticles", { status: "In Progress" });
+  expect(articles.map((a: any) => a.title).sort()).toEqual([
+    "Reviewing",
+    "Revising",
+  ]);
+  const stats = await read("getDashboardStats");
+  expect([stats.inProgress, stats.approved]).toEqual([2, 1]);
+});
+
+test("article search matches titles and author names", async () => {
+  const { write, read } = setup();
+  await write("createArticle", input("Bears in winter"));
+  const titles = async (search: string) =>
+    (await read("getArticles", { search })).articles.map((a: any) => a.title);
+  expect(await titles("bears")).toEqual(["Bears in winter"]);
+  expect(await titles("test writer")).toEqual(["Bears in winter"]);
+  expect(await titles("writer bears")).toEqual(["Bears in winter"]);
+  expect(await titles("salami")).toEqual([]);
+});
+
 test("deleting a volume unassigns articles and removing an article removes its children", async () => {
   const { write, read } = setup();
   const { articleId } = await write("createArticle", input());

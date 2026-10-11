@@ -1,113 +1,5 @@
-import { Link, useLocation } from "@tanstack/react-router";
-import {
-  FileText,
-  Users,
-  LayoutDashboard,
-  Wrench,
-  ChevronRight,
-  Settings,
-  BarChart3,
-  BookOpen,
-} from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import type { CSSProperties, ReactNode } from "react";
-
-interface LayoutProps {
-  children: ReactNode;
-}
-
-export function Layout({ children }: LayoutProps) {
-  return (
-    <div className="min-h-screen" style={{ background: "var(--bg-root)" }}>
-      <Header />
-      <main className="max-w-6xl mx-auto px-6 py-6">{children}</main>
-    </div>
-  );
-}
-
-function Header() {
-  const location = useLocation();
-  const currentPath = location.pathname;
-
-  const navItems = [
-    { path: "/", label: "Dashboard", icon: LayoutDashboard },
-    { path: "/articles", label: "Articles", icon: FileText },
-    { path: "/publications", label: "Publications", icon: BookOpen },
-    { path: "/authors", label: "Authors", icon: Users },
-    { path: "/analytics", label: "Analytics", icon: BarChart3 },
-    { path: "/utilities", label: "Utilities", icon: Wrench },
-    { path: "/settings", label: "Settings", icon: Settings },
-  ];
-
-  return (
-    <header
-      className="sticky top-0 z-50"
-      style={{
-        background: "var(--bg-surface)",
-        borderBottom: "0.5px solid var(--border-default)",
-      }}
-    >
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="flex items-center justify-between h-14">
-          {/* Logo / Brand */}
-          <div className="flex items-center gap-6">
-            <Link to="/" className="flex items-center gap-2">
-              <div
-                className="w-7 h-7 rounded-md flex items-center justify-center text-white font-semibold text-xs"
-                style={{ background: "var(--fg-default)" }}
-              >
-                OTE
-              </div>
-              <span
-                className="font-semibold text-sm hidden sm:block"
-                style={{ color: "var(--fg-default)", letterSpacing: "-0.01em" }}
-              >
-                Over the Edge
-              </span>
-            </Link>
-
-            {/* Separator */}
-            <div
-              className="hidden sm:block h-5 w-px"
-              style={{ background: "var(--border-default)" }}
-            />
-
-            {/* Navigation */}
-            <nav className="flex items-center gap-1">
-              {navItems.map(({ path, label, icon: Icon }) => {
-                const isActive =
-                  path === "/" ? currentPath === "/" : currentPath.startsWith(path);
-
-                return (
-                  <Link
-                    key={path}
-                    to={path}
-                    className={`nav-item ${isActive ? "nav-item-active" : ""}`}
-                  >
-                    <Icon className="w-4 h-4" />
-                    <span className="hidden sm:inline">{label}</span>
-                  </Link>
-                );
-              })}
-            </nav>
-          </div>
-
-          {/* Right side - could add user menu, search, etc. */}
-          <div className="flex items-center gap-2">
-            <span
-              className="text-xs px-2 py-1 rounded"
-              style={{
-                background: "var(--bg-subtle)",
-                color: "var(--fg-muted)",
-              }}
-            >
-              v1.0
-            </span>
-          </div>
-        </div>
-      </div>
-    </header>
-  );
-}
 
 // ===========================================
 // Status Badge - Minimal color, status-driven
@@ -214,21 +106,12 @@ export function StatCard({
           <span>{trend.label}</span>
         </div>
       )}
-      {href && (
-        <div
-          className="mt-3 text-xs flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity"
-          style={{ color: "var(--accent)" }}
-        >
-          <span>View all</span>
-          <ChevronRight className="w-3 h-3" />
-        </div>
-      )}
     </div>
   );
 
   if (href) {
     return (
-      <Link to={href} search={search} className="block">
+      <Link to={href} search={search} className="block stat-card-link">
         {content}
       </Link>
     );
@@ -240,10 +123,16 @@ export function StatCard({
 // ===========================================
 // Format Helpers
 // ===========================================
+// The paper is in Prince George, BC. Formatting in a fixed zone keeps the
+// server (UTC) and the browser agreeing on the day, so evening timestamps don't
+// render as the next day or trip React's hydration check.
+export const APP_TIME_ZONE = "America/Vancouver";
+
 export function formatDate(date: Date | string | null | undefined): string {
   if (!date) return "—";
   const d = typeof date === "string" ? new Date(date) : date;
   return d.toLocaleDateString("en-US", {
+    timeZone: APP_TIME_ZONE,
     year: "numeric",
     month: "short",
     day: "numeric",

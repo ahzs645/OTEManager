@@ -4,6 +4,7 @@ import { ChevronRight, ChevronDown, FileText, Pencil, Trash2, Plus } from 'lucid
 import { VolumeForm } from './VolumeForm'
 import { IssueForm } from './IssueForm'
 import { IssueRow } from './IssueRow'
+import { IssueExportModal } from './IssueExportModal'
 import {
   type Volume,
   type Issue,
@@ -33,6 +34,7 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
   const [showNewIssueForm, setShowNewIssueForm] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [exportingIssueId, setExportingIssueId] = useState<string | null>(null)
+  const [exportDialogIssue, setExportDialogIssue] = useState<Issue | null>(null)
 
   const [volumeForm, setVolumeForm] = useState<VolumeFormData>(emptyVolumeForm)
   const [issueForm, setIssueForm] = useState<IssueFormData>(emptyIssueForm)
@@ -371,7 +373,7 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
                       volumeNumber={volume.volumeNumber}
                       onEdit={() => startEditIssue(issue)}
                       onDelete={() => handleDeleteIssue(issue.id)}
-                      onExport={() => handleExportIssue(issue.id, issue.issueNumber)}
+                      onExport={() => setExportDialogIssue(issue)}
                       onDesignCraftExport={() => handleExportIssue(issue.id, issue.issueNumber, 'designcraft')}
                       isExporting={exportingIssueId === issue.id}
                     />
@@ -409,6 +411,15 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
             </div>
           )}
         </div>
+      )}
+
+      {exportDialogIssue && (
+        <IssueExportModal
+          issueId={exportDialogIssue.id}
+          issueLabel={`Volume ${volume.volumeNumber}, Issue ${exportDialogIssue.issueNumber}`}
+          onExport={() => handleExportIssue(exportDialogIssue.id, exportDialogIssue.issueNumber)}
+          onClose={() => setExportDialogIssue(null)}
+        />
       )}
     </div>
   )

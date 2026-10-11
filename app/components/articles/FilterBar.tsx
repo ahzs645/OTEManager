@@ -35,7 +35,7 @@ export function FilterBar({
       {/* Search */}
       <form onSubmit={onSearchSubmit} className="flex-1 min-w-48">
         <Input
-          placeholder="Search articles..."
+          placeholder="Search titles or authors..."
           value={searchInput}
           onChange={onSearchInputChange}
           icon={Search}

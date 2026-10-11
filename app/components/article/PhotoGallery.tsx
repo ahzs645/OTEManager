@@ -2,7 +2,12 @@ import { useState, useRef, useEffect } from 'react'
 import { useRouter } from '@tanstack/react-router'
 import { Download, Edit2, Upload, ImageIcon, Trash2 } from 'lucide-react'
 import { Section, LoadingSpinner } from '~/components/Layout'
-import { updateAttachmentCaption, deleteAttachment } from '~/lib/mutations'
+import { fileUrl } from '~/lib/files'
+import {
+  updateAttachmentCaption,
+  deleteAttachment,
+  setAttachmentsIncludeInExport,
+} from '~/lib/mutations'
 import { CaptionModal } from './CaptionModal'
 
 interface Photo {
@@ -11,7 +16,11 @@ interface Photo {
   originalFileName: string
   photoNumber: number | null
   caption: string | null
+  includeInExport?: boolean | null
 }
+
+// Photos predating the export selection have no flag and count as selected
+const isSelectedForExport = (photo: Photo) => photo.includeInExport !== false
 
 interface PhotoGalleryProps {
   photos: Photo[]
@@ -56,6 +65,26 @@ export function PhotoGallery({ photos, articleId }: PhotoGalleryProps) {
       setIsDeleting(null)
     }
   }
+
+  const setIncludeInExport = async (ids: string[], includeInExport: boolean) => {
+    if (ids.length === 0) return
+    const previous = localPhotos
+    setLocalPhotos((prev) =>
+      prev.map((p) => (ids.includes(p.id) ? { ...p, includeInExport } : p))
+    )
+    try {
+      const result = await setAttachmentsIncludeInExport({
+        data: { attachmentIds: ids, includeInExport },
+      })
+      if (!result.success) throw new Error(result.error || 'Unknown error')
+    } catch (error) {
+      console.error('Failed to update export selection:', error)
+      setLocalPhotos(previous)
+      alert('Failed to update export selection')
+    }
+  }
+
+  const selectedCount = localPhotos.filter(isSelectedForExport).length
 
   const handleUploadClick = () => {
     fileInputRef.current?.click()
@@ -136,7 +165,7 @@ export function PhotoGallery({ photos, articleId }: PhotoGalleryProps) {
       id: photo.id,
       name: photo.photoNumber ? `Photo ${photo.photoNumber}` : photo.originalFileName,
       caption: photo.caption || '',
-      photoUrl: `/api/files/${photo.filePath}`,
+      photoUrl: fileUrl(photo.filePath, 960),
     })
     setCaptionText(photo.caption || '')
   }
@@ -175,6 +204,7 @@ export function PhotoGallery({ photos, articleId }: PhotoGalleryProps) {
         accept="image/jpeg,image/png,image/gif,image/webp"
         multiple
         className="hidden"
+        hidden
       />
 
       <Section
@@ -197,6 +227,42 @@ export function PhotoGallery({ photos, articleId }: PhotoGalleryProps) {
           className={isDragOver ? 'ring-2 ring-inset rounded-lg' : ''}
           style={isDragOver ? { '--tw-ring-color': 'var(--accent)', background: 'var(--accent-subtle)' } as React.CSSProperties : {}}
         >
+        {localPhotos.length > 0 && (
+          <div
+            className="flex items-center justify-between mb-3 text-xs"
+            style={{ color: 'var(--fg-muted)' }}
+          >
+            <span>
+              {selectedCount} of {localPhotos.length} selected for export
+            </span>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() =>
+                  setIncludeInExport(
+                    localPhotos.filter((p) => !isSelectedForExport(p)).map((p) => p.id),
+                    true
+                  )
+                }
+                disabled={selectedCount === localPhotos.length}
+                style={{ color: selectedCount === localPhotos.length ? 'var(--fg-faint)' : 'var(--accent)' }}
+              >
+                Select all
+              </button>
+              <button
+                onClick={() =>
+                  setIncludeInExport(
+                    localPhotos.filter(isSelectedForExport).map((p) => p.id),
+                    false
+                  )
+                }
+                disabled={selectedCount === 0}
+                style={{ color: selectedCount === 0 ? 'var(--fg-faint)' : 'var(--accent)' }}
+              >
+                Select none
+              </button>
+            </div>
+          </div>
+        )}
         {localPhotos.length === 0 ? (
           <div className={`py-8 text-center transition-colors ${isDragOver ? 'bg-[var(--accent-subtle)]' : ''}`}>
             <ImageIcon className="w-10 h-10 mx-auto mb-2" style={{ color: isDragOver ? 'var(--accent)' : 'var(--fg-faint)' }} />
@@ -219,23 +285,44 @@ export function PhotoGallery({ photos, articleId }: PhotoGalleryProps) {
           </div>
         ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {localPhotos.map((photo) => (
+          {localPhotos.map((photo) => {
+            const selected = isSelectedForExport(photo)
+            return (
             <div
               key={photo.id}
-              className="rounded-lg overflow-hidden"
-              style={{ border: '0.5px solid var(--border-default)' }}
+              className="rounded-lg overflow-hidden relative"
+              style={{
+                border: selected ? '1px solid var(--accent)' : '0.5px solid var(--border-default)',
+              }}
             >
+              {/* Export selection */}
+              <label
+                className="absolute top-2 left-2 z-10 flex items-center gap-1.5 rounded px-1.5 py-1 text-xs cursor-pointer"
+                style={{ background: 'rgba(255,255,255,0.9)', color: 'var(--fg-default)' }}
+                title={selected ? 'Included in exports' : 'Left out of exports'}
+              >
+                <input
+                  type="checkbox"
+                  checked={selected}
+                  onChange={(e) => setIncludeInExport([photo.id], e.target.checked)}
+                  style={{ accentColor: 'var(--accent)' }}
+                />
+                Export
+              </label>
               {/* Photo Preview */}
               <a
-                href={`/api/files/${photo.filePath}`}
+                href={fileUrl(photo.filePath)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block aspect-square bg-gray-100 relative group"
               >
                 <img
-                  src={`/api/files/${photo.filePath}`}
+                  src={fileUrl(photo.filePath, 480)}
                   alt={photo.originalFileName}
-                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover transition-opacity"
+                  style={{ opacity: selected ? 1 : 0.45 }}
                 />
                 <div
                   className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
@@ -281,7 +368,7 @@ export function PhotoGallery({ photos, articleId }: PhotoGalleryProps) {
                 {/* Download and Delete */}
                 <div className="flex items-center justify-between mt-2">
                   <a
-                    href={`/api/files/${photo.filePath}`}
+                    href={fileUrl(photo.filePath)}
                     download={photo.originalFileName}
                     className="text-xs inline-flex items-center gap-1"
                     style={{ color: 'var(--accent)' }}
@@ -305,7 +392,8 @@ export function PhotoGallery({ photos, articleId }: PhotoGalleryProps) {
                 </div>
               </div>
             </div>
-          ))}
+            )
+          })}
         </div>
         )}
         </div>

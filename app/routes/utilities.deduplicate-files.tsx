@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
+import { fileUrl } from "~/lib/files";
 import {
   ChevronLeft,
   Files,
@@ -13,7 +14,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { createServerFn } from "@tanstack/react-start";
-import { LoadingSpinner } from "~/components/Layout";
+import { LoadingSpinner, formatDate } from "~/components/Layout";
 
 type DuplicateFile = {
   id: string;
@@ -228,14 +229,6 @@ function DeduplicateFilesPage() {
     if (bytes < 1024) return `${bytes} B`;
     if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
     return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
-  };
-
-  const formatDate = (dateStr: string) => {
-    return new Date(dateStr).toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    });
   };
 
   const getMatchTypeLabel = (type: DuplicateGroup["matchType"]) => {
@@ -762,8 +755,9 @@ function DeduplicateFilesPage() {
                                   }}
                                 >
                                   <img
-                                    src={`/api/files/${file.filePath}`}
+                                    src={fileUrl(file.filePath, 240)}
                                     alt={file.originalFileName}
+                                    loading="lazy"
                                     style={{
                                       width: "100%",
                                       height: "100%",

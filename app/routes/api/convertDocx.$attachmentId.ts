@@ -1,17 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-
-// Clean up mammoth's overly-escaped markdown output
-function cleanMarkdownEscapes(markdown: string): string {
-  return (
-    markdown
-      // Remove backslash escapes before common characters that don't need escaping in most contexts
-      .replace(/\\([._*\[\]()!#`~>+\-])/g, "$1")
-      // Fix double-escaped underscores in bold/italic
-      .replace(/__\\_(.+?)\\___/g, "__*$1*__")
-      .replace(/\\_\\_(.+?)\\_\\_/g, "__$1__")
-      .replace(/\\_(.+?)\\_/g, "_$1_")
-  );
-}
+import { cleanConvertedMarkdown } from "../../../shared/docx-markdown";
 
 export const Route = createFileRoute("/api/convertDocx/$attachmentId")({
   server: {
@@ -33,8 +21,6 @@ export const Route = createFileRoute("/api/convertDocx/$attachmentId")({
 
         try {
           const records = await import("../../../server/records");
-          const { query } = await import("../../../server/convex");
-
           const { getStorage } = await import("../../../storage");
 
           // Get the attachment
@@ -61,6 +47,34 @@ export const Route = createFileRoute("/api/convertDocx/$attachmentId")({
                 status: 404,
                 headers: { "Content-Type": "application/json" },
               },
+            );
+          }
+
+          const extension =
+            attachment.originalFileName.split(".").pop()?.toLowerCase() || "";
+
+          // Plain-text attachments (e.g. caption files) need no conversion
+          if (extension === "txt" || attachment.mimeType === "text/plain") {
+            const text = fileBuffer.toString("utf8").replace(/\r\n?/g, "\n");
+            if (format === "raw")
+              return new Response(text, {
+                headers: { "Content-Type": "text/plain; charset=utf-8" },
+              });
+            return Response.json({
+              success: true,
+              content: text.trim(),
+              format: "text",
+            });
+          }
+
+          // mammoth and docx-preview only read the .docx format
+          if (extension === "doc") {
+            return Response.json(
+              {
+                error:
+                  "Legacy .doc files can't be previewed or converted. Open the file in Word and save it as .docx, then upload that copy.",
+              },
+              { status: 415 },
             );
           }
 
@@ -119,16 +133,10 @@ export const Route = createFileRoute("/api/convertDocx/$attachmentId")({
               { arrayBuffer },
               imageHandler,
             );
-            // Clean up markdown and remove empty image references
-            let cleanedMarkdown = cleanMarkdownEscapes(result.value);
-            // Remove empty markdown image syntax left from skipped images
-            cleanedMarkdown = cleanedMarkdown.replace(/!\[\]\(\)/g, "");
-            // Remove any remaining empty lines from removed images
-            cleanedMarkdown = cleanedMarkdown.replace(/\n{3,}/g, "\n\n");
             return new Response(
               JSON.stringify({
                 success: true,
-                content: cleanedMarkdown.trim(),
+                content: cleanConvertedMarkdown(result.value),
                 messages: result.messages,
                 format: "markdown",
               }),

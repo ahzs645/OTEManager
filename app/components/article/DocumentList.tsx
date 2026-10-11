@@ -3,6 +3,7 @@ import { useRouter } from '@tanstack/react-router'
 import { createPortal } from 'react-dom'
 import { FileText, Download, Wand2, Eye, FileEdit, MessageSquare, X, Upload, Trash2 } from 'lucide-react'
 import { Section, LoadingSpinner } from '~/components/Layout'
+import { fileUrl } from '~/lib/files'
 import { deleteAttachment } from '~/lib/mutations'
 
 interface Document {
@@ -223,11 +224,26 @@ export function DocumentList({
 
     const loadPreview = async () => {
       try {
-        const docxPreview = await import('docx-preview')
         const response = await fetch(`/api/convertDocx/${previewAttachmentId}?format=raw`)
         if (!response.ok) {
-          throw new Error('Failed to fetch document')
+          const data = await response.json().catch(() => null)
+          throw new Error(data?.error || 'Failed to fetch document')
         }
+
+        // Plain-text attachments (e.g. caption files) are shown as-is
+        if (response.headers.get('Content-Type')?.startsWith('text/plain')) {
+          const text = await response.text()
+          if (previewContainerRef.current) {
+            const pre = document.createElement('pre')
+            pre.textContent = text
+            pre.style.cssText =
+              'margin: 0; padding: 1.5rem; white-space: pre-wrap; font-size: 0.875rem; color: var(--fg-default); background: var(--bg-surface);'
+            previewContainerRef.current.replaceChildren(pre)
+          }
+          return
+        }
+
+        const docxPreview = await import('docx-preview')
         const blob = await response.blob()
 
         if (previewContainerRef.current) {
@@ -252,11 +268,13 @@ export function DocumentList({
       } catch (error) {
         console.error('Failed to load preview:', error)
         if (previewContainerRef.current) {
-          previewContainerRef.current.innerHTML = `
-            <div style="padding: 2rem; text-align: center; color: var(--fg-muted);">
-              Failed to load document preview
-            </div>
-          `
+          const message = document.createElement('div')
+          message.textContent =
+            error instanceof Error && error.message !== 'Failed to fetch document'
+              ? error.message
+              : 'Failed to load document preview'
+          message.style.cssText = 'padding: 2rem; text-align: center; color: var(--fg-muted);'
+          previewContainerRef.current.replaceChildren(message)
         }
       } finally {
         setIsLoadingPreview(false)
@@ -275,6 +293,7 @@ export function DocumentList({
         onChange={handleFileChange}
         accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         className="hidden"
+        hidden
       />
 
       <Section
@@ -416,7 +435,7 @@ export function DocumentList({
                   </>
                 )}
                 <a
-                  href={`/api/files/${attachment.filePath}`}
+                  href={fileUrl(attachment.filePath)}
                   download={attachment.originalFileName}
                   className="btn btn-ghost !p-2"
                   title="Download"
