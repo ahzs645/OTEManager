@@ -10,11 +10,21 @@ The full-view route is `/designcraft/index.html`; native export runs through the
 downloaded stock DesignCraft CLI, not inside the hosted Site.
 
 Sites project: OTE DesignCraft Review, private to its owner by default.
-Source and version 2 are saved, but publication failed with a hosting-service
-error after three attempts, including a smaller deployment that retained every
-PDF. The reserved URL is https://ote-designcraft-review.ahmadjalil645.chatgpt.site;
-it is not a confirmed live Site. Exact recovery IDs and source commit are in
-`docs/designcraft-site.json`. Retry the saved version when hosting recovers.
+Source and version 3 are saved and published successfully at
+https://ote-designcraft-review.ahmadjalil645.chatgpt.site. The confirmed publication
+time, exact recovery IDs, archive metadata and source commit are in
+`docs/designcraft-site.json`. Owner-private access is preserved.
+
+The hosted Downloads section contains the complete 248,016,083-byte ZIP,
+served as twelve pieces below the static per-file limit. The browser checks
+SHA-256 for each piece before joining them into the byte-identical original ZIP.
+Cancellation and integrity-failure paths were verified alongside the completed
+browser download. The direct template-kit link and original PDF reading copies
+use immutable OTEManager commit `c8c4b8f3b997f4017b94b85cbb01b7255eaca58a`.
+Remote PDFs are loaded as typed blobs for inline viewing. This avoids duplicate
+assets and keeps the saved deployment archive below the Sites 256 MiB input
+limit. The hosted source lives in the Site repository, independently of this
+repository's standalone review page.
 
 ## Provenance
 
