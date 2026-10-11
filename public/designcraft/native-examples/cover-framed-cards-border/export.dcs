@@ -1,0 +1,3 @@
+file.open {"path": "/workspace/OTEManager/public/designcraft/native-examples/cover-framed-cards-border/page.designcraft"}
+file.exportPdf {"path": "/workspace/OTEManager/public/designcraft/native-examples/cover-framed-cards-border/page.pdf"}
+file.exportIdml {"path": "/workspace/OTEManager/public/designcraft/native-examples/cover-framed-cards-border/page.idml"}

@@ -1,0 +1,36 @@
+{
+  "crops": [
+    {
+      "slotId": "cover-photo",
+      "requestedFocus": {
+        "x": 0.8,
+        "y": 0.6
+      },
+      "nativeCrop": "focal-point",
+      "exactFocusApplied": true,
+      "imageSize": [
+        3421.0,
+        1771.0
+      ],
+      "frameRect": [
+        42,
+        154,
+        714,
+        566
+      ],
+      "transform": [
+        0.2326369282891022,
+        0,
+        0,
+        0.2326369282891022,
+        -81.8509316770187,
+        154.0
+      ]
+    }
+  ],
+  "embeddedAssetSha256": {
+    "assets/10.png": "7170267e77f698e612030f0af473a596855c4f2276113b10deb4572fde3afc1a",
+    "assets/16.jpg": "4a874ddd2733edac5bbd93e2969f92c6dde80e73017c748ff98b0f731cdfc346"
+  },
+  "preservedAssetBytes": true
+}

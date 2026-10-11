@@ -1,0 +1,52 @@
+file.new {"width": 756, "height": 792, "pages": 1, "facingPages": false, "margins": 36, "title": "1 story · top · balanced"}
+layout.documentSetup {"startPage": 1, "intent": "print"}
+swatch.create {"name": "OTE Green", "color": {"c": 70, "m": 30, "y": 75, "k": 40}}
+swatch.create {"name": "OTE Placeholder", "color": {"c": 10, "m": 3, "y": 8, "k": 0}}
+style.paragraph.create {"name": "OTE Headline", "para": {"spaceAfter": 4, "hyphenate": false}, "chars": {"fontFamily": "Source Sans 3", "fontStyle": "Bold", "size": 24, "leading": {"kind": "points", "value": 27}}}
+style.paragraph.create {"name": "OTE Body", "para": {"spaceAfter": 4, "hyphenate": true}, "chars": {"fontFamily": "Source Serif 4", "fontStyle": "Regular", "size": 10, "leading": {"kind": "points", "value": 12}}}
+style.paragraph.create {"name": "OTE Byline", "para": {"spaceAfter": 4, "hyphenate": false}, "chars": {"fontFamily": "Source Sans 3", "fontStyle": "Semibold", "size": 9, "leading": {"kind": "points", "value": 11}}}
+style.paragraph.create {"name": "OTE Caption", "para": {"spaceAfter": 4, "hyphenate": false}, "chars": {"fontFamily": "Source Sans 3", "fontStyle": "Regular", "size": 8, "leading": {"kind": "points", "value": 10}}}
+style.paragraph.create {"name": "OTE Label", "para": {"spaceAfter": 4, "hyphenate": false}, "chars": {"fontFamily": "Source Sans 3", "fontStyle": "Semibold", "size": 12, "leading": {"kind": "points", "value": 15}}}
+style.paragraph.create {"name": "OTE Folio", "para": {"spaceAfter": 4, "hyphenate": false}, "chars": {"fontFamily": "Source Sans 3", "fontStyle": "Regular", "size": 8, "leading": {"kind": "points", "value": 10}}}
+frame.create {"rect": [36, 100, 720, 144], "content": "text", "text": "Example story 1", "caret": false}
+object.textFrameOptions {"ids": ["$10.id"], "inset": 0, "columns": 1, "gutter": 12}
+text.select {"story": "$10.story", "anchor": 0, "focus": 15}
+style.paragraph.apply {"name": "OTE Headline", "clearOverrides": true}
+object.label {"ids": ["$10.id"], "label": "{\"templateId\": \"story-1-top-balanced\", \"slotId\": \"headline-1\", \"role\": \"headline\", \"articleId\": \"example-1\", \"pageId\": \"page-1\"}"}
+object.rename {"id": "$10.id", "name": "headline-1"}
+frame.create {"rect": [36, 147, 720, 162], "content": "text", "text": "Example author", "caret": false}
+object.textFrameOptions {"ids": ["$16.id"], "inset": 0, "columns": 1, "gutter": 12}
+text.select {"story": "$16.story", "anchor": 0, "focus": 14}
+style.paragraph.apply {"name": "OTE Byline", "clearOverrides": true}
+object.label {"ids": ["$16.id"], "label": "{\"templateId\": \"story-1-top-balanced\", \"slotId\": \"byline-2\", \"role\": \"byline\", \"articleId\": \"example-1\", \"pageId\": \"page-1\"}"}
+object.rename {"id": "$16.id", "name": "byline-2"}
+frame.create {"rect": [36, 171, 720, 365.82], "content": "unassigned"}
+object.fill {"ids": ["$22.id"], "swatch": "OTE Placeholder"}
+object.stroke {"ids": ["$22.id"], "weight": 0.5, "swatch": "OTE Green"}
+object.label {"ids": ["$22.id"], "label": "{\"templateId\": \"story-1-top-balanced\", \"slotId\": \"photo-3\", \"role\": \"photo\", \"articleId\": \"example-1\", \"pageId\": \"page-1\"}"}
+object.rename {"id": "$22.id", "name": "photo-3"}
+frame.create {"rect": [40, 175, 716, 211], "content": "text", "text": "ILLUSTRATIVE PHOTO SLOT", "caret": false}
+object.textFrameOptions {"ids": ["$27.id"], "inset": 0, "columns": 1, "gutter": 12}
+text.select {"story": "$27.story", "anchor": 0, "focus": 23}
+style.paragraph.apply {"name": "OTE Label", "clearOverrides": true}
+frame.create {"rect": [36, 368.82, 720, 389.82], "content": "text", "text": "Illustrative photo caption", "caret": false}
+object.textFrameOptions {"ids": ["$31.id"], "inset": 0, "columns": 1, "gutter": 12}
+text.select {"story": "$31.story", "anchor": 0, "focus": 26}
+style.paragraph.apply {"name": "OTE Caption", "clearOverrides": true}
+object.label {"ids": ["$31.id"], "label": "{\"templateId\": \"story-1-top-balanced\", \"slotId\": \"caption-4\", \"role\": \"caption\", \"articleId\": \"example-1\", \"pageId\": \"page-1\"}"}
+object.rename {"id": "$31.id", "name": "caption-4"}
+frame.create {"rect": [36, 397.82, 720, 744], "content": "text", "text": "This is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.\n\nThis is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.\n\nThis is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.\n\n", "caret": false}
+object.textFrameOptions {"ids": ["$37.id"], "inset": 0, "columns": 3, "gutter": 12}
+text.select {"story": "$37.story", "anchor": 0, "focus": 618}
+style.paragraph.apply {"name": "OTE Body", "clearOverrides": true}
+object.label {"ids": ["$37.id"], "label": "{\"templateId\": \"story-1-top-balanced\", \"slotId\": \"body-5\", \"role\": \"body\", \"articleId\": \"example-1\", \"pageId\": \"page-1\"}"}
+object.rename {"id": "$37.id", "name": "body-5"}
+frame.create {"rect": [36, 756, 720, 778], "content": "text", "text": "1  |  OVER THE EDGE  |  ILLUSTRATIVE TEMPLATE", "caret": false}
+object.textFrameOptions {"ids": ["$43.id"], "inset": 0, "columns": 1, "gutter": 12}
+text.select {"story": "$43.story", "anchor": 0, "focus": 45}
+style.paragraph.apply {"name": "OTE Folio", "clearOverrides": true}
+object.label {"ids": ["$43.id"], "label": "{\"templateId\": \"story-1-top-balanced\", \"slotId\": \"folio-6\", \"role\": \"folio\", \"articleId\": null, \"pageId\": \"page-1\"}"}
+object.rename {"id": "$43.id", "name": "folio-6"}
+preflight.run {"minPpi": 150}
+document.inspect {}
+file.saveAs {"path": "/workspace/OTEManager/public/designcraft/native-examples/story-1-top-balanced/page.designcraft"}

@@ -1,0 +1,20 @@
+{
+  "completed": 3,
+  "results": [
+    {
+      "documentFonts": 5,
+      "index": 1,
+      "warnings": []
+    },
+    {
+      "bytes": 147862,
+      "pages": 1,
+      "path": "/workspace/OTEManager/public/designcraft/native-examples/cover-framed-cards-border/page.pdf",
+      "warnings": []
+    },
+    {
+      "bytes": 76163,
+      "path": "/workspace/OTEManager/public/designcraft/native-examples/cover-framed-cards-border/page.idml"
+    }
+  ]
+}

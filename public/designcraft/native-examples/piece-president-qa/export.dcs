@@ -1,0 +1,3 @@
+file.open {"path": "/workspace/OTEManager/public/designcraft/native-examples/piece-president-qa/page.designcraft"}
+file.exportPdf {"path": "/workspace/OTEManager/public/designcraft/native-examples/piece-president-qa/page.pdf"}
+file.exportIdml {"path": "/workspace/OTEManager/public/designcraft/native-examples/piece-president-qa/page.idml"}

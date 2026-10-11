@@ -1,0 +1,74 @@
+file.new {"width": 756, "height": 792, "pages": 1, "facingPages": false, "margins": 36, "title": "Framed cover · cards · border"}
+layout.documentSetup {"startPage": 1, "intent": "print"}
+swatch.create {"name": "OTE Green", "color": {"c": 70, "m": 30, "y": 75, "k": 40}}
+swatch.create {"name": "OTE Placeholder", "color": {"c": 10, "m": 3, "y": 8, "k": 0}}
+style.paragraph.create {"name": "OTE Headline", "para": {"spaceAfter": 4, "hyphenate": false}, "chars": {"fontFamily": "Source Sans 3", "fontStyle": "Bold", "size": 24, "leading": {"kind": "points", "value": 27}}}
+style.paragraph.create {"name": "OTE Body", "para": {"spaceAfter": 4, "hyphenate": true}, "chars": {"fontFamily": "Source Serif 4", "fontStyle": "Regular", "size": 10, "leading": {"kind": "points", "value": 12}}}
+style.paragraph.create {"name": "OTE Byline", "para": {"spaceAfter": 4, "hyphenate": false}, "chars": {"fontFamily": "Source Sans 3", "fontStyle": "Semibold", "size": 9, "leading": {"kind": "points", "value": 11}}}
+style.paragraph.create {"name": "OTE Caption", "para": {"spaceAfter": 4, "hyphenate": false}, "chars": {"fontFamily": "Source Sans 3", "fontStyle": "Regular", "size": 8, "leading": {"kind": "points", "value": 10}}}
+style.paragraph.create {"name": "OTE Label", "para": {"spaceAfter": 4, "hyphenate": false}, "chars": {"fontFamily": "Source Sans 3", "fontStyle": "Semibold", "size": 12, "leading": {"kind": "points", "value": 15}}}
+style.paragraph.create {"name": "OTE Folio", "para": {"spaceAfter": 4, "hyphenate": false}, "chars": {"fontFamily": "Source Sans 3", "fontStyle": "Regular", "size": 8, "leading": {"kind": "points", "value": 10}}}
+frame.create {"rect": [30, 30, 726, 762], "content": "unassigned"}
+object.stroke {"ids": ["$10.id"], "weight": 2, "swatch": "OTE Green"}
+frame.create {"rect": [42, 42, 520, 136], "content": "graphic"}
+file.place {"path": "/workspace/OTEManager/public/designcraft/native-examples/cover-framed-cards-border/Links/7170267e77f698e6.png", "frame": "$12.id"}
+object.fittingOptions {"ids": ["$12.id"], "fitting": "fitProportionally", "autoFit": true, "align": 4}
+object.label {"ids": ["$12.id"], "label": "{\"templateId\": \"cover-framed-cards-border\", \"slotId\": \"cover-logo\", \"role\": \"photo\", \"articleId\": null, \"pageId\": \"page-1\"}"}
+object.rename {"id": "$12.id", "name": "cover-logo"}
+frame.create {"rect": [542, 42, 714, 114], "content": "text", "text": "NOVEMBER 14", "caret": false}
+object.textFrameOptions {"ids": ["$17.id"], "inset": 0, "columns": 1, "gutter": 12}
+text.select {"story": "$17.story", "anchor": 0, "focus": 11}
+style.paragraph.apply {"name": "OTE Headline", "clearOverrides": true}
+object.label {"ids": ["$17.id"], "label": "{\"templateId\": \"cover-framed-cards-border\", \"slotId\": \"cover-date\", \"role\": \"headline\", \"articleId\": null, \"pageId\": \"page-1\"}"}
+object.rename {"id": "$17.id", "name": "cover-date"}
+frame.create {"rect": [542, 116, 714, 142], "content": "text", "text": "2024 · VOLUME 31 · ISSUE 3", "caret": false}
+object.textFrameOptions {"ids": ["$23.id"], "inset": 0, "columns": 1, "gutter": 12}
+text.select {"story": "$23.story", "anchor": 0, "focus": 28}
+style.paragraph.apply {"name": "OTE Byline", "clearOverrides": true}
+object.label {"ids": ["$23.id"], "label": "{\"templateId\": \"cover-framed-cards-border\", \"slotId\": \"cover-issue\", \"role\": \"byline\", \"articleId\": null, \"pageId\": \"page-1\"}"}
+object.rename {"id": "$23.id", "name": "cover-issue"}
+frame.create {"rect": [42, 154, 714, 566], "content": "unassigned"}
+object.fill {"ids": ["$29.id"], "swatch": "OTE Placeholder"}
+object.stroke {"ids": ["$29.id"], "weight": 0.5, "swatch": "OTE Green"}
+object.label {"ids": ["$29.id"], "label": "{\"templateId\": \"cover-framed-cards-border\", \"slotId\": \"cover-photo\", \"role\": \"photo\", \"articleId\": null, \"pageId\": \"page-1\"}"}
+object.rename {"id": "$29.id", "name": "cover-photo"}
+frame.create {"rect": [46, 158, 710, 194], "content": "text", "text": "ILLUSTRATIVE PHOTO SLOT", "caret": false}
+object.textFrameOptions {"ids": ["$34.id"], "inset": 0, "columns": 1, "gutter": 12}
+text.select {"story": "$34.story", "anchor": 0, "focus": 23}
+style.paragraph.apply {"name": "OTE Label", "clearOverrides": true}
+frame.create {"rect": [42, 574, 714, 596], "content": "text", "text": "OVER THE EDGE", "caret": false}
+object.textFrameOptions {"ids": ["$38.id"], "inset": 0, "columns": 1, "gutter": 12}
+text.select {"story": "$38.story", "anchor": 0, "focus": 13}
+style.paragraph.apply {"name": "OTE Caption", "clearOverrides": true}
+object.label {"ids": ["$38.id"], "label": "{\"templateId\": \"cover-framed-cards-border\", \"slotId\": \"cover-line\", \"role\": \"caption\", \"articleId\": null, \"pageId\": \"page-1\"}"}
+object.rename {"id": "$38.id", "name": "cover-line"}
+frame.create {"rect": [42, 604, 258, 746], "content": "unassigned"}
+object.fill {"ids": ["$44.id"], "swatch": "OTE Placeholder"}
+object.stroke {"ids": ["$44.id"], "weight": 0.5, "swatch": "OTE Green"}
+object.label {"ids": ["$44.id"], "label": "{\"templateId\": \"cover-framed-cards-border\", \"slotId\": \"cover-card-1\", \"role\": \"piece\", \"articleId\": null, \"pageId\": \"page-1\"}"}
+object.rename {"id": "$44.id", "name": "cover-card-1"}
+frame.create {"rect": [46, 608, 254, 742], "content": "text", "text": "03 · Selected article 1", "caret": false}
+object.textFrameOptions {"ids": ["$49.id"], "inset": 0, "columns": 1, "gutter": 12}
+text.select {"story": "$49.story", "anchor": 0, "focus": 24}
+style.paragraph.apply {"name": "OTE Label", "clearOverrides": true}
+frame.create {"rect": [270, 604, 486, 746], "content": "unassigned"}
+object.fill {"ids": ["$53.id"], "swatch": "OTE Placeholder"}
+object.stroke {"ids": ["$53.id"], "weight": 0.5, "swatch": "OTE Green"}
+object.label {"ids": ["$53.id"], "label": "{\"templateId\": \"cover-framed-cards-border\", \"slotId\": \"cover-card-2\", \"role\": \"piece\", \"articleId\": null, \"pageId\": \"page-1\"}"}
+object.rename {"id": "$53.id", "name": "cover-card-2"}
+frame.create {"rect": [274, 608, 482, 742], "content": "text", "text": "05 · Selected article 2", "caret": false}
+object.textFrameOptions {"ids": ["$58.id"], "inset": 0, "columns": 1, "gutter": 12}
+text.select {"story": "$58.story", "anchor": 0, "focus": 24}
+style.paragraph.apply {"name": "OTE Label", "clearOverrides": true}
+frame.create {"rect": [498, 604, 714, 746], "content": "unassigned"}
+object.fill {"ids": ["$62.id"], "swatch": "OTE Placeholder"}
+object.stroke {"ids": ["$62.id"], "weight": 0.5, "swatch": "OTE Green"}
+object.label {"ids": ["$62.id"], "label": "{\"templateId\": \"cover-framed-cards-border\", \"slotId\": \"cover-card-3\", \"role\": \"piece\", \"articleId\": null, \"pageId\": \"page-1\"}"}
+object.rename {"id": "$62.id", "name": "cover-card-3"}
+frame.create {"rect": [502, 608, 710, 742], "content": "text", "text": "10 · Selected article 3", "caret": false}
+object.textFrameOptions {"ids": ["$67.id"], "inset": 0, "columns": 1, "gutter": 12}
+text.select {"story": "$67.story", "anchor": 0, "focus": 24}
+style.paragraph.apply {"name": "OTE Label", "clearOverrides": true}
+preflight.run {"minPpi": 150}
+document.inspect {}
+file.saveAs {"path": "/workspace/OTEManager/public/designcraft/native-examples/cover-framed-cards-border/page.designcraft"}

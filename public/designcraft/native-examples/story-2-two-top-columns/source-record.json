@@ -1,0 +1,19 @@
+{
+  "issue": null,
+  "articles": [
+    {
+      "id": "example-1",
+      "title": "Example story 1",
+      "author": "Example author",
+      "body": "This is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.\n\nThis is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.\n\nThis is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.\n\n",
+      "photos": []
+    },
+    {
+      "id": "example-2",
+      "title": "Example story 2",
+      "author": "Example author",
+      "body": "This is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.\n\nThis is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.\n\nThis is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.\n\n",
+      "photos": []
+    }
+  ]
+}

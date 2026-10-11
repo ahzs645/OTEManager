@@ -1,0 +1,7 @@
+# PDF files may contain only printable bytes but must not be reviewed as text.
+*.pdf binary
+*.idml binary
+*.designcraft binary
+
+# Preserve the upstream font licence notices byte-for-byte.
+**/OFL-*.txt whitespace=-blank-at-eol

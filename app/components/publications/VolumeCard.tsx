@@ -155,10 +155,10 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
     }
   }
 
-  const handleExportIssue = async (issueId: string, issueNumber: number) => {
+  const handleExportIssue = async (issueId: string, issueNumber: number, format?: 'designcraft') => {
     setExportingIssueId(issueId)
     try {
-      const response = await fetch(`/api/exportIssue/${issueId}`)
+      const response = await fetch(`/api/exportIssue/${issueId}${format ? '?format=designcraft' : ''}`)
       if (!response.ok) {
         const errorData = await response.json()
         alert(`Export failed: ${errorData.error || 'Unknown error'}`)
@@ -169,7 +169,7 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
       const url = window.URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
-      a.download = `Volume_${volume.volumeNumber}_Issue_${issueNumber}_Export.zip`
+      a.download = `Volume_${volume.volumeNumber}_Issue_${issueNumber}_${format ? 'DesignCraft' : 'Export'}.zip`
       document.body.appendChild(a)
       a.click()
       window.URL.revokeObjectURL(url)
@@ -372,6 +372,7 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
                       onEdit={() => startEditIssue(issue)}
                       onDelete={() => handleDeleteIssue(issue.id)}
                       onExport={() => handleExportIssue(issue.id, issue.issueNumber)}
+                      onDesignCraftExport={() => handleExportIssue(issue.id, issue.issueNumber, 'designcraft')}
                       isExporting={exportingIssueId === issue.id}
                     />
                   )}

@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "ote.designcraft.build.v1",
+  "templateId": "story-1-top-balanced",
+  "sourceArticleIds": [
+    "example-1"
+  ],
+  "illustrative": true,
+  "pageId": "page-1",
+  "pageNumber": 1,
+  "slots": [
+    {
+      "templateId": "story-1-top-balanced",
+      "slotId": "headline-1",
+      "role": "headline",
+      "articleId": "example-1",
+      "pageId": "page-1",
+      "commandIndex": 10
+    },
+    {
+      "templateId": "story-1-top-balanced",
+      "slotId": "byline-2",
+      "role": "byline",
+      "articleId": "example-1",
+      "pageId": "page-1",
+      "commandIndex": 16
+    },
+    {
+      "templateId": "story-1-top-balanced",
+      "slotId": "photo-3",
+      "role": "photo",
+      "articleId": "example-1",
+      "pageId": "page-1",
+      "commandIndex": 22
+    },
+    {
+      "templateId": "story-1-top-balanced",
+      "slotId": "caption-4",
+      "role": "caption",
+      "articleId": "example-1",
+      "pageId": "page-1",
+      "commandIndex": 31
+    },
+    {
+      "templateId": "story-1-top-balanced",
+      "slotId": "body-5",
+      "role": "body",
+      "articleId": "example-1",
+      "pageId": "page-1",
+      "commandIndex": 37
+    },
+    {
+      "templateId": "story-1-top-balanced",
+      "slotId": "folio-6",
+      "role": "folio",
+      "articleId": null,
+      "pageId": "page-1",
+      "commandIndex": 43
+    }
+  ],
+  "copyPreserved": true,
+  "copyScope": "native-article-bodies",
+  "articleBodiesInNative": true,
+  "focalPointRequests": [],
+  "fonts": [
+    "Source Sans 3",
+    "Source Serif 4"
+  ],
+  "status": "exported",
+  "errors": [],
+  "warnings": [
+    "photo-3: no media supplied; boundary placeholder drawn"
+  ],
+  "originalCoverAndTruck": "Requires original native issue; not modified by this single-page compiler",
+  "adobeInDesignTested": false
+}

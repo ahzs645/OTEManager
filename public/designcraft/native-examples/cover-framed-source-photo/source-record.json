@@ -1,0 +1,27 @@
+{
+  "issue": {
+    "id": "illustrative-cover-demo",
+    "title": "OVER THE EDGE",
+    "volume": 31,
+    "number": 3,
+    "year": 2024,
+    "date": "2024-11-14"
+  },
+  "articles": [
+    {
+      "id": "illustrative-selected-1",
+      "title": "Illustrative selected article",
+      "body": "Full article copy remains in the source record for a subsequent interior page.",
+      "author": "Example author",
+      "photos": [
+        {
+          "id": "source-cover-photo",
+          "path": "/workspace/OTEManager/public/designcraft/assets/source-cover-photo.jpeg",
+          "caption": "Recovered original cover image; example layout",
+          "photoNumber": 1,
+          "mimeType": "image/jpeg"
+        }
+      ]
+    }
+  ]
+}

@@ -8,6 +8,7 @@ interface IssueRowProps {
   onEdit: () => void
   onDelete: () => void
   onExport: () => void
+  onDesignCraftExport: () => void
   isExporting: boolean
 }
 
@@ -17,6 +18,7 @@ export function IssueRow({
   onEdit,
   onDelete,
   onExport,
+  onDesignCraftExport,
   isExporting,
 }: IssueRowProps) {
   return (
@@ -65,6 +67,15 @@ export function IssueRow({
           {issue.articleCount} article{issue.articleCount !== 1 ? 's' : ''}
         </Link>
         <div style={{ display: 'flex', gap: '0.25rem' }}>
+          <button
+            className="btn btn-ghost btn-sm"
+            onClick={onDesignCraftExport}
+            disabled={isExporting || issue.articleCount === 0}
+            title={issue.articleCount === 0 ? 'No articles to export' : 'Export Markdown and media for DesignCraft layouts'}
+            style={{ fontSize: '0.75rem', color: 'var(--accent)' }}
+          >
+            DesignCraft ZIP
+          </button>
           <button
             className="btn btn-ghost btn-sm"
             onClick={onExport}

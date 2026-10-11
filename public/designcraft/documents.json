@@ -1,0 +1,474 @@
+{
+  "schemaVersion": 1,
+  "sourceArchive": "OneDrive_2026-10-09.zip",
+  "documents": [
+    {
+      "id": "cover-page-issue-3-lina-2dc29f52",
+      "title": "Cover Page -- issue 3 - Lina",
+      "category": "issue",
+      "pages": 17,
+      "bytes": 6565250,
+      "sha256": "2dc29f52db1488fecebd869762b895f021f35cfc925f2c108cdebf40f1d8aa2c",
+      "readingBytes": 6565250,
+      "optimizedReadingCopy": false,
+      "pdf": "pdfs/cover-page-issue-3-lina-2dc29f52.pdf",
+      "original": "originals/cover-page-issue-3-lina-2dc29f52.pdf",
+      "thumbnail": "thumbnails/cover-page-issue-3-lina-2dc29f52.jpg",
+      "sourcePaths": [
+        "Indesign Template/Fall 2024- Winter 2025/Issue 4/Final Issue 4/Cover Page -- issue 3 - Lina.pdf"
+      ],
+      "pageSize": [
+        756.0,
+        792.0
+      ],
+      "displayTitle": "December 2024 \u00b7 final layout"
+    },
+    {
+      "id": "cover-page-issue-3-lina-6dd82589",
+      "title": "Cover Page -- issue 3 - Lina",
+      "category": "issue",
+      "pages": 17,
+      "bytes": 6428956,
+      "sha256": "6dd825893953a1b049656a2ec41ef2c5513d215b8854351caf2ec47660fb72e5",
+      "readingBytes": 6428956,
+      "optimizedReadingCopy": false,
+      "pdf": "pdfs/cover-page-issue-3-lina-6dd82589.pdf",
+      "original": "originals/cover-page-issue-3-lina-6dd82589.pdf",
+      "thumbnail": "thumbnails/cover-page-issue-3-lina-6dd82589.jpg",
+      "sourcePaths": [
+        "Indesign Template/Archive from PG Citizen/PGC001100-ZZZZNE-20241114/Cover Page -- issue 3 - Lina.pdf",
+        "Indesign Template/Fall 2024- Winter 2025/Issue 3/Cover Page -- issue 3/Cover Page -- issue 3 - Lina.pdf",
+        "Indesign Template/Fall 2024- Winter 2025/Issue 3/Cover Page -- issue 3.zip!/Cover Page -- issue 3/Cover Page -- issue 3 - Lina.pdf"
+      ],
+      "pageSize": [
+        756.0,
+        792.0
+      ],
+      "displayTitle": "November 2024 \u00b7 Issue 3"
+    },
+    {
+      "id": "cover-page-issue-3-lina-de16e159",
+      "title": "Cover Page -- issue 3 - Lina",
+      "category": "issue",
+      "pages": 17,
+      "bytes": 4499193,
+      "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+      "readingBytes": 4499193,
+      "optimizedReadingCopy": false,
+      "pdf": "pdfs/cover-page-issue-3-lina-de16e159.pdf",
+      "original": "originals/cover-page-issue-3-lina-de16e159.pdf",
+      "thumbnail": "thumbnails/cover-page-issue-3-lina-de16e159.jpg",
+      "sourcePaths": [
+        "Indesign Template/Fall 2024- Winter 2025/Issue 4/PGC001100-ZZZZNE-20241205/Cover Page -- issue 3 - Lina.pdf"
+      ],
+      "pageSize": [
+        756.0,
+        792.0
+      ],
+      "displayTitle": "December 2024 \u00b7 print archive"
+    },
+    {
+      "id": "issue-1-sept-2025-741805e9",
+      "title": "Issue 1 Sept 2025",
+      "category": "issue",
+      "pages": 18,
+      "bytes": 5298422,
+      "sha256": "741805e923f0d604c01dda024bf66040d32257725682c05d1f28c21778ade43a",
+      "readingBytes": 5298422,
+      "optimizedReadingCopy": false,
+      "pdf": "pdfs/issue-1-sept-2025-741805e9.pdf",
+      "original": "originals/issue-1-sept-2025-741805e9.pdf",
+      "thumbnail": "thumbnails/issue-1-sept-2025-741805e9.jpg",
+      "sourcePaths": [
+        "Indesign Template/2025-2026 Ahmad's Version/Issue 1 Sept 2025.pdf"
+      ],
+      "pageSize": [
+        756.0,
+        792.0
+      ],
+      "displayTitle": "September 2025 \u00b7 Issue 1"
+    },
+    {
+      "id": "issue-2-october-2025-0eb630f7",
+      "title": "Issue 2 October 2025",
+      "category": "issue",
+      "pages": 16,
+      "bytes": 3153245,
+      "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+      "readingBytes": 3153245,
+      "optimizedReadingCopy": false,
+      "pdf": "pdfs/issue-2-october-2025-0eb630f7.pdf",
+      "original": "originals/issue-2-october-2025-0eb630f7.pdf",
+      "thumbnail": "thumbnails/issue-2-october-2025-0eb630f7.jpg",
+      "sourcePaths": [
+        "Indesign Template/2025-2026 Ahmad's Version/Issue 2/Issue 2 October 2025 Folder/Issue 2 October 2025.pdf",
+        "Indesign Template/2025-2026 Ahmad's Version/Issue 2_design.zip!/Issue 2/Issue 2 October 2025 Folder/Issue 2 October 2025.pdf"
+      ],
+      "pageSize": [
+        756.0,
+        792.0
+      ],
+      "displayTitle": "October 2025 \u00b7 Issue 2"
+    },
+    {
+      "id": "issue-5-ba123d17",
+      "title": "Issue 5",
+      "category": "issue",
+      "pages": 17,
+      "bytes": 4089100,
+      "sha256": "ba123d177cdf5fd7a1cdd9e8a8617ccedf7bdb484050b0f327590c8387a296e6",
+      "readingBytes": 4089100,
+      "optimizedReadingCopy": false,
+      "pdf": "pdfs/issue-5-ba123d17.pdf",
+      "original": "originals/issue-5-ba123d17.pdf",
+      "thumbnail": "thumbnails/issue-5-ba123d17.jpg",
+      "sourcePaths": [
+        "Indesign Template/Fall 2024- Winter 2025/Issue 5/Issue 5 Folder.zip!/Issue 5 Folder/Issue 5.pdf",
+        "Indesign Template/Fall 2024- Winter 2025/Issue 5/Issue 5 Folder/Issue 5.pdf"
+      ],
+      "pageSize": [
+        756.0,
+        792.0
+      ],
+      "displayTitle": "Winter 2025 \u00b7 Issue 5"
+    },
+    {
+      "id": "issue-6-feb-2025-5ed75bab",
+      "title": "Issue 6 Feb 2025",
+      "category": "issue",
+      "pages": 17,
+      "bytes": 26064863,
+      "sha256": "5ed75bab165062053148e8970def293393356c7973ccf8a03ad38d1d11e9cdb7",
+      "readingBytes": 5778072,
+      "optimizedReadingCopy": true,
+      "pdf": "pdfs/issue-6-feb-2025-5ed75bab.pdf",
+      "original": "originals/issue-6-feb-2025-5ed75bab.pdf",
+      "thumbnail": "thumbnails/issue-6-feb-2025-5ed75bab.jpg",
+      "sourcePaths": [
+        "Indesign Template/Fall 2024- Winter 2025/Issue 6 Feb/Issue 6 Feb 2025 Folder/Issue 6 Feb 2025.pdf"
+      ],
+      "pageSize": [
+        756.0,
+        792.0
+      ],
+      "displayTitle": "February 2025 \u00b7 current revision"
+    },
+    {
+      "id": "issue-6-feb-2025-b91aa3a0",
+      "title": "Issue 6 Feb 2025",
+      "category": "issue",
+      "pages": 17,
+      "bytes": 31834198,
+      "sha256": "b91aa3a0ecd76aa3200dbe756f937cfe096822106c16003e5ae652aa4c45cc8b",
+      "readingBytes": 6168959,
+      "optimizedReadingCopy": true,
+      "pdf": "pdfs/issue-6-feb-2025-b91aa3a0.pdf",
+      "original": "originals/issue-6-feb-2025-b91aa3a0.pdf",
+      "thumbnail": "thumbnails/issue-6-feb-2025-b91aa3a0.jpg",
+      "sourcePaths": [
+        "Indesign Template/Fall 2024- Winter 2025/Issue 6 Feb/Archive/Issue 6 Feb 2025 Folder/Issue 6 Feb 2025.pdf",
+        "Indesign Template/Fall 2024- Winter 2025/Issue 6 Feb/Archive/Issue 6 Feb 2025 Folder q/Issue 6 Feb 2025.pdf"
+      ],
+      "pageSize": [
+        756.0,
+        792.0
+      ],
+      "displayTitle": "February 2025 \u00b7 archived revision"
+    },
+    {
+      "id": "issue-7-march-2025-dfcbb959",
+      "title": "Issue 7 March 2025",
+      "category": "issue",
+      "pages": 17,
+      "bytes": 25450868,
+      "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+      "readingBytes": 4402338,
+      "optimizedReadingCopy": true,
+      "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+      "original": "originals/issue-7-march-2025-dfcbb959.pdf",
+      "thumbnail": "thumbnails/issue-7-march-2025-dfcbb959.jpg",
+      "sourcePaths": [
+        "Indesign Template/Fall 2024- Winter 2025/Issue 7 March 2025/Issue 7 March 2025 Folder/Issue 7 March 2025.pdf"
+      ],
+      "pageSize": [
+        756.0,
+        792.0
+      ],
+      "displayTitle": "March 2025 \u00b7 Issue 7"
+    },
+    {
+      "id": "greatwhite-36b7e6a0",
+      "title": "GreatWhite",
+      "category": "asset",
+      "pages": 1,
+      "bytes": 969831,
+      "sha256": "36b7e6a09af5a812545bae71c1cb5f36e5fe7bb72aa26cae847d1005d9df6719",
+      "readingBytes": 969831,
+      "optimizedReadingCopy": false,
+      "pdf": "pdfs/greatwhite-36b7e6a0.pdf",
+      "original": "originals/greatwhite-36b7e6a0.pdf",
+      "thumbnail": "thumbnails/greatwhite-36b7e6a0.jpg",
+      "sourcePaths": [
+        "Indesign Template/Fall 2024- Winter 2025/Issue 2/Cover Page -- issue 2 - Lina Folder/Links/GreatWhite.pdf",
+        "Indesign Template/Fall 2024- Winter 2025/Issue 3/Links/GreatWhite.pdf"
+      ],
+      "pageSize": [
+        684.0,
+        345.6000061035156
+      ]
+    },
+    {
+      "id": "uride-x-citizen-unbc-23a7e247",
+      "title": "Uride x Citizen UNBC",
+      "category": "asset",
+      "pages": 1,
+      "bytes": 416535,
+      "sha256": "23a7e247746b1d6b6e44fdc87ade0ab9ed2f6688b4d0cfcd6fa66a426bb3f702",
+      "readingBytes": 416535,
+      "optimizedReadingCopy": false,
+      "pdf": "pdfs/uride-x-citizen-unbc-23a7e247.pdf",
+      "original": "originals/uride-x-citizen-unbc-23a7e247.pdf",
+      "thumbnail": "thumbnails/uride-x-citizen-unbc-23a7e247.jpg",
+      "sourcePaths": [
+        "Indesign Template/Fall 2024- Winter 2025/Issue 2/Cover Page -- issue 2 - Lina Folder/Links/Uride x Citizen UNBC.pdf",
+        "Indesign Template/Fall 2024- Winter 2025/Issue 3/Links/Uride x Citizen UNBC.pdf"
+      ],
+      "pageSize": [
+        334.49005126953125,
+        345.69537353515625
+      ]
+    },
+    {
+      "id": "logo-052e0d08",
+      "title": "logo",
+      "category": "asset",
+      "pages": 1,
+      "bytes": 47417,
+      "sha256": "052e0d087cdc5c390079a30b61fbeb51d873ce2acef7b0b542896efccd005e40",
+      "readingBytes": 47417,
+      "optimizedReadingCopy": false,
+      "pdf": "pdfs/logo-052e0d08.pdf",
+      "original": "originals/logo-052e0d08.pdf",
+      "thumbnail": "thumbnails/logo-052e0d08.jpg",
+      "sourcePaths": [
+        "Indesign Template/Fall 2024- Winter 2025/Issue 2/Cover Page -- issue 2 - Lina Folder/Links/logo.pdf",
+        "Indesign Template/Fall 2024- Winter 2025/Issue 3/Links/logo.pdf"
+      ],
+      "pageSize": [
+        792.0,
+        612.0
+      ]
+    },
+    {
+      "id": "proof-reconstructed-template-catalogue",
+      "title": "Reconstructed Template Catalogue",
+      "category": "reconstructed",
+      "pages": 104,
+      "bytes": 90588,
+      "pdf": "pdfs/reconstructed-template-catalogue.pdf",
+      "thumbnail": "thumbnails/proof-reconstructed-template-catalogue.jpg",
+      "sourcePaths": [],
+      "sha256": "c16d84342916b6c0cd2fd60dbddfc317e50892da9ce6cfb475b2327c89aa1475"
+    },
+    {
+      "id": "proof-implementation-guide",
+      "title": "Implementation Guide",
+      "category": "reconstructed",
+      "pages": 3,
+      "bytes": 4960,
+      "pdf": "pdfs/implementation-guide.pdf",
+      "thumbnail": "thumbnails/proof-implementation-guide.jpg",
+      "sourcePaths": [],
+      "sha256": "98fa5bfcc5cdbe31a571284e3f16ed26a90c41380b4a6d7a8764acc975c56fa4"
+    },
+    {
+      "id": "proof-ad-half-bottom",
+      "title": "Native DesignCraft \u00b7 ad half bottom",
+      "category": "reconstructed",
+      "pages": 1,
+      "bytes": 7923,
+      "pdf": "native-examples/ad-half-bottom/page.pdf",
+      "thumbnail": "thumbnails/proof-ad-half-bottom.jpg",
+      "sourcePaths": [],
+      "sha256": "1307a50cebef2f0c395cdb4b8c19b5906fbb503d1b689d4b5905c06573257031"
+    },
+    {
+      "id": "proof-cover-framed-cards-border",
+      "title": "Native DesignCraft \u00b7 cover framed cards border",
+      "category": "reconstructed",
+      "pages": 1,
+      "bytes": 147862,
+      "pdf": "native-examples/cover-framed-cards-border/page.pdf",
+      "thumbnail": "thumbnails/proof-cover-framed-cards-border.jpg",
+      "sourcePaths": [],
+      "sha256": "b415e1b2a8bc49b7ba82c6d7b9f921329c0af917062d2985fa2ace02e30d3095"
+    },
+    {
+      "id": "proof-cover-framed-source-photo",
+      "title": "Native DesignCraft \u00b7 cover framed source photo",
+      "category": "reconstructed",
+      "pages": 1,
+      "bytes": 1835341,
+      "pdf": "native-examples/cover-framed-source-photo/page.pdf",
+      "thumbnail": "thumbnails/proof-cover-framed-source-photo.jpg",
+      "sourcePaths": [],
+      "sha256": "fcd18b618fe449d6869c32b9b217c8081cc7a07b0485d574d660cf25a4cf3b01"
+    },
+    {
+      "id": "proof-piece-president-qa",
+      "title": "Native DesignCraft \u00b7 piece president qa",
+      "category": "reconstructed",
+      "pages": 1,
+      "bytes": 10078,
+      "pdf": "native-examples/piece-president-qa/page.pdf",
+      "thumbnail": "thumbnails/proof-piece-president-qa.jpg",
+      "sourcePaths": [],
+      "sha256": "caac7a9b0bec82b92d89131f87e354d7b72892c0060a71f867336bd01866a6e5"
+    },
+    {
+      "id": "proof-story-1-top-balanced",
+      "title": "Native DesignCraft \u00b7 story 1 top balanced",
+      "category": "reconstructed",
+      "pages": 1,
+      "bytes": 29880,
+      "pdf": "native-examples/story-1-top-balanced/page.pdf",
+      "thumbnail": "thumbnails/proof-story-1-top-balanced.jpg",
+      "sourcePaths": [],
+      "sha256": "1a213392e4280cc8a22f45e65e1eacac1aee91beb111ea26888e4c63f27e1c3c"
+    },
+    {
+      "id": "proof-story-2-two-top-columns",
+      "title": "Native DesignCraft \u00b7 story 2 two top columns",
+      "category": "reconstructed",
+      "pages": 1,
+      "bytes": 30254,
+      "pdf": "native-examples/story-2-two-top-columns/page.pdf",
+      "thumbnail": "thumbnails/proof-story-2-two-top-columns.jpg",
+      "sourcePaths": [],
+      "sha256": "f012a952749b854f47cd4dae544111a764cb65a61436d67d66bb710aecd057de"
+    },
+    {
+      "id": "proof-story-3-none-columns",
+      "title": "Native DesignCraft \u00b7 story 3 none columns",
+      "category": "reconstructed",
+      "pages": 1,
+      "bytes": 27393,
+      "pdf": "native-examples/story-3-none-columns/page.pdf",
+      "thumbnail": "thumbnails/proof-story-3-none-columns.jpg",
+      "sourcePaths": [],
+      "sha256": "67a3480938118c9ec43899f87996e776040123ea19beac1c7e13ba6267f22b6f"
+    }
+  ],
+  "idml": [
+    {
+      "path": "source-idml/issue-2-october-2025-c98939e6.idml",
+      "sha256": "c98939e689d0c67bfc029ea800b6b2dce3da9c5e0764089518d38037a2ba5eaf",
+      "sourcePaths": [
+        "Indesign Template/2025-2026 Ahmad's Version/Issue 2/Issue 2 October 2025 Folder/Issue 2 October 2025.idml",
+        "Indesign Template/2025-2026 Ahmad's Version/Issue 2_design.zip!/Issue 2/Issue 2 October 2025 Folder/Issue 2 October 2025.idml"
+      ]
+    },
+    {
+      "path": "source-idml/issue-1-sept-2025-7a5b7a69.idml",
+      "sha256": "7a5b7a697a64a9d78ef3860e73d1e4f19830ca2d58d0e9c03b2bcfc1fcde8628",
+      "sourcePaths": [
+        "Indesign Template/2025-2026 Ahmad's Version/Issue 1 Sept 2025.idml"
+      ]
+    },
+    {
+      "path": "source-idml/ote-20241024-5de141de.idml",
+      "sha256": "5de141dec35e074ad2eaf2d1d427672d164cd6140dcb1f7682d85dbec75240c0",
+      "sourcePaths": [
+        "Indesign Template/Archive from PG Citizen/OTE-20241024 Folder/OTE-20241024.idml"
+      ]
+    },
+    {
+      "path": "source-idml/cover-page-issue-3-lina-a8e3ae7d.idml",
+      "sha256": "a8e3ae7d0bef723679545dab0da03cb0e77ca0f4e2a1b86a89506722b734a4c1",
+      "sourcePaths": [
+        "Indesign Template/Archive from PG Citizen/PGC001100-ZZZZNE-20241114/Cover Page -- issue 3 - Lina.idml",
+        "Indesign Template/Fall 2024- Winter 2025/Issue 3/Cover Page -- issue 3/Cover Page -- issue 3 - Lina.idml",
+        "Indesign Template/Fall 2024- Winter 2025/Issue 3/Cover Page -- issue 3.zip!/Cover Page -- issue 3/Cover Page -- issue 3 - Lina.idml"
+      ]
+    },
+    {
+      "path": "source-idml/cover-page-issue-3-lina-66de36f6.idml",
+      "sha256": "66de36f68984351a5038dfbe7044da754d84220556970d1c2b2cf7de6d57bd54",
+      "sourcePaths": [
+        "Indesign Template/Archive from PG Citizen/PGC001100-ZZZZNE-20241114/Cover Page -- issue 3 - Lina Folder/Cover Page -- issue 3 - Lina.idml"
+      ]
+    },
+    {
+      "path": "source-idml/cover-page-issue-2-lina-a1b8dda3.idml",
+      "sha256": "a1b8dda3269c37c475fade291d79b6e068554dc584ad3a963d19ed74421219e2",
+      "sourcePaths": [
+        "Indesign Template/Fall 2024- Winter 2025/Issue 2/Cover Page -- issue 2 - Lina Folder/Cover Page -- issue 2 - Lina.idml",
+        "Indesign Template/Fall 2024- Winter 2025/Issue 3/Cover Page -- issue 2 - Lina.idml"
+      ]
+    },
+    {
+      "path": "source-idml/cover-page-issue-3-lina-db450802.idml",
+      "sha256": "db450802a8ab52ffe7507d70c698e72bd89ddafbe7f9806747e64350fb39be95",
+      "sourcePaths": [
+        "Indesign Template/Fall 2024- Winter 2025/Issue 4/Final Issue 4/Cover Page -- issue 3 - Lina.idml"
+      ]
+    },
+    {
+      "path": "source-idml/cover-page-issue-3-lina-b4b35ce4.idml",
+      "sha256": "b4b35ce4a9806030f83cce04aa24dcac1cba7de61a1d245bf8aa04b291a9dd55",
+      "sourcePaths": [
+        "Indesign Template/Fall 2024- Winter 2025/Issue 4/PGC001100-ZZZZNE-20241205/Cover Page -- issue 3 - Lina.idml"
+      ]
+    },
+    {
+      "path": "source-idml/issue-5-5f404889.idml",
+      "sha256": "5f4048899b926d78ab54ec44f4a76360e940274701db287693e84257ee3dc5e2",
+      "sourcePaths": [
+        "Indesign Template/Fall 2024- Winter 2025/Issue 5/Issue 5 Folder.zip!/Issue 5 Folder/Issue 5.idml",
+        "Indesign Template/Fall 2024- Winter 2025/Issue 5/Issue 5 Folder/Issue 5.idml"
+      ]
+    },
+    {
+      "path": "source-idml/issue-6-feb-2025-ff0c4263.idml",
+      "sha256": "ff0c42636dd4402d3324faea45f0873be463643c0840368e72cd399ea781d4b7",
+      "sourcePaths": [
+        "Indesign Template/Fall 2024- Winter 2025/Issue 6 Feb/Archive/Issue 6 Feb 2025 Folder/Issue 6 Feb 2025.idml",
+        "Indesign Template/Fall 2024- Winter 2025/Issue 6 Feb/Archive/Issue 6 Feb 2025 Folder q/Issue 6 Feb 2025.idml"
+      ]
+    },
+    {
+      "path": "source-idml/issue-6-feb-2025-8395eefe.idml",
+      "sha256": "8395eefedc9d3cc5c2eb023b5f25559e76d8781b192f75d4580ef065a1470404",
+      "sourcePaths": [
+        "Indesign Template/Fall 2024- Winter 2025/Issue 6 Feb/Issue 6 Feb 2025 Folder/Issue 6 Feb 2025.idml"
+      ]
+    },
+    {
+      "path": "source-idml/issue-7-march-2025-da7e3ca1.idml",
+      "sha256": "da7e3ca113e50cbdc1c90965c92ed32e8fdc390fd49e90ef05a8b0807c599d67",
+      "sourcePaths": [
+        "Indesign Template/Fall 2024- Winter 2025/Issue 7 March 2025/Issue 7 March 2025 Folder/Issue 7 March 2025.idml"
+      ]
+    }
+  ],
+  "fontFileNames": [
+    "Decalotype-Black.otf",
+    "Decalotype-Black.ttf",
+    "Decalotype-Bold.otf",
+    "Decalotype-Bold.ttf",
+    "Decalotype-Medium.ttf",
+    "Helvetica.ttc",
+    "HelveticaNeue.ttc",
+    "HelveticaNeueBold.otf",
+    "HelveticaNeueBoldItalic.otf",
+    "HelveticaNeueHeavy.otf",
+    "HelveticaNeueLight.otf",
+    "Kefa.ttc",
+    "MinionPro-Regular.otf",
+    "Times New Roman Italic.ttf",
+    "Times New Roman.ttf",
+    "beyond_the_mountains.ttf"
+  ],
+  "logoSource": "Indesign Template/Archive from PG Citizen/PGC001100-ZZZZNE-20241114/Links/OTE_Logo_CMYK(Print)_Horizontal Logo Full Color Green_1.png",
+  "provenance": "Recovered from the user-supplied source archive. Original PDFs are byte-identical; duplicate files share one record."
+}

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "ote.designcraft.build.v1",
+  "templateId": "ad-half-bottom",
+  "sourceArticleIds": [],
+  "illustrative": true,
+  "pageId": "page-1",
+  "pageNumber": 1,
+  "slots": [
+    {
+      "templateId": "ad-half-bottom",
+      "slotId": "ad-1",
+      "role": "ad",
+      "articleId": null,
+      "pageId": "page-1",
+      "commandIndex": 10
+    }
+  ],
+  "copyPreserved": true,
+  "copyScope": "native-article-bodies",
+  "articleBodiesInNative": true,
+  "focalPointRequests": [],
+  "fonts": [
+    "Source Sans 3",
+    "Source Serif 4"
+  ],
+  "status": "exported",
+  "errors": [],
+  "warnings": [
+    "ad-1: no media supplied; boundary placeholder drawn"
+  ],
+  "originalCoverAndTruck": "Requires original native issue; not modified by this single-page compiler",
+  "adobeInDesignTested": false
+}

@@ -1,0 +1,3 @@
+file.open {"path": "/workspace/OTEManager/public/designcraft/native-examples/ad-half-bottom/page.designcraft"}
+file.exportPdf {"path": "/workspace/OTEManager/public/designcraft/native-examples/ad-half-bottom/page.pdf"}
+file.exportIdml {"path": "/workspace/OTEManager/public/designcraft/native-examples/ad-half-bottom/page.idml"}

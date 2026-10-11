@@ -8,6 +8,7 @@ import {
   Copy,
   Files,
   Banknote,
+  PanelsTopLeft,
 } from 'lucide-react'
 
 export const Route = createFileRoute('/utilities/')({
@@ -15,6 +16,13 @@ export const Route = createFileRoute('/utilities/')({
 })
 
 const utilities = [
+  {
+    id: 'designcraft',
+    path: '/utilities/designcraft',
+    title: 'DesignCraft layouts',
+    description: 'Browse reusable page templates and PDF previews, and plan an issue from a DesignCraft export',
+    icon: PanelsTopLeft,
+  },
   {
     id: 'wp-export',
     path: '/utilities/wp-export',

@@ -1,0 +1,20 @@
+{
+  "completed": 3,
+  "results": [
+    {
+      "documentFonts": 5,
+      "index": 1,
+      "warnings": []
+    },
+    {
+      "bytes": 30254,
+      "pages": 1,
+      "path": "/workspace/OTEManager/public/designcraft/native-examples/story-2-two-top-columns/page.pdf",
+      "warnings": []
+    },
+    {
+      "bytes": 15731,
+      "path": "/workspace/OTEManager/public/designcraft/native-examples/story-2-two-top-columns/page.idml"
+    }
+  ]
+}

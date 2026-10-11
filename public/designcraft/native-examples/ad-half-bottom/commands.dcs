@@ -1,0 +1,22 @@
+file.new {"width": 756, "height": 792, "pages": 1, "facingPages": false, "margins": 36, "title": "Advertisement · half bottom"}
+layout.documentSetup {"startPage": 1, "intent": "print"}
+swatch.create {"name": "OTE Green", "color": {"c": 70, "m": 30, "y": 75, "k": 40}}
+swatch.create {"name": "OTE Placeholder", "color": {"c": 10, "m": 3, "y": 8, "k": 0}}
+style.paragraph.create {"name": "OTE Headline", "para": {"spaceAfter": 4, "hyphenate": false}, "chars": {"fontFamily": "Source Sans 3", "fontStyle": "Bold", "size": 24, "leading": {"kind": "points", "value": 27}}}
+style.paragraph.create {"name": "OTE Body", "para": {"spaceAfter": 4, "hyphenate": true}, "chars": {"fontFamily": "Source Serif 4", "fontStyle": "Regular", "size": 10, "leading": {"kind": "points", "value": 12}}}
+style.paragraph.create {"name": "OTE Byline", "para": {"spaceAfter": 4, "hyphenate": false}, "chars": {"fontFamily": "Source Sans 3", "fontStyle": "Semibold", "size": 9, "leading": {"kind": "points", "value": 11}}}
+style.paragraph.create {"name": "OTE Caption", "para": {"spaceAfter": 4, "hyphenate": false}, "chars": {"fontFamily": "Source Sans 3", "fontStyle": "Regular", "size": 8, "leading": {"kind": "points", "value": 10}}}
+style.paragraph.create {"name": "OTE Label", "para": {"spaceAfter": 4, "hyphenate": false}, "chars": {"fontFamily": "Source Sans 3", "fontStyle": "Semibold", "size": 12, "leading": {"kind": "points", "value": 15}}}
+style.paragraph.create {"name": "OTE Folio", "para": {"spaceAfter": 4, "hyphenate": false}, "chars": {"fontFamily": "Source Sans 3", "fontStyle": "Regular", "size": 8, "leading": {"kind": "points", "value": 10}}}
+frame.create {"rect": [36, 402, 720, 756], "content": "unassigned"}
+object.fill {"ids": ["$10.id"], "swatch": "OTE Placeholder"}
+object.stroke {"ids": ["$10.id"], "weight": 0.5, "swatch": "OTE Green"}
+object.label {"ids": ["$10.id"], "label": "{\"templateId\": \"ad-half-bottom\", \"slotId\": \"ad-1\", \"role\": \"ad\", \"articleId\": null, \"pageId\": \"page-1\"}"}
+object.rename {"id": "$10.id", "name": "ad-1"}
+frame.create {"rect": [40, 406, 716, 442], "content": "text", "text": "RESERVED ADVERTISEMENT", "caret": false}
+object.textFrameOptions {"ids": ["$15.id"], "inset": 0, "columns": 1, "gutter": 12}
+text.select {"story": "$15.story", "anchor": 0, "focus": 22}
+style.paragraph.apply {"name": "OTE Label", "clearOverrides": true}
+preflight.run {"minPpi": 150}
+document.inspect {}
+file.saveAs {"path": "/workspace/OTEManager/public/designcraft/native-examples/ad-half-bottom/page.designcraft"}

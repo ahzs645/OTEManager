@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "ote.designcraft.build.v1",
+  "templateId": "cover-framed-cards-border",
+  "sourceArticleIds": [
+    "illustrative-selected-1"
+  ],
+  "illustrative": true,
+  "pageId": "page-1",
+  "pageNumber": 1,
+  "slots": [
+    {
+      "templateId": "cover-framed-cards-border",
+      "slotId": "cover-logo",
+      "role": "photo",
+      "articleId": null,
+      "pageId": "page-1",
+      "commandIndex": 12
+    },
+    {
+      "templateId": "cover-framed-cards-border",
+      "slotId": "cover-date",
+      "role": "headline",
+      "articleId": null,
+      "pageId": "page-1",
+      "commandIndex": 17
+    },
+    {
+      "templateId": "cover-framed-cards-border",
+      "slotId": "cover-issue",
+      "role": "byline",
+      "articleId": null,
+      "pageId": "page-1",
+      "commandIndex": 23
+    },
+    {
+      "templateId": "cover-framed-cards-border",
+      "slotId": "cover-photo",
+      "role": "photo",
+      "articleId": "illustrative-selected-1",
+      "pageId": "page-1",
+      "commandIndex": 29
+    },
+    {
+      "templateId": "cover-framed-cards-border",
+      "slotId": "cover-line",
+      "role": "caption",
+      "articleId": null,
+      "pageId": "page-1",
+      "commandIndex": 34
+    },
+    {
+      "templateId": "cover-framed-cards-border",
+      "slotId": "cover-card-1",
+      "role": "piece",
+      "articleId": "illustrative-selected-1",
+      "pageId": "page-1",
+      "commandIndex": 40
+    },
+    {
+      "templateId": "cover-framed-cards-border",
+      "slotId": "cover-card-2",
+      "role": "piece",
+      "articleId": null,
+      "pageId": "page-1",
+      "commandIndex": 49
+    },
+    {
+      "templateId": "cover-framed-cards-border",
+      "slotId": "cover-card-3",
+      "role": "piece",
+      "articleId": null,
+      "pageId": "page-1",
+      "commandIndex": 58
+    }
+  ],
+  "copyPreserved": true,
+  "copyScope": "source-record-article-bodies",
+  "articleBodiesInNative": false,
+  "focalPointRequests": [
+    {
+      "slotId": "cover-photo",
+      "requestedFocus": {
+        "x": 0.8,
+        "y": 0.6
+      },
+      "nativeCrop": "focal-point",
+      "exactFocusApplied": true,
+      "imageSize": [
+        3421.0,
+        1771.0
+      ],
+      "frameRect": [
+        42,
+        154,
+        714,
+        566
+      ],
+      "transform": [
+        0.2326369282891022,
+        0,
+        0,
+        0.2326369282891022,
+        -81.8509316770187,
+        154.0
+      ]
+    }
+  ],
+  "fonts": [
+    "Source Sans 3",
+    "Source Serif 4"
+  ],
+  "status": "exported",
+  "errors": [],
+  "warnings": [
+    "cover-card-1: no media supplied; boundary placeholder drawn",
+    "cover-card-2: no media supplied; boundary placeholder drawn",
+    "cover-card-3: no media supplied; boundary placeholder drawn"
+  ],
+  "originalCoverAndTruck": "Requires original native issue; not modified by this single-page compiler",
+  "adobeInDesignTested": false
+}

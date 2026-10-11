@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "ote.designcraft.build.v1",
+  "templateId": "cover-framed-cards-border",
+  "sourceArticleIds": [],
+  "illustrative": true,
+  "pageId": "page-1",
+  "pageNumber": 1,
+  "slots": [
+    {
+      "templateId": "cover-framed-cards-border",
+      "slotId": "cover-logo",
+      "role": "photo",
+      "articleId": null,
+      "pageId": "page-1",
+      "commandIndex": 12
+    },
+    {
+      "templateId": "cover-framed-cards-border",
+      "slotId": "cover-date",
+      "role": "headline",
+      "articleId": null,
+      "pageId": "page-1",
+      "commandIndex": 17
+    },
+    {
+      "templateId": "cover-framed-cards-border",
+      "slotId": "cover-issue",
+      "role": "byline",
+      "articleId": null,
+      "pageId": "page-1",
+      "commandIndex": 23
+    },
+    {
+      "templateId": "cover-framed-cards-border",
+      "slotId": "cover-photo",
+      "role": "photo",
+      "articleId": null,
+      "pageId": "page-1",
+      "commandIndex": 29
+    },
+    {
+      "templateId": "cover-framed-cards-border",
+      "slotId": "cover-line",
+      "role": "caption",
+      "articleId": null,
+      "pageId": "page-1",
+      "commandIndex": 38
+    },
+    {
+      "templateId": "cover-framed-cards-border",
+      "slotId": "cover-card-1",
+      "role": "piece",
+      "articleId": null,
+      "pageId": "page-1",
+      "commandIndex": 44
+    },
+    {
+      "templateId": "cover-framed-cards-border",
+      "slotId": "cover-card-2",
+      "role": "piece",
+      "articleId": null,
+      "pageId": "page-1",
+      "commandIndex": 53
+    },
+    {
+      "templateId": "cover-framed-cards-border",
+      "slotId": "cover-card-3",
+      "role": "piece",
+      "articleId": null,
+      "pageId": "page-1",
+      "commandIndex": 62
+    }
+  ],
+  "copyPreserved": true,
+  "copyScope": "source-record-article-bodies",
+  "articleBodiesInNative": false,
+  "focalPointRequests": [],
+  "fonts": [
+    "Source Sans 3",
+    "Source Serif 4"
+  ],
+  "status": "exported",
+  "errors": [],
+  "warnings": [
+    "cover-photo: no media supplied; boundary placeholder drawn",
+    "cover-card-1: no media supplied; boundary placeholder drawn",
+    "cover-card-2: no media supplied; boundary placeholder drawn",
+    "cover-card-3: no media supplied; boundary placeholder drawn"
+  ],
+  "originalCoverAndTruck": "Requires original native issue; not modified by this single-page compiler",
+  "adobeInDesignTested": false
+}

@@ -1,0 +1,20 @@
+{
+  "completed": 3,
+  "results": [
+    {
+      "documentFonts": 5,
+      "index": 1,
+      "warnings": []
+    },
+    {
+      "bytes": 1835341,
+      "pages": 1,
+      "path": "/workspace/OTEManager/public/designcraft/native-examples/cover-framed-source-photo/page.pdf",
+      "warnings": []
+    },
+    {
+      "bytes": 1797471,
+      "path": "/workspace/OTEManager/public/designcraft/native-examples/cover-framed-source-photo/page.idml"
+    }
+  ]
+}

@@ -1,0 +1,446 @@
+{
+  "activeLayer": 1,
+  "canUndo": true,
+  "characterStyles": [
+    "[None]"
+  ],
+  "dirty": true,
+  "layers": [
+    {
+      "color": [
+        43,
+        155,
+        255
+      ],
+      "id": 1,
+      "locked": false,
+      "name": "Layer 1",
+      "printable": true,
+      "showGuides": true,
+      "suppressWrapWhenHidden": false,
+      "visible": true
+    }
+  ],
+  "pageCount": 1,
+  "paragraphStyles": [
+    "[No Paragraph Style]",
+    "[Basic Paragraph]",
+    "OTE Headline",
+    "OTE Body",
+    "OTE Byline",
+    "OTE Caption",
+    "OTE Label",
+    "OTE Folio"
+  ],
+  "parents": [
+    {
+      "id": 3,
+      "items": 0,
+      "label": "A-Parent"
+    }
+  ],
+  "path": null,
+  "selection": {
+    "content": false,
+    "items": [],
+    "text": {
+      "anchor": 0,
+      "focus": 24,
+      "story": 28
+    }
+  },
+  "settings": {
+    "facingPages": false,
+    "intent": "print",
+    "pageHeight": 792.0,
+    "pageWidth": 756.0
+  },
+  "spreads": [
+    {
+      "index": 0,
+      "items": [
+        {
+          "bounds": [
+            30.0,
+            30.0,
+            726.0,
+            762.0
+          ],
+          "fill": "[None]",
+          "hidden": false,
+          "id": 8,
+          "kind": "<rectangle>",
+          "layer": 1,
+          "locked": false,
+          "name": "",
+          "stroke": {
+            "swatch": "OTE Green",
+            "weight": 2.0
+          }
+        },
+        {
+          "asset": 10,
+          "bounds": [
+            42.0,
+            42.0,
+            520.0,
+            136.0
+          ],
+          "fill": "[None]",
+          "hidden": false,
+          "id": 9,
+          "kind": "<image>",
+          "layer": 1,
+          "locked": false,
+          "name": "cover-logo",
+          "stroke": {
+            "swatch": "[None]",
+            "weight": 1.0
+          }
+        },
+        {
+          "bounds": [
+            542.0,
+            42.0,
+            714.0,
+            114.0
+          ],
+          "columns": 1,
+          "fill": "[None]",
+          "hidden": false,
+          "id": 11,
+          "kind": "<text frame>",
+          "layer": 1,
+          "locked": false,
+          "name": "cover-date",
+          "story": 12,
+          "stroke": {
+            "swatch": "[None]",
+            "weight": 1.0
+          }
+        },
+        {
+          "bounds": [
+            542.0,
+            116.0,
+            714.0,
+            142.0
+          ],
+          "columns": 1,
+          "fill": "[None]",
+          "hidden": false,
+          "id": 13,
+          "kind": "<text frame>",
+          "layer": 1,
+          "locked": false,
+          "name": "cover-issue",
+          "story": 14,
+          "stroke": {
+            "swatch": "[None]",
+            "weight": 1.0
+          }
+        },
+        {
+          "bounds": [
+            42.0,
+            154.0,
+            714.0,
+            566.0
+          ],
+          "fill": "OTE Placeholder",
+          "hidden": false,
+          "id": 15,
+          "kind": "<rectangle>",
+          "layer": 1,
+          "locked": false,
+          "name": "cover-photo",
+          "stroke": {
+            "swatch": "OTE Green",
+            "weight": 0.5
+          }
+        },
+        {
+          "bounds": [
+            46.0,
+            158.0,
+            710.0,
+            194.0
+          ],
+          "columns": 1,
+          "fill": "[None]",
+          "hidden": false,
+          "id": 16,
+          "kind": "<text frame>",
+          "layer": 1,
+          "locked": false,
+          "name": "",
+          "story": 17,
+          "stroke": {
+            "swatch": "[None]",
+            "weight": 1.0
+          }
+        },
+        {
+          "bounds": [
+            42.0,
+            574.0,
+            714.0,
+            596.0
+          ],
+          "columns": 1,
+          "fill": "[None]",
+          "hidden": false,
+          "id": 18,
+          "kind": "<text frame>",
+          "layer": 1,
+          "locked": false,
+          "name": "cover-line",
+          "story": 19,
+          "stroke": {
+            "swatch": "[None]",
+            "weight": 1.0
+          }
+        },
+        {
+          "bounds": [
+            42.0,
+            604.0,
+            258.0,
+            746.0
+          ],
+          "fill": "OTE Placeholder",
+          "hidden": false,
+          "id": 20,
+          "kind": "<rectangle>",
+          "layer": 1,
+          "locked": false,
+          "name": "cover-card-1",
+          "stroke": {
+            "swatch": "OTE Green",
+            "weight": 0.5
+          }
+        },
+        {
+          "bounds": [
+            46.0,
+            608.0,
+            254.0,
+            742.0
+          ],
+          "columns": 1,
+          "fill": "[None]",
+          "hidden": false,
+          "id": 21,
+          "kind": "<text frame>",
+          "layer": 1,
+          "locked": false,
+          "name": "",
+          "story": 22,
+          "stroke": {
+            "swatch": "[None]",
+            "weight": 1.0
+          }
+        },
+        {
+          "bounds": [
+            270.0,
+            604.0,
+            486.0,
+            746.0
+          ],
+          "fill": "OTE Placeholder",
+          "hidden": false,
+          "id": 23,
+          "kind": "<rectangle>",
+          "layer": 1,
+          "locked": false,
+          "name": "cover-card-2",
+          "stroke": {
+            "swatch": "OTE Green",
+            "weight": 0.5
+          }
+        },
+        {
+          "bounds": [
+            274.0,
+            608.0,
+            482.0,
+            742.0
+          ],
+          "columns": 1,
+          "fill": "[None]",
+          "hidden": false,
+          "id": 24,
+          "kind": "<text frame>",
+          "layer": 1,
+          "locked": false,
+          "name": "",
+          "story": 25,
+          "stroke": {
+            "swatch": "[None]",
+            "weight": 1.0
+          }
+        },
+        {
+          "bounds": [
+            498.0,
+            604.0,
+            714.0,
+            746.0
+          ],
+          "fill": "OTE Placeholder",
+          "hidden": false,
+          "id": 26,
+          "kind": "<rectangle>",
+          "layer": 1,
+          "locked": false,
+          "name": "cover-card-3",
+          "stroke": {
+            "swatch": "OTE Green",
+            "weight": 0.5
+          }
+        },
+        {
+          "bounds": [
+            502.0,
+            608.0,
+            710.0,
+            742.0
+          ],
+          "columns": 1,
+          "fill": "[None]",
+          "hidden": false,
+          "id": 27,
+          "kind": "<text frame>",
+          "layer": 1,
+          "locked": false,
+          "name": "",
+          "story": 28,
+          "stroke": {
+            "swatch": "[None]",
+            "weight": 1.0
+          }
+        }
+      ],
+      "pages": [
+        {
+          "bounds": [
+            0.0,
+            0.0,
+            756.0,
+            792.0
+          ],
+          "columns": 1,
+          "index": 0,
+          "margins": {
+            "bottom": 36.0,
+            "inside": 36.0,
+            "outside": 36.0,
+            "top": 36.0
+          },
+          "name": "1",
+          "parent": "A-Parent",
+          "side": "single"
+        }
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "frames": [
+        11
+      ],
+      "id": 12,
+      "length": 11,
+      "lines": 1,
+      "overset": false,
+      "paragraphs": 1,
+      "preview": "NOVEMBER 14"
+    },
+    {
+      "frames": [
+        13
+      ],
+      "id": 14,
+      "length": 28,
+      "lines": 1,
+      "overset": false,
+      "paragraphs": 1,
+      "preview": "2024 · VOLUME 31 · ISSUE 3"
+    },
+    {
+      "frames": [
+        16
+      ],
+      "id": 17,
+      "length": 23,
+      "lines": 1,
+      "overset": false,
+      "paragraphs": 1,
+      "preview": "ILLUSTRATIVE PHOTO SLOT"
+    },
+    {
+      "frames": [
+        18
+      ],
+      "id": 19,
+      "length": 13,
+      "lines": 1,
+      "overset": false,
+      "paragraphs": 1,
+      "preview": "OVER THE EDGE"
+    },
+    {
+      "frames": [
+        21
+      ],
+      "id": 22,
+      "length": 24,
+      "lines": 1,
+      "overset": false,
+      "paragraphs": 1,
+      "preview": "03 · Selected article 1"
+    },
+    {
+      "frames": [
+        24
+      ],
+      "id": 25,
+      "length": 24,
+      "lines": 1,
+      "overset": false,
+      "paragraphs": 1,
+      "preview": "05 · Selected article 2"
+    },
+    {
+      "frames": [
+        27
+      ],
+      "id": 28,
+      "length": 24,
+      "lines": 1,
+      "overset": false,
+      "paragraphs": 1,
+      "preview": "10 · Selected article 3"
+    }
+  ],
+  "swatches": [
+    "[None]",
+    "[Registration]",
+    "[Paper]",
+    "[Black]",
+    "C=100 M=0 Y=0 K=0",
+    "C=0 M=100 Y=0 K=0",
+    "C=0 M=0 Y=100 K=0",
+    "C=0 M=100 Y=100 K=0",
+    "C=100 M=0 Y=100 K=0",
+    "C=100 M=100 Y=0 K=0",
+    "C=15 M=100 Y=100 K=0",
+    "C=75 M=5 Y=100 K=0",
+    "C=100 M=90 Y=10 K=0",
+    "OTE Green",
+    "OTE Placeholder"
+  ],
+  "title": "Framed cover · cards · border",
+  "tool": "selection"
+}

@@ -1,0 +1,107 @@
+{
+  "schemaVersion": "ote.designcraft.build.v1",
+  "templateId": "story-3-none-columns",
+  "sourceArticleIds": [
+    "example-1",
+    "example-2",
+    "example-3"
+  ],
+  "illustrative": true,
+  "pageId": "page-1",
+  "pageNumber": 1,
+  "slots": [
+    {
+      "templateId": "story-3-none-columns",
+      "slotId": "headline-1",
+      "role": "headline",
+      "articleId": "example-1",
+      "pageId": "page-1",
+      "commandIndex": 10
+    },
+    {
+      "templateId": "story-3-none-columns",
+      "slotId": "byline-2",
+      "role": "byline",
+      "articleId": "example-1",
+      "pageId": "page-1",
+      "commandIndex": 16
+    },
+    {
+      "templateId": "story-3-none-columns",
+      "slotId": "body-3",
+      "role": "body",
+      "articleId": "example-1",
+      "pageId": "page-1",
+      "commandIndex": 22
+    },
+    {
+      "templateId": "story-3-none-columns",
+      "slotId": "headline-4",
+      "role": "headline",
+      "articleId": "example-2",
+      "pageId": "page-1",
+      "commandIndex": 28
+    },
+    {
+      "templateId": "story-3-none-columns",
+      "slotId": "byline-5",
+      "role": "byline",
+      "articleId": "example-2",
+      "pageId": "page-1",
+      "commandIndex": 34
+    },
+    {
+      "templateId": "story-3-none-columns",
+      "slotId": "body-6",
+      "role": "body",
+      "articleId": "example-2",
+      "pageId": "page-1",
+      "commandIndex": 40
+    },
+    {
+      "templateId": "story-3-none-columns",
+      "slotId": "headline-7",
+      "role": "headline",
+      "articleId": "example-3",
+      "pageId": "page-1",
+      "commandIndex": 46
+    },
+    {
+      "templateId": "story-3-none-columns",
+      "slotId": "byline-8",
+      "role": "byline",
+      "articleId": "example-3",
+      "pageId": "page-1",
+      "commandIndex": 52
+    },
+    {
+      "templateId": "story-3-none-columns",
+      "slotId": "body-9",
+      "role": "body",
+      "articleId": "example-3",
+      "pageId": "page-1",
+      "commandIndex": 58
+    },
+    {
+      "templateId": "story-3-none-columns",
+      "slotId": "folio-10",
+      "role": "folio",
+      "articleId": null,
+      "pageId": "page-1",
+      "commandIndex": 64
+    }
+  ],
+  "copyPreserved": true,
+  "copyScope": "native-article-bodies",
+  "articleBodiesInNative": true,
+  "focalPointRequests": [],
+  "fonts": [
+    "Source Sans 3",
+    "Source Serif 4"
+  ],
+  "status": "exported",
+  "errors": [],
+  "warnings": [],
+  "originalCoverAndTruck": "Requires original native issue; not modified by this single-page compiler",
+  "adobeInDesignTested": false
+}

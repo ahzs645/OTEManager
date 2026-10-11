@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "ote.designcraft.native-validation.v1",
+  "engine": "stock DesignCraft v0.4.0",
+  "engineArchiveSha256": "4c0b68c0dc62081e455bf8d60dd54f022ff1624359d5e10d06ca2b18d73d4bb3",
+  "examples": [
+    {
+      "templateId": "ad-half-bottom",
+      "errors": 0,
+      "warnings": 0,
+      "native": true,
+      "pdf": true,
+      "idml": true
+    },
+    {
+      "templateId": "cover-framed-cards-border",
+      "errors": 0,
+      "warnings": 0,
+      "native": true,
+      "pdf": true,
+      "idml": true
+    },
+    {
+      "templateId": "piece-president-qa",
+      "errors": 0,
+      "warnings": 0,
+      "native": true,
+      "pdf": true,
+      "idml": true
+    },
+    {
+      "templateId": "story-1-top-balanced",
+      "errors": 0,
+      "warnings": 0,
+      "native": true,
+      "pdf": true,
+      "idml": true
+    },
+    {
+      "templateId": "story-2-two-top-columns",
+      "errors": 0,
+      "warnings": 0,
+      "native": true,
+      "pdf": true,
+      "idml": true
+    },
+    {
+      "templateId": "story-3-none-columns",
+      "errors": 0,
+      "warnings": 0,
+      "native": true,
+      "pdf": true,
+      "idml": true
+    },
+    {
+      "templateId": "cover-framed-source-photo",
+      "errors": 0,
+      "warnings": 0,
+      "native": true,
+      "pdf": true,
+      "idml": true,
+      "inputType": "selected-cover-recipe"
+    }
+  ],
+  "oversetRejected": true,
+  "oversetUnicodeFullCopyRetained": true,
+  "adobeInDesignTested": false,
+  "coverRecipeSelectedArticlesSupported": true,
+  "coverArticleBodiesRetainedInSourceRecord": true,
+  "exactNativeFocalPointMatchingImplemented": true,
+  "focalTransformVerifiedAfterReopen": true,
+  "focalEmbeddedAssetBytesPreserved": true,
+  "focalTransformVerifiedAfterDesignCraftIdmlRoundtrip": true
+}

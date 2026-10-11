@@ -1,0 +1,73 @@
+file.new {"width": 756, "height": 792, "pages": 1, "facingPages": false, "margins": 36, "title": "3 stories · none · columns"}
+layout.documentSetup {"startPage": 1, "intent": "print"}
+swatch.create {"name": "OTE Green", "color": {"c": 70, "m": 30, "y": 75, "k": 40}}
+swatch.create {"name": "OTE Placeholder", "color": {"c": 10, "m": 3, "y": 8, "k": 0}}
+style.paragraph.create {"name": "OTE Headline", "para": {"spaceAfter": 4, "hyphenate": false}, "chars": {"fontFamily": "Source Sans 3", "fontStyle": "Bold", "size": 24, "leading": {"kind": "points", "value": 27}}}
+style.paragraph.create {"name": "OTE Body", "para": {"spaceAfter": 4, "hyphenate": true}, "chars": {"fontFamily": "Source Serif 4", "fontStyle": "Regular", "size": 10, "leading": {"kind": "points", "value": 12}}}
+style.paragraph.create {"name": "OTE Byline", "para": {"spaceAfter": 4, "hyphenate": false}, "chars": {"fontFamily": "Source Sans 3", "fontStyle": "Semibold", "size": 9, "leading": {"kind": "points", "value": 11}}}
+style.paragraph.create {"name": "OTE Caption", "para": {"spaceAfter": 4, "hyphenate": false}, "chars": {"fontFamily": "Source Sans 3", "fontStyle": "Regular", "size": 8, "leading": {"kind": "points", "value": 10}}}
+style.paragraph.create {"name": "OTE Label", "para": {"spaceAfter": 4, "hyphenate": false}, "chars": {"fontFamily": "Source Sans 3", "fontStyle": "Semibold", "size": 12, "leading": {"kind": "points", "value": 15}}}
+style.paragraph.create {"name": "OTE Folio", "para": {"spaceAfter": 4, "hyphenate": false}, "chars": {"fontFamily": "Source Sans 3", "fontStyle": "Regular", "size": 8, "leading": {"kind": "points", "value": 10}}}
+frame.create {"rect": [36.0, 100, 256.0, 144], "content": "text", "text": "Example story 1", "caret": false}
+object.textFrameOptions {"ids": ["$10.id"], "inset": 0, "columns": 1, "gutter": 12}
+text.select {"story": "$10.story", "anchor": 0, "focus": 15}
+style.paragraph.apply {"name": "OTE Headline", "clearOverrides": true}
+object.label {"ids": ["$10.id"], "label": "{\"templateId\": \"story-3-none-columns\", \"slotId\": \"headline-1\", \"role\": \"headline\", \"articleId\": \"example-1\", \"pageId\": \"page-1\"}"}
+object.rename {"id": "$10.id", "name": "headline-1"}
+frame.create {"rect": [36.0, 147, 256.0, 162], "content": "text", "text": "Example author", "caret": false}
+object.textFrameOptions {"ids": ["$16.id"], "inset": 0, "columns": 1, "gutter": 12}
+text.select {"story": "$16.story", "anchor": 0, "focus": 14}
+style.paragraph.apply {"name": "OTE Byline", "clearOverrides": true}
+object.label {"ids": ["$16.id"], "label": "{\"templateId\": \"story-3-none-columns\", \"slotId\": \"byline-2\", \"role\": \"byline\", \"articleId\": \"example-1\", \"pageId\": \"page-1\"}"}
+object.rename {"id": "$16.id", "name": "byline-2"}
+frame.create {"rect": [36.0, 171, 256.0, 744], "content": "text", "text": "This is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.\n\nThis is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.\n\nThis is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.\n\n", "caret": false}
+object.textFrameOptions {"ids": ["$22.id"], "inset": 0, "columns": 1, "gutter": 12}
+text.select {"story": "$22.story", "anchor": 0, "focus": 618}
+style.paragraph.apply {"name": "OTE Body", "clearOverrides": true}
+object.label {"ids": ["$22.id"], "label": "{\"templateId\": \"story-3-none-columns\", \"slotId\": \"body-3\", \"role\": \"body\", \"articleId\": \"example-1\", \"pageId\": \"page-1\"}"}
+object.rename {"id": "$22.id", "name": "body-3"}
+frame.create {"rect": [268.0, 100, 488.0, 144], "content": "text", "text": "Example story 2", "caret": false}
+object.textFrameOptions {"ids": ["$28.id"], "inset": 0, "columns": 1, "gutter": 12}
+text.select {"story": "$28.story", "anchor": 0, "focus": 15}
+style.paragraph.apply {"name": "OTE Headline", "clearOverrides": true}
+object.label {"ids": ["$28.id"], "label": "{\"templateId\": \"story-3-none-columns\", \"slotId\": \"headline-4\", \"role\": \"headline\", \"articleId\": \"example-2\", \"pageId\": \"page-1\"}"}
+object.rename {"id": "$28.id", "name": "headline-4"}
+frame.create {"rect": [268.0, 147, 488.0, 162], "content": "text", "text": "Example author", "caret": false}
+object.textFrameOptions {"ids": ["$34.id"], "inset": 0, "columns": 1, "gutter": 12}
+text.select {"story": "$34.story", "anchor": 0, "focus": 14}
+style.paragraph.apply {"name": "OTE Byline", "clearOverrides": true}
+object.label {"ids": ["$34.id"], "label": "{\"templateId\": \"story-3-none-columns\", \"slotId\": \"byline-5\", \"role\": \"byline\", \"articleId\": \"example-2\", \"pageId\": \"page-1\"}"}
+object.rename {"id": "$34.id", "name": "byline-5"}
+frame.create {"rect": [268.0, 171, 488.0, 744], "content": "text", "text": "This is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.\n\nThis is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.\n\nThis is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.\n\n", "caret": false}
+object.textFrameOptions {"ids": ["$40.id"], "inset": 0, "columns": 1, "gutter": 12}
+text.select {"story": "$40.story", "anchor": 0, "focus": 618}
+style.paragraph.apply {"name": "OTE Body", "clearOverrides": true}
+object.label {"ids": ["$40.id"], "label": "{\"templateId\": \"story-3-none-columns\", \"slotId\": \"body-6\", \"role\": \"body\", \"articleId\": \"example-2\", \"pageId\": \"page-1\"}"}
+object.rename {"id": "$40.id", "name": "body-6"}
+frame.create {"rect": [500.0, 100, 720.0, 144], "content": "text", "text": "Example story 3", "caret": false}
+object.textFrameOptions {"ids": ["$46.id"], "inset": 0, "columns": 1, "gutter": 12}
+text.select {"story": "$46.story", "anchor": 0, "focus": 15}
+style.paragraph.apply {"name": "OTE Headline", "clearOverrides": true}
+object.label {"ids": ["$46.id"], "label": "{\"templateId\": \"story-3-none-columns\", \"slotId\": \"headline-7\", \"role\": \"headline\", \"articleId\": \"example-3\", \"pageId\": \"page-1\"}"}
+object.rename {"id": "$46.id", "name": "headline-7"}
+frame.create {"rect": [500.0, 147, 720.0, 162], "content": "text", "text": "Example author", "caret": false}
+object.textFrameOptions {"ids": ["$52.id"], "inset": 0, "columns": 1, "gutter": 12}
+text.select {"story": "$52.story", "anchor": 0, "focus": 14}
+style.paragraph.apply {"name": "OTE Byline", "clearOverrides": true}
+object.label {"ids": ["$52.id"], "label": "{\"templateId\": \"story-3-none-columns\", \"slotId\": \"byline-8\", \"role\": \"byline\", \"articleId\": \"example-3\", \"pageId\": \"page-1\"}"}
+object.rename {"id": "$52.id", "name": "byline-8"}
+frame.create {"rect": [500.0, 171, 720.0, 744], "content": "text", "text": "This is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.\n\nThis is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.\n\nThis is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.\n\n", "caret": false}
+object.textFrameOptions {"ids": ["$58.id"], "inset": 0, "columns": 1, "gutter": 12}
+text.select {"story": "$58.story", "anchor": 0, "focus": 618}
+style.paragraph.apply {"name": "OTE Body", "clearOverrides": true}
+object.label {"ids": ["$58.id"], "label": "{\"templateId\": \"story-3-none-columns\", \"slotId\": \"body-9\", \"role\": \"body\", \"articleId\": \"example-3\", \"pageId\": \"page-1\"}"}
+object.rename {"id": "$58.id", "name": "body-9"}
+frame.create {"rect": [36, 756, 720, 778], "content": "text", "text": "1  |  OVER THE EDGE  |  ILLUSTRATIVE TEMPLATE", "caret": false}
+object.textFrameOptions {"ids": ["$64.id"], "inset": 0, "columns": 1, "gutter": 12}
+text.select {"story": "$64.story", "anchor": 0, "focus": 45}
+style.paragraph.apply {"name": "OTE Folio", "clearOverrides": true}
+object.label {"ids": ["$64.id"], "label": "{\"templateId\": \"story-3-none-columns\", \"slotId\": \"folio-10\", \"role\": \"folio\", \"articleId\": null, \"pageId\": \"page-1\"}"}
+object.rename {"id": "$64.id", "name": "folio-10"}
+preflight.run {"minPpi": 150}
+document.inspect {}
+file.saveAs {"path": "/workspace/OTEManager/public/designcraft/native-examples/story-3-none-columns/page.designcraft"}

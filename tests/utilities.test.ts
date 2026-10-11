@@ -16,6 +16,7 @@ import { query, mutate } from "../server/convex";
 import * as records from "../server/records";
 import { Route as SharePointRoute } from "../app/routes/api/sharepoint/import";
 import { Route as WPRoute } from "../app/routes/api/exportBundle";
+import { Route as IssueExportRoute } from "../app/routes/api/exportIssue.$issueId";
 const state = vi.hoisted(() => ({ t: null as any }));
 vi.mock("convex/browser", () => ({
   ConvexHttpClient: class {
@@ -355,4 +356,62 @@ test("WordPress export contains article JSON and photos and rejects issues from 
   expect(await photo.async("string")).toBe("photo-bytes");
   const other = await mutate("createVolume", { volumeNumber: 6 });
   expect((await exportWP(other.volume.id)).status).toBe(400);
+});
+
+test("DesignCraft export preserves Markdown, anonymity, issue metadata and distinct media paths", async () => {
+  const first = await article("Same title"), second = await article("Same title", "other@example.test");
+  const { volume } = await mutate("createVolume", { volumeNumber: 31, year: 2026 });
+  const { issue } = await mutate("createIssue", {
+    volumeId: volume.id, issueNumber: 3, title: "Autumn", releaseDate: "2026-10-01",
+  });
+  const body = "# Heading\n\n**Exact** _Markdown_\n\n[Link](https://example.test)\n";
+  for (const id of [first, second]) {
+    await mutate("updateArticleIssue", { articleId: id, issueId: issue.id });
+    await mutate("updateArticleContent", { articleId: id, content: body });
+  }
+  await records.patch("articles", first, { prefersAnonymity: true });
+  const a = await attachment(first, "a.png", "same.png");
+  const b = await attachment(second, "b.png", "same.png");
+  await records.patch("attachments", a.id, { caption: "Original caption", photoNumber: 2 });
+  await records.patch("attachments", b.id, { attachmentType: "graphic" });
+  const exportIssue = (format = "designcraft") =>
+    (IssueExportRoute.options as any).server.handlers.GET({
+      params: { issueId: issue.id },
+      request: new Request(`http://test/api/exportIssue/${issue.id}${format ? `?format=${format}` : ""}`),
+    });
+  const response = await exportIssue();
+  expect(response.status).toBe(200);
+  const zip = await JSZip.loadAsync(await response.arrayBuffer());
+  const manifest = JSON.parse(await zip.file("issue.json")!.async("string"));
+  expect(manifest).toMatchObject({
+    schemaVersion: "ote.designcraft.issue.v1",
+    issue: { id: issue.id, volume: 31, number: 3, date: "2026-10-01", year: 2026, title: "Autumn" },
+    layoutPlan: { pages: [], cover: { mode: "preserve" }, truck: { mode: "preserve", pageIds: [] } },
+    templateLibrary: "/designcraft/templates.json",
+  });
+  const anonymous = manifest.articles.find((entry: any) => entry.id === first);
+  const named = manifest.articles.find((entry: any) => entry.id === second);
+  expect(anonymous).toMatchObject({ title: "Same title", body, author: "Anonymous", photos: [{ id: a.id, caption: "Original caption", photoNumber: 2, mimeType: "image/png" }] });
+  expect(named).toMatchObject({ body, author: "Test Writer", photos: [{ id: b.id, attachmentType: "graphic" }] });
+  expect(anonymous.photos[0].path).not.toBe(named.photos[0].path);
+  for (const entry of manifest.articles) {
+    expect(await zip.file(`articles/${entry.id}/article.md`)!.async("string")).toBe(body);
+    expect(await zip.file(entry.photos[0].path)!.async("string")).toBe("photo-bytes");
+  }
+  expect(await zip.file("issue.json")!.async("string")).not.toContain("writer@example.test");
+  expect(Object.keys(anonymous)).not.toContain("authorId");
+  // The existing default remains a DOCX ZIP, not a DesignCraft manifest.
+  const legacy = await exportIssue("");
+  expect(legacy.status).toBe(200);
+  const legacyZip = await JSZip.loadAsync(await legacy.arrayBuffer());
+  expect(legacyZip.file("issue.json")).toBeNull();
+  expect(Object.keys(legacyZip.files).some((path) => path.endsWith(".docx"))).toBe(true);
+  expect((await exportIssue("unknown")).status).toBe(400);
+  // An asset failure must reject the entire export rather than silently dropping the photo.
+  await records.patch("attachments", a.id, { fileSize: 12 });
+  expect((await exportIssue()).status).toBe(409);
+  await records.patch("attachments", a.id, { filePath: "missing.png", fileSize: 11 });
+  const incomplete = await exportIssue();
+  expect(incomplete.status).toBe(409);
+  expect((await incomplete.json()).error).toContain("missing or incomplete");
 });

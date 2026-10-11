@@ -154,8 +154,12 @@ async function markdownToDocx(
 export const Route = createFileRoute("/api/exportIssue/$issueId")({
   server: {
     handlers: {
-      GET: async ({ params }) => {
+      GET: async ({ params, request }) => {
         const { issueId } = params;
+        const format = new URL(request.url).searchParams.get("format");
+        if (format && format !== "designcraft") {
+          return Response.json({ error: "Unsupported issue export format" }, { status: 400 });
+        }
 
         if (!issueId) {
           return new Response(
@@ -168,7 +172,6 @@ export const Route = createFileRoute("/api/exportIssue/$issueId")({
         }
 
         try {
-          const records = await import("../../../server/records");
           const { query } = await import("../../../server/convex");
 
           const { getStorage } = await import("../../../storage");
@@ -201,6 +204,24 @@ export const Route = createFileRoute("/api/exportIssue/$issueId")({
           }
 
           const storage = getStorage();
+          if (format === "designcraft") {
+            const { buildDesignCraftIssueZip, IncompleteDesignCraftExport } = await import("../../../server/designcraft-export");
+            try {
+              const buffer = await buildDesignCraftIssueZip(issue, issueArticles, storage);
+              return new Response(new Uint8Array(buffer), {
+                headers: {
+                  "Content-Type": "application/zip",
+                  "Content-Disposition": `attachment; filename="Volume_${issue.volume.volumeNumber}_Issue_${issue.issueNumber}_DesignCraft.zip"`,
+                  "Content-Length": buffer.length.toString(),
+                },
+              });
+            } catch (error) {
+              if (error instanceof IncompleteDesignCraftExport) {
+                return Response.json({ error: error.message }, { status: 409 });
+              }
+              throw error;
+            }
+          }
           const zip = new JSZip();
 
           // Base path for the export

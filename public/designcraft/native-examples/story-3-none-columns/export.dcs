@@ -1,0 +1,3 @@
+file.open {"path": "/workspace/OTEManager/public/designcraft/native-examples/story-3-none-columns/page.designcraft"}
+file.exportPdf {"path": "/workspace/OTEManager/public/designcraft/native-examples/story-3-none-columns/page.pdf"}
+file.exportIdml {"path": "/workspace/OTEManager/public/designcraft/native-examples/story-3-none-columns/page.idml"}
