@@ -88,11 +88,37 @@ def package(site_path,full_path):
         for p in [ROOT/'pdfs/reconstructed-template-catalogue.pdf',ROOT/'pdfs/implementation-guide.pdf']:z.write(p,str(p.relative_to(ROOT)))
     if (ROOT/'template-kit.zip').stat().st_size>24*1024*1024:raise ValueError('Template kit exceeds hosting limit')
     if site_path:
-        site=Path(site_path);dist=site/'dist';dist.mkdir(parents=True,exist_ok=True)
+        site=Path(site_path);dist=site/'dist'
+        if dist.exists():shutil.rmtree(dist)
+        dist.mkdir(parents=True,exist_ok=True)
         for p in ROOT.iterdir():
-            if p.name=='originals':continue
+            if p.name in ['originals','source-idml']:continue
+            if p.name=='native-examples':
+                # The kit carries full native documents, IDML, fonts and scripts.
+                # The hosted gallery needs only PDFs and small verification files.
+                for sample in p.iterdir():
+                    if not sample.is_dir():continue
+                    target=dist/p.name/sample.name;target.mkdir(parents=True)
+                    for name in ['page.pdf','preflight.json','build-manifest.json','focal-crop.json']:
+                        if (sample/name).is_file():shutil.copyfile(sample/name,target/name)
+                continue
             if p.is_dir():shutil.copytree(p,dist/p.name,dirs_exist_ok=True)
             else:shutil.copyfile(p,dist/p.name)
+        reading_record=json.loads((dist/'documents.json').read_text())
+        for item in reading_record['documents']:
+            if item['category']!='issue':continue
+            path=dist/item['pdf'];doc=fitz.open(path)
+            fitz.TOOLS.mupdf_warnings(reset=True)
+            doc.rewrite_images(dpi_threshold=150,dpi_target=120,quality=82)
+            if fitz.TOOLS.mupdf_warnings(reset=True):
+                # Keep the supplied reading file if optimization raises resource
+                # warnings; reducing upload size must not sacrifice its artwork.
+                doc.close();print('Kept reading PDF after resource warning:',item['id']);continue
+            temporary=path.with_suffix('.reading.pdf');doc.save(temporary,garbage=4,deflate=True);doc.close()
+            if temporary.stat().st_size<path.stat().st_size:
+                temporary.replace(path);item['optimizedReadingCopy']=True;item['readingBytes']=path.stat().st_size
+            else:temporary.unlink()
+        (dist/'documents.json').write_text(json.dumps(reading_record,indent=2))
     if full_path:
         with zipfile.ZipFile(full_path,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
             for p in ROOT.rglob('*'):
