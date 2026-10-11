@@ -127,7 +127,8 @@ def package(site_path,full_path):
                 if p.is_file() and p.suffix in ['.py','.md','.cjs']:z.write(p,'tools/'+p.name)
             changes=['server/designcraft-export.ts','app/routes/utilities.designcraft.tsx','app/routes/utilities.index.tsx',
                      'app/routes/api/exportIssue.$issueId.ts','app/components/publications/IssueRow.tsx',
-                     'app/components/publications/VolumeCard.tsx','tests/utilities.test.ts','docs/DESIGNCRAFT.md']
+                     'app/components/publications/VolumeCard.tsx','tests/utilities.test.ts','docs/DESIGNCRAFT.md',
+                     'docs/designcraft-site.json','.gitattributes']
             for name in changes:
                 p=REPO/name;z.write(p,'otemanager/'+str(p.relative_to(REPO)))
         digest=hashlib.sha256(Path(full_path).read_bytes()).hexdigest()

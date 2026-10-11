@@ -1,0 +1,14 @@
+{
+  "project_id": "appgprj_6acb0727fc0081919eb834af8e755cef",
+  "slug": "ote-designcraft-review",
+  "expected_url": "https://ote-designcraft-review.ahmadjalil645.chatgpt.site",
+  "audience": "owner-private",
+  "saved_version_id": "appgprj_6acb0727fc0081919eb834af8e755cef~appgver_bb9834ac6030819193aa8be0db04d073",
+  "version_number": 2,
+  "source_commit_sha": "43c43236846684363bc6c0280eb04cb2b8058154",
+  "source_repository": "https://git.chatgpt-team.site/261047d7-2966-4280-b13a-de485a5e5205/appgprj_6acb0727fc0081919eb834af8e755cef.git",
+  "deployment_id": "appgdep_6acb0e13e02481918686c1a8147ac31a",
+  "deployment_status": "failed",
+  "failure_message": "An unknown error has occurred. Please contact support: https://cfl.re/3WgEyrH",
+  "updated_at": "2026-10-11T04:21:30.492183+00:00"
+}

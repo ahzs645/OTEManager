@@ -9,8 +9,12 @@ as a static Site or locally with `python -m http.server 8000 --directory public/
 The full-view route is `/designcraft/index.html`; native export runs through the
 downloaded stock DesignCraft CLI, not inside the hosted Site.
 
-Hosted review: [OTE DesignCraft Review](https://ote-designcraft-review.ahmadjalil645.chatgpt.site).
-The Site is private to its owner by default.
+Sites project: OTE DesignCraft Review, private to its owner by default.
+Source and version 2 are saved, but publication failed with a hosting-service
+error after three attempts, including a smaller deployment that retained every
+PDF. The reserved URL is https://ote-designcraft-review.ahmadjalil645.chatgpt.site;
+it is not a confirmed live Site. Exact recovery IDs and source commit are in
+`docs/designcraft-site.json`. Retry the saved version when hosting recovers.
 
 ## Provenance
 
