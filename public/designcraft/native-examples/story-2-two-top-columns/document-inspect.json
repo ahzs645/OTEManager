@@ -1,10 +1,10 @@
 {
   "activeLayer": 1,
-  "canUndo": true,
+  "canUndo": false,
   "characterStyles": [
     "[None]"
   ],
-  "dirty": true,
+  "dirty": false,
   "layers": [
     {
       "color": [
@@ -30,7 +30,17 @@
     "OTE Byline",
     "OTE Caption",
     "OTE Label",
-    "OTE Folio"
+    "OTE Folio",
+    "OTE Quote",
+    "OTE Code",
+    "OTE Heading 1",
+    "OTE Heading 2",
+    "OTE Heading 3",
+    "OTE Heading 4",
+    "OTE Heading 5",
+    "OTE Heading 6",
+    "OTE Slot headline-1",
+    "OTE Slot headline-6"
   ],
   "parents": [
     {
@@ -39,15 +49,10 @@
       "label": "A-Parent"
     }
   ],
-  "path": null,
+  "path": "/workspace/OTEManager/public/designcraft/native-examples/story-2-two-top-columns/page.designcraft",
   "selection": {
     "content": false,
-    "items": [],
-    "text": {
-      "anchor": 0,
-      "focus": 45,
-      "story": 31
-    }
+    "items": []
   },
   "settings": {
     "facingPages": false,
@@ -402,10 +407,10 @@
         17
       ],
       "id": 18,
-      "length": 618,
-      "lines": 22,
+      "length": 614,
+      "lines": 18,
       "overset": false,
-      "paragraphs": 7,
+      "paragraphs": 3,
       "preview": "This is illustrative copy for the editable template. Replace it with an article "
     },
     {
@@ -457,10 +462,10 @@
         28
       ],
       "id": 29,
-      "length": 618,
-      "lines": 22,
+      "length": 614,
+      "lines": 18,
       "overset": false,
-      "paragraphs": 7,
+      "paragraphs": 3,
       "preview": "This is illustrative copy for the editable template. Replace it with an article "
     },
     {
@@ -492,6 +497,6 @@
     "OTE Green",
     "OTE Placeholder"
   ],
-  "title": "2 stories · two top · columns",
+  "title": "page.designcraft",
   "tool": "selection"
 }

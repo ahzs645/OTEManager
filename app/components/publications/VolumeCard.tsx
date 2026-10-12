@@ -1,3 +1,4 @@
+import { queueDesignCraftIssue } from '~/lib/designcraft-handoff'
 import { useState } from 'react'
 import { Link, useRouter } from '@tanstack/react-router'
 import { ChevronRight, ChevronDown, FileText, Pencil, Trash2, Plus } from 'lucide-react'
@@ -35,6 +36,7 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [exportingIssueId, setExportingIssueId] = useState<string | null>(null)
   const [exportDialogIssue, setExportDialogIssue] = useState<Issue | null>(null)
+  const [exportFormat, setExportFormat] = useState<'docx' | 'designcraft'>('docx')
 
   const [volumeForm, setVolumeForm] = useState<VolumeFormData>(emptyVolumeForm)
   const [issueForm, setIssueForm] = useState<IssueFormData>(emptyIssueForm)
@@ -157,17 +159,23 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
     }
   }
 
-  const handleExportIssue = async (issueId: string, issueNumber: number, format?: 'designcraft') => {
+  const handleExportIssue = async (issueId: string, issueNumber: number, format?: 'designcraft', articleIds?: string[], destination?: 'download' | 'planner'): Promise<boolean> => {
     setExportingIssueId(issueId)
     try {
-      const response = await fetch(`/api/exportIssue/${issueId}${format ? '?format=designcraft' : ''}`)
+      const response = await fetch(`/api/exportIssue/${encodeURIComponent(issueId)}${format ? '?format=designcraft' : ''}`,
+        format && articleIds ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ articleIds }) } : undefined)
       if (!response.ok) {
         const errorData = await response.json()
         alert(`Export failed: ${errorData.error || 'Unknown error'}`)
-        return
+        return false
       }
 
       const blob = await response.blob()
+      if (destination === 'planner') {
+        queueDesignCraftIssue(blob, `Volume_${volume.volumeNumber}_Issue_${issueNumber}_DesignCraft.zip`)
+        await router.navigate({ to: '/utilities/designcraft' })
+        return true
+      }
       const url = window.URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
@@ -176,9 +184,11 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
       a.click()
       window.URL.revokeObjectURL(url)
       document.body.removeChild(a)
+      return true
     } catch (error) {
       console.error('Export failed:', error)
       alert('Failed to export issue. Please try again.')
+      return false
     } finally {
       setExportingIssueId(null)
     }
@@ -373,8 +383,8 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
                       volumeNumber={volume.volumeNumber}
                       onEdit={() => startEditIssue(issue)}
                       onDelete={() => handleDeleteIssue(issue.id)}
-                      onExport={() => setExportDialogIssue(issue)}
-                      onDesignCraftExport={() => handleExportIssue(issue.id, issue.issueNumber, 'designcraft')}
+                      onExport={() => { setExportFormat('docx'); setExportDialogIssue(issue) }}
+                      onDesignCraftExport={() => { setExportFormat('designcraft'); setExportDialogIssue(issue) }}
                       isExporting={exportingIssueId === issue.id}
                     />
                   )}
@@ -415,9 +425,11 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
 
       {exportDialogIssue && (
         <IssueExportModal
+          key={exportDialogIssue.id + exportFormat}
+          format={exportFormat}
           issueId={exportDialogIssue.id}
           issueLabel={`Volume ${volume.volumeNumber}, Issue ${exportDialogIssue.issueNumber}`}
-          onExport={() => handleExportIssue(exportDialogIssue.id, exportDialogIssue.issueNumber)}
+          onExport={(articleIds, destination) => handleExportIssue(exportDialogIssue.id, exportDialogIssue.issueNumber, exportFormat === 'designcraft' ? 'designcraft' : undefined, articleIds, destination)}
           onClose={() => setExportDialogIssue(null)}
         />
       )}

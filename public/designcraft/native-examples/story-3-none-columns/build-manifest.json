@@ -16,7 +16,7 @@
       "role": "headline",
       "articleId": "example-1",
       "pageId": "page-1",
-      "commandIndex": 10
+      "commandIndex": 21
     },
     {
       "templateId": "story-3-none-columns",
@@ -24,7 +24,7 @@
       "role": "byline",
       "articleId": "example-1",
       "pageId": "page-1",
-      "commandIndex": 16
+      "commandIndex": 27
     },
     {
       "templateId": "story-3-none-columns",
@@ -32,7 +32,7 @@
       "role": "body",
       "articleId": "example-1",
       "pageId": "page-1",
-      "commandIndex": 22
+      "commandIndex": 33
     },
     {
       "templateId": "story-3-none-columns",
@@ -40,7 +40,7 @@
       "role": "headline",
       "articleId": "example-2",
       "pageId": "page-1",
-      "commandIndex": 28
+      "commandIndex": 46
     },
     {
       "templateId": "story-3-none-columns",
@@ -48,7 +48,7 @@
       "role": "byline",
       "articleId": "example-2",
       "pageId": "page-1",
-      "commandIndex": 34
+      "commandIndex": 52
     },
     {
       "templateId": "story-3-none-columns",
@@ -56,7 +56,7 @@
       "role": "body",
       "articleId": "example-2",
       "pageId": "page-1",
-      "commandIndex": 40
+      "commandIndex": 58
     },
     {
       "templateId": "story-3-none-columns",
@@ -64,7 +64,7 @@
       "role": "headline",
       "articleId": "example-3",
       "pageId": "page-1",
-      "commandIndex": 46
+      "commandIndex": 71
     },
     {
       "templateId": "story-3-none-columns",
@@ -72,7 +72,7 @@
       "role": "byline",
       "articleId": "example-3",
       "pageId": "page-1",
-      "commandIndex": 52
+      "commandIndex": 77
     },
     {
       "templateId": "story-3-none-columns",
@@ -80,7 +80,7 @@
       "role": "body",
       "articleId": "example-3",
       "pageId": "page-1",
-      "commandIndex": 58
+      "commandIndex": 83
     },
     {
       "templateId": "story-3-none-columns",
@@ -88,11 +88,13 @@
       "role": "folio",
       "articleId": null,
       "pageId": "page-1",
-      "commandIndex": 64
+      "commandIndex": 95
     }
   ],
   "copyPreserved": true,
   "copyScope": "native-article-bodies",
+  "sourceMarkdownPreserved": true,
+  "nativeTextScope": "rendered-commonmark-or-plain",
   "articleBodiesInNative": true,
   "focalPointRequests": [],
   "fonts": [
@@ -102,6 +104,13 @@
   "status": "exported",
   "errors": [],
   "warnings": [],
+  "nativeWarnings": [],
   "originalCoverAndTruck": "Requires original native issue; not modified by this single-page compiler",
-  "adobeInDesignTested": false
+  "adobeInDesignTested": false,
+  "interchangeHyperlinks": {
+    "nativeAndPdf": true,
+    "stockIdml": false,
+    "sidecarCount": 0,
+    "reopenTool": "reopen-idml.py"
+  }
 }

@@ -1,54 +1,53 @@
-OTE DesignCraft review and reconstructed template toolkit
+OTE DesignCraft review and corrected template toolkit
 
-Provenance
-----------
-The original prototype under ote-layout-study was not recovered. This is a
-new reconstruction of its documented layout families and companion workflow.
-Original PDFs/IDML and logo artwork were recovered from the supplied Drive ZIP.
-documents.json records source paths, duplicate locations and original SHA-256.
+The supplied Drive archive contains reusable layout shells, source revisions,
+PDF/IDML files and artwork. The website archive contains the finished published
+issues. Those are different content sources; blank template pages do not contain
+all published articles. The earlier ote-layout-study prototype was not recovered.
 
-Original PDFs are byte-identical under originals/. Reading PDFs under pdfs/
-are optimized only where needed for static hosting. Never substitute a reading
-copy for a printer-approved original without checking the print requirements.
+Serve this folder over HTTP (python3 -m http.server 8000) to use the planner.
+In Publications, choose DesignCraft ZIP and select articles/images. Import the
+downloaded ZIP here, choose layouts, assign articles, and reserve
+custom pieces. Download a single-page recipe or save consecutive pages and
+export a whole-issue recipe. Original text/media and stable page IDs are retained.
+Native fitting runs locally with Python, the requirements.txt dependency, and
+the checksum-verified official DesignCraft v0.4.0 CLI. See native-readme.md.
 
-Use the review
---------------
-Serve the review directory over HTTP (python -m http.server 8000), then open
-http://localhost:8000/ . Or use Utilities > DesignCraft layouts in OTEManager.
-The hosted Site shows all reading PDFs and includes a smaller template kit.
-The full ZIP additionally includes byte-identical original PDFs.
+The kit includes 104 reconstructed recipes, schematic catalogue, seven native
+examples, page/issue compilers, checked IDML reopening, regression/audit tools,
+and licensed Source Sans 3, Source Serif 4 and JetBrains Mono fonts.
+Whole-issue composition derives cover references from actual pages. Preservation
+uses a same-length native base, protects both halves of continuous spreads, and
+compares original objects/stories after saving. PDF alone cannot preserve
+editable layout objects. Every article needs one interior assignment.
 
-Use the native compiler
------------------------
-1. Export an issue's DesignCraft ZIP from OTEManager Publications.
-2. Import that ZIP into the browser page planner, choose a layout and stories.
-3. Reserve custom pieces, edit shared fields, then download a page recipe ZIP.
-4. Extract the recipe and template-kit.zip. Run compile-template.py with the
-   recipe templates.json, template ID, issue.json and stock DesignCraft CLI.
-5. Inspect preflight.json. Complete article text is retained; overset prevents
-   final PDF/IDML export. Native drafts and source records remain reviewable.
+Full article Markdown is preserved as source; supported CommonMark is composed
+into native styled text. bodyFormat=plain keeps literal text. Overset and missing
+required photos prevent final PDF/IDML output while keeping a native draft.
+Successful PDFs request PDF/X-4. Browser previews do not verify native fitting.
 
-See native-readme.md in the toolkit for exact commands. download-cli.py pins
-the official v0.4.0 CLI and checks the official archive checksum.
+Stock IDML loses URL links and parent override lists. Keep the generated
+interchange-metadata.json and use reopen-idml.py for checked companion round
+trips. Adobe InDesign does not consume this sidecar and was not tested here.
+Salted and Helvetica Neue were subsequently supplied and validated. The optional
+original2025 profile loads selected private fonts through an explicit --font-dir;
+the public kit includes open fonts only. Other source fonts and some graphics
+remain missing. Older imported frames still need fitting and visual review.
+Configured OTEManager servers provide native export from this planner through
+/api/designcraft/native. Static hosting uses the included standalone CLI workflow;
+there is no browser/WASM renderer. Production deployment remains outstanding.
 
-Included
---------
-104 reconstructed recipes: 76 story layouts (1/2/3 stories), 14 ad areas,
-six custom pieces and eight cover variants. The 104-page catalogue is a
-schematic geometry reference. Native examples contain editable .designcraft,
-actual PDFs, IDML, source records, scripts and preflight reports.
-Source Sans 3 / Source Serif 4 are included under the supplied OFL notices.
-JSZip is included under its supplied licence. Original font files are not
-redistributed. Original PDF branding remains visible in the recovered archive.
+Recovered PDFs under originals/ are byte-identical; pdfs/ reading copies may be
+optimized. Original proprietary font files are excluded. Font and JSZip notices
+are included. Review native preflight and obtain the printer's requirements
+before treating any output as a production issue.
 
-Remaining limits
-----------------
-Browser previews do not prove text fit. Automatic suggestions use story count,
-photo count and body area; native preflight verifies actual font shaping.
-Story regions adapt into the largest free rectangle around reserved blocks.
-This does not create arbitrary wrapping around multiple disconnected areas.
-Cover/truck preservation fields record requests. Recreating native whole-issue
-preservation remains outstanding and needs an original editable issue.
-Native export from the hosted Site still needs the downloaded local compiler.
-Generated IDML has not been verified by opening it in Adobe InDesign.
-Original font profiles are not yet connected; Salted's font file was not found.
+Cover options store date/year, volume/issue, headline/subtitle, caption/credit,
+replaceable image and crop focus. Choose up to three featured articles; place
+each on one interior page. References update with page order. Unplaced and
+duplicate selections block export. Save the front cover as page 1. ZIP import
+restores fields and exact image bytes. See native-readme.md for original fonts.
+
+The seven native examples share assets/fonts. Before opening an example directly
+in the desktop program, copy that font directory beside page.designcraft as
+Document Fonts. Generated compiler and server bundles already carry that scope.

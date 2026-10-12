@@ -12,7 +12,7 @@
       "role": "photo",
       "articleId": null,
       "pageId": "page-1",
-      "commandIndex": 12
+      "commandIndex": 22
     },
     {
       "templateId": "cover-framed-cards-border",
@@ -20,7 +20,7 @@
       "role": "headline",
       "articleId": null,
       "pageId": "page-1",
-      "commandIndex": 17
+      "commandIndex": 28
     },
     {
       "templateId": "cover-framed-cards-border",
@@ -28,7 +28,7 @@
       "role": "byline",
       "articleId": null,
       "pageId": "page-1",
-      "commandIndex": 23
+      "commandIndex": 34
     },
     {
       "templateId": "cover-framed-cards-border",
@@ -36,7 +36,7 @@
       "role": "photo",
       "articleId": null,
       "pageId": "page-1",
-      "commandIndex": 29
+      "commandIndex": 40
     },
     {
       "templateId": "cover-framed-cards-border",
@@ -44,7 +44,7 @@
       "role": "caption",
       "articleId": null,
       "pageId": "page-1",
-      "commandIndex": 38
+      "commandIndex": 49
     },
     {
       "templateId": "cover-framed-cards-border",
@@ -52,7 +52,7 @@
       "role": "piece",
       "articleId": null,
       "pageId": "page-1",
-      "commandIndex": 44
+      "commandIndex": 55
     },
     {
       "templateId": "cover-framed-cards-border",
@@ -60,7 +60,7 @@
       "role": "piece",
       "articleId": null,
       "pageId": "page-1",
-      "commandIndex": 53
+      "commandIndex": 64
     },
     {
       "templateId": "cover-framed-cards-border",
@@ -68,11 +68,13 @@
       "role": "piece",
       "articleId": null,
       "pageId": "page-1",
-      "commandIndex": 62
+      "commandIndex": 73
     }
   ],
   "copyPreserved": true,
   "copyScope": "source-record-article-bodies",
+  "sourceMarkdownPreserved": true,
+  "nativeTextScope": "rendered-commonmark-or-plain",
   "articleBodiesInNative": false,
   "focalPointRequests": [],
   "fonts": [
@@ -87,6 +89,13 @@
     "cover-card-2: no media supplied; boundary placeholder drawn",
     "cover-card-3: no media supplied; boundary placeholder drawn"
   ],
+  "nativeWarnings": [],
   "originalCoverAndTruck": "Requires original native issue; not modified by this single-page compiler",
-  "adobeInDesignTested": false
+  "adobeInDesignTested": false,
+  "interchangeHyperlinks": {
+    "nativeAndPdf": true,
+    "stockIdml": false,
+    "sidecarCount": 0,
+    "reopenTool": "reopen-idml.py"
+  }
 }

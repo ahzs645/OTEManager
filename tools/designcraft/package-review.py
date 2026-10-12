@@ -22,25 +22,25 @@ def notes_pdf():
         'Byte-identical PDFs are in originals/. Reading copies larger than 24 MiB were optimized for static hosting.',
         'Actual horizontal logo artwork and the stacked masthead from the September cover are included.',
         '104 recipes: 76 story layouts, 14 ads, six custom pieces, eight covers. Catalogue pages are schematic geometry.',
-        'Native examples are generated through stock DesignCraft v0.4.0; their own preflight reports describe actual results.'
+        'Drive PDFs are mostly reusable page shells; published website PDFs contain the finished article pages.'
     ]),('Using OTEManager and DesignCraft',[
-        '1. In OTEManager Publications, choose DesignCraft ZIP for an issue.',
-        '2. Open Utilities > DesignCraft layouts, or the separate review Site. Import the issue ZIP.',
+        '1. In Publications, select articles and images; choose Open selected in planner or download a DesignCraft ZIP.',
+        '2. Utilities opens the selection directly. The standalone review also accepts a ZIP import.',
         '3. Choose one, two or three stories and their photo arrangement. Reserve custom pieces if required.',
-        '4. Adjust shared questions/answers and boundaries. Download the page recipe ZIP and extract it.',
-        '5. Run compile-template.py against templates.json and issue.json, with the stock CLI path.',
-        '6. Inspect preflight.json. Overset blocks final export; the native draft retains the complete article text.',
-        'The browser preview shows composition; it does not perform native font shaping or prove text fit.',
+        '4. Edit frame size/leading, geometry, selected photographs, captions and crop. Upload custom/ad artwork.',
+        '5. Save issue pages and continuation chains, then Generate editable output on a configured OTE server.',
+        '6. Inspect preflight. Missing media, overset or unresolved references block final PDF/IDML; drafts retain full source.',
+        'Offline: download recipes/kit and use compile-template.py or compile-issue.py with the verified CLI and packaged fonts.',
         'Issue JSON includes exact stored Markdown, original media bytes, captions and stable IDs. Missing media rejects export.'
     ]),('Fonts, covers and the double truck',[
         'The original PDFs preserve their rendered branding. New editable samples use licensed Source Sans 3 and Source Serif 4.',
-        'Source 2025 covers reference Decalotype Black, Helvetica Neue Bold/Condensed Bold, and Salted. Salted file was not found.',
-        'Original font references are documented. Proprietary font files are not redistributed in this package.',
-        'The double truck is the continuous centre spread: 16 pages means 8/9; 20 pages means 10/11.',
+        'Salted and Helvetica Neue were subsequently supplied. Original2025 uses selected private fonts via --font-dir.',
+        'Cover form fields include date/year, volume/issue, headline, caption, photo and automatically derived article pages.',
+        'The double truck is continuous: 16 pages means 8/9. Preservation protects both halves and rejects intersecting thread edits.',
         'A print-ready booklet requires a multiple-of-four page count. Several supplied 17-page issues are unfinished layouts.',
-        'Recipes record cover/truck preservation requests. Native whole-issue preservation has not yet been rebuilt.',
-        'The seven native examples passed DesignCraft preflight. Actual Adobe InDesign import has not been tested.',
-        'Remaining integration: native export backend in OTEManager, exact original font profiles, whole-issue protection, and browser/WASM command bridge.'
+        'Whole-issue preservation compares protected native spread objects and stories; supply a same-length native base.',
+        'All 104 recipes pass illustrative-copy preflight and three repeat cycles. The seven included native examples were regenerated.',
+        'Stock IDML drops numbering, text labels, parent overrides and URL links. Keep the checked sidecar; Adobe does not consume it.'
     ])]
     import textwrap
     for title,paragraphs in pages:
@@ -81,12 +81,14 @@ def package(site_path,full_path):
     with zipfile.ZipFile(ROOT/'template-kit.zip','w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
         for name in ['templates.json','README.txt','documents.json']:z.write(ROOT/name,name)
         for p in sorted(tools.glob('*')):
-            if p.is_file() and p.suffix in ['.py','.md','.cjs']:z.write(p,p.name)
+            if p.is_file() and p.suffix in ['.py','.md','.cjs','.txt']:z.write(p,p.name)
         for folder in ['assets','native-examples','source-idml']:
             for p in sorted((ROOT/folder).rglob('*')):
                 if p.is_file() and p.name not in ['commands-stdout.json','commands-stderr.txt','document-inspect.json','export-stdout.json','export-stderr.txt'] and not (folder=='native-examples' and 'Document Fonts' in p.parts):z.write(p,str(p.relative_to(ROOT)))
         for p in [ROOT/'pdfs/reconstructed-template-catalogue.pdf',ROOT/'pdfs/implementation-guide.pdf']:z.write(p,str(p.relative_to(ROOT)))
     if (ROOT/'template-kit.zip').stat().st_size>24*1024*1024:raise ValueError('Template kit exceeds hosting limit')
+    kit_digest=hashlib.sha256((ROOT/'template-kit.zip').read_bytes()).hexdigest()
+    (ROOT/'template-kit.zip.sha256').write_text(kit_digest+'  template-kit.zip\n')
     if site_path:
         site=Path(site_path);dist=site/'dist'
         if dist.exists():shutil.rmtree(dist)
@@ -124,11 +126,11 @@ def package(site_path,full_path):
             for p in ROOT.rglob('*'):
                 if p.is_file():z.write(p,'review/'+str(p.relative_to(ROOT)))
             for p in tools.glob('*'):
-                if p.is_file() and p.suffix in ['.py','.md','.cjs']:z.write(p,'tools/'+p.name)
-            changes=['server/designcraft-export.ts','app/routes/utilities.designcraft.tsx','app/routes/utilities.index.tsx',
+                if p.is_file() and p.suffix in ['.py','.md','.cjs','.txt']:z.write(p,'tools/'+p.name)
+            changes=['app/components/publications/IssueExportModal.tsx','server/designcraft-export.ts','app/routes/utilities.designcraft.tsx','app/routes/utilities.index.tsx',
                      'app/routes/api/exportIssue.$issueId.ts','app/components/publications/IssueRow.tsx',
-                     'app/components/publications/VolumeCard.tsx','tests/utilities.test.ts','docs/DESIGNCRAFT.md',
-                     'docs/designcraft-site.json','.gitattributes']
+                     'app/components/publications/VolumeCard.tsx','tests/utilities.test.ts','docs/DESIGNCRAFT.md','docs/DESIGNCRAFT-INTEGRATION-REVIEW.md',
+                     'docs/designcraft-site.json','.gitattributes','app/lib/designcraft-handoff.ts','server/designcraft-native.ts','app/routes/api.designcraft.native.ts','tests/designcraft-native.test.ts','docs/designcraft-native-service.md','Dockerfile.native']
             for name in changes:
                 p=REPO/name;z.write(p,'otemanager/'+str(p.relative_to(REPO)))
         digest=hashlib.sha256(Path(full_path).read_bytes()).hexdigest()

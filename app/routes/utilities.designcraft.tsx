@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+import { takeDesignCraftIssue } from "~/lib/designcraft-handoff";
 import { createFileRoute } from "@tanstack/react-router";
 import { ExternalLink } from "lucide-react";
 
@@ -6,6 +8,18 @@ export const Route = createFileRoute("/utilities/designcraft")({
 });
 
 function DesignCraftLayoutsPage() {
+  const frame = useRef<HTMLIFrameElement>(null);
+  useEffect(() => {
+    const receive = async (event: MessageEvent) => {
+      if (event.origin !== window.location.origin || event.source !== frame.current?.contentWindow || event.data?.type !== 'ote.planner.ready') return;
+      const pending = takeDesignCraftIssue();
+      if (!pending) return;
+      const bytes = await pending.blob.arrayBuffer();
+      frame.current?.contentWindow?.postMessage({ type: 'ote.import-issue', name: pending.name, bytes }, window.location.origin, [bytes]);
+    };
+    window.addEventListener('message', receive);
+    return () => window.removeEventListener('message', receive);
+  }, []);
   return (
     <div className="page-container">
       <div
@@ -28,8 +42,8 @@ function DesignCraftLayoutsPage() {
               margin: "0.4rem 0 0",
             }}
           >
-            Review page templates and PDFs, plan an issue, and import issue.json
-            from a Publications DesignCraft export.
+            In Publications, choose DesignCraft ZIP and select articles and
+            images, then open the selection here. Plan pages, cover features and continuations, then generate editable native output or download a recipe.
           </p>
         </div>
         <a
@@ -42,6 +56,7 @@ function DesignCraftLayoutsPage() {
         </a>
       </div>
       <iframe
+        ref={frame}
         title="DesignCraft template library and issue planner"
         src="/designcraft/index.html"
         style={{

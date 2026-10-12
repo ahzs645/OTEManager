@@ -264,99 +264,99 @@
       "title": "Reconstructed Template Catalogue",
       "category": "reconstructed",
       "pages": 104,
-      "bytes": 90588,
+      "bytes": 90539,
       "pdf": "pdfs/reconstructed-template-catalogue.pdf",
       "thumbnail": "thumbnails/proof-reconstructed-template-catalogue.jpg",
       "sourcePaths": [],
-      "sha256": "c16d84342916b6c0cd2fd60dbddfc317e50892da9ce6cfb475b2327c89aa1475"
+      "sha256": "da7cdca5e5d1497f1f68d99a5b2dbaddaca95ccf497fe2e874b136e624f0fdbb"
     },
     {
       "id": "proof-implementation-guide",
       "title": "Implementation Guide",
       "category": "reconstructed",
       "pages": 3,
-      "bytes": 4960,
+      "bytes": 5153,
       "pdf": "pdfs/implementation-guide.pdf",
       "thumbnail": "thumbnails/proof-implementation-guide.jpg",
       "sourcePaths": [],
-      "sha256": "62c97088a416e5e0060bd893069a4811dc17f4d285ada8399f94cf6b516202e9"
+      "sha256": "cc88a94b29825c045d5ea141965f4e1c3be761fe97b9e0a7e086e87531d470a6"
     },
     {
       "id": "proof-ad-half-bottom",
       "title": "Native DesignCraft \u00b7 ad half bottom",
       "category": "reconstructed",
       "pages": 1,
-      "bytes": 7923,
+      "bytes": 247195,
       "pdf": "native-examples/ad-half-bottom/page.pdf",
       "thumbnail": "thumbnails/proof-ad-half-bottom.jpg",
       "sourcePaths": [],
-      "sha256": "1307a50cebef2f0c395cdb4b8c19b5906fbb503d1b689d4b5905c06573257031"
+      "sha256": "f8b27959eab2bc09a191ef59958377b73a2302fce47e9f0b828bce37968586d6"
     },
     {
       "id": "proof-cover-framed-cards-border",
       "title": "Native DesignCraft \u00b7 cover framed cards border",
       "category": "reconstructed",
       "pages": 1,
-      "bytes": 147862,
+      "bytes": 387147,
       "pdf": "native-examples/cover-framed-cards-border/page.pdf",
       "thumbnail": "thumbnails/proof-cover-framed-cards-border.jpg",
       "sourcePaths": [],
-      "sha256": "b415e1b2a8bc49b7ba82c6d7b9f921329c0af917062d2985fa2ace02e30d3095"
+      "sha256": "d7b97f7beb98630b28ed25f87700d830bdc2f30781bfb0598fcc7b63eb911efc"
     },
     {
       "id": "proof-cover-framed-source-photo",
       "title": "Native DesignCraft \u00b7 cover framed source photo",
       "category": "reconstructed",
       "pages": 1,
-      "bytes": 1835341,
+      "bytes": 2074630,
       "pdf": "native-examples/cover-framed-source-photo/page.pdf",
       "thumbnail": "thumbnails/proof-cover-framed-source-photo.jpg",
       "sourcePaths": [],
-      "sha256": "fcd18b618fe449d6869c32b9b217c8081cc7a07b0485d574d660cf25a4cf3b01"
+      "sha256": "299ecf931c9e64f68a683b9c84d75678b25b1a2443d17f3aefee869b3fb0b91b"
     },
     {
       "id": "proof-piece-president-qa",
       "title": "Native DesignCraft \u00b7 piece president qa",
       "category": "reconstructed",
       "pages": 1,
-      "bytes": 10078,
+      "bytes": 249233,
       "pdf": "native-examples/piece-president-qa/page.pdf",
       "thumbnail": "thumbnails/proof-piece-president-qa.jpg",
       "sourcePaths": [],
-      "sha256": "caac7a9b0bec82b92d89131f87e354d7b72892c0060a71f867336bd01866a6e5"
+      "sha256": "e8ed1d6b928f2f45b8cdb4accc8b9b5a04c641ed854317447371bbe12635d3e5"
     },
     {
       "id": "proof-story-1-top-balanced",
       "title": "Native DesignCraft \u00b7 story 1 top balanced",
       "category": "reconstructed",
       "pages": 1,
-      "bytes": 29880,
+      "bytes": 269167,
       "pdf": "native-examples/story-1-top-balanced/page.pdf",
       "thumbnail": "thumbnails/proof-story-1-top-balanced.jpg",
       "sourcePaths": [],
-      "sha256": "1a213392e4280cc8a22f45e65e1eacac1aee91beb111ea26888e4c63f27e1c3c"
+      "sha256": "b379faa68e0f35fe0e113b203c132beaa46eda3e9c7cad3947274a518a48fd17"
     },
     {
       "id": "proof-story-2-two-top-columns",
       "title": "Native DesignCraft \u00b7 story 2 two top columns",
       "category": "reconstructed",
       "pages": 1,
-      "bytes": 30254,
+      "bytes": 269523,
       "pdf": "native-examples/story-2-two-top-columns/page.pdf",
       "thumbnail": "thumbnails/proof-story-2-two-top-columns.jpg",
       "sourcePaths": [],
-      "sha256": "f012a952749b854f47cd4dae544111a764cb65a61436d67d66bb710aecd057de"
+      "sha256": "bd77fb76d7140d633a137a78ab1eaf6b37dcde42703e7fce43026bc59052c99b"
     },
     {
       "id": "proof-story-3-none-columns",
       "title": "Native DesignCraft \u00b7 story 3 none columns",
       "category": "reconstructed",
       "pages": 1,
-      "bytes": 27393,
+      "bytes": 266693,
       "pdf": "native-examples/story-3-none-columns/page.pdf",
       "thumbnail": "thumbnails/proof-story-3-none-columns.jpg",
       "sourcePaths": [],
-      "sha256": "67a3480938118c9ec43899f87996e776040123ea19beac1c7e13ba6267f22b6f"
+      "sha256": "d19fb8f1db727d7bcda8b7a56c3fe021d945166718956d3e10f2df59c2e571d9"
     }
   ],
   "idml": [

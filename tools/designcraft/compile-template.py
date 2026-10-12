@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Compose an OTE template through stock DesignCraft commands (Python 3 stdlib)."""
+"""Compose an OTE template through stock DesignCraft commands and CommonMark."""
 import argparse
+from functools import lru_cache
 import hashlib
 import json
 import math
@@ -9,6 +10,9 @@ import shutil
 import subprocess
 import sys
 import zipfile
+from markdown_story import compose_source
+from interchange_metadata import save_metadata
+from cover_fields import resolve_cover
 
 LIBRARY_SCHEMA = 'ote.designcraft.templates.v1'
 ISSUE_SCHEMA = 'ote.designcraft.issue.v1'
@@ -16,6 +20,15 @@ ISSUE_SCHEMA = 'ote.designcraft.issue.v1'
 
 def write_json(path, value):
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+
+@lru_cache(maxsize=16)
+def cli_version(cli):
+    return subprocess.check_output([str(cli), '--version'], text=True, timeout=10).strip()
+
+
+def font_scope(directory):
+    return {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(Path(directory).glob('*')) if p.is_file() and p.suffix.lower() in ('.ttf', '.otf', '.ttc', '.otc')}
 
 
 def run_script(cli, path, output):
@@ -83,6 +96,10 @@ def example_articles(count):
 
 
 def compile_page(args):
+    output = args.output.resolve()
+    output.mkdir(parents=True, exist_ok=True)
+    for stale_export in ('page.pdf', 'page.idml', 'page.designcraft', 'preflight.json', 'build-manifest.json'):
+        (output / stale_export).unlink(missing_ok=True)
     library = json.loads(args.library.read_text(encoding='utf-8'))
     if library.get('schemaVersion') != LIBRARY_SCHEMA:
         raise ValueError('Unsupported template library schema')
@@ -97,6 +114,11 @@ def compile_page(args):
         raise ValueError('Unsupported issue schema')
     story_count = template.get('storyCount', 0)
     is_cover = template.get('kind') == 'cover'
+    font_profile = getattr(args, 'font_profile', 'portable')
+    if font_profile not in ('portable', 'original2025'):
+        raise ValueError('Unknown font profile')
+    if font_profile == 'original2025' and not args.font_dir:
+        raise ValueError('original2025 needs --font-dir with your Helvetica Neue, Decalotype and Salted files')
     articles = issue.get('articles', []) if issue else example_articles(story_count)
     if args.articles:
         selected = args.articles.split(',')
@@ -108,7 +130,14 @@ def compile_page(args):
             raise ValueError('An article ID is absent from the issue')
         articles = [index[i] for i in selected]
     else:
-        articles = articles[:3 if is_cover else story_count]
+        featured = issue.get('layoutPlan', {}).get('cover', {}).get('articleIds') if issue and is_cover else None
+        if featured is not None:
+            index = {a['id']: a for a in articles}
+            if any(aid not in index for aid in featured):
+                raise ValueError('An article ID is absent from the issue')
+            articles = [index[aid] for aid in featured]
+        else:
+            articles = articles[:3 if is_cover else story_count]
     if len({a.get('id') for a in articles}) != len(articles):
         raise ValueError('Article IDs must be distinct')
     if not is_cover and len(articles) != story_count:
@@ -119,17 +148,26 @@ def compile_page(args):
                 raise ValueError(f'Article {field} must be a string')
         if not article['title'].strip() or not article['body'].strip():
             raise ValueError('An article title or body is empty')
-    output = args.output.resolve()
-    output.mkdir(parents=True, exist_ok=True)
-    for stale_export in ('page.pdf', 'page.idml'):
-        (output / stale_export).unlink(missing_ok=True)
+    continuation_ids = set(getattr(args, 'continuation_article_ids', []))
+    staged_flow_ids = set(getattr(args, 'staged_flow_ids', []))
+    composed = {a['id']: compose_source(a['body'], a.get('bodyFormat', 'markdown')) for a in articles}
+    if not is_cover and any(not record['text'].strip() for record in composed.values()):
+        raise ValueError('An article has no printable body after Markdown conversion')
+    if is_cover and issue:
+        template = resolve_cover(template, issue, [a['id'] for a in articles], args.issue.resolve().parent)
     font_dir = args.font_dir or (args.library.resolve().parent / 'assets' / 'fonts')
     if font_dir.is_dir():
         document_fonts = output / 'Document Fonts'
+        if document_fonts.exists() and font_dir.resolve() != document_fonts.resolve() and not font_dir.resolve().is_relative_to(document_fonts.resolve()):
+            shutil.rmtree(document_fonts)
         document_fonts.mkdir(exist_ok=True)
         for font in font_dir.iterdir():
-            if font.is_file() and (font.name.startswith(('SourceSans3-', 'SourceSerif4-')) and font.suffix.lower() in ('.ttf', '.otf') or font.name in ('OFL-SourceSans3.txt', 'OFL-SourceSerif4.txt')):
-                shutil.copyfile(font, document_fonts / font.name)
+            accepted_font = font.suffix.lower() in ('.ttf', '.otf', '.ttc', '.otc') and (
+                font_profile == 'original2025' or font.name.startswith(('SourceSans3-', 'SourceSerif4-', 'JetBrainsMono-')))
+            if font.is_file() and (accepted_font or font.name.startswith('OFL-') and font.suffix == '.txt'):
+                target_font = document_fonts / font.name
+                if font.resolve() != target_font.resolve():
+                    shutil.copyfile(font, target_font)
     steps = []
     slot_refs = []
     warnings = []
@@ -153,17 +191,31 @@ def compile_page(args):
         add('object.rename', id=ref(index), name=slot['id'])
         slot_refs.append(dict(metadata, commandIndex=index))
 
-    def styled_text(rect, text, style, columns=1, slot=None, article=None):
+    def styled_text(rect, text, style, columns=1, slot=None, article=None, rich=None):
         index = add('frame.create', rect=rect, content='text', text=text, caret=False)
         add('object.textFrameOptions', ids=[ref(index)], inset=0, columns=columns, gutter=page.get('gutter', 12))
         add('text.select', story=ref(index, 'story'), anchor=0, focus=len(text.encode('utf-8')))
         add('style.paragraph.apply', name=style, clearOverrides=True)
+        if rich:
+            for paragraph in rich['paragraphs']:
+                add('text.select', story=ref(index, 'story'), anchor=paragraph['start'], focus=paragraph['end'])
+                add('style.paragraph.apply', name=style if paragraph['style'] == 'OTE Body' else paragraph['style'], clearOverrides=True)
+            for span in rich['spans']:
+                add('text.select', story=ref(index, 'story'), anchor=span['start'], focus=span['end'])
+                if span.get('attrs'):
+                    add('type.char', attrs=span['attrs'])
+                if span.get('kind') == 'link':
+                    add('hyperlink.create', url=span['url'])
         if slot:
             label_frame(index, slot, article)
         return index
 
     add('file.new', width=width, height=height, pages=1, facingPages=False,
         margins=page.get('margin', 36), title=template['name'])
+    # Load the packaged font scope BEFORE composition. A preflight against the
+    # built-in fonts can pass while reopening with document fonts reflows copy.
+    add('file.saveAs', path=str(output / 'page.designcraft'))
+    add('file.open', path=str(output / 'page.designcraft'))
     add('layout.documentSetup', startPage=args.page_number, intent='print')
     add('swatch.create', name='OTE Green', color={'c': 70, 'm': 30, 'y': 75, 'k': 40})
     add('swatch.create', name='OTE Placeholder', color={'c': 10, 'm': 3, 'y': 8, 'k': 0})
@@ -174,9 +226,23 @@ def compile_page(args):
         'OTE Caption': ('Source Sans 3', 'Regular', 8, 10),
         'OTE Label': ('Source Sans 3', 'Semibold', 12, 15),
         'OTE Folio': ('Source Sans 3', 'Regular', 8, 10),
+        'OTE Quote': ('Source Serif 4', 'Italic', 10, 12),
+        'OTE Code': ('JetBrains Mono', 'Regular', 9, 12),
     }
+    for level in range(1, 7):
+        size = {1: 18, 2: 16, 3: 14, 4: 12, 5: 11, 6: 10}[level]
+        styles['OTE Heading ' + str(level)] = ('Source Sans 3', 'Bold', size, size * 1.2)
+    if font_profile == 'original2025':
+        for name, (_, _, size, leading) in list(styles.items()):
+            if name == 'OTE Code':
+                continue
+            face = 'Bold' if name == 'OTE Headline' or name.startswith('OTE Heading ') else 'Italic' if name == 'OTE Quote' else 'Medium' if name in ('OTE Byline', 'OTE Label') else 'Regular'
+            styles[name] = ('Helvetica Neue', face, size, leading)
+        styles['OTE Cover Date'] = ('Decalotype', 'Black', 24, 27)
+        styles['OTE Cover Issue'] = ('Salted', 'Regular', 9, 11)
+        styles['OTE Cover Hand'] = ('Salted', 'Regular', 8, 10)
     for name, (family, font_style, size, leading) in styles.items():
-        add('style.paragraph.create', name=name, para={'spaceAfter': 4, 'hyphenate': name == 'OTE Body'},
+        add('style.paragraph.create', name=name, para={'spaceAfter': 4 if name in ('OTE Body', 'OTE Quote') else 0, 'hyphenate': name == 'OTE Body'},
             chars={'fontFamily': family, 'fontStyle': font_style, 'size': size,
                    'leading': {'kind': 'points', 'value': leading}})
     if template.get('border'):
@@ -189,17 +255,21 @@ def compile_page(args):
         x, y, right, bottom = rect
         if not (0 <= x < right <= width and 0 <= y < bottom <= height):
             raise ValueError(f'Slot {slot["id"]} lies outside page boundaries')
+        if slot.get('enabled') is False:
+            continue
         role = slot['role']
         ai = slot.get('articleIndex', 0)
         article = articles[ai] if 'articleIndex' in slot and 0 <= ai < len(articles) else None
         if 'articleIndex' in slot and role in ('headline', 'body', 'byline', 'photo', 'caption') and article is None and template.get('kind') != 'cover':
             raise ValueError(f'Slot {slot["id"]} has no matching article')
         if role in ('headline', 'body', 'byline', 'caption', 'folio'):
+            if is_cover and slot['id'] in ('cover-line', 'cover-caption') and not slot.get('text'):
+                continue
             if role == 'headline':
                 text, style = article['title'] if article else str(slot.get('text') or 'ILLUSTRATIVE COVER TITLE'), 'OTE Headline'
             elif role == 'body':
                 body_counts[ai] = body_counts.get(ai, 0) + 1
-                text, style = article['body'] if article else str(slot.get('text') or 'ILLUSTRATIVE COPY'), 'OTE Body'
+                text, style = ('' if article['id'] in continuation_ids else composed[article['id']]['text']) if article else str(slot.get('text') or 'ILLUSTRATIVE COPY'), 'OTE Body'
             elif role == 'byline':
                 text, style = str(article.get('author') or 'Author not provided') if article else str(slot.get('text') or 'ILLUSTRATIVE BYLINE'), 'OTE Byline'
             elif role == 'caption':
@@ -209,18 +279,27 @@ def compile_page(args):
                 style = 'OTE Caption'
             else:
                 info = issue.get('issue', {}) if issue else {}
-                text = f'{args.page_number}  |  {info.get("title") or "OVER THE EDGE"}  |  {info.get("date") or "ILLUSTRATIVE TEMPLATE"}'
+                text = f'\ue000  |  {info.get("title") or "OVER THE EDGE"}  |  {info.get("date") or "ILLUSTRATIVE TEMPLATE"}'
                 style = 'OTE Folio'
-            if slot.get('fontSize'):
+            if is_cover and font_profile == 'original2025':
+                style = {'cover-date': 'OTE Cover Date', 'cover-year': 'OTE Cover Date',
+                         'cover-issue': 'OTE Cover Issue', 'cover-line': 'OTE Cover Hand'}.get(slot['id'], style)
+            if slot.get('fontSize') or slot.get('leading'):
                 custom_style = 'OTE Slot ' + slot['id']
-                family, font_style, _, _ = styles[style]
-                size = float(slot['fontSize'])
+                family, font_style, default_size, default_leading = styles[style]
+                size = float(slot.get('fontSize', default_size))
+                leading = float(slot.get('leading', default_leading if not slot.get('fontSize') else size * 1.15))
+                if not (4 <= size <= 144 and 4 <= leading <= 200):
+                    raise ValueError('Typography values exceed supported bounds')
                 add('style.paragraph.create', name=custom_style,
                     chars={'fontFamily': family, 'fontStyle': font_style, 'size': size,
-                           'leading': {'kind': 'points', 'value': size * 1.15}})
+                           'leading': {'kind': 'points', 'value': leading}})
                 style = custom_style
-            styled_text(rect, text, style, columns=slot.get('columns', 1), slot=slot, article=article)
+            styled_text(rect, text, style, columns=slot.get('columns', 1), slot=slot, article=article,
+                        rich=composed[article['id']] if role == 'body' and article and article['id'] not in continuation_ids else None)
         elif role in ('photo', 'ad', 'piece'):
+            if is_cover and slot['id'].startswith('cover-card-') and slot.get('text') == '' and not slot.get('fields'):
+                continue
             media = None
             if slot.get('asset'):
                 media = {'path': str((args.library.resolve().parent / slot['asset']).resolve())}
@@ -247,10 +326,14 @@ def compile_page(args):
                 portable = asset_dir / (digest[:16] + suffix)
                 shutil.copyfile(source_path, portable)
                 index = add('frame.create', rect=rect, content='graphic')
-                add('file.place', path=str(portable), frame=ref(index))
-                add('object.fittingOptions', ids=[ref(index)], fitting='fillProportionally' if role == 'photo' and not slot.get('asset') else 'fitProportionally', autoFit=True, align=4)
-                if slot.get('focus') is not None and role == 'photo' and not slot.get('asset'):
-                    focus_requests.append({'slotId': slot['id'], 'requestedFocus': slot['focus'], 'nativeCrop': 'pending', 'exactFocusApplied': False})
+                placed = add('file.place', path=str(portable), frame=ref(index))
+                add('links.embed', asset=ref(placed, 'asset'))
+                fitting = slot.get('fit', 'cover' if role == 'photo' and (not slot.get('asset') or slot.get('focus') is not None) else 'contain')
+                if fitting not in ('cover', 'contain'):
+                    raise ValueError('Image fit must be cover or contain')
+                add('object.fittingOptions', ids=[ref(index)], fitting='fillProportionally' if fitting == 'cover' else 'fitProportionally', autoFit=True, align=4)
+                if fitting == 'cover':
+                    focus_requests.append({'slotId': slot['id'], 'requestedFocus': slot.get('focus', {'x': .5, 'y': .5}), 'nativeCrop': 'pending', 'exactFocusApplied': False})
                 label_frame(index, slot, article)
             else:
                 if issue and role == 'photo' and article:
@@ -266,7 +349,15 @@ def compile_page(args):
                 if fields:
                     caption += '\n\n' + '\n\n'.join(str(key).replace('_', ' ').title() + ': ' + str(value) for key, value in fields.items())
                 h = bottom - y - 8 if fields or role == 'piece' else min(36, bottom - y - 8)
-                styled_text([x+4, y+4, right-4, y+4+h], caption, 'OTE Label')
+                label_style = 'OTE Label'
+                if slot.get('fontSize') or slot.get('leading'):
+                    family, face, default_size, default_leading = styles[label_style]
+                    size, leading = float(slot.get('fontSize', default_size)), float(slot.get('leading', default_leading))
+                    if not (4 <= size <= 144 and 4 <= leading <= 200):
+                        raise ValueError('Typography values exceed supported bounds')
+                    label_style = 'OTE Slot ' + slot['id']
+                    add('style.paragraph.create', name=label_style, chars={'fontFamily': family, 'fontStyle': face, 'size': size, 'leading': {'kind': 'points', 'value': leading}})
+                styled_text([x+4, y+4, right-4, y+4+h], caption, label_style, slot=slot, article=article)
                 warnings.append(f'{slot["id"]}: no media supplied; boundary placeholder drawn')
         else:
             raise ValueError('Unsupported slot role: ' + role)
@@ -282,14 +373,14 @@ def compile_page(args):
     crop_asset_hashes = {}
     if focus_requests:
         crop_asset_hashes = apply_focal_crops(output / 'page.designcraft', focus_requests, template['slots'])
-        reopen_script = output / 'reopen-focal.dcs'
-        reopen_steps = [dict(command='file.open', params={'path': str(output / 'page.designcraft')}),
-                        dict(command='preflight.run', params={'minPpi': 150}),
-                        dict(command='document.inspect', params={}),
-                        dict(command='file.saveAs', params={'path': str(output / 'page.designcraft')})]
-        reopen_script.write_text('\n'.join(s['command'] + ' ' + json.dumps(s['params']) for s in reopen_steps) + '\n', encoding='utf-8')
-        reopened = run_script(args.cli, reopen_script, output)['results']
-        results[preflight_index], results[inspect_index] = reopened[1], reopened[2]
+    reopen_script = output / 'reopen-final.dcs'
+    reopen_steps = [dict(command='file.open', params={'path': str(output / 'page.designcraft')}),
+                    dict(command='preflight.run', params={'minPpi': 150}),
+                    dict(command='document.inspect', params={}),
+                    dict(command='file.saveAs', params={'path': str(output / 'page.designcraft')})]
+    reopen_script.write_text('\n'.join(s['command'] + ' ' + json.dumps(s['params']) for s in reopen_steps) + '\n', encoding='utf-8')
+    reopened = run_script(args.cli, reopen_script, output)['results']
+    results[preflight_index], results[inspect_index] = reopened[1], reopened[2]
     with zipfile.ZipFile(output / 'page.designcraft') as native:
         document = json.loads(native.read('document.json'))
         for asset_name, expected_hash in crop_asset_hashes.items():
@@ -306,28 +397,52 @@ def compile_page(args):
     for article in articles if not is_cover else []:
         body_ref = body_refs[article['id']]
         story_id = results[body_ref['commandIndex']]['story']
-        if document['stories'][str(story_id)]['text'] != article['body']:
-            raise ValueError('Native document failed full-copy check for article ' + article['id'])
+        if document['stories'][str(story_id)]['text'] != ('' if article['id'] in continuation_ids else composed[article['id']]['text']):
+            raise ValueError('Native document failed composed-copy check for article ' + article['id'])
     preflight = results[preflight_index]
-    write_json(output / 'preflight.json', preflight)
     write_json(output / 'document-inspect.json', results[inspect_index])
     errors = [x for x in preflight.get('issues', []) if x['severity'] == 'error']
+    # Staged flow pages retain overset until explicit threading; only the
+    # labelled body frame of that declared flow may defer an overset error.
+    deferred = []
+    if staged_flow_ids:
+        allowed_frames = {results[x['commandIndex']]['id'] for x in slot_refs if x['role'] == 'body' and x['articleId'] in staged_flow_ids}
+        deferred = [x for x in errors if x.get('kind') == 'overset' and x.get('item') in allowed_frames]
+        errors = [x for x in errors if x not in deferred]
     for slot_id in missing_media:
         errors.append(dict(kind='missing-input-photo', severity='error', message='Photo slot has no local photo: ' + slot_id))
+    preflight['issues'].extend(errors[len([x for x in preflight['issues'] if x['severity'] == 'error']):])
+    preflight['errors'] = len(errors)
+    write_json(output / 'preflight.json', preflight)
     manifest = dict(schemaVersion='ote.designcraft.build.v1', templateId=template['id'],
+                    cliVersion=cli_version(args.cli), documentFontSha256=font_scope(output / 'Document Fonts'),
                     sourceArticleIds=[a['id'] for a in articles], illustrative=issue is None or bool(issue.get('illustrative', False)),
                     pageId=args.page_id, pageNumber=args.page_number, slots=slot_refs,
                     copyPreserved=True, copyScope='source-record-article-bodies' if is_cover else 'native-article-bodies',
-                    articleBodiesInNative=not is_cover, focalPointRequests=focus_requests, fonts=['Source Sans 3', 'Source Serif 4'],
+                    sourceMarkdownPreserved=True, nativeTextScope='rendered-commonmark-or-plain',
+                    articleBodiesInNative=not is_cover, focalPointRequests=focus_requests,
+                    fontProfile=font_profile,
+                    fonts=['Helvetica Neue', 'Decalotype', 'Salted'] if font_profile == 'original2025' else ['Source Sans 3', 'Source Serif 4'],
                     status='needs-layout-adjustment' if errors else 'exported', errors=errors, warnings=warnings,
+                    nativeWarnings=[x for x in preflight['issues'] if x['severity'] == 'warning'],
                     originalCoverAndTruck='Requires original native issue; not modified by this single-page compiler',
                     adobeInDesignTested=False)
     write_json(output / 'build-manifest.json', manifest)
     write_json(output / 'source-record.json', dict(issue=issue.get('issue') if issue else None, articles=articles))
+    write_json(output / 'composed-record.json', composed)
+    manifest['interchangeHyperlinks'] = dict(nativeAndPdf=True, stockIdml=False,
+        sidecarCount=save_metadata(output / 'page.designcraft', output / 'interchange-metadata.json'),
+        reopenTool='reopen-idml.py')
+    write_json(output / 'build-manifest.json', manifest)
     if errors:
         raise ValueError(f'{len(errors)} preflight/input errors. Full copy retained in page.designcraft; final PDF/IDML export blocked. See preflight.json and build-manifest.json.')
+    if staged_flow_ids:
+        manifest['status'] = 'staged-flow'
+        manifest['deferredBodyOverset'] = deferred
+        write_json(output / 'build-manifest.json', manifest)
+        return manifest
     export_steps = [dict(command='file.open', params={'path': str(output / 'page.designcraft')}),
-                    dict(command='file.exportPdf', params={'path': str(output / 'page.pdf')}),
+                    dict(command='file.exportPdf', params={'path': str(output / 'page.pdf'), 'standard': 'x4'}),
                     dict(command='file.exportIdml', params={'path': str(output / 'page.idml')})]
     export_script = output / 'export.dcs'
     export_script.write_text('\n'.join(s['command'] + ' ' + json.dumps(s['params']) for s in export_steps) + '\n', encoding='utf-8')
@@ -343,7 +458,8 @@ def main():
     parser.add_argument('--articles', help='Comma-separated article IDs in slot order')
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--cli', default=shutil.which('designcraft-cli') or 'designcraft-cli')
-    parser.add_argument('--font-dir', type=Path, help='Directory of licensed Source Sans 3/Source Serif 4 fonts and OFL files')
+    parser.add_argument('--font-dir', type=Path, help='Document fonts for the selected profile; first matching family/style by filename wins')
+    parser.add_argument('--font-profile', choices=['portable', 'original2025'], default='portable')
     parser.add_argument('--page-number', type=int, default=1)
     parser.add_argument('--page-id', default='page-1')
     args = parser.parse_args()

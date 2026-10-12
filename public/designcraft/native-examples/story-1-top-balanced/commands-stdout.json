@@ -1,8 +1,17 @@
 {
-  "completed": 52,
+  "completed": 69,
   "results": [
     {
       "index": 1
+    },
+    {
+      "bytes": 2426,
+      "path": "/workspace/OTEManager/public/designcraft/native-examples/story-1-top-balanced/page.designcraft"
+    },
+    {
+      "documentFonts": 9,
+      "index": 2,
+      "warnings": []
     },
     {
       "binding": "leftToRight",
@@ -48,6 +57,33 @@
     },
     {
       "name": "OTE Folio"
+    },
+    {
+      "name": "OTE Quote"
+    },
+    {
+      "name": "OTE Code"
+    },
+    {
+      "name": "OTE Heading 1"
+    },
+    {
+      "name": "OTE Heading 2"
+    },
+    {
+      "name": "OTE Heading 3"
+    },
+    {
+      "name": "OTE Heading 4"
+    },
+    {
+      "name": "OTE Heading 5"
+    },
+    {
+      "name": "OTE Heading 6"
+    },
+    {
+      "name": "OTE Slot headline-1"
     },
     {
       "id": 8,
@@ -127,6 +163,12 @@
     },
     null,
     null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
     {
       "changed": 1
     },
@@ -185,7 +227,16 @@
         "OTE Byline",
         "OTE Caption",
         "OTE Label",
-        "OTE Folio"
+        "OTE Folio",
+        "OTE Quote",
+        "OTE Code",
+        "OTE Heading 1",
+        "OTE Heading 2",
+        "OTE Heading 3",
+        "OTE Heading 4",
+        "OTE Heading 5",
+        "OTE Heading 6",
+        "OTE Slot headline-1"
       ],
       "parents": [
         {
@@ -194,7 +245,7 @@
           "label": "A-Parent"
         }
       ],
-      "path": null,
+      "path": "/workspace/OTEManager/public/designcraft/native-examples/story-1-top-balanced/page.designcraft",
       "selection": {
         "content": false,
         "items": [],
@@ -433,10 +484,10 @@
             17
           ],
           "id": 18,
-          "length": 618,
-          "lines": 19,
+          "length": 614,
+          "lines": 15,
           "overset": false,
-          "paragraphs": 7,
+          "paragraphs": 3,
           "preview": "This is illustrative copy for the editable template. Replace it with an article "
         },
         {
@@ -468,11 +519,11 @@
         "OTE Green",
         "OTE Placeholder"
       ],
-      "title": "1 story · top · balanced",
+      "title": "page.designcraft",
       "tool": "selection"
     },
     {
-      "bytes": 4312,
+      "bytes": 4496,
       "path": "/workspace/OTEManager/public/designcraft/native-examples/story-1-top-balanced/page.designcraft"
     }
   ]

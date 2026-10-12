@@ -153,171 +153,209 @@ async function markdownToDocx(
   return await Packer.toBuffer(doc);
 }
 
-export const Route = createFileRoute("/api/exportIssue/$issueId")({
-  server: {
-    handlers: {
-      GET: async ({ params, request }) => {
-        const { issueId } = params;
-        const format = new URL(request.url).searchParams.get("format");
-        if (format && format !== "designcraft") {
-          return Response.json({ error: "Unsupported issue export format" }, { status: 400 });
-        }
+export async function handleIssueExport({
+  params,
+  request,
+}: {
+  params: { issueId: string };
+  request: Request;
+}) {
+  const { issueId } = params;
+  const format = new URL(request.url).searchParams.get("format");
+  if (format && format !== "designcraft") {
+    return Response.json(
+      { error: "Unsupported issue export format" },
+      { status: 400 },
+    );
+  }
 
-        if (!issueId) {
-          return new Response(
-            JSON.stringify({ error: "Issue ID is required" }),
-            {
-              status: 400,
-              headers: { "Content-Type": "application/json" },
-            },
+  if (request.method === "POST" && format !== "designcraft") {
+    return Response.json(
+      { error: "Article selection is available for DesignCraft exports" },
+      { status: 400 },
+    );
+  }
+
+  if (!issueId) {
+    return new Response(JSON.stringify({ error: "Issue ID is required" }), {
+      status: 400,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
+  try {
+    const { query } = await import("../../../server/convex");
+
+    const { getStorage } = await import("../../../storage");
+
+    // Get the issue with its volume
+    const issue = await query("getIssueById", { id: issueId }).then(
+      (r) => r.issue,
+    );
+
+    if (!issue) {
+      return new Response(JSON.stringify({ error: "Issue not found" }), {
+        status: 404,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    // Get all articles for this issue with their attachments and authors
+    const issueArticles = await query("getIssueArticles", {
+      issueId: issueId,
+    }).then((r) => r.articles);
+
+    if (issueArticles.length === 0) {
+      return new Response(
+        JSON.stringify({ error: "No articles found for this issue" }),
+        {
+          status: 404,
+          headers: { "Content-Type": "application/json" },
+        },
+      );
+    }
+
+    const storage = getStorage();
+    if (format === "designcraft") {
+      const {
+        buildDesignCraftIssueZip,
+        IncompleteDesignCraftExport,
+        InvalidDesignCraftSelection,
+        selectDesignCraftArticles,
+      } = await import("../../../server/designcraft-export");
+      try {
+        let selectedArticles = issueArticles;
+        if (request.method === "POST") {
+          let body: unknown;
+          try {
+            body = await request.json();
+          } catch {
+            return Response.json(
+              { error: "Invalid article selection JSON" },
+              { status: 400 },
+            );
+          }
+          selectedArticles = selectDesignCraftArticles(
+            issueArticles,
+            body && typeof body === "object" && "articleIds" in body
+              ? body.articleIds
+              : undefined,
           );
         }
+        const buffer = await buildDesignCraftIssueZip(
+          issue,
+          selectedArticles,
+          storage,
+        );
+        return new Response(new Uint8Array(buffer), {
+          headers: {
+            "Content-Type": "application/zip",
+            "Content-Disposition": `attachment; filename="Volume_${issue.volume.volumeNumber}_Issue_${issue.issueNumber}_DesignCraft.zip"`,
+            "Content-Length": buffer.length.toString(),
+          },
+        });
+      } catch (error) {
+        if (error instanceof InvalidDesignCraftSelection) {
+          return Response.json({ error: error.message }, { status: 400 });
+        }
+        if (error instanceof IncompleteDesignCraftExport) {
+          return Response.json({ error: error.message }, { status: 409 });
+        }
+        throw error;
+      }
+    }
+    const zip = new JSZip();
 
-        try {
-          const { query } = await import("../../../server/convex");
+    // Base path for the export
+    const volumeFolder = `Volume ${issue.volume.volumeNumber}`;
+    const issueFolder = `Issue ${issue.issueNumber}${issue.title ? ` - ${issue.title}` : ""}`;
+    const basePath = `${volumeFolder}/${issueFolder}`;
 
-          const { getStorage } = await import("../../../storage");
+    // Process each article
+    for (const article of issueArticles) {
+      // Sanitize article title for folder name
+      const articleFolder = article.title
+        .replace(/[<>:"/\\|?*]/g, "-")
+        .replace(/\s+/g, " ")
+        .trim()
+        .substring(0, 100);
 
-          // Get the issue with its volume
-          const issue = await query("getIssueById", { id: issueId }).then(
-            (r) => r.issue,
-          );
+      const articlePath = `${basePath}/${articleFolder}`;
 
-          if (!issue) {
-            return new Response(JSON.stringify({ error: "Issue not found" }), {
-              status: 404,
-              headers: { "Content-Type": "application/json" },
-            });
-          }
+      // Determine author name based on anonymity preference
+      const authorName = article.prefersAnonymity
+        ? "Anonymous"
+        : article.author
+          ? `${article.author.givenName} ${article.author.surname}`
+          : "Unknown Author";
 
-          // Get all articles for this issue with their attachments and authors
-          const issueArticles = await query("getIssueArticles", {
-            issueId: issueId,
-          }).then((r) => r.articles);
+      // Get the photos selected for export (older rows have no flag and are included)
+      const photos = article.attachments.filter(
+        (a) => a.attachmentType === "photo" && a.includeInExport !== false,
+      );
 
-          if (issueArticles.length === 0) {
-            return new Response(
-              JSON.stringify({ error: "No articles found for this issue" }),
-              {
-                status: 404,
-                headers: { "Content-Type": "application/json" },
-              },
-            );
-          }
+      // Create the article docx from markdown content (always created, even if empty)
+      const docxBuffer = await markdownToDocx(
+        stripBookmarkAnchors(article.content || ""),
+        article.title,
+        authorName,
+      );
+      zip.file(`${articlePath}/${articleFolder}.docx`, docxBuffer);
 
-          const storage = getStorage();
-          if (format === "designcraft") {
-            const { buildDesignCraftIssueZip, IncompleteDesignCraftExport } = await import("../../../server/designcraft-export");
-            try {
-              const buffer = await buildDesignCraftIssueZip(issue, issueArticles, storage);
-              return new Response(new Uint8Array(buffer), {
-                headers: {
-                  "Content-Type": "application/zip",
-                  "Content-Disposition": `attachment; filename="Volume_${issue.volume.volumeNumber}_Issue_${issue.issueNumber}_DesignCraft.zip"`,
-                  "Content-Length": buffer.length.toString(),
-                },
-              });
-            } catch (error) {
-              if (error instanceof IncompleteDesignCraftExport) {
-                return Response.json({ error: error.message }, { status: 409 });
-              }
-              throw error;
-            }
-          }
-          const zip = new JSZip();
+      // Process photos
+      let photoCount = 1;
+      for (const photo of photos) {
+        const photoFolder = `${articlePath}/Photos/Photo ${photo.photoNumber || photoCount}`;
 
-          // Base path for the export
-          const volumeFolder = `Volume ${issue.volume.volumeNumber}`;
-          const issueFolder = `Issue ${issue.issueNumber}${issue.title ? ` - ${issue.title}` : ""}`;
-          const basePath = `${volumeFolder}/${issueFolder}`;
+        // Get photo file
+        const photoBuffer = await storage.getFile(photo.filePath);
+        if (photoBuffer) {
+          zip.file(`${photoFolder}/${photo.originalFileName}`, photoBuffer);
+        }
 
-          // Process each article
-          for (const article of issueArticles) {
-            // Sanitize article title for folder name
-            const articleFolder = article.title
-              .replace(/[<>:"/\\|?*]/g, "-")
-              .replace(/\s+/g, " ")
-              .trim()
-              .substring(0, 100);
-
-            const articlePath = `${basePath}/${articleFolder}`;
-
-            // Determine author name based on anonymity preference
-            const authorName = article.prefersAnonymity
-              ? "Anonymous"
-              : article.author
-                ? `${article.author.givenName} ${article.author.surname}`
-                : "Unknown Author";
-
-            // Get the photos selected for export (older rows have no flag and are included)
-            const photos = article.attachments.filter(
-              (a) => a.attachmentType === "photo" && a.includeInExport !== false,
-            );
-
-            // Create the article docx from markdown content (always created, even if empty)
-            const docxBuffer = await markdownToDocx(
-              stripBookmarkAnchors(article.content || ""),
-              article.title,
-              authorName,
-            );
-            zip.file(`${articlePath}/${articleFolder}.docx`, docxBuffer);
-
-            // Process photos
-            let photoCount = 1;
-            for (const photo of photos) {
-              const photoFolder = `${articlePath}/Photos/Photo ${photo.photoNumber || photoCount}`;
-
-              // Get photo file
-              const photoBuffer = await storage.getFile(photo.filePath);
-              if (photoBuffer) {
-                zip.file(
-                  `${photoFolder}/${photo.originalFileName}`,
-                  photoBuffer,
-                );
-              }
-
-              // Create caption file - respecting article's anonymity preference
-              const captionContent = `Author: ${authorName}
+        // Create caption file - respecting article's anonymity preference
+        const captionContent = `Author: ${authorName}
 Caption: ${photo.caption || "(No caption provided)"}`;
 
-              zip.file(`${photoFolder}/Caption.txt`, captionContent);
+        zip.file(`${photoFolder}/Caption.txt`, captionContent);
 
-              photoCount++;
-            }
-          }
+        photoCount++;
+      }
+    }
 
-          // Generate the ZIP file
-          const zipBuffer = await zip.generateAsync({
-            type: "nodebuffer",
-            compression: "DEFLATE",
-            compressionOptions: { level: 9 },
-          });
+    // Generate the ZIP file
+    const zipBuffer = await zip.generateAsync({
+      type: "nodebuffer",
+      compression: "DEFLATE",
+      compressionOptions: { level: 9 },
+    });
 
-          // Generate filename
-          const filename = `Volume_${issue.volume.volumeNumber}_Issue_${issue.issueNumber}_Export.zip`;
+    // Generate filename
+    const filename = `Volume_${issue.volume.volumeNumber}_Issue_${issue.issueNumber}_Export.zip`;
 
-          return new Response(zipBuffer, {
-            status: 200,
-            headers: {
-              "Content-Type": "application/zip",
-              "Content-Disposition": `attachment; filename="${filename}"`,
-              "Content-Length": zipBuffer.length.toString(),
-            },
-          });
-        } catch (error) {
-          console.error("Export error:", error);
-          return new Response(
-            JSON.stringify({
-              error: "Failed to generate export",
-              details: error instanceof Error ? error.message : "Unknown error",
-            }),
-            {
-              status: 500,
-              headers: { "Content-Type": "application/json" },
-            },
-          );
-        }
+    return new Response(zipBuffer, {
+      status: 200,
+      headers: {
+        "Content-Type": "application/zip",
+        "Content-Disposition": `attachment; filename="${filename}"`,
+        "Content-Length": zipBuffer.length.toString(),
       },
-    },
-  },
+    });
+  } catch (error) {
+    console.error("Export error:", error);
+    return new Response(
+      JSON.stringify({
+        error: "Failed to generate export",
+        details: error instanceof Error ? error.message : "Unknown error",
+      }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      },
+    );
+  }
+}
+
+export const Route = createFileRoute("/api/exportIssue/$issueId")({
+  server: { handlers: { GET: handleIssueExport, POST: handleIssueExport } },
 });

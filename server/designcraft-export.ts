@@ -18,6 +18,31 @@ type ExportArticle = {
 };
 
 export class IncompleteDesignCraftExport extends Error {}
+export class InvalidDesignCraftSelection extends Error {}
+
+/** Resolve an explicit export selection only within the requested issue. */
+export function selectDesignCraftArticles<T extends { id: string }>(
+  articles: T[],
+  articleIds: unknown,
+): T[] {
+  if (
+    !Array.isArray(articleIds) ||
+    articleIds.length === 0 ||
+    articleIds.some((id) => typeof id !== "string" || !id) ||
+    new Set(articleIds).size !== articleIds.length
+  ) {
+    throw new InvalidDesignCraftSelection(
+      "Choose at least one distinct article to export.",
+    );
+  }
+  const byId = new Map(articles.map((article) => [article.id, article]));
+  if (articleIds.some((id) => !byId.has(id))) {
+    throw new InvalidDesignCraftSelection(
+      "Some selected articles no longer belong to this issue. Reload the export dialog and try again.",
+    );
+  }
+  return articleIds.map((id) => byId.get(id)!);
+}
 
 function segment(value: string) {
   return encodeURIComponent(value).replace(
@@ -113,6 +138,7 @@ export async function buildDesignCraftIssueZip(
           attachment.attachmentType === "photo" ||
           attachment.attachmentType === "graphic",
       )
+      .filter((attachment) => attachment.includeInExport !== false)
       .sort(
         (a, b) =>
           (a.photoNumber ?? Number.MAX_SAFE_INTEGER) -
@@ -149,11 +175,12 @@ export async function buildDesignCraftIssueZip(
     [
       "OTEManager → DesignCraft issue bundle",
       "",
-      "Extract this ZIP, then import issue.json in Utilities → DesignCraft layouts.",
-      "The planner imports article text and media references; the media directory contains the original file bytes.",
+      "Open Utilities → DesignCraft layouts and import this ZIP to load the selected articles and original image bytes together.",
+      "Choose page layouts and article assignments, set cover fields and featured articles, then download a page or whole-issue recipe.",
       "Article Markdown is preserved exactly. Only display author names are included; anonymous articles say Anonymous.",
       "Cover and double truck preservation are requested in the plan. No existing layout or spread is embedded in this content export.",
-      "The browser planner produces recipes and PDF reviews. Native editable DesignCraft / IDML export requires a DesignCraft CLI backend.",
+      "This is a content bundle, not a native DesignCraft document. To open the layout in the DesignCraft program, compile the saved recipe using the template kit's compile-template.py or compile-issue.py and official CLI.",
+      "The compiler produces editable .designcraft, PDF and IDML when preflight passes; full copy is retained if fitting fails. See native-readme.md in the template kit.",
     ].join("\n"),
   );
   return zip.generateAsync({

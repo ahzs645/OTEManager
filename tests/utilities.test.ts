@@ -2,7 +2,7 @@
 import { beforeEach, afterEach, expect, test, vi } from "vitest";
 import { convexTest } from "convex-test";
 import JSZip from "jszip";
-import { mkdtemp, writeFile, mkdir, rm } from "node:fs/promises";
+import { mkdtemp, readFile, writeFile, mkdir, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import schema from "../convex/schema";
@@ -414,4 +414,84 @@ test("DesignCraft export preserves Markdown, anonymity, issue metadata and disti
   const incomplete = await exportIssue();
   expect(incomplete.status).toBe(409);
   expect((await incomplete.json()).error).toContain("missing or incomplete");
+});
+
+test("DesignCraft selection exports only requested issue articles and selected images", async () => {
+  const chosen = await article("Selected story"), omitted = await article("Omitted story");
+  const { volume } = await mutate("createVolume", { volumeNumber: 33, year: 2026 });
+  const { issue } = await mutate("createIssue", {
+    volumeId: volume.id, issueNumber: 2, releaseDate: "2026-10-11",
+  });
+  for (const id of [chosen, omitted]) {
+    await mutate("updateArticleIssue", { articleId: id, issueId: issue.id });
+    await mutate("updateArticleContent", { articleId: id, content: "Full **source Markdown**.\n\nSecond paragraph." });
+  }
+  const kept = await attachment(chosen, "kept.png");
+  const excluded = await attachment(chosen, "excluded.png");
+  const graphic = await attachment(chosen, "graphic.png");
+  await records.patch("attachments", graphic.id, { attachmentType: "graphic" });
+  await records.patch("attachments", excluded.id, { includeInExport: false, filePath: "missing-excluded.png" });
+  // Missing media in an article that was not chosen must not obstruct the selected export.
+  const other = await attachment(omitted, "other.png");
+  await records.patch("attachments", other.id, { filePath: "missing-omitted.png" });
+  const image = process.env.DESIGNCRAFT_SELECTION_QA_IMAGE
+    ? await readFile(process.env.DESIGNCRAFT_SELECTION_QA_IMAGE)
+    : Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=", "base64");
+  for (const photo of [kept, graphic]) {
+    await new ConvexStorageProvider().saveFile(photo.filePath, image);
+    await records.patch("attachments", photo.id, {
+      fileSize: image.length,
+      originalFileName: process.env.DESIGNCRAFT_SELECTION_QA_IMAGE ? "source-photo.jpg" : "photo.png",
+      mimeType: process.env.DESIGNCRAFT_SELECTION_QA_IMAGE ? "image/jpeg" : "image/png",
+    });
+  }
+  const response = await (IssueExportRoute.options as any).server.handlers.POST({
+    params: { issueId: issue.id },
+    request: new Request(`http://test/api/exportIssue/${issue.id}?format=designcraft`, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ articleIds: [chosen] }),
+    }),
+  });
+  expect(response.status).toBe(200);
+  const exportBytes = Buffer.from(await response.arrayBuffer());
+  const zip = await JSZip.loadAsync(exportBytes);
+  const manifest = JSON.parse(await zip.file("issue.json")!.async("string"));
+  expect(manifest.articles.map((entry: any) => entry.id)).toEqual([chosen]);
+  expect(manifest.articles[0].body).toBe("Full **source Markdown**.\n\nSecond paragraph.");
+  expect(manifest.articles[0].photos.map((entry: any) => entry.id).sort()).toEqual([kept.id, graphic.id].sort());
+  expect(Object.keys(zip.files).some((path) => path.includes(omitted) || path.includes(excluded.id))).toBe(false);
+  for (const photo of manifest.articles[0].photos) expect(await zip.file(photo.path)!.async("nodebuffer")).toEqual(image);
+  expect(await zip.file("README.txt")!.async("string")).toContain("not a native DesignCraft document");
+  if (process.env.DESIGNCRAFT_SELECTION_QA_OUTPUT) {
+    const output = process.env.DESIGNCRAFT_SELECTION_QA_OUTPUT;
+    await mkdir(output, { recursive: true });
+    await writeFile(join(output, "selected-articles.zip"), exportBytes);
+    await writeFile(join(output, "issue-articles.json"), JSON.stringify({
+      issue: { ...issue, articleCount: 2 }, volume,
+      ...(await query("getIssueArticles", { issueId: issue.id })),
+    }));
+    await writeFile(join(output, "selected-media.bin"), image);
+  }
+}, process.env.DESIGNCRAFT_SELECTION_QA_IMAGE ? 30000 : 5000);
+
+test("DesignCraft selection rejects empty, duplicate, malformed and cross-issue IDs", async () => {
+  const chosen = await article("Chosen"), outside = await article("Outside issue");
+  const { volume } = await mutate("createVolume", { volumeNumber: 33 });
+  const { issue } = await mutate("createIssue", { volumeId: volume.id, issueNumber: 3 });
+  await mutate("updateArticleIssue", { articleId: chosen, issueId: issue.id });
+  for (const body of [{ articleIds: [] }, { articleIds: [chosen, chosen] }, { articleIds: [outside] },
+    { articleIds: ["missing"] }, { articleIds: [null] }, {}, null]) {
+    const response = await (IssueExportRoute.options as any).server.handlers.POST({
+      params: { issueId: issue.id },
+      request: new Request(`http://test/api/exportIssue/${issue.id}?format=designcraft`, {
+        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
+      }),
+    });
+    expect(response.status).toBe(400);
+  }
+  const malformed = await (IssueExportRoute.options as any).server.handlers.POST({
+    params: { issueId: issue.id },
+    request: new Request(`http://test/api/exportIssue/${issue.id}?format=designcraft`, { method: "POST", body: "{" }),
+  });
+  expect(malformed.status).toBe(400);
 });

@@ -1,0 +1,44 @@
+{
+  "example-1": {
+    "text": "This is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.\nThis is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.\nThis is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.",
+    "spans": [],
+    "paragraphs": [
+      {
+        "start": 0,
+        "end": 204,
+        "style": "OTE Body"
+      },
+      {
+        "start": 205,
+        "end": 409,
+        "style": "OTE Body"
+      },
+      {
+        "start": 410,
+        "end": 614,
+        "style": "OTE Body"
+      }
+    ]
+  },
+  "example-2": {
+    "text": "This is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.\nThis is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.\nThis is illustrative copy for the editable template. Replace it with an article from OTEManager. All submitted article text is retained; a page with overset copy needs a larger layout before final export.",
+    "spans": [],
+    "paragraphs": [
+      {
+        "start": 0,
+        "end": 204,
+        "style": "OTE Body"
+      },
+      {
+        "start": 205,
+        "end": 409,
+        "style": "OTE Body"
+      },
+      {
+        "start": 410,
+        "end": 614,
+        "style": "OTE Body"
+      }
+    ]
+  }
+}

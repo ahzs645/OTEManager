@@ -1,0 +1,159 @@
+'use strict';
+
+// The working recipe is a base template. resolved(selected) applies reserved
+// blocks; editing screen coordinates must undo that transform before saving.
+let editorSlotId=null;
+const editorFontDefaults={headline:24,body:10,byline:9,caption:8,folio:8,piece:12,ad:12,photo:12};
+const editorLeadingDefaults={headline:27,body:12,byline:11,caption:10,folio:10,piece:15,ad:15};
+const editorAssetTypes={'image/jpeg':'jpg','image/png':'png','image/webp':'webp','image/tiff':'tif','application/pdf':'pdf'};
+
+function editorNode(tag,attributes={},value){
+ const node=document.createElement(tag);
+ for(const [key,attribute] of Object.entries(attributes)){
+  if(key==='className')node.className=attribute;
+  else if(key in node)node[key]=attribute;
+  else node.setAttribute(key,attribute);
+ }
+ if(value!==undefined)node.textContent=value;
+ return node;
+}
+function editorLabel(parent,title,input){
+ const label=editorNode('label',{},title);label.append(input);parent.append(label);return input;
+}
+function editorStatus(message){$('planner-status').textContent=message;}
+function editorShell(){
+ let root=$('page-editor');if(root)return root;
+ root=editorNode('section',{id:'page-editor'});
+ root.append(editorNode('h3',{},'Edit this page'));
+ const font=editorNode('select',{id:'font-profile'});
+ for(const [value,label] of [['portable','Portable fonts'],['original2025','Original OTE fonts']])font.append(editorNode('option',{value},label));
+ font.onchange=()=>{issue.layoutPlan||={};issue.layoutPlan.fontProfile=font.value;renderPage();};
+ editorLabel(root,'Native font profile',font);
+ root.append(editorNode('p',{className:'muted'},'Original OTE fonts require a configured native server or your local font directory. The native compiler verifies fonts, line spacing and text fit.'));
+ const details=editorNode('details',{open:true});details.append(editorNode('summary',{},'Frames, typography and photographs'));
+ const picker=editorNode('select',{id:'editor-slot'});picker.onchange=()=>{editorSlotId=picker.value;renderSlotEditor();};
+ editorLabel(details,'Frame',picker);details.append(editorNode('div',{id:'editor-slot-fields'}));root.append(details);
+ const artwork=editorNode('details');artwork.append(editorNode('summary',{},'Custom piece and advertisement artwork'));artwork.append(editorNode('div',{id:'editor-artwork'}));root.append(artwork);
+ const flows=editorNode('details');flows.append(editorNode('summary',{},'Stories continued across pages'));flows.append(editorNode('p',{className:'muted'},'Save the pages, assign the same article to its continuation frames, then select those pages here. A continuation keeps one complete source article.'));flows.append(editorNode('div',{id:'editor-flows'}));root.append(flows);
+ $('export-recipe').before(root);
+ for(const axis of ['x','y'])$('focus-'+axis).addEventListener('input',()=>{
+  if(selected?.kind==='cover'&&editorSlotId==='cover-photo'){
+   const slider=$('editor-image-focus-'+axis);if(slider)slider.value=$('focus-'+axis).value;
+  }
+ });
+ return root;
+}
+function editorBaseRect(slot,actual){
+ if(selected.kind!=='story'||!blocks.length||slot.role==='folio')return [...actual];
+ const area=freeArea();if(!area)throw Error('No usable story area remains.');
+ if(actual[0]<area[0]||actual[1]<area[1]||actual[2]>area[2]||actual[3]>area[3])throw Error('Keep this frame inside the free story area around the reserved pieces.');
+ return [36+(actual[0]-area[0])*684/(area[2]-area[0]),100+(actual[1]-area[1])*644/(area[3]-area[1]),36+(actual[2]-area[0])*684/(area[2]-area[0]),100+(actual[3]-area[1])*644/(area[3]-area[1])];
+}
+function renderEditor(){
+ if(!selected)return;editorShell();$('font-profile').value=issue.layoutPlan?.fontProfile||'portable';
+ const picker=$('editor-slot');picker.replaceChildren();
+ for(const slot of selected.slots)picker.append(editorNode('option',{value:slot.id},slot.id+' · '+slot.role));
+ if(!selected.slots.some(slot=>slot.id===editorSlotId))editorSlotId=selected.slots[0]?.id||null;
+ picker.value=editorSlotId||'';renderSlotEditor();renderArtworkEditor();renderFlowEditor();
+}
+function renderSlotEditor(){
+ const parent=$('editor-slot-fields');if(!parent)return;parent.replaceChildren();
+ const slot=selected?.slots.find(slot=>slot.id===editorSlotId);if(!slot)return;
+ let actual;try{actual=resolved(selected).slots.find(item=>item.id===slot.id)?.rect||slot.rect;}catch(error){parent.append(editorNode('p',{},error.message));return;}
+ const rectGroup=editorNode('div',{className:'boundary-inputs'}),rectInputs=[];
+ for(const [index,label] of ['Left','Top','Right','Bottom'].entries()){
+  const input=editorNode('input',{id:'editor-rect-'+index,type:'number',step:'0.1',value:String(Math.round(actual[index]*100)/100)});
+  rectInputs.push(input);editorLabel(rectGroup,label+' (pt)',input);
+  input.oninput=()=>{try{
+   const rect=rectInputs.map(input=>Number(input.value));
+   if(rectInputs.some(input=>input.value==='')||!rect.every(Number.isFinite)||rect[0]<0||rect[1]<0||rect[2]>756||rect[3]>792||rect[2]-rect[0]<8||rect[3]-rect[1]<8)throw Error('Use a frame within the page, at least 8pt wide and high.');
+   slot.rect=editorBaseRect(slot,rect);renderPage();
+  }catch(error){editorStatus(error.message);}};
+ }
+ parent.append(rectGroup);
+ if(slot.role!=='photo'&&!slot.asset){
+  const row=editorNode('div',{className:'two'}),size=Number(slot.fontSize||editorFontDefaults[slot.role]||12);
+  for(const [key,label,value] of [['fontSize','Font size (pt)',size],['leading','Line spacing (pt)',slot.leading||(slot.fontSize?size*1.15:editorLeadingDefaults[slot.role]||15)]]){
+   const maximum=key==='leading'?200:144,input=editorNode('input',{id:'editor-'+key,type:'number',min:'4',max:String(maximum),step:'0.1',value:String(Math.round(value*100)/100)});
+   editorLabel(row,label,input);input.oninput=()=>{const value=Number(input.value);if(input.value===''||!Number.isFinite(value)||value<4||value>maximum){editorStatus('Use '+label.toLowerCase()+' between 4 and '+maximum+'pt.');return;}slot[key]=value;renderPage();};
+  }parent.append(row);
+ }
+ if(slot.role==='photo'&&Number.isInteger(slot.articleIndex)&&slot.id!=='cover-photo'&&!slot.asset){
+  const article=articles()[slot.articleIndex],photos=article?.photos||[],picker=editorNode('select',{id:'editor-photo'});
+  if(!photos.length)picker.append(editorNode('option',{value:''},'This article has no imported photographs'));
+  photos.forEach((photo,index)=>picker.append(editorNode('option',{value:String(index)},(index+1)+': '+(photo.caption||photo.originalName||photo.fileName||photo.path))));
+  picker.value=String(slot.photoIndex||0);picker.disabled=!photos.length;
+  picker.onchange=()=>{
+   const before=slot.photoIndex||0;slot.photoIndex=Number(picker.value);
+   for(const caption of selected.slots)if(caption.role==='caption'&&caption.articleIndex===slot.articleIndex&&(caption.photoIndex||0)===before)caption.photoIndex=slot.photoIndex;
+   renderPage();
+  };editorLabel(parent,'Article photograph',picker);
+ }
+ if(slot.role==='photo'||slot.asset)editorImageControls(parent,slot,'editor-image');
+ if(slot.role==='ad'||slot.role==='piece')editorAssetControl(parent,slot,'frame artwork');
+}
+function editorImageControls(parent,target,prefix){
+ const coverPhoto=selected?.kind==='cover'&&target.id==='cover-photo';
+ const fit=editorNode('select',{id:prefix+'-fit'});
+ for(const [value,label] of [['cover','Fill frame / crop'],['contain','Fit entire artwork']])fit.append(editorNode('option',{value},label));
+ fit.value=coverPhoto?(issue.layoutPlan?.cover?.fit||'cover'):target.fit||(target.asset?'contain':'cover');
+ fit.onchange=()=>{target.fit=fit.value;if(coverPhoto){issue.layoutPlan||={};issue.layoutPlan.cover||={};issue.layoutPlan.cover.fit=fit.value;}renderPage();};editorLabel(parent,'Image fitting',fit);
+ for(const [axis,label] of [['x','Horizontal focus'],['y','Vertical focus']]){
+  const initial=coverPhoto?Number($('focus-'+axis).value):(target.focus?.[axis]??.5)*100;
+  const slider=editorNode('input',{id:prefix+'-focus-'+axis,type:'range',min:'0',max:'100',step:'1',value:String(initial)});
+  slider.oninput=()=>{
+   if(coverPhoto){$('focus-'+axis).value=slider.value;target.focus={x:Number($('focus-x').value)/100,y:Number($('focus-y').value)/100};}
+   else target.focus={x:.5,y:.5,...target.focus,[axis]:Number(slider.value)/100};
+   renderPage();
+  };editorLabel(parent,label,slider);
+ }
+}
+function editorAssetControl(parent,target,label){
+ const upload=editorNode('input',{type:'file',accept:'image/jpeg,image/png,image/webp,image/tiff,application/pdf'});
+ const status=editorNode('p',{className:'muted'});
+ const describe=()=>{status.textContent=target.asset?target.asset+(target.assetMimeType==='application/pdf'||/\.pdf$/i.test(target.asset)?' · PDF artwork: view the native PDF proof to verify it.':' · Original bytes included in recipe exports.'):'Choose JPEG, PNG, WebP, TIFF or PDF artwork.';};describe();
+ upload.onchange=async()=>{try{
+  const file=upload.files[0];if(!file)return;
+  const mime=file.type||({'jpg':'image/jpeg','jpeg':'image/jpeg','png':'image/png','webp':'image/webp','tif':'image/tiff','tiff':'image/tiff','pdf':'application/pdf'}[file.name.split('.').pop().toLowerCase()]);
+  const ext=editorAssetTypes[mime];if(!ext)throw Error('Use JPEG, PNG, WebP, TIFF or PDF artwork.');
+  const data=new Uint8Array(await file.arrayBuffer());if(!data.length)throw Error('Choose a nonempty artwork file.');
+  const asset='assets/user-piece-'+crypto.randomUUID()+'.'+ext;
+  target.asset=asset;target.assetMimeType=mime;target.fit||='contain';bytes.set(asset,data);urls.set(asset,URL.createObjectURL(new Blob([data],{type:mime})));
+  describe();renderPage();renderArtworkEditor();renderSlotEditor();
+ }catch(error){editorStatus(error.message);}};
+ editorLabel(parent,'Upload '+label,upload);parent.append(status);
+ if(target.asset){
+  const remove=editorNode('button',{type:'button',className:'outline'},'Remove artwork');
+  remove.onclick=()=>{delete target.asset;delete target.assetMimeType;renderPage();renderArtworkEditor();renderSlotEditor();};parent.append(remove);
+ }
+}
+function renderArtworkEditor(){
+ const parent=$('editor-artwork');if(!parent)return;parent.replaceChildren();
+ if(!blocks.length)parent.append(editorNode('p',{className:'muted'},'Reserve a custom piece or advertisement to attach its finished artwork. You can also choose an advertisement frame above.'));
+ for(const block of blocks){
+  const row=editorNode('div',{className:'piece-item'});row.append(editorNode('strong',{},block.name));editorAssetControl(row,block,block.name+' artwork');
+  if(block.asset)editorImageControls(row,block,'piece-'+block.id);parent.append(row);
+ }
+}
+function renderFlowEditor(){
+ const parent=$('editor-flows');if(!parent)return;parent.replaceChildren();issue.layoutPlan||={};issue.layoutPlan.articleFlows||={};
+ const pages=plannedPages.filter(page=>page.template.kind!=='cover');
+ for(const article of issue.articles){
+  const row=editorNode('fieldset'),legend=editorNode('legend',{},article.title),eligible=pages.filter(page=>page.articleIds.includes(article.id));row.append(legend);
+  const chosen=new Set(issue.layoutPlan.articleFlows[article.id]?.pageIds||[]);
+  if(eligible.length<2)row.append(editorNode('p',{className:'muted'},'Assign this article to two or more saved pages to declare a continuation.'));
+  for(const page of pages){
+   const check=editorNode('input',{type:'checkbox',value:page.id,checked:chosen.has(page.id),disabled:!page.articleIds.includes(article.id)});
+   editorLabel(row,'Page '+page.pageNumber+' · '+page.template.name,check);
+   check.onchange=()=>{
+    const ids=pages.filter(page=>row.querySelector('input[value="'+CSS.escape(page.id)+'"]')?.checked).map(page=>page.id);
+    if(ids.length)issue.layoutPlan.articleFlows[article.id]={pageIds:ids};else delete issue.layoutPlan.articleFlows[article.id];
+    renderFlowEditor();renderPage();
+   };
+  }
+  const numbered=pages.filter(page=>chosen.has(page.id)).map(page=>page.pageNumber);
+  if(numbered.length)row.append(editorNode('p',{className:'muted'},numbered.length>1?'Starts on page '+numbered[0]+' · continues on '+numbered.slice(1).join(', '):'Choose at least one more assigned page to complete this continuation.'));
+  parent.append(row);
+ }
+ if(!issue.articles.length)parent.append(editorNode('p',{className:'muted'},'Import articles to plan continuations.'));
+}

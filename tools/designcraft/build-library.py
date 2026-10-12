@@ -23,8 +23,10 @@ def slot(role, rect, index=None, **extras):
 
 def story(rect, index, image='none', density=1):
     x, y, r, b = rect; width = r-x; height = b-y
-    headline = min(44, height*.15)
-    slot('headline', [x,y,r,y+headline], index)
+    headline = max(30, min(44, height*.15))
+    # Briefs have deliberately smaller headline typography, stated in the
+    # recipe. A 24pt headline cannot fit the 20–31pt frames in stacked layouts.
+    slot('headline', [x,y,r,y+headline], index, fontSize=16 if height < 180 else 18 if height < 300 else 24)
     slot('byline', [x,y+headline+3,r,y+headline+18], index)
     top = y+headline+27
     if image == 'none':
@@ -37,6 +39,10 @@ def story(rect, index, image='none', density=1):
         slot('body',[x+iw+12 if image=='left' else x,top,r if image=='left' else r-iw-12,b],index,columns=1)
     else:
         ih = min((b-top)*(.43 if image=='hero' else .24 if 'small' in image else .34)*density, (b-top)-95)
+        if width < 350 and 250 < height < 400:
+            # Small lead-side briefs need enough body depth beneath the photo;
+            # the previous percentage left only ~130pt for 100-word copy.
+            ih = min(ih, max(30, b-top-212))
         if image.startswith('bottom'):
             slot('body',[x,top,r,b-ih-34],index,columns=3 if width>550 else 2 if width>310 else 1)
             slot('photo',[x,b-ih-22,r,b-22],index);slot('caption',[x,b-18,r,b],index)
@@ -108,14 +114,14 @@ def library():
             for border in [True,False]:
                 if family=='stacked':
                     slots=[{'id':'cover-photo','role':'photo','rect':[60,116,696,472],'articleIndex':0},
-                           {'id':'cover-logo','role':'photo','rect':[36,550,340,752],'asset':'assets/ote-stacked-logo.pdf'},
+                           {'id':'cover-logo','role':'photo','rect':[36,550,340,752],'asset':'assets/ote-stacked-logo.pdf','fit':'contain'},
                            {'id':'cover-date','role':'headline','rect':[36,36,445,78],'text':'SEPTEMBER 12TH'},
                            {'id':'cover-issue','role':'byline','rect':[470,36,600,78],'text':'VOLUME 32 · ISSUE 1'},
                            {'id':'cover-year','role':'headline','rect':[620,36,720,78],'text':'2025'},
                            {'id':'cover-line','role':'caption','rect':[60,488,696,516],'text':'OVER THE EDGE IS BACK!'}]
                     rects=[[390,550+i*66,720,604+i*66] for i in range(3)]
                 else:
-                    slots=[{'id':'cover-logo','role':'photo','rect':[42,42,520,136],'asset':'assets/ote-horizontal-logo.png'},
+                    slots=[{'id':'cover-logo','role':'photo','rect':[42,42,520,136],'asset':'assets/ote-horizontal-logo.png','fit':'contain'},
                            {'id':'cover-date','role':'headline','rect':[542,42,714,114],'text':'NOVEMBER 14'},
                            {'id':'cover-issue','role':'byline','rect':[542,116,714,142],'text':'2024 · VOLUME 31 · ISSUE 3'},
                            {'id':'cover-photo','role':'photo','rect':[42,154,714,566],'articleIndex':0},

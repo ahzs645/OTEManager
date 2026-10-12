@@ -1,10 +1,10 @@
 {
   "activeLayer": 1,
-  "canUndo": true,
+  "canUndo": false,
   "characterStyles": [
     "[None]"
   ],
-  "dirty": true,
+  "dirty": false,
   "layers": [
     {
       "color": [
@@ -30,7 +30,15 @@
     "OTE Byline",
     "OTE Caption",
     "OTE Label",
-    "OTE Folio"
+    "OTE Folio",
+    "OTE Quote",
+    "OTE Code",
+    "OTE Heading 1",
+    "OTE Heading 2",
+    "OTE Heading 3",
+    "OTE Heading 4",
+    "OTE Heading 5",
+    "OTE Heading 6"
   ],
   "parents": [
     {
@@ -39,15 +47,10 @@
       "label": "A-Parent"
     }
   ],
-  "path": null,
+  "path": "/workspace/OTEManager/public/designcraft/native-examples/cover-framed-cards-border/page.designcraft",
   "selection": {
     "content": false,
-    "items": [],
-    "text": {
-      "anchor": 0,
-      "focus": 24,
-      "story": 28
-    }
+    "items": []
   },
   "settings": {
     "facingPages": false,
@@ -441,6 +444,6 @@
     "OTE Green",
     "OTE Placeholder"
   ],
-  "title": "Framed cover · cards · border",
+  "title": "page.designcraft",
   "tool": "selection"
 }

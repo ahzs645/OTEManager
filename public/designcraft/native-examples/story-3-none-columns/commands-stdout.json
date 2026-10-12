@@ -1,8 +1,17 @@
 {
-  "completed": 73,
+  "completed": 104,
   "results": [
     {
       "index": 1
+    },
+    {
+      "bytes": 2425,
+      "path": "/workspace/OTEManager/public/designcraft/native-examples/story-3-none-columns/page.designcraft"
+    },
+    {
+      "documentFonts": 9,
+      "index": 2,
+      "warnings": []
     },
     {
       "binding": "leftToRight",
@@ -50,6 +59,33 @@
       "name": "OTE Folio"
     },
     {
+      "name": "OTE Quote"
+    },
+    {
+      "name": "OTE Code"
+    },
+    {
+      "name": "OTE Heading 1"
+    },
+    {
+      "name": "OTE Heading 2"
+    },
+    {
+      "name": "OTE Heading 3"
+    },
+    {
+      "name": "OTE Heading 4"
+    },
+    {
+      "name": "OTE Heading 5"
+    },
+    {
+      "name": "OTE Heading 6"
+    },
+    {
+      "name": "OTE Slot headline-1"
+    },
+    {
       "id": 8,
       "story": 9
     },
@@ -88,11 +124,20 @@
     },
     null,
     null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
     {
       "changed": 1
     },
     {
       "changed": 1
+    },
+    {
+      "name": "OTE Slot headline-4"
     },
     {
       "id": 14,
@@ -133,11 +178,20 @@
     },
     null,
     null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
     {
       "changed": 1
     },
     {
       "changed": 1
+    },
+    {
+      "name": "OTE Slot headline-7"
     },
     {
       "id": 20,
@@ -176,6 +230,12 @@
     {
       "changed": 1
     },
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
     null,
     null,
     {
@@ -236,7 +296,18 @@
         "OTE Byline",
         "OTE Caption",
         "OTE Label",
-        "OTE Folio"
+        "OTE Folio",
+        "OTE Quote",
+        "OTE Code",
+        "OTE Heading 1",
+        "OTE Heading 2",
+        "OTE Heading 3",
+        "OTE Heading 4",
+        "OTE Heading 5",
+        "OTE Heading 6",
+        "OTE Slot headline-1",
+        "OTE Slot headline-4",
+        "OTE Slot headline-7"
       ],
       "parents": [
         {
@@ -245,7 +316,7 @@
           "label": "A-Parent"
         }
       ],
-      "path": null,
+      "path": "/workspace/OTEManager/public/designcraft/native-examples/story-3-none-columns/page.designcraft",
       "selection": {
         "content": false,
         "items": [],
@@ -527,10 +598,10 @@
             12
           ],
           "id": 13,
-          "length": 618,
-          "lines": 19,
+          "length": 614,
+          "lines": 15,
           "overset": false,
-          "paragraphs": 7,
+          "paragraphs": 3,
           "preview": "This is illustrative copy for the editable template. Replace it with an article "
         },
         {
@@ -560,10 +631,10 @@
             18
           ],
           "id": 19,
-          "length": 618,
-          "lines": 19,
+          "length": 614,
+          "lines": 15,
           "overset": false,
-          "paragraphs": 7,
+          "paragraphs": 3,
           "preview": "This is illustrative copy for the editable template. Replace it with an article "
         },
         {
@@ -593,10 +664,10 @@
             24
           ],
           "id": 25,
-          "length": 618,
-          "lines": 19,
+          "length": 614,
+          "lines": 15,
           "overset": false,
-          "paragraphs": 7,
+          "paragraphs": 3,
           "preview": "This is illustrative copy for the editable template. Replace it with an article "
         },
         {
@@ -628,11 +699,11 @@
         "OTE Green",
         "OTE Placeholder"
       ],
-      "title": "3 stories · none · columns",
+      "title": "page.designcraft",
       "tool": "selection"
     },
     {
-      "bytes": 4781,
+      "bytes": 4952,
       "path": "/workspace/OTEManager/public/designcraft/native-examples/story-3-none-columns/page.designcraft"
     }
   ]

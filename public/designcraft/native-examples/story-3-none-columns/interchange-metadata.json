@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "ote.interchange.metadata.v1",
+  "idmlHyperlinksSupported": false,
+  "hyperlinks": [],
+  "parentOverrides": [
+    {
+      "id": 4,
+      "parent": 3,
+      "width": 756.0,
+      "height": 792.0,
+      "overridden": [],
+      "showParentItems": true
+    }
+  ]
+}

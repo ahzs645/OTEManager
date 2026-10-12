@@ -42,3 +42,7 @@ coverage/
 # Local Convex deployment and private import reports
 .convex/
 artifacts/
+
+# Python compiler caches
+__pycache__/
+*.py[cod]

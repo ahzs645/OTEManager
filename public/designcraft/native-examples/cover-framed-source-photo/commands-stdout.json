@@ -1,8 +1,17 @@
 {
-  "completed": 70,
+  "completed": 82,
   "results": [
     {
       "index": 1
+    },
+    {
+      "bytes": 2430,
+      "path": "/workspace/OTEManager/public/designcraft/native-examples/cover-framed-source-photo/page.designcraft"
+    },
+    {
+      "documentFonts": 9,
+      "index": 2,
+      "warnings": []
     },
     {
       "binding": "leftToRight",
@@ -50,6 +59,30 @@
       "name": "OTE Folio"
     },
     {
+      "name": "OTE Quote"
+    },
+    {
+      "name": "OTE Code"
+    },
+    {
+      "name": "OTE Heading 1"
+    },
+    {
+      "name": "OTE Heading 2"
+    },
+    {
+      "name": "OTE Heading 3"
+    },
+    {
+      "name": "OTE Heading 4"
+    },
+    {
+      "name": "OTE Heading 5"
+    },
+    {
+      "name": "OTE Heading 6"
+    },
+    {
       "id": 8
     },
     {
@@ -62,6 +95,7 @@
       "asset": 10,
       "id": 9
     },
+    null,
     {
       "changed": 1
     },
@@ -108,6 +142,7 @@
       "asset": 16,
       "id": 15
     },
+    null,
     {
       "changed": 1
     },
@@ -241,7 +276,15 @@
         "OTE Byline",
         "OTE Caption",
         "OTE Label",
-        "OTE Folio"
+        "OTE Folio",
+        "OTE Quote",
+        "OTE Code",
+        "OTE Heading 1",
+        "OTE Heading 2",
+        "OTE Heading 3",
+        "OTE Heading 4",
+        "OTE Heading 5",
+        "OTE Heading 6"
       ],
       "parents": [
         {
@@ -250,7 +293,7 @@
           "label": "A-Parent"
         }
       ],
-      "path": null,
+      "path": "/workspace/OTEManager/public/designcraft/native-examples/cover-framed-source-photo/page.designcraft",
       "selection": {
         "content": false,
         "items": [],
@@ -621,11 +664,11 @@
         "OTE Green",
         "OTE Placeholder"
       ],
-      "title": "Framed cover · cards · border",
+      "title": "page.designcraft",
       "tool": "selection"
     },
     {
-      "bytes": 1774260,
+      "bytes": 1774330,
       "path": "/workspace/OTEManager/public/designcraft/native-examples/cover-framed-source-photo/page.designcraft"
     }
   ]

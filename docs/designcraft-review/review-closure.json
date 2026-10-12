@@ -1,0 +1,71 @@
+{
+  "status": "verified-local-integration",
+  "productionDeployed": false,
+  "baseCommit": "0eff034",
+  "findings": [
+    {
+      "id": "R1",
+      "status": "fixed",
+      "evidence": "compiler-tests.log and planner/browser regression evidence"
+    },
+    {
+      "id": "R2",
+      "status": "fixed",
+      "evidence": "compiler-tests.log and planner/browser regression evidence"
+    },
+    {
+      "id": "R3",
+      "status": "fixed",
+      "evidence": "compiler-tests.log and planner/browser regression evidence"
+    },
+    {
+      "id": "R4",
+      "status": "fixed",
+      "evidence": "compiler-tests.log and planner/browser regression evidence"
+    },
+    {
+      "id": "R5",
+      "status": "fixed",
+      "evidence": "compiler-tests.log and planner/browser regression evidence"
+    },
+    {
+      "id": "R6",
+      "status": "fixed",
+      "evidence": "compiler-tests.log and planner/browser regression evidence"
+    },
+    {
+      "id": "R7",
+      "status": "fixed",
+      "evidence": "compiler-tests.log and planner/browser regression evidence"
+    },
+    {
+      "id": "R8",
+      "status": "fixed",
+      "evidence": "compiler-tests.log and planner/browser regression evidence"
+    }
+  ],
+  "verification": {
+    "applicationTests": 45,
+    "compilerTests": 32,
+    "nativeHelperTestsPerEngine": 9,
+    "engines": [
+      "0.4.0",
+      "0.6.0"
+    ],
+    "templates": 104,
+    "checkedTemplateCycles": 312,
+    "wholeIssueCycles": 3,
+    "dockerProfiles": [
+      "portable",
+      "original2025"
+    ]
+  },
+  "remaining": [
+    "Fresh Adobe InDesign reopen/export",
+    "Printer acceptance",
+    "Mac/Windows CLI execution",
+    "Production/Site deployment",
+    "Shared job registry or sticky routing for multiple replicas",
+    "Historical missing content/artwork and import repairs"
+  ]
+}

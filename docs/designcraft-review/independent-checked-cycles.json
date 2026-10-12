@@ -1,0 +1,161 @@
+{
+  "engine": "official0.4.0",
+  "cycles": [
+    {
+      "cycle": 1,
+      "sourceCharacters": 12331,
+      "sourceBytes": 12331,
+      "bodyExact": true,
+      "bodyFramePages": [
+        2,
+        3
+      ],
+      "threadFrames": 2,
+      "restoredUrls": 1,
+      "nativeReferences": {
+        "valid": true,
+        "features": [
+          {
+            "articleId": "article",
+            "mode": "dynamic",
+            "text": "02 \u00b7 The complete pipeline",
+            "anchorId": 117440513,
+            "pageName": "02"
+          }
+        ]
+      },
+      "assetsExact": true,
+      "preflight": {
+        "errors": 0,
+        "issues": [],
+        "warnings": 0
+      },
+      "visuals": [
+        {
+          "page": 1,
+          "sameSize": true,
+          "pixelsIdentical": true
+        },
+        {
+          "page": 2,
+          "sameSize": true,
+          "pixelsIdentical": true
+        },
+        {
+          "page": 3,
+          "sameSize": true,
+          "pixelsIdentical": true
+        },
+        {
+          "page": 4,
+          "sameSize": true,
+          "pixelsIdentical": true
+        }
+      ]
+    },
+    {
+      "cycle": 2,
+      "sourceCharacters": 12331,
+      "sourceBytes": 12331,
+      "bodyExact": true,
+      "bodyFramePages": [
+        2,
+        3
+      ],
+      "threadFrames": 2,
+      "restoredUrls": 1,
+      "nativeReferences": {
+        "valid": true,
+        "features": [
+          {
+            "articleId": "article",
+            "mode": "dynamic",
+            "text": "02 \u00b7 The complete pipeline",
+            "anchorId": 117440513,
+            "pageName": "02"
+          }
+        ]
+      },
+      "assetsExact": true,
+      "preflight": {
+        "errors": 0,
+        "issues": [],
+        "warnings": 0
+      },
+      "visuals": [
+        {
+          "page": 1,
+          "sameSize": true,
+          "pixelsIdentical": true
+        },
+        {
+          "page": 2,
+          "sameSize": true,
+          "pixelsIdentical": true
+        },
+        {
+          "page": 3,
+          "sameSize": true,
+          "pixelsIdentical": true
+        },
+        {
+          "page": 4,
+          "sameSize": true,
+          "pixelsIdentical": true
+        }
+      ]
+    },
+    {
+      "cycle": 3,
+      "sourceCharacters": 12331,
+      "sourceBytes": 12331,
+      "bodyExact": true,
+      "bodyFramePages": [
+        2,
+        3
+      ],
+      "threadFrames": 2,
+      "restoredUrls": 1,
+      "nativeReferences": {
+        "valid": true,
+        "features": [
+          {
+            "articleId": "article",
+            "mode": "dynamic",
+            "text": "02 \u00b7 The complete pipeline",
+            "anchorId": 117440513,
+            "pageName": "02"
+          }
+        ]
+      },
+      "assetsExact": true,
+      "preflight": {
+        "errors": 0,
+        "issues": [],
+        "warnings": 0
+      },
+      "visuals": [
+        {
+          "page": 1,
+          "sameSize": true,
+          "pixelsIdentical": true
+        },
+        {
+          "page": 2,
+          "sameSize": true,
+          "pixelsIdentical": true
+        },
+        {
+          "page": 3,
+          "sameSize": true,
+          "pixelsIdentical": true
+        },
+        {
+          "page": 4,
+          "sameSize": true,
+          "pixelsIdentical": true
+        }
+      ]
+    }
+  ]
+}

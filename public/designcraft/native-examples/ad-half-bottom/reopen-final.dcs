@@ -1,0 +1,4 @@
+file.open {"path": "/workspace/OTEManager/public/designcraft/native-examples/ad-half-bottom/page.designcraft"}
+preflight.run {"minPpi": 150}
+document.inspect {}
+file.saveAs {"path": "/workspace/OTEManager/public/designcraft/native-examples/ad-half-bottom/page.designcraft"}

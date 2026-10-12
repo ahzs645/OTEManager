@@ -1,0 +1,5 @@
+-r requirements.txt
+PyMuPDF==1.26.6
+reportlab==4.4.9
+fonttools==4.61.1
+Pillow==12.3.0

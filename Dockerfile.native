@@ -1,0 +1,53 @@
+# syntax=docker/dockerfile:1.7
+# Optional OTEManager runtime with the bounded native export worker enabled.
+# Build: docker build -f Dockerfile.native -t otemanager-native .
+FROM node:24-bookworm-slim AS builder
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN --mount=type=secret,id=build_ca,required=false \
+    if [ -f /run/secrets/build_ca ]; then \
+      NODE_EXTRA_CA_CERTS=/run/secrets/build_ca npm ci; \
+    else npm ci; fi \
+    && npm cache clean --force
+COPY . .
+RUN npm run build \
+    && mkdir -p /ote-native-runtime/public/designcraft/assets \
+    && mv .output /ote-native-runtime/.output \
+    && cp -a public/designcraft/assets/fonts public/designcraft/assets/ote-horizontal-logo.png public/designcraft/assets/ote-stacked-logo.pdf public/designcraft/assets/source-cover-photo.jpeg /ote-native-runtime/public/designcraft/assets/ \
+    && chmod -R a+rX /ote-native-runtime /app/tools/designcraft
+
+FROM node:24-bookworm-slim AS runner
+ARG TARGETARCH
+ARG DESIGNCRAFT_VERSION=0.4.0
+WORKDIR /app
+RUN apt-get update && apt-get install -y --no-install-recommends python3 python3-venv ca-certificates libgcc-s1 \
+    && rm -rf /var/lib/apt/lists/*
+COPY --from=builder /app/tools/designcraft ./tools/designcraft
+RUN --mount=type=secret,id=build_ca,required=false \
+    python3 -m venv /opt/ote-python \
+    && if [ -f /run/secrets/build_ca ]; then \
+      ote_build_cert="$(mktemp)" \
+      && trap 'rm -f "$ote_build_cert"' EXIT \
+      && cat /etc/ssl/certs/ca-certificates.crt /run/secrets/build_ca > "$ote_build_cert" \
+      && SSL_CERT_FILE="$ote_build_cert" PIP_CERT="$ote_build_cert" /opt/ote-python/bin/pip install --no-cache-dir -r tools/designcraft/requirements.txt; \
+    else /opt/ote-python/bin/pip install --no-cache-dir -r tools/designcraft/requirements.txt; fi
+# The downloader verifies upstream checksums and detects the target container architecture.
+RUN --mount=type=secret,id=build_ca,required=false \
+    test "$DESIGNCRAFT_VERSION" = "0.4.0" \
+    && case "$TARGETARCH" in amd64) native_arch=x86_64 ;; arm64) native_arch=aarch64 ;; *) exit 1 ;; esac \
+    && if [ -f /run/secrets/build_ca ]; then \
+      ote_build_cert="$(mktemp)" \
+      && trap 'rm -f "$ote_build_cert"' EXIT \
+      && cat /etc/ssl/certs/ca-certificates.crt /run/secrets/build_ca > "$ote_build_cert" \
+      && SSL_CERT_FILE="$ote_build_cert" python3 tools/designcraft/download-cli.py --output /opt/designcraft; \
+    else python3 tools/designcraft/download-cli.py --output /opt/designcraft; fi \
+    && ln -s /opt/designcraft/designcraft-"$DESIGNCRAFT_VERSION"-linux-"$native_arch"/bin/designcraft-cli /usr/local/bin/designcraft-cli
+COPY --from=builder /ote-native-runtime/ ./
+ENV NODE_ENV=production PORT=3000 TMPDIR=/tmp \
+    DESIGNCRAFT_CLI=/usr/local/bin/designcraft-cli \
+    DESIGNCRAFT_PYTHON=/opt/ote-python/bin/python \
+    DESIGNCRAFT_TOOLS_DIR=/app/tools/designcraft \
+    DESIGNCRAFT_FONT_DIR=/app/public/designcraft/assets/fonts
+USER node
+EXPOSE 3000
+CMD ["node", ".output/server/index.mjs"]

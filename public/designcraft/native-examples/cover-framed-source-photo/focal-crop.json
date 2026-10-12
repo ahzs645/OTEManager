@@ -3,8 +3,8 @@
     {
       "slotId": "cover-photo",
       "requestedFocus": {
-        "x": 0.8,
-        "y": 0.6
+        "x": 0.5,
+        "y": 0.5
       },
       "nativeCrop": "focal-point",
       "exactFocusApplied": true,
@@ -23,7 +23,7 @@
         0,
         0,
         0.2326369282891022,
-        -81.8509316770187,
+        -19.925465838509353,
         154.0
       ]
     }

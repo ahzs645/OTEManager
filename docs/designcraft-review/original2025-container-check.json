@@ -1,0 +1,210 @@
+{
+  "passed": true,
+  "transport": "actual Docker production Nitro server/API, unprivileged node user, stock CLI",
+  "ui": "production static planner and native-export.js",
+  "plannedPages": [
+    {
+      "id": "cover",
+      "pageNumber": 1,
+      "articleIds": [
+        "article"
+      ]
+    },
+    {
+      "id": "start",
+      "pageNumber": 2,
+      "articleIds": [
+        "article"
+      ]
+    },
+    {
+      "id": "continuation",
+      "pageNumber": 3,
+      "articleIds": [
+        "article"
+      ]
+    },
+    {
+      "id": "back",
+      "pageNumber": 4,
+      "articleIds": []
+    }
+  ],
+  "job": {
+    "id": "67cbbe62-e1ca-4290-b958-2b8c4690f4a5",
+    "status": "completed",
+    "mode": "issue",
+    "fontProfile": "original2025",
+    "createdAt": "2026-10-12T02:05:23.597Z",
+    "finishedAt": "2026-10-12T02:05:26.085Z",
+    "expiresAt": "2026-10-12T03:05:26.085Z",
+    "message": "Native, PDF and IDML output passed compiler preflight.",
+    "artifacts": {
+      "native": {
+        "name": "issue.designcraft",
+        "mimeType": "application/zip",
+        "bytes": 1777750,
+        "persisted": false
+      },
+      "pdf": {
+        "name": "issue.pdf",
+        "mimeType": "application/pdf",
+        "bytes": 2089712,
+        "persisted": false
+      },
+      "idml": {
+        "name": "issue.idml",
+        "mimeType": "application/zip",
+        "bytes": 1806323,
+        "persisted": false
+      },
+      "manifest": {
+        "name": "build-manifest.json",
+        "mimeType": "application/json",
+        "bytes": 28106,
+        "persisted": false
+      },
+      "preflight": {
+        "name": "preflight.json",
+        "mimeType": "application/json",
+        "bytes": 51,
+        "persisted": false
+      },
+      "source": {
+        "name": "source-issue.json",
+        "mimeType": "application/json",
+        "bytes": 14353,
+        "persisted": false
+      },
+      "interchange": {
+        "name": "interchange-metadata.json",
+        "mimeType": "application/json",
+        "bytes": 66832,
+        "persisted": false
+      },
+      "log": {
+        "name": "native-service-log.json",
+        "mimeType": "application/json",
+        "bytes": 25046,
+        "persisted": false
+      },
+      "bundle": {
+        "name": "ote-issue-native-output.zip",
+        "mimeType": "application/zip",
+        "bytes": 12093362,
+        "persisted": false
+      }
+    }
+  },
+  "fontProfile": "original2025",
+  "cliVersion": "designcraft-cli 0.4.0",
+  "documentFonts": {
+    "000-uploaded-HelveticaBlkIt.ttf": "20d66cfc02536826a06d4fbc910575c333260dca94ddf98ca0a1b24cc4a98617",
+    "000-uploaded-HelveticaNeue-Roman.otf": "cff37b09f737496760ef2752edb9a9e44f12f0741890bfdb8a03dd38efce1350",
+    "000-uploaded-HelveticaNeueBold.ttf": "bf5f69e35e6c7c7aa5fa53521fc06b6eb78d86692dc5975be789344438ee7e85",
+    "000-uploaded-HelveticaNeueBoldItalic.ttf": "3985f8c54443ca0c9c22ed77ccf50e5102d7e824f7678349b0456a316df3cd68",
+    "000-uploaded-HelveticaNeueCondensedBlack.ttf": "b6e654a6a051d4be5c3191046fa0bdeae9c3377ba8af913d25819ca347f4d2ad",
+    "000-uploaded-HelveticaNeueCondensedBold.ttf": "b17ded37667190f72bce5061d91bc432efd1d03ee56fa8d6cd406e8cbc282717",
+    "000-uploaded-HelveticaNeueItalic.ttf": "0aa08087288ef8c4a568ff2e16944e4c38594be2ac5215d9ee054685cf262cc6",
+    "000-uploaded-HelveticaNeueLight.ttf": "4a9e3c226fcc76eefa4a3f398d6bc536b5d588db227ebb8007b425758e055fd2",
+    "000-uploaded-HelveticaNeueLightItalic.ttf": "57511e6b176115dcde31fd51d78d5dcc26ecae457419448ce9024018e75f7db1",
+    "000-uploaded-HelveticaNeueMedium.ttf": "82ff7e5c8ee61ac9fd20279d3138b055571f3955441091b100b16f426944a0dc",
+    "000-uploaded-HelveticaNeueUltraLight.ttf": "622699d3d98deb21e0b3f8c4eedc71872f6fa25c155d9ef54f6a4d07eaa85fa8",
+    "000-uploaded-HelveticaNeueUltraLightItal.ttf": "4244c474479e2de1a462eecd06fddefe07932920a169b65e6ec0532e5cdded83",
+    "000-uploaded-helvetica-47-light-condensed-587ebd7b5a6f6.ttf": "6cab0235b35034359aba5fd54afa690ab91f62b4e812667240443b9721141f66",
+    "Decalotype-Black.otf": "07ea3d8fa46c8011606358867ca21276ecfc829c95e386c17df1dc3692a00352",
+    "Decalotype-Black.ttf": "107c09594c73f6d607bdc7d2d65139de3df0e394e46f5d5e5d6c01b39b095a5c",
+    "Decalotype-Bold.otf": "3e6ce7e24b0c7d8e265754aa2a3a0898a53710f78f5eff60273e85cd435865b2",
+    "Decalotype-Bold.ttf": "67ae7a39eea58aa5e9a1276561f63e1d750bb1ee4b930cc4a19e24ffbc579cbe",
+    "Decalotype-Medium.ttf": "5fdb497f83d46844d6ff44782ca2f9e508550c6b8e9fa84a7c48719d57a6b58b",
+    "Helvetica.ttc": "25eceb458d4baf628ee0b6a135a9f8ac5ec7b2826646720834bd2bf00dfc825a",
+    "HelveticaNeue.ttc": "a43317500f5c8086ebbe479b32e86f53ce7c075c14283aa9894cc23be5bfd8e2",
+    "HelveticaNeueBold.otf": "14928444e337995a7fe9bae85e20b83139f6e0c78416df87feaf68613d41e02e",
+    "HelveticaNeueBoldItalic.otf": "efed5391e2de26bca629f868eb73b439951734deb3ad23372e65f3af47b081d0",
+    "HelveticaNeueHeavy.otf": "62cae097fbe1bc96b327af21a78ed373a1528f3387f26eef9cc60d0650c104ab",
+    "HelveticaNeueLight.otf": "6168b124cc3601a2a72a1813a8f2a9f0fe40f8a91c420f15d29bff16e0a860b3",
+    "Kefa.ttc": "bb4ec8ea2a76f2579371de2a916e2b7f55ead00b63258d459c8675076a4356a1",
+    "MinionPro-Regular.otf": "4aed36c4c3eef27f66b7717e33bf3870ee27b393bf27f0cae477a6b7b28517b5",
+    "beyond_the_mountains.ttf": "db7709e0a81af5b1cb4efdd95564fa2fa6f8cd616aeeadb292d0320f52271257",
+    "salted.ttf": "fdb945358340831d20feaba3e26650756c952732f74cd2d34e0737546f83dbad"
+  },
+  "sourceExact": true,
+  "articleFlows": {
+    "article": {
+      "storyId": 33,
+      "frameIds": [
+        32,
+        41
+      ],
+      "pageIds": [
+        "start",
+        "continuation"
+      ],
+      "physicalPageNumbers": [
+        2,
+        3
+      ],
+      "sourceTextUnchanged": true,
+      "richStoryUnchanged": true,
+      "alreadyThreaded": false
+    }
+  },
+  "nativeCoverReferences": {
+    "schemaVersion": "ote.native.cover-references.v1",
+    "format": "OTE Featured Article",
+    "features": [
+      {
+        "articleId": "article",
+        "headlineStoryId": 29,
+        "coverStoryId": 24,
+        "headlinePageId": "start",
+        "headlinePageIndex": 1,
+        "coverPageId": "cover",
+        "anchorName": "ote:article:article:headline",
+        "title": "The complete pipeline",
+        "mode": "dynamic",
+        "anchorId": 486539265
+      }
+    ],
+    "staticFallbacks": [],
+    "verification": {
+      "valid": true,
+      "features": [
+        {
+          "articleId": "article",
+          "mode": "dynamic",
+          "text": "02 · The complete pipeline",
+          "anchorId": 486539265,
+          "pageName": "02"
+        }
+      ]
+    }
+  },
+  "preflight": {
+    "errors": 0,
+    "issues": [],
+    "warnings": 0
+  },
+  "apiResponses": [
+    {
+      "url": "http://127.0.0.1:8898/api/designcraft/native",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8898/api/designcraft/native",
+      "status": 202,
+      "jobStatus": "queued"
+    },
+    {
+      "url": "http://127.0.0.1:8898/api/designcraft/native?job=67cbbe62-e1ca-4290-b958-2b8c4690f4a5",
+      "status": 200,
+      "jobStatus": "running"
+    },
+    {
+      "url": "http://127.0.0.1:8898/api/designcraft/native?job=67cbbe62-e1ca-4290-b958-2b8c4690f4a5",
+      "status": 200,
+      "jobStatus": "completed"
+    }
+  ],
+  "pageErrors": []
+}

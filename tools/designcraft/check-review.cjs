@@ -37,7 +37,7 @@ const JSZip=require('../../node_modules/jszip');
  await page.locator('#focus-y').evaluate(e=>{e.value='60';e.dispatchEvent(new Event('input',{bubbles:true}));});
  await page.waitForFunction(()=>Math.abs(Number(document.querySelector('#page-preview image[clip-path="url(#clip-cover-photo)"]')?.getAttribute('x'))+81.8509316770187)<1e-6);
  assert(await page.locator('#page-preview svg image').count()>=2);
- await page.screenshot({path:'/workspace/recovery/ote-review-desktop.png',fullPage:true});
+ await page.screenshot({path:process.env.REVIEW_SCREENSHOT||'/tmp/ote-review-desktop.png',fullPage:true});
  await page.setViewportSize({width:390,height:844});
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
  assert.deepEqual(errors,[]);

@@ -1,73 +1,643 @@
-{
-  "schemaVersion": "ote.designcraft.native-validation.v1",
-  "engine": "stock DesignCraft v0.4.0",
-  "engineArchiveSha256": "4c0b68c0dc62081e455bf8d60dd54f022ff1624359d5e10d06ca2b18d73d4bb3",
-  "examples": [
-    {
-      "templateId": "ad-half-bottom",
-      "errors": 0,
-      "warnings": 0,
-      "native": true,
-      "pdf": true,
-      "idml": true
-    },
-    {
-      "templateId": "cover-framed-cards-border",
-      "errors": 0,
-      "warnings": 0,
-      "native": true,
-      "pdf": true,
-      "idml": true
-    },
-    {
-      "templateId": "piece-president-qa",
-      "errors": 0,
-      "warnings": 0,
-      "native": true,
-      "pdf": true,
-      "idml": true
-    },
-    {
-      "templateId": "story-1-top-balanced",
-      "errors": 0,
-      "warnings": 0,
-      "native": true,
-      "pdf": true,
-      "idml": true
-    },
-    {
-      "templateId": "story-2-two-top-columns",
-      "errors": 0,
-      "warnings": 0,
-      "native": true,
-      "pdf": true,
-      "idml": true
-    },
-    {
-      "templateId": "story-3-none-columns",
-      "errors": 0,
-      "warnings": 0,
-      "native": true,
-      "pdf": true,
-      "idml": true
-    },
-    {
-      "templateId": "cover-framed-source-photo",
-      "errors": 0,
-      "warnings": 0,
-      "native": true,
-      "pdf": true,
-      "idml": true,
-      "inputType": "selected-cover-recipe"
+[
+  {
+    "schemaVersion": "ote.designcraft.build.v1",
+    "templateId": "ad-half-bottom",
+    "sourceArticleIds": [],
+    "illustrative": true,
+    "pageId": "page-1",
+    "pageNumber": 1,
+    "slots": [
+      {
+        "templateId": "ad-half-bottom",
+        "slotId": "ad-1",
+        "role": "ad",
+        "articleId": null,
+        "pageId": "page-1",
+        "commandIndex": 20
+      }
+    ],
+    "copyPreserved": true,
+    "copyScope": "native-article-bodies",
+    "sourceMarkdownPreserved": true,
+    "nativeTextScope": "rendered-commonmark-or-plain",
+    "articleBodiesInNative": true,
+    "focalPointRequests": [],
+    "fonts": [
+      "Source Sans 3",
+      "Source Serif 4"
+    ],
+    "status": "exported",
+    "errors": [],
+    "warnings": [
+      "ad-1: no media supplied; boundary placeholder drawn"
+    ],
+    "nativeWarnings": [],
+    "originalCoverAndTruck": "Requires original native issue; not modified by this single-page compiler",
+    "adobeInDesignTested": false,
+    "interchangeHyperlinks": {
+      "nativeAndPdf": true,
+      "stockIdml": false,
+      "sidecarCount": 0,
+      "reopenTool": "reopen-idml.py"
     }
-  ],
-  "oversetRejected": true,
-  "oversetUnicodeFullCopyRetained": true,
-  "adobeInDesignTested": false,
-  "coverRecipeSelectedArticlesSupported": true,
-  "coverArticleBodiesRetainedInSourceRecord": true,
-  "exactNativeFocalPointMatchingImplemented": true,
-  "focalTransformVerifiedAfterReopen": true,
-  "focalEmbeddedAssetBytesPreserved": true,
-  "focalTransformVerifiedAfterDesignCraftIdmlRoundtrip": true
-}
+  },
+  {
+    "schemaVersion": "ote.designcraft.build.v1",
+    "templateId": "cover-framed-cards-border",
+    "sourceArticleIds": [],
+    "illustrative": true,
+    "pageId": "page-1",
+    "pageNumber": 1,
+    "slots": [
+      {
+        "templateId": "cover-framed-cards-border",
+        "slotId": "cover-logo",
+        "role": "photo",
+        "articleId": null,
+        "pageId": "page-1",
+        "commandIndex": 22
+      },
+      {
+        "templateId": "cover-framed-cards-border",
+        "slotId": "cover-date",
+        "role": "headline",
+        "articleId": null,
+        "pageId": "page-1",
+        "commandIndex": 28
+      },
+      {
+        "templateId": "cover-framed-cards-border",
+        "slotId": "cover-issue",
+        "role": "byline",
+        "articleId": null,
+        "pageId": "page-1",
+        "commandIndex": 34
+      },
+      {
+        "templateId": "cover-framed-cards-border",
+        "slotId": "cover-photo",
+        "role": "photo",
+        "articleId": null,
+        "pageId": "page-1",
+        "commandIndex": 40
+      },
+      {
+        "templateId": "cover-framed-cards-border",
+        "slotId": "cover-line",
+        "role": "caption",
+        "articleId": null,
+        "pageId": "page-1",
+        "commandIndex": 49
+      },
+      {
+        "templateId": "cover-framed-cards-border",
+        "slotId": "cover-card-1",
+        "role": "piece",
+        "articleId": null,
+        "pageId": "page-1",
+        "commandIndex": 55
+      },
+      {
+        "templateId": "cover-framed-cards-border",
+        "slotId": "cover-card-2",
+        "role": "piece",
+        "articleId": null,
+        "pageId": "page-1",
+        "commandIndex": 64
+      },
+      {
+        "templateId": "cover-framed-cards-border",
+        "slotId": "cover-card-3",
+        "role": "piece",
+        "articleId": null,
+        "pageId": "page-1",
+        "commandIndex": 73
+      }
+    ],
+    "copyPreserved": true,
+    "copyScope": "source-record-article-bodies",
+    "sourceMarkdownPreserved": true,
+    "nativeTextScope": "rendered-commonmark-or-plain",
+    "articleBodiesInNative": false,
+    "focalPointRequests": [],
+    "fonts": [
+      "Source Sans 3",
+      "Source Serif 4"
+    ],
+    "status": "exported",
+    "errors": [],
+    "warnings": [
+      "cover-photo: no media supplied; boundary placeholder drawn",
+      "cover-card-1: no media supplied; boundary placeholder drawn",
+      "cover-card-2: no media supplied; boundary placeholder drawn",
+      "cover-card-3: no media supplied; boundary placeholder drawn"
+    ],
+    "nativeWarnings": [],
+    "originalCoverAndTruck": "Requires original native issue; not modified by this single-page compiler",
+    "adobeInDesignTested": false,
+    "interchangeHyperlinks": {
+      "nativeAndPdf": true,
+      "stockIdml": false,
+      "sidecarCount": 0,
+      "reopenTool": "reopen-idml.py"
+    }
+  },
+  {
+    "schemaVersion": "ote.designcraft.build.v1",
+    "templateId": "cover-framed-cards-border",
+    "sourceArticleIds": [
+      "illustrative-selected-1"
+    ],
+    "illustrative": true,
+    "pageId": "page-1",
+    "pageNumber": 1,
+    "slots": [
+      {
+        "templateId": "cover-framed-cards-border",
+        "slotId": "cover-logo",
+        "role": "photo",
+        "articleId": null,
+        "pageId": "page-1",
+        "commandIndex": 22
+      },
+      {
+        "templateId": "cover-framed-cards-border",
+        "slotId": "cover-date",
+        "role": "headline",
+        "articleId": null,
+        "pageId": "page-1",
+        "commandIndex": 28
+      },
+      {
+        "templateId": "cover-framed-cards-border",
+        "slotId": "cover-issue",
+        "role": "byline",
+        "articleId": null,
+        "pageId": "page-1",
+        "commandIndex": 34
+      },
+      {
+        "templateId": "cover-framed-cards-border",
+        "slotId": "cover-photo",
+        "role": "photo",
+        "articleId": "illustrative-selected-1",
+        "pageId": "page-1",
+        "commandIndex": 40
+      },
+      {
+        "templateId": "cover-framed-cards-border",
+        "slotId": "cover-line",
+        "role": "caption",
+        "articleId": null,
+        "pageId": "page-1",
+        "commandIndex": 46
+      },
+      {
+        "templateId": "cover-framed-cards-border",
+        "slotId": "cover-card-1",
+        "role": "piece",
+        "articleId": "illustrative-selected-1",
+        "pageId": "page-1",
+        "commandIndex": 52
+      },
+      {
+        "templateId": "cover-framed-cards-border",
+        "slotId": "cover-card-2",
+        "role": "piece",
+        "articleId": null,
+        "pageId": "page-1",
+        "commandIndex": 61
+      },
+      {
+        "templateId": "cover-framed-cards-border",
+        "slotId": "cover-card-3",
+        "role": "piece",
+        "articleId": null,
+        "pageId": "page-1",
+        "commandIndex": 70
+      }
+    ],
+    "copyPreserved": true,
+    "copyScope": "source-record-article-bodies",
+    "sourceMarkdownPreserved": true,
+    "nativeTextScope": "rendered-commonmark-or-plain",
+    "articleBodiesInNative": false,
+    "focalPointRequests": [
+      {
+        "slotId": "cover-photo",
+        "requestedFocus": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "nativeCrop": "focal-point",
+        "exactFocusApplied": true,
+        "imageSize": [
+          3421.0,
+          1771.0
+        ],
+        "frameRect": [
+          42,
+          154,
+          714,
+          566
+        ],
+        "transform": [
+          0.2326369282891022,
+          0,
+          0,
+          0.2326369282891022,
+          -19.925465838509353,
+          154.0
+        ]
+      }
+    ],
+    "fonts": [
+      "Source Sans 3",
+      "Source Serif 4"
+    ],
+    "status": "exported",
+    "errors": [],
+    "warnings": [
+      "cover-card-1: no media supplied; boundary placeholder drawn",
+      "cover-card-2: no media supplied; boundary placeholder drawn",
+      "cover-card-3: no media supplied; boundary placeholder drawn"
+    ],
+    "nativeWarnings": [],
+    "originalCoverAndTruck": "Requires original native issue; not modified by this single-page compiler",
+    "adobeInDesignTested": false,
+    "interchangeHyperlinks": {
+      "nativeAndPdf": true,
+      "stockIdml": false,
+      "sidecarCount": 0,
+      "reopenTool": "reopen-idml.py"
+    }
+  },
+  {
+    "schemaVersion": "ote.designcraft.build.v1",
+    "templateId": "piece-president-qa",
+    "sourceArticleIds": [],
+    "illustrative": true,
+    "pageId": "page-1",
+    "pageNumber": 1,
+    "slots": [
+      {
+        "templateId": "piece-president-qa",
+        "slotId": "piece-1",
+        "role": "piece",
+        "articleId": null,
+        "pageId": "page-1",
+        "commandIndex": 20
+      }
+    ],
+    "copyPreserved": true,
+    "copyScope": "native-article-bodies",
+    "sourceMarkdownPreserved": true,
+    "nativeTextScope": "rendered-commonmark-or-plain",
+    "articleBodiesInNative": true,
+    "focalPointRequests": [],
+    "fonts": [
+      "Source Sans 3",
+      "Source Serif 4"
+    ],
+    "status": "exported",
+    "errors": [],
+    "warnings": [
+      "piece-1: no media supplied; boundary placeholder drawn"
+    ],
+    "nativeWarnings": [],
+    "originalCoverAndTruck": "Requires original native issue; not modified by this single-page compiler",
+    "adobeInDesignTested": false,
+    "interchangeHyperlinks": {
+      "nativeAndPdf": true,
+      "stockIdml": false,
+      "sidecarCount": 0,
+      "reopenTool": "reopen-idml.py"
+    }
+  },
+  {
+    "schemaVersion": "ote.designcraft.build.v1",
+    "templateId": "story-1-top-balanced",
+    "sourceArticleIds": [
+      "example-1"
+    ],
+    "illustrative": true,
+    "pageId": "page-1",
+    "pageNumber": 1,
+    "slots": [
+      {
+        "templateId": "story-1-top-balanced",
+        "slotId": "headline-1",
+        "role": "headline",
+        "articleId": "example-1",
+        "pageId": "page-1",
+        "commandIndex": 21
+      },
+      {
+        "templateId": "story-1-top-balanced",
+        "slotId": "byline-2",
+        "role": "byline",
+        "articleId": "example-1",
+        "pageId": "page-1",
+        "commandIndex": 27
+      },
+      {
+        "templateId": "story-1-top-balanced",
+        "slotId": "photo-3",
+        "role": "photo",
+        "articleId": "example-1",
+        "pageId": "page-1",
+        "commandIndex": 33
+      },
+      {
+        "templateId": "story-1-top-balanced",
+        "slotId": "caption-4",
+        "role": "caption",
+        "articleId": "example-1",
+        "pageId": "page-1",
+        "commandIndex": 42
+      },
+      {
+        "templateId": "story-1-top-balanced",
+        "slotId": "body-5",
+        "role": "body",
+        "articleId": "example-1",
+        "pageId": "page-1",
+        "commandIndex": 48
+      },
+      {
+        "templateId": "story-1-top-balanced",
+        "slotId": "folio-6",
+        "role": "folio",
+        "articleId": null,
+        "pageId": "page-1",
+        "commandIndex": 60
+      }
+    ],
+    "copyPreserved": true,
+    "copyScope": "native-article-bodies",
+    "sourceMarkdownPreserved": true,
+    "nativeTextScope": "rendered-commonmark-or-plain",
+    "articleBodiesInNative": true,
+    "focalPointRequests": [],
+    "fonts": [
+      "Source Sans 3",
+      "Source Serif 4"
+    ],
+    "status": "exported",
+    "errors": [],
+    "warnings": [
+      "photo-3: no media supplied; boundary placeholder drawn"
+    ],
+    "nativeWarnings": [],
+    "originalCoverAndTruck": "Requires original native issue; not modified by this single-page compiler",
+    "adobeInDesignTested": false,
+    "interchangeHyperlinks": {
+      "nativeAndPdf": true,
+      "stockIdml": false,
+      "sidecarCount": 0,
+      "reopenTool": "reopen-idml.py"
+    }
+  },
+  {
+    "schemaVersion": "ote.designcraft.build.v1",
+    "templateId": "story-2-two-top-columns",
+    "sourceArticleIds": [
+      "example-1",
+      "example-2"
+    ],
+    "illustrative": true,
+    "pageId": "page-1",
+    "pageNumber": 1,
+    "slots": [
+      {
+        "templateId": "story-2-two-top-columns",
+        "slotId": "headline-1",
+        "role": "headline",
+        "articleId": "example-1",
+        "pageId": "page-1",
+        "commandIndex": 21
+      },
+      {
+        "templateId": "story-2-two-top-columns",
+        "slotId": "byline-2",
+        "role": "byline",
+        "articleId": "example-1",
+        "pageId": "page-1",
+        "commandIndex": 27
+      },
+      {
+        "templateId": "story-2-two-top-columns",
+        "slotId": "photo-3",
+        "role": "photo",
+        "articleId": "example-1",
+        "pageId": "page-1",
+        "commandIndex": 33
+      },
+      {
+        "templateId": "story-2-two-top-columns",
+        "slotId": "caption-4",
+        "role": "caption",
+        "articleId": "example-1",
+        "pageId": "page-1",
+        "commandIndex": 42
+      },
+      {
+        "templateId": "story-2-two-top-columns",
+        "slotId": "body-5",
+        "role": "body",
+        "articleId": "example-1",
+        "pageId": "page-1",
+        "commandIndex": 48
+      },
+      {
+        "templateId": "story-2-two-top-columns",
+        "slotId": "headline-6",
+        "role": "headline",
+        "articleId": "example-2",
+        "pageId": "page-1",
+        "commandIndex": 61
+      },
+      {
+        "templateId": "story-2-two-top-columns",
+        "slotId": "byline-7",
+        "role": "byline",
+        "articleId": "example-2",
+        "pageId": "page-1",
+        "commandIndex": 67
+      },
+      {
+        "templateId": "story-2-two-top-columns",
+        "slotId": "photo-8",
+        "role": "photo",
+        "articleId": "example-2",
+        "pageId": "page-1",
+        "commandIndex": 73
+      },
+      {
+        "templateId": "story-2-two-top-columns",
+        "slotId": "caption-9",
+        "role": "caption",
+        "articleId": "example-2",
+        "pageId": "page-1",
+        "commandIndex": 82
+      },
+      {
+        "templateId": "story-2-two-top-columns",
+        "slotId": "body-10",
+        "role": "body",
+        "articleId": "example-2",
+        "pageId": "page-1",
+        "commandIndex": 88
+      },
+      {
+        "templateId": "story-2-two-top-columns",
+        "slotId": "folio-11",
+        "role": "folio",
+        "articleId": null,
+        "pageId": "page-1",
+        "commandIndex": 100
+      }
+    ],
+    "copyPreserved": true,
+    "copyScope": "native-article-bodies",
+    "sourceMarkdownPreserved": true,
+    "nativeTextScope": "rendered-commonmark-or-plain",
+    "articleBodiesInNative": true,
+    "focalPointRequests": [],
+    "fonts": [
+      "Source Sans 3",
+      "Source Serif 4"
+    ],
+    "status": "exported",
+    "errors": [],
+    "warnings": [
+      "photo-3: no media supplied; boundary placeholder drawn",
+      "photo-8: no media supplied; boundary placeholder drawn"
+    ],
+    "nativeWarnings": [],
+    "originalCoverAndTruck": "Requires original native issue; not modified by this single-page compiler",
+    "adobeInDesignTested": false,
+    "interchangeHyperlinks": {
+      "nativeAndPdf": true,
+      "stockIdml": false,
+      "sidecarCount": 0,
+      "reopenTool": "reopen-idml.py"
+    }
+  },
+  {
+    "schemaVersion": "ote.designcraft.build.v1",
+    "templateId": "story-3-none-columns",
+    "sourceArticleIds": [
+      "example-1",
+      "example-2",
+      "example-3"
+    ],
+    "illustrative": true,
+    "pageId": "page-1",
+    "pageNumber": 1,
+    "slots": [
+      {
+        "templateId": "story-3-none-columns",
+        "slotId": "headline-1",
+        "role": "headline",
+        "articleId": "example-1",
+        "pageId": "page-1",
+        "commandIndex": 21
+      },
+      {
+        "templateId": "story-3-none-columns",
+        "slotId": "byline-2",
+        "role": "byline",
+        "articleId": "example-1",
+        "pageId": "page-1",
+        "commandIndex": 27
+      },
+      {
+        "templateId": "story-3-none-columns",
+        "slotId": "body-3",
+        "role": "body",
+        "articleId": "example-1",
+        "pageId": "page-1",
+        "commandIndex": 33
+      },
+      {
+        "templateId": "story-3-none-columns",
+        "slotId": "headline-4",
+        "role": "headline",
+        "articleId": "example-2",
+        "pageId": "page-1",
+        "commandIndex": 46
+      },
+      {
+        "templateId": "story-3-none-columns",
+        "slotId": "byline-5",
+        "role": "byline",
+        "articleId": "example-2",
+        "pageId": "page-1",
+        "commandIndex": 52
+      },
+      {
+        "templateId": "story-3-none-columns",
+        "slotId": "body-6",
+        "role": "body",
+        "articleId": "example-2",
+        "pageId": "page-1",
+        "commandIndex": 58
+      },
+      {
+        "templateId": "story-3-none-columns",
+        "slotId": "headline-7",
+        "role": "headline",
+        "articleId": "example-3",
+        "pageId": "page-1",
+        "commandIndex": 71
+      },
+      {
+        "templateId": "story-3-none-columns",
+        "slotId": "byline-8",
+        "role": "byline",
+        "articleId": "example-3",
+        "pageId": "page-1",
+        "commandIndex": 77
+      },
+      {
+        "templateId": "story-3-none-columns",
+        "slotId": "body-9",
+        "role": "body",
+        "articleId": "example-3",
+        "pageId": "page-1",
+        "commandIndex": 83
+      },
+      {
+        "templateId": "story-3-none-columns",
+        "slotId": "folio-10",
+        "role": "folio",
+        "articleId": null,
+        "pageId": "page-1",
+        "commandIndex": 95
+      }
+    ],
+    "copyPreserved": true,
+    "copyScope": "native-article-bodies",
+    "sourceMarkdownPreserved": true,
+    "nativeTextScope": "rendered-commonmark-or-plain",
+    "articleBodiesInNative": true,
+    "focalPointRequests": [],
+    "fonts": [
+      "Source Sans 3",
+      "Source Serif 4"
+    ],
+    "status": "exported",
+    "errors": [],
+    "warnings": [],
+    "nativeWarnings": [],
+    "originalCoverAndTruck": "Requires original native issue; not modified by this single-page compiler",
+    "adobeInDesignTested": false,
+    "interchangeHyperlinks": {
+      "nativeAndPdf": true,
+      "stockIdml": false,
+      "sidecarCount": 0,
+      "reopenTool": "reopen-idml.py"
+    }
+  }
+]

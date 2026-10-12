@@ -1,0 +1,74 @@
+{
+  "passed": true,
+  "job": {
+    "id": "2c31cdd7-28d2-453e-a745-4d716f7f0ae5",
+    "status": "failed",
+    "mode": "issue",
+    "fontProfile": "portable",
+    "createdAt": "2026-10-12T02:07:15.742Z",
+    "finishedAt": "2026-10-12T02:07:16.435Z",
+    "expiresAt": "2026-10-12T03:07:16.435Z",
+    "message": "compile-issue: Page 1 (cover) failed composition; source, page draft and preflight retained: 1 preflight/input errors. Full copy retained in page.designcraft; final PDF/IDML export blocked. See preflight.json and build-manifest.json.",
+    "artifacts": {
+      "manifest": {
+        "name": "build-manifest.json",
+        "mimeType": "application/json",
+        "bytes": 687,
+        "persisted": false
+      },
+      "preflight": {
+        "name": "preflight.json",
+        "mimeType": "application/json",
+        "bytes": 250,
+        "persisted": false
+      },
+      "source": {
+        "name": "source-issue.json",
+        "mimeType": "application/json",
+        "bytes": 19050,
+        "persisted": false
+      },
+      "log": {
+        "name": "native-service-log.json",
+        "mimeType": "application/json",
+        "bytes": 286,
+        "persisted": false
+      },
+      "native": {
+        "name": "draft-page-001.designcraft",
+        "mimeType": "application/zip",
+        "bytes": 1774128,
+        "persisted": false
+      },
+      "interchange": {
+        "name": "interchange-metadata.json",
+        "mimeType": "application/json",
+        "bytes": 12473,
+        "persisted": false
+      },
+      "bundle": {
+        "name": "ote-issue-native-output.zip",
+        "mimeType": "application/zip",
+        "bytes": 4795295,
+        "persisted": false
+      }
+    }
+  },
+  "preflight": {
+    "errors": 1,
+    "issues": [
+      {
+        "item": 20,
+        "kind": "overset",
+        "message": "Overset text: 5014 characters",
+        "page": 0,
+        "severity": "error",
+        "pageNumber": 1,
+        "pageId": "cover"
+      }
+    ],
+    "warnings": 0
+  },
+  "fullSourceExact": true,
+  "finalExportsWithheld": true
+}

@@ -94,3 +94,9 @@ npm test
 All seven utility screens use Convex. SharePoint JSON, ZIP, and folder imports, student type updates, article merging, duplicate file deletion, payment review, WordPress bundles, and native backup restore have workflow coverage. Write/delete/payment tests use an isolated Convex test backend; browser checks and sample exports use the restored local dataset.
 
 SharePoint replacement imports reuse attachment records at the same file path and preserve merged source IDs. Merge imports retain article metadata, skip existing files, and retry missing files. File failures are included in the import report. Folder imports refer to folders on the web server's machine; ZIP uploads work when accessing the app remotely. WordPress export produces a ZIP for a separate WordPress importer; this app does not publish directly to WordPress.
+
+## DesignCraft newspaper workflow
+
+In Publications, select articles and images and open them directly in the DesignCraft planner. Edit layouts, cover metadata/photo, featured article references and explicit continuation chains; generate native/PDF/IDML output through a configured worker or export recipes for the standalone CLI.
+
+See the [workflow guide](docs/DESIGNCRAFT.md), [complete integration review](docs/DESIGNCRAFT-INTEGRATION-REVIEW.md), [worker setup](docs/designcraft-native-service.md), and [committed report, proof bundle and verification record](docs/designcraft-review/README.md). The optional `Dockerfile.native` supplies the Linux compiler runtime. Production deployment and fresh Adobe/printer verification remain outstanding.

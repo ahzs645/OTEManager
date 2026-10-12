@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "productionComponents": [
+    "VolumeCard",
+    "IssueExportModal",
+    "Utilities iframe",
+    "planner"
+  ],
+  "transport": "query/mutation/router stubs; real selected API ZIP from isolated Convex proof",
+  "directImport": {
+    "articleIDs": [
+      "36bb148a-50d5-4049-a11e-01ee908de3b6"
+    ],
+    "body": "Full **source Markdown**.\n\nSecond paragraph.",
+    "media": 2,
+    "photoBytes": [
+      1687764,
+      1687764
+    ]
+  },
+  "requests": [
+    {
+      "articleIds": [
+        "36bb148a-50d5-4049-a11e-01ee908de3b6"
+      ]
+    }
+  ],
+  "noIntermediateDownload": true,
+  "errors": []
+}

@@ -15,7 +15,7 @@
       "role": "headline",
       "articleId": "example-1",
       "pageId": "page-1",
-      "commandIndex": 10
+      "commandIndex": 21
     },
     {
       "templateId": "story-2-two-top-columns",
@@ -23,7 +23,7 @@
       "role": "byline",
       "articleId": "example-1",
       "pageId": "page-1",
-      "commandIndex": 16
+      "commandIndex": 27
     },
     {
       "templateId": "story-2-two-top-columns",
@@ -31,7 +31,7 @@
       "role": "photo",
       "articleId": "example-1",
       "pageId": "page-1",
-      "commandIndex": 22
+      "commandIndex": 33
     },
     {
       "templateId": "story-2-two-top-columns",
@@ -39,7 +39,7 @@
       "role": "caption",
       "articleId": "example-1",
       "pageId": "page-1",
-      "commandIndex": 31
+      "commandIndex": 42
     },
     {
       "templateId": "story-2-two-top-columns",
@@ -47,7 +47,7 @@
       "role": "body",
       "articleId": "example-1",
       "pageId": "page-1",
-      "commandIndex": 37
+      "commandIndex": 48
     },
     {
       "templateId": "story-2-two-top-columns",
@@ -55,7 +55,7 @@
       "role": "headline",
       "articleId": "example-2",
       "pageId": "page-1",
-      "commandIndex": 43
+      "commandIndex": 61
     },
     {
       "templateId": "story-2-two-top-columns",
@@ -63,7 +63,7 @@
       "role": "byline",
       "articleId": "example-2",
       "pageId": "page-1",
-      "commandIndex": 49
+      "commandIndex": 67
     },
     {
       "templateId": "story-2-two-top-columns",
@@ -71,7 +71,7 @@
       "role": "photo",
       "articleId": "example-2",
       "pageId": "page-1",
-      "commandIndex": 55
+      "commandIndex": 73
     },
     {
       "templateId": "story-2-two-top-columns",
@@ -79,7 +79,7 @@
       "role": "caption",
       "articleId": "example-2",
       "pageId": "page-1",
-      "commandIndex": 64
+      "commandIndex": 82
     },
     {
       "templateId": "story-2-two-top-columns",
@@ -87,7 +87,7 @@
       "role": "body",
       "articleId": "example-2",
       "pageId": "page-1",
-      "commandIndex": 70
+      "commandIndex": 88
     },
     {
       "templateId": "story-2-two-top-columns",
@@ -95,11 +95,13 @@
       "role": "folio",
       "articleId": null,
       "pageId": "page-1",
-      "commandIndex": 76
+      "commandIndex": 100
     }
   ],
   "copyPreserved": true,
   "copyScope": "native-article-bodies",
+  "sourceMarkdownPreserved": true,
+  "nativeTextScope": "rendered-commonmark-or-plain",
   "articleBodiesInNative": true,
   "focalPointRequests": [],
   "fonts": [
@@ -112,6 +114,13 @@
     "photo-3: no media supplied; boundary placeholder drawn",
     "photo-8: no media supplied; boundary placeholder drawn"
   ],
+  "nativeWarnings": [],
   "originalCoverAndTruck": "Requires original native issue; not modified by this single-page compiler",
-  "adobeInDesignTested": false
+  "adobeInDesignTested": false,
+  "interchangeHyperlinks": {
+    "nativeAndPdf": true,
+    "stockIdml": false,
+    "sidecarCount": 0,
+    "reopenTool": "reopen-idml.py"
+  }
 }

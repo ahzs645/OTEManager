@@ -10,3 +10,6 @@ artifacts
 .env.local
 .env.*.local
 .DS_Store
+
+!public/designcraft/template-kit.zip
+**/__pycache__

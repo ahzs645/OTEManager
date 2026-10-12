@@ -1,3 +1,3 @@
 file.open {"path": "/workspace/OTEManager/public/designcraft/native-examples/story-1-top-balanced/page.designcraft"}
-file.exportPdf {"path": "/workspace/OTEManager/public/designcraft/native-examples/story-1-top-balanced/page.pdf"}
+file.exportPdf {"path": "/workspace/OTEManager/public/designcraft/native-examples/story-1-top-balanced/page.pdf", "standard": "x4"}
 file.exportIdml {"path": "/workspace/OTEManager/public/designcraft/native-examples/story-1-top-balanced/page.idml"}

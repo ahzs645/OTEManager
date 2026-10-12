@@ -12,11 +12,13 @@
       "role": "ad",
       "articleId": null,
       "pageId": "page-1",
-      "commandIndex": 10
+      "commandIndex": 20
     }
   ],
   "copyPreserved": true,
   "copyScope": "native-article-bodies",
+  "sourceMarkdownPreserved": true,
+  "nativeTextScope": "rendered-commonmark-or-plain",
   "articleBodiesInNative": true,
   "focalPointRequests": [],
   "fonts": [
@@ -28,6 +30,13 @@
   "warnings": [
     "ad-1: no media supplied; boundary placeholder drawn"
   ],
+  "nativeWarnings": [],
   "originalCoverAndTruck": "Requires original native issue; not modified by this single-page compiler",
-  "adobeInDesignTested": false
+  "adobeInDesignTested": false,
+  "interchangeHyperlinks": {
+    "nativeAndPdf": true,
+    "stockIdml": false,
+    "sidecarCount": 0,
+    "reopenTool": "reopen-idml.py"
+  }
 }
