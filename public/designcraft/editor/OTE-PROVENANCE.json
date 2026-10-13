@@ -1,0 +1,12 @@
+{
+  "engine": "Official DesignCraft web",
+  "version": "0.7.1",
+  "release": "https://github.com/storytold/designcraft/releases/tag/v0.7.1",
+  "archive": "designcraft-web-0.7.1.zip",
+  "archiveSha256": "863b32bcdbcbb481cd07151e728578331e86b013e7a0643e2f46e754cbc8c58f",
+  "moduleSha256": "1144d3b6eaff09c2aefdea8198b4e9afce9fbf7e3f3e2a6ef07be3dfe0bdeb16",
+  "moduleUnchanged": true,
+  "upstreamGlueUnchanged": true,
+  "wrapper": "Same-origin file handoff, compressed module integrity/load-state handling; no engine source changes.",
+  "originatingSiteSourceCommit": "3fa32854f86bec3142ce715f1dcd02e361dd40cf"
+}

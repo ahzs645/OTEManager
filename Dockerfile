@@ -16,7 +16,7 @@ RUN npm ci
 COPY . .
 # Produces a self-contained bundle in .output (Nitro inlines dependencies),
 # so the runtime stage needs no node_modules at all.
-RUN npm run build
+RUN npm run build && chmod -R a+rX .output
 
 FROM node:24-bookworm-slim AS runner
 WORKDIR /app

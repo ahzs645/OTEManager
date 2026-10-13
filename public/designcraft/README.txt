@@ -51,3 +51,10 @@ restores fields and exact image bytes. See native-readme.md for original fonts.
 The seven native examples share assets/fonts. Before opening an example directly
 in the desktop program, copy that font directory beside page.designcraft as
 Document Fonts. Generated compiler and server bundles already carry that scope.
+
+DesignCraft web 0.7.1 is now bundled in OTEManager at editor/index.html.
+Use it to open/edit/save/export existing documents in your browser.
+Automatic recipe composition/preflight still uses the configured OTE server.
+The template kit carries recipes/compilers; web-editor.zip is the separate
+standalone browser runtime. No desktop installation is needed for browser editing.
+Private original font scopes are not connected to the web handoff.

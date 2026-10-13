@@ -9,15 +9,15 @@ async function setupNativeExport(){
  const panel=document.createElement('section');panel.className='panel';
  const title=document.createElement('h3');title.textContent='Generate editable output';panel.append(title);
  const status=document.createElement('p');status.textContent='Checking native generator…';panel.append(status);
- const mode=document.createElement('select');for(const [value,label] of [['issue','Saved whole issue'],['page','Current page']]){const o=document.createElement('option');o.value=value;o.textContent=label;mode.append(o);}panel.append(mode);
+ const mode=document.createElement('select');mode.id='native-export-mode';for(const [value,label] of [['issue','Saved whole issue'],['page','Current page']]){const o=document.createElement('option');o.value=value;o.textContent=label;mode.append(o);}panel.append(mode);
  const baseLabel=document.createElement('label');baseLabel.textContent='Existing issue for protected pages (ZIP containing .designcraft and build-manifest.json)';const base=document.createElement('input');base.type='file';base.accept='.zip';baseLabel.append(base);panel.append(baseLabel);
  const bookletLabel=document.createElement('label'),booklet=document.createElement('input');booklet.type='checkbox';bookletLabel.append(booklet,' Check booklet page count');panel.append(bookletLabel);
- const button=document.createElement('button');button.textContent='Generate native, PDF and IDML';button.disabled=true;panel.append(button);
+ const button=document.createElement('button');button.id='native-export-generate';button.textContent='Generate native, PDF and IDML';button.disabled=true;panel.append(button);
  const downloads=document.createElement('div');panel.append(downloads);$('export-recipe').parentElement.append(panel);
- let capabilities;
- try{const response=await fetch('/api/designcraft/native');if(!response.ok)throw Error('unavailable');capabilities=await response.json();if(!capabilities.available)throw Error(capabilities.message||'unavailable');status.textContent='Native generator ready. Final PDF and IDML require successful text, media and reference checks.';button.disabled=false;}catch(error){status.textContent='Native generation is available when the OTE server has DesignCraft configured. Download a recipe ZIP and use the template kit for local generation.';return;}
+ let capabilities;window.oteNativeGeneratorAvailable=false;
+ try{const response=await fetch('/api/designcraft/native');if(!response.ok)throw Error('unavailable');capabilities=await response.json();if(!capabilities.available)throw Error(capabilities.message||'unavailable');window.oteNativeGeneratorAvailable=true;window.dispatchEvent(new CustomEvent('ote.native.capabilities',{detail:capabilities}));status.textContent='Native generator ready. Final PDF and IDML require successful text, media and reference checks.';button.disabled=false;}catch(error){status.textContent='Automatic composition needs the configured OTE server worker. The web editor below can open existing IDML or DesignCraft documents without it.';window.dispatchEvent(new CustomEvent('ote.native.capabilities',{detail:{available:false}}));return;}
  button.onclick=async()=>{
-  button.disabled=true;downloads.replaceChildren();
+  button.disabled=true;downloads.replaceChildren();window.dispatchEvent(new CustomEvent('ote.native.started'));
   try{
    status.textContent='Preparing full source and media…';
    const recipe=mode.value==='issue'?await buildIssueZip():await buildPageZip();
@@ -29,9 +29,10 @@ async function setupNativeExport(){
     await new Promise(resolve=>setTimeout(resolve,1500));const poll=await fetch('/api/designcraft/native?job='+encodeURIComponent(job.id));result=await poll.json();if(!poll.ok)throw Error(result.error||'Job status unavailable.');
    }
    status.textContent=result.status==='completed'?'Generation passed. Download editable output and the checked PDF.':result.error||result.message||'Generation needs layout adjustments. Draft and source files are retained.';
+   window.dispatchEvent(new CustomEvent('ote.native.result',{detail:result}));
    const artifacts=Array.isArray(result.artifacts)?result.artifacts:Object.keys(result.artifacts||{});
    for(const artifact of artifacts){const key=typeof artifact==='string'?artifact:artifact.key;if(!key)continue;const a=document.createElement('a');a.href='/api/designcraft/native?job='+encodeURIComponent(job.id)+'&artifact='+encodeURIComponent(key);a.textContent='Download '+key;a.className='text-link';a.style.marginRight='1rem';downloads.append(a);}
-  }catch(error){status.textContent=error.message;}finally{button.disabled=false;}
+  }catch(error){status.textContent=error.message;window.dispatchEvent(new CustomEvent('ote.native.result',{detail:{status:'failed',message:error.message}}));}finally{button.disabled=false;}
  };
 }
 setupNativeExport();

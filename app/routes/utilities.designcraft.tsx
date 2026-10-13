@@ -33,7 +33,7 @@ function DesignCraftLayoutsPage() {
       >
         <div>
           <h1 style={{ fontSize: "1.25rem", fontWeight: 600, margin: 0 }}>
-            DesignCraft layouts
+            DesignCraft web
           </h1>
           <p
             style={{
@@ -43,16 +43,16 @@ function DesignCraftLayoutsPage() {
             }}
           >
             In Publications, choose DesignCraft ZIP and select articles and
-            images, then open the selection here. Plan pages, cover features and continuations, then generate editable native output or download a recipe.
+            images, then open the selection here. Plan pages, cover features and continuations, then compose and open the document in the web editor. You can also open existing IDML or DesignCraft files directly.
           </p>
         </div>
         <a
-          href="/designcraft/index.html"
+          href="/designcraft/editor/index.html"
           target="_blank"
           rel="noopener noreferrer"
           className="btn btn-ghost btn-sm"
         >
-          <ExternalLink className="w-4 h-4" /> Open full view
+          <ExternalLink className="w-4 h-4" /> Open web editor
         </a>
       </div>
       <iframe

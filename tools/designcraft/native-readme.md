@@ -1,5 +1,7 @@
 # OTE page and issue compilers
 
+For browser editing, use the bundled editor at `/designcraft/editor/index.html` in OTEManager or the standalone `web-editor.zip`. Staff do not need this CLI workflow to open/edit existing documents. The instructions below are for automatic server/local recipe composition. See `docs/DESIGNCRAFT-WEB.md`.
+
 This companion uses the official DesignCraft v0.4.0 CLI and Python 3.11 or newer. Native composition runs through the configured OTEManager worker or locally; the browser planner creates portable recipes. It is not an installed DesignCraft plugin.
 
 Install the compiler dependency and download the checksum-verified CLI:

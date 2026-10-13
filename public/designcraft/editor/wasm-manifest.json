@@ -1,0 +1,40 @@
+{
+  "release": "0.7.1",
+  "originalFile": "designcraft-web-1fb8acb405fd0a62_bg.wasm",
+  "bytes": 38992979,
+  "sha256": "1144d3b6eaff09c2aefdea8198b4e9afce9fbf7e3f3e2a6ef07be3dfe0bdeb16",
+  "parts": [
+    {
+      "file": "engine-part-0.d1df1dd22ba610a7.bin.gz",
+      "bytes": 10485760,
+      "sha256": "699c619b046008fdb99530e7185eb2e29246a0819f631b6427ed83855274fd32",
+      "compressedBytes": 3323487,
+      "compressedSha256": "d1df1dd22ba610a7f52d0caec85cd177f85f35ee3f62877cd6c5e45d7349b98e",
+      "compression": "gzip"
+    },
+    {
+      "file": "engine-part-1.82c1a703a8dc6c38.bin.gz",
+      "bytes": 10485760,
+      "sha256": "bd8017f671c838dd35fcc782fe4da3b69c0d2a8b4bb045a5c8970c8d545ea349",
+      "compressedBytes": 3661487,
+      "compressedSha256": "82c1a703a8dc6c383b3b8a95dccb7efcec0d1aa074b4f63103dca7b1ccfb5569",
+      "compression": "gzip"
+    },
+    {
+      "file": "engine-part-2.0646ef51b8bc6f23.bin.gz",
+      "bytes": 10485760,
+      "sha256": "e618ee397d86cc83c3fe75f923791a0a4870539c8517438aa278f19f40a184c1",
+      "compressedBytes": 4300281,
+      "compressedSha256": "0646ef51b8bc6f23c29d8f144191581df84ce96a4cea3125ea16e430177e9980",
+      "compression": "gzip"
+    },
+    {
+      "file": "engine-part-3.5dafe2ecc1f6b512.bin.gz",
+      "bytes": 7535699,
+      "sha256": "824c776a2e1c9eced401e85622f322e14cd63ff9e1c8a9e6e5658bdab9de7d87",
+      "compressedBytes": 3726109,
+      "compressedSha256": "5dafe2ecc1f6b512a98dc9e15aaf15e225866a887d7265f60b63337e8346a65b",
+      "compression": "gzip"
+    }
+  ]
+}

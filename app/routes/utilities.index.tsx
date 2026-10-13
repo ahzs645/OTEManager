@@ -19,7 +19,7 @@ const utilities = [
   {
     id: 'designcraft',
     path: '/utilities/designcraft',
-    title: 'DesignCraft layouts',
+    title: 'DesignCraft web',
     description: 'Browse reusable page templates and PDF previews, and plan an issue from a DesignCraft export',
     icon: PanelsTopLeft,
   },

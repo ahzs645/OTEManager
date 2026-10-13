@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "webEngine": "official 0.7.1 WASM",
+  "noServerComposerDirectOpen": true,
+  "automaticPlannerHandoff": true,
+  "nativePreferredForPreservation": true,
+  "automaticTransport": "Intercepted API job status, actual real-CLI compiled native fixture and actual WASM editor",
+  "actualWasmLoaded": true,
+  "wrongOriginIgnored": true,
+  "invalidFileRejected": true,
+  "noDesktopInstallation": true,
+  "pageErrors": [],
+  "applicationTests": 45,
+  "typecheck": "passed",
+  "productionBuild": "passed",
+  "deployment": "implementation in repository; OTEManager production deployment not performed",
+  "productionStaticRuntimeCheck": {
+    "passed": true,
+    "webEngine": "official 0.7.1 WASM",
+    "noServerComposerDirectOpen": true,
+    "automaticPlannerHandoff": true,
+    "nativePreferredForPreservation": true,
+    "automaticTransport": "Intercepted API job status, actual real-CLI compiled native fixture and actual WASM editor",
+    "actualWasmLoaded": true,
+    "wrongOriginIgnored": true,
+    "invalidFileRejected": true,
+    "noDesktopInstallation": true,
+    "pageErrors": []
+  },
+  "runtimeAssetsServedByActualProductionBuild": true
+}

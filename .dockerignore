@@ -12,4 +12,5 @@ artifacts
 .DS_Store
 
 !public/designcraft/template-kit.zip
+!public/designcraft/web-editor.zip
 **/__pycache__

@@ -73,7 +73,7 @@ export function IssueRow({
             className="btn btn-ghost btn-sm"
             onClick={onDesignCraftExport}
             disabled={isExporting || issue.articleCount === 0}
-            title={issue.articleCount === 0 ? 'No articles to export' : 'Choose articles and images for DesignCraft layouts'}
+            title={issue.articleCount === 0 ? 'No articles to export' : 'Choose articles and images for DesignCraft web'}
             style={{ fontSize: '0.75rem', color: 'var(--accent)' }}
           >
             DesignCraft ZIP

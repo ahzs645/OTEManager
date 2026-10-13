@@ -183,7 +183,7 @@ export function IssueExportModal({
               }}
             >
               {isDesignCraft
-                ? 'Choose the articles and images for this export. Import the ZIP in DesignCraft layouts to plan pages, cover features and native output.'
+                ? 'Choose the articles and images for this export. Import the ZIP in DesignCraft web to plan pages, cover features and native output.'
                 : 'Choose the photos to include. Selections are saved to each article and also apply to the WordPress export.'}
               {isDesignCraft &&
                 ' Article choices apply to this download. Image choices are saved and shared with other exports.'}
@@ -461,7 +461,7 @@ export function IssueExportModal({
             <button className="btn btn-ghost btn-sm" onClick={onClose} disabled={isSaving || isExporting}>
               Cancel
             </button>
-            {isDesignCraft && <button className="btn btn-primary btn-sm" onClick={() => handleExport('planner')} disabled={!articles || isSaving || isExporting || selectedArticleIds.size === 0}>Open selected in planner</button>}
+            {isDesignCraft && <button className="btn btn-primary btn-sm" onClick={() => handleExport('planner')} disabled={!articles || isSaving || isExporting || selectedArticleIds.size === 0}>Open selected in DesignCraft</button>}
             <button
               className="btn btn-primary btn-sm"
               onClick={() => handleExport()}

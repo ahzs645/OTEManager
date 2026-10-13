@@ -102,3 +102,5 @@ In Publications, select articles and images and open them directly in the Design
 See the [workflow guide](docs/DESIGNCRAFT.md), [complete integration review](docs/DESIGNCRAFT-INTEGRATION-REVIEW.md), [worker setup](docs/designcraft-native-service.md), and [committed report, proof bundle and verification record](docs/designcraft-review/README.md). The optional `Dockerfile.native` supplies the Linux compiler runtime. Production deployment and fresh Adobe/printer verification remain outstanding.
 
 The [published sample Issue Studio](https://ote-issue-studio.ahzs6455.chatgpt.site) offers story selection, issue/cover controls, PDF and editable IDML downloads, plus the full review/evidence/toolkit. See [demo documentation](docs/OTE-ISSUE-STUDIO.md) for verification and its distinction from the native OTEManager worker.
+
+The actual [DesignCraft web editor](docs/DESIGNCRAFT-WEB.md) is bundled in OTEManager under `public/designcraft/editor/`. Staff can edit/save/export in their browser; the optional server composer turns article recipes into checked editable pages and opens them in the editor.
