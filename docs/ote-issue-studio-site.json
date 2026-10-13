@@ -4,15 +4,15 @@
   "title": "OTE Issue Studio",
   "current_live_url": "https://ote-issue-studio.ahzs6455.chatgpt.site",
   "audience": "owner-private",
-  "saved_version_id": "appgprj_6acd7a74905c8191974a4cc8051c1f05~appgver_4a4d1ff42ce881919e7bb3de4e1fdedc",
-  "source_commit_sha": "6db2d3cf802f1ad383b128b2f500dea53ddc47d1",
+  "saved_version_id": "appgprj_6acd7a74905c8191974a4cc8051c1f05~appgver_e3c3af284f488191b5cc2b262c0a7079",
+  "source_commit_sha": "3fa32854f86bec3142ce715f1dcd02e361dd40cf",
   "source_repository": "https://git.chatgpt-team.site/bfb06298-a22f-43ac-b415-efb5e8ee0843/appgprj_6acd7a74905c8191974a4cc8051c1f05.git",
-  "deployment_id": "appgdep_6acd7d4f77a881919a36c3c40aee937b",
+  "deployment_id": "appgdep_6acd8603a8b88191ae5ffbaa26e441f1",
   "deployment_status": "succeeded",
-  "updated_at": "2026-10-13T00:37:55.110009+00:00",
+  "updated_at": "2026-10-13T01:15:08.751648+00:00",
   "ote_base_commit": "bc96a655e8a52568a9f1db65fcf1ca475f4bea1a",
   "demo": {
-    "type": "self-contained illustrative browser sample",
+    "type": "Illustrative source-artwork sample plus original reference PDF viewer and actual DesignCraft web editor",
     "connects_live_otemanager": false,
     "output": [
       "PDF",
@@ -20,7 +20,19 @@
       "ZIP with document fonts and source"
     ],
     "adobe_verified": false,
-    "printer_approved": false
+    "printer_approved": false,
+    "preview_download_pdf_bytes_equal": true,
+    "sample_text_fonts": "portable",
+    "references_fonts": "original embedded source PDF fonts"
   },
-  "verification": "docs/designcraft-review/site-demo-verification.json"
+  "verification": "docs/designcraft-review/site-demo-verification.json",
+  "reference_issues": 9,
+  "web_editor": {
+    "version": "0.7.1",
+    "official_wasm": true,
+    "release_sha256_verified": true,
+    "open_current_idml": true,
+    "embedded": true,
+    "engine_source_changed": false
+  }
 }

@@ -1,5 +1,5 @@
 {
-  "demo": "Self-contained illustrative browser export; separate from verified OTEManager native worker",
+  "demo": "Reference PDFs plus source-artwork sample and official DesignCraft web editor; no live OTEManager database connection",
   "browser": {
     "passed": true,
     "defaultArticles": [
@@ -28,7 +28,7 @@
     "staleDownloadsCleared": true,
     "savedSettings": true,
     "mobileOverflow": false,
-    "downloadLinksChecked": 9,
+    "downloadLinksChecked": 10,
     "pageErrors": []
   },
   "nativeReopen": [
@@ -61,39 +61,99 @@
         "errors": 0,
         "issues": [
           {
-            "item": 32,
+            "item": 33,
             "kind": "lowResolution",
-            "message": "demo-cover.png: effective 65 ppi (< 150)",
+            "message": "demo-cover.png: effective 69 ppi (< 150)",
             "page": 0,
             "severity": "warning"
           },
           {
-            "item": 38,
+            "item": 43,
             "kind": "emptyText",
             "message": "Empty text frame",
             "page": 0,
             "severity": "warning"
           },
           {
-            "item": 40,
+            "item": 44,
             "kind": "emptyText",
             "message": "Empty text frame",
             "page": 0,
             "severity": "warning"
           },
           {
-            "item": 59,
+            "item": 45,
+            "kind": "emptyText",
+            "message": "Empty text frame",
+            "page": 0,
+            "severity": "warning"
+          },
+          {
+            "item": 46,
+            "kind": "emptyText",
+            "message": "Empty text frame",
+            "page": 0,
+            "severity": "warning"
+          },
+          {
+            "item": 65,
             "kind": "emptyText",
             "message": "Empty text frame",
             "page": 3,
             "severity": "warning"
           }
         ],
-        "warnings": 4
+        "warnings": 6
       },
       "adobeTested": false
     }
   ],
+  "preview": {
+    "passed": true,
+    "referencePDFs": 9,
+    "originalSourceFontsAndArtwork": true,
+    "sourcePageNavigation": true,
+    "referenceSwitch": true,
+    "nativeProofAllFourPages": true,
+    "currentPDFUpdatesAfterEdits": true,
+    "previewAndDownloadBytesEqual": true,
+    "zoom": true,
+    "mobileOverflow": false,
+    "pageErrors": []
+  },
+  "webPackage": {
+    "passed": true,
+    "release": "0.7.1",
+    "moduleBytes": 38992979,
+    "compressedBytes": 15011364,
+    "pieces": 4,
+    "moduleSha256": "1144d3b6eaff09c2aefdea8198b4e9afce9fbf7e3f3e2a6ef07be3dfe0bdeb16",
+    "moduleByteIdenticalToVerifiedOfficialArchive": true,
+    "allHostedAssetsUnder24MiB": true
+  },
+  "webEditor": {
+    "webRelease": "0.7.1",
+    "actualWasmLoaded": true,
+    "bindings": true,
+    "canvas": {
+      "width": 1254,
+      "height": 758,
+      "loaded": true,
+      "bindings": true
+    },
+    "sampleFileDropDispatched": true,
+    "pageErrors": [],
+    "consoleWarnings": [
+      "Allow attribute will take precedence over 'allowfullscreen'.",
+      "No available adapters.",
+      "[egui_wgpu] egui-wgpu-0.36.2/src/lib.rs:461: Software rasterizer detected - loss of performance expected. backend: Gl, device_type: Cpu, name: \"ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)\", driver_info: \"WebGL 2.0 (OpenGL ES 3.0 Chromium)\", subgroup_size: 4..=128, transient_saves_memory: None, limit_bucket: None",
+      "[eframe::web::app_runner] eframe-0.36.2/src/web/app_runner.rs:337: Unhandled egui viewport command: SetTheme(SystemDefault) - not implemented in web backend",
+      "[.WebGL-0x1884001b0c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+      "[.WebGL-0x1884001b0c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+      "[.WebGL-0x1884001b0c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+      "[.WebGL-0x1884001b0c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    ]
+  },
   "adobeTested": false,
   "printerApproved": false
 }
