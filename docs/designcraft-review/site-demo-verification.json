@@ -1,0 +1,99 @@
+{
+  "demo": "Self-contained illustrative browser export; separate from verified OTEManager native worker",
+  "browser": {
+    "passed": true,
+    "defaultArticles": [
+      "campus",
+      "arts",
+      "community"
+    ],
+    "changedArticles": [
+      "community",
+      "arts"
+    ],
+    "changedIssue": {
+      "id": "site-demo",
+      "title": "Over the Edge",
+      "date": "2027-02-18",
+      "volume": 34,
+      "number": 7
+    },
+    "featured": [
+      "community"
+    ],
+    "coverUpload": true,
+    "reorderedReferences": true,
+    "emptySelectionBlocked": true,
+    "invalidIssueBlocked": true,
+    "staleDownloadsCleared": true,
+    "savedSettings": true,
+    "mobileOverflow": false,
+    "downloadLinksChecked": 9,
+    "pageErrors": []
+  },
+  "nativeReopen": [
+    {
+      "fixture": "default",
+      "engine": "stock DesignCraft 0.4.0",
+      "pages": 4,
+      "completeSelectedStoryTextInPDF": true,
+      "completeSelectedStoryTextRetainedInNative": true,
+      "currentIssueFieldsChecked": true,
+      "selectedOrderAndCoverReferencesChecked": true,
+      "uploadedPhotoBytesChecked": false,
+      "preflight": {
+        "errors": 0,
+        "issues": [],
+        "warnings": 0
+      },
+      "adobeTested": false
+    },
+    {
+      "fixture": "changed",
+      "engine": "stock DesignCraft 0.4.0",
+      "pages": 4,
+      "completeSelectedStoryTextInPDF": true,
+      "completeSelectedStoryTextRetainedInNative": true,
+      "currentIssueFieldsChecked": true,
+      "selectedOrderAndCoverReferencesChecked": true,
+      "uploadedPhotoBytesChecked": true,
+      "preflight": {
+        "errors": 0,
+        "issues": [
+          {
+            "item": 32,
+            "kind": "lowResolution",
+            "message": "demo-cover.png: effective 65 ppi (< 150)",
+            "page": 0,
+            "severity": "warning"
+          },
+          {
+            "item": 38,
+            "kind": "emptyText",
+            "message": "Empty text frame",
+            "page": 0,
+            "severity": "warning"
+          },
+          {
+            "item": 40,
+            "kind": "emptyText",
+            "message": "Empty text frame",
+            "page": 0,
+            "severity": "warning"
+          },
+          {
+            "item": 59,
+            "kind": "emptyText",
+            "message": "Empty text frame",
+            "page": 3,
+            "severity": "warning"
+          }
+        ],
+        "warnings": 4
+      },
+      "adobeTested": false
+    }
+  ],
+  "adobeTested": false,
+  "printerApproved": false
+}

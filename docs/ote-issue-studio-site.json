@@ -1,0 +1,26 @@
+{
+  "project_id": "appgprj_6acd7a74905c8191974a4cc8051c1f05",
+  "slug": "ote-issue-studio",
+  "title": "OTE Issue Studio",
+  "current_live_url": "https://ote-issue-studio.ahzs6455.chatgpt.site",
+  "audience": "owner-private",
+  "saved_version_id": "appgprj_6acd7a74905c8191974a4cc8051c1f05~appgver_4a4d1ff42ce881919e7bb3de4e1fdedc",
+  "source_commit_sha": "6db2d3cf802f1ad383b128b2f500dea53ddc47d1",
+  "source_repository": "https://git.chatgpt-team.site/bfb06298-a22f-43ac-b415-efb5e8ee0843/appgprj_6acd7a74905c8191974a4cc8051c1f05.git",
+  "deployment_id": "appgdep_6acd7d4f77a881919a36c3c40aee937b",
+  "deployment_status": "succeeded",
+  "updated_at": "2026-10-13T00:37:55.110009+00:00",
+  "ote_base_commit": "bc96a655e8a52568a9f1db65fcf1ca475f4bea1a",
+  "demo": {
+    "type": "self-contained illustrative browser sample",
+    "connects_live_otemanager": false,
+    "output": [
+      "PDF",
+      "IDML",
+      "ZIP with document fonts and source"
+    ],
+    "adobe_verified": false,
+    "printer_approved": false
+  },
+  "verification": "docs/designcraft-review/site-demo-verification.json"
+}

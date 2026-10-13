@@ -100,3 +100,5 @@ SharePoint replacement imports reuse attachment records at the same file path an
 In Publications, select articles and images and open them directly in the DesignCraft planner. Edit layouts, cover metadata/photo, featured article references and explicit continuation chains; generate native/PDF/IDML output through a configured worker or export recipes for the standalone CLI.
 
 See the [workflow guide](docs/DESIGNCRAFT.md), [complete integration review](docs/DESIGNCRAFT-INTEGRATION-REVIEW.md), [worker setup](docs/designcraft-native-service.md), and [committed report, proof bundle and verification record](docs/designcraft-review/README.md). The optional `Dockerfile.native` supplies the Linux compiler runtime. Production deployment and fresh Adobe/printer verification remain outstanding.
+
+The [published sample Issue Studio](https://ote-issue-studio.ahzs6455.chatgpt.site) offers story selection, issue/cover controls, PDF and editable IDML downloads, plus the full review/evidence/toolkit. See [demo documentation](docs/OTE-ISSUE-STUDIO.md) for verification and its distinction from the native OTEManager worker.
