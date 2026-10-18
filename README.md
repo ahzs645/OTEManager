@@ -132,3 +132,5 @@ See the [workflow guide](docs/DESIGNCRAFT.md), [complete integration review](doc
 The [published sample Issue Studio](https://ote-issue-studio.ahzs6455.chatgpt.site) offers story selection, issue/cover controls, PDF and editable IDML downloads, plus the full review/evidence/toolkit. See [demo documentation](docs/OTE-ISSUE-STUDIO.md) for verification and its distinction from the native OTEManager worker.
 
 The actual [DesignCraft web editor](docs/DESIGNCRAFT-WEB.md) is bundled in OTEManager under `public/designcraft/editor/`. Staff can edit/save/export in their browser; the optional server composer turns article recipes into checked editable pages and opens them in the editor.
+
+Composition can also run entirely in the browser, or on the server without the CLI: the compilers are ported to JavaScript and drive a headless WebAssembly build of the same DesignCraft 0.4.0 engine (output pixel-identical to the CLI across all 104 recipes). The planner's **Compose in this browser** panel generates pages and whole issues locally and suggests checked layout variants for chosen articles. See [browser and server composition](docs/DESIGNCRAFT-CLIENT.md).

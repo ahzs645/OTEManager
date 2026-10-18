@@ -1,0 +1,33 @@
+{
+  "copy": "public/designcraft/source-idml/issue-7-march-2025-da7e3ca1.idml",
+  "archive": "OneDrive_2026-10-09.zip",
+  "photos": [
+    {
+      "path": "media/march-cfur-carbon-capture.jpg",
+      "source": "Indesign Template/Fall 2024- Winter 2025/Issue 7 March 2025/20250207_112107.jpg",
+      "sourceSha256": "3567e2fb1519f19f5870a7854a65e5a5b635be71954a653af4f864c5c8788b1a",
+      "size": [
+        1400,
+        1050
+      ]
+    },
+    {
+      "path": "media/march-cn-centre-30.jpg",
+      "source": "Indesign Template/Fall 2024- Winter 2025/Issue 7 March 2025/20250211_133001.jpg",
+      "sourceSha256": "5e60d54a8796bf3f0efb9ca9237dc2f0d4da0a5726df930225cc3bb5771e6ae1",
+      "size": [
+        1400,
+        1050
+      ]
+    },
+    {
+      "path": "media/march-compost-program.jpg",
+      "source": "Indesign Template/Fall 2024- Winter 2025/Issue 7 March 2025/20250227_123952.jpg",
+      "sourceSha256": "9c1f21f9f8da46480bb475f69b9a47a8c316f15127c7bef33e314959222a9faf",
+      "size": [
+        1400,
+        1050
+      ]
+    }
+  ]
+}

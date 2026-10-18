@@ -231,3 +231,7 @@ Adobe, printer and native Mac/Windows verification remain outstanding.
 ## Browser editing in OTEManager
 
 The actual official DesignCraft web editor is now bundled in this repository, with direct existing-document opening and a handoff from checked generated native output. See [DesignCraft web setup and workflow](DESIGNCRAFT-WEB.md). Staff do not need desktop DesignCraft or a local CLI. Server composition remains optional for editing and required for automatic recipe composition/preflight. Private original-font loading into the web editor remains unconnected.
+
+## Browser and WebAssembly composition
+
+The compilers now also run as JavaScript with a headless WebAssembly build of the DesignCraft 0.4.0 engine, in the browser (no server) or on the server (`DESIGNCRAFT_ENGINE=wasm`). The planner adds checked layout variants and whole-issue plan suggestions. See [DESIGNCRAFT-CLIENT.md](DESIGNCRAFT-CLIENT.md).

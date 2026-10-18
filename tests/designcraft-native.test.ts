@@ -1,6 +1,7 @@
 // @vitest-environment node
 import { afterEach, expect, test, vi } from "vitest";
 import JSZip from "jszip";
+import { existsSync } from "node:fs";
 import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -168,8 +169,9 @@ test.skipIf(!process.env.DESIGNCRAFT_TEST_CLI)("real whole-issue headline failur
   const bundle = await JSZip.loadAsync((await value.artifact(submitted.id, "bundle")).buffer); expect(Object.keys(bundle.files).some((name) => name.startsWith("Document Fonts/") && name.endsWith(".ttf"))).toBe(true); expect(bundle.file("issue.pdf")).toBeNull(); expect(bundle.file("issue.idml")).toBeNull();
 }, 30000);
 
-test.skipIf(!process.env.DESIGNCRAFT_TEST_CLI)("real compiler assembles continuation + native references from safe relative resources", async () => {
-  const fixture = process.env.DESIGNCRAFT_TEST_FIXTURE ?? "/workspace/ote-review/pipeline-integration";
+const continuationFixture = process.env.DESIGNCRAFT_TEST_FIXTURE ?? "/workspace/ote-review/pipeline-integration";
+test.skipIf(!process.env.DESIGNCRAFT_TEST_CLI || !existsSync(join(continuationFixture, "issue.json")))("real compiler assembles continuation + native references from safe relative resources", async () => {
+  const fixture = continuationFixture;
   const data = JSON.parse(await readFile(join(fixture, "issue.json"), "utf8")), templates = JSON.parse(await readFile(join(fixture, "templates.json"), "utf8"));
   const assets: Record<string, Buffer> = {};
   for (const template of templates.templates) for (const slot of template.slots) if (slot.asset?.startsWith("/")) { const name = "assets/" + slot.asset.split("/").pop(); assets[name] = await readFile(slot.asset); slot.asset = name; }

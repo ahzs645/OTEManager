@@ -16,7 +16,9 @@
     "backup:import": "node --env-file-if-exists=.env.local --import tsx scripts/import-backup.ts",
     "test": "vitest run",
     "typecheck": "tsc --noEmit && tsc --noEmit -p convex/tsconfig.json",
-    "backup:verify": "node --env-file-if-exists=.env.local --import tsx scripts/verify-backup.ts"
+    "backup:verify": "node --env-file-if-exists=.env.local --import tsx scripts/verify-backup.ts",
+    "designcraft:headless:build": "node packages/designcraft-headless/build.mjs",
+    "designcraft:headless:verify": "node packages/designcraft-headless/build.mjs --verify"
   },
   "keywords": [],
   "author": "",
@@ -32,6 +34,7 @@
     "jszip": "^3.10.1",
     "lucide-react": "0.460.0",
     "mammoth": "^1.11.0",
+    "markdown-it": "14.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "recharts": "^3.6.0",
@@ -42,6 +45,7 @@
   "devDependencies": {
     "@edge-runtime/vm": "^5.0.0",
     "@types/archiver": "^7.0.0",
+    "@types/markdown-it": "^14.1.2",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",

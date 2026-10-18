@@ -1,0 +1,145 @@
+{
+  "schemaVersion": "ote.designcraft.issue.v1",
+  "issue": {
+    "id": "fixture-march-2025",
+    "volume": 31,
+    "number": 7,
+    "date": "2025-03-13",
+    "year": 2025,
+    "title": "Over the Edge"
+  },
+  "articles": [
+    {
+      "id": "march-cfur-carbon-capture",
+      "title": "CFUR Radio: Carbon Capture Technology with Dr. Steve Helle",
+      "body": "CFUR Radio recently welcomed UNBC Associate Professor Dr. Steve Helle to discuss the realities of carbon capture technology. While often touted as a solution for reducing emissions, Dr. Helle reveals that carbon capture is universally energy-intensive, requiring 20-30% more energy consumption to implement. “If you’re capturing CO2 from natural gas combustion, you’ll need to burn about a third more gas just to power the capture process,” explained Helle. He noted that most operating carbon capture plants only achieve 50-80% capture rates, making it pollution reduction rather than elimination. When comparing energy solutions, Dr. Helle advocates for electrification as the more efficient path forward: “Electrify your heating, your hot water, your mobility around town - your carbon footprint becomes a fraction with clean electricity.”",
+      "author": "CFUR Radio",
+      "photos": [
+        {
+          "id": "march-cfur-carbon-capture-photo",
+          "path": "media/march-cfur-carbon-capture.jpg",
+          "caption": "Photo from the March 2025 issue folder.",
+          "photoNumber": 1,
+          "mimeType": "image/jpeg",
+          "attachmentType": "photo"
+        }
+      ]
+    },
+    {
+      "id": "march-cn-centre-30",
+      "title": "CN Centre Gets Colourful Makeover for 30th Anniversary",
+      "body": "The CN Centre is celebrating its 30th anniversary with a fresh look! During a recent Wednesday walkabout, CFUR Radio chatted with manager Glenn Mickelson and local artist Mercedes Mink about the building’s transformation.\n\nThe centre’s iconic forest green interior has been updated to a creamy white, complemented by Mink’s vibrant 9×15-foot mural. The artwork depicts rolling hills with Prince George homes, regional animals, and a flowing river—capturing the essence of our community.\n\n“I wanted to represent those aspects and experiences where I’m connected to something small but vibrant,” Mink explained. Several local kids even contributed to the painting, creating lasting memories at the venue.\n\nMore of Mink’s murals can be found around Prince George at Pine Centre Mall, Clavie, Tanae, and McKenzie Skate Park.",
+      "author": "CFUR Radio",
+      "photos": [
+        {
+          "id": "march-cn-centre-30-photo",
+          "path": "media/march-cn-centre-30.jpg",
+          "caption": "Photo from the March 2025 issue folder.",
+          "photoNumber": 1,
+          "mimeType": "image/jpeg",
+          "attachmentType": "photo"
+        }
+      ]
+    },
+    {
+      "id": "march-rcmp-job-scams",
+      "title": "RCMP Warns of Job Scams Targeting Prince George",
+      "body": "Prince George RCMP is alerting residents about fraudulent job postings targeting our community. According to Cpl. Jennifer Cooper, these scams typically involve online job ads promising flexible or work-from-home opportunities.\n\n“If they ask you to accept funds into your bank account before you’ve done any work, stop right there,” Cooper warns.\n\nThe scam often involves victims receiving and depositing checks, then transferring money back to the “employer” before discovering the original checks were fraudulent.\n\nWorkBC Regional Manager Bev Schwartz advises job seekers to watch for red flags like unusually high salaries with no experience required, poor grammar in postings, or requests to transfer money.\n\nVictims should report incidents to the Canadian Anti-Fraud Centre and local police.",
+      "author": "CFUR Radio",
+      "photos": []
+    },
+    {
+      "id": "march-compost-program",
+      "title": "UNBC Compost Program Faces Uncertain Future",
+      "body": "Hey UNBC listeners! Things are heating up in the world of campus sustainability. Keaton Freel (aka local hip-hop artist Freaky T) has been running UNBC’s expanded compost program since September, diverting nearly 10,000 kilos of food waste from landfills. Despite this success, Keaton’s position might get tossed out this spring.\n\n“I love this job,” says Keaton, who processes 500-700 kilos of food waste weekly. “I just hope we can continue.”\n\nWhile UNBC Facilities Director David Claus appreciates the program’s success, the original plan was for the position to be temporary until the system stabilized.\n\nWant to support keeping this position? Email sustainability@unbc.ca to add your name to the support letter.",
+      "author": "CFUR Radio",
+      "photos": [
+        {
+          "id": "march-compost-program-photo",
+          "path": "media/march-compost-program.jpg",
+          "caption": "Photo from the March 2025 issue folder.",
+          "photoNumber": 1,
+          "mimeType": "image/jpeg",
+          "attachmentType": "photo"
+        }
+      ]
+    },
+    {
+      "id": "march-alumni-harkness",
+      "title": "Lindsay Harkness",
+      "body": "I grew up in Valemount, BC, and my family moved to Prince George the year I graduated high school. I started at UNBC in the fall of 1998, after I spent six months working and backpacking across Australia. During my first semester I attended an International Studies class taught by Geoffrey Weller, and I was hooked.\n\nI was keen to find a job that required me to travel and learn about other countries, cultures and languages. The professors at UNBC stoked this passion, and I took advantage of the language classes and co-op program to work in China for a semester. After graduating, I moved to New York to intern for an international humanitarian NGO. From there, I moved overseas to work with NGOs in Kenya, South Sudan, Zimbabwe, Somaliland, and later with the United Nations in Uganda, Ethiopia, Sudan, Liberia, Palestinian Territories, Somalia, and Iraq. I gained extensive experience with program and project management in development, humanitarian and emergency situations.\n\nIn 2022, I left the United Nations and accepted a position with Women and Gender Equality with the Government of Canada. In 2022 and 2023, I worked remotely from all over the country including Charlottetown, Yellowknife, and Whitehorse. I’ve now taken a job with Public Safety Canada, Emergency Management and Programs Branch, and settled in Victoria, BC. After 18 years working overseas, British Columbia is still my favourite place to be.",
+      "author": "Over the Edge",
+      "photos": []
+    },
+    {
+      "id": "march-alumni-moulton",
+      "title": "Tanner Moulton",
+      "body": "I chose UNBC due to the proximity to my hometown of Fort St. John, BC. A few other things that I found attractive about UNBC were the small class sizes and the ability to really feel a part of the University community. The professors were very personable and approachable throughout my time at UNBC which proved to be very valuable, and is something that sets UNBC apart. Graduating from the Prince George campus and now working in the community has opened many doors for me. When attending events in the community the UNBC alumni presence is always strong, which allows those connections to continue to build.\n\nSince I graduated from UNBC, I have been employed by TC Energy as a Public Affairs Advisor. Later this year, I will be celebrating six years working for the company and I couldn’t be more thankful. Having been able to work on the largest private investment project in Canadian history has been an unimaginable experience, and I appreciate the doors that opened for me because of the degree that I received at UNBC.\n\nI now serve as a member of the UNBC Alumni Council and have for the past 4 years. This position has allowed me to stay closely connected to the University, and represent and advocate for other alumni. I also am a board member of the Prince George Chamber of Commerce where I can connect with like-minded individuals to ensure local businesses are supported and advocated for.",
+      "author": "Over the Edge",
+      "photos": []
+    }
+  ],
+  "layoutPlan": {
+    "pages": [
+      {
+        "id": "page-1",
+        "pageNumber": 1,
+        "templateId": "cover-stacked-cards-plain",
+        "articleIds": [
+          "march-cfur-carbon-capture",
+          "march-cn-centre-30",
+          "march-compost-program"
+        ]
+      },
+      {
+        "id": "page-2",
+        "pageNumber": 2,
+        "templateId": "story-2-two-top-stacked",
+        "articleIds": [
+          "march-cfur-carbon-capture",
+          "march-cn-centre-30"
+        ]
+      },
+      {
+        "id": "page-3",
+        "pageNumber": 3,
+        "templateId": "story-2-one-top-stacked",
+        "articleIds": [
+          "march-compost-program",
+          "march-rcmp-job-scams"
+        ]
+      },
+      {
+        "id": "page-4",
+        "pageNumber": 4,
+        "templateId": "story-2-none-columns",
+        "articleIds": [
+          "march-alumni-harkness",
+          "march-alumni-moulton"
+        ]
+      }
+    ],
+    "cover": {
+      "mode": "editable",
+      "date": "2025-03-13",
+      "volume": 31,
+      "number": 7,
+      "line": "Campus news from CFUR Radio and OTE",
+      "caption": "CN Centre at 30.",
+      "photoPath": "media/march-cn-centre-30.jpg",
+      "focus": {
+        "x": 0.5,
+        "y": 0.4
+      },
+      "articleIds": [
+        "march-cfur-carbon-capture",
+        "march-cn-centre-30",
+        "march-compost-program"
+      ]
+    },
+    "truck": {
+      "mode": "editable",
+      "pageIds": []
+    }
+  }
+}

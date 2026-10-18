@@ -1,0 +1,28 @@
+{
+  "engine": "DesignCraft (headless, no UI)",
+  "upstream": {
+    "repository": "https://github.com/storytold/designcraft",
+    "tag": "v0.4.0",
+    "rev": "14e677b24216396e398823ff034d9882322362d1"
+  },
+  "crate": "packages/designcraft-headless",
+  "toolchain": {
+    "rustc": "rustc 1.97.0 (2d8144b78 2026-07-07)",
+    "wasmBindgen": "wasm-bindgen 0.2.129",
+    "target": "wasm32-unknown-unknown",
+    "profile": "release (lto, codegen-units=1)"
+  },
+  "wasm": {
+    "file": "designcraft_headless_bg.wasm.gz",
+    "compression": "gzip",
+    "bytes": 25870814,
+    "sha256": "742f942a115bbf6c290aaa5829c1dae87d826b4a0ddcf62f6c83cce578b8ef5b",
+    "compressedBytes": 9344958,
+    "compressedSha256": "df173815b40fc2f088e5bc7cd9bf7eec8331e8c882fae58d664764876a366a22"
+  },
+  "glue": {
+    "file": "designcraft_headless.js",
+    "sha256": "38f1b258f608fbaa321844d7f2c70af585029ec9a73144bc470b918c16b0bac5"
+  },
+  "licence": "MIT OR Apache-2.0 (upstream DesignCraft); see LICENSE-MIT and LICENSE-APACHE"
+}

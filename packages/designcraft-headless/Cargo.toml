@@ -1,0 +1,26 @@
+[package]
+name = "ote-designcraft-headless"
+description = "Headless DesignCraft engine for OTEManager: command scripts, PDF/IDML/native export and page previews in WebAssembly"
+version = "0.4.0"
+edition = "2024"
+rust-version = "1.90"
+license = "MIT OR Apache-2.0"
+publish = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+# Pinned to the same upstream release as the tested server CLI (v0.4.0), so
+# browser and server builds compose identical command scripts identically.
+[dependencies]
+designcraft-engine = { git = "https://github.com/storytold/designcraft", rev = "14e677b24216396e398823ff034d9882322362d1" }
+designcraft-render = { git = "https://github.com/storytold/designcraft", rev = "14e677b24216396e398823ff034d9882322362d1" }
+designcraft-fonts = { git = "https://github.com/storytold/designcraft", rev = "14e677b24216396e398823ff034d9882322362d1" }
+serde_json = { version = "1", features = ["float_roundtrip"] }
+wasm-bindgen = "=0.2.129"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+debug = 0

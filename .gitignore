@@ -48,3 +48,4 @@ public/ote-payment-helper.zip
 # Python compiler caches
 __pycache__/
 *.py[cod]
+packages/designcraft-headless/target/

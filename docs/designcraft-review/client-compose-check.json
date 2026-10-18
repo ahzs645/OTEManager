@@ -1,0 +1,105 @@
+{
+  "date": "2026-10-18",
+  "sourceArchive": {
+    "file": "OneDrive_2026-10-09.zip",
+    "bytes": 1783807640,
+    "entriesRecursive": 424,
+    "distinctHashes": 167,
+    "pdf": 12,
+    "idml": 12,
+    "indd": 18,
+    "result": "Byte-identical to the archive recorded in public/designcraft/documents.json; every PDF/IDML hash present. Unreadable OneDrive entries (Issue 7 INDD, Issue 8 April 2025, Fall 2025-Winter 2026, 2026-2027 folders) were never in the archive."
+  },
+  "engines": {
+    "server": "designcraft-cli 0.4.0 (official release, checksum-verified)",
+    "browser": "designcraft-headless 0.4.0 (WebAssembly), built from upstream v0.4.0 14e677b2"
+  },
+  "pageParity": {
+    "templates": 104,
+    "commandScriptsIdenticalToPython": 104,
+    "statusMatchesPython": 104,
+    "exportedInWasm": 104,
+    "pdfPixelIdenticalAt72dpi": 104,
+    "nativeStoriesIdentical": 104,
+    "note": "Illustrative copy, as compile-template.py without --issue."
+  },
+  "issueParity": {
+    "fixture": "tests/fixtures/designcraft-march-2025 (6 real March 2025 articles, 3 photos, 4-page booklet)",
+    "compared": [
+      "Python+CLI",
+      "JS+CLI",
+      "JS+WASM"
+    ],
+    "changedPixelsPerPage": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "identical": [
+      "story texts",
+      "namespaced paragraph styles",
+      "anchors",
+      "cross-references",
+      "item counts",
+      "hyperlinks"
+    ],
+    "preflight": {
+      "errors": 0,
+      "warnings": 3
+    }
+  },
+  "browserClientOnly": {
+    "passed": true,
+    "serverComposer": "absent",
+    "engine": "designcraft-headless 0.4.0 (WebAssembly)",
+    "timingsMs": {
+      "variantsIncludingEngineLoad": 5681,
+      "page": 1727,
+      "issueSuggestion": 7603,
+      "issue": 8573
+    },
+    "variants": 4,
+    "variantStatus": "4 layouts fit, checked by the native engine (11 composed from 48 candidates).",
+    "appliedTemplate": "story-2-two-side-stacked",
+    "pageStatus": "Composed in your browser with designcraft-headless 0.4.0 (WebAssembly). Preflight passed: 0 warning(s). Download below.",
+    "plannedPages": 4,
+    "issueStatus": "Composed in your browser with designcraft-headless 0.4.0 (WebAssembly). Preflight passed: 2 warning(s). Download below.",
+    "bundleFiles": [
+      "issue.designcraft",
+      "issue.pdf",
+      "issue.idml",
+      "build-manifest.json",
+      "preflight.json",
+      "source-issue.json",
+      "interchange-metadata.json",
+      "README.txt"
+    ],
+    "issuePreflight": {
+      "errors": 0,
+      "issues": [
+        {
+          "item": 57,
+          "kind": "lowResolution",
+          "message": "57571e52c0759568.jpg: effective 147 ppi (< 150)",
+          "page": 2,
+          "severity": "warning"
+        },
+        {
+          "item": 65,
+          "kind": "lowResolution",
+          "message": "4d65f679628d0666.jpg: effective 147 ppi (< 150)",
+          "page": 3,
+          "severity": "warning"
+        }
+      ],
+      "warnings": 2
+    },
+    "pageErrors": []
+  },
+  "findings": [
+    "story-2-two-top-columns (and other half-width headline recipes) cannot fit the 57-character CFUR headline at 24pt; the compiler correctly refuses. Variants resolve this by choosing stacked/side recipes or explicit headline steps.",
+    "Generated cover-card cross-references do not wrap in the 0.4.0 engine and can run past the card (preflight warning); the 0.7.1 web editor wraps the same text.",
+    "Fixture photos are downscaled to 1400px for the repository, so hero-sized slots report 147 ppi (<150) warnings; original photos do not."
+  ]
+}

@@ -6,6 +6,7 @@ import { constants } from "node:fs";
 import { delimiter, dirname, join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 import type { StorageProvider } from "../storage/types";
+import { designcraftStaticDir, runWasmJob, wasmCompiler } from "./designcraft-wasm";
 
 const MiB = 1024 * 1024;
 export const NATIVE_LIMITS = Object.freeze({
@@ -40,7 +41,11 @@ export type NativeSubmission = {
 };
 export type NativeRunner = (command: string, args: string[], cwd: string, signal: AbortSignal) =>
   Promise<{ exitCode: number; stdout: string; stderr: string }>;
+/** cli: Python compilers + native DesignCraft CLI. wasm: the same compilers in JavaScript with the headless WebAssembly engine. */
+export type NativeEngine = "cli" | "wasm";
 type Config = {
+  engine?: NativeEngine;
+  staticDir?: string;
   repository?: string;
   root?: string;
   cli?: string;
@@ -58,6 +63,7 @@ type Job = {
   id: string; status: Status; mode: Mode; fontProfile: FontProfile; directory: string;
   createdAt: number; finishedAt?: number; message?: string; artifacts: Record<string, Artifact>;
   args: string[]; controller?: AbortController;
+  wasm?: { recipeDir: string; fontDir: string; booklet: boolean; selected: { templateId?: string; pageNumber: number; articleIds: string[] } };
 };
 
 /** ZIP paths are data, never server paths. Reject aliases on both POSIX and Windows. */
@@ -185,7 +191,7 @@ const ROLES = new Set(["headline", "body", "byline", "caption", "label", "folio"
 const BRAND = new Set(["assets/ote-horizontal-logo.png", "assets/ote-stacked-logo.pdf", "assets/source-cover-photo.jpeg"]);
 const MEDIA_EXTENSION = /\.(png|jpe?g|pdf|tiff?|webp)$/i;
 
-async function prepareRecipe(buffer: Buffer, directory: string, repository: string, mode: Mode, limits: typeof NATIVE_LIMITS) {
+async function prepareRecipe(buffer: Buffer, directory: string, designcraftDir: string, mode: Mode, limits: typeof NATIVE_LIMITS) {
   const { zip, directory: inspected } = await checkedZip(buffer, limits);
   const issue = await readJson(zip, "issue.json", limits), library = await readJson(zip, "templates.json", limits);
   if (issue.schemaVersion !== "ote.designcraft.issue.v1" || library.schemaVersion !== "ote.designcraft.templates.v1")
@@ -258,7 +264,7 @@ async function prepareRecipe(buffer: Buffer, directory: string, repository: stri
   for (const path of resources) {
     const target = join(directory, path); await mkdir(dirname(target), { recursive: true });
     if (zip.file(path)) await writeFile(target, await entryBytes(zip, path, sizes.get(path)));
-    else if (BRAND.has(path)) await writeFile(target, await readFile(join(repository, "public/designcraft", path)));
+    else if (BRAND.has(path)) await writeFile(target, await readFile(join(designcraftDir, path)));
     else throw new NativeRequestError("Missing original media in the recipe ZIP: " + path);
   }
   // Archive scripts and executables are deliberately ignored. Only validated JSON/resources are staged.
@@ -327,22 +333,38 @@ async function directorySize(path: string): Promise<number> {
 export function createNativeService(config: Config = {}) {
   const repository = resolve(config.repository ?? process.cwd()), tools = resolve(config.toolsDir ?? process.env.DESIGNCRAFT_TOOLS_DIR ?? join(repository, "tools/designcraft"));
   const python = config.python ?? process.env.DESIGNCRAFT_PYTHON ?? "python3", cli = config.cli ?? process.env.DESIGNCRAFT_CLI ?? "designcraft-cli";
-  const fonts = resolve(config.fontDir ?? process.env.DESIGNCRAFT_FONT_DIR ?? join(repository, "public/designcraft/assets/fonts"));
+  const configuredFonts = config.fontDir ?? process.env.DESIGNCRAFT_FONT_DIR;
   const originals = config.originalFontDir ?? process.env.DESIGNCRAFT_ORIGINAL_FONT_DIR;
   const limits = { ...NATIVE_LIMITS, ...config.limits };
+  const engine: NativeEngine = config.engine ?? (process.env.DESIGNCRAFT_ENGINE === "wasm" ? "wasm" : "cli");
+  const staticDir = config.staticDir ? Promise.resolve(resolve(config.staticDir)) : designcraftStaticDir(repository);
+  // The regular image carries only .output; the WebAssembly engine then uses its bundled static assets.
+  const designcraftDir = engine === "wasm" ? staticDir.then((dir) => dir ?? join(repository, "public/designcraft")) : Promise.resolve(join(repository, "public/designcraft"));
+  let fonts = resolve(configuredFonts ?? join(repository, "public/designcraft/assets/fonts"));
+  const fontsReady = configuredFonts ? Promise.resolve() : designcraftDir.then((dir) => { fonts = join(dir, "assets/fonts"); });
   const run = config.runner ?? processRunner, jobs = new Map<string, Job>();
   const rootPromise = config.root ? mkdir(config.root, { recursive: true }).then(() => resolve(config.root!)) : mkdtemp(join(tmpdir(), "ote-native-jobs-"));
   let running = 0, admitting = 0, uploads = 0, disposed = false;
   let capabilityCache: { at: number; value: any } | undefined;
   async function capabilities() {
     if (capabilityCache && Date.now() - capabilityCache.at < 30000) return capabilityCache.value;
-    const [cliPath, pythonPath] = await Promise.all([executable(cli), executable(python)]);
+    await fontsReady;
     const exists = async (path: string) => { try { await access(path); return true; } catch { return false; } };
+    if (engine === "wasm") {
+      const [directory, portable, original] = await Promise.all([staticDir, exists(fonts), originals ? exists(resolve(originals)) : Promise.resolve(false)]);
+      let version: string | null = null, reason = "";
+      if (directory) try { version = (await wasmCompiler(directory)).version; } catch (error) { reason = error instanceof Error ? error.message : ""; }
+      const available = !!version && portable;
+      const value = { available, engine, version, fontProfiles: [...(portable ? ["portable"] : []), ...(original ? ["original2025"] : [])], limits, persistence: !!config.storage && !!config.persist, preservation: false,
+        message: available ? "Native export is available on this server (WebAssembly engine)." : "Native export needs the bundled DesignCraft WebAssembly engine and fonts on this server." + (reason ? " " + reason : "") };
+      capabilityCache = { at: Date.now(), value }; return value;
+    }
+    const [cliPath, pythonPath] = await Promise.all([executable(cli), executable(python)]);
     const [compilerPresent, portable, original] = await Promise.all([exists(join(tools, "compile-issue.py")), exists(fonts), originals ? exists(resolve(originals)) : Promise.resolve(false)]);
     let version: string | null = null;
     if (cliPath) version = await new Promise<string | null>((done) => execFile(cliPath, ["--version"], { timeout: 3000, maxBuffer: 8192 }, (error, stdout) => done(error ? null : stdout.trim())));
     const available = !!cliPath && !!pythonPath && compilerPresent && portable && !!version;
-    const value = { available, version, fontProfiles: [...(portable ? ["portable"] : []), ...(original ? ["original2025"] : [])], limits, persistence: !!config.storage && !!config.persist,
+    const value = { available, engine, version, preservation: true, fontProfiles: [...(portable ? ["portable"] : []), ...(original ? ["original2025"] : [])], limits, persistence: !!config.storage && !!config.persist,
       message: available ? "Native export is available on this server." : "Native export needs the DesignCraft CLI, Python compiler and fonts configured on this server." };
     capabilityCache = { at: Date.now(), value }; return value;
   }
@@ -443,7 +465,9 @@ export function createNativeService(config: Config = {}) {
     }, 1000); monitor.unref();
     try {
       await mkdir(output, { recursive: true });
-      const result = await run(python, job.args, job.directory, job.controller.signal);
+      const result = job.wasm
+        ? await runWasmJob({ staticDir: (await staticDir)!, recipeDir: job.wasm.recipeDir, outputDir: output, mode: job.mode, fontDir: job.wasm.fontDir, fontProfile: job.fontProfile, booklet: job.wasm.booklet, selected: job.wasm.selected, signal: job.controller.signal })
+        : await run(python, job.args, job.directory, job.controller.signal);
       await writeFile(join(output, "native-service-log.json"), JSON.stringify({ exitCode: result.exitCode, stdout: result.stdout, stderr: result.stderr }, null, 2));
       if (job.controller.signal.aborted) throw new Error(oversized ? "Native output exceeded the job data limit." : "Native export exceeded the job timeout. Any completed draft remains available.");
       if (await directorySize(output) > limits.outputBytes) throw new Error("Native output exceeds the job data limit.");
@@ -482,9 +506,10 @@ export function createNativeService(config: Config = {}) {
       const capability = await capabilities();
       if (!capability.available) throw new NativeRequestError(capability.message, 503);
       if (!capability.fontProfiles.includes(profile)) throw new NativeRequestError("Original fonts are not configured on this server.", 409);
+      if (engine === "wasm" && input.base) throw new NativeRequestError("Protected-page rebuilds against an existing native issue need the CLI engine on this server.", 409);
       const id = randomUUID(); directory = join(await rootPromise, id);
       await mkdir(directory, { recursive: true });
-      const recipe = join(directory, "recipe"), selected = await prepareRecipe(input.recipe, recipe, repository, input.mode, limits);
+      const recipe = join(directory, "recipe"), selected = await prepareRecipe(input.recipe, recipe, await designcraftDir, input.mode, limits);
       const base = input.base ? await prepareBase(input.base, join(directory, "base"), limits, expanded) : undefined;
       const output = join(directory, "output");
       const script = join(tools, input.mode === "issue" ? "compile-issue.py" : "compile-template.py");
@@ -500,6 +525,9 @@ export function createNativeService(config: Config = {}) {
         if (base) throw new NativeRequestError("Native base preservation is available for whole-issue output.");
       } else { if (input.booklet) args.push("--booklet"); if (base) args.push("--base-native", base); }
       const job: Job = { id, status: "queued", mode: input.mode, fontProfile: profile, directory, createdAt: Date.now(), artifacts: {}, args };
+      if (engine === "wasm") {
+        job.wasm = { recipeDir: recipe, fontDir: profile === "original2025" ? resolve(originals!) : fonts, booklet: !!input.booklet, selected };
+      }
       jobs.set(id, job); queueMicrotask(pump); return publicJob(job);
     } catch (error) { if (directory) await rm(directory, { recursive: true, force: true }); throw error; }
     finally { admitting--; }
