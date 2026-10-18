@@ -93,6 +93,49 @@ test("preserves completed payment amounts when flags or rates change", async () 
   ).rejects.toThrow("Completed");
 });
 
+test("moving directly to Published acknowledges approval and keeps payment independent of editorial status", async () => {
+  const { write, read } = setup();
+  const { articleId } = await write("createArticle", input());
+  await write("updateArticleStatus", { articleId, status: "Published" });
+  expect((await read("getUnpaidArticlesPage")).articles.map((a: any) => a.id)).toEqual([articleId]);
+  const article = (await read("getArticleById", { id: articleId })).article;
+  expect(article.internalStatus).toBe("Published");
+  expect(article.paymentStatus).toBe(false);
+  expect(article.statusHistory).toEqual(expect.arrayContaining([
+    expect.objectContaining({ fromStatus: "Draft", toStatus: "Published" }),
+  ]));
+  await write("updateArticleStatus", { articleId, status: "Needs Revision" });
+  expect((await read("getUnpaidArticlesPage")).articles).toEqual([]);
+  await write("updateArticleStatus", { articleId, status: "Approved" });
+  await write("createArticle", input("Another article"));
+  const other = (await read("getArticles", { search: "Another article" })).articles[0];
+  await write("updateArticleStatus", { articleId: other.id, status: "Published" });
+  expect(await read("getDashboardStats")).toMatchObject({ approved: 1, published: 1 });
+  await write("markPaymentComplete", { articleId, amount: 2000 });
+  await write("updateArticleStatus", { articleId, status: "Published" });
+  expect((await read("getUnpaidArticlesPage")).articles.map((a: any) => a.id)).toEqual([other.id]);
+});
+
+test("payment reports and drill-downs consistently treat imported null payment flags as unpaid", async () => {
+  const { t, write, read } = setup();
+  for (const [title, paymentStatus, paymentAmount] of [["Null", null, 3500], ["False", false, 2000], ["Paid", true, 5000]] as const) {
+    const { articleId } = await write("createArticle", input(title));
+    await t.mutation(api.records.patch, {
+      secret, table: "articles", id: articleId,
+      data: toWire({ internalStatus: "Published", paymentStatus, paymentAmount }),
+    });
+  }
+  const breakdown = { paid: { count: 1, amount: 5000 }, unpaid: { count: 2, amount: 5500 } };
+  expect(await read("getPaymentStats")).toMatchObject({ paidCount: 1, unpaidCount: 2, unpaidAmount: 5500 });
+  expect(await read("getPaymentStatusBreakdown")).toEqual(breakdown);
+  const all = await read("getAllAnalyticsWithCrossFilter");
+  expect(all.paymentStats).toMatchObject({ unpaidCount: 2, unpaidAmount: 5500 });
+  expect(all.statusBreakdown).toEqual(breakdown);
+  const filtered = await read("getAllAnalyticsWithCrossFilter", { crossFilter: { paymentStatus: false } });
+  expect(filtered.statusBreakdown).toEqual({ paid: { count: 0, amount: 0 }, unpaid: breakdown.unpaid });
+  expect((await read("getArticlesByPaymentStatus", { paid: false })).articles.map((a: any) => a.title).sort()).toEqual(["False", "Null"]);
+});
+
 test("sorts before pagination and includes the final day of analytics filters", async () => {
   const { write, read, t } = setup();
   await write("createArticle", input("Zulu"));

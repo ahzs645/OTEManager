@@ -42,6 +42,7 @@ interface PaymentSectionProps {
     paymentIsManual: boolean
     paymentRateSnapshot: string | null
     paidAt: Date | null
+    paymentBankReference?: string | null
     articleTier: string
     hasResearchBonus: boolean | null
     hasTimeSensitiveBonus: boolean | null
@@ -277,6 +278,11 @@ export function PaymentSection({ article }: PaymentSectionProps) {
       </div>
 
       {/* Payment Breakdown */}
+      {article.paymentBankReference && (
+        <p className="text-xs break-all" style={{ color: 'var(--fg-muted)' }}>
+          Vancity reference: {article.paymentBankReference}
+        </p>
+      )}
       {breakdown && !article.paymentIsManual && (
         <div
           className="p-3 rounded-lg text-sm space-y-2"

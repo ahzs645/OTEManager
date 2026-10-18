@@ -1,6 +1,14 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState, useEffect, useRef } from "react";
-import { FileText, List, Columns, BookOpen, Plus, X } from "lucide-react";
+import {
+  FileText,
+  List,
+  Columns,
+  BookOpen,
+  Plus,
+  X,
+  Banknote,
+} from "lucide-react";
 import { EmptyState, Button, LoadingSpinner } from "~/components/Layout";
 import {
   getArticles,
@@ -539,6 +547,16 @@ function ArticlesPage() {
 
         {/* Add Article Button, Saved Views, and View Mode Toggle */}
         <div className="flex items-center gap-3">
+          {(search.issueId || search.volumeId) && (
+            <Link
+              to="/utilities/payment-manager"
+              search={{ volumeId: search.volumeId, issueId: search.issueId }}
+              className="btn btn-secondary btn-sm"
+            >
+              <Banknote className="w-4 h-4" />
+              Review Payments
+            </Link>
+          )}
           <Button onClick={handleOpenAddModal} variant="primary" size="sm">
             <Plus className="w-4 h-4" />
             Add Article

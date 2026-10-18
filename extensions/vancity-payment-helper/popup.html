@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>OTE payment helper</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <span class="eyebrow">OVER THE EDGE · v0.12.2</span>
+      <div class="heading-row">
+        <h1>Payment helper</h1>
+        <nav class="view-tabs" aria-label="Helper views" role="tablist">
+          <button
+            id="payments-tab"
+            class="secondary"
+            role="tab"
+            aria-selected="true"
+            aria-controls="payments-view"
+          >
+            Payments
+          </button>
+          <button
+            id="settings-tab"
+            class="secondary"
+            role="tab"
+            aria-selected="false"
+            aria-controls="settings-view"
+          >
+            Settings
+          </button>
+        </nav>
+      </div>
+      <p>Prepare a payment, then review and send in Vancity.</p>
+    </header>
+    <p id="status" role="status" aria-live="polite">
+      Choose a payment below, or open Settings to connect to OTEManager.
+    </p>
+    <div id="payments-view" role="tabpanel" aria-labelledby="payments-tab">
+      <p id="connection-status" class="note"></p>
+      <button id="connect-bank" class="secondary">Connect Vancity</button>
+      <p id="bank-access-note" class="note"></p>
+      <p id="pending-status" class="note" role="status" hidden></p>
+      <section id="auto-next-run" hidden>
+        <h2>Next unpaid article</h2>
+        <p id="auto-next-run-status" role="status" aria-live="polite"></p>
+        <button id="start-auto-next">Prepare next unpaid article now</button>
+        <button id="stop-auto-next" class="secondary">
+          Stop automatic preparation
+        </button>
+      </section>
+      <button id="workspace" class="secondary">
+        Open full payment workspace
+      </button>
+      <section id="empty-state">
+        <h2>Choose where to get payments</h2>
+        <p>
+          Connect to your OTEManager site or import a payment export in
+          Settings.
+        </p>
+        <button id="open-settings">Open Settings</button>
+      </section>
+      <section id="work" hidden>
+        <p id="batch-info"></p>
+        <div id="live-filters" hidden>
+          <label for="live-volume">Volume</label
+          ><select id="live-volume"></select>
+          <label for="live-issue">Issue</label
+          ><select id="live-issue"></select>
+          <label for="live-search">Student or article</label
+          ><input
+            id="live-search"
+            type="text"
+            maxlength="200"
+            placeholder="Search unpaid payments"
+          />
+          <label for="live-grouping">Transfer grouping</label
+          ><select id="live-grouping">
+            <option value="article">Separate transfer per article</option>
+            <option value="author">Combine articles per author</option>
+          </select>
+          <button id="refresh-live" class="secondary">Refresh payments</button>
+          <p id="live-status" class="note" role="status" aria-live="polite"></p>
+        </div>
+        <label for="payment">Payment to prepare</label
+        ><select id="payment"></select>
+        <div id="details"></div>
+        <ul id="warnings"></ul>
+        <label for="message">Bank message</label
+        ><textarea id="message" rows="5"></textarea>
+        <p id="message-error" role="alert" hidden></p>
+        <button data-action="prepare">
+          Prepare this payment · check or create
+        </button>
+        <button id="bulk-check" class="secondary">
+          Check all recipient emails first</button
+        ><button id="bulk-create" hidden>Create missing contacts</button>
+        <p id="bulk-create-note" class="note" hidden>
+          Optional after checking. Rechecks each missing email, saves its
+          contact and verifies it. Keep the full workspace open while it runs.
+        </p>
+        <button id="cancel-bulk" class="secondary" hidden>
+          Stop contact check
+        </button>
+        <details id="bulk-details" hidden>
+          <summary>Contact check results</summary>
+          <div id="bulk-results"></div>
+        </details>
+
+        <details class="actions">
+          <summary>Individual steps</summary>
+          <button data-action="search" class="secondary">
+            Check exact email in contacts</button
+          ><button data-action="open-contact" class="secondary">
+            Open matching contact in Send money</button
+          ><button data-action="add-contact" class="secondary">
+            Open Add contact if missing</button
+          ><button data-action="fill-contact" class="secondary">
+            Fill new contact details</button
+          ><button data-action="fill-payment" class="secondary">
+            Fill payment amount and message
+          </button>
+        </details>
+        <p class="note">
+          Prepare checks the email, saves a missing contact, and fills its
+          payment using your saved source account when set. Review the final
+          payment in Vancity. Prepare opens Review after receipt capture is
+          ready; you click the final Send or Confirm.
+        </p>
+      </section>
+      <details>
+        <summary>After sending in Vancity</summary>
+        <p>
+          The helper watches the bank's send-success receipt, saves its
+          reference, and records the payment in connected OTEManager. If a page
+          reloaded, leave the bank confirmation open and check it below.
+        </p>
+        <button id="check-receipt" class="secondary">
+          Check bank confirmation
+        </button>
+        <button id="retry-receipts" class="secondary">
+          Retry OTEManager write-back
+        </button>
+        <p class="note">
+          Open a transfer in Vancity’s Sent list to verify it against a saved
+          send receipt.
+        </p>
+        <button id="match-history" class="secondary">
+          Match open Sent transfer
+        </button>
+        <div id="receipt-status" role="status" aria-live="polite"></div>
+        <button id="download-receipts" class="secondary">
+          Download saved receipts
+        </button>
+        <p class="note">
+          Manual session checklist (does not update OTEManager):
+        </p>
+        <label for="reference">Bank confirmation reference (optional)</label
+        ><input id="reference" type="text" maxlength="100" /><label
+          class="check"
+          ><input id="sent-confirm" type="checkbox" /><span
+            >Vancity confirmed this payment was sent.</span
+          ></label
+        ><button id="sent" class="secondary">
+          Record as sent in this session
+        </button>
+      </details>
+    </div>
+    <div
+      id="settings-view"
+      role="tabpanel"
+      aria-labelledby="settings-tab"
+      hidden
+    >
+      <h2>Settings</h2>
+      <section>
+        <h2>Helper window</h2>
+        <label for="helper-surface">Open from the toolbar</label>
+        <select id="helper-surface">
+          <option value="sidepanel">Sidebar (default)</option>
+          <option value="popup">Popover</option>
+        </select>
+        <p class="note">
+          The sidebar stays beside Vancity while you review and send. The
+          popover closes when you click the bank page.
+        </p>
+        <button id="save-surface" class="secondary">
+          Save window preference
+        </button>
+        <p id="surface-status" class="note" role="status"></p>
+        <button id="remove-bank-access" class="secondary">
+          Remove Vancity site access
+        </button>
+      </section>
+      <section>
+        <label for="manager-url">OTEManager site URL</label>
+        <input
+          id="manager-url"
+          type="url"
+          placeholder="https://otemanager.k8s.overtheedgepaper.ca"
+        />
+        <button id="connect-live">Connect to OTEManager</button>
+        <button id="disconnect-live" class="secondary">
+          Disconnect live payments
+        </button>
+        <p id="manager-status" class="note"></p>
+        <label class="check"
+          ><input id="auto-record" type="checkbox" /><span
+            >Automatically record sent payments in connected OTEManager</span
+          ></label
+        >
+
+        <details>
+          <summary>Use an export instead</summary>
+          <button id="import-manager" class="secondary">
+            Import from OTEManager
+          </button>
+          <button id="reconnect-manager" class="secondary">
+            Reconnect this OTEManager tab for receipt retries
+          </button>
+          <label for="import">Import Payment Manager JSON</label
+          ><input
+            id="import"
+            type="file"
+            accept=".json,application/json"
+          /><button id="clear" class="secondary">Clear imported data</button>
+          <details>
+            <summary>Paste payment JSON instead</summary>
+            <label for="json-paste">Payment export JSON</label
+            ><textarea id="json-paste" rows="4"></textarea
+            ><button id="import-paste" class="secondary">
+              Import pasted JSON
+            </button>
+          </details>
+        </details>
+      </section>
+      <section>
+        <h2>After each recorded payment</h2>
+        <label class="check"
+          ><input id="auto-next-enabled" type="checkbox" /><span
+            >Automatically prepare the next unpaid article and stop on
+            Review</span
+          ></label
+        >
+        <label for="auto-next-volume">Volume</label
+        ><input
+          id="auto-next-volume"
+          type="number"
+          min="1"
+          step="1"
+          value="33"
+        />
+        <label for="auto-next-issue">Issue</label
+        ><input id="auto-next-issue" type="number" min="1" step="1" value="2" />
+        <p class="note">
+          Uses separate transfers per article from this issue. Waits for
+          successful OTEManager recording, refreshes unpaid records, and
+          prepares the first remaining article. Final Send/Confirm stays with
+          you. Works with the popup closed. Stop takes effect after the current
+          bank step.
+        </p>
+        <button id="save-auto-next">Save automatic preparation</button>
+      </section>
+      <details id="security-settings">
+        <summary>Security question and answer</summary>
+        <p id="preset-status"></p>
+        <p class="note">
+          Remembered on this device without encryption or a passphrase. Used
+          only when Vancity displays security question and answer fields.
+        </p>
+        <label for="preset-question"
+          >Security question (maximum 40 characters)</label
+        ><input
+          id="preset-question"
+          type="text"
+          maxlength="40"
+          autocomplete="off"
+        /><label for="preset-answer"
+          >Security answer (maximum 25 characters)</label
+        ><input
+          id="preset-answer"
+          type="password"
+          maxlength="25"
+          autocomplete="off"
+        /><button id="show-preset" class="secondary" aria-pressed="false">
+          Show answer
+        </button>
+        <button id="save-preset">Save question and answer</button>
+        <button id="forget-preset" class="secondary">
+          Remove saved question and answer
+        </button>
+      </details>
+      <details id="account-settings">
+        <summary>Default source account</summary>
+        <p id="account-status"></p>
+        <p class="note">
+          Open a Vancity Send money form to read the available accounts. The
+          saved default stays on this device.
+        </p>
+        <button id="use-current-account" class="secondary">
+          Remember Vancity's selected account
+        </button>
+        <button id="read-accounts" class="secondary">
+          Read accounts from Vancity
+        </button>
+        <label for="source-account">Source account</label
+        ><select id="source-account"></select>
+        <button id="save-account">Save default account</button>
+        <button id="forget-account" class="secondary">
+          Remove helper's default account
+        </button>
+      </details>
+      <section>
+        <h2>Vancity navigation</h2>
+        <button id="navigate" class="secondary">
+          Go to e-transfer contacts
+        </button>
+      </section>
+      <footer>
+        The live site URL is remembered on this device; payment lists refresh
+        while connected. Imported payment data clears on browser restart. The
+        question, answer, and default source account stay on this device until
+        removed. Captured bank receipts stay on this device so failed
+        write-backs can be retried.
+      </footer>
+    </div>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

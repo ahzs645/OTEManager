@@ -15,6 +15,7 @@ import type * as lib_auth from "../lib/auth.js";
 import type * as lib_store from "../lib/store.js";
 import type * as operations_analytics from "../operations/analytics.js";
 import type * as operations_mutations from "../operations/mutations.js";
+import type * as operations_paymentReceipts from "../operations/paymentReceipts.js";
 import type * as operations_queries from "../operations/queries.js";
 import type * as operations_utilities from "../operations/utilities.js";
 import type * as records from "../records.js";
@@ -33,6 +34,7 @@ declare const fullApi: ApiFromModules<{
   "lib/store": typeof lib_store;
   "operations/analytics": typeof operations_analytics;
   "operations/mutations": typeof operations_mutations;
+  "operations/paymentReceipts": typeof operations_paymentReceipts;
   "operations/queries": typeof operations_queries;
   "operations/utilities": typeof operations_utilities;
   records: typeof records;

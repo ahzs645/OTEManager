@@ -89,6 +89,8 @@ export default defineSchema({
     paymentStatus: v.union(v.boolean(), v.null()),
     paymentAmount: v.union(v.number(), v.null()),
     paidAt: v.union(v.number(), v.null()),
+    paymentBankReference: v.optional(v.union(v.string(), v.null())),
+    paymentReceipt: v.optional(v.union(v.string(), v.null())),
     paymentRateSnapshot: v.union(v.string(), v.null()),
     paymentCalculatedAt: v.union(v.number(), v.null()),
     paymentIsManual: v.union(v.boolean(), v.null()),
@@ -108,6 +110,7 @@ export default defineSchema({
     .index("by_internalStatus", ["internalStatus"])
     .index("by_issueId", ["issueId"])
     .index("by_paymentStatus", ["paymentStatus"])
+    .index("by_paymentBankReference", ["paymentBankReference"])
     .index("by_formResponseId", ["formResponseId"]),
   articleMultimediaTypes: defineTable({
     id: v.string(),

@@ -1,4 +1,12 @@
 import { createServerFn } from "@tanstack/react-start";
+import { validateConfirmation } from "../../../extensions/vancity-payment-helper/receipt-contract.js";
+
+export const recordBankPayment = createServerFn({ method: "POST" })
+  .inputValidator((data: unknown) => validateConfirmation(data))
+  .handler(async ({ data }) => {
+    const { mutationResult } = await import("../../../server/convex");
+    return mutationResult("recordBankPayment", data);
+  });
 import {
   calculatePayment,
   type PaymentRateConfig,

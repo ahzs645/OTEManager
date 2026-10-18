@@ -46,8 +46,7 @@ function Dashboard() {
         <p className="page-subtitle">Overview of article submissions</p>
       </div>
 
-      {/* Stats Grid - Compact 2x3 layout */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
         <StatCard
           title="Total"
           value={stats.totalArticles}
@@ -68,13 +67,19 @@ function Dashboard() {
           href="/articles"
           search={{ status: "In Progress" }}
         />
-        {/* The team finishes articles at Approved; nothing is marked Published */}
         <StatCard
-          title={stats.published > 0 ? "Published" : "Approved"}
-          value={stats.published > 0 ? stats.published : stats.approved}
+          title="Approved"
+          value={stats.approved}
           icon={CheckCircle}
           href="/articles"
-          search={{ status: stats.published > 0 ? "Published" : "Approved" }}
+          search={{ status: "Approved" }}
+        />
+        <StatCard
+          title="Published"
+          value={stats.published}
+          icon={CheckCircle}
+          href="/articles"
+          search={{ status: "Published" }}
         />
         <StatCard
           title="Authors"

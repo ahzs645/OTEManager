@@ -2,6 +2,7 @@ import { Store } from "../lib/store";
 import { DEFAULT_RATES } from "./queries";
 import { calculatePayment } from "../../app/lib/payment-calculator";
 import type { Articles, RowMap, TableName } from "../../shared/model";
+import { recordBankPayment } from "./paymentReceipts";
 const success = { success: true as const };
 const now = () => new Date();
 const fields = (data: Record<string, any>, keys: readonly string[]) =>
@@ -93,6 +94,7 @@ async function clearDefaults(s: Store) {
   return success;
 }
 export const mutations = {
+  recordBankPayment,
   submitArticle,
   async createArticle(s: Store, data: any) {
     let authorId = data.authorId;

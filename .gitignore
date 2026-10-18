@@ -42,6 +42,8 @@ coverage/
 # Local Convex deployment and private import reports
 .convex/
 artifacts/
+public/payment-helper/
+public/ote-payment-helper.zip
 
 # Python compiler caches
 __pycache__/

@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "OTE Vancity Payment Helper",
+  "version": "0.12.2",
+  "description": "Connect to OTEManager, check and create missing contacts, and prepare Vancity forms for manual review.",
+  "minimum_chrome_version": "116",
+  "permissions": ["activeTab", "scripting", "storage", "sidePanel"],
+  "optional_host_permissions": [
+    "https://*/*",
+    "http://localhost/*",
+    "http://127.0.0.1/*",
+    "http://[::1]/*"
+  ],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "action": { "default_title": "OTE payment helper" },
+  "side_panel": { "default_path": "popup.html" },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; connect-src 'none'"
+  }
+}

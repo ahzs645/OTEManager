@@ -57,7 +57,7 @@ function status(rows: Articles[]) {
       (a) => a.paymentStatus === true && a.paymentAmount !== null,
     ),
     unpaid = rows.filter(
-      (a) => a.paymentStatus === false && a.paymentAmount !== null,
+      (a) => !a.paymentStatus && a.paymentAmount !== null,
     );
   return {
     paid: { count: paid.length, amount: sumPayments(paid) },
@@ -202,13 +202,13 @@ export const analytics = {
             ? author?.studentType === null
             : author?.studentType === f.studentType)) &&
         (f.paymentStatus === undefined ||
-          a.paymentStatus === f.paymentStatus) &&
+          Boolean(a.paymentStatus) === f.paymentStatus) &&
         (!f.semester || inSemester(a, f.semester))
       );
     });
     const paid = rows.filter((a) => a.paymentStatus === true),
       unpaid = rows.filter(
-        (a) => a.paymentStatus === false && a.paymentAmount !== null,
+        (a) => !a.paymentStatus && a.paymentAmount !== null,
       );
     return {
       paymentStats: stats(
@@ -229,7 +229,7 @@ export const analytics = {
       rows.filter((a) => a.paymentStatus === true && inRange(a.paidAt, data)),
       rows.filter(
         (a) =>
-          a.paymentStatus === false &&
+          !a.paymentStatus &&
           inRange(a.submittedAt || a.createdAt, data),
       ),
     );
@@ -358,7 +358,7 @@ export const analytics = {
   ) {
     return articleList(
       s,
-      (a) => a.paymentStatus === data.paid && a.paymentAmount !== null,
+      (a) => Boolean(a.paymentStatus) === data.paid && a.paymentAmount !== null,
       data.limit,
     );
   },

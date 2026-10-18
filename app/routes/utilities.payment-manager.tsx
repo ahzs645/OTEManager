@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { z } from "zod";
 import {
   ChevronLeft,
   ChevronRight,
@@ -21,7 +22,11 @@ import {
 } from "lucide-react";
 import { createServerFn } from "@tanstack/react-start";
 import { LoadingSpinner, Button, formatDate } from "~/components/Layout";
-import { formatCents } from "~/lib/payment-calculator";
+import {
+  formatCents,
+  isAuthorEligibleForPayment,
+} from "~/lib/payment-calculator";
+import { PaymentExportPanel } from "~/components/PaymentExportPanel";
 import {
   calculateArticlePayment,
   setManualPayment,
@@ -29,12 +34,14 @@ import {
   updateArticleBonusFlags,
   updateArticleTier,
 } from "~/lib/mutations";
-import { getPaymentRateConfig } from "~/lib/queries";
+import { getPaymentRateConfig, getVolumes } from "~/lib/queries";
 
 // Types for unpaid article data
 type UnpaidArticle = {
   id: string;
   title: string;
+  internalStatus: string;
+  updatedAt: string;
   articleTier: string;
   paymentStatus: boolean;
   paymentAmount: number | null;
@@ -92,16 +99,40 @@ const DEFAULT_RATES: RateConfig = {
   professionalGraphicBonus: 1500,
 };
 
-// Server function to fetch unpaid approved articles
-const getUnpaidArticles = createServerFn({ method: "GET" }).handler(
-  async ({ data }) => {
+const paymentSearchSchema = z.object({
+  volumeId: z.string().optional(),
+  issueId: z.string().optional(),
+});
+type PaymentSearch = z.infer<typeof paymentSearchSchema>;
+type PaymentVolume = Awaited<ReturnType<typeof getVolumes>>["volumes"][number];
+
+const getUnpaidArticlesPage = createServerFn({ method: "GET" })
+  .inputValidator(
+    paymentSearchSchema.extend({ cursor: z.string().nullable().optional() }),
+  )
+  .handler(async ({ data }) => {
     const { query } = await import("../../server/convex");
-    return query("getUnpaidArticles", data);
-  },
-);
+    return query("getUnpaidArticlesPage", data);
+  });
+
+async function fetchUnpaidArticles(
+  scope: PaymentSearch,
+): Promise<UnpaidArticle[]> {
+  const articles: UnpaidArticle[] = [];
+  let cursor: string | null = null;
+  while (true) {
+    const page: Awaited<ReturnType<typeof getUnpaidArticlesPage>> =
+      await getUnpaidArticlesPage({ data: { ...scope, cursor } });
+    articles.push(...page.articles);
+    if (page.isDone) break;
+    cursor = page.continueCursor;
+  }
+  return articles.sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
+}
 
 export const Route = createFileRoute("/utilities/payment-manager")({
   component: PaymentManagerPage,
+  validateSearch: paymentSearchSchema,
 });
 
 function getIssueLabel(article: UnpaidArticle) {
@@ -117,6 +148,8 @@ function getIssueLabel(article: UnpaidArticle) {
 }
 
 function PaymentManagerPage() {
+  const search = Route.useSearch();
+  const navigate = Route.useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [articles, setArticles] = useState<UnpaidArticle[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -126,42 +159,85 @@ function PaymentManagerPage() {
   const [reviewMode, setReviewMode] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [paidCount, setPaidCount] = useState(0);
+  const [volumes, setVolumes] = useState<PaymentVolume[]>([]);
+  const [isLoadingPublications, setIsLoadingPublications] = useState(true);
+  const loadVersion = useRef(0);
 
-  const loadArticles = async () => {
+  const selectedVolume = search.volumeId
+    ? volumes.find((v) => v.id === search.volumeId)
+    : volumes.find((v) => v.issues.some((i) => i.id === search.issueId));
+  const selectedIssue = selectedVolume?.issues.find(
+    (i) => i.id === search.issueId,
+  );
+  const scopeLabel = selectedVolume
+    ? `Volume ${selectedVolume.volumeNumber}${selectedIssue ? ` / Issue ${selectedIssue.issueNumber}${selectedIssue.title ? ` — ${selectedIssue.title}` : ""}` : " / All issues"}`
+    : "All volumes and issues";
+
+  const loadArticles = useCallback(async () => {
+    const version = ++loadVersion.current;
     setIsLoading(true);
     setError(null);
     try {
-      const result = await getUnpaidArticles();
-      setArticles(result);
+      const result = await fetchUnpaidArticles({
+        volumeId: search.volumeId,
+        issueId: search.issueId,
+      });
+      if (version === loadVersion.current) setArticles(result);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to load articles");
+      if (version === loadVersion.current) {
+        setArticles([]);
+        setError(
+          err instanceof Error ? err.message : "Failed to load articles",
+        );
+      }
     } finally {
-      setIsLoading(false);
+      if (version === loadVersion.current) setIsLoading(false);
     }
-  };
+  }, [search.volumeId, search.issueId]);
 
   useEffect(() => {
+    setReviewMode(false);
+    setCurrentIndex(0);
+    setPaidCount(0);
     loadArticles();
-    getPaymentRateConfig().then((result) => {
-      if (result.config) {
-        setRateConfig({
-          tier1Rate: result.config.tier1Rate,
-          tier2Rate: result.config.tier2Rate,
-          tier3Rate: result.config.tier3Rate,
-          researchBonus: result.config.researchBonus,
-          multimediaBonus: result.config.multimediaBonus,
-          timeSensitiveBonus: result.config.timeSensitiveBonus,
-          professionalPhotoBonus: result.config.professionalPhotoBonus,
-          professionalGraphicBonus: result.config.professionalGraphicBonus,
-        });
-      }
-    });
+    return () => {
+      loadVersion.current++;
+    };
+  }, [loadArticles]);
+
+  useEffect(() => {
+    let cancelled = false;
+    Promise.all([getVolumes(), getPaymentRateConfig()])
+      .then(([publications, rates]) => {
+        if (cancelled) return;
+        setVolumes(publications.volumes);
+        setRateConfig(rates.config);
+      })
+      .catch((err) => {
+        if (!cancelled)
+          setError(
+            err instanceof Error
+              ? err.message
+              : "Failed to load payment settings",
+          );
+      })
+      .finally(() => {
+        if (!cancelled) setIsLoadingPublications(false);
+      });
+    return () => {
+      cancelled = true;
+    };
   }, []);
+
+  const handleScopeChange = (scope: PaymentSearch) => {
+    setFilter("");
+    navigate({ search: scope });
+  };
 
   // Apply filter to get working list (exclude ineligible authors)
   const filteredArticles = articles.filter((a) => {
     // Hide Faculty/Staff — they are not eligible for payment
-    if (["Faculty", "Staff"].includes(a.author.authorType || "")) return false;
+    if (!isAuthorEligibleForPayment(a.author.authorType)) return false;
     if (!filter) return true;
     const searchLower = filter.toLowerCase();
     const issueLabel = getIssueLabel(a).toLowerCase();
@@ -192,27 +268,16 @@ function PaymentManagerPage() {
 
   const handleExitReview = () => {
     setReviewMode(false);
-    if (paidCount > 0) {
-      loadArticles();
-    }
+    loadArticles();
   };
 
   const handleMarkPaidAndNext = async () => {
     // This is called from the ArticleReviewCard after marking paid
     setPaidCount((c) => c + 1);
     // Remove the paid article from list and stay at same index (next article slides in)
-    setArticles((prev) =>
-      prev.filter((_, i) => {
-        // Need to map filtered index to original index
-        const filteredItem = filteredArticles[currentIndex];
-        return filteredItem
-          ? prev.indexOf(filteredItem) !== prev.indexOf(_) || _ !== filteredItem
-          : true;
-      }),
-    );
-    // Reload to get fresh data
-    const result = await getUnpaidArticles();
-    setArticles(result);
+    const paidId = filteredArticles[currentIndex]?.id;
+    setArticles((prev) => prev.filter((a) => a.id !== paidId));
+    await loadArticles();
     // If we're past the end, wrap or finish
     if (currentIndex >= filteredArticles.length - 1) {
       setCurrentIndex(0);
@@ -248,7 +313,11 @@ function PaymentManagerPage() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [reviewMode, currentIndex, filteredArticles.length]);
 
-  const currentArticle = filteredArticles[currentIndex];
+  useEffect(() => {
+    setCurrentIndex((index) =>
+      Math.max(0, Math.min(index, filteredArticles.length - 1)),
+    );
+  }, [filteredArticles.length]);
 
   return (
     <div className="page-container">
@@ -327,11 +396,89 @@ function PaymentManagerPage() {
               }}
             >
               {reviewMode
-                ? `Reviewing article ${Math.min(currentIndex + 1, filteredArticles.length)} of ${filteredArticles.length}`
-                : "Review and process payments for approved, unpaid articles"}
+                ? filteredArticles.length
+                  ? `Reviewing article ${currentIndex + 1} of ${filteredArticles.length}`
+                  : "Review complete"
+                : "Review unpaid articles from approval through publication"}
             </p>
           </div>
         </div>
+      </div>
+
+      <div
+        className="rounded-lg p-4 mb-4"
+        style={{
+          background: "var(--bg-surface)",
+          border: "0.5px solid var(--border-default)",
+        }}
+      >
+        {reviewMode ? (
+          <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
+            {scopeLabel}
+          </p>
+        ) : (
+          <div className="flex flex-wrap items-end gap-3">
+            <div>
+              <label htmlFor="payment-volume" className="block text-sm mb-1">
+                Volume
+              </label>
+              <select
+                id="payment-volume"
+                className="select-trigger"
+                value={selectedVolume?.id || search.volumeId || ""}
+                disabled={isLoadingPublications}
+                onChange={(e) =>
+                  handleScopeChange({ volumeId: e.target.value || undefined })
+                }
+              >
+                <option value="">All volumes</option>
+                {volumes.map((volume) => (
+                  <option key={volume.id} value={volume.id}>
+                    Volume {volume.volumeNumber}
+                    {volume.year ? ` (${volume.year})` : ""}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label htmlFor="payment-issue" className="block text-sm mb-1">
+                Issue
+              </label>
+              <select
+                id="payment-issue"
+                className="select-trigger"
+                value={search.issueId || ""}
+                disabled={isLoadingPublications || !selectedVolume}
+                onChange={(e) =>
+                  handleScopeChange({
+                    volumeId: selectedVolume?.id,
+                    issueId: e.target.value || undefined,
+                  })
+                }
+              >
+                <option value="">All issues</option>
+                {selectedVolume?.issues.map((issue) => (
+                  <option key={issue.id} value={issue.id}>
+                    Issue {issue.issueNumber}
+                    {issue.title ? ` — ${issue.title}` : ""}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {(search.volumeId || search.issueId) && (
+              <button
+                className="btn btn-ghost"
+                onClick={() => handleScopeChange({})}
+              >
+                Clear publication filters
+              </button>
+            )}
+          </div>
+        )}
+        <p className="text-xs mt-3" style={{ color: "var(--fg-muted)" }}>
+          Includes Approved, In Editing, Ready for Publication, and Published
+          articles. Paid articles and Faculty/Staff contributions are excluded.
+        </p>
       </div>
 
       {/* Success/Error Messages */}
@@ -374,6 +521,38 @@ function PaymentManagerPage() {
         </div>
       )}
 
+      {!isLoading && !reviewMode && !error && (
+        <PaymentExportPanel
+          key={`${search.volumeId || ""}:${search.issueId || ""}:${filter}`}
+          getLiveArticles={() => fetchUnpaidArticles({})}
+          getFreshArticles={async () => {
+            const version = loadVersion.current;
+            const fresh = await fetchUnpaidArticles({
+              volumeId: search.volumeId,
+              issueId: search.issueId,
+            });
+            if (version !== loadVersion.current)
+              throw new Error(
+                "Publication selection changed; preview the export again.",
+              );
+            setArticles(fresh);
+            const searchLower = filter.toLowerCase();
+            return fresh.filter(
+              (a) =>
+                isAuthorEligibleForPayment(a.author.authorType) &&
+                (!searchLower ||
+                  [
+                    a.title,
+                    a.author.givenName,
+                    a.author.surname,
+                    a.author.email,
+                    getIssueLabel(a),
+                  ].some((value) => value.toLowerCase().includes(searchLower))),
+            );
+          }}
+        />
+      )}
+
       {isLoading ? (
         <div
           style={{
@@ -391,35 +570,6 @@ function PaymentManagerPage() {
           <LoadingSpinner size="md" />
           <span>Loading unpaid articles...</span>
         </div>
-      ) : articles.length === 0 ? (
-        <div
-          style={{
-            background: "var(--bg-surface)",
-            border: "0.5px solid var(--border-default)",
-            borderRadius: "8px",
-            padding: "3rem",
-            textAlign: "center",
-            color: "var(--fg-muted)",
-          }}
-        >
-          <CheckCircle
-            className="w-12 h-12"
-            style={{ color: "var(--status-success)", margin: "0 auto 1rem" }}
-          />
-          <div
-            style={{
-              fontSize: "1rem",
-              fontWeight: 500,
-              color: "var(--fg-default)",
-              marginBottom: "0.25rem",
-            }}
-          >
-            All caught up!
-          </div>
-          <div style={{ fontSize: "0.875rem" }}>
-            No approved articles with unpaid status found.
-          </div>
-        </div>
       ) : reviewMode ? (
         /* ======================== REVIEW MODE ======================== */
         <ReviewModeView
@@ -436,15 +586,13 @@ function PaymentManagerPage() {
       ) : (
         /* ======================== OVERVIEW MODE ======================== */
         <OverviewMode
-          articles={articles}
           filteredArticles={filteredArticles}
           totalPayment={totalPayment}
           filter={filter}
           onFilterChange={setFilter}
-          rateConfig={rateConfig}
           onRefresh={loadArticles}
           onStartReview={handleStartReview}
-          showSuccess={showSuccess}
+          hasError={!!error}
         />
       )}
     </div>
@@ -1283,25 +1431,21 @@ function ArticleReviewCard({
    ============================================================================ */
 
 function OverviewMode({
-  articles,
   filteredArticles,
   totalPayment,
   filter,
   onFilterChange,
-  rateConfig,
   onRefresh,
   onStartReview,
-  showSuccess,
+  hasError,
 }: {
-  articles: UnpaidArticle[];
   filteredArticles: UnpaidArticle[];
   totalPayment: number;
   filter: string;
   onFilterChange: (f: string) => void;
-  rateConfig: RateConfig;
   onRefresh: () => void;
   onStartReview: () => void;
-  showSuccess: (msg: string) => void;
+  hasError: boolean;
 }) {
   // Group by issue for display
   const issueGroups = (() => {
@@ -1456,6 +1600,7 @@ function OverviewMode({
           </button>
           <button
             onClick={onStartReview}
+            disabled={filteredArticles.length === 0 || hasError}
             className="btn btn-primary"
             style={{
               padding: "0.5rem 1rem",
@@ -1607,6 +1752,8 @@ function OverviewMode({
                     </span>
                     <span style={{ color: "var(--fg-faint)" }}>|</span>
                     <span>{article.author.email}</span>
+                    <span style={{ color: "var(--fg-faint)" }}>|</span>
+                    <span>{article.internalStatus}</span>
                     {article.author.etransferEmail &&
                       article.author.autoDepositAvailable && (
                         <>
@@ -1693,7 +1840,7 @@ function OverviewMode({
         ))}
       </div>
 
-      {filteredArticles.length === 0 && filter && (
+      {filteredArticles.length === 0 && !hasError && (
         <div
           style={{
             textAlign: "center",
@@ -1701,7 +1848,9 @@ function OverviewMode({
             color: "var(--fg-muted)",
           }}
         >
-          No articles match your filter.
+          {filter
+            ? "No articles match your search."
+            : "No eligible unpaid articles in this selection."}
         </div>
       )}
     </div>

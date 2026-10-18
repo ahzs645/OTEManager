@@ -1,6 +1,7 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate, useRouter } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { useState } from "react";
+import { hasPassedApproval } from "../../shared/model";
 import {
   ArrowLeft,
   FileText,
@@ -85,6 +86,7 @@ const STATUS_OPTIONS = [
 function ArticleDetailPage() {
   const { article: initialArticle, volumes } = Route.useLoaderData();
   const navigate = useNavigate();
+  const router = useRouter();
 
   // Local article state that can be updated without page reload
   const [articleTitle, setArticleTitle] = useState(initialArticle?.title || "");
@@ -142,6 +144,7 @@ function ArticleDetailPage() {
       });
       if (result.success) {
         setArticleStatus(newStatus);
+        await router.invalidate();
       } else {
         console.error("Failed to update status:", result.error);
       }
@@ -476,6 +479,12 @@ function ArticlePageContent({
               </div>
               <div className="flex items-center gap-3">
                 <TierBadge tier={article.articleTier} />
+                {hasPassedApproval(articleStatus) && (
+                  <span className="badge badge-success" title="Approval is complete in Approved, In Editing, Ready for Publication, and Published. Payment is tracked separately.">
+                    <Check className="w-3 h-3 inline mr-1" />
+                    Approval complete
+                  </span>
+                )}
                 <span className="text-xs" style={{ color: "var(--fg-muted)" }}>
                   Submitted{" "}
                   {formatDate(article.submittedAt || article.createdAt)}

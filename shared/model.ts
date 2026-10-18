@@ -50,6 +50,8 @@ export interface Articles {
   paymentStatus: boolean | null;
   paymentAmount: number | null;
   paidAt: Date | null;
+  paymentBankReference?: string | null;
+  paymentReceipt?: string | null;
   paymentRateSnapshot: string | null;
   paymentCalculatedAt: Date | null;
   paymentIsManual: boolean | null;
@@ -233,6 +235,8 @@ export const recordDefaults: Record<TableName, Record<string, unknown>> = {
     paymentStatus: false,
     paymentAmount: null,
     paidAt: null,
+    paymentBankReference: null,
+    paymentReceipt: null,
     paymentRateSnapshot: null,
     paymentCalculatedAt: null,
     paymentIsManual: false,
@@ -485,6 +489,8 @@ export const recordFields = {
       nullable: true,
       enum: null,
     },
+    paymentBankReference: { kind: "text", nullable: true, enum: null },
+    paymentReceipt: { kind: "text", nullable: true, enum: null },
     paymentRateSnapshot: {
       kind: "text",
       nullable: true,
@@ -943,6 +949,18 @@ export const recordFields = {
 export type AuthorType = NonNullable<Authors["authorType"]>;
 export type StudentType = NonNullable<Authors["studentType"]>;
 export const NON_PAID_AUTHOR_TYPES = ["Faculty", "Staff"] as const;
+/** Approval remains valid as an article moves through production. */
+export const APPROVAL_COMPLETE_STATUSES = [
+  "Approved",
+  "In Editing",
+  "Ready for Publication",
+  "Published",
+] as const;
+export function hasPassedApproval(status: string | null | undefined): boolean {
+  return (
+    APPROVAL_COMPLETE_STATUSES as readonly (string | null | undefined)[]
+  ).includes(status);
+}
 /** Statuses between "Pending Review" and "Approved"; the "In Progress" filter matches any of them. */
 export const IN_PROGRESS_STATUSES = [
   "In Review",

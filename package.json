@@ -4,6 +4,9 @@
   "description": "Over the Edge Article Management System",
   "type": "module",
   "scripts": {
+    "predev": "node scripts/package-payment-helper.mjs",
+    "prebuild": "node scripts/package-payment-helper.mjs",
+    "payment-helper:package": "node scripts/package-payment-helper.mjs",
     "dev": "node --env-file-if-exists=.env.local ./node_modules/vite/bin/vite.js",
     "build": "vite build",
     "start": "node --env-file-if-exists=.env.local .output/server/index.mjs",
@@ -47,6 +50,7 @@
     "autoprefixer": "10.4.20",
     "buffer": "^6.0.3",
     "convex-test": "^0.0.57",
+    "happy-dom": "^21.0.1",
     "nitro": "3.0.1-alpha.2",
     "postcss": "8.4.49",
     "prettier": "^3.9.6",

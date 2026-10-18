@@ -142,7 +142,8 @@ export const queries = {
         (!data.authorId || a.authorId === data.authorId) &&
         (!data.issueId || a.issueId === data.issueId) &&
         (!issueIds || issueIds.has(a.issueId!)) &&
-        (!data.search || matchesSearch(a, authors.get(a.authorId), data.search)),
+        (!data.search ||
+          matchesSearch(a, authors.get(a.authorId), data.search)),
     );
     const key = (a: Articles): any[] => {
       switch (data.sortBy) {
@@ -297,15 +298,6 @@ export const queries = {
     return {
       success: true as const,
       view: (await s.all("savedArticleViews")).find((v) => v.isDefault) || null,
-    };
-  },
-  async getUnpaidArticles(s: Store) {
-    return {
-      articles: await Promise.all(
-        newest((await s.all("articles")).filter((a) => !a.paymentStatus)).map(
-          (a) => articleDetails(s, a),
-        ),
-      ),
     };
   },
 };

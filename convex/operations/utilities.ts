@@ -1,6 +1,53 @@
 import { Store } from "../lib/store";
 import { articleDetails } from "./queries";
 import { deleteArticleRecord, deleteAttachmentRecord } from "./mutations";
+import { hasPassedApproval } from "../../shared/model";
+import { fromDocument } from "../../shared/records";
+function paymentArticle(article: Awaited<ReturnType<typeof articleDetails>>) {
+  return {
+    id: article.id,
+    title: article.title,
+    internalStatus: article.internalStatus!,
+    updatedAt: article.updatedAt.toISOString(),
+    articleTier: article.articleTier || "Tier 1 (Basic)",
+    paymentStatus: article.paymentStatus || false,
+    paymentAmount: article.paymentAmount,
+    paymentIsManual: article.paymentIsManual || false,
+    paymentRateSnapshot: article.paymentRateSnapshot,
+    paidAt: article.paidAt ? article.paidAt.toISOString() : null,
+    hasResearchBonus: article.hasResearchBonus,
+    hasTimeSensitiveBonus: article.hasTimeSensitiveBonus,
+    hasMultimediaBonus: article.hasMultimediaBonus,
+    hasProfessionalPhotos: article.hasProfessionalPhotos,
+    hasProfessionalGraphics: article.hasProfessionalGraphics,
+    author: {
+      id: article.author.id,
+      givenName: article.author.givenName,
+      surname: article.author.surname,
+      email: article.author.email,
+      authorType: article.author.authorType,
+      autoDepositAvailable: article.author.autoDepositAvailable,
+      etransferEmail: article.author.etransferEmail,
+    },
+    issue: article.publicationIssue
+      ? {
+          id: article.publicationIssue.id,
+          issueNumber: article.publicationIssue.issueNumber,
+          title: article.publicationIssue.title,
+          volume: {
+            id: article.publicationIssue.volume.id,
+            volumeNumber: article.publicationIssue.volume.volumeNumber,
+          },
+        }
+      : null,
+    volume: article.volume,
+    issueNumber: article.issue,
+    hasMultimediaTypes: article.multimediaTypes.some((t) =>
+      ["Photo", "Graphic", "Video"].includes(t.multimediaType),
+    ),
+  };
+}
+
 type DuplicateFile = {
   id: string;
   articleId: string;
@@ -212,53 +259,70 @@ export const utilityQueries = {
       ),
     };
   },
+  // Preserve the array response used by the currently deployed web app
+  // while the new paginated app is rolled out. New callers use the page API.
   async getUnpaidArticles(s: Store) {
+    const docs = await s.ctx.db
+      .query("articles")
+      .withIndex("by_internalStatus", (q) => q.eq("internalStatus", "Approved"))
+      .take(1001);
+    if (docs.length > 1000)
+      throw new Error(
+        "Refresh to the current Payment Manager to load a larger queue",
+      );
+    const articles = docs
+      .map((doc) => fromDocument("articles", doc))
+      .filter((a) => !a.paymentStatus)
+      .sort((a, b) => +b.updatedAt - +a.updatedAt);
+    return (await Promise.all(articles.map((a) => articleDetails(s, a)))).map(
+      paymentArticle,
+    );
+  },
+  async getUnpaidArticlesPage(
+    s: Store,
+    data: { volumeId?: string; issueId?: string; cursor?: string | null } = {},
+  ) {
+    const issue = data.issueId ? await s.require("issues", data.issueId) : null;
+    const volume = data.volumeId
+      ? await s.require("volumes", data.volumeId)
+      : issue
+        ? await s.require("volumes", issue.volumeId)
+        : null;
+    if (issue && volume && issue.volumeId !== volume.id)
+      throw new Error("The selected issue does not belong to this volume");
+    // Both false and null mean unpaid. Page the index so each request has
+    // bounded reads, including when a page contains only excluded statuses.
+    const page = await s.ctx.db
+      .query("articles")
+      .withIndex("by_paymentStatus", (q) => q.lt("paymentStatus", true))
+      .order("desc")
+      .paginate({ numItems: 50, cursor: data.cursor ?? null });
     const unpaidArticles = await Promise.all(
-      (await s.all("articles"))
-        .filter((a) => a.internalStatus === "Approved" && !a.paymentStatus)
-        .sort((a, b) => +b.updatedAt - +a.updatedAt)
+      page.page
+        .map((doc) => fromDocument("articles", doc))
+        .filter((a) => hasPassedApproval(a.internalStatus))
         .map((a) => articleDetails(s, a)),
     );
-    return unpaidArticles.map((article) => ({
-      id: article.id,
-      title: article.title,
-      articleTier: article.articleTier || "Tier 1 (Basic)",
-      paymentStatus: article.paymentStatus || false,
-      paymentAmount: article.paymentAmount,
-      paymentIsManual: article.paymentIsManual || false,
-      paymentRateSnapshot: article.paymentRateSnapshot,
-      paidAt: article.paidAt ? article.paidAt.toISOString() : null,
-      hasResearchBonus: article.hasResearchBonus,
-      hasTimeSensitiveBonus: article.hasTimeSensitiveBonus,
-      hasMultimediaBonus: article.hasMultimediaBonus,
-      hasProfessionalPhotos: article.hasProfessionalPhotos,
-      hasProfessionalGraphics: article.hasProfessionalGraphics,
-      author: {
-        id: article.author.id,
-        givenName: article.author.givenName,
-        surname: article.author.surname,
-        email: article.author.email,
-        authorType: article.author.authorType,
-        autoDepositAvailable: article.author.autoDepositAvailable,
-        etransferEmail: article.author.etransferEmail,
-      },
-      issue: article.publicationIssue
-        ? {
-            id: article.publicationIssue.id,
-            issueNumber: article.publicationIssue.issueNumber,
-            title: article.publicationIssue.title,
-            volume: {
-              id: article.publicationIssue.volume.id,
-              volumeNumber: article.publicationIssue.volume.volumeNumber,
-            },
-          }
-        : null,
-      volume: article.volume,
-      issueNumber: article.issue,
-      hasMultimediaTypes: article.multimediaTypes.some((t) =>
-        ["Photo", "Graphic", "Video"].includes(t.multimediaType),
-      ),
-    }));
+    const articles = unpaidArticles
+      .filter((a) => {
+        // Linked publication records take precedence over legacy numbers.
+        if (issue)
+          return a.publicationIssue
+            ? a.publicationIssue.id === issue.id
+            : a.volume === volume!.volumeNumber &&
+                a.issue === issue.issueNumber;
+        if (volume)
+          return a.publicationIssue
+            ? a.publicationIssue.volume.id === volume.id
+            : a.volume === volume.volumeNumber;
+        return true;
+      })
+      .map(paymentArticle);
+    return {
+      articles,
+      isDone: page.isDone,
+      continueCursor: page.continueCursor,
+    };
   },
 };
 export const utilityMutations = {

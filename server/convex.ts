@@ -8,9 +8,7 @@ import type {
   utilityQueries,
   utilityMutations,
 } from "../convex/operations/utilities";
-type Queries = Omit<typeof queries, "getUnpaidArticles"> &
-  typeof analytics &
-  typeof utilityQueries;
+type Queries = typeof queries & typeof analytics & typeof utilityQueries;
 type Mutations = typeof mutations & typeof utilityMutations;
 export function connection() {
   const url = process.env.CONVEX_URL || process.env.VITE_CONVEX_URL;
