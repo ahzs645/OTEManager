@@ -1,12 +1,19 @@
 {
-  "engine": "Official DesignCraft web",
-  "version": "0.7.1",
-  "release": "https://github.com/storytold/designcraft/releases/tag/v0.7.1",
-  "archive": "designcraft-web-0.7.1.zip",
-  "archiveSha256": "863b32bcdbcbb481cd07151e728578331e86b013e7a0643e2f46e754cbc8c58f",
-  "moduleSha256": "1144d3b6eaff09c2aefdea8198b4e9afce9fbf7e3f3e2a6ef07be3dfe0bdeb16",
-  "moduleUnchanged": true,
-  "upstreamGlueUnchanged": true,
-  "wrapper": "Same-origin file handoff, compressed module integrity/load-state handling; no engine source changes.",
-  "originatingSiteSourceCommit": "3fa32854f86bec3142ce715f1dcd02e361dd40cf"
+  "engine": "DesignCraft web (OTE build: official source + add_font export)",
+  "version": "0.9.0",
+  "release": "https://github.com/storytold/designcraft/releases/tag/v0.9.0",
+  "archive": "designcraft-web-0.9.0.zip",
+  "archiveSha256": "e9e23c3f8cae1e2234d6382eb7f5d9009b209d8a5aff6e340285fd63e84f167e",
+  "officialModuleSha256": "ada9266de438e748b3c70114afc98bd29fac52fa87b53277c124ae93e1ce704c",
+  "moduleSha256": "c60d4ff9105f5469a1a6b1b1686e113a010873826b04f73375f88f91a2cbbc4c",
+  "moduleUnchanged": false,
+  "upstreamGlueUnchanged": false,
+  "patch": {
+    "file": "packages/designcraft-web/add-font.patch",
+    "sha256": "65fc05d7985fc44d12019ef9dd3b55f121ffea5d317d0dcf2c8ba087c7f7b4e8",
+    "summary": "apps/designcraft-web exports add_font(bytes) \u2192 FontDb::global().add_font; no engine changes",
+    "build": "cargo build --release -p designcraft-web --target wasm32-unknown-unknown; wasm-bindgen --target web --weak-refs",
+    "optimisation": "none: wasm-opt from binaryen 108 produced a module whose externref table could not grow at start-up; gzipped, the unoptimised module is within about 5% of the official optimised one"
+  },
+  "wrapper": "Same-origin document and font handoff, chunked module integrity checks and load-state messages."
 }

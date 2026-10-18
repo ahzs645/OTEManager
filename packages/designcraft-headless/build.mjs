@@ -4,7 +4,7 @@
 //   node packages/designcraft-headless/build.mjs            # cargo + wasm-bindgen + gzip
 //   node packages/designcraft-headless/build.mjs --verify   # check the committed files only
 //
-// Needs Rust ≥ 1.90 with the wasm32-unknown-unknown target and
+// Needs Rust ≥ 1.95 with the wasm32-unknown-unknown target and
 // wasm-bindgen-cli 0.2.129 (`cargo install wasm-bindgen-cli --version 0.2.129`).
 // Regular OTEManager builds use the committed output and need no Rust.
 import { execFileSync } from 'node:child_process';
@@ -18,7 +18,7 @@ import { gunzipSync, gzipSync } from 'node:zlib';
 const here = dirname(fileURLToPath(import.meta.url));
 const out = resolve(here, '../../public/designcraft/headless');
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
-const UPSTREAM = { repository: 'https://github.com/storytold/designcraft', tag: 'v0.4.0', rev: '14e677b24216396e398823ff034d9882322362d1' };
+const UPSTREAM = { repository: 'https://github.com/storytold/designcraft', tag: 'v0.9.0', rev: '7cb8b12507def48fb9346e5004340b5e8e4cfcb7' };
 
 function verify() {
   const manifest = JSON.parse(readFileSync(join(out, 'manifest.json'), 'utf8'));

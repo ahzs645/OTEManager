@@ -38,7 +38,7 @@ function editorShell(){
  $('export-recipe').before(root);
  for(const axis of ['x','y'])$('focus-'+axis).addEventListener('input',()=>{
   if(selected?.kind==='cover'&&editorSlotId==='cover-photo'){
-   const slider=$('editor-image-focus-'+axis);if(slider)slider.value=$('focus-'+axis).value;
+   const point=document.querySelector('#editor-slot-fields .focal-dot');if(point)point.style[axis==='x'?'left':'top']=$('focus-'+axis).value+'%';
   }
  });
  return root;
@@ -97,16 +97,52 @@ function editorImageControls(parent,target,prefix){
  const fit=editorNode('select',{id:prefix+'-fit'});
  for(const [value,label] of [['cover','Fill frame / crop'],['contain','Fit entire artwork']])fit.append(editorNode('option',{value},label));
  fit.value=coverPhoto?(issue.layoutPlan?.cover?.fit||'cover'):target.fit||(target.asset?'contain':'cover');
- fit.onchange=()=>{target.fit=fit.value;if(coverPhoto){issue.layoutPlan||={};issue.layoutPlan.cover||={};issue.layoutPlan.cover.fit=fit.value;}renderPage();};editorLabel(parent,'Image fitting',fit);
- for(const [axis,label] of [['x','Horizontal focus'],['y','Vertical focus']]){
-  const initial=coverPhoto?Number($('focus-'+axis).value):(target.focus?.[axis]??.5)*100;
-  const slider=editorNode('input',{id:prefix+'-focus-'+axis,type:'range',min:'0',max:'100',step:'1',value:String(initial)});
-  slider.oninput=()=>{
-   if(coverPhoto){$('focus-'+axis).value=slider.value;target.focus={x:Number($('focus-x').value)/100,y:Number($('focus-y').value)/100};}
-   else target.focus={x:.5,y:.5,...target.focus,[axis]:Number(slider.value)/100};
-   renderPage();
-  };editorLabel(parent,label,slider);
+ fit.onchange=()=>{target.fit=fit.value;if(coverPhoto){issue.layoutPlan||={};issue.layoutPlan.cover||={};issue.layoutPlan.cover.fit=fit.value;}renderPage();renderSlotEditor();};editorLabel(parent,'Image fitting',fit);
+ if(fit.value!=='cover')return;
+ // Where the focal point lives: the cover form, the article photograph itself (so it follows the photo
+ // into every layout and variant, like a WordPress focal point), or this frame for placed artwork.
+ const photo=!coverPhoto&&!target.asset&&Number.isInteger(target.articleIndex)?articles()[target.articleIndex]?.photos?.[slotPhotoIndex(selected,target)]:null;
+ const holder=coverPhoto?(issue.layoutPlan||={},issue.layoutPlan.cover||={}):photo||target;
+ const focus=()=>coverPhoto?{x:Number($('focus-x').value)/100,y:Number($('focus-y').value)/100}:{x:.5,y:.5,...holder.focus};
+ const url=coverPhoto?(heroUrl||heroPath):photo?urls.get(photo.path):target.asset?(urls.get(target.asset)||(target.asset.startsWith('assets/ote-')?target.asset:null)):null;
+ const set=(next,zoom)=>{
+  const f={x:Math.round(Math.min(1,Math.max(0,next.x))*1000)/1000,y:Math.round(Math.min(1,Math.max(0,next.y))*1000)/1000};
+  if(coverPhoto){$('focus-x').value=f.x*100;$('focus-y').value=f.y*100;target.focus=f;}else holder.focus=f;
+  if(zoom!==undefined){if(zoom>1)holder.zoom=zoom;else delete holder.zoom;}
+  update();renderPage();
+ };
+ const box=editorNode('div',{className:'focal-picker'});
+ const dot=editorNode('button',{type:'button',className:'focal-dot','aria-label':'Focal point. Use the arrow keys to move it.'});
+ const previews=editorNode('div',{className:'focal-previews'});
+ const [x,y,r,b]=target.rect,shapes=[['This frame',(r-x)/(b-y)],['Square',1],['Tall',2/3]];
+ const panes=shapes.map(([label,ratio])=>{const pane=editorNode('figure',{className:'focal-preview'}),frame=editorNode('div',{className:'focal-frame'});frame.style.aspectRatio=String(ratio);pane.append(frame,editorNode('figcaption',{},label));previews.append(pane);return {frame,ratio};});
+ let natural=null;
+ function update(){
+  const f=focus(),zoom=holder.zoom||1;dot.style.left=f.x*100+'%';dot.style.top=f.y*100+'%';
+  zoomInput.value=String(Math.round(zoom*100));zoomValue.textContent=Math.round(zoom*100)+'%';
+  if(!natural)return;
+  for(const {frame,ratio} of panes){
+   // Same placement as the compiler's focal crop: fill, zoom, centre the point, never show past an edge.
+   const fw=frame.clientWidth||120,fh=fw/ratio,[iw,ih]=natural,scale=Math.max(fw/iw,fh/ih)*zoom;
+   const tx=Math.max(fw-iw*scale,Math.min(0,fw/2-f.x*iw*scale)),ty=Math.max(fh-ih*scale,Math.min(0,fh/2-f.y*ih*scale));
+   const img=frame.firstChild;Object.assign(img.style,{width:iw*scale+'px',height:ih*scale+'px',left:tx+'px',top:ty+'px'});
+  }
  }
+ const zoomInput=editorNode('input',{id:prefix+'-zoom',type:'range',min:'100',max:'300',step:'5',value:'100'}),zoomValue=editorNode('span',{className:'muted'});
+ zoomInput.oninput=()=>set(focus(),Number(zoomInput.value)/100);
+ if(url){
+  const img=editorNode('img',{src:url,alt:'Drag the point to the part of the photo that must stay visible',draggable:false});
+  img.onload=()=>{natural=[img.naturalWidth,img.naturalHeight];for(const {frame} of panes)frame.replaceChildren(editorNode('img',{src:url,alt:''}));update();};
+  box.append(img,dot);
+  const pick=event=>{const rect=img.getBoundingClientRect();set({x:(event.clientX-rect.left)/rect.width,y:(event.clientY-rect.top)/rect.height});};
+  box.onpointerdown=event=>{event.preventDefault();box.setPointerCapture(event.pointerId);pick(event);dot.focus();box.onpointermove=pick;};
+  box.onpointerup=box.onpointercancel=()=>{box.onpointermove=null;};
+  dot.onkeydown=event=>{const step=event.shiftKey?.1:.01,f=focus(),move={ArrowLeft:[-step,0],ArrowRight:[step,0],ArrowUp:[0,-step],ArrowDown:[0,step]}[event.key];if(!move)return;event.preventDefault();set({x:f.x+move[0],y:f.y+move[1]});};
+  parent.append(editorNode('p',{className:'muted'},photo?'Focal point: click or drag on the photo. It is saved with this photograph, so every layout, variant and crop keeps that part in view.':'Focal point: click or drag on the image to choose what stays in view when the frame crops it.'),box,previews);
+ }else parent.append(editorNode('p',{className:'muted'},'Import the issue ZIP to see this photograph and set its focal point.'));
+ const zoomLabel=editorLabel(parent,'Zoom',zoomInput);zoomLabel.after(zoomValue);
+ const centre=editorNode('button',{type:'button',className:'outline'},'Reset focus and zoom');centre.onclick=()=>set({x:.5,y:.5},1);parent.append(centre);
+ update();
 }
 function editorAssetControl(parent,target,label){
  const upload=editorNode('input',{type:'file',accept:'image/jpeg,image/png,image/webp,image/tiff,application/pdf'});

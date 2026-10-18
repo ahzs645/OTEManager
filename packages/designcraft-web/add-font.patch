@@ -1,0 +1,31 @@
+diff --git a/apps/designcraft-web/Cargo.toml b/apps/designcraft-web/Cargo.toml
+index 1667e69..9e5c982 100644
+--- a/apps/designcraft-web/Cargo.toml
++++ b/apps/designcraft-web/Cargo.toml
+@@ -17,6 +17,7 @@ path = "src/main.rs"
+ [dependencies]
+ designcraft-engine = { workspace = true }
+ designcraft-format = { workspace = true }
++designcraft-fonts = { workspace = true }
+ form_urlencoded = "1.2"
+ designcraft-ui-egui = { workspace = true }
+ egui = { workspace = true }
+diff --git a/apps/designcraft-web/src/main.rs b/apps/designcraft-web/src/main.rs
+index 1b28064..23c1782 100644
+--- a/apps/designcraft-web/src/main.rs
++++ b/apps/designcraft-web/src/main.rs
+@@ -30,6 +30,14 @@ fn main() {
+     web::start();
+ }
+ 
++/// OTE: register a font (TTF/OTF/TTC bytes) with the shared font database before a document
++/// opens, so private original fonts can be supplied by the host page. Returns faces added.
++#[cfg(target_arch = "wasm32")]
++#[wasm_bindgen::prelude::wasm_bindgen]
++pub fn add_font(bytes: Vec<u8>) -> usize {
++    designcraft_fonts::FontDb::global().add_font(bytes)
++}
++
+ #[cfg(not(target_arch = "wasm32"))]
+ fn main() {
+     eprintln!("designcraft-web only runs in the browser: build it with `trunk build --release` in apps/designcraft-web");

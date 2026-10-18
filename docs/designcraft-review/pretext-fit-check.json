@@ -1,0 +1,37 @@
+{
+  "schema": "ote.designcraft.pretext-fit-check.v1",
+  "date": "2026-10-18",
+  "pretext": "@chenglou/pretext 0.0.9 (vendored, public/designcraft/assets/pretext)",
+  "engine": "designcraft-headless 0.9.0 (WebAssembly)",
+  "browser": "Chromium (Playwright), portable open faces loaded as FontFace",
+  "tool": "tools/designcraft/check-pretext-fit.mjs",
+  "realHeadlines": {
+    "headlines": 468,
+    "agree": 468,
+    "disagree": 0,
+    "agreement": 1,
+    "pretextMs": 254,
+    "engineMs": 1492,
+    "cases": "all 228 story recipes (classic, OTE 2024–25, OTE 2025–26) with the six March 2025 headlines, rotated"
+  },
+  "stressPrefixes": {
+    "headlines": 1404,
+    "agree": 1404,
+    "disagree": 0,
+    "agreement": 1,
+    "pretextMs": 480,
+    "engineMs": 3482,
+    "cases": "every story recipe × 3 rotations of title prefixes cut at 18–54 characters, to land near line-break boundaries"
+  },
+  "liveFit": {
+    "case": "ote-2024-story-1-hero-airy with “CN Centre Gets Colourful Makeover for 30th Anniversary” (one line in Barlow Black 24 pt)",
+    "pretextBand": -19.4,
+    "engineBand": -19.37,
+    "liveMs": 152,
+    "result": "byline 19.4 pt higher, photo top 19.4 pt higher (taller photo), body unchanged; kept layout composed in the browser engine with 0 preflight errors"
+  },
+  "growCase": {
+    "case": "ote-2024-story-2-two-top-columns, CFUR + CN Centre headlines",
+    "pretext": "3 lines each, bands +35.8 pt"
+  }
+}

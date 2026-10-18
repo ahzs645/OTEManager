@@ -178,7 +178,7 @@ class NativePipelineTests(unittest.TestCase):
         self.assertEqual(final['stories'][str(card_story['id'])], card_story)
         self.assertTrue(manifest['verification']['valid'])
 
-    def test_quoted_headline_keeps_source_bytes_and_uses_native_reference_typography(self):
+    def test_quoted_headline_keeps_source_bytes_on_the_page_and_the_cover(self):
         title = 'The "Campus"'
         self.articles['article']['title'] = title
         # frame.create retains authored ASCII quote bytes, matching the page
@@ -192,7 +192,9 @@ class NativePipelineTests(unittest.TestCase):
         manifest = self.attach()
         saved, _ = _read_native(self.native)
         self.assertEqual(saved['stories'][str(self.head_sid)]['text'], ANCHOR_MARK + title)
-        self.assertEqual(manifest['verification']['features'][0]['text'], '2 · The “Campus”')
+        # The live reference holds only the page number; the card repeats the headline's own bytes.
+        self.assertEqual(manifest['verification']['features'][0]['text'], '2 · ' + title)
+        self.assertEqual(manifest['verification']['features'][0]['generated'], '2')
         self.assertEqual(saved['stories'][str(self.first_body_sid)]['text'], self.body)
 
     def test_multiline_feature_title_is_refused_without_mutating_the_native_source(self):

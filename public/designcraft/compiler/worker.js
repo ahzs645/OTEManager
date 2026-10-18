@@ -9,7 +9,12 @@ const BRAND = new Set(['assets/ote-horizontal-logo.png', 'assets/ote-stacked-log
 const FONT_FILES = ['SourceSans3-Regular.ttf', 'SourceSans3-Semibold.ttf', 'SourceSans3-Bold.ttf', 'SourceSans3-It.ttf',
   'SourceSerif4-Regular.ttf', 'SourceSerif4-It.ttf', 'SourceSerif4-Bold.ttf', 'SourceSerif4-BoldIt.ttf', 'JetBrainsMono-Regular.ttf',
   'OFL-SourceSans3.txt', 'OFL-SourceSerif4.txt', 'OFL-JetBrainsMono.txt'];
-let modules, executor, portableFonts, version;
+// Open substitutes for the original designs' faces, fetched the first time a design is used.
+const DESIGN_FONT_FILES = ['Barlow-Black.ttf', 'Barlow-ExtraBold.ttf', 'Barlow-SemiBold.ttf', 'CaveatBrush-Regular.ttf',
+  'texgyreheros-regular.otf', 'texgyreheros-bold.otf', 'texgyreheros-italic.otf', 'texgyreheros-bolditalic.otf', 'texgyreheroscn-bold.otf',
+  'OFL-Barlow.txt', 'OFL-CaveatBrush.txt', 'GUST-FONT-LICENSE-TeXGyreHeros.txt'];
+const DESIGN_ART = /^original-art\/[a-z0-9][a-z0-9.-]{0,120}\.designcraft$/;
+let modules, executor, portableFonts, designFonts, version;
 
 async function fetchBytes(path) {
   const response = await fetch(new URL(path, self.location));
@@ -37,7 +42,7 @@ async function readRecipe(bytes) {
     if (typeof path !== 'string' || path.startsWith('/') || path.split('/').includes('..')) return null;
     const entry = zip.file(path);
     if (entry) return entry.async('uint8array');
-    return BRAND.has(path) ? fetchBytes('../' + path) : null;
+    return BRAND.has(path) || DESIGN_ART.test(path) ? fetchBytes('../' + path) : null;
   };
   return { zip, issue, library, plan: await json('page-plan.json'), loadMedia };
 }
@@ -60,10 +65,25 @@ async function bundle(prefix, artifacts, fonts, recipeZip) {
   return out.generateAsync({ type: 'uint8array', compression: 'DEFLATE' });
 }
 
-function fontsFor(message) {
+async function fontsFor(message, library) {
   const extra = (message.fonts || []).map((f) => ({ name: f.name, bytes: new Uint8Array(f.bytes) }));
-  return message.fontProfile === 'original2025' ? [...extra, ...portableFonts.filter((f) => f.name.startsWith('JetBrainsMono-') || f.name.startsWith('OFL-'))] : portableFonts;
+  const fonts = message.fontProfile === 'original2025' ? [...extra, ...portableFonts.filter((f) => f.name.startsWith('JetBrainsMono-') || f.name.startsWith('OFL-'))] : [...portableFonts];
+  if (modules.pages.usesDesigns(library)) {
+    designFonts ??= await Promise.all(DESIGN_FONT_FILES.map(async (name) => ({ name, bytes: await fetchBytes('../assets/fonts/' + name) })));
+    const present = new Set(fonts.map((f) => f.name));
+    fonts.push(...designFonts.filter((f) => !present.has(f.name)));
+  }
+  return fonts;
 }
+
+/** The templates a recipe's plan uses (a page recipe: its selected template). */
+function plannedLibrary(recipe, templateId) {
+  const ids = new Set(templateId ? [templateId] : (recipe.issue.layoutPlan?.pages ?? []).map((p) => p.templateId));
+  return { ...recipe.library, templates: recipe.library.templates.filter((t) => ids.has(t.id)) };
+}
+
+/** Faces the supplied original fonts lack, so a design uses its open substitutes for them. */
+const substitutesFor = (message, library, fonts) => message.fontProfile === 'original2025' ? modules.pages.designFontGaps(library, fonts) : [];
 
 const handlers = {
   async init() { const manifest = await init(); return { version, upstream: manifest?.upstream }; },
@@ -71,17 +91,19 @@ const handlers = {
   async compile(message) {
     await init();
     const recipe = await readRecipe(message.recipe);
-    const fonts = fontsFor(message), fontProfile = message.fontProfile || 'portable';
+    const templateId = message.mode === 'issue' ? null : recipe.plan?.templateId || (recipe.library.templates.length === 1 ? recipe.library.templates[0].id : null);
+    const planned = plannedLibrary(recipe, templateId);
+    const fonts = await fontsFor(message, planned), fontProfile = message.fontProfile || 'portable';
     const progress = (detail) => self.postMessage({ id: message.id, progress: detail });
-    const common = { markdownit: self.markdownit, JSZip: self.JSZip, executor, loadMedia: recipe.loadMedia, fontProfile };
+    const common = { markdownit: self.markdownit, JSZip: self.JSZip, executor, loadMedia: recipe.loadMedia, fontProfile, substituteFonts: substitutesFor(message, planned, fonts) };
     const prefix = message.mode === 'issue' ? 'issue' : 'page';
-    const docFonts = modules.pages.documentFonts(fonts, fontProfile);
+    const docFonts = modules.pages.documentFonts(fonts, fontProfile, modules.pages.usesDesigns(planned));
     try {
       let result;
       if (message.mode === 'issue') {
-        result = await modules.issues.compileIssue({ ...common, library: recipe.library, issue: recipe.issue, booklet: !!message.booklet, fonts, onProgress: progress });
+        result = await modules.issues.compileIssue({ ...common, library: recipe.library, issue: recipe.issue, booklet: !!message.booklet, fonts, onProgress: progress,
+          fitCoverTitles: recipe.issue.layoutPlan?.cover?.fitTitles !== false });
       } else {
-        const templateId = recipe.plan?.templateId || (recipe.library.templates.length === 1 ? recipe.library.templates[0].id : null);
         const built = await modules.pages.buildPage({ ...common, library: recipe.library, templateId, issue: recipe.issue,
           articleIds: recipe.plan?.articleIds?.length ? recipe.plan.articleIds : null, pageNumber: Number(recipe.plan?.controls?.['page-number'] || 1), pageId: 'page-1' });
         result = await modules.pages.compilePage(built, { executor, fonts, JSZip: self.JSZip });
@@ -98,15 +120,17 @@ const handlers = {
   async variants(message) {
     await init();
     const recipe = await readRecipe(message.recipe);
+    const design = message.design || null, scope = { ...message.library, templates: message.library.templates.filter((t) => (t.design ?? null) === design) };
+    const fonts = await fontsFor(message, scope);
     const result = await modules.variants.generatePageVariants({
-      library: message.library, issue: recipe.issue, articleIds: message.articleIds, executor, fonts: fontsFor(message),
+      library: message.library, issue: recipe.issue, articleIds: message.articleIds, executor, fonts, design, substituteFonts: substitutesFor(message, scope, fonts), tightenHeadlines: !!message.tightenHeadlines,
       fontProfile: message.fontProfile || 'portable', loadMedia: recipe.loadMedia, markdownit: self.markdownit, JSZip: self.JSZip,
       limit: message.limit || 8, keep: message.keep || 4, previewScale: 0.32,
       onProgress: (detail) => self.postMessage({ id: message.id, progress: detail }),
     });
     return {
       considered: result.considered, composed: result.composed,
-      variants: result.variants.map((v) => ({ template: v.template, articleIds: v.articleIds, score: v.score, fill: v.fill, crops: v.crops, headlineSize: v.headlineSize, unusedPhotos: v.unusedPhotos, warnings: v.preflight.warnings, preview: v.preview, pdf: v.pdf, native: v.native })),
+      variants: result.variants.map((v) => ({ template: v.template, articleIds: v.articleIds, score: v.score, fill: v.fill, crops: v.crops, headlineSize: v.headlineSize, headlineFit: v.headlineFit, unusedPhotos: v.unusedPhotos, warnings: v.preflight.warnings, preview: v.preview, pdf: v.pdf, native: v.native })),
       rejected: result.rejected.map((v) => ({ template: v.template.id, name: v.template.name, reason: v.reason })),
     };
   },
@@ -114,8 +138,11 @@ const handlers = {
   async suggestIssue(message) {
     await init();
     const recipe = await readRecipe(message.recipe);
+    const design = message.design || null, scope = { ...message.library, templates: message.library.templates.filter((t) => (t.design ?? null) === design) };
+    const fonts = await fontsFor(message, scope);
     const plan = await modules.variants.suggestIssuePlan({
-      library: message.library, issue: recipe.issue, articleIds: message.articleIds, executor, fonts: fontsFor(message),
+      library: message.library, issue: recipe.issue, articleIds: message.articleIds, executor, fonts, design,
+      fontProfile: message.fontProfile || 'portable', substituteFonts: substitutesFor(message, scope, fonts), tightenHeadlines: !!message.tightenHeadlines,
       loadMedia: recipe.loadMedia, markdownit: self.markdownit, JSZip: self.JSZip, previewScale: 0,
       onProgress: (detail) => self.postMessage({ id: message.id, progress: detail }),
     });

@@ -58,6 +58,10 @@ const waitStatus=(page,id,test,timeout=240000)=>page.waitForFunction(([id,source
   await page.locator('#open-generated-web-editor').click();
   await waitStatus(page,'web-editor-status',/^Document sent/,180000);await page.waitForTimeout(2000);
   await page.frameLocator('#web-editor-frame').locator('#designcraft_canvas').screenshot({path:path.join(out,'web-editor.png')});
+  // 5. Fonts chosen in the planner load into the patched editor's own font database (add_font export).
+  assert(await page.locator('#web-editor-fonts').isVisible(),'the editor build should report font support');
+  await page.locator('#web-editor-fonts').setInputFiles(path.join(root,'public/designcraft/assets/fonts/texgyreheros-bold.otf'));
+  await waitStatus(page,'web-editor-status',/^Loaded 1 font file/,60000);report.editorFonts=await page.locator('#web-editor-status').textContent();
   report.pageErrors=errors;assert.equal(errors.length,0,errors.join('\n'));report.passed=true;
  }finally{await fs.writeFile(path.join(out,'results.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,1));await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

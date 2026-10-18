@@ -3,13 +3,17 @@
 // native_references.py) for new issues. Rebuilding protected pages against an
 // existing native base stays with the server compiler, which holds that base.
 import { composeSource, utf8Length } from './markdown-story.js';
-import { CompileError, ISSUE_SCHEMA, buildPage, compilePage, documentFonts, fontScope } from './page-compiler.js';
+import { CompileError, ISSUE_SCHEMA, buildPage, compilePage, documentFonts, fontScope, usesDesigns } from './page-compiler.js';
 import { clone, deepEqual, interchangeMetadata, readNative, sha256Hex, storyIds, textFrames, walkItems, writeNative } from './native-doc.js';
+import { fitCoverTitles } from './fit.js';
 
 const ANCHOR_MARK = '';
 const XREF_MARK = '';
-const FORMAT_NAME = 'OTE Featured Article';
-const FORMAT_DEFINITION = '<pageNum /> · <fullPara />';
+// Only the page number is a live cross-reference; the headline follows as ordinary text so it
+// wraps at word boundaries inside the cover card (a generated reference never breaks inside).
+const FORMAT_NAME = 'OTE Featured Page';
+const FORMAT_DEFINITION = '<pageNum />';
+const SEPARATOR = ' · ';
 
 // ---- Python-compatible canonical JSON, for the style-namespace digest ----
 // json.dumps(styles, sort_keys=True, separators=(',', ':')) over the values
@@ -177,7 +181,9 @@ function singleParagraphTitle(title) {
 }
 
 function findOne(frames, aid, role, cover = false) {
-  let found = frames.filter((f) => f.label.articleId === aid && f.label.role === role && (!cover || String(f.label.slotId ?? '').startsWith('cover-card-')));
+  // Family covers use number-only text cards (cardPart: number) instead of placeholder pieces.
+  const matches = (f) => f.label.role === role || (cover && f.label.role === 'text' && f.label.cardPart === 'number');
+  let found = frames.filter((f) => f.label.articleId === aid && matches(f) && (!cover || String(f.label.slotId ?? '').startsWith('cover-card-')));
   if (role === 'headline' && found.length > 1) {
     if (found.some((f) => f.pageIndex === null)) throw new Error('A featured headline has no unique physical page: ' + aid);
     const firstPage = Math.min(...found.map((f) => f.pageIndex));
@@ -185,15 +191,6 @@ function findOne(frames, aid, role, cover = false) {
   }
   if (found.length !== 1) throw new Error('Missing or ambiguous ' + (cover ? 'cover reference' : role) + ' frame for ' + aid);
   return found[0];
-}
-
-function generatedText(page, title) {
-  let previous = ' ', output = '';
-  for (const ch of String(page) + ' · ' + title) {
-    output += ch === '"' ? (/\s/.test(previous) || '(['.includes(previous) ? '“' : '”') : ch;
-    previous = ch;
-  }
-  return output;
 }
 
 const anchorsIn = (document, name = null) => Object.entries(document.stories).flatMap(([sid, story]) => (story.anchors ?? []).filter((a) => name === null || a.name === name).map((a) => [Number(sid), a]));
@@ -218,6 +215,7 @@ async function attachCoverReferences(issueBytes, featured, articles, ctx) {
       articleId: aid, headlineStoryId: hsid, coverStoryId: csid, headlinePageId: headline.label.pageId ?? null,
       headlinePageIndex: headline.pageIndex, coverPageId: card.label.pageId ?? null, anchorName: name,
       title: articles.get(aid).title, mode: 'dynamic', anchorId: named.length ? named[0][1].id : null, createAnchor: !named.length,
+      ...(card.label.cardPart === 'number' ? { card: 'number' } : {}),
     };
   });
   const bodies = bodySnapshot(original);
@@ -240,6 +238,10 @@ async function attachCoverReferences(issueBytes, featured, articles, ctx) {
   for (const plan of plans) {
     const story = updated.stories[String(plan.coverStoryId)];
     insert.push({ command: 'text.select', params: { story: plan.coverStoryId, anchor: 0, focus: utf8Length(story.text) } });
+    if (plan.card !== 'number') {
+      insert.push({ command: 'text.insert', params: { text: SEPARATOR + plan.title, raw: true } });
+      insert.push({ command: 'text.select', params: { story: plan.coverStoryId, anchor: 0, focus: 0 } });
+    }
     insert.push({ command: 'xref.insert', params: { anchor: plan.anchorId, format: FORMAT_NAME } });
   }
   insert.push({ command: 'file.saveAs', params: { path: '@doc' } });
@@ -276,11 +278,13 @@ async function verifyCoverReferences(issueBytes, expected, ctx) {
     const destination = frames.filter((f) => f.item.content.story === anchor.story), source = frames.filter((f) => f.item.content.story === records[0].story);
     if (destination.length !== 1 || source.length !== 1 || source[0].pageIndex !== 0) throw new Error('Native reference must link one cover card to one headline frame');
     const card = document.stories[String(records[0].story)];
-    if (card.text !== XREF_MARK || (card.xrefs ?? []).length !== 1) throw new Error('Native cover card must contain its isolated generated reference');
     const headline = titleOf(document.stories[String(anchor.story)]);
     singleParagraphTitle(headline);
-    if (records[0].text !== generatedText(anchor.page, headline)) throw new Error('Native cover reference generated unexpected text: ' + aid);
-    checks.push({ articleId: aid, mode: 'dynamic', text: records[0].text, anchorId: anchor.id, pageName: anchor.page });
+    const expectedCard = feature.card === 'number' ? XREF_MARK : XREF_MARK + SEPARATOR + headline;
+    if (card.text !== expectedCard || (card.xrefs ?? []).length !== 1) throw new Error('Native cover card must contain its live page reference and headline');
+    if (records[0].text !== String(anchor.page)) throw new Error('Native cover reference generated unexpected text: ' + aid);
+    // text: the card as it reads; generated: the live page number the engine wrote.
+    checks.push({ articleId: aid, mode: 'dynamic', text: card.text.replace(XREF_MARK, records[0].text), generated: records[0].text, anchorId: anchor.id, pageName: anchor.page });
   }
   return { valid: true, features: checks };
 }
@@ -352,18 +356,34 @@ export async function compileIssue(options) {
   }
   if ([...placements].some(([aid, count]) => count > 1 && !(aid in flows))) throw new Error('Repeated article assignments require explicit continuation chains');
 
-  const docFonts = documentFonts(options.fonts, fontProfile);
+  const docFonts = documentFonts(options.fonts, fontProfile, usesDesigns({ templates: pages.map((p) => templates.get(p.templateId)) }));
   const session = { fonts: docFonts, media: new Map() };
   const prepared = [], pageResults = [], pageArtifacts = [];
+  const coverTitleFit = [];
   for (const p of pages) {
     progress({ stage: 'page', pageNumber: p.pageNumber, total: pages.length });
-    const t = templates.get(p.templateId);
+    let t = templates.get(p.templateId);
+    if (options.fitCoverTitles && t.kind === 'cover' && t.design) {
+      // Opt-in: step overset feature titles of an original-design cover down (recorded below).
+      const coverIssue = { ...clone(issue), articles: clone(issue.articles) };
+      const fitted = await fitCoverTitles(t, async (candidate) => {
+        const built = await buildPage({ library: { ...library, templates: [candidate] }, template: candidate, issue: coverIssue, articleIds: p.articleIds ?? [],
+          pageId: p.id, pageNumber: p.pageNumber, fontProfile, references, substituteFonts: options.substituteFonts, markdownit, loadMedia });
+        try { await compilePage(built, { executor, fonts: options.fonts, JSZip }); return null; } catch (error) {
+          if (!(error instanceof CompileError) || !error.artifacts.native) throw error;
+          const names = new Map((await readNative(error.artifacts.native, JSZip)).document.spreads.flatMap((s) => s.items).map((i) => [i.id, i.name]));
+          const errors = error.artifacts.preflight.issues.filter((i) => i.severity === 'error');
+          return { oversetSlotIds: errors.filter((i) => i.kind === 'overset').map((i) => names.get(i.item)), otherErrors: errors.some((i) => i.kind !== 'overset') };
+        }
+      });
+      if (fitted) { t = fitted.template; coverTitleFit.push(...fitted.changes); }
+    }
     const pageIssue = { ...clone(issue), articles: clone((p.articleIds ?? []).map((i) => articles.get(i))) };
     try {
       const built = await buildPage({
         library: { ...library, templates: [t] }, template: t, issue: t.kind === 'cover' ? { ...pageIssue, articles: clone(issue.articles) } : pageIssue,
         articleIds: p.articleIds ?? [], pageId: p.id, pageNumber: p.pageNumber, fontProfile, references,
-        stagedFlowIds: (p.articleIds ?? []).filter((aid) => aid in flows),
+        stagedFlowIds: (p.articleIds ?? []).filter((aid) => aid in flows), substituteFonts: options.substituteFonts,
         continuationArticleIds: (p.articleIds ?? []).filter((aid) => aid in flows && flows[aid].pageIds[0] !== p.id),
         markdownit, loadMedia,
       });
@@ -387,9 +407,12 @@ export async function compileIssue(options) {
     }
   }
   progress({ stage: 'assemble' });
+  // Page labels follow the issue's design family (2024–25 printed 5, 2025–26 printed 05).
+  const designId = templates.get(pages[0].templateId)?.design;
+  const numbering = (designId && library.designs?.[designId]?.numbering) || 'arabicLeadingZero';
   const init = await executor.run([
     { command: 'file.new', params: { width: library.page.width, height: library.page.height, pages: pages.length, facingPages: true, title: issue.issue?.title || 'Over the Edge' } },
-    { command: 'layout.section', params: { page: 1, style: 'arabicLeadingZero' } },
+    { command: 'layout.section', params: { page: 1, style: numbering } },
     { command: 'file.saveAs', params: { path: '@doc' } },
     { command: 'file.open', params: { path: '@doc' } },
     { command: 'file.saveAs', params: { path: '@doc' } },
@@ -453,7 +476,7 @@ export async function compileIssue(options) {
     articleMetadata: Object.fromEntries([...articles].map(([aid, a]) => [aid, Object.fromEntries(['title', 'author', 'bodyFormat', 'photos'].map((k) => [k, a[k] ?? null]))])),
     articleFlows: threaded.manifest, nativeCoverReferences: referenced.manifest, sourceMediaSha256: sourceMedia,
     nativeDocumentSha256: await sha256Hex(native), coverPhotoSha256: await embeddedCoverHash(entries, document), articleBodyChecks: bodyCopy,
-    fontProfile, restoredHyperlinks: links.restored, removedReplacedStories: 0, checkedNativeCrossReferences: nativeXrefs.length,
+    fontProfile, ...(coverTitleFit.length ? { coverTitleFit } : {}), ...(options.substituteFonts?.length ? { substitutedFonts: options.substituteFonts } : {}), restoredHyperlinks: links.restored, removedReplacedStories: 0, checkedNativeCrossReferences: nativeXrefs.length,
     coverFields, coverReferences: references, preservedNativePages: {}, pageBuilds: pageResults,
     preflight, sourceMarkdownPreserved: true, adobeInDesignTested: false,
     status: preflight.errors ? 'needs-layout-adjustment' : 'exported',

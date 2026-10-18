@@ -391,23 +391,31 @@ class NativePreservationTests(unittest.TestCase):
         verified = verify_cover_references(restored, manifest['nativeCoverReferences'], CLI, args.output / 'checked-refs')
         self.assertEqual(verified['features'][0]['text'], '02 · Alpha')
 
-    def test_protected_cover_follows_replaced_headline_without_changing_its_native_stories(self):
+    def test_protected_cover_cannot_silently_keep_a_renamed_headline(self):
+        # Cover cards hold a live page number followed by the headline as plain text (a reference
+        # that generates the whole headline breaks inside words when it wraps). A protected card
+        # therefore cannot follow a renamed headline; the compiler must say so instead of printing
+        # the old title.
+        data, native = self.build_base()
+        data['layoutPlan']['cover']['mode'] = 'preserve'
+        data['layoutPlan']['pages'][0]['mode'] = 'preserve'
+        data['articles'][0]['title'] = 'Revised Alpha'
+        self.assert_blocked(data, native, 'cannot follow a changed headline')
+
+    def test_protected_cover_keeps_its_live_page_number_through_idml(self):
         data, native = self.build_base()
         before = issue_compiler.load_native(native)
         cover_before = issue_compiler.page_objects(before, 0)
         data['layoutPlan']['cover']['mode'] = 'preserve'
         data['layoutPlan']['pages'][0]['mode'] = 'preserve'
-        data['articles'][0]['title'] = 'Revised Alpha'
-        args = self.arguments(data, 'new-headline', native)
+        args = self.arguments(data, 'same-headline', native)
         manifest = issue_compiler.compile_issue(args)
         self.assertTrue(manifest['preservedNativePages']['cover'])
         self.assertEqual(manifest['preflight']['errors'], 0)
         final = issue_compiler.load_native(args.output / 'issue.designcraft')
         self.assertEqual(issue_compiler.page_objects(final, 0), cover_before)
-        self.assertEqual(len(final['hyperlinks']), 1)
-        self.assertTrue(all(str(link['source']['story']) in final['stories'] for link in final['hyperlinks']))
         checked = verify_cover_references(args.output / 'issue.designcraft', manifest['nativeCoverReferences'], CLI, args.output / 'checked-refs')
-        self.assertEqual(checked['features'][0]['text'], '02 · Revised Alpha')
+        self.assertEqual((checked['features'][0]['generated'], checked['features'][0]['text']), ('02', '02 · Alpha'))
         restored = args.output / 'reopened.designcraft'
         script = args.output / 'cycle.dcs'
         script.write_text('file.open ' + json.dumps({'path': str(args.output / 'issue.idml')}) + '\n' +
@@ -415,7 +423,7 @@ class NativePreservationTests(unittest.TestCase):
         page.run_script(CLI, script, args.output)
         self.assertEqual(restore_metadata(restored, args.output / 'interchange-metadata.json'), 1)
         cycled = verify_cover_references(restored, manifest['nativeCoverReferences'], CLI, args.output / 'cycled-refs')
-        self.assertEqual(cycled['features'][0]['text'], '02 · Revised Alpha')
+        self.assertEqual(cycled['features'][0]['text'], '02 · Alpha')
 
     def test_issue_metadata_changes_cannot_be_ignored_on_a_protected_cover(self):
         data, native = self.build_base()

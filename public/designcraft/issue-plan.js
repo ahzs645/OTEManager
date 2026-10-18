@@ -44,8 +44,8 @@ async function buildIssueZip(){
  for(const [path,content] of bytes)zip.file(path,content);
  for(const a of data.articles)for(const p of a.photos)if(!bytes.has(p.path))throw Error('Import the issue ZIP to include original media: '+p.path);
  for(const path of ['assets/ote-horizontal-logo.png','assets/ote-stacked-logo.pdf']){const r=await fetch(path);if(!r.ok)throw Error('Brand asset unavailable');zip.file(path,await r.arrayBuffer());}
- await addCoverMedia(zip);
- zip.file('README.txt','Extract the recipe and template kit. Install the kit requirements, then run:\npython3 /path/to/kit/compile-issue.py --library templates.json --issue issue.json --font-dir /path/to/kit/assets/fonts --output output --cli /path/to/designcraft-cli\n\nFor preservation, add --base-native /path/to/original.designcraft. The base must have the same page count; preserve both pages of each continuous spread. Every article must have one interior assignment. Use --booklet for the multiple-of-four print check. Native preflight decides text fit; Adobe InDesign verification remains required.\n');
+ await addCoverMedia(zip);await addDesignArt(zip,templates);
+ zip.file('README.txt','Extract the recipe and template kit. Install the kit requirements, then run:\npython3 /path/to/kit/compile-issue.py --library templates.json --issue issue.json --font-dir /path/to/kit/assets/fonts --output output --cli /path/to/designcraft-cli\n\nFor preservation, add --base-native /path/to/original.designcraft. The base must have the same page count; preserve both pages of each continuous spread. Every article must have one interior assignment. Use --booklet for the multiple-of-four print check. Native preflight decides text fit; Adobe InDesign verification remains required.\n'+(templates.some(t=>t.design)?DESIGN_README:''));
  return zip.generateAsync({type:'uint8array',compression:'DEFLATE'});
 }
 async function exportIssuePlan(){try{save('ote-whole-issue-recipe.zip',await buildIssueZip(),'application/zip');$('issue-plan-status').textContent='Whole issue recipe saved with full text, media and stable page IDs.';}catch(e){$('issue-plan-status').textContent=e.message;}}

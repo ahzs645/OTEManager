@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Download the official, checksum-verified DesignCraft v0.4.0 CLI for this platform."""
+"""Download the official, checksum-verified DesignCraft v0.9.0 CLI for this platform."""
 import argparse
 import hashlib
 from pathlib import Path
@@ -11,7 +11,7 @@ import tarfile
 import urllib.request
 import zipfile
 
-VERSION = '0.4.0'
+VERSION = '0.9.0'
 BASE = f'https://github.com/storytold/designcraft/releases/download/v{VERSION}/'
 
 

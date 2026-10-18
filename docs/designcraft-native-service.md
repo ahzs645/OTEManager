@@ -10,7 +10,7 @@ Configure the normal application runtime:
 | `DESIGNCRAFT_PYTHON` | Python interpreter with `markdown-it-py`; default `python3` |
 | `DESIGNCRAFT_TOOLS_DIR` | Trusted companion compiler directory; default `tools/designcraft` below the application working directory |
 | `DESIGNCRAFT_FONT_DIR` | Portable open-font directory; default `public/designcraft/assets/fonts` |
-| `DESIGNCRAFT_ORIGINAL_FONT_DIR` | Optional private, controlled original-font directory; enables `original2025` |
+| `DESIGNCRAFT_ORIGINAL_FONT_DIR` | Optional private, controlled original-font directory; enables `original2025`. For the original designs: Decalotype, Helvetica Neue, Salted (any face missing falls back to its open substitute and is recorded as `substitutedFonts`) |
 | `DESIGNCRAFT_PERSIST_ARTIFACTS` | `true` saves completed artifacts/source through the existing storage provider; default disabled |
 
 Private Helvetica/Salted/Decalotype files are mounted or configured on the server and must be readable by the runtime user (UID 1000 in the container); they are not added to public assets or the Docker image. Native output bundles include their document-font scope for the requested private proof. Use the controlled selection of Helvetica faces rather than every uploaded font.
@@ -26,6 +26,10 @@ docker build -f Dockerfile.native --secret id=build_ca,src=/path/to/proxy-ca.crt
 The npm install uses `NODE_EXTRA_CA_CERTS`. Python dependency and verified-release downloads temporarily combine the system CA bundle with this secret through `SSL_CERT_FILE`/`PIP_CERT`, then remove the temporary bundle in the same build step. The secret is optional, is not copied into the image, and does not disable TLS verification.
 
 macOS and Windows may use the same server module with their official CLI and Python paths. Linux workers additionally apply inherited native-process address-space and single-file-size limits. The Linux amd64 container build and actual production server exports were verified with both font profiles. Native macOS/Windows execution and Linux arm64 container execution still need platform testing.
+
+## Original-design templates
+
+Recipes whose planned templates use an original design (`library.designs`) run through the shared JavaScript compiler on the bundled WebAssembly engine, also when `DESIGNCRAFT_ENGINE` is `cli`; the Python compilers decline them. Their design layers are staged from this server's `public/designcraft/original-art/` (recipes may only name those files), and the open substitute fonts are added from `assets/fonts/`. Protected-page rebuilds (`base`) are not available for them.
 
 ## API contract
 

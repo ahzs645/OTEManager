@@ -35,8 +35,8 @@ afterAll(async () => { for (const directory of temporary) await rm(directory, { 
 
 test("committed headless engine passes its integrity manifest and runs a command script", async () => {
   const manifest = JSON.parse(await readFile(join(root, "public/designcraft/headless/manifest.json"), "utf8"));
-  expect(manifest.upstream).toMatchObject({ tag: "v0.4.0", rev: "14e677b24216396e398823ff034d9882322362d1" });
-  expect(executor.version).toBe("designcraft-headless 0.4.0 (WebAssembly)");
+  expect(manifest.upstream).toMatchObject({ tag: "v0.9.0", rev: "7cb8b12507def48fb9346e5004340b5e8e4cfcb7" });
+  expect(executor.version).toBe("designcraft-headless 0.9.0 (WebAssembly)");
   const run = await executor.run([
     { command: "file.new", params: { width: 300, height: 300, pages: 1 } },
     { command: "frame.create", params: { rect: [20, 20, 280, 80], content: "text", text: "Headless", caret: false } },
@@ -87,7 +87,10 @@ test("the fixture issue compiles to a booklet with live cover references in the 
   const { manifest, artifacts } = await issues.compileIssue({ library, issue: fixture, booklet: true, fonts, loadMedia, executor, markdownit, JSZip });
   expect(manifest.status).toBe("exported");
   expect(manifest.preflight.errors).toBe(0);
-  expect(manifest.nativeCoverReferences.verification.features.map((f: any) => f.text.slice(0, 2))).toEqual(["02", "02", "03"]);
+  const features = manifest.nativeCoverReferences.verification.features;
+  expect(features.map((f: any) => f.generated)).toEqual(["02", "02", "03"]);
+  expect(features.map((f: any) => f.text)).toEqual(["march-cfur-carbon-capture", "march-cn-centre-30", "march-compost-program"]
+    .map((id, i) => ["02", "02", "03"][i] + " · " + fixture.articles.find((a: any) => a.id === id).title));
   expect(Object.values(manifest.articleBodyChecks).every(Boolean)).toBe(true);
   expect(manifest.pages.map((p: any) => p.nativePageId)).toHaveLength(4);
   expect(new TextDecoder().decode(artifacts.pdf.subarray(0, 5))).toBe("%PDF-");
@@ -117,7 +120,7 @@ test("server WASM engine produces the same job artifacts without a CLI or Python
   const service = createNativeService({ engine: "wasm", repository: root, root: directory, python: "/nonexistent", cli: "/nonexistent" });
   try {
     const capabilities = await service.capabilities();
-    expect(capabilities).toMatchObject({ available: true, engine: "wasm", version: "designcraft-headless 0.4.0 (WebAssembly)" });
+    expect(capabilities).toMatchObject({ available: true, engine: "wasm", version: "designcraft-headless 0.9.0 (WebAssembly)" });
     const zip = new JSZip();
     zip.file("issue.json", JSON.stringify(fixture)); zip.file("templates.json", JSON.stringify(library));
     for (const article of fixture.articles) for (const photo of article.photos) zip.file(photo.path, await readFile(join(fixtureDir, photo.path)));

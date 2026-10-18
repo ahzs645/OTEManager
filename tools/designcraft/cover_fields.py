@@ -53,6 +53,8 @@ def resolve_cover(template, issue, article_ids, issue_root, references=None):
             slot['asset'] = str((Path(issue_root) / cover['photoPath']).resolve())
             slot['fit'] = cover.get('fit', slot.get('fit', 'cover'))
             slot['focus'] = cover.get('focus', {'x': .5, 'y': .5})
+            if cover.get('zoom'):
+                slot['zoom'] = cover['zoom']
         elif sid.startswith('cover-card-'):
             index = slot.get('articleIndex', 0)
             aid = article_ids[index] if index < len(article_ids) else None

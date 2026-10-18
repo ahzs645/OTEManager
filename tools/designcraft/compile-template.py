@@ -68,7 +68,10 @@ def apply_focal_crops(native_path, focus_requests, slots):
             raise ValueError('Photo has invalid native dimensions')
         x, y, right, bottom = slot['rect']
         fw, fh = right - x, bottom - y
-        scale = max(fw / iw, fh / ih)
+        zoom = request.get('requestedZoom', 1)
+        if not isinstance(zoom, (int, float)) or not math.isfinite(zoom) or not 1 <= zoom <= 8:
+            raise ValueError('Photo zoom must be from 1 to 8')
+        scale = max(fw / iw, fh / ih) * zoom
         tx = max(fw - iw * scale, min(0, fw / 2 - fx * iw * scale))
         ty = max(fh - ih * scale, min(0, fh / 2 - fy * ih * scale))
         transform = [scale, 0, 0, scale, x + tx, y + ty]
@@ -107,6 +110,9 @@ def compile_page(args):
     if len(matches) != 1:
         raise ValueError('Select a unique template ID from the library')
     template = matches[0]
+    if template.get('design') or template.get('art'):
+        raise ValueError('Original-design templates need the JavaScript compiler (public/designcraft/compiler); '
+                         'the server runs it on the bundled WebAssembly engine')
     page = library['page']
     width, height = page['width'], page['height']
     issue = json.loads(args.issue.read_text(encoding='utf-8')) if args.issue else None
@@ -328,12 +334,16 @@ def compile_page(args):
                 index = add('frame.create', rect=rect, content='graphic')
                 placed = add('file.place', path=str(portable), frame=ref(index))
                 add('links.embed', asset=ref(placed, 'asset'))
-                fitting = slot.get('fit', 'cover' if role == 'photo' and (not slot.get('asset') or slot.get('focus') is not None) else 'contain')
+                # A photo's own focal point and zoom follow it into every layout; a slot's explicit values win.
+                focus = slot.get('focus', None if slot.get('asset') else media.get('focus'))
+                zoom = slot.get('zoom', None if slot.get('asset') else media.get('zoom'))
+                fitting = slot.get('fit', 'cover' if role == 'photo' and (not slot.get('asset') or focus is not None) else 'contain')
                 if fitting not in ('cover', 'contain'):
                     raise ValueError('Image fit must be cover or contain')
                 add('object.fittingOptions', ids=[ref(index)], fitting='fillProportionally' if fitting == 'cover' else 'fitProportionally', autoFit=True, align=4)
                 if fitting == 'cover':
-                    focus_requests.append({'slotId': slot['id'], 'requestedFocus': slot.get('focus', {'x': .5, 'y': .5}), 'nativeCrop': 'pending', 'exactFocusApplied': False})
+                    focus_requests.append({'slotId': slot['id'], 'requestedFocus': focus if focus is not None else {'x': .5, 'y': .5},
+                                           **({'requestedZoom': zoom} if zoom else {}), 'nativeCrop': 'pending', 'exactFocusApplied': False})
                 label_frame(index, slot, article)
             else:
                 if issue and role == 'photo' and article:

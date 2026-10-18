@@ -182,6 +182,9 @@ def compile_issue(args):
     if args.booklet and len(pages) % 4:
         raise ValueError('A saddle-stitched booklet needs a multiple-of-four page count')
     templates = {t['id']: t for t in library['templates']}
+    if any(templates.get(p.get('templateId'), {}).get('design') for p in pages):
+        raise ValueError('Original-design templates need the JavaScript compiler (public/designcraft/compiler); '
+                         'the server runs it on the bundled WebAssembly engine')
     articles = {a['id']: a for a in issue['articles']}
     if len(articles) != len(issue['articles']):
         raise ValueError('Article IDs must be unique')

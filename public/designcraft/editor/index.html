@@ -6,15 +6,17 @@
   <title>DesignCraft</title>
 
 <script type="module">
-import init, * as bindings from './designcraft-web-1fb8acb405fd0a62.js';
+import init, * as bindings from './designcraft-web-0da6942a3ac2b007.js';
 try {
 const manifest = await (await fetch('./wasm-manifest.json')).json();
 const sha = async data => [...new Uint8Array(await crypto.subtle.digest('SHA-256', data))].map(v=>v.toString(16).padStart(2,'0')).join('');
 const parts = await Promise.all(manifest.parts.map(async part => {const response=await fetch('./'+part.file);if(!response.ok)throw Error('DesignCraft engine download failed');const compressed=new Uint8Array(await response.arrayBuffer());let data;if(compressed.length===part.bytes&&await sha(compressed)===part.sha256){data=compressed}else{if(compressed.length!==part.compressedBytes||await sha(compressed)!==part.compressedSha256)throw Error('DesignCraft engine download integrity failed');const stream=new Blob([compressed]).stream().pipeThrough(new DecompressionStream('gzip'));data=new Uint8Array(await new Response(stream).arrayBuffer())}if(data.length!==part.bytes||await sha(data)!==part.sha256)throw Error('DesignCraft engine integrity check failed');return data}));
 const bytes = new Uint8Array(manifest.bytes);let offset=0;for(const part of parts){bytes.set(part,offset);offset+=part.length}if(await sha(bytes)!==manifest.sha256)throw Error('DesignCraft engine checksum mismatch');
 const wasm = await init({ module_or_path: bytes });
-let readySent=false;const reportReady=()=>{const loading=document.getElementById('designcraft_loading');if(!readySent&&(!loading||getComputedStyle(loading).display==='none')){readySent=true;window.parent.postMessage({type:'ote.designcraft.ready'},location.origin)}};new MutationObserver(reportReady).observe(document.documentElement,{subtree:true,childList:true,attributes:true});reportReady();
-window.addEventListener('message',event=>{if(event.origin!==location.origin||event.source!==window.parent||event.data?.type!=='ote.designcraft.open'||!(event.data.bytes instanceof ArrayBuffer)||event.data.bytes.byteLength>64*1024*1024)return;const name=String(event.data.name||'ote-sample.idml');if(!/\.(idml|designcraft)$/i.test(name))return;const transfer=new DataTransfer();transfer.items.add(new File([event.data.bytes],name,{type:'application/zip'}));const canvas=document.getElementById('designcraft_canvas');canvas.dispatchEvent(new DragEvent('drop',{dataTransfer:transfer,bubbles:true,cancelable:true}));canvas.focus();window.parent.postMessage({type:'ote.designcraft.received'},location.origin)});
+let readySent=false;const reportReady=()=>{const loading=document.getElementById('designcraft_loading');if(!readySent&&(!loading||getComputedStyle(loading).display==='none')){readySent=true;window.parent.postMessage({type:'ote.designcraft.ready',fonts:typeof bindings.add_font==='function'},location.origin)}};new MutationObserver(reportReady).observe(document.documentElement,{subtree:true,childList:true,attributes:true});reportReady();
+window.addEventListener('message',event=>{if(event.origin!==location.origin||event.source!==window.parent)return;
+if(event.data?.type==='ote.designcraft.fonts'&&Array.isArray(event.data.fonts)){let faces=0,accepted=0;if(typeof bindings.add_font==='function')for(const font of event.data.fonts.slice(0,64)){if(font?.bytes instanceof ArrayBuffer&&font.bytes.byteLength<=64*1024*1024&&/\.(ttf|otf|ttc|otc)$/i.test(String(font.name||''))){faces+=bindings.add_font(new Uint8Array(font.bytes));accepted++}}window.parent.postMessage({type:'ote.designcraft.fonts-loaded',accepted,faces,supported:typeof bindings.add_font==='function'},location.origin);return}
+if(event.data?.type!=='ote.designcraft.open'||!(event.data.bytes instanceof ArrayBuffer)||event.data.bytes.byteLength>64*1024*1024)return;const name=String(event.data.name||'ote-sample.idml');if(!/\.(idml|designcraft)$/i.test(name))return;const transfer=new DataTransfer();transfer.items.add(new File([event.data.bytes],name,{type:'application/zip'}));const canvas=document.getElementById('designcraft_canvas');canvas.dispatchEvent(new DragEvent('drop',{dataTransfer:transfer,bubbles:true,cancelable:true}));canvas.focus();window.parent.postMessage({type:'ote.designcraft.received'},location.origin)});
 window.wasmBindings = bindings;
 
 
@@ -28,7 +30,7 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
     #designcraft_loading { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
       color: #b8b8b8; font: 14px system-ui, sans-serif; pointer-events: none; }
   </style>
-<link rel="modulepreload" href="./designcraft-web-1fb8acb405fd0a62.js" crossorigin="anonymous" integrity="sha384-le1YwU6jRnadWHEofl/tFMgHkXs6/FC95yrDGPy1RDfku4vZOLHl8PScNogXdYNi"></head>
+</head>
 <body>
   <canvas id="designcraft_canvas"></canvas>
   <div id="designcraft_loading">Loading DesignCraft&hellip;</div>

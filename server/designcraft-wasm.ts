@@ -56,8 +56,16 @@ export async function runWasmJob(job: WasmJob): Promise<{ exitCode: number; stdo
   const executor = { ...base, run: (steps: unknown, session: unknown) => { if (job.signal.aborted) throw new Error("Native export was stopped."); return base.run(steps, session); } };
   const library = JSON.parse(await readFile(join(job.recipeDir, "templates.json"), "utf8"));
   const issue = JSON.parse(await readFile(join(job.recipeDir, "issue.json"), "utf8"));
-  const fonts = await Promise.all((await readdir(job.fontDir)).filter((name) => /\.(ttf|otf|ttc|otc|txt)$/i.test(name))
-    .map(async (name) => ({ name, bytes: new Uint8Array(await readFile(join(job.fontDir, name))) })));
+  const readFonts = async (directory: string, keep: (name: string) => boolean) => Promise.all((await readdir(directory)).filter((name) => /\.(ttf|otf|ttc|otc|txt)$/i.test(name) && keep(name))
+    .map(async (name) => ({ name, bytes: new Uint8Array(await readFile(join(directory, name))) })));
+  const fonts = await readFonts(job.fontDir, () => true);
+  const planned = new Set<string>(job.mode === "issue" ? (issue.layoutPlan?.pages ?? []).map((p: Json) => p.templateId) : [job.selected.templateId ?? ""]);
+  const designs = compiler.pages.usesDesigns({ templates: library.templates.filter((t: Json) => planned.has(t.id)) });
+  // Original-font design builds also carry the open substitutes for faces the server lacks.
+  if (designs && job.fontProfile === "original2025") {
+    const present = new Set(fonts.map((font) => font.name));
+    fonts.push(...await readFonts(join(job.staticDir, "assets/fonts"), (name) => compiler.pages.isDesignFont(name) && !present.has(name)));
+  }
   // Recipe resources were validated and staged by prepareRecipe; nothing else is readable.
   const loadMedia = async ({ path }: { root: string; path: string }) => {
     const file = resolve(job.recipeDir, path);
@@ -66,8 +74,11 @@ export async function runWasmJob(job: WasmJob): Promise<{ exitCode: number; stdo
   };
   const out = job.outputDir;
   const write = async (name: string, data: Uint8Array | string) => { await mkdir(dirname(join(out, name)), { recursive: true }); await writeFile(join(out, name), data); };
-  const writeFonts = async (directory: string) => { for (const font of compiler.pages.documentFonts(fonts, job.fontProfile)) await write(join(directory, "Document Fonts", font.name), font.bytes); };
-  const common = { markdownit, JSZip, loadMedia, executor, fontProfile: job.fontProfile };
+  const writeFonts = async (directory: string) => { for (const font of compiler.pages.documentFonts(fonts, job.fontProfile, designs)) await write(join(directory, "Document Fonts", font.name), font.bytes); };
+  // Original designs: faces the supplied fonts lack use their open substitutes (recorded in the manifest),
+  // and long cover titles step down to fit unless the cover plan turns that off.
+  const substituteFonts: string[] = job.fontProfile === "original2025" ? compiler.pages.designFontGaps({ ...library, templates: library.templates.filter((t: Json) => planned.has(t.id)) }, fonts) : [];
+  const common = { markdownit, JSZip, loadMedia, executor, fontProfile: job.fontProfile, substituteFonts };
   const pageFiles = async (directory: string, artifacts: Json) => {
     if (artifacts.native) await write(join(directory, "page.designcraft"), artifacts.native);
     for (const [name, key] of [["preflight.json", "preflight"], ["build-manifest.json", "manifest"], ["source-record.json", "sourceRecord"], ["composed-record.json", "composedRecord"], ["interchange-metadata.json", "interchange"], ["document-inspect.json", "inspect"], ["focal-crop.json", "focalCrop"]] as const)
@@ -85,7 +96,7 @@ export async function runWasmJob(job: WasmJob): Promise<{ exitCode: number; stdo
       return { exitCode: 0, stdout: JSON.stringify(manifest), stderr: "" };
     }
     await writeFonts("");
-    const { manifest, artifacts } = await compiler.issues.compileIssue({ ...common, library, issue, booklet: job.booklet, fonts });
+    const { manifest, artifacts } = await compiler.issues.compileIssue({ ...common, library, issue, booklet: job.booklet, fonts, fitCoverTitles: issue.layoutPlan?.cover?.fitTitles !== false });
     for (const page of artifacts.pages) await pageFiles(join("pages", String(page.pageNumber).padStart(3, "0")), page.artifacts);
     await write("issue.designcraft", artifacts.native); await write("issue.pdf", artifacts.pdf); await write("issue.idml", artifacts.idml);
     await write("build-manifest.json", json(manifest)); await write("preflight.json", json(artifacts.preflight));

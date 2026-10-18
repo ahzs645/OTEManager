@@ -6,13 +6,18 @@
 //   @media:<name>   placed media bytes (content-addressed, as Python's Links/)
 //   @out:<name>     an export collected by the executor
 import { composeSource, utf8Length } from './markdown-story.js';
-import { resolveCover } from './cover-fields.js';
+import { resolveCover, resolveFields } from './cover-fields.js';
 import { IDENTITY, clone, deepEqual, interchangeMetadata, readNative, sha256Hex, writeNative } from './native-doc.js';
 
 export const LIBRARY_SCHEMA = 'ote.designcraft.templates.v1';
 export const ISSUE_SCHEMA = 'ote.designcraft.issue.v1';
 const MEDIA_SUFFIXES = ['.png', '.jpg', '.jpeg', '.pdf', '.tif', '.tiff', '.webp'];
 const PORTABLE_FONT_PREFIXES = ['SourceSans3-', 'SourceSerif4-', 'JetBrainsMono-'];
+// Open substitutes for the original designs' faces; packaged only for design builds.
+export const DESIGN_FONT_PREFIXES = ['texgyreheros', 'Barlow-', 'CaveatBrush-'];
+const DESIGN_FONT_LICENSES = ['OFL-Barlow.txt', 'OFL-CaveatBrush.txt', 'GUST-FONT-LICENSE-TeXGyreHeros.txt'];
+/** True when an open font file (or its licence) belongs to the design substitutes. */
+export const isDesignFont = (name) => DESIGN_FONT_PREFIXES.some((p) => name.startsWith(p)) || DESIGN_FONT_LICENSES.includes(name);
 
 /** A compilation that produced a draft but not final output; `artifacts` keeps what was made. */
 export class CompileError extends Error {
@@ -39,14 +44,21 @@ function pyRepr(v) {
 }
 const pyStr = (v) => (typeof v === 'string' ? v : v === true ? 'True' : v === false ? 'False' : v === null || v === undefined ? 'None' : typeof v === 'object' ? pyRepr(v) : String(v));
 
-/** Fonts accepted for a profile, as compile-template.py copies them into Document Fonts. */
-export function documentFonts(fonts, fontProfile) {
+/**
+ * Fonts accepted for a profile, as compile-template.py copies them into Document Fonts.
+ * Builds with original designs (designs = true) also package the open substitutes.
+ */
+export function documentFonts(fonts, fontProfile, designs = false) {
   return fonts.filter(({ name }) => {
+    if (!designs && isDesignFont(name)) return false;
     const suffix = suffixOf(name);
-    const accepted = ['.ttf', '.otf', '.ttc', '.otc'].includes(suffix) && (fontProfile === 'original2025' || PORTABLE_FONT_PREFIXES.some((p) => name.startsWith(p)));
-    return accepted || (name.startsWith('OFL-') && name.endsWith('.txt'));
+    const accepted = ['.ttf', '.otf', '.ttc', '.otc'].includes(suffix) && (fontProfile === 'original2025' || PORTABLE_FONT_PREFIXES.some((p) => name.startsWith(p)) || (designs && isDesignFont(name)));
+    return accepted || (name.startsWith('OFL-') && name.endsWith('.txt')) || (designs && isDesignFont(name));
   });
 }
+
+/** True when any template in the library uses an original design. */
+export const usesDesigns = (library) => (library?.templates ?? []).some((t) => t?.design);
 
 export async function fontScope(fonts) {
   const scope = {};
@@ -71,6 +83,59 @@ export function exampleArticles(count) {
  *   continuationArticleIds?, stagedFlowIds?, loadMedia(ref) → Uint8Array, markdownit}
  * ref is {root: 'library' | 'issue', path}.
  */
+/** Family names in a font file's name table (typographic family, else family; every face of a collection). */
+export function fontFamilies(bytes) {
+  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength), names = new Set();
+  const tag = (at) => String.fromCharCode(bytes[at], bytes[at + 1], bytes[at + 2], bytes[at + 3]);
+  const faces = tag(0) === 'ttcf' ? Array.from({ length: view.getUint32(8) }, (_, i) => view.getUint32(12 + 4 * i)) : [0];
+  try {
+    for (const face of faces) {
+      const tables = view.getUint16(face + 4);
+      for (let t = 0; t < tables; t++) {
+        const record = face + 12 + 16 * t;
+        if (tag(record) !== 'name') continue;
+        const table = view.getUint32(record + 8), count = view.getUint16(table + 2), strings = table + view.getUint16(table + 4);
+        const found = {};
+        for (let r = 0; r < count; r++) {
+          const at = table + 6 + 12 * r, platform = view.getUint16(at), id = view.getUint16(at + 6);
+          if ((id !== 1 && id !== 16) || (platform !== 3 && platform !== 1 && platform !== 0)) continue;
+          const length = view.getUint16(at + 8), offset = strings + view.getUint16(at + 10);
+          let text = '';
+          if (platform === 1) for (let i = 0; i < length; i++) text += String.fromCharCode(bytes[offset + i]);
+          else for (let i = 0; i + 1 < length; i += 2) text += String.fromCharCode(view.getUint16(offset + i));
+          if (text) found[id] ??= text;
+        }
+        if (found[16] ?? found[1]) names.add(found[16] ?? found[1]);
+        if (found[1]) names.add(found[1]);
+      }
+    }
+  } catch { /* not a readable sfnt: no families */ }
+  return names;
+}
+
+/**
+ * Original-font builds: the design families the supplied fonts do not provide, so each can use
+ * its open substitute (compile option substituteFonts) instead of failing on a missing font.
+ */
+export function designFontGaps(library, fonts) {
+  const wanted = new Set(), available = new Set();
+  const want = (style) => { if (style && typeof style === 'object' && style.fontFamily) wanted.add(style.fontFamily); };
+  const used = new Set(library.templates.map((t) => t.design).filter(Boolean));
+  for (const name of used) for (const style of Object.values(library.designs?.[name]?.styles ?? {})) want(style);
+  for (const template of library.templates) if (template.design) for (const slot of template.slots) want(slot.style);
+  for (const font of fonts) if (/\.(ttf|otf|ttc|otc)$/i.test(font.name)) for (const family of fontFamilies(font.bytes)) available.add(family);
+  return [...wanted].filter((family) => !available.has(family)).sort();
+}
+
+/** [family, face] a design prints with: the original, or its open substitute for portable builds and substituted faces. */
+export function designFontMapper(design, fontProfile, substituteFonts = []) {
+  const substitute = new Set(substituteFonts ?? []);
+  return (fontFamily, face) => {
+    if (!design || (fontProfile === 'original2025' && !substitute.has(fontFamily))) return [fontFamily, face];
+    return design.fonts?.portable?.[`${fontFamily}|${face}`] ?? design.fonts?.portable?.[`${fontFamily}|*`] ?? [fontFamily, face];
+  };
+}
+
 export async function buildPage(options) {
   const { library, issue = null, markdownit, loadMedia } = options;
   const pageId = options.pageId ?? 'page-1', pageNumber = options.pageNumber ?? 1;
@@ -114,7 +179,15 @@ export async function buildPage(options) {
   const composed = {};
   for (const a of articles) composed[a.id] = composeSource(a.body, a.bodyFormat ?? 'markdown', markdownit);
   if (!isCover && Object.values(composed).some((r) => !r.text.trim())) throw new Error('An article has no printable body after Markdown conversion');
+  // Original designs (library.designs): house styles, swatches, a design layer
+  // placed from the source documents, and open font substitutes for portable builds.
+  const family = template.design ? library.designs?.[template.design] ?? null : null;
+  if (template.design && !family) throw new Error('Unknown template design: ' + template.design);
+  // Original fonts by default; open substitutes for portable builds, or for faces a build lists
+  // in substituteFonts because their licensed files are not available.
+  const mapFont = designFontMapper(family, fontProfile, options.substituteFonts);
   if (isCover && issue) template = resolveCover(template, issue, articles.map((a) => a.id), options.references ?? null);
+  if (family) template = resolveFields(template, issue, family);
 
   const steps = [], slotRefs = [], warnings = [], missingMedia = [], focusRequests = [];
   const bodyCounts = {}, photoCounts = {}, media = new Map();
@@ -122,6 +195,7 @@ export async function buildPage(options) {
   const ref = (index, key = 'id') => `$${index}.${key}`;
   const labelFrame = (index, slot, article) => {
     const metadata = { templateId: template.id, slotId: slot.id, role: slot.role, articleId: article ? article.id ?? null : null, pageId };
+    if (slot.cardPart) metadata.cardPart = slot.cardPart;
     add('object.label', { ids: [ref(index)], label: pythonJson(metadata) });
     add('object.rename', { id: ref(index), name: slot.id });
     slotRefs.push({ ...metadata, commandIndex: index });
@@ -153,6 +227,7 @@ export async function buildPage(options) {
   add('layout.documentSetup', { startPage: pageNumber, intent: 'print' });
   add('swatch.create', { name: 'OTE Green', color: { c: 70, m: 30, y: 75, k: 40 } });
   add('swatch.create', { name: 'OTE Placeholder', color: { c: 10, m: 3, y: 8, k: 0 } });
+  for (const swatch of family?.swatches ?? []) add('swatch.create', { name: swatch.name, color: swatch.color });
   const styles = {
     'OTE Headline': ['Source Sans 3', 'Bold', 24, 27],
     'OTE Body': ['Source Serif 4', 'Regular', 10, 12],
@@ -167,7 +242,12 @@ export async function buildPage(options) {
     const size = { 1: 18, 2: 16, 3: 14, 4: 12, 5: 11, 6: 10 }[level];
     styles['OTE Heading ' + level] = ['Source Sans 3', 'Bold', size, size * 1.2];
   }
-  if (fontProfile === 'original2025') {
+  // A family's house styles: {fontFamily, fontStyle, size, leading, chars?: extra character
+  // attributes (tracking, fill, capitalization…), para?: paragraph attributes}.
+  for (const [name, def] of Object.entries(family?.styles ?? {})) {
+    styles[name] = [...mapFont(def.fontFamily, def.fontStyle), def.size, def.leading, def.chars ?? {}, def.para ?? {}];
+  }
+  if (fontProfile === 'original2025' && !family) {
     for (const [name, [, , size, leading]] of Object.entries(styles)) {
       if (name === 'OTE Code') continue;
       const face = name === 'OTE Headline' || name.startsWith('OTE Heading ') ? 'Bold' : name === 'OTE Quote' ? 'Italic' : name === 'OTE Byline' || name === 'OTE Label' ? 'Medium' : 'Regular';
@@ -177,24 +257,46 @@ export async function buildPage(options) {
     styles['OTE Cover Issue'] = ['Salted', 'Regular', 9, 11];
     styles['OTE Cover Hand'] = ['Salted', 'Regular', 8, 10];
   }
-  for (const [name, [family, fontStyle, size, leading]] of Object.entries(styles)) {
+  for (const [name, [fontFamily, fontStyle, size, leading, chars = {}, para = {}]] of Object.entries(styles)) {
     add('style.paragraph.create', {
-      name, para: { spaceAfter: name === 'OTE Body' || name === 'OTE Quote' ? 4 : 0, hyphenate: name === 'OTE Body' },
-      chars: { fontFamily: family, fontStyle, size, leading: { kind: 'points', value: leading } },
+      name, para: { spaceAfter: name === 'OTE Body' || name === 'OTE Quote' ? 4 : 0, hyphenate: name === 'OTE Body', ...para },
+      chars: { fontFamily, fontStyle, size, leading: { kind: 'points', value: leading }, ...chars },
     });
   }
   if (template.border) {
     const border = add('frame.create', { rect: [30, 30, width - 30, height - 30], content: 'unassigned' });
     add('object.stroke', { ids: [ref(border)], weight: 2, swatch: 'OTE Green' });
   }
+  // The design layer: header, frame, masthead and rules from the source document, by page side.
+  // An optional `over` part (items the original stacked above its photo) is placed after the slots.
+  const art = family && template.art ? family.art?.[template.art === 'interior' ? (pageNumber % 2 === 0 ? 'left' : 'right') : template.art] : null;
+  if (family && template.art && !art) throw new Error(`Design ${template.design} has no design layer for ${template.art}`);
+  const placeArt = async (layer) => {
+    const path = fontProfile === 'original2025' ? layer.original : layer.portable;
+    const bytes = await loadMedia({ root: 'library', path });
+    if (!bytes) throw new Error('Missing design layer: ' + path);
+    const name = (await sha256Hex(bytes)).slice(0, 16) + '.designcraft';
+    media.set(name, bytes);
+    add('snippet.place', layer.x === undefined ? { path: '@media:' + name } : { path: '@media:' + name, x: layer.x, y: layer.y });
+  };
+  if (art) await placeArt(art);
   const customStyle = (slot, base) => {
-    const [family, fontStyle, defaultSize, defaultLeading] = styles[base];
+    const [fontFamily, fontStyle, defaultSize, defaultLeading, chars = {}, para = null] = styles[base];
     const size = Number(slot.fontSize ?? defaultSize);
     const leading = Number(slot.leading ?? (!slot.fontSize ? defaultLeading : size * 1.15));
     if (!(size >= 4 && size <= 144 && leading >= 4 && leading <= 200)) throw new Error('Typography values exceed supported bounds');
     const name = 'OTE Slot ' + slot.id;
-    add('style.paragraph.create', { name, chars: { fontFamily: family, fontStyle, size, leading: { kind: 'points', value: leading } } });
+    const params = { name, chars: { fontFamily, fontStyle, size, leading: { kind: 'points', value: leading }, ...chars } };
+    if (para && Object.keys(para).length) params.para = para;
+    add('style.paragraph.create', params);
     return name;
+  };
+  // A slot's own captured typography ({fontFamily, fontStyle, size, leading, chars, para}) or a house style name.
+  const slotStyle = (slot) => {
+    if (typeof slot.style === 'string') return slot.style;
+    const def = slot.style;
+    styles['OTE Slot ' + slot.id] = [...mapFont(def.fontFamily, def.fontStyle), def.size, def.leading ?? def.size * 1.2, def.chars ?? {}, def.para ?? {}];
+    return customStyle({ ...slot, fontSize: undefined, leading: undefined }, 'OTE Slot ' + slot.id);
   };
   for (const slot of template.slots) {
     const rect = slot.rect;
@@ -202,6 +304,7 @@ export async function buildPage(options) {
     const [x, y, right, bottom] = rect;
     if (!(x >= 0 && x < right && right <= width && y >= 0 && y < bottom && bottom <= height)) throw new Error(`Slot ${slot.id} lies outside page boundaries`);
     if (slot.enabled === false) continue;
+    if (slot.side && slot.side !== (pageNumber % 2 === 0 ? 'left' : 'right')) continue;
     const role = slot.role;
     const ai = slot.articleIndex ?? 0;
     const article = 'articleIndex' in slot && ai >= 0 && ai < articles.length ? articles[ai] : null;
@@ -225,7 +328,8 @@ export async function buildPage(options) {
         text = `  |  ${info.title || 'OVER THE EDGE'}  |  ${info.date || 'ILLUSTRATIVE TEMPLATE'}`;
         style = 'OTE Folio';
       }
-      if (isCover && fontProfile === 'original2025') {
+      if (family && slot.style) style = typeof slot.style === 'string' ? slot.style : style;
+      if (isCover && fontProfile === 'original2025' && !family) {
         style = { 'cover-date': 'OTE Cover Date', 'cover-year': 'OTE Cover Date', 'cover-issue': 'OTE Cover Issue', 'cover-line': 'OTE Cover Hand' }[slot.id] ?? style;
       }
       if (slot.fontSize || slot.leading) style = customStyle(slot, style);
@@ -251,10 +355,14 @@ export async function buildPage(options) {
         const index = add('frame.create', { rect, content: 'graphic' });
         const placed = add('file.place', { path: '@media:' + name, frame: ref(index) });
         add('links.embed', { asset: ref(placed, 'asset') });
-        const fitting = slot.fit ?? (role === 'photo' && (!slot.asset || slot.focus !== undefined && slot.focus !== null) ? 'cover' : 'contain');
+        // A photo's own focal point and zoom (set once, like a WordPress focal point) follow it into every
+        // layout; a slot's explicit focus or zoom still wins.
+        const focus = slot.focus ?? (slot.asset ? undefined : mediaRecord.focus), zoom = slot.zoom ?? (slot.asset ? undefined : mediaRecord.zoom);
+        const fitting = slot.fit ?? (role === 'photo' && (!slot.asset || focus !== undefined && focus !== null) ? 'cover' : 'contain');
         if (fitting !== 'cover' && fitting !== 'contain') throw new Error('Image fit must be cover or contain');
         add('object.fittingOptions', { ids: [ref(index)], fitting: fitting === 'cover' ? 'fillProportionally' : 'fitProportionally', autoFit: true, align: 4 });
-        if (fitting === 'cover') focusRequests.push({ slotId: slot.id, requestedFocus: slot.focus ?? { x: 0.5, y: 0.5 }, nativeCrop: 'pending', exactFocusApplied: false });
+        if (slot.stroke) add('object.stroke', { ids: [ref(index)], weight: slot.stroke.weight, swatch: slot.stroke.swatch });
+        if (fitting === 'cover') focusRequests.push({ slotId: slot.id, requestedFocus: focus ?? { x: 0.5, y: 0.5 }, ...(zoom ? { requestedZoom: zoom } : {}), nativeCrop: 'pending', exactFocusApplied: false });
         labelFrame(index, slot, article);
       } else {
         if (issue && role === 'photo' && article) missingMedia.push(slot.id);
@@ -272,8 +380,13 @@ export async function buildPage(options) {
         styledText([x + 4, y + 4, right - 4, y + 4 + h], caption, labelStyle, 1, slot, article);
         warnings.push(`${slot.id}: no media supplied; boundary placeholder drawn`);
       }
+    } else if (role === 'text' && family) {
+      // Fixed or field text in captured original typography (datelines, cover dates, feature cards).
+      if (!slot.text) continue;
+      styledText(rect, String(slot.text), slotStyle(slot), slot.columns ?? 1, slot, article);
     } else throw new Error('Unsupported slot role: ' + role);
   }
+  if (art?.over) await placeArt(art.over);
   for (let i = 0; i < storyCount; i++) if (bodyCounts[i] !== 1) throw new Error('Each article needs exactly one body slot; use its columns option for text columns');
   const preflightIndex = add('preflight.run', { minPpi: 150 });
   const inspectIndex = add('document.inspect');
@@ -302,7 +415,9 @@ async function applyFocalCrops(nativeBytes, focusRequests, slots, JSZip) {
     if (!(iw > 0) || !(ih > 0)) throw new Error('Photo has invalid native dimensions');
     const [x, y, right, bottom] = slot.rect;
     const fw = right - x, fh = bottom - y;
-    const scale = Math.max(fw / iw, fh / ih);
+    const zoom = request.requestedZoom ?? 1;
+    if (!isNumber(zoom) || zoom < 1 || zoom > 8) throw new Error('Photo zoom must be from 1 to 8');
+    const scale = Math.max(fw / iw, fh / ih) * zoom;
     const tx = Math.max(fw - iw * scale, Math.min(0, fw / 2 - fx * iw * scale));
     const ty = Math.max(fh - ih * scale, Math.min(0, fh / 2 - fy * ih * scale));
     const transform = [scale, 0, 0, scale, x + tx, y + ty];
@@ -326,7 +441,7 @@ const textOf = (bytes) => new TextDecoder().decode(bytes);
  * inspect, sourceRecord, composedRecord, interchange, focalCrop?
  */
 export async function compilePage(built, { executor, fonts, JSZip }) {
-  const docFonts = documentFonts(fonts, built.fontProfile);
+  const docFonts = documentFonts(fonts, built.fontProfile, Boolean(built.template.design));
   const session = { fonts: docFonts, media: built.media };
   const first = await executor.run(built.steps, session);
   const results = first.results;

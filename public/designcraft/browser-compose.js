@@ -16,6 +16,8 @@ async function setupBrowserCompose(){
  panel.append(element('h3',{textContent:'Compose in this browser'}));
  const status=element('p',{id:'browser-compose-status',textContent:'Runs the DesignCraft engine on this device: no server, no upload. The engine (about 9 MB) downloads the first time you use it.'});status.setAttribute('role','status');panel.append(status);
  const fontLabel=element('label',{textContent:'Original fonts (optional, stay on this device) '});const fontInput=element('input',{type:'file',multiple:true,accept:'.ttf,.otf,.ttc,.otc',id:'browser-compose-fonts'});fontLabel.append(fontInput);panel.append(fontLabel);
+ const designLabel=element('label',{textContent:'House design for suggested plans '}),designSelect=element('select',{id:'browser-compose-design'});designSelect.append(element('option',{value:'',textContent:'Reconstructed recipes'}),...Object.entries(library.designs||{}).map(([id,d])=>element('option',{value:id,textContent:d.name+' (original design)'})));designLabel.append(designSelect);panel.append(designLabel);
+ const tightenLabel=element('label'),tighten=element('input',{type:'checkbox',id:'browser-compose-tighten',checked:true});tightenLabel.append(tighten,' Fit headline bands: a one-line headline pulls its byline up and the photo grows');panel.append(tightenLabel);
  const bookletLabel=element('label'),booklet=element('input',{type:'checkbox',id:'browser-compose-booklet'});bookletLabel.append(booklet,' Check booklet page count');panel.append(bookletLabel);
  const row=element('div',{className:'browser-compose-actions'});
  const variantsButton=element('button',{id:'browser-variants',className:'outline',textContent:'Suggest checked layouts for these stories'});
@@ -31,17 +33,19 @@ async function setupBrowserCompose(){
  const describe=p=>p.stage==='page'?`Composing page ${p.pageNumber} of ${p.total}…`:p.stage==='compose'?`Checking layout ${p.done}: ${p.template}…`:{assemble:'Assembling pages…',references:'Linking cover references…',preflight:'Running preflight…',export:'Exporting PDF and IDML…'}[p.stage]||'Working…';
  async function fontPayload(){const files=[...fontInput.files];return {fontProfile:files.length?'original2025':(issue.layoutPlan?.fontProfile||'portable'),fonts:await Promise.all(files.map(async f=>({name:f.name,bytes:await f.arrayBuffer()})))};}
  const toBuffer=u8=>u8.buffer.slice(u8.byteOffset,u8.byteOffset+u8.byteLength);
- function storyLibrary(count){return {...library,templates:library.templates.filter(t=>t.kind==='story'&&t.storyCount===count).map(t=>({...copy(resolved(t)),id:t.id,name:t.name}))};}
+ const designOf=t=>t?.design||null;
+ function storyLibrary(count,design){return {...library,templates:library.templates.filter(t=>t.kind==='story'&&t.storyCount===count&&designOf(t)===design).map(t=>({...copy(resolved(t)),id:t.id,name:t.name}))};}
  function offer(result,label){
   downloads.replaceChildren();const p=result.prefix,add=(bytes,name,type)=>{if(bytes)downloads.append(element('a',{href:blobUrl(bytes,type),download:name,className:'text-link',textContent:'Download '+name}),' ');};
   add(result.bundle,'ote-'+p+'-native-output.zip','application/zip');add(result.native,result.draftName||p+'.designcraft','application/zip');add(result.pdf,p+'.pdf','application/pdf');add(result.idml,p+'.idml','application/zip');
-  if(result.native){window.dispatchEvent(new CustomEvent('ote.browser.result',{detail:{name:'ote-generated-'+p+'.designcraft',bytes:toBuffer(result.native),label}}));}
+  if(result.native){const fonts=result.localFonts||[];window.dispatchEvent(new CustomEvent('ote.browser.result',{detail:{name:'ote-generated-'+p+'.designcraft',bytes:toBuffer(result.native),label,fonts}}));}
  }
  async function compose(mode){
   busy(true);clearUrls();results.replaceChildren();downloads.replaceChildren();
   try{
    status.textContent='Preparing the recipe…';const recipe=mode==='issue'?await buildIssueZip():await buildPageZip();
-   const result=await call('compile',{mode,booklet:booklet.checked,recipe:toBuffer(recipe),...await fontPayload()},p=>status.textContent=describe(p));
+   const fonts=await fontPayload(),localFonts=fonts.fonts.map(f=>({name:f.name,bytes:f.bytes.slice(0)}));
+   const result=await call('compile',{mode,booklet:booklet.checked,recipe:toBuffer(recipe),...fonts},p=>status.textContent=describe(p));result.localFonts=localFonts;
    status.textContent=result.status==='completed'?`Composed in your browser with ${result.version}. Preflight passed: ${result.preflight.warnings} warning(s). Download below.`:`${result.message} Download the draft and preflight below.`;
    offer(result,mode);return result;
   }catch(error){status.textContent=error.message;throw error;}finally{busy(false);}
@@ -55,18 +59,19 @@ async function setupBrowserCompose(){
    if(selected.kind!=='story')throw Error('Choose a story recipe and its articles first; covers use the cover form.');
    const ids=assignments.slice(0,selected.storyCount);
    status.textContent='Preparing the articles…';const recipe=await buildPageZip();
-   const result=await call('variants',{recipe:toBuffer(recipe),library:storyLibrary(ids.length),articleIds:ids,...await fontPayload()},p=>status.textContent=describe(p));
+   const design=designOf(selected);
+   const result=await call('variants',{recipe:toBuffer(recipe),library:storyLibrary(ids.length,design),articleIds:ids,design,tightenHeadlines:tighten.checked,...await fontPayload()},p=>status.textContent=describe(p));
    lastVariants=result.variants;
    status.textContent=result.variants.length?`${result.variants.length} layouts fit, checked by the native engine (${result.composed} composed from ${result.considered} candidates).`:`No layout fits these ${ids.length} stories together. Try fewer stories on this page or a continuation.`;
    result.variants.forEach((v,i)=>{
     const card=element('article',{className:'browser-variant'});
     card.append(element('img',{src:blobUrl(v.preview,'image/png'),alt:'Preview of '+v.template.name,loading:'lazy'}));
     card.append(element('strong',{textContent:(i+1)+'. '+v.template.name}));
-    const facts=[`body fill ${v.fill.map(percent).join(' / ')}`];if(v.crops.length)facts.push(`photo crop ${v.crops.map(percent).join(' / ')}`);if(v.headlineSize)facts.push(`${v.headlineSize}pt headlines`);if(v.unusedPhotos)facts.push(`${v.unusedPhotos} photo(s) unused`);
+    const facts=[`body fill ${v.fill.map(percent).join(' / ')}`];if(v.crops.length)facts.push(`photo crop ${v.crops.map(percent).join(' / ')}`);if(v.headlineSize)facts.push(`${v.headlineSize}pt headlines`);if(v.headlineFit?.some(c=>c.grownBy>0))facts.push(`${Math.max(...v.headlineFit.map(c=>c.lines))}-line headline band`);if(v.headlineFit?.some(c=>c.grownBy<0))facts.push(`photo +${Math.round(-Math.min(...v.headlineFit.map(c=>c.grownBy)))} pt from a fitted headline`);if(v.unusedPhotos)facts.push(`${v.unusedPhotos} photo(s) unused`);
     card.append(element('p',{className:'muted',textContent:facts.join(' · ')}));
     card.append(element('p',{className:'muted',textContent:'Order: '+v.articleIds.map(id=>issue.articles.find(a=>a.id===id)?.title||id).join(' → ')}));
     const use=element('button',{className:'outline',textContent:'Use this layout'});
-    use.onclick=()=>{assignments.splice(0,v.articleIds.length,...v.articleIds);choose(v.template.id.split('@')[0],v.headlineSize?v.template:null);status.textContent='Applied '+v.template.name+'. Save it in the issue plan or generate it.';};
+    use.onclick=()=>{assignments.splice(0,v.articleIds.length,...v.articleIds);choose(v.template.id.split('@')[0],v.headlineSize||v.headlineFit?.length?v.template:null);status.textContent='Applied '+v.template.name+'. Save it in the issue plan or generate it.';};
     card.append(use,' ',element('a',{href:blobUrl(v.pdf,'application/pdf'),download:v.template.id+'.pdf',className:'text-link',textContent:'PDF'}));
     results.append(card);
    });
@@ -77,9 +82,10 @@ async function setupBrowserCompose(){
   busy(true);clearUrls();results.replaceChildren();downloads.replaceChildren();
   try{
    status.textContent='Preparing the articles…';const recipe=await buildPageZip();
-   const libraryForPlan={...library,templates:library.templates.filter(t=>t.kind==='story').map(t=>({...copy(resolved(t)),id:t.id,name:t.name})).concat(library.templates.filter(t=>t.kind==='cover'))};
-   const result=await call('suggestIssue',{recipe:toBuffer(recipe),library:libraryForPlan,articleIds:issue.articles.map(a=>a.id),...await fontPayload()},p=>status.textContent=describe(p));
-   const list=element('ol');for(const p of result.pages)list.append(element('li',{textContent:`Page ${p.pageNumber}: ${p.template?.name||p.templateId} — ${p.articleIds.map(id=>issue.articles.find(a=>a.id===id)?.title||id).join(', ')}`}));
+   const design=designSelect.value||null,inDesign=t=>designOf(t)===design;
+   const libraryForPlan={...library,templates:library.templates.filter(t=>t.kind==='story'&&inDesign(t)).map(t=>({...copy(resolved(t)),id:t.id,name:t.name})).concat(library.templates.filter(t=>t.kind==='cover'&&inDesign(t)))};
+   const result=await call('suggestIssue',{recipe:toBuffer(recipe),library:libraryForPlan,articleIds:issue.articles.map(a=>a.id),design,tightenHeadlines:tighten.checked,...await fontPayload()},p=>status.textContent=describe(p));
+   const list=element('ol');for(const p of result.pages)list.append(element('li',{textContent:`Page ${p.pageNumber}: ${p.template?.name||library.templates.find(t=>t.id===p.templateId)?.name||p.templateId} — ${p.articleIds.map(id=>issue.articles.find(a=>a.id===id)?.title||id).join(', ')}`}));
    results.append(element('p',{textContent:'Suggested plan (every interior page passed native preflight):'}),list);
    for(const problem of result.problems)results.append(element('p',{className:'muted',textContent:`Page ${problem.pageNumber}: ${problem.error}`}));
    const apply=element('button',{className:'outline',textContent:'Load this plan into the issue builder'});

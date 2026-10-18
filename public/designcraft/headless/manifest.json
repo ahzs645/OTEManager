@@ -2,8 +2,8 @@
   "engine": "DesignCraft (headless, no UI)",
   "upstream": {
     "repository": "https://github.com/storytold/designcraft",
-    "tag": "v0.4.0",
-    "rev": "14e677b24216396e398823ff034d9882322362d1"
+    "tag": "v0.9.0",
+    "rev": "7cb8b12507def48fb9346e5004340b5e8e4cfcb7"
   },
   "crate": "packages/designcraft-headless",
   "toolchain": {
@@ -15,10 +15,10 @@
   "wasm": {
     "file": "designcraft_headless_bg.wasm.gz",
     "compression": "gzip",
-    "bytes": 25870814,
-    "sha256": "742f942a115bbf6c290aaa5829c1dae87d826b4a0ddcf62f6c83cce578b8ef5b",
-    "compressedBytes": 9344958,
-    "compressedSha256": "df173815b40fc2f088e5bc7cd9bf7eec8331e8c882fae58d664764876a366a22"
+    "bytes": 34897168,
+    "sha256": "5dd55c8652cda9a1167f1f493c83b3de764e673d477f84c412fd8e794b62776b",
+    "compressedBytes": 12703640,
+    "compressedSha256": "9e19c5a28330de1d88bc83371d8dc7c33de06a30276b2c591cc2a6af8245390c"
   },
   "glue": {
     "file": "designcraft_headless.js",

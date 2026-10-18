@@ -5,6 +5,7 @@
 import { composeSource } from './markdown-story.js';
 import { CompileError, buildPage, compilePage } from './page-compiler.js';
 import { clone, readNative } from './native-doc.js';
+import { fitHeadlineBands, growHeadlineBands, measureHeadlines } from './fit.js';
 
 const BODY_LEADING = 12, BODY_PARAGRAPH_SPACE = 4, BODY_CHAR = 4.75;   // Source Serif 4 10/12
 const HEADLINE_CHAR = 0.5;                                               // Source Sans 3 Bold, em fraction
@@ -17,12 +18,12 @@ function permutations(items) {
 
 const photosOf = (article) => (article.photos ?? []).filter((p) => p.path);
 
-/** Every story template × order whose photo slots the articles can fill. */
-export function enumerateCandidates(library, articles) {
+/** Every story template of one design (null = classic recipes) × order whose photo slots the articles can fill. */
+export function enumerateCandidates(library, articles, design = null) {
   const count = articles.length;
   const out = [];
   for (const template of library.templates) {
-    if (template.kind !== 'story' || template.storyCount !== count) continue;
+    if (template.kind !== 'story' || template.storyCount !== count || (template.design ?? null) !== design) continue;
     for (const order of permutations(articles)) {
       const used = new Map();
       let feasible = true;
@@ -103,7 +104,7 @@ function finalScore(v) {
   const minFill = v.fill.length ? Math.min(...v.fill) : 0.9;
   const crop = v.crops.length ? v.crops.reduce((a, c) => a + c, 0) / v.crops.length : 0;
   return Math.abs(meanFill - 0.9) * 8 + Math.max(0, 0.55 - minFill) * 12 + crop * 3
-    + (v.headlineSize ? (24 - v.headlineSize) / 2 * 0.8 : 0) + v.unusedPhotos * 1.2;
+    + (v.headlineSize ? (24 - v.headlineSize) / 2 * 0.8 : 0) + (v.headlineFit?.some((c) => c.grownBy > 0) ? 0.4 : 0) + v.unusedPhotos * 1.2;
 }
 
 function withHeadline(template, size) {
@@ -117,7 +118,8 @@ function withHeadline(template, size) {
 /**
  * Compose and rank variants for one interior page.
  * options: {library, issue, articleIds, executor, fonts, loadMedia, markdownit, JSZip,
- *   limit = 8, keep = 4, previewScale = 0.25, pageNumber, onProgress}
+ *   limit = 8, keep = 4, previewScale = 0.25, pageNumber, onProgress, design, fontProfile, substituteFonts,
+ *   tightenHeadlines (fit bands to headlines first: one-line headlines pull the byline up and grow the photo)}
  * Returns {variants: [{template, articleIds, status, score, fill, crops, headlineSize,
  *   preflight, native, pdf?, idml?, preview?, reason?}], considered, composed}.
  */
@@ -128,7 +130,7 @@ export async function generatePageVariants(options) {
   const byId = new Map(issue.articles.map((a) => [a.id, a]));
   const articles = options.articleIds.map((id) => byId.get(id));
   if (articles.some((a) => !a) || !articles.length || articles.length > 3) throw new Error('Choose one to three articles from the issue');
-  const candidates = enumerateCandidates(library, articles).map((c) => {
+  const candidates = enumerateCandidates(library, articles, options.design ?? null).map((c) => {
     const est = estimate(c, library, markdownit);
     return { ...c, est, score: staticScore(est, c) };
   }).sort((a, b) => a.score - b.score);
@@ -143,14 +145,14 @@ export async function generatePageVariants(options) {
   }
   const results = [];
   let composed = 0;
-  const attempt = async (template, order, headlineSize, unusedPhotos) => {
+  const attempt = async (template, order, headlineSize, unusedPhotos, headlineFit = null) => {
     composed++;
     progress({ stage: 'compose', template: template.id, done: composed });
     const built = await buildPage({
       library: { ...library, templates: [template] }, template, issue, articleIds: order.map((a) => a.id),
-      pageId: options.pageId ?? 'variant', pageNumber: options.pageNumber ?? 2, fontProfile: options.fontProfile ?? 'portable', markdownit, loadMedia,
+      pageId: options.pageId ?? 'variant', pageNumber: options.pageNumber ?? 2, fontProfile: options.fontProfile ?? 'portable', markdownit, loadMedia, substituteFonts: options.substituteFonts,
     });
-    const variant = { template, articleIds: order.map((a) => a.id), headlineSize, unusedPhotos };
+    const variant = { template, articleIds: order.map((a) => a.id), headlineSize, unusedPhotos, headlineFit };
     try {
       const { manifest, artifacts } = await compilePage(built, { executor, fonts, JSZip });
       Object.assign(variant, { status: manifest.status, preflight: artifacts.preflight, native: artifacts.native, pdf: artifacts.pdf, idml: artifacts.idml, manifest });
@@ -161,22 +163,33 @@ export async function generatePageVariants(options) {
       const issues = error.artifacts.preflight?.issues ?? [];
       const headlineIds = new Set(built.slotRefs.filter((s) => s.role === 'headline').map((s) => s.slotId));
       const names = new Map((await readNative(error.artifacts.native, JSZip)).document.spreads.flatMap((s) => s.items).map((i) => [i.id, i.name]));
-      const oversetSlots = issues.filter((i) => i.kind === 'overset').map((i) => names.get(i.item));
+      const errors = issues.filter((i) => i.severity === 'error');
+      const oversetSlots = errors.filter((i) => i.kind === 'overset').map((i) => names.get(i.item));
       Object.assign(variant, {
         status: 'does-not-fit', preflight: error.artifacts.preflight, native: error.artifacts.native,
-        headlineOnly: oversetSlots.length > 0 && oversetSlots.every((n) => headlineIds.has(n)) && issues.every((i) => i.kind === 'overset'),
+        headlineOnly: oversetSlots.length > 0 && oversetSlots.every((n) => headlineIds.has(n)) && errors.every((i) => i.kind === 'overset'),
         reason: oversetSlots.length ? 'Overset text in ' + oversetSlots.join(', ') : error.message,
       });
     }
     results.push(variant);
     return variant;
   };
+  const measureBands = (template, order, tight = false) => measureHeadlines(template, order, { executor, library, fonts, fontProfile: options.fontProfile, substituteFonts: options.substituteFonts, tight });
   for (const c of shortlist) {
+    // tightenHeadlines: fit every band to its headline first (a one-line headline pulls its byline and
+    // photo up and the photo grows); the layout as drawn stays the fallback.
+    if (options.tightenHeadlines) {
+      const fitted = fitHeadlineBands(c.template, await measureBands(c.template, c.order, true), { tighten: true });
+      if (fitted && (await attempt(fitted.template, c.order, null, c.unusedPhotos, fitted.changes)).status === 'exported') continue;
+    }
     const first = await attempt(c.template, c.order, null, c.unusedPhotos);
     if (first.status === 'does-not-fit' && first.headlineOnly) {
-      for (const size of HEADLINE_STEPS) {
-        const v = await attempt(withHeadline(c.template, size), c.order, size, c.unusedPhotos);
-        if (v.status === 'exported' || !v.headlineOnly) break;
+      // Grow the headline band at the designed size first; then explicit smaller sizes, each grown to fit.
+      for (const size of [null, ...HEADLINE_STEPS]) {
+        const sized = size ? withHeadline(c.template, size) : c.template;
+        const grown = growHeadlineBands(sized, await measureBands(sized, c.order));
+        const v = await attempt(grown?.template ?? sized, c.order, size, c.unusedPhotos, grown?.changes);
+        if (v.status === 'exported') break;
       }
     }
   }
@@ -194,7 +207,7 @@ export async function generatePageVariants(options) {
  */
 export async function suggestIssuePlan(options) {
   const { library, issue, markdownit } = options;
-  const coverTemplateId = options.coverTemplateId ?? library.templates.find((t) => t.kind === 'cover')?.id;
+  const coverTemplateId = options.coverTemplateId ?? library.templates.find((t) => t.kind === 'cover' && (t.design ?? null) === (options.design ?? null))?.id;
   const ids = options.articleIds ?? issue.articles.map((a) => a.id);
   const sized = ids.map((id) => {
     const a = issue.articles.find((x) => x.id === id);

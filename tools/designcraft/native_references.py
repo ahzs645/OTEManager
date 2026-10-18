@@ -16,8 +16,14 @@ from native_flow import _read_native, _text_frames, _write_native
 
 ANCHOR_MARK = '\ue00b'
 XREF_MARK = '\ue00c'
-FORMAT_NAME = 'OTE Featured Article'
-FORMAT_DEFINITION = '<pageNum /> · <fullPara />'
+# Only the page number is a live cross-reference; the headline follows as ordinary text so it
+# wraps at word boundaries inside the cover card (a generated reference never breaks inside).
+FORMAT_NAME = 'OTE Featured Page'
+FORMAT_DEFINITION = '<pageNum />'
+SEPARATOR = ' · '
+# Covers built before October 2026 generate "page · headline" as one reference.
+LEGACY_FORMAT_NAME = 'OTE Featured Article'
+FORMATS = (FORMAT_NAME, LEGACY_FORMAT_NAME)
 
 
 def _run(cli, output_dir, name, steps):
@@ -77,6 +83,10 @@ def _generated_text(page, title):
             output.append(character)
         previous = character
     return ''.join(output)
+
+
+def _card_text(format_name, title):
+    return XREF_MARK if format_name == LEGACY_FORMAT_NAME else XREF_MARK + SEPARATOR + title
 
 
 def _single_paragraph_title(title):
@@ -148,11 +158,16 @@ def attach_cover_references(native_path, featured_ids, articles_by_id, protected
                     anchorId=named[0][1]['id'] if named else None,
                     transfer=None, createAnchor=False, updateCard=not card_protected)
         if card_protected and card_story.get('xrefs'):
-            if len(card_story['xrefs']) != 1 or card_story['text'] != XREF_MARK:
+            old = card_story['xrefs'][0] if len(card_story['xrefs']) == 1 else None
+            if old is not None and old['format'] == FORMAT_NAME and card_story['text'].startswith(XREF_MARK + SEPARATOR) \
+                    and card_story['text'] != _card_text(old['format'], articles_by_id[aid]['title']):
+                # Only the page number is live; the protected card prints the headline as plain text.
+                raise ValueError('A protected cover card prints its headline as text and cannot follow a changed headline; '
+                                 'unprotect the cover or keep the headline: ' + aid)
+            if old is None or card_story['text'] != _card_text(old['format'], articles_by_id[aid]['title']):
                 raise ValueError('Protected cover reference must contain one isolated native cross-reference')
-            old = card_story['xrefs'][0]
             matches = _anchors(base, name=name, identity=old['target'])
-            if len(matches) != 1 or old['format'] != FORMAT_NAME:
+            if len(matches) != 1 or old['format'] not in FORMATS:
                 raise ValueError('Protected cover reference has an unknown article destination or format')
             if plan['anchorId'] != old['target']:
                 if headline_protected or _anchors(original, identity=old['target']):
@@ -210,8 +225,11 @@ def attach_cover_references(native_path, featured_ids, articles_by_id, protected
             steps = [('file.open', {'path': str(staged)}),
                      ('xref.defineFormat', dict(name=FORMAT_NAME, definition=FORMAT_DEFINITION))]
             for plan in dynamic:
+                # Replace the whole card with the live page number followed by the plain headline.
                 story = updated['stories'][str(plan['coverStoryId'])]
                 steps.extend([('text.select', dict(story=plan['coverStoryId'], anchor=0, focus=len(story['text'].encode('utf-8')))),
+                              ('text.insert', dict(text=SEPARATOR + plan['title'], raw=True)),
+                              ('text.select', dict(story=plan['coverStoryId'], anchor=0, focus=0)),
                               ('xref.insert', dict(anchor=plan['anchorId'], format=FORMAT_NAME))])
             steps.append(('file.saveAs', {'path': str(staged)}))
             _run(cli, output_dir, 'native-reference-insert', steps)
@@ -270,7 +288,7 @@ def verify_cover_references(native_path, expected_manifest, cli, output_dir):
         anchor = named[0]
         if len([candidate for candidate in anchors if candidate['id'] == anchor['id']]) != 1:
             raise ValueError('Native article anchor ID is not globally unique: ' + aid)
-        records = [record for record in references if record['target'] == anchor['id'] and record['format'] == FORMAT_NAME]
+        records = [record for record in references if record['target'] == anchor['id'] and record['format'] in FORMATS]
         if len(records) != 1 or not records[0].get('text') or records[0]['text'] == '??':
             raise ValueError('Native cover reference is missing, ambiguous or unresolved: ' + aid)
         destination_frames = [frame for frame in frames if frame['item']['content']['story'] == anchor['story']]
@@ -279,13 +297,15 @@ def verify_cover_references(native_path, expected_manifest, cli, output_dir):
             raise ValueError('Native reference must link one cover card to one headline frame')
         header = document['stories'][str(anchor['story'])]
         card = document['stories'][str(records[0]['story'])]
-        if card['text'] != XREF_MARK or len(card.get('xrefs', [])) != 1:
-            raise ValueError('Native cover card must contain its isolated generated reference')
         headline = _title(header)
         _single_paragraph_title(headline)
-        expected = _generated_text(anchor['page'], headline)
+        if card['text'] != _card_text(records[0]['format'], headline) or len(card.get('xrefs', [])) != 1:
+            raise ValueError('Native cover card must contain its isolated generated reference')
+        expected = _generated_text(anchor['page'], headline) if records[0]['format'] == LEGACY_FORMAT_NAME else str(anchor['page'])
         if records[0]['text'] != expected:
             raise ValueError('Native cover reference generated unexpected text: ' + aid)
-        checks.append(dict(articleId=aid, mode='dynamic', text=records[0]['text'],
-                           anchorId=anchor['id'], pageName=anchor['page']))
+        # text: the card as it reads; generated: the live part the engine wrote (the page number,
+        # or the whole card for the legacy format).
+        checks.append(dict(articleId=aid, mode='dynamic', text=card['text'].replace(XREF_MARK, records[0]['text'], 1),
+                           generated=records[0]['text'], anchorId=anchor['id'], pageName=anchor['page']))
     return dict(valid=True, features=checks)

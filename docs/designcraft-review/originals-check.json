@@ -1,0 +1,411 @@
+{
+  "schema": "ote.designcraft.originals-check.v1",
+  "date": "2026-10-18",
+  "engine": "DesignCraft 0.9.0 (headless WebAssembly and designcraft-cli 0.9.0)",
+  "fidelity": {
+    "method": "Recreated pages from the design templates with the original issue data, rendered at the same scale as the InDesign PDF page; similarity = 1 − mean absolute pixel difference (tools: scratch sbs2.py).",
+    "pages": {
+      "ote-2024 cover": {
+        "originalFonts": 0.9778,
+        "portable": 0.9688
+      },
+      "ote-2024 p2": {
+        "originalFonts": 0.999,
+        "portable": 0.999
+      },
+      "ote-2024 p3": {
+        "originalFonts": 0.9992,
+        "portable": 0.9988
+      },
+      "ote-2025 cover": {
+        "originalFonts": 0.9789,
+        "portable": 0.945,
+        "originalFontsWithSalted": 0.9797
+      },
+      "ote-2025 p2": {
+        "originalFonts": 0.9932,
+        "portable": 0.9929
+      },
+      "ote-2025 p3": {
+        "originalFonts": 0.9928,
+        "portable": 0.9927
+      }
+    },
+    "knownDifferences": [
+      "The inset sticker on the March 2025 cover is issue content and is not part of the design layer.",
+      "Salted (2025 handwriting): with the licensed file installed privately the cover scores 0.9797 (glyph-for-glyph match); without it Caveat Brush stands in (0.9789). The Salted file is personal-use licensed and is not committed.",
+      "Interior p2/p3 compare the empty page shells (header, frame, dateline)."
+    ]
+  },
+  "printCheck": {
+    "tool": "tools/designcraft/check-print.py",
+    "baselineNote": "PDFs sent to and printed by the Prince George Citizen (PGC001100 folders) and the final issue PDFs: plain PDF 1.4, RGB, 756x792 pt, trim = page, no bleed, all fonts embedded, images down to 64 ppi.",
+    "baseline": [
+      {
+        "file": "Archive from PG Citizen/PGC001100-ZZZZNE-20241114/Cover Page -- issue 3 - Lina.pdf",
+        "pdfVersion": "1.4",
+        "pageCount": 17,
+        "pageSizes": [
+          [
+            756.0,
+            792.0
+          ]
+        ],
+        "trimEqualsPage": true,
+        "bleed": 0.0,
+        "pdfx": false,
+        "outputIntent": false,
+        "fontsNotEmbedded": [],
+        "type3Fonts": 0,
+        "minImagePpi": 72.0,
+        "imageColorspaces": [
+          "DeviceGray",
+          "DeviceN(1,DeviceCMYK,Black)",
+          "DeviceRGB",
+          "ICCBased(RGB,Modified Apple Wide Color Sharing Profile)",
+          "Indexed(252,DeviceRGB)"
+        ]
+      },
+      {
+        "file": "Fall 2024- Winter 2025/Issue 4/PGC001100-ZZZZNE-20241205/Cover Page -- issue 3 - Lina.pdf",
+        "pdfVersion": "1.4",
+        "pageCount": 17,
+        "pageSizes": [
+          [
+            756.0,
+            792.0
+          ]
+        ],
+        "trimEqualsPage": true,
+        "bleed": 0.0,
+        "pdfx": false,
+        "outputIntent": false,
+        "fontsNotEmbedded": [],
+        "type3Fonts": 0,
+        "minImagePpi": 72.0,
+        "imageColorspaces": [
+          "DeviceGray",
+          "DeviceN(1,DeviceCMYK,Black)",
+          "DeviceRGB",
+          "Indexed(252,DeviceRGB)"
+        ]
+      },
+      {
+        "file": "Fall 2024- Winter 2025/Issue 7 March 2025/Issue 7 March 2025 Folder/Issue 7 March 2025.pdf",
+        "pdfVersion": "1.4",
+        "pageCount": 17,
+        "pageSizes": [
+          [
+            756.0,
+            792.0
+          ]
+        ],
+        "trimEqualsPage": true,
+        "bleed": 0.0,
+        "pdfx": false,
+        "outputIntent": false,
+        "fontsNotEmbedded": [],
+        "type3Fonts": 0,
+        "minImagePpi": 64.4,
+        "imageColorspaces": [
+          "DeviceGray",
+          "DeviceRGB",
+          "ICCBased(RGB,Apple RGB)",
+          "Indexed(135,DeviceRGB)",
+          "Indexed(139,DeviceRGB)",
+          "Indexed(169,DeviceRGB)",
+          "Indexed(223,DeviceRGB)",
+          "Indexed(238,DeviceRGB)",
+          "Indexed(242,DeviceRGB)",
+          "Indexed(247,ICCBased(RGB,Modified DCI-P3 D65 Gamut with sRGB Transfer))",
+          "Indexed(249,DeviceRGB)",
+          "Indexed(251,DeviceRGB)",
+          "Indexed(252,DeviceRGB)",
+          "Indexed(255,DeviceRGB)",
+          "Indexed(255,ICCBased(RGB,Modified DCI-P3 D65 Gamut with sRGB Transfer))",
+          "Indexed(5,DeviceRGB)"
+        ]
+      },
+      {
+        "file": "2025-2026 Ahmad's Version/Issue 2/Issue 2 October 2025 Folder/Issue 2 October 2025.pdf",
+        "pdfVersion": "1.4",
+        "pageCount": 16,
+        "pageSizes": [
+          [
+            756.0,
+            792.0
+          ]
+        ],
+        "trimEqualsPage": true,
+        "bleed": 0.0,
+        "pdfx": false,
+        "outputIntent": false,
+        "fontsNotEmbedded": [],
+        "type3Fonts": 0,
+        "minImagePpi": 64.4,
+        "imageColorspaces": [
+          "DeviceRGB",
+          "ICCBased(RGB,Modified Display P3)",
+          "Indexed(113,DeviceRGB)",
+          "Indexed(147,DeviceRGB)"
+        ]
+      }
+    ],
+    "candidates": [
+      {
+        "file": "OTE 2025–26 design, real March 2025 articles, original fonts (Salted substituted), CLI-planned",
+        "pdfVersion": "1.6",
+        "pageCount": 4,
+        "pageSizes": [
+          [
+            756.0,
+            792.0
+          ]
+        ],
+        "trimEqualsPage": true,
+        "bleed": 0.0,
+        "pdfx": true,
+        "outputIntent": true,
+        "fontsNotEmbedded": [],
+        "type3Fonts": 0,
+        "minImagePpi": 153.3,
+        "imageColorspaces": [
+          "ICCBased(RGB,sRGB)"
+        ],
+        "problems": [],
+        "notes": [
+          "Image colour spaces not seen in the accepted files: ICCBased(RGB,sRGB)",
+          "Candidate is PDF/X with an output intent; the accepted files are plain PDF (stricter, not a problem)"
+        ]
+      },
+      {
+        "file": "OTE 2024–25 design, real March 2025 articles, original fonts",
+        "pdfVersion": "1.6",
+        "pageCount": 3,
+        "pageSizes": [
+          [
+            756.0,
+            792.0
+          ]
+        ],
+        "trimEqualsPage": true,
+        "bleed": 0.0,
+        "pdfx": true,
+        "outputIntent": true,
+        "fontsNotEmbedded": [],
+        "type3Fonts": 1,
+        "minImagePpi": 151.0,
+        "imageColorspaces": [
+          "ICCBased(RGB,sRGB)"
+        ],
+        "problems": [],
+        "notes": [
+          "1 Type3 font(s) (glyphs drawn as vector procedures; valid in PDF/X-4, worth a look on the press proof)",
+          "Image colour spaces not seen in the accepted files: ICCBased(RGB,sRGB)",
+          "Candidate is PDF/X with an output intent; the accepted files are plain PDF (stricter, not a problem)",
+          "3 pages: a saddle-stitched issue needs a multiple of four"
+        ]
+      },
+      {
+        "file": "OTE 2025–26 design, real articles, portable fonts",
+        "pdfVersion": "1.6",
+        "pageCount": 3,
+        "pageSizes": [
+          [
+            756.0,
+            792.0
+          ]
+        ],
+        "trimEqualsPage": true,
+        "bleed": 0.0,
+        "pdfx": true,
+        "outputIntent": true,
+        "fontsNotEmbedded": [],
+        "type3Fonts": 0,
+        "minImagePpi": 153.3,
+        "imageColorspaces": [
+          "ICCBased(RGB,sRGB)"
+        ],
+        "problems": [],
+        "notes": [
+          "Image colour spaces not seen in the accepted files: ICCBased(RGB,sRGB)",
+          "Candidate is PDF/X with an output intent; the accepted files are plain PDF (stricter, not a problem)",
+          "3 pages: a saddle-stitched issue needs a multiple of four"
+        ]
+      },
+      {
+        "file": "OTE 2025–26 design composed client-only in Chromium (planner → worker), photo focus 0.21/0.75 at 150% zoom",
+        "pdfVersion": "1.6",
+        "pageCount": 3,
+        "pageSizes": [
+          [
+            756.0,
+            792.0
+          ]
+        ],
+        "trimEqualsPage": true,
+        "bleed": 0.0,
+        "pdfx": true,
+        "outputIntent": true,
+        "fontsNotEmbedded": [],
+        "type3Fonts": 0,
+        "minImagePpi": 102.2,
+        "imageColorspaces": [
+          "ICCBased(RGB,sRGB)"
+        ],
+        "problems": [],
+        "notes": [
+          "1 image placement(s) under 150 ppi (the accepted files go down to 64.4 ppi)",
+          "Image colour spaces not seen in the accepted files: ICCBased(RGB,sRGB)",
+          "Candidate is PDF/X with an output intent; the accepted files are plain PDF (stricter, not a problem)",
+          "3 pages: a saddle-stitched issue needs a multiple of four"
+        ]
+      }
+    ]
+  },
+  "idmlCheck": {
+    "tool": "tools/designcraft/check-idml.py",
+    "baseline": [
+      {
+        "file": "2025-2026 Ahmad's Version/Issue 2/Issue 2 October 2025 Folder/Issue 2 October 2025.idml",
+        "product": "20.5(48)",
+        "domVersion": "20.4",
+        "pages": 16,
+        "pageSizes": [
+          [
+            756.0,
+            792.0
+          ]
+        ],
+        "stories": 38,
+        "textFrames": 38,
+        "links": 11,
+        "problems": []
+      },
+      {
+        "file": "Fall 2024- Winter 2025/Issue 7 March 2025/Issue 7 March 2025 Folder/Issue 7 March 2025.idml",
+        "product": "20.0(95)",
+        "domVersion": "20.0",
+        "pages": 17,
+        "pageSizes": [
+          [
+            756.0,
+            792.0
+          ]
+        ],
+        "stories": 53,
+        "textFrames": 55,
+        "links": 26,
+        "problems": []
+      },
+      {
+        "file": "Fall 2024- Winter 2025/Issue 5/Issue 5 Folder/Issue 5.idml",
+        "product": "20.0(32)",
+        "domVersion": "20.0",
+        "pages": 17,
+        "pageSizes": [
+          [
+            756.0,
+            792.0
+          ]
+        ],
+        "stories": 28,
+        "textFrames": 28,
+        "links": 13,
+        "problems": []
+      }
+    ],
+    "candidates": [
+      {
+        "file": "OTE 2025–26 design, real March 2025 articles, original fonts (Salted substituted), CLI-planned",
+        "product": "16.0(1)",
+        "domVersion": "16.0",
+        "pages": 4,
+        "pageSizes": [
+          [
+            756.0,
+            792.0
+          ]
+        ],
+        "stories": 39,
+        "textFrames": 39,
+        "links": 2,
+        "problems": [],
+        "notes": [
+          "DOMVersion 16.0 is older than the originals' 20.0, 20.4; InDesign opens older IDML and converts it"
+        ]
+      },
+      {
+        "file": "OTE 2024–25 design, real March 2025 articles, original fonts",
+        "product": "16.0(1)",
+        "domVersion": "16.0",
+        "pages": 3,
+        "pageSizes": [
+          [
+            756.0,
+            792.0
+          ]
+        ],
+        "stories": 38,
+        "textFrames": 38,
+        "links": 5,
+        "problems": [],
+        "notes": [
+          "DOMVersion 16.0 is older than the originals' 20.0, 20.4; InDesign opens older IDML and converts it"
+        ]
+      },
+      {
+        "file": "OTE 2025–26 design, real articles, portable fonts",
+        "product": "16.0(1)",
+        "domVersion": "16.0",
+        "pages": 3,
+        "pageSizes": [
+          [
+            756.0,
+            792.0
+          ]
+        ],
+        "stories": 39,
+        "textFrames": 39,
+        "links": 4,
+        "problems": [],
+        "notes": [
+          "DOMVersion 16.0 is older than the originals' 20.0, 20.4; InDesign opens older IDML and converts it"
+        ]
+      }
+    ]
+  },
+  "idmlRoundTrip": {
+    "method": "Each generated IDML reopened in the 0.9.0 engine; story texts compared with the native document.",
+    "results": {
+      "OTE 2025–26 design, real March 2025 articles, original fonts (Salted substituted), CLI-planned": {
+        "stories": 38,
+        "reopenedStories": 38,
+        "identicalText": true,
+        "pages": 4
+      },
+      "OTE 2024–25 design, real March 2025 articles, original fonts": {
+        "stories": 36,
+        "reopenedStories": 36,
+        "identicalText": true,
+        "pages": 3
+      },
+      "OTE 2025–26 design, real articles, portable fonts": {
+        "stories": 38,
+        "reopenedStories": 38,
+        "identicalText": true,
+        "pages": 3
+      },
+      "OTE 2024–25 design, portable fonts": {
+        "stories": 36,
+        "reopenedStories": 36,
+        "identicalText": true,
+        "pages": 3
+      }
+    }
+  },
+  "notVerifiedHere": [
+    "Opening the IDML in Adobe InDesign (no InDesign in this environment).",
+    "A physical press proof."
+  ]
+}

@@ -18,7 +18,7 @@ RUN npm run build \
 
 FROM node:24-bookworm-slim AS runner
 ARG TARGETARCH
-ARG DESIGNCRAFT_VERSION=0.4.0
+ARG DESIGNCRAFT_VERSION=0.9.0
 WORKDIR /app
 RUN apt-get update && apt-get install -y --no-install-recommends python3 python3-venv ca-certificates libgcc-s1 \
     && rm -rf /var/lib/apt/lists/*
@@ -33,7 +33,7 @@ RUN --mount=type=secret,id=build_ca,required=false \
     else /opt/ote-python/bin/pip install --no-cache-dir -r tools/designcraft/requirements.txt; fi
 # The downloader verifies upstream checksums and detects the target container architecture.
 RUN --mount=type=secret,id=build_ca,required=false \
-    test "$DESIGNCRAFT_VERSION" = "0.4.0" \
+    test "$DESIGNCRAFT_VERSION" = "0.9.0" \
     && case "$TARGETARCH" in amd64) native_arch=x86_64 ;; arm64) native_arch=aarch64 ;; *) exit 1 ;; esac \
     && if [ -f /run/secrets/build_ca ]; then \
       ote_build_cert="$(mktemp)" \
