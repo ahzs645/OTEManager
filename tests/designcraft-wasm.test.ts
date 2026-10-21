@@ -7,6 +7,7 @@ import { mkdtemp, readFile, readdir, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
+import { gunzipSync } from "node:zlib";
 import { createNativeService } from "../server/designcraft-native";
 
 // The browser compiler modules are plain ES modules served from public/.
@@ -49,6 +50,28 @@ test("committed headless engine passes its integrity manifest and runs a command
   expect((await JSZip.loadAsync(run.doc)).file("document.json")).not.toBeNull();
   const png = await executor.renderPng(run.doc, { page: 0, scale: 0.5 });
   expect([...png.subarray(1, 4)]).toEqual([0x50, 0x4e, 0x47]);
+});
+
+test("headless loader accepts a module decoded by HTTP Content-Encoding gzip", async () => {
+  const base = pathToFileURL(join(root, "public/designcraft/headless") + "/").href;
+  const { Engine, manifest } = await executors.loadHeadlessEngine(base, async (name: string) => {
+    const bytes = await readFile(new URL(name, base));
+    return new Uint8Array(name.endsWith(".wasm.gz") ? gunzipSync(bytes) : bytes);
+  });
+  expect(Engine.version()).toBe("0.9.0");
+  expect(manifest.wasm.bytes).toBe(34897168);
+});
+
+test.each([false, true])("headless loader rejects modified engine bytes (HTTP decoded: %s)", async (decoded) => {
+  const base = pathToFileURL(join(root, "public/designcraft/headless") + "/").href;
+  await expect(executors.loadHeadlessEngine(base, async (name: string) => {
+    let bytes = await readFile(new URL(name, base));
+    if (name.endsWith(".wasm.gz")) {
+      if (decoded) bytes = gunzipSync(bytes);
+      bytes[bytes.length - 1] ^= 1;
+    }
+    return new Uint8Array(bytes);
+  })).rejects.toThrow(/integrity check/);
 });
 
 test("Markdown conversion keeps UTF-8 byte ranges, combined emphasis and links", () => {

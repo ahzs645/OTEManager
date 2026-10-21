@@ -61,10 +61,10 @@ export async function runWasmJob(job: WasmJob): Promise<{ exitCode: number; stdo
   const fonts = await readFonts(job.fontDir, () => true);
   const planned = new Set<string>(job.mode === "issue" ? (issue.layoutPlan?.pages ?? []).map((p: Json) => p.templateId) : [job.selected.templateId ?? ""]);
   const designs = compiler.pages.usesDesigns({ templates: library.templates.filter((t: Json) => planned.has(t.id)) });
-  // Original-font design builds also carry the open substitutes for faces the server lacks.
-  if (designs && job.fontProfile === "original2025") {
+  // Original-font builds also carry bundled Salted and any design substitutes the server lacks.
+  if (job.fontProfile === "original2025") {
     const present = new Set(fonts.map((font) => font.name));
-    fonts.push(...await readFonts(join(job.staticDir, "assets/fonts"), (name) => compiler.pages.isDesignFont(name) && !present.has(name)));
+    fonts.push(...await readFonts(join(job.staticDir, "assets/fonts"), (name) => (name === "Salted-Regular.otf" || name === "LICENSE-Salted.txt" || (designs && compiler.pages.isDesignFont(name))) && !present.has(name)));
   }
   // Recipe resources were validated and staged by prepareRecipe; nothing else is readable.
   const loadMedia = async ({ path }: { root: string; path: string }) => {

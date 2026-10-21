@@ -1,6 +1,7 @@
 'use strict';
 async function setupWebEditor(){
  await plannerReady;
+ if(new URLSearchParams(location.search).get("workspace")==="1")return;
  const section=document.createElement('section');section.id='web-editor';section.className='web-editor-section';
  const heading=document.createElement('h2');heading.textContent='DesignCraft web editor';section.append(heading);
  const description=document.createElement('p');description.textContent='Edit newspaper documents in your browser. Use DesignCraft’s File menu to save and export your changes.';section.append(description);

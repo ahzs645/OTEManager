@@ -12,7 +12,7 @@ import { IDENTITY, clone, deepEqual, interchangeMetadata, readNative, sha256Hex,
 export const LIBRARY_SCHEMA = 'ote.designcraft.templates.v1';
 export const ISSUE_SCHEMA = 'ote.designcraft.issue.v1';
 const MEDIA_SUFFIXES = ['.png', '.jpg', '.jpeg', '.pdf', '.tif', '.tiff', '.webp'];
-const PORTABLE_FONT_PREFIXES = ['SourceSans3-', 'SourceSerif4-', 'JetBrainsMono-'];
+const PORTABLE_FONT_PREFIXES = ['SourceSans3-', 'SourceSerif4-', 'JetBrainsMono-', 'Salted-'];
 // Open substitutes for the original designs' faces; packaged only for design builds.
 export const DESIGN_FONT_PREFIXES = ['texgyreheros', 'Barlow-', 'CaveatBrush-'];
 const DESIGN_FONT_LICENSES = ['OFL-Barlow.txt', 'OFL-CaveatBrush.txt', 'GUST-FONT-LICENSE-TeXGyreHeros.txt'];
@@ -53,7 +53,7 @@ export function documentFonts(fonts, fontProfile, designs = false) {
     if (!designs && isDesignFont(name)) return false;
     const suffix = suffixOf(name);
     const accepted = ['.ttf', '.otf', '.ttc', '.otc'].includes(suffix) && (fontProfile === 'original2025' || PORTABLE_FONT_PREFIXES.some((p) => name.startsWith(p)) || (designs && isDesignFont(name)));
-    return accepted || (name.startsWith('OFL-') && name.endsWith('.txt')) || (designs && isDesignFont(name));
+    return accepted || name === 'LICENSE-Salted.txt' || (name.startsWith('OFL-') && name.endsWith('.txt')) || (designs && isDesignFont(name));
   });
 }
 

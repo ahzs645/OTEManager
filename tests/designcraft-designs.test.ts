@@ -65,13 +65,34 @@ test("open font substitutes cover every licensed face the designs use", () => {
   expect(families("CaveatBrush-Regular.ttf")).toContain("Caveat Brush");
   expect(families("texgyreheros-bold.otf")).toContain("TeX Gyre Heros");
   const gaps = pages.designFontGaps(library, fonts);
-  expect(gaps).toEqual(expect.arrayContaining(["Decalotype", "Helvetica Neue", "Salted"]));
+  expect(gaps).toEqual(expect.arrayContaining(["Decalotype", "Helvetica Neue"]));
+  expect(gaps).not.toContain("Salted");
+  expect(families("Salted-Regular.otf")).toContain("Salted");
+  expect(pages.documentFonts(fonts, "portable").map((f: any) => f.name)).toEqual(expect.arrayContaining(["Salted-Regular.otf", "LICENSE-Salted.txt"]));
   for (const design of Object.values<any>(library.designs)) for (const style of Object.values<any>(design.styles))
     expect(design.fonts.portable[`${style.fontFamily}|${style.fontStyle}`], style.fontFamily + " " + style.fontStyle).toBeDefined();
-  // Classic builds keep their Document Fonts exactly as before; design builds add the substitutes.
+  // Classic builds include bundled Salted; only design builds add the substitutes.
   expect(pages.documentFonts(fonts, "portable").some((f: any) => pages.isDesignFont(f.name))).toBe(false);
   expect(pages.documentFonts(fonts, "portable", true).map((f: any) => f.name)).toEqual(expect.arrayContaining(["Barlow-Black.ttf", "GUST-FONT-LICENSE-TeXGyreHeros.txt"]));
 });
+
+test("bundled Salted renders and exports native, PDF and IDML without a font upload", async () => {
+  const run = await executor.run([
+    { command: "file.new", params: { width: 300, height: 300, pages: 1 } },
+    { command: "frame.create", params: { rect: [20, 20, 280, 180], content: "text", text: "Over the Edge", caret: false } },
+    { command: "text.select", params: { story: "$1.story", anchor: 0, focus: 13 } },
+    { command: "type.char", params: { attrs: { fontFamily: "Salted", fontStyle: "Regular", size: 24 } } },
+    { command: "preflight.run", params: {} },
+    { command: "file.exportPdf", params: { path: "@out:salted.pdf", standard: "x4" } },
+    { command: "file.exportIdml", params: { path: "@out:salted.idml" } },
+    { command: "file.saveAs", params: { path: "@doc" } },
+  ], { fonts: pages.documentFonts(fonts, "portable") });
+  expect(run.results[4].errors).toBe(0);
+  const document = JSON.parse(await (await JSZip.loadAsync(run.doc)).file("document.json")!.async("string"));
+  expect(JSON.stringify(document)).toContain('"Salted"');
+  expect(new TextDecoder().decode(run.outputs["salted.pdf"].subarray(0, 5))).toBe("%PDF-");
+  expect((await JSZip.loadAsync(run.outputs["salted.idml"])).file("designmap.xml")).not.toBeNull();
+}, 60000);
 
 test("a design page places the original art, house styles and dateline, and passes native preflight", async () => {
   const built = await pages.buildPage({ library, templateId: "ote-2025-story-2-none-stacked", issue: fixture, articleIds: [CFUR, "march-rcmp-job-scams"], pageNumber: 2, pageId: "p2", fontProfile: "portable", markdownit, loadMedia });

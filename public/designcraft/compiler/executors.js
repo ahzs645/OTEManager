@@ -114,9 +114,16 @@ export async function loadHeadlessEngine(baseUrl, read = async (name) => {
   return new Uint8Array(await response.arrayBuffer());
 }) {
   const manifest = JSON.parse(new TextDecoder().decode(await read('manifest.json')));
-  const compressed = await read(manifest.wasm.file);
-  if (await hex(compressed) !== manifest.wasm.compressedSha256) throw new Error('DesignCraft engine download failed its integrity check; reload to retry.');
-  const wasm = await gunzip(compressed);
+  const downloaded = await read(manifest.wasm.file);
+  // Production hosts can serve .wasm.gz with Content-Encoding: gzip, so fetch
+  // returns the decoded module. File readers and other hosts return the archive.
+  let wasm;
+  if (downloaded.length === manifest.wasm.bytes && await hex(downloaded) === manifest.wasm.sha256) {
+    wasm = downloaded;
+  } else {
+    if (downloaded.length !== manifest.wasm.compressedBytes || await hex(downloaded) !== manifest.wasm.compressedSha256) throw new Error('DesignCraft engine download failed its integrity check; reload to retry.');
+    wasm = await gunzip(downloaded);
+  }
   if (wasm.length !== manifest.wasm.bytes || await hex(wasm) !== manifest.wasm.sha256) throw new Error('DesignCraft engine failed its integrity check after decompression.');
   const Engine = await loadHeadless(new URL(manifest.glue.file, baseUrl).href, wasm);
   return { Engine, manifest };

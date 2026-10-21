@@ -45,7 +45,7 @@ async function setupBrowserCompose(){
   try{
    status.textContent='Preparing the recipe…';const recipe=mode==='issue'?await buildIssueZip():await buildPageZip();
    const fonts=await fontPayload(),localFonts=fonts.fonts.map(f=>({name:f.name,bytes:f.bytes.slice(0)}));
-   const result=await call('compile',{mode,booklet:booklet.checked,recipe:toBuffer(recipe),...fonts},p=>status.textContent=describe(p));result.localFonts=localFonts;
+   const result=await call('compile',{mode,booklet:booklet.checked,recipe:toBuffer(recipe),...fonts},p=>status.textContent=describe(p));result.localFonts??=localFonts;
    status.textContent=result.status==='completed'?`Composed in your browser with ${result.version}. Preflight passed: ${result.preflight.warnings} warning(s). Download below.`:`${result.message} Download the draft and preflight below.`;
    offer(result,mode);return result;
   }catch(error){status.textContent=error.message;throw error;}finally{busy(false);}

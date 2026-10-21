@@ -6,7 +6,7 @@
 importScripts('../assets/jszip.min.js', '../assets/markdown-it.min.js');
 
 const BRAND = new Set(['assets/ote-horizontal-logo.png', 'assets/ote-stacked-logo.pdf', 'assets/ote-stacked-logo.png', 'assets/source-cover-photo.jpeg']);
-const FONT_FILES = ['SourceSans3-Regular.ttf', 'SourceSans3-Semibold.ttf', 'SourceSans3-Bold.ttf', 'SourceSans3-It.ttf',
+const FONT_FILES = ['Salted-Regular.otf', 'LICENSE-Salted.txt', 'SourceSans3-Regular.ttf', 'SourceSans3-Semibold.ttf', 'SourceSans3-Bold.ttf', 'SourceSans3-It.ttf',
   'SourceSerif4-Regular.ttf', 'SourceSerif4-It.ttf', 'SourceSerif4-Bold.ttf', 'SourceSerif4-BoldIt.ttf', 'JetBrainsMono-Regular.ttf',
   'OFL-SourceSans3.txt', 'OFL-SourceSerif4.txt', 'OFL-JetBrainsMono.txt'];
 // Open substitutes for the original designs' faces, fetched the first time a design is used.
@@ -67,7 +67,7 @@ async function bundle(prefix, artifacts, fonts, recipeZip) {
 
 async function fontsFor(message, library) {
   const extra = (message.fonts || []).map((f) => ({ name: f.name, bytes: new Uint8Array(f.bytes) }));
-  const fonts = message.fontProfile === 'original2025' ? [...extra, ...portableFonts.filter((f) => f.name.startsWith('JetBrainsMono-') || f.name.startsWith('OFL-'))] : [...portableFonts];
+  const fonts = message.fontProfile === 'original2025' ? [...extra, ...portableFonts.filter((f) => f.name.startsWith('JetBrainsMono-') || f.name.startsWith('OFL-') || f.name.startsWith('Salted-') || f.name === 'LICENSE-Salted.txt')] : [...portableFonts];
   if (modules.pages.usesDesigns(library)) {
     designFonts ??= await Promise.all(DESIGN_FONT_FILES.map(async (name) => ({ name, bytes: await fetchBytes('../assets/fonts/' + name) })));
     const present = new Set(fonts.map((f) => f.name));
@@ -98,6 +98,11 @@ const handlers = {
     const common = { markdownit: self.markdownit, JSZip: self.JSZip, executor, loadMedia: recipe.loadMedia, fontProfile, substituteFonts: substitutesFor(message, planned, fonts) };
     const prefix = message.mode === 'issue' ? 'issue' : 'page';
     const docFonts = modules.pages.documentFonts(fonts, fontProfile, modules.pages.usesDesigns(planned));
+    // The editor has its own font database. Carry every face used by this
+    // document, including bundled open substitutes for original house designs.
+    const localFonts = docFonts.filter((font) => /\.(ttf|otf|ttc|otc)$/i.test(font.name)).map((font) => ({
+      name: font.name, bytes: font.bytes.buffer.slice(font.bytes.byteOffset, font.bytes.byteOffset + font.bytes.byteLength),
+    }));
     try {
       let result;
       if (message.mode === 'issue') {
@@ -109,11 +114,11 @@ const handlers = {
         result = await modules.pages.compilePage(built, { executor, fonts, JSZip: self.JSZip });
       }
       const zip = await bundle(prefix, result.artifacts, docFonts, recipe.zip);
-      return { status: 'completed', prefix, version, manifest: result.manifest, preflight: result.artifacts.preflight, native: result.artifacts.native, pdf: result.artifacts.pdf, idml: result.artifacts.idml, bundle: zip };
+      return { status: 'completed', prefix, version, manifest: result.manifest, preflight: result.artifacts.preflight, native: result.artifacts.native, pdf: result.artifacts.pdf, idml: result.artifacts.idml, bundle: zip, localFonts };
     } catch (error) {
       if (!error.artifacts) throw error;
       const zip = await bundle(prefix, error.artifacts, docFonts, recipe.zip);
-      return { status: 'failed', prefix, version, message: error.message, preflight: error.artifacts.preflight, native: error.artifacts.native, draftName: error.artifacts.draftName, bundle: zip };
+      return { status: 'failed', prefix, version, message: error.message, preflight: error.artifacts.preflight, native: error.artifacts.native, draftName: error.artifacts.draftName, bundle: zip, localFonts };
     }
   },
 

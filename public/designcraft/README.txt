@@ -29,16 +29,16 @@ Successful PDFs request PDF/X-4. Browser previews do not verify native fitting.
 Stock IDML loses URL links and parent override lists. Keep the generated
 interchange-metadata.json and use reopen-idml.py for checked companion round
 trips. Adobe InDesign does not consume this sidecar and was not tested here.
-Salted and Helvetica Neue were subsequently supplied and validated. The optional
-original2025 profile loads selected private fonts through an explicit --font-dir;
-the public kit includes open fonts only. Other source fonts and some graphics
+Salted Regular is bundled in assets/fonts/ with its supplied personal-use-only
+notice (LICENSE-Salted.txt), and loads automatically in the web editor. The optional
+original2025 profile loads the other selected private fonts through --font-dir. Other source fonts and some graphics
 remain missing. Older imported frames still need fitting and visual review.
 Configured OTEManager servers provide native export from this planner through
 /api/designcraft/native. Static hosting uses the included standalone CLI workflow;
 there is no browser/WASM renderer. Production deployment remains outstanding.
 
 Recovered PDFs under originals/ are byte-identical; pdfs/ reading copies may be
-optimized. Original proprietary font files are excluded. Font and JSZip notices
+optimized. Other private original font files are excluded. Font and JSZip notices
 are included. Review native preflight and obtain the printer's requirements
 before treating any output as a production issue.
 
