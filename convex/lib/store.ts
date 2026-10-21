@@ -87,6 +87,33 @@ export class Store {
     if (doc) await this.writer.delete(doc._id);
   }
   private async validateRelations(table: TableName, row: any) {
+    if (table === "issueDesignPlans") {
+      await this.require("issues", row.issueId);
+      if (
+        (await this.by("issueDesignPlans", "issueId", row.issueId)).some(
+          (p) => p.id !== row.id,
+        )
+      )
+        throw new Error("An issue can only have one Issue Studio plan");
+    }
+    if (
+      [
+        "issuePages",
+        "issuePlacements",
+        "issueReservations",
+        "issueDesignRevisions",
+        "compositionJobs",
+      ].includes(table)
+    ) {
+      const plan = await this.require("issueDesignPlans", row.planId);
+      if (plan.issueId !== row.issueId)
+        throw new Error("Issue Studio object belongs to a different issue");
+      if (table === "issuePlacements") {
+        const article = await this.require("articles", row.articleId);
+        if (article.issueId !== row.issueId)
+          throw new Error("Placement article is not assigned to this issue");
+      }
+    }
     if (table === "authors") {
       const email = row.email.trim().toLowerCase();
       const others = await this.all("authors");

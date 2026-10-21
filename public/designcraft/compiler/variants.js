@@ -3,11 +3,12 @@
 // Fit is decided by native preflight; copy is never cut or silently shrunk.
 // Headline size steps are explicit, labelled variants, as the compiler allows.
 import { composeSource } from './markdown-story.js';
+import { allocateFixedIssue } from './issue-allocator.js';
 import { CompileError, buildPage, compilePage } from './page-compiler.js';
 import { clone, readNative } from './native-doc.js';
 import { fitHeadlineBands, growHeadlineBands, measureHeadlines } from './fit.js';
 
-const BODY_LEADING = 12, BODY_PARAGRAPH_SPACE = 4, BODY_CHAR = 4.75;   // Source Serif 4 10/12
+const BODY_CHAR_FRACTION = 0.475; // Estimate only; shaping and preflight decide fit.
 const HEADLINE_CHAR = 0.5;                                               // Source Sans 3 Bold, em fraction
 export const HEADLINE_STEPS = [22, 20, 18];
 
@@ -41,32 +42,55 @@ export function enumerateCandidates(library, articles, design = null) {
   return out;
 }
 
-/** Cheap estimate: body lines needed vs available, headline lines needed vs available. */
+/** Effective point metrics used by buildPage, including house styles and slot overrides. */
+export function slotMetrics(slot, template, library) {
+  const defaults = slot.role === 'headline' ? { size: 24, leading: 27, para: {} } : { size: 10, leading: 12, para: { spaceAfter: 4 } };
+  const family = template.design ? library.designs?.[template.design] : null;
+  const styleName = family && typeof slot.style === 'string' ? slot.style : slot.role === 'headline' ? 'OTE Headline' : 'OTE Body';
+  const house = family?.styles?.[styleName] ?? {};
+  const base = {...defaults, ...house, para: {...defaults.para, ...house.para}};
+  const size = Number(slot.fontSize ?? base.size), leading = Number(slot.leading ?? (slot.fontSize ? size * 1.15 : base.leading));
+  return { size, leading, spaceAfter: Number(base.para.spaceAfter ?? 0), spaceBefore: Number(base.para.spaceBefore ?? 0), tracking: Number(base.chars?.tracking ?? 0) };
+}
+
+/** Estimate demand once per article across its explicitly linked body regions. */
 export function estimate(candidate, library, markdownit) {
   const gutter = library.page.gutter ?? 12;
   let worstBody = 0, bodyFill = [], headlineOver = 0;
+  const bodySlots = new Map();
   for (const slot of candidate.template.slots) {
-    const article = candidate.order[slot.articleIndex ?? 0];
+    const ai = slot.articleIndex ?? 0, article = candidate.order[ai];
     if (!article || slot.enabled === false) continue;
-    const [x, y, r, b] = slot.rect, w = r - x, h = b - y;
+    const [x, y, r, b] = slot.rect, w = r - x, h = b - y, type = slotMetrics(slot, candidate.template, library);
     if (slot.role === 'body') {
-      const columns = slot.columns ?? 1, colWidth = (w - gutter * (columns - 1)) / columns;
-      const perLine = Math.max(1, Math.floor(colWidth / BODY_CHAR));
-      const paragraphs = composeSource(article.body, article.bodyFormat ?? 'markdown', markdownit).text.split('\n');
-      const lines = paragraphs.reduce((n, p) => n + Math.max(1, Math.ceil([...p].length / perLine)), 0);
-      const ratio = (lines * BODY_LEADING + paragraphs.length * BODY_PARAGRAPH_SPACE) / (columns * h);
-      bodyFill.push(ratio);
-      worstBody = Math.max(worstBody, ratio);
+      if (!bodySlots.has(ai)) bodySlots.set(ai, []);
+      bodySlots.get(ai).push(slot);
     } else if (slot.role === 'headline') {
-      const size = slot.fontSize ?? 24, perLine = Math.max(1, Math.floor(w / (size * HEADLINE_CHAR)));
+      const perLine = Math.max(1, Math.floor(w / (type.size * HEADLINE_CHAR + type.tracking * type.size / 1000)));
       const words = article.title.split(/\s+/);
       let lines = 1, current = 0;
       for (const word of words) { const len = [...word].length; if (current && current + 1 + len > perLine) { lines++; current = len; } else current += (current ? 1 : 0) + len; }
-      headlineOver = Math.max(headlineOver, lines - Math.max(1, Math.floor(h / (size * 1.125))));
+      headlineOver = Math.max(headlineOver, lines - Math.max(1, Math.floor(h / type.leading)));
     }
   }
+  for (const [ai, slots] of bodySlots) {
+    const article = candidate.order[ai], paragraphs = composeSource(article.body, article.bodyFormat ?? 'markdown', markdownit).text.split('\n');
+    let charCapacity = 0, paragraphCost = 0;
+    for (const slot of slots) {
+      const [x,y,r,b] = slot.rect, type = slotMetrics(slot, candidate.template, library), columns = slot.columns ?? 1;
+      const colWidth = (r-x-gutter*(columns-1))/columns;
+      const perLine = Math.max(1, Math.floor(colWidth / (type.size * BODY_CHAR_FRACTION + type.tracking * type.size/1000)));
+      const lines = Math.max(0, Math.floor((b-y)/type.leading))*columns;
+      charCapacity += perLine*lines;
+      paragraphCost += (type.spaceAfter+type.spaceBefore)/type.leading*perLine;
+    }
+    const averagePerLine = slots.reduce((n,slot)=>{const type=slotMetrics(slot,candidate.template,library);return n+Math.max(1,Math.floor((slot.rect[2]-slot.rect[0]-gutter*((slot.columns??1)-1))/(slot.columns??1)/(type.size*BODY_CHAR_FRACTION)));},0)/slots.length;
+    const chars = paragraphs.reduce((n,p)=>n+Math.max(averagePerLine,Math.ceil([...p].length/averagePerLine)*averagePerLine),0);
+    const ratio = charCapacity > 0 ? (chars+paragraphs.length*paragraphCost/slots.length)/charCapacity : Infinity;
+    bodyFill.push(ratio);worstBody=Math.max(worstBody,ratio);
+  }
   const fill = bodyFill.length ? bodyFill.reduce((a, c) => a + c, 0) / bodyFill.length : 0;
-  return { worstBody, fill, headlineOver };
+  return { worstBody, fill, headlineOver, confidence: 'estimated' };
 }
 
 function staticScore(est, candidate) {
@@ -87,10 +111,13 @@ async function measure(native, built, executor, JSZip) {
     { command: 'file.open', params: { path: '@doc' } },
     ...bodies.map((s) => ({ command: 'story.get', params: { frame: items.get(s.id).id } })),
   ], { doc: native, media: new Map(), fonts: [] });
-  const fill = bodies.map((slot, i) => {
-    const story = run.results[i + 1], [, y, , b] = slot.rect;
-    return (story.lines * BODY_LEADING + story.paragraphs * BODY_PARAGRAPH_SPACE) / ((slot.columns ?? 1) * (b - y));
-  });
+  const byArticle = new Map();
+  for (const [index, slot] of bodies.entries()) {
+    const ai = slot.articleIndex ?? 0, type = slotMetrics(slot, built.template, built.library ?? { designs: {}, page: {} });
+    const record = byArticle.get(ai) ?? { demand: (run.results[index + 1].lines * type.leading + run.results[index + 1].paragraphs * (type.spaceAfter + type.spaceBefore)), capacity: 0 };
+    record.capacity += (slot.columns ?? 1) * (slot.rect[3] - slot.rect[1]);byArticle.set(ai,record);
+  }
+  const fill = [...byArticle.values()].map((record)=>record.demand/record.capacity);
   const crops = built.template.slots.filter((s) => s.role === 'photo' && items.get(s.id)?.content?.type === 'graphic').map((slot) => {
     const [iw, ih] = items.get(slot.id).content.size, [x, y, r, b] = slot.rect;
     const a = iw / ih, f = (r - x) / (b - y);
@@ -156,7 +183,7 @@ export async function generatePageVariants(options) {
     try {
       const { manifest, artifacts } = await compilePage(built, { executor, fonts, JSZip });
       Object.assign(variant, { status: manifest.status, preflight: artifacts.preflight, native: artifacts.native, pdf: artifacts.pdf, idml: artifacts.idml, manifest });
-      Object.assign(variant, await measure(artifacts.native, built, executor, JSZip));
+      Object.assign(variant, await measure(artifacts.native, {...built, library}, executor, JSZip));
       variant.score = finalScore(variant);
     } catch (error) {
       if (!(error instanceof CompileError)) throw error;
@@ -201,43 +228,11 @@ export async function generatePageVariants(options) {
 }
 
 /**
- * Suggest a whole-issue plan: group articles into interior pages, choose the best
- * fitting variant for each, and put a cover with up to three featured articles first.
- * Grouping is greedy by estimated length (long pieces alone, short ones together).
+ * Suggest within a fixed page budget, using page-specific reservation geometry.
+ * Protected recipes and their continuation chains stay intact. Single-page
+ * variants are checked; complete multi-page flows remain estimated until the
+ * whole-issue compiler threads and preflights the original sources.
  */
 export async function suggestIssuePlan(options) {
-  const { library, issue, markdownit } = options;
-  const coverTemplateId = options.coverTemplateId ?? library.templates.find((t) => t.kind === 'cover' && (t.design ?? null) === (options.design ?? null))?.id;
-  const ids = options.articleIds ?? issue.articles.map((a) => a.id);
-  const sized = ids.map((id) => {
-    const a = issue.articles.find((x) => x.id === id);
-    return { id, chars: composeSource(a.body, a.bodyFormat ?? 'markdown', markdownit).text.length };
-  }).sort((a, b) => b.chars - a.chars);
-  const pageBudget = options.pageChars ?? 5200;                          // roughly a full page of 10/12 body copy
-  const groups = [];
-  for (const item of sized) {
-    const open = groups.find((g) => g.length < 3 && g.reduce((n, x) => n + x.chars, 0) + item.chars <= pageBudget);
-    if (open) open.push(item); else groups.push([item]);
-  }
-  const pages = [], plans = [];
-  // When nothing fits a group, split it (longest piece alone, the rest together) and retry.
-  while (groups.length) {
-    const group = groups.shift(), pageNumber = pages.length + 2;
-    const { variants, rejected } = await generatePageVariants({ ...options, articleIds: group.map((g) => g.id), pageNumber, pageId: `page-${pageNumber}`, keep: 1, previewScale: options.previewScale ?? 0 });
-    if (!variants.length) {
-      if (group.length > 1) { groups.unshift([group[0]], group.slice(1)); continue; }
-      plans.push({ pageNumber, articleIds: group.map((g) => g.id), error: 'No layout fits this article on one page; plan a continuation', rejected: rejected.map((r) => ({ template: r.template.id, reason: r.reason })) });
-      continue;
-    }
-    const best = variants[0];
-    pages.push({ id: `page-${pageNumber}`, pageNumber, templateId: best.template.id, articleIds: best.articleIds, template: best.template });
-    plans.push({ pageNumber, variant: best });
-  }
-  const placed = new Set(pages.flatMap((p) => p.articleIds));
-  const featured = ids.filter((id) => placed.has(id)).slice(0, 3);
-  const cover = coverTemplateId ? { id: 'page-1', pageNumber: 1, templateId: coverTemplateId, articleIds: featured } : null;
-  // Headline-step variants are new template records; ship them with the plan.
-  const known = new Set(library.templates.map((t) => t.id));
-  const extraTemplates = pages.map((p) => p.template).filter((t) => !known.has(t.id));
-  return { pages: cover ? [cover, ...pages] : pages, featured, plans, extraTemplates };
+  return allocateFixedIssue(options, { generatePageVariants, enumerateCandidates, estimate });
 }

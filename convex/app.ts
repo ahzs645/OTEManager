@@ -7,8 +7,21 @@ import { analytics } from "./operations/analytics";
 import { mutations } from "./operations/mutations";
 import { fromWire, toWire } from "../shared/codec";
 import { utilityQueries, utilityMutations } from "./operations/utilities";
-const queryOperations = { ...queries, ...analytics, ...utilityQueries };
-const writeOperations = { ...mutations, ...utilityMutations };
+import {
+  issueStudioQueries,
+  issueStudioMutations,
+} from "./operations/issueStudio";
+const queryOperations = {
+  ...queries,
+  ...analytics,
+  ...utilityQueries,
+  ...issueStudioQueries,
+};
+const writeOperations = {
+  ...mutations,
+  ...utilityMutations,
+  ...issueStudioMutations,
+};
 // Only the trusted application server can call this bridge. Operation names are allowlisted.
 export const read = query({
   args: { secret: v.string(), operation: v.string(), data: v.any() },

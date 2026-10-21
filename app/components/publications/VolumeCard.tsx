@@ -384,7 +384,7 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
                       onEdit={() => startEditIssue(issue)}
                       onDelete={() => handleDeleteIssue(issue.id)}
                       onExport={() => { setExportFormat('docx'); setExportDialogIssue(issue) }}
-                      onDesignCraftExport={() => { setExportFormat('designcraft'); setExportDialogIssue(issue) }}
+                      onDesignCraftExport={() => { void router.navigate({ to: '/publications/issues/$issueId/studio', params: { issueId: issue.id } }) }}
                       isExporting={exportingIssueId === issue.id}
                     />
                   )}

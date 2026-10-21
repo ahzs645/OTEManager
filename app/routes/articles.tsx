@@ -99,6 +99,7 @@ function ArticlesPage() {
   >([]);
   const [isLoadingAuthors, setIsLoadingAuthors] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
+  const articleCreationId = useRef<string | null>(null);
   const [newArticle, setNewArticle] = useState({
     title: "",
     authorId: "",
@@ -362,6 +363,7 @@ function ArticlesPage() {
 
   // Load authors when modal opens
   const handleOpenAddModal = async () => {
+    articleCreationId.current = crypto.randomUUID();
     setShowAddModal(true);
     setIsLoadingAuthors(true);
     try {
@@ -413,6 +415,8 @@ function ArticlesPage() {
       const result = await createArticle({
         data: {
           title: newArticle.title,
+          issueId: search.issueId,
+          creationId: articleCreationId.current || undefined,
           authorId: newArticle.useNewAuthor ? undefined : newArticle.authorId,
           authorGivenName: newArticle.useNewAuthor
             ? newArticle.authorGivenName
@@ -691,6 +695,18 @@ function ArticlesPage() {
             </div>
 
             <form onSubmit={handleCreateArticle} className="p-4 space-y-4">
+              {search.issueId && (
+                <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
+                  This article will be assigned to{" "}
+                  {filterInfo?.volumeNumber
+                    ? `Volume ${filterInfo.volumeNumber}, `
+                    : ""}
+                  {filterInfo?.issueNumber
+                    ? `Issue ${filterInfo.issueNumber}`
+                    : "the selected issue"}
+                  {filterInfo?.issueTitle ? `: ${filterInfo.issueTitle}` : ""}.
+                </p>
+              )}
               {/* Title */}
               <div>
                 <label

@@ -147,13 +147,17 @@ const handlers = {
     const fonts = await fontsFor(message, scope);
     const plan = await modules.variants.suggestIssuePlan({
       library: message.library, issue: recipe.issue, articleIds: message.articleIds, executor, fonts, design,
+      pageBudget: message.pageBudget, existingPages: message.existingPages, protectedPageIds: message.protectedPageIds,
+      pageLibraries: message.pageLibraries, reservations: message.reservations,
+      articleFlows: message.articleFlows, articleConstraints: message.articleConstraints,
       fontProfile: message.fontProfile || 'portable', substituteFonts: substitutesFor(message, scope, fonts), tightenHeadlines: !!message.tightenHeadlines,
       loadMedia: recipe.loadMedia, markdownit: self.markdownit, JSZip: self.JSZip, previewScale: 0,
       onProgress: (detail) => self.postMessage({ id: message.id, progress: detail }),
     });
     return {
       pages: plan.pages.map(({ template, ...page }) => ({ ...page, template })),
-      featured: plan.featured, extraTemplates: plan.extraTemplates,
+      featured: plan.featured, extraTemplates: plan.extraTemplates, articleFlows: plan.articleFlows,
+      unplaced: plan.unplaced, pageBudget: plan.pageBudget, confidence: plan.confidence,
       problems: plan.plans.filter((p) => p.error).map((p) => ({ pageNumber: p.pageNumber, articleIds: p.articleIds, error: p.error })),
     };
   },

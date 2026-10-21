@@ -317,7 +317,8 @@ async function prepareRecipe(buffer: Buffer, directory: string, designcraftDir: 
     catch { throw new NativeRequestError("This server does not have the design layer " + path + ".", 409); }
   }
   // Archive scripts and executables are deliberately ignored. Only validated JSON/resources are staged.
-  return { templateId, pageNumber, articleIds: selectedArticles, designs: templates.some((t) => t.design && (mode === "page" ? t.id === templateId : (plan.pages ?? []).some((p: Json) => p.templateId === t.id))) };
+  const used = templates.filter((t) => mode === "page" ? t.id === templateId : (plan.pages ?? []).some((p: Json) => p.templateId === t.id));
+  return { templateId, pageNumber, articleIds: selectedArticles, designs: used.some((t) => t.design), requiresJavaScript: used.some((t) => t.design || t.bodyFlows) };
 }
 
 async function prepareBase(buffer: Buffer, directory: string, limits: typeof NATIVE_LIMITS, expandedBeforeNative: number) {
@@ -576,11 +577,11 @@ export function createNativeService(config: Config = {}) {
       const job: Job = { id, status: "queued", mode: input.mode, fontProfile: profile, directory, createdAt: Date.now(), artifacts: {}, args };
       // Original designs need the shared JavaScript compiler; with the CLI engine it runs on the bundled
       // WebAssembly engine too (the Python compilers have no design layer support).
-      if (selected.designs && engine !== "wasm") {
-        if (base) throw new NativeRequestError("Protected-page rebuilds are not available for original-design templates.", 409);
-        if (!(await staticDir)) throw new NativeRequestError("Original-design templates need the bundled DesignCraft WebAssembly engine on this server.", 503);
+      if (selected.requiresJavaScript && engine !== "wasm") {
+        if (base) throw new NativeRequestError("Protected-page rebuilds are not available for original-design or multi-region templates.", 409);
+        if (!(await staticDir)) throw new NativeRequestError("Original-design and multi-region templates need the bundled DesignCraft WebAssembly engine on this server.", 503);
       }
-      if (engine === "wasm" || selected.designs) {
+      if (engine === "wasm" || selected.requiresJavaScript) {
         job.wasm = { recipeDir: recipe, fontDir: profile === "original2025" ? resolve(originals!) : fonts, booklet: !!input.booklet, selected };
       }
       jobs.set(id, job); queueMicrotask(pump); return publicJob(job);
