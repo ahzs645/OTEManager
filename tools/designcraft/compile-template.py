@@ -110,6 +110,8 @@ def compile_page(args):
     if len(matches) != 1:
         raise ValueError('Select a unique template ID from the library')
     template = matches[0]
+    if template.get('bodyFlows'):
+        raise ValueError('Explicit body-region flows require the JavaScript compiler (tools/designcraft/compile.mjs); no output was generated')
     if template.get('design') or template.get('art'):
         raise ValueError('Original-design templates need the JavaScript compiler (public/designcraft/compiler); '
                          'the server runs it on the bundled WebAssembly engine')

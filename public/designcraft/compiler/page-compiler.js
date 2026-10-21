@@ -147,6 +147,16 @@ export async function buildPage(options) {
     if (matches.length !== 1) throw new Error('Select a unique template ID from the library');
     template = matches[0];
   }
+  if (!Array.isArray(template.slots) || template.slots.some((slot) => typeof slot.id !== 'string' || !slot.id) || new Set(template.slots.map((slot) => slot.id)).size !== template.slots.length) throw new Error('Template frame IDs must be unique and nonempty');
+  const bodyFlows = {};
+  for (let i = 0; i < (template.storyCount ?? 0); i++) {
+    const slots = template.slots.filter((slot) => slot.role === 'body' && slot.enabled !== false && (slot.articleIndex ?? 0) === i);
+    const declared = template.bodyFlows?.[i];
+    if (!slots.length || (slots.length > 1 && !Array.isArray(declared))) throw new Error('Multiple body regions require an explicit ordered bodyFlows entry');
+    const ids = declared ?? slots.map((slot) => slot.id);
+    if (ids.length !== slots.length || new Set(ids).size !== ids.length || ids.some((id) => !slots.some((slot) => slot.id === id))) throw new Error('Body flow must list every article body frame exactly once');
+    bodyFlows[i] = ids;
+  }
   const page = library.page, width = page.width, height = page.height;
   if (issue && issue.schemaVersion !== ISSUE_SCHEMA) throw new Error('Unsupported issue schema');
   const storyCount = template.storyCount ?? 0;
@@ -195,6 +205,7 @@ export async function buildPage(options) {
   const ref = (index, key = 'id') => `$${index}.${key}`;
   const labelFrame = (index, slot, article) => {
     const metadata = { templateId: template.id, slotId: slot.id, role: slot.role, articleId: article ? article.id ?? null : null, pageId };
+    if (slot.role === 'body') metadata.flowOrder = bodyFlows[slot.articleIndex ?? 0]?.indexOf(slot.id) ?? 0;
     if (slot.cardPart) metadata.cardPart = slot.cardPart;
     add('object.label', { ids: [ref(index)], label: pythonJson(metadata) });
     add('object.rename', { id: ref(index), name: slot.id });
@@ -315,7 +326,7 @@ export async function buildPage(options) {
       if (role === 'headline') { text = article ? article.title : String(slot.text || 'ILLUSTRATIVE COVER TITLE'); style = 'OTE Headline'; }
       else if (role === 'body') {
         bodyCounts[ai] = (bodyCounts[ai] ?? 0) + 1;
-        text = article ? (continuationIds.has(article.id) ? '' : composed[article.id].text) : String(slot.text || 'ILLUSTRATIVE COPY');
+        text = article ? (continuationIds.has(article.id) || bodyFlows[ai][0] !== slot.id ? '' : composed[article.id].text) : String(slot.text || 'ILLUSTRATIVE COPY');
         style = 'OTE Body';
       } else if (role === 'byline') { text = article ? String(article.author || 'Author not provided') : String(slot.text || 'ILLUSTRATIVE BYLINE'); style = 'OTE Byline'; }
       else if (role === 'caption') {
@@ -334,7 +345,7 @@ export async function buildPage(options) {
       }
       if (slot.fontSize || slot.leading) style = customStyle(slot, style);
       styledText(rect, text, style, slot.columns ?? 1, slot, article,
-        role === 'body' && article && !continuationIds.has(article.id) ? composed[article.id] : null);
+        role === 'body' && article && !continuationIds.has(article.id) && bodyFlows[ai][0] === slot.id ? composed[article.id] : null);
     } else if (['photo', 'ad', 'piece'].includes(role)) {
       if (isCover && slot.id.startsWith('cover-card-') && slot.text === '' && !slot.fields) continue;
       let mediaRecord = null, root = issue ? 'issue' : 'library';
@@ -387,12 +398,12 @@ export async function buildPage(options) {
     } else throw new Error('Unsupported slot role: ' + role);
   }
   if (art?.over) await placeArt(art.over);
-  for (let i = 0; i < storyCount; i++) if (bodyCounts[i] !== 1) throw new Error('Each article needs exactly one body slot; use its columns option for text columns');
+  for (let i = 0; i < storyCount; i++) if (bodyCounts[i] !== bodyFlows[i].length) throw new Error('Article body frames differ from the declared reading sequence');
   const preflightIndex = add('preflight.run', { minPpi: 150 });
   const inspectIndex = add('document.inspect');
   add('file.saveAs', { path: '@doc' });
   return {
-    steps, template, articles, composed, slotRefs, warnings, missingMedia, focusRequests, media,
+    steps, template, articles, composed, slotRefs, warnings, missingMedia, focusRequests, media, bodyFlows,
     preflightIndex, inspectIndex, pageId, pageNumber, fontProfile, isCover, issue,
     continuationIds: [...continuationIds], stagedFlowIds: [...stagedFlowIds],
   };
@@ -434,6 +445,29 @@ async function applyFocalCrops(nativeBytes, focusRequests, slots, JSZip) {
 
 const textOf = (bytes) => new TextDecoder().decode(bytes);
 
+/** Join explicitly ordered body regions, preserving source rich text and asset bytes. */
+async function threadPageBodyRegions(native, built, JSZip) {
+  if (!Object.values(built.bodyFlows).some((ids) => ids.length > 1)) return native;
+  const { document, entries } = await readNative(native, JSZip);
+  const items = new Map(document.spreads.flatMap((spread) => spread.items).filter((item) => item.name).map((item) => [item.name, item]));
+  for (const ids of Object.values(built.bodyFlows)) {
+    if (ids.length < 2) continue;
+    const frames = ids.map((id) => items.get(id));
+    if (frames.some((frame) => frame?.content?.type !== 'text')) throw new Error('Missing declared body-region frame');
+    const sid = frames[0].content.story, first = document.stories[String(sid)], original = clone(first);
+    if (!deepEqual(first.frames, [frames[0].id])) throw new Error('Body opening frame has an undeclared thread');
+    for (const frame of frames.slice(1)) {
+      const otherId = frame.content.story, other = document.stories[String(otherId)];
+      if (otherId === sid || !other || other.text !== '' || !deepEqual(other.frames, [frame.id])) throw new Error('Additional body regions must start as empty independent frames');
+      if (['anchors', 'xrefs', 'notes', 'tables', 'objects', 'indexRefs'].some((key) => other[key]?.length) || (document.hyperlinks ?? []).some((link) => link.source?.story === otherId)) throw new Error('Additional body region contains unexpected source content');
+      delete document.stories[String(otherId)];frame.content.story = sid;
+    }
+    first.frames = frames.map((frame) => frame.id);
+    if (!deepEqual(first, {...original, frames: first.frames})) throw new Error('Body-region threading changed source rich text');
+  }
+  return writeNative(entries, document, JSZip);
+}
+
 /**
  * Run a built page through an executor and apply every compile-template.py check.
  * Returns {manifest, artifacts}; throws CompileError (with draft artifacts) on
@@ -447,6 +481,7 @@ export async function compilePage(built, { executor, fonts, JSZip }) {
   const results = first.results;
   let native = first.doc;
   let cropHashes = {};
+  native = await threadPageBodyRegions(native, built, JSZip);
   if (built.focusRequests.length) ({ bytes: native, hashes: cropHashes } = await applyFocalCrops(native, built.focusRequests, built.template.slots, JSZip));
   const reopened = await executor.run([
     { command: 'file.open', params: { path: '@doc' } },
@@ -470,7 +505,8 @@ export async function compilePage(built, { executor, fonts, JSZip }) {
     }
     artifacts.focalCrop = { crops: built.focusRequests, embeddedAssetSha256: cropHashes, preservedAssetBytes: true };
   }
-  const bodyRefs = new Map(built.slotRefs.filter((x) => x.role === 'body').map((x) => [x.articleId, x]));
+  const bodyRefs = new Map();
+  for (const ref of built.slotRefs.filter((x) => x.role === 'body' && x.flowOrder === 0)) bodyRefs.set(ref.articleId, ref);
   for (const article of built.isCover ? [] : built.articles) {
     const storyId = results[bodyRefs.get(article.id).commandIndex].story;
     const expected = built.continuationIds.includes(article.id) ? '' : built.composed[article.id].text;
@@ -505,6 +541,10 @@ export async function compilePage(built, { executor, fonts, JSZip }) {
     adobeInDesignTested: false,
   };
   artifacts.sourceRecord = { issue: built.issue ? built.issue.issue ?? null : null, articles: built.articles };
+  manifest.sourceRecordSha256 = await sha256Hex(new TextEncoder().encode(JSON.stringify(artifacts.sourceRecord)));
+  manifest.templateSha256 = await sha256Hex(new TextEncoder().encode(JSON.stringify(built.template)));
+  manifest.sourceMediaSha256 = Object.fromEntries(await Promise.all([...built.media].map(async ([name, bytes]) => [name, await sha256Hex(bytes)])));
+  manifest.nativeDocumentSha256 = await sha256Hex(native);
   artifacts.composedRecord = built.composed;
   artifacts.interchange = interchangeMetadata(document);
   manifest.interchangeHyperlinks = { nativeAndPdf: true, stockIdml: false, sidecarCount: artifacts.interchange.hyperlinks.length, reopenTool: 'reopen-idml.py' };

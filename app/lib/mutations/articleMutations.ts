@@ -5,6 +5,8 @@ export const createArticle = createServerFn({ method: "POST" })
   .inputValidator(
     (data: {
       title: string;
+      issueId?: string;
+      creationId?: string;
       authorId?: string;
       // If no authorId, create a new author with these fields
       authorGivenName?: string;

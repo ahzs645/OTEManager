@@ -132,33 +132,35 @@ async function threadArticleStories(issueBytes, flows, JSZip) {
     const pages = flow?.pageIds;
     if (!Array.isArray(pages) || pages.length < 2 || pages.some((p) => typeof p !== 'string' || !p)) throw new Error('A continuation needs at least two ordered stable page IDs');
     if (new Set(pages).size !== pages.length) throw new Error('An article flow cannot repeat a page or form a cycle');
-    const chain = pages.map((pid) => {
-      const matches = frames.filter((f) => f.label.role === 'body' && f.label.articleId === aid && f.label.pageId === pid);
-      if (matches.length !== 1) throw new Error('Missing or ambiguous body frame for article ' + aid + ' on page ' + pid);
-      const frame = matches[0];
-      if (frame.pageIndex === null) throw new Error('Continuation frame has no unique physical page');
-      if (used.has(frame.item.id)) throw new Error('Continuation frames cannot occur in multiple chains');
-      used.add(frame.item.id);
-      return frame;
+    const pageChains = pages.map((pid) => {
+      const matches = frames.filter((f) => f.label.role === 'body' && f.label.articleId === aid && f.label.pageId === pid).sort((a, b) => (a.label.flowOrder ?? 0) - (b.label.flowOrder ?? 0));
+      if (!matches.length || matches.some((frame, index) => (frame.label.flowOrder ?? 0) !== index)) throw new Error('Missing or ambiguous ordered body frames for article ' + aid + ' on page ' + pid);
+      for (const frame of matches) {
+        if (frame.pageIndex === null) throw new Error('Continuation frame has no unique physical page');
+        if (used.has(frame.item.id)) throw new Error('Continuation frames cannot occur in multiple chains');
+        used.add(frame.item.id);
+      }
+      return matches;
     });
+    const chain = pageChains.flat();
     const sid = chain[0].item.content.story;
     const first = document.stories[String(sid)];
     if (!first?.text) throw new Error('The first continuation frame needs its complete source story');
-    requests.push({ aid, pages, chain, sid, original: clone(first), expected: chain.map((f) => f.item.id) });
+    requests.push({ aid, pages, pageChains, chain, sid, original: clone(first), expected: chain.map((f) => f.item.id) });
   }
   const manifest = {};
-  for (const { aid, pages, chain, sid, original, expected } of requests) {
+  for (const { aid, pages, pageChains, chain, sid, original, expected } of requests) {
     const first = document.stories[String(sid)];
     let unchanged = deepEqual(first.frames, expected) && chain.every((f) => f.item.content.story === sid);
     if (!unchanged) {
-      if (!deepEqual(first.frames, [expected[0]])) throw new Error('The source story already has an undeclared thread');
-      for (const frame of chain.slice(1)) {
-        const otherSid = frame.item.content.story, other = document.stories[String(otherSid)];
-        if (otherSid === sid || !other || other.text !== '' || !deepEqual(other.frames, [frame.item.id])) throw new Error('Continuation stories must be empty independent frames');
+      if (!deepEqual(first.frames, pageChains[0].map((frame) => frame.item.id))) throw new Error('The source story has an undeclared body-region thread');
+      for (const pageChain of pageChains.slice(1)) {
+        const otherSid = pageChain[0].item.content.story, other = document.stories[String(otherSid)];
+        if (otherSid === sid || !other || other.text !== '' || !deepEqual(other.frames, pageChain.map((frame) => frame.item.id)) || pageChain.some((frame) => frame.item.content.story !== otherSid)) throw new Error('Continuation stories must be empty declared body-region threads');
         if ((document.hyperlinks ?? []).some((l) => l.source?.story === otherSid)) throw new Error('An empty continuation story unexpectedly owns hyperlinks');
         if (['anchors', 'xrefs', 'notes', 'tables', 'objects', 'indexRefs'].some((k) => other[k]?.length)) throw new Error('An empty continuation story owns unsupported content');
         delete document.stories[String(otherSid)];
-        frame.item.content.story = sid;
+        for (const frame of pageChain) frame.item.content.story = sid;
       }
       first.frames = expected;
     }
@@ -473,6 +475,7 @@ export async function compileIssue(options) {
   const manifest = {
     schemaVersion: 'ote.designcraft.issue-build.v1', pages, cliVersion: executor.version,
     documentFontSha256: await fontScope(docFonts), sourceIssueSha256: await sha256Hex(new TextEncoder().encode(sourceIssueText)),
+    templateLibrarySha256: await sha256Hex(new TextEncoder().encode(JSON.stringify(library))),
     articleMetadata: Object.fromEntries([...articles].map(([aid, a]) => [aid, Object.fromEntries(['title', 'author', 'bodyFormat', 'photos'].map((k) => [k, a[k] ?? null]))])),
     articleFlows: threaded.manifest, nativeCoverReferences: referenced.manifest, sourceMediaSha256: sourceMedia,
     nativeDocumentSha256: await sha256Hex(native), coverPhotoSha256: await embeddedCoverHash(entries, document), articleBodyChecks: bodyCopy,

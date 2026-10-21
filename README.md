@@ -125,7 +125,7 @@ Version 0.12.2 fixes Review verification when Vancity renders the currency symbo
 
 ## DesignCraft newspaper workflow
 
-In Publications, select articles and images and open them directly in the DesignCraft planner. Edit layouts, cover metadata/photo, featured article references and explicit continuation chains; generate native/PDF/IDML output through a configured worker or export recipes for the standalone CLI.
+In Publications, **Design issue** opens the [persistent Issue Studio](docs/ISSUE-STUDIO-IMPLEMENTATION.md), including for empty issues. Save page budgets, ad reservations, print images, layouts, crops and locks; suggest fixed-budget plans with explicit continuations; and compose a recorded revision into stored native/PDF/IDML artifacts. Concurrent edits report conflicts, source edits mark affected work stale, and manual document forks remain separate. The [production guide](docs/ISSUE-STUDIO-PRODUCTION.md) covers Adobe reports and printer checks.
 
 See the [workflow guide](docs/DESIGNCRAFT.md), [complete integration review](docs/DESIGNCRAFT-INTEGRATION-REVIEW.md), [worker setup](docs/designcraft-native-service.md), and [committed report, proof bundle and verification record](docs/designcraft-review/README.md). The optional `Dockerfile.native` supplies the Linux compiler runtime. Production deployment and fresh Adobe/printer verification remain outstanding.
 

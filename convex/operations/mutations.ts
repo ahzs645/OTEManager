@@ -3,6 +3,13 @@ import { DEFAULT_RATES } from "./queries";
 import { calculatePayment } from "../../app/lib/payment-calculator";
 import type { Articles, RowMap, TableName } from "../../shared/model";
 import { recordBankPayment } from "./paymentReceipts";
+import { isIssueStudioFileReferenced } from "../lib/issueStudioFiles";
+import {
+  syncIssueStudioArticle,
+  detachIssueStudioArticle,
+  deleteIssueStudio,
+  invalidateIssueStudioMetadata,
+} from "./issueStudio";
 const success = { success: true as const };
 const now = () => new Date();
 const fields = (data: Record<string, any>, keys: readonly string[]) =>
@@ -14,11 +21,21 @@ async function updateArticle(
   id: string,
   values: Record<string, any>,
 ) {
+  const affectsLayout = [
+    "title",
+    "content",
+    "prefersAnonymity",
+    "authorId",
+    "issueId",
+  ].some((key) => Object.hasOwn(values, key));
+  const previous = affectsLayout ? await s.require("articles", id) : null;
   await s.patch("articles", id, { ...values, updatedAt: now() });
+  if (affectsLayout) await syncIssueStudioArticle(s, id, previous?.issueId);
   return success;
 }
 async function removeFileIfUnused(s: Store, path: string) {
   if ((await s.by("attachments", "filePath", path)).length) return;
+  if (await isIssueStudioFileReferenced(s, path)) return;
   const doc = await s.ctx.db
     .query("storedFiles")
     .withIndex("by_path", (q) => q.eq("path", path))
@@ -28,16 +45,21 @@ async function removeFileIfUnused(s: Store, path: string) {
     await s.ctx.db.delete(doc._id);
   }
 }
-export async function deleteAttachmentRecord(s: Store, id: string) {
+export async function deleteAttachmentRecord(
+  s: Store,
+  id: string,
+  syncStudio = true,
+) {
   const a = await s.require("attachments", id);
   await s.delete("attachments", id);
+  if (syncStudio) await syncIssueStudioArticle(s, a.articleId);
   await removeFileIfUnused(s, a.filePath);
   return success;
 }
 export async function deleteArticleRecord(s: Store, id: string) {
   await s.require("articles", id);
   for (const a of await s.by("attachments", "articleId", id))
-    await deleteAttachmentRecord(s, a.id);
+    await deleteAttachmentRecord(s, a.id, false);
   for (const table of [
     "articleMultimediaTypes",
     "articleNotes",
@@ -45,6 +67,7 @@ export async function deleteArticleRecord(s: Store, id: string) {
   ] as const)
     for (const row of await s.by(table, "articleId", id))
       await s.delete(table, row.id);
+  await detachIssueStudioArticle(s, id);
   await s.delete("articles", id);
   return success;
 }
@@ -97,6 +120,42 @@ export const mutations = {
   recordBankPayment,
   submitArticle,
   async createArticle(s: Store, data: any) {
+    // A client-generated UUID makes a retried create-and-assign request atomic and idempotent.
+    if (
+      data.creationId !== undefined &&
+      (typeof data.creationId !== "string" ||
+        !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+          data.creationId,
+        ))
+    )
+      throw new Error("Invalid article creation ID");
+    if (data.creationId) {
+      const existing = await s.get("articles", data.creationId);
+      if (existing) {
+        const author = await s.require("authors", existing.authorId);
+        const sameAuthor = data.authorId
+          ? data.authorId === author.id
+          : data.authorEmail?.trim().toLowerCase() ===
+            author.email.trim().toLowerCase();
+        if (
+          !sameAuthor ||
+          existing.title !== data.title ||
+          existing.issueId !== (data.issueId || null) ||
+          !!existing.prefersAnonymity !== !!data.prefersAnonymity
+        )
+          throw new Error(
+            "Article creation ID was already used for a different request",
+          );
+        await syncIssueStudioArticle(s, existing.id);
+        return { ...success, articleId: existing.id };
+      }
+    }
+    const destination = data.issueId
+      ? await s.require("issues", data.issueId)
+      : null;
+    const volume = destination
+      ? await s.require("volumes", destination.volumeId)
+      : null;
     let authorId = data.authorId;
     if (!authorId) {
       if (
@@ -121,6 +180,10 @@ export const mutations = {
         ).id;
     }
     const a = await s.insert("articles", {
+      ...(data.creationId ? { id: data.creationId } : {}),
+      issueId: destination?.id || null,
+      volume: volume?.volumeNumber ?? null,
+      issue: destination?.issueNumber ?? null,
       title: data.title,
       authorId,
       articleTier: data.articleTier || "Tier 1 (Basic)",
@@ -136,6 +199,7 @@ export const mutations = {
       changedBy: "Manual Entry",
       notes: "Article created manually",
     });
+    await syncIssueStudioArticle(s, a.id);
     return { ...success, articleId: a.id };
   },
   async updateArticleStatus(s: Store, data: any) {
@@ -194,7 +258,10 @@ export const mutations = {
     );
   },
   async updateAttachmentCaption(s: Store, data: any) {
-    await s.patch("attachments", data.attachmentId, { caption: data.caption });
+    const attachment = await s.patch("attachments", data.attachmentId, {
+      caption: data.caption,
+    });
+    await syncIssueStudioArticle(s, attachment.articleId);
     return success;
   },
   async setAttachmentsIncludeInExport(
@@ -232,7 +299,8 @@ export const mutations = {
     return success;
   },
   async updateAuthorPaymentInfo(s: Store, data: any) {
-    await s.patch("authors", data.authorId, {
+    const previous = await s.require("authors", data.authorId);
+    const author = await s.patch("authors", data.authorId, {
       ...fields(data, [
         "givenName",
         "surname",
@@ -244,6 +312,12 @@ export const mutations = {
       ]),
       updatedAt: now(),
     });
+    if (
+      previous.givenName !== author.givenName ||
+      previous.surname !== author.surname
+    )
+      for (const article of await s.by("articles", "authorId", author.id))
+        await syncIssueStudioArticle(s, article.id);
     return success;
   },
   async updatePaymentRateConfig(s: Store, data: any) {
@@ -324,7 +398,8 @@ export const mutations = {
     };
   },
   async updateVolume(s: Store, data: any) {
-    await s.patch("volumes", data.id, {
+    const previous = await s.require("volumes", data.id);
+    const volume = await s.patch("volumes", data.id, {
       ...fields(data, [
         "volumeNumber",
         "year",
@@ -334,6 +409,12 @@ export const mutations = {
       ]),
       updatedAt: now(),
     });
+    if (
+      previous.volumeNumber !== volume.volumeNumber ||
+      previous.year !== volume.year
+    )
+      for (const issue of await s.by("issues", "volumeId", volume.id))
+        await invalidateIssueStudioMetadata(s, issue.id);
     return success;
   },
   async deleteVolume(s: Store, data: any) {
@@ -358,15 +439,27 @@ export const mutations = {
     };
   },
   async updateIssue(s: Store, data: any) {
-    await s.patch("issues", data.id, {
+    const previous = await s.require("issues", data.id);
+    const issue = await s.patch("issues", data.id, {
       ...fields(data, ["issueNumber", "title", "releaseDate", "description"]),
       updatedAt: now(),
     });
+    if (
+      previous.title !== issue.title ||
+      previous.issueNumber !== issue.issueNumber ||
+      previous.releaseDate?.getTime() !== issue.releaseDate?.getTime()
+    )
+      await invalidateIssueStudioMetadata(s, issue.id);
     return success;
   },
   async deleteIssue(s: Store, data: any) {
     for (const a of await s.by("articles", "issueId", data.id))
-      await updateArticle(s, a.id, { issueId: null });
+      await updateArticle(s, a.id, {
+        issueId: null,
+        volume: null,
+        issue: null,
+      });
+    await deleteIssueStudio(s, data.id);
     await s.delete("issues", data.id);
     return success;
   },
@@ -448,9 +541,9 @@ export const mutations = {
             .filter((a) => a.attachmentType === "photo")
             .reduce((n, a) => Math.max(n, a.photoNumber || 0), 0) + 1
         : null;
-    return {
-      attachment: await s.insert("attachments", { ...data, photoNumber }),
-    };
+    const attachment = await s.insert("attachments", { ...data, photoNumber });
+    await syncIssueStudioArticle(s, data.articleId);
+    return { attachment };
   },
 };
 export async function submitArticle(s: Store, data: any) {
@@ -471,7 +564,16 @@ export async function submitArticle(s: Store, data: any) {
       autoDepositAvailable: data.autoDepositAvailable || false,
       etransferEmail: data.etransferEmail || null,
     });
+  const destination = data.issueId
+    ? await s.require("issues", data.issueId)
+    : null;
+  const volume = destination
+    ? await s.require("volumes", destination.volumeId)
+    : null;
   const article = await s.insert("articles", {
+    issueId: destination?.id || null,
+    volume: volume?.volumeNumber ?? null,
+    issue: destination?.issueNumber ?? null,
     title: data.title,
     authorId: author.id,
     articleTier: data.articleTier,
@@ -489,5 +591,6 @@ export async function submitArticle(s: Store, data: any) {
   for (const attachment of data.attachments || [])
     await s.insert("attachments", { ...attachment, articleId: article.id });
   await calculate(s, article.id);
+  await syncIssueStudioArticle(s, article.id);
   return { articleId: article.id, existing: false };
 }

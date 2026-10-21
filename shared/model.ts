@@ -1,3 +1,12 @@
+import {
+  studioRecordFields,
+  studioTableNames,
+  type IssueDesignPlans,
+  type IssueStudioObject,
+  type IssuePlacements,
+  type IssueDesignRevisions,
+  type CompositionJobs,
+} from "./issue-studio";
 // Application IDs stay stable across backup restores; Convex also assigns an internal _id.
 export interface Authors {
   id: string;
@@ -185,6 +194,12 @@ export interface SavedArticleViews {
 }
 
 export interface RowMap {
+  issueDesignPlans: IssueDesignPlans;
+  issuePages: IssueStudioObject;
+  issuePlacements: IssuePlacements;
+  issueReservations: IssueStudioObject;
+  issueDesignRevisions: IssueDesignRevisions;
+  compositionJobs: CompositionJobs;
   authors: Authors;
   articles: Articles;
   articleMultimediaTypes: ArticleMultimediaTypes;
@@ -199,6 +214,7 @@ export interface RowMap {
 }
 export type TableName = keyof RowMap;
 export const tableNames = [
+  ...studioTableNames,
   "authors",
   "articles",
   "articleMultimediaTypes",
@@ -212,6 +228,19 @@ export const tableNames = [
   "savedArticleViews",
 ] as const;
 export const recordDefaults: Record<TableName, Record<string, unknown>> = {
+  issueDesignPlans: {
+    revision: 0,
+    pageBudget: 16,
+    houseStyle: "ote-2025",
+    plannerState: "null",
+    createdAt: "$now",
+    updatedAt: "$now",
+  },
+  issuePages: { createdAt: "$now", updatedAt: "$now" },
+  issuePlacements: { createdAt: "$now", updatedAt: "$now" },
+  issueReservations: { createdAt: "$now", updatedAt: "$now" },
+  issueDesignRevisions: { createdAt: "$now" },
+  compositionJobs: { status: "queued", createdAt: "$now", updatedAt: "$now" },
   authors: {
     role: "Guest Contributor",
     authorType: "Student",
@@ -315,6 +344,12 @@ export const recordDefaults: Record<TableName, Record<string, unknown>> = {
   },
 };
 export const dateFields: Record<TableName, readonly string[]> = {
+  issueDesignPlans: ["createdAt", "updatedAt"],
+  issuePages: ["createdAt", "updatedAt"],
+  issuePlacements: ["createdAt", "updatedAt"],
+  issueReservations: ["createdAt", "updatedAt"],
+  issueDesignRevisions: ["createdAt"],
+  compositionJobs: ["createdAt", "updatedAt"],
   authors: ["createdAt", "updatedAt"],
   articles: [
     "paidAt",
@@ -334,6 +369,7 @@ export const dateFields: Record<TableName, readonly string[]> = {
   savedArticleViews: ["createdAt", "updatedAt"],
 };
 export const recordFields = {
+  ...studioRecordFields,
   authors: {
     id: {
       kind: "uuid",

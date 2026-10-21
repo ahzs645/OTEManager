@@ -45,9 +45,10 @@ function editorShell(){
 }
 function editorBaseRect(slot,actual){
  if(selected.kind!=='story'||!blocks.length||slot.role==='folio')return [...actual];
- const area=freeArea();if(!area)throw Error('No usable story area remains.');
+ if(selected.reservationLayout){const regions=selected.reservationLayout.regions;if(!regions.some(r=>actual[0]>=r[0]&&actual[1]>=r[1]&&actual[2]<=r[2]&&actual[3]<=r[3]))throw Error('Keep this frame inside one of the eligible editorial regions.');return [...actual];}
+ const area=freeArea(blocks,contentBox(selected));if(!area)throw Error('No usable story area remains.');
  if(actual[0]<area[0]||actual[1]<area[1]||actual[2]>area[2]||actual[3]>area[3])throw Error('Keep this frame inside the free story area around the reserved pieces.');
- return [36+(actual[0]-area[0])*684/(area[2]-area[0]),100+(actual[1]-area[1])*644/(area[3]-area[1]),36+(actual[2]-area[0])*684/(area[2]-area[0]),100+(actual[3]-area[1])*644/(area[3]-area[1])];
+ const c=contentBox(selected);return [c[0]+(actual[0]-area[0])*(c[2]-c[0])/(area[2]-area[0]),c[1]+(actual[1]-area[1])*(c[3]-c[1])/(area[3]-area[1]),c[0]+(actual[2]-area[0])*(c[2]-c[0])/(area[2]-area[0]),c[1]+(actual[3]-area[1])*(c[3]-c[1])/(area[3]-area[1])];
 }
 function renderEditor(){
  if(!selected)return;editorShell();$('font-profile').value=issue.layoutPlan?.fontProfile||'portable';
