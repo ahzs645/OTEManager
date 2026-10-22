@@ -39,7 +39,7 @@ test("both original designs ship complete: art layers, house styles and a templa
   expect(Object.keys(library.designs).sort()).toEqual(["ote-2024", "ote-2025"]);
   for (const [id, design] of Object.entries<any>(library.designs)) {
     const templates = library.templates.filter((t: any) => t.design === id);
-    expect(templates.filter((t: any) => t.kind === "story")).toHaveLength(76);
+    expect(templates.filter((t: any) => t.kind === "story" && !t.source)).toHaveLength(76);
     expect(templates.filter((t: any) => t.kind === "cover")).toHaveLength(1);
     expect(design.styles["OTE Headline"].fontFamily).toBe("Decalotype");
     for (const layer of Object.values<any>(design.art)) for (const part of [layer, layer.over].filter(Boolean))
@@ -205,8 +205,12 @@ test("server: design jobs stage bundled art, reject foreign art and package the 
     expect(Object.keys(bundle.files)).toEqual(expect.arrayContaining(["Document Fonts/Barlow-Black.ttf", "Document Fonts/OFL-Barlow.txt"]));
     const foreign = structuredClone(library); foreign.designs["ote-2024"].art.left.portable = "../../secrets.designcraft";
     await expect(service.submit({ recipe: await recipe(foreign, issue), mode: "issue" })).rejects.toThrow(/bundled original-art/);
-    const stray = structuredClone(library); stray.templates.find((t: any) => t.id === "story-1-top-balanced").slots.push({ id: "x", role: "text", rect: [40, 40, 100, 60], text: "x" });
-    await expect(service.submit({ recipe: await recipe(stray, issue), mode: "issue" })).rejects.toThrow(/original design/);
+    const fixedText = structuredClone(library); fixedText.templates.find((t: any) => t.id === templateId).slots.push({ id: "section-note", role: "text", rect: [40, 760, 300, 780], text: "Campus section" });
+    page.file("templates.json", JSON.stringify(fixedText));
+    const fixedJob = await service.submit({ recipe: await page.generateAsync({ type: "nodebuffer" }), mode: "page" });
+    let fixedResult: any = fixedJob;
+    for (const deadline = Date.now() + 120000; !["completed", "failed"].includes(fixedResult.status) && Date.now() < deadline;) { await new Promise((done) => setTimeout(done, 50)); fixedResult = await service.get(fixedJob.id); }
+    expect(fixedResult.status, fixedResult.message).toBe("completed");
   } finally { await service.dispose(); }
 }, 180000);
 

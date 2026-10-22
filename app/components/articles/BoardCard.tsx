@@ -1,15 +1,15 @@
 import { Link } from '@tanstack/react-router'
 import { TierBadge, formatDate, Avatar } from '~/components/Layout'
 import type { Article } from './types'
+import { articleDisplayAuthor, articleDisplaySubmitted, readSourceProvenance, sourceRecoveryLabel } from '~/lib/source-archive-display'
 
 interface BoardCardProps {
   article: Article
 }
 
 export function BoardCard({ article }: BoardCardProps) {
-  const authorName = article.author
-    ? `${article.author.givenName} ${article.author.surname}`
-    : 'Unknown'
+  const authorName = articleDisplayAuthor(article)
+  const source = readSourceProvenance(article.sourceProvenance)
 
   return (
     <Link
@@ -27,6 +27,7 @@ export function BoardCard({ article }: BoardCardProps) {
       >
         {article.title}
       </p>
+      {source && <p className="text-xs mb-2" style={{ color: 'var(--fg-muted)' }}>{sourceRecoveryLabel(source.recoveryStatus)}</p>}
       <div className="flex items-center gap-2 mb-2">
         <Avatar name={authorName} size="sm" />
         <span className="text-xs truncate" style={{ color: 'var(--fg-muted)' }}>
@@ -36,7 +37,7 @@ export function BoardCard({ article }: BoardCardProps) {
       <div className="flex items-center justify-between">
         <TierBadge tier={article.articleTier} />
         <span className="text-xs" style={{ color: 'var(--fg-faint)' }}>
-          {formatDate(article.submittedAt || article.createdAt)}
+          {formatDate(articleDisplaySubmitted(article))}
         </span>
       </div>
     </Link>

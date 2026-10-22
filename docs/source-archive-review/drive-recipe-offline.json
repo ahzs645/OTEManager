@@ -1,0 +1,53 @@
+{
+  "method": "Extracted the exact generated issue recipe ZIPs and compiled through a separately extracted offline compiler kit. No checkout source-art directory was provided.",
+  "checks": [
+    {
+      "documentId": "issue-2-october-2025-0eb630f7",
+      "expectedPageCount": 16,
+      "engine": "designcraft-headless 0.9.0 (WebAssembly)",
+      "warnings": 41,
+      "substitutedFonts": [],
+      "outputs": [
+        {
+          "file": "issue.designcraft",
+          "bytes": 3898551,
+          "sha256": "071f9ff8be0b9feeee296f77ced66487abb3f29901e182e5231cfc577b9c7729"
+        },
+        {
+          "file": "issue.idml",
+          "bytes": 4077482,
+          "sha256": "d2ab4bbb5c29f9ef203152b52a999ec660bbd08c91c2f2a578ebe1f7f2f07711"
+        },
+        {
+          "file": "issue.pdf",
+          "bytes": 4744313,
+          "sha256": "7e5e0ddd3f60f5845acedfc48caeaac5b644a016473f190db3df9a689ecbcdf2"
+        }
+      ]
+    },
+    {
+      "documentId": "issue-7-march-2025-dfcbb959",
+      "expectedPageCount": 17,
+      "engine": "designcraft-headless 0.9.0 (WebAssembly)",
+      "warnings": 6,
+      "substitutedFonts": [],
+      "outputs": [
+        {
+          "file": "issue.designcraft",
+          "bytes": 25391671,
+          "sha256": "613cfc86e69161175b49e7e3aad49adcbedd361534390cb70edc2d6aa3ca9f9a"
+        },
+        {
+          "file": "issue.idml",
+          "bytes": 26124634,
+          "sha256": "5411463fc035c3fd79c715a10ed81128d8e04ced6bbb3cc2f278b92f5ad9d3a4"
+        },
+        {
+          "file": "issue.pdf",
+          "bytes": 26358201,
+          "sha256": "f4937d81c8beeb7944f4f27d820c17c6c0c8035a3b57aa55076418fc9256395d"
+        }
+      ]
+    }
+  ]
+}

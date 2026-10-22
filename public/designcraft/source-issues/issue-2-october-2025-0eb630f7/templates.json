@@ -1,0 +1,4847 @@
+{
+  "schemaVersion": "ote.designcraft.templates.v1",
+  "page": {
+    "width": 756,
+    "height": 792,
+    "margin": 36,
+    "gutter": 12
+  },
+  "provenance": "Reconstructed from the earlier build record and recovered source covers. Not the lost original prototype.",
+  "fontProfile": {
+    "portable": {
+      "headline": "Source Sans 3 Bold",
+      "body": "Source Serif 4 Regular"
+    },
+    "original2025": {
+      "date": "Decalotype Black",
+      "handwritten": "Salted",
+      "references": "Helvetica Neue Bold / Condensed Bold"
+    },
+    "original2024": {
+      "text": "Helvetica Neue / Heavy"
+    },
+    "missingSourceFont": "Salted Regular is bundled with its supplied personal-use-only notice. Helvetica Neue and Decalotype are not bundled."
+  },
+  "templates": [
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p001-artwork",
+      "name": "01 · October 2025 cover · original artwork",
+      "kind": "cover",
+      "sourceCover": true,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 1,
+        "label": "October 2025 cover",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": ""
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p001-art.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p001-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p001-editable",
+      "name": "01 · October 2025 cover · editable source text",
+      "kind": "cover",
+      "sourceCover": true,
+      "storyCount": 0,
+      "photoCount": 1,
+      "design": "ote-2025",
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 1,
+        "label": "October 2025 cover",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p001-background.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p001-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "cover-photo",
+          "role": "photo",
+          "rect": [
+            61.5890007019043,
+            150.35498046875,
+            694.4599609375,
+            461.239990234375
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p001-photo.jpeg",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p001-photo.jpeg",
+          "fit": "cover",
+          "focus": {
+            "x": 0.4999999128626883,
+            "y": 0.4999993178439738
+          },
+          "zoom": 1.0030180648880906
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "SEPTEMBER 12, 2025",
+            "line3run1": "OCTOBER 16TH",
+            "line4run1": "2025",
+            "line5run1": "issue 2",
+            "line6run1": "volume (32)"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.48631113042276375,
+                0.05744878210202612,
+                0.5089334057752418,
+                0.08084009536589035
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 0.922969
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.7962215363033234,
+                0.057891508545538393,
+                0.9533911003637566,
+                0.08061878127281112
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 10.0,
+                "leading": 10.5,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 1.047053
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line3run1",
+              "rect": [
+                0.05485237969292535,
+                0.08360228875670771,
+                0.45475183719049683,
+                0.16693562209004104
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 40.0,
+                "leading": 42.0,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 1.011143
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line4run1",
+              "rect": [
+                0.8015344205987517,
+                0.08360228875670771,
+                0.9776718704788773,
+                0.16693562209004104
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 40.0,
+                "leading": 42.0,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 1.054385
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line5run1",
+              "rect": [
+                0.5791259442687665,
+                0.07127111608331854,
+                0.741419411210156,
+                0.1399195988972982
+              ],
+              "style": {
+                "fontFamily": "Salted",
+                "fontStyle": "Regular",
+                "size": 32.73099899291992,
+                "leading": 34.36754894256592,
+                "portable": {
+                  "fontFamily": "Caveat Brush",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.197111
+                  }
+                },
+                "chars": {
+                  "fill": "Source 285330"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line6run1",
+              "rect": [
+                0.577126316292576,
+                0.12289486509380919,
+                0.7266125956540386,
+                0.16485930934096826
+              ],
+              "style": {
+                "fontFamily": "Salted",
+                "fontStyle": "Regular",
+                "size": 19.52239990234375,
+                "leading": 20.498519897460938,
+                "portable": {
+                  "fontFamily": "Caveat Brush",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.192995
+                  }
+                },
+                "chars": {
+                  "fill": "Source 285330"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-3-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "over the edge is here!"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.3298510596865699,
+                0.5950559365628946,
+                0.6997434787649326,
+                0.6500480574790878
+              ],
+              "style": {
+                "fontFamily": "Salted",
+                "fontStyle": "Regular",
+                "size": 25.971099853515625,
+                "leading": 27.269654846191408,
+                "portable": {
+                  "fontFamily": "Caveat Brush",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.327498
+                  }
+                },
+                "chars": {
+                  "fill": "Source fffcf4"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-4-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "Campus Corners: The Best Places ",
+            "line2run1": "to Rest, Study, and Recharge"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.6520105997721354,
+                0.705103170992148,
+                0.954446685629547,
+                0.7338910497800267
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 13.0,
+                "leading": 13.65,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 0.999693
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.6520105997721354,
+                0.7248001098632812,
+                0.9065717909071181,
+                0.75358798865116
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 13.0,
+                "leading": 13.65,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 0.995306
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-5-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "Campus Corners: The Best Places ",
+            "line2run1": "to Rest, Study, and Recharge"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.6520105997721354,
+                0.7938980719055793,
+                0.954446685629547,
+                0.822685950693458
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 13.0,
+                "leading": 13.65,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 0.999693
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.6520105997721354,
+                0.8135950878413036,
+                0.9065717909071181,
+                0.8423829666291824
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 13.0,
+                "leading": 13.65,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 0.995306
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-6-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "Campus Corners: The Best Places ",
+            "line2run1": "to Rest, Study, and Recharge"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.6520105997721354,
+                0.8824839736476089,
+                0.954446685629547,
+                0.9112718524354876
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 13.0,
+                "leading": 13.65,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 0.999693
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.6520105997721354,
+                0.9021809125187421,
+                0.9065717909071181,
+                0.9309687913066208
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 13.0,
+                "leading": 13.65,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 0.995306
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-7-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "03"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.5282010678891782,
+                0.7047139157690183,
+                0.640171466807209,
+                0.7980935125177556
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 44.972900390625,
+                "leading": 47.22154541015625,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 0.86331
+                  }
+                },
+                "chars": {
+                  "fill": "Source 000000"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-8-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "05"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.5282010678891782,
+                0.7918986291133996,
+                0.640171466807209,
+                0.885278225862137
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 44.972900390625,
+                "leading": 47.22154541015625,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 0.86331
+                  }
+                },
+                "chars": {
+                  "fill": "Source 000000"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-9-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "10"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.5282010678891782,
+                0.884583750591856,
+                0.640171466807209,
+                0.9779633473405934
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 44.972900390625,
+                "leading": 47.22154541015625,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 0.86331
+                  }
+                },
+                "chars": {
+                  "fill": "Source 000000"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "overArt": "cover"
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p002-artwork",
+      "name": "02 · Blank editorial page · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 2,
+        "label": "Blank editorial page",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Blank editorial area with source house header/frame; no source article supplied."
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p002-art.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p002-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p002-editable",
+      "name": "02 · Blank editorial page · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2025",
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 2,
+        "label": "Blank editorial page",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p002-background.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p002-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "SEPTEMBER 12, 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.500702630905878,
+                0.05751451819834083,
+                0.523324906258356,
+                0.08090583146220506
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 0.922969
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.05752724945229828,
+                0.057957167577261874,
+                0.21469655112614708,
+                0.0806844403045346
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 10.0,
+                "leading": 10.5,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 1.047051
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p003-artwork",
+      "name": "03 · Blank editorial page · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 3,
+        "label": "Blank editorial page",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Blank editorial area with source house header/frame; no source article supplied."
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p003-art.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p003-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p003-editable",
+      "name": "03 · Blank editorial page · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2025",
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 3,
+        "label": "Blank editorial page",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p003-background.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p003-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "SEPTEMBER 12, 2025"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.48631113042276375,
+                0.05744878210202612,
+                0.5089334057752418,
+                0.08084009536589035
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 0.922969
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.7962215363033234,
+                0.057891508545538393,
+                0.9533911003637566,
+                0.08061878127281112
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 10.0,
+                "leading": 10.5,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 1.047053
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p004-artwork",
+      "name": "04 · Interim-President Question and Our Board 2025–2026 · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 4,
+        "label": "Interim-President Question and Our Board 2025–2026",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": ""
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p004-art.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p004-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p004-editable",
+      "name": "04 · Interim-President Question and Our Board 2025–2026 · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2025",
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 4,
+        "label": "Interim-President Question and Our Board 2025–2026",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p004-background.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p004-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "president-background",
+          "role": "ad",
+          "rect": [
+            54.622,
+            69.39,
+            676.838,
+            439
+          ],
+          "fit": "contain",
+          "asset": "source-art/october-president-background.pdf",
+          "previewAsset": "source-art/october-president-background.png"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "SEPTEMBER 12, 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.500702630905878,
+                0.05751451819834083,
+                0.523324906258356,
+                0.08090583146220506
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 0.922969
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.05752724945229828,
+                0.057957167577261874,
+                0.21469655112614708,
+                0.0806844403045346
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 10.0,
+                "leading": 10.5,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 1.047051
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-2-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "AHMAD"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.3502873011997768,
+                0.65373623009884,
+                0.4180432553013797,
+                0.6784301700014056
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 10.97350025177002,
+                "leading": 11.522175264358522,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 1.090715
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-3-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "Editor in Chief"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.34072605516544724,
+                0.677206328420928,
+                0.4251231440791377,
+                0.6963580449422201
+              ],
+              "style": {
+                "fontFamily": "Salted",
+                "fontStyle": "Regular",
+                "size": 8.23009967803955,
+                "leading": 8.641604661941528,
+                "portable": {
+                  "fontFamily": "Caveat Brush",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.322804
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-4-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "NAHID"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.6046235422608713,
+                0.65373623009884,
+                0.6648112984561416,
+                0.6784301700014056
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 10.97350025177002,
+                "leading": 11.522175264358522,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 1.100593
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-5-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "Director"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.607254876030816,
+                0.677206328420928,
+                0.659689605551422,
+                0.6963580449422201
+              ],
+              "style": {
+                "fontFamily": "Salted",
+                "fontStyle": "Regular",
+                "size": 8.23009967803955,
+                "leading": 8.641604661941528,
+                "portable": {
+                  "fontFamily": "Caveat Brush",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.278064
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-8-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "BRUCE"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.4795514465009094,
+                0.8132163924400253,
+                0.5393167602952826,
+                0.8379103323425909
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 10.97350025177002,
+                "leading": 11.522175264358522,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 1.033145
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-9-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "President"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.4785083185428034,
+                0.8366864907621133,
+                0.5378885420541915,
+                0.8558382072834053
+              ],
+              "style": {
+                "fontFamily": "Salted",
+                "fontStyle": "Regular",
+                "size": 8.23009967803955,
+                "leading": 8.641604661941528,
+                "portable": {
+                  "fontFamily": "Caveat Brush",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.297144
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-11-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "PARNIYA"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.21984007497313163,
+                0.8117604881826074,
+                0.29473461940805745,
+                0.836454428085173
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 10.97350025177002,
+                "leading": 11.522175264358522,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 0.988288
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-12-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "Director"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.229835449703156,
+                0.8366864907621133,
+                0.28227017922376196,
+                0.8558382072834053
+              ],
+              "style": {
+                "fontFamily": "Salted",
+                "fontStyle": "Regular",
+                "size": 8.23009967803955,
+                "leading": 8.641604661941528,
+                "portable": {
+                  "fontFamily": "Caveat Brush",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.278064
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-14-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "LINA"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.10996296796849166,
+                0.65373623009884,
+                0.15726991444037705,
+                0.6784301700014056
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 10.97350025177002,
+                "leading": 11.522175264358522,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 1.025317
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-15-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "Media Manager"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.0898296315834005,
+                0.677206328420928,
+                0.1749234981637783,
+                0.6963580449422201
+              ],
+              "style": {
+                "fontFamily": "Salted",
+                "fontStyle": "Regular",
+                "size": 8.23009967803955,
+                "leading": 8.641604661941528,
+                "portable": {
+                  "fontFamily": "Caveat Brush",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.230643
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-17-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "Our Board ",
+            "line1run2": "2025-2026"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.07092909838156726,
+                0.5639069682419903,
+                0.33850387643884733,
+                0.6369534347996567
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 34.90800094604492,
+                "leading": 36.65340099334717,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 1.044922
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line1run2",
+              "rect": [
+                0.29562434443721064,
+                0.5683145234079072,
+                0.5224176977046583,
+                0.6413609899655737
+              ],
+              "style": {
+                "fontFamily": "Salted",
+                "fontStyle": "Regular",
+                "size": 34.90800094604492,
+                "leading": 36.65340099334717,
+                "portable": {
+                  "fontFamily": "Caveat Brush",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.027871
+                  }
+                },
+                "chars": {
+                  "fill": "Source 15532a"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-18-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "Got thoughts about "
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.7642479952050265,
+                0.5847393382679332,
+                0.896459003226467,
+                0.6063847936765112
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 9.464500427246094,
+                "leading": 9.937725448608399,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 1.000002
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-19-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "Over the Edge?"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.7784634544735863,
+                0.6017562018500434,
+                0.8787377362528807,
+                0.6234016572586214
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Italic",
+                "size": 9.464500427246094,
+                "leading": 9.937725448608399,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Italic",
+                  "chars": {
+                    "hScale": 0.999999
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-20-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "Scan this QR code ",
+            "line1run2": "to share "
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.7361956399584574,
+                0.6821302934126421,
+                0.8628602799915133,
+                0.70377574882122
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 9.464500427246094,
+                "leading": 9.937725448608399,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 0.999779
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line1run2",
+              "rect": [
+                0.8502680864283647,
+                0.6819032611268939,
+                0.9131975718906948,
+                0.7035487165354718
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 9.464500427246094,
+                "leading": 9.937725448608399,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.033407
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-21-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "your feedback and help us im-"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.7287654977626902,
+                0.7010233715327099,
+                0.9171471762278723,
+                0.7226688269412879
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 9.464500427246094,
+                "leading": 9.937725448608399,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.048286
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-22-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "prove your campus newspaper!"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.7255102894293568,
+                0.7201435590031171,
+                0.9204044029195473,
+                0.741789014411695
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 9.464500427246094,
+                "leading": 9.937725448608399,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.04387
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-24-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "Got thoughts about "
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.7378385029141865,
+                0.6209829311178188,
+                0.9199001897579778,
+                0.6517910119258996
+              ],
+              "style": {
+                "fontFamily": "Salted",
+                "fontStyle": "Regular",
+                "size": 14.0,
+                "leading": 14.700000000000001,
+                "portable": {
+                  "fontFamily": "Caveat Brush",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.259403
+                  }
+                },
+                "chars": {
+                  "fill": "Source 15532a"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-25-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "Over the Edge?"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.7561806976479828,
+                0.642195113981613,
+                0.8951312191271908,
+                0.6730031947896938
+              ],
+              "style": {
+                "fontFamily": "Salted",
+                "fontStyle": "Regular",
+                "size": 14.0,
+                "leading": 14.700000000000001,
+                "portable": {
+                  "fontFamily": "Caveat Brush",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.24869
+                  }
+                },
+                "chars": {
+                  "fill": "Source 15532a"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-26-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "EMAIL: ",
+            "line2run1": "ote@unbc.ca"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.14397619136426815,
+                0.8884967842487373,
+                0.20998955983964224,
+                0.9170565826724274
+              ],
+              "style": {
+                "fontFamily": "Salted",
+                "fontStyle": "Regular",
+                "size": 12.887100219726562,
+                "leading": 13.531455230712892,
+                "portable": {
+                  "fontFamily": "Caveat Brush",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.070624
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.11999233185298859,
+                0.9066740093809186,
+                0.2280598211540747,
+                0.9352338078046085
+              ],
+              "style": {
+                "fontFamily": "MyriadPro",
+                "fontStyle": "Regular",
+                "size": 12.887100219726562,
+                "leading": 13.531455230712892,
+                "portable": {
+                  "fontFamily": "Source Serif 4",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 0.929289
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-27-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "Instagram: "
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.31726772570736195,
+                0.8875071207682291,
+                0.4229811431238891,
+                0.9160669191919192
+              ],
+              "style": {
+                "fontFamily": "Salted",
+                "fontStyle": "Regular",
+                "size": 12.887100219726562,
+                "leading": 13.531455230712892,
+                "portable": {
+                  "fontFamily": "Caveat Brush",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.267015
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-28-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "@unbc_ote"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.3184779131854022,
+                0.9076579700816761,
+                0.4158572666228764,
+                0.9362177685053661
+              ],
+              "style": {
+                "fontFamily": "MyriadPro",
+                "fontStyle": "Regular",
+                "size": 12.887100219726562,
+                "leading": 13.531455230712892,
+                "portable": {
+                  "fontFamily": "Source Serif 4",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 0.949849
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-29-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "Website: ",
+            "line2run1": "overtheedge.unbc.ca"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.5399977668883309,
+                0.8875098950935133,
+                0.6251190851605128,
+                0.9160696935172032
+              ],
+              "style": {
+                "fontFamily": "Salted",
+                "fontStyle": "Regular",
+                "size": 12.887100219726562,
+                "leading": 13.531455230712892,
+                "portable": {
+                  "fontFamily": "Caveat Brush",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.260088
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.49607857194527116,
+                0.9076608985361426,
+                0.6631267507240255,
+                0.9362206969598327
+              ],
+              "style": {
+                "fontFamily": "MyriadPro",
+                "fontStyle": "Regular",
+                "size": 12.887100219726562,
+                "leading": 13.531455230712892,
+                "portable": {
+                  "fontFamily": "Source Serif 4",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 0.940612
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "interim-president-qa",
+          "role": "piece",
+          "blockType": "president-qa",
+          "rect": [
+            54.622,
+            69.39,
+            676.838,
+            439
+          ],
+          "fields": {
+            "heading": "interim-President",
+            "subtitle": "Question",
+            "question": "Double-dipping:\nacceptable or unforgivable\n?",
+            "answer": "As for double-dipping, in the words of\nGeorge Costanza, “so??... you dip the way\nyou want to dip, and I dip the way I want to\ndip.”  Double, triple it is all good."
+          },
+          "contentLayout": [
+            {
+              "field": "heading",
+              "rect": [
+                0.0,
+                0.0016503882470712357,
+                0.4827551846947041,
+                0.15586699494061307
+              ],
+              "style": {
+                "fontFamily": "Salted",
+                "fontStyle": "Regular",
+                "size": 44,
+                "leading": 48,
+                "chars": {
+                  "fill": "OTE 2025 Green"
+                },
+                "para": {
+                  "align": "left",
+                  "hyphenate": false
+                }
+              }
+            },
+            {
+              "field": "subtitle",
+              "rect": [
+                0.4827551846947041,
+                0.01517816076404859,
+                0.7479364079355079,
+                0.13963366792024023
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 35,
+                "leading": 38,
+                "chars": {
+                  "fill": "[Black]"
+                },
+                "para": {
+                  "align": "left",
+                  "hyphenate": false
+                }
+              }
+            },
+            {
+              "field": "answer",
+              "rect": [
+                0.3686469007547218,
+                0.3019669381239685,
+                0.8090084472273293,
+                0.534644625415979
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Italic",
+                "size": 12,
+                "leading": 18,
+                "chars": {
+                  "fill": "[Black]"
+                },
+                "para": {
+                  "align": "left",
+                  "hyphenate": false
+                }
+              }
+            },
+            {
+              "field": "question",
+              "rect": [
+                0.5229341579130077,
+                0.6915667866129164,
+                0.9006165061650617,
+                0.9783555639728362
+              ],
+              "style": {
+                "fontFamily": "Salted",
+                "fontStyle": "Regular",
+                "size": 21,
+                "leading": 30,
+                "chars": {
+                  "fill": "[Black]"
+                },
+                "para": {
+                  "align": "center",
+                  "hyphenate": false
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p005-artwork",
+      "name": "05 · Blank editorial page · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 5,
+        "label": "Blank editorial page",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Blank editorial area with source house header/frame; no source article supplied."
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p005-art.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p005-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p005-editable",
+      "name": "05 · Blank editorial page · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2025",
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 5,
+        "label": "Blank editorial page",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p005-background.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p005-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "SEPTEMBER 12, 2025"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.48631113042276375,
+                0.05744878210202612,
+                0.5089334057752418,
+                0.08084009536589035
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 0.922969
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.7962215363033234,
+                0.057891508545538393,
+                0.9533911003637566,
+                0.08061878127281112
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 10.0,
+                "leading": 10.5,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 1.047053
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p006-artwork",
+      "name": "06 · Blank editorial page · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 6,
+        "label": "Blank editorial page",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Blank editorial area with source house header/frame; no source article supplied."
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p006-art.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p006-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p006-editable",
+      "name": "06 · Blank editorial page · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2025",
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 6,
+        "label": "Blank editorial page",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p006-background.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p006-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "SEPTEMBER 12, 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.500702630905878,
+                0.05751451819834083,
+                0.523324906258356,
+                0.08090583146220506
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 0.922969
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.05752724945229828,
+                0.057957167577261874,
+                0.21469655112614708,
+                0.0806844403045346
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 10.0,
+                "leading": 10.5,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 1.047051
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p007-artwork",
+      "name": "07 · Blank editorial page · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 7,
+        "label": "Blank editorial page",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Blank editorial area with source house header/frame; no source article supplied."
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p007-art.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p007-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p007-editable",
+      "name": "07 · Blank editorial page · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2025",
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 7,
+        "label": "Blank editorial page",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p007-background.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p007-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "SEPTEMBER 12, 2025"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.48631113042276375,
+                0.05744878210202612,
+                0.5089334057752418,
+                0.08084009536589035
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 0.922969
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.7962215363033234,
+                0.057891508545538393,
+                0.9533911003637566,
+                0.08061878127281112
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 10.0,
+                "leading": 10.5,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 1.047053
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p008-artwork",
+      "name": "08 · Blank editorial page · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 8,
+        "label": "Blank editorial page",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Blank editorial area with source house header/frame; no source article supplied."
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p008-art.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p008-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p008-editable",
+      "name": "08 · Blank editorial page · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2025",
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 8,
+        "label": "Blank editorial page",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p008-background.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p008-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "SEPTEMBER 12, 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.500702630905878,
+                0.05751451819834083,
+                0.523324906258356,
+                0.08090583146220506
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 0.922969
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.05752724945229828,
+                0.057957167577261874,
+                0.21469655112614708,
+                0.0806844403045346
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 10.0,
+                "leading": 10.5,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 1.047051
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p009-artwork",
+      "name": "09 · Blank editorial page · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 9,
+        "label": "Blank editorial page",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Blank editorial area with source house header/frame; no source article supplied."
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p009-art.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p009-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p009-editable",
+      "name": "09 · Blank editorial page · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2025",
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 9,
+        "label": "Blank editorial page",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p009-background.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p009-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "SEPTEMBER 12, 2025"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.48631113042276375,
+                0.05744878210202612,
+                0.5089334057752418,
+                0.08084009536589035
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 0.922969
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.7962215363033234,
+                0.057891508545538393,
+                0.9533911003637566,
+                0.08061878127281112
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 10.0,
+                "leading": 10.5,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 1.047053
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p010-artwork",
+      "name": "10 · Blank editorial page · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 10,
+        "label": "Blank editorial page",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Blank editorial area with source house header/frame; no source article supplied."
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p010-art.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p010-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p010-editable",
+      "name": "10 · Blank editorial page · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2025",
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 10,
+        "label": "Blank editorial page",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p010-background.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p010-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "SEPTEMBER 12, 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.500702630905878,
+                0.05751451819834083,
+                0.523324906258356,
+                0.08090583146220506
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 0.922969
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.05752724945229828,
+                0.057957167577261874,
+                0.21469655112614708,
+                0.0806844403045346
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 10.0,
+                "leading": 10.5,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 1.047051
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p011-artwork",
+      "name": "11 · Wholly blank source page · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 11,
+        "label": "Wholly blank source page",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Wholly blank source page."
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p011-art.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p011-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p011-editable",
+      "name": "11 · Wholly blank source page · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2025",
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 11,
+        "label": "Wholly blank source page",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p011-background.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p011-background.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p012-artwork",
+      "name": "12 · Blank editorial page · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 12,
+        "label": "Blank editorial page",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Blank editorial area with source house header/frame; no source article supplied."
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p012-art.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p012-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p012-editable",
+      "name": "12 · Blank editorial page · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2025",
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 12,
+        "label": "Blank editorial page",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p012-background.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p012-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "SEPTEMBER 12, 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.500702630905878,
+                0.05751451819834083,
+                0.523324906258356,
+                0.08090583146220506
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 0.922969
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.05752724945229828,
+                0.057957167577261874,
+                0.21469655112614708,
+                0.0806844403045346
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 10.0,
+                "leading": 10.5,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 1.047051
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p013-artwork",
+      "name": "13 · Blank editorial page · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 13,
+        "label": "Blank editorial page",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Blank editorial area with source house header/frame; no source article supplied."
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p013-art.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p013-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p013-editable",
+      "name": "13 · Blank editorial page · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2025",
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 13,
+        "label": "Blank editorial page",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p013-background.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p013-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "SEPTEMBER 12, 2025"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.48631113042276375,
+                0.05744878210202612,
+                0.5089334057752418,
+                0.08084009536589035
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 0.922969
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.7962215363033234,
+                0.057891508545538393,
+                0.9533911003637566,
+                0.08061878127281112
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 10.0,
+                "leading": 10.5,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 1.047053
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p014-artwork",
+      "name": "14 · CFUR Radiothon · Queen Vinyl Night · bottom-left quarter ad · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 14,
+        "label": "CFUR Radiothon · Queen Vinyl Night · bottom-left quarter ad",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": ""
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p014-art.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p014-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p014-editable",
+      "name": "14 · CFUR Radiothon · Queen Vinyl Night · bottom-left quarter ad · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2025",
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 14,
+        "label": "CFUR Radiothon · Queen Vinyl Night · bottom-left quarter ad",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p014-background.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p014-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "SEPTEMBER 12, 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.500702630905878,
+                0.05751451819834083,
+                0.523324906258356,
+                0.08090583146220506
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 0.922969
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.05752724945229828,
+                0.057957167577261874,
+                0.21469655112614708,
+                0.0806844403045346
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 10.0,
+                "leading": 10.5,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 1.047051
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-ad-cfur-event",
+          "role": "ad",
+          "rect": [
+            34.95400619506836,
+            428.0980224609375,
+            365.22064208984375,
+            756.9400024414062
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p014-ad-cfur-event.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p014-ad-cfur-event.png",
+          "fit": "contain",
+          "source": {
+            "id": "cfur-event",
+            "label": "CFUR Radiothon · Queen Vinyl Night · bottom-left quarter ad",
+            "rect": [
+              34.95400619506836,
+              428.0980224609375,
+              365.22064208984375,
+              756.9400024414062
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p015-artwork",
+      "name": "15 · Thirsty Moose Pub · right-half ad · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 15,
+        "label": "Thirsty Moose Pub · right-half ad",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": ""
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p015-art.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p015-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p015-editable",
+      "name": "15 · Thirsty Moose Pub · right-half ad · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2025",
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 15,
+        "label": "Thirsty Moose Pub · right-half ad",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p015-background.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p015-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "SEPTEMBER 12, 2025"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.48631113042276375,
+                0.05744878210202612,
+                0.5089334057752418,
+                0.08084009536589035
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 0.922969
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.7962215363033234,
+                0.057891508545538393,
+                0.9533911003637566,
+                0.08061878127281112
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 10.0,
+                "leading": 10.5,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 1.047053
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-ad-thirsty-moose",
+          "role": "ad",
+          "rect": [
+            386.34808349609375,
+            65.2486572265625,
+            716.8486328125,
+            752.3599853515625
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p015-ad-thirsty-moose.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p015-ad-thirsty-moose.png",
+          "fit": "contain",
+          "source": {
+            "id": "thirsty-moose",
+            "label": "Thirsty Moose Pub · right-half ad",
+            "rect": [
+              386.34808349609375,
+              65.2486572265625,
+              716.8486328125,
+              752.3599853515625
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p016-artwork",
+      "name": "16 · Write for Over the Edge · right-half recruitment · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 16,
+        "label": "Write for Over the Edge · right-half recruitment",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": ""
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p016-art.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p016-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-issue-2-october-2025-0eb630f7-p016-editable",
+      "name": "16 · Write for Over the Edge · right-half recruitment · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2025",
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+        "page": 16,
+        "label": "Write for Over the Edge · right-half recruitment",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p016-background.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p016-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-2-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "SEPTEMBER 12, 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.500702630905878,
+                0.05751451819834083,
+                0.523324906258356,
+                0.08090583146220506
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 0.922969
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.05752724945229828,
+                0.057957167577261874,
+                0.21469655112614708,
+                0.0806844403045346
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 10.0,
+                "leading": 10.5,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 1.047051
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-ad-ote-recruitment",
+          "role": "ad",
+          "rect": [
+            380.8800048828125,
+            65.2486572265625,
+            717.3560180664062,
+            754.9199829101562
+          ],
+          "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p016-ad-ote-recruitment.pdf",
+          "previewAsset": "source-art/whole-issue-2-october-2025-0eb630f7-p016-ad-ote-recruitment.png",
+          "fit": "contain",
+          "source": {
+            "id": "ote-recruitment",
+            "label": "Write for Over the Edge · right-half recruitment",
+            "rect": [
+              380.8800048828125,
+              65.2486572265625,
+              717.3560180664062,
+              754.9199829101562
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "designs": {
+    "ote-2024": {
+      "name": "OTE 2024–25",
+      "description": "Fall 2024 – Winter 2025 design, from Issue 7 (March 2025): green header bar, solid frame, masthead cover with numbered feature boxes.",
+      "source": "Indesign Template/Fall 2024- Winter 2025/Issue 7 March 2025/Issue 7 March 2025 Folder/Issue 7 March 2025.idml",
+      "numbering": "arabic",
+      "art": {
+        "left": {
+          "original": "original-art/ote-2024-left.designcraft",
+          "portable": "original-art/ote-2024-left-portable.designcraft"
+        },
+        "right": {
+          "original": "original-art/ote-2024-right.designcraft",
+          "portable": "original-art/ote-2024-right-portable.designcraft"
+        },
+        "cover": {
+          "original": "original-art/ote-2024-cover.designcraft",
+          "portable": "original-art/ote-2024-cover-portable.designcraft"
+        }
+      },
+      "styles": {
+        "OTE Headline": {
+          "fontFamily": "Decalotype",
+          "fontStyle": "Black",
+          "size": 24,
+          "leading": 25
+        },
+        "OTE Body": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Regular",
+          "size": 10,
+          "leading": 15
+        },
+        "OTE Byline": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 8,
+          "leading": 11,
+          "chars": {
+            "tracking": 60,
+            "capitalization": "allCaps",
+            "fill": "OTE 2024 Green"
+          }
+        },
+        "OTE Caption": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Italic",
+          "size": 8,
+          "leading": 10
+        },
+        "OTE Label": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 12,
+          "leading": 15
+        },
+        "OTE Quote": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Italic",
+          "size": 10,
+          "leading": 15
+        },
+        "OTE Heading 1": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 18,
+          "leading": 21.599999999999998
+        },
+        "OTE Heading 2": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 16,
+          "leading": 19.2
+        },
+        "OTE Heading 3": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 14,
+          "leading": 16.8
+        },
+        "OTE Heading 4": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 12,
+          "leading": 14.399999999999999
+        },
+        "OTE Heading 5": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 11,
+          "leading": 13.2
+        },
+        "OTE Heading 6": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 10,
+          "leading": 12
+        }
+      },
+      "fonts": {
+        "portable": {
+          "Helvetica Neue|Regular": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue|Bold": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue|Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue|Bold Italic": [
+            "TeX Gyre Heros",
+            "Bold Italic"
+          ],
+          "Helvetica Neue|Medium": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue|Medium Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue|Light": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue|Heavy": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue|Oblique": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue|Condensed Black": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica Neue|Condensed Bold": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica Neue (TT)|Regular": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (TT)|Bold": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue (TT)|Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (TT)|Bold Italic": [
+            "TeX Gyre Heros",
+            "Bold Italic"
+          ],
+          "Helvetica Neue (TT)|Medium": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (TT)|Medium Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (TT)|Light": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (TT)|Heavy": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue (TT)|Oblique": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (TT)|Condensed Black": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica Neue (TT)|Condensed Bold": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica Neue (OTF)|Regular": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (OTF)|Bold": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue (OTF)|Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (OTF)|Bold Italic": [
+            "TeX Gyre Heros",
+            "Bold Italic"
+          ],
+          "Helvetica Neue (OTF)|Medium": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (OTF)|Medium Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (OTF)|Light": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (OTF)|Heavy": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue (OTF)|Oblique": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (OTF)|Condensed Black": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica Neue (OTF)|Condensed Bold": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica|Regular": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica|Bold": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica|Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica|Bold Italic": [
+            "TeX Gyre Heros",
+            "Bold Italic"
+          ],
+          "Helvetica|Medium": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica|Medium Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica|Light": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica|Heavy": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica|Oblique": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica|Condensed Black": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica|Condensed Bold": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Decalotype|Black": [
+            "Barlow",
+            "Black"
+          ],
+          "Decalotype|Bold": [
+            "Barlow",
+            "ExtraBold"
+          ],
+          "Decalotype|Medium": [
+            "Barlow",
+            "SemiBold"
+          ],
+          "Salted|Regular": [
+            "Caveat Brush",
+            "Regular"
+          ],
+          "Wordy Diva|Regular": [
+            "Caveat Brush",
+            "Regular"
+          ],
+          "Kefa|Regular": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Kefa|Bold": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Minion Pro|Regular": [
+            "Source Serif 4",
+            "Regular"
+          ]
+        }
+      },
+      "swatches": [
+        {
+          "name": "OTE 2024 Green",
+          "color": {
+            "model": "rgb",
+            "r": 0.17647058823529413,
+            "g": 0.40784313725490196,
+            "b": 0.3254901960784314
+          }
+        },
+        {
+          "name": "C=0 M=0 Y=0 K=0",
+          "color": {
+            "model": "cmyk",
+            "c": 0,
+            "m": 0,
+            "y": 0,
+            "k": 0
+          }
+        },
+        {
+          "name": "Source ffffff",
+          "color": {
+            "model": "rgb",
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          }
+        },
+        {
+          "name": "Source 231f20",
+          "color": {
+            "model": "rgb",
+            "r": 0.13725490196078433,
+            "g": 0.12156862745098039,
+            "b": 0.12549019607843137
+          }
+        },
+        {
+          "name": "Source 285330",
+          "color": {
+            "model": "rgb",
+            "r": 0.1568627450980392,
+            "g": 0.3254901960784314,
+            "b": 0.18823529411764706
+          }
+        },
+        {
+          "name": "Source fffcf4",
+          "color": {
+            "model": "rgb",
+            "r": 1.0,
+            "g": 0.9882352941176471,
+            "b": 0.9568627450980393
+          }
+        },
+        {
+          "name": "Source 000000",
+          "color": {
+            "model": "rgb",
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0
+          }
+        },
+        {
+          "name": "Source 15532a",
+          "color": {
+            "model": "rgb",
+            "r": 0.08235294117647059,
+            "g": 0.3254901960784314,
+            "b": 0.16470588235294117
+          }
+        },
+        {
+          "name": "Source 272727",
+          "color": {
+            "model": "rgb",
+            "r": 0.15294117647058825,
+            "g": 0.15294117647058825,
+            "b": 0.15294117647058825
+          }
+        }
+      ],
+      "content": [
+        49.02,
+        73.98,
+        706.4,
+        743.94
+      ]
+    },
+    "ote-2025": {
+      "name": "OTE 2025–26",
+      "description": "2025 – 2026 design, from Issue 2 (October 2025): dark green header bar, dashed frame, framed-photo cover with handwritten issue line and numbered feature list.",
+      "source": "Indesign Template/2025-2026 Ahmad's Version/Issue 2/Issue 2 October 2025 Folder/Issue 2 October 2025.idml",
+      "numbering": "arabicLeadingZero",
+      "art": {
+        "left": {
+          "original": "original-art/ote-2025-left.designcraft",
+          "portable": "original-art/ote-2025-left-portable.designcraft"
+        },
+        "right": {
+          "original": "original-art/ote-2025-right.designcraft",
+          "portable": "original-art/ote-2025-right-portable.designcraft"
+        },
+        "cover": {
+          "original": "original-art/ote-2025-cover.designcraft",
+          "portable": "original-art/ote-2025-cover-portable.designcraft",
+          "over": {
+            "original": "original-art/ote-2025-cover-over.designcraft",
+            "portable": "original-art/ote-2025-cover-over-portable.designcraft"
+          }
+        }
+      },
+      "styles": {
+        "OTE Headline": {
+          "fontFamily": "Decalotype",
+          "fontStyle": "Black",
+          "size": 24,
+          "leading": 25
+        },
+        "OTE Body": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Medium",
+          "size": 9.5,
+          "leading": 14.5
+        },
+        "OTE Byline": {
+          "fontFamily": "Salted",
+          "fontStyle": "Regular",
+          "size": 13,
+          "leading": 14,
+          "chars": {
+            "fill": "OTE 2025 Ink Green"
+          }
+        },
+        "OTE Caption": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Medium Italic",
+          "size": 8,
+          "leading": 11
+        },
+        "OTE Label": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 12,
+          "leading": 15
+        },
+        "OTE Quote": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Medium Italic",
+          "size": 10,
+          "leading": 15
+        },
+        "OTE Heading 1": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 18,
+          "leading": 21.599999999999998
+        },
+        "OTE Heading 2": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 16,
+          "leading": 19.2
+        },
+        "OTE Heading 3": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 14,
+          "leading": 16.8
+        },
+        "OTE Heading 4": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 12,
+          "leading": 14.399999999999999
+        },
+        "OTE Heading 5": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 11,
+          "leading": 13.2
+        },
+        "OTE Heading 6": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 10,
+          "leading": 12
+        }
+      },
+      "fonts": {
+        "portable": {
+          "Helvetica Neue|Regular": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue|Bold": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue|Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue|Bold Italic": [
+            "TeX Gyre Heros",
+            "Bold Italic"
+          ],
+          "Helvetica Neue|Medium": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue|Medium Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue|Light": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue|Heavy": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue|Oblique": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue|Condensed Black": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica Neue|Condensed Bold": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica Neue (TT)|Regular": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (TT)|Bold": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue (TT)|Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (TT)|Bold Italic": [
+            "TeX Gyre Heros",
+            "Bold Italic"
+          ],
+          "Helvetica Neue (TT)|Medium": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (TT)|Medium Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (TT)|Light": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (TT)|Heavy": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue (TT)|Oblique": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (TT)|Condensed Black": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica Neue (TT)|Condensed Bold": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica Neue (OTF)|Regular": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (OTF)|Bold": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue (OTF)|Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (OTF)|Bold Italic": [
+            "TeX Gyre Heros",
+            "Bold Italic"
+          ],
+          "Helvetica Neue (OTF)|Medium": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (OTF)|Medium Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (OTF)|Light": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (OTF)|Heavy": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue (OTF)|Oblique": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (OTF)|Condensed Black": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica Neue (OTF)|Condensed Bold": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica|Regular": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica|Bold": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica|Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica|Bold Italic": [
+            "TeX Gyre Heros",
+            "Bold Italic"
+          ],
+          "Helvetica|Medium": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica|Medium Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica|Light": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica|Heavy": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica|Oblique": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica|Condensed Black": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica|Condensed Bold": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Decalotype|Black": [
+            "Barlow",
+            "Black"
+          ],
+          "Decalotype|Bold": [
+            "Barlow",
+            "ExtraBold"
+          ],
+          "Decalotype|Medium": [
+            "Barlow",
+            "SemiBold"
+          ],
+          "Salted|Regular": [
+            "Caveat Brush",
+            "Regular"
+          ],
+          "Wordy Diva|Regular": [
+            "Caveat Brush",
+            "Regular"
+          ],
+          "Kefa|Regular": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Kefa|Bold": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Minion Pro|Regular": [
+            "Source Serif 4",
+            "Regular"
+          ]
+        }
+      },
+      "swatches": [
+        {
+          "name": "OTE 2025 Green",
+          "color": {
+            "model": "rgb",
+            "r": 0.08235294117647059,
+            "g": 0.3254901960784314,
+            "b": 0.1607843137254902
+          }
+        },
+        {
+          "name": "OTE 2025 Ink Green",
+          "color": {
+            "model": "cmyk",
+            "c": 0.87,
+            "m": 0.4,
+            "y": 0.99,
+            "k": 0.41
+          }
+        },
+        {
+          "name": "R=255 G=251 B=242",
+          "color": {
+            "model": "rgb",
+            "r": 1,
+            "g": 0.98333335,
+            "b": 0.95
+          }
+        },
+        {
+          "name": "C=81 M=42 Y=91 K=41",
+          "color": {
+            "model": "cmyk",
+            "c": 0.81,
+            "m": 0.42,
+            "y": 0.91,
+            "k": 0.41
+          }
+        },
+        {
+          "name": "C=0 M=1 Y=4 K=0",
+          "color": {
+            "model": "cmyk",
+            "c": 0,
+            "m": 0.01,
+            "y": 0.04,
+            "k": 0
+          }
+        },
+        {
+          "name": "R=0 G=0 B=0",
+          "color": {
+            "model": "rgb",
+            "r": 0,
+            "g": 0,
+            "b": 0
+          }
+        },
+        {
+          "name": "Source ffffff",
+          "color": {
+            "model": "rgb",
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          }
+        },
+        {
+          "name": "Source 231f20",
+          "color": {
+            "model": "rgb",
+            "r": 0.13725490196078433,
+            "g": 0.12156862745098039,
+            "b": 0.12549019607843137
+          }
+        },
+        {
+          "name": "Source 285330",
+          "color": {
+            "model": "rgb",
+            "r": 0.1568627450980392,
+            "g": 0.3254901960784314,
+            "b": 0.18823529411764706
+          }
+        },
+        {
+          "name": "Source fffcf4",
+          "color": {
+            "model": "rgb",
+            "r": 1.0,
+            "g": 0.9882352941176471,
+            "b": 0.9568627450980393
+          }
+        },
+        {
+          "name": "Source 000000",
+          "color": {
+            "model": "rgb",
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0
+          }
+        },
+        {
+          "name": "Source 15532a",
+          "color": {
+            "model": "rgb",
+            "r": 0.08235294117647059,
+            "g": 0.3254901960784314,
+            "b": 0.16470588235294117
+          }
+        },
+        {
+          "name": "Source 272727",
+          "color": {
+            "model": "rgb",
+            "r": 0.15294117647058825,
+            "g": 0.15294117647058825,
+            "b": 0.15294117647058825
+          }
+        }
+      ],
+      "content": [
+        49.02,
+        66.33,
+        706.4,
+        743.94
+      ]
+    }
+  }
+}

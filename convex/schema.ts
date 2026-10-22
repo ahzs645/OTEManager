@@ -41,9 +41,11 @@ export default defineSchema({
     etransferEmail: v.union(v.string(), v.null()),
     createdAt: v.number(),
     updatedAt: v.number(),
+    sourceAuthorKey: v.optional(v.union(v.string(), v.null())),
   })
     .index("by_legacy_id", ["id"])
-    .index("by_email", ["email"]),
+    .index("by_email", ["email"])
+    .index("by_sourceAuthorKey", ["sourceAuthorKey"]),
   articles: defineTable({
     id: v.string(),
     title: v.string(),
@@ -104,6 +106,9 @@ export default defineSchema({
     submittedAt: v.union(v.number(), v.null()),
     createdAt: v.number(),
     updatedAt: v.number(),
+    sourceImportKey: v.optional(v.union(v.string(), v.null())),
+    sourceFingerprint: v.optional(v.union(v.string(), v.null())),
+    sourceProvenance: v.optional(v.union(v.string(), v.null())),
   })
     .index("by_legacy_id", ["id"])
     .index("by_authorId", ["authorId"])
@@ -111,7 +116,9 @@ export default defineSchema({
     .index("by_issueId", ["issueId"])
     .index("by_paymentStatus", ["paymentStatus"])
     .index("by_paymentBankReference", ["paymentBankReference"])
-    .index("by_formResponseId", ["formResponseId"]),
+    .index("by_formResponseId", ["formResponseId"])
+    .index("by_sourceImportKey", ["sourceImportKey"])
+    .index("by_sourceFingerprint", ["sourceFingerprint"]),
   articleMultimediaTypes: defineTable({
     id: v.string(),
     articleId: v.string(),
@@ -232,9 +239,28 @@ export default defineSchema({
     description: v.union(v.string(), v.null()),
     createdAt: v.number(),
     updatedAt: v.number(),
+    sourceProvenance: v.optional(v.union(v.string(), v.null())),
   })
     .index("by_legacy_id", ["id"])
-    .index("by_volumeId", ["volumeId"]),
+    .index("by_volumeId", ["volumeId"])
+    .index("by_volumeId_and_issueNumber", ["volumeId", "issueNumber"]),
+  sourceArchiveLinks: defineTable({
+    id: v.string(),
+    archiveId: v.string(),
+    sourceKey: v.string(),
+    publicationKey: v.string(),
+    articleId: v.string(),
+    sourceFingerprint: v.string(),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_legacy_id", ["id"])
+    .index("by_archiveId_and_sourceKey_and_publicationKey", [
+      "archiveId",
+      "sourceKey",
+      "publicationKey",
+    ])
+    .index("by_articleId", ["articleId"]),
   savedArticleViews: defineTable({
     id: v.string(),
     name: v.string(),

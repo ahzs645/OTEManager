@@ -330,6 +330,15 @@ function ImportPage() {
         </div>
       </div>
 
+      <div className="mb-6 rounded-lg p-4" style={{ background: "var(--bg-surface)", border: "1px solid var(--border-default)" }}>
+        <Link to="/utilities/source-archive" className="font-medium" style={{ color: "var(--accent)" }}>
+          Import original OTE issues →
+        </Link>
+        <p className="mt-1 text-sm" style={{ color: "var(--fg-muted)" }}>
+          Review the nine source issue archives, original article text and bylines, and missing publication metadata.
+        </p>
+      </div>
+
       {/* Duplicate Detection Info */}
       <div
         style={{

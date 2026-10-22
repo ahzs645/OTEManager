@@ -61,10 +61,12 @@ export async function runWasmJob(job: WasmJob): Promise<{ exitCode: number; stdo
   const fonts = await readFonts(job.fontDir, () => true);
   const planned = new Set<string>(job.mode === "issue" ? (issue.layoutPlan?.pages ?? []).map((p: Json) => p.templateId) : [job.selected.templateId ?? ""]);
   const designs = compiler.pages.usesDesigns({ templates: library.templates.filter((t: Json) => planned.has(t.id)) });
-  // Original-font builds also carry bundled Salted and any design substitutes the server lacks.
+  // Captured source styles can use any portable family as a scoped substitute.
+  // Retain the complete bundled fallback scope; private filenames take priority.
   if (job.fontProfile === "original2025") {
     const present = new Set(fonts.map((font) => font.name));
-    fonts.push(...await readFonts(join(job.staticDir, "assets/fonts"), (name) => (name === "Salted-Regular.otf" || name === "LICENSE-Salted.txt" || (designs && compiler.pages.isDesignFont(name))) && !present.has(name)));
+    const bundled = compiler.pages.documentFonts(await readFonts(join(job.staticDir, "assets/fonts"), () => true), "portable", designs);
+    fonts.push(...bundled.filter((font: { name: string }) => !present.has(font.name)));
   }
   // Recipe resources were validated and staged by prepareRecipe; nothing else is readable.
   const loadMedia = async ({ path }: { root: string; path: string }) => {

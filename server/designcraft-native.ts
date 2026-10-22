@@ -63,7 +63,7 @@ type Job = {
   id: string; status: Status; mode: Mode; fontProfile: FontProfile; directory: string;
   createdAt: number; finishedAt?: number; message?: string; artifacts: Record<string, Artifact>;
   args: string[]; controller?: AbortController;
-  wasm?: { recipeDir: string; fontDir: string; booklet: boolean; selected: { templateId?: string; pageNumber: number; articleIds: string[]; designs?: boolean } };
+  wasm?: { recipeDir: string; fontDir: string; booklet: boolean; selected: { templateId?: string; pageNumber: number; articleIds: string[]; designs?: boolean; sharedCompiler?: boolean } };
 };
 
 /** ZIP paths are data, never server paths. Reject aliases on both POSIX and Windows. */
@@ -187,10 +187,12 @@ async function readJson(zip: JSZip, name: string, limits: typeof NATIVE_LIMITS) 
   return record(parsed, name);
 }
 
-const ROLES = new Set(["headline", "body", "byline", "caption", "label", "folio", "photo", "ad", "piece", "text"]);
+const ROLES = new Set(["headline", "body", "byline", "caption", "label", "folio", "photo", "ad", "piece", "text", "wrap"]);
 // Original designs (library.designs) place art captured from the source InDesign files. Those
 // documents ship with the server; recipes reference them by name and cannot supply their own.
 const DESIGN_ART = /^original-art\/[a-z0-9][a-z0-9.-]{0,120}\.designcraft$/;
+const SOURCE_ART = /^source-art\/[a-z0-9][a-z0-9-]{0,120}\.(?:pdf|png|jpe?g|tiff?|webp)$/;
+const SOURCE_PDF = /^originals\/[a-z0-9][a-z0-9-]{0,120}\.pdf$/;
 function typography(value: unknown, label: string) {
   if (typeof value === "string") { if (!value || value.length > 120) throw new NativeRequestError(label + " must name a style."); return; }
   const style = record(value, label);
@@ -199,6 +201,14 @@ function typography(value: unknown, label: string) {
   finite(style.size, label + " size", 4, 144);
   if (style.leading !== undefined) finite(style.leading, label + " leading", 4, 200);
   for (const key of ["chars", "para"]) if (style[key] !== undefined) record(style[key], label + " " + key);
+  if (style.portable !== undefined) {
+    const portable = record(style.portable, label + " portable substitute");
+    if (typeof portable.fontFamily !== "string" || !portable.fontFamily || portable.fontFamily.length > 120 || (portable.fontStyle !== undefined && (typeof portable.fontStyle !== "string" || portable.fontStyle.length > 120))) throw new NativeRequestError(label + " portable substitute needs a font family and face.");
+    if (portable.chars !== undefined) {
+      const chars = record(portable.chars, label + " portable characters");
+      if (chars.hScale !== undefined) finite(chars.hScale, label + " portable horizontal scale", 0.25, 4);
+    }
+  }
 }
 const BRAND = new Set(["assets/ote-horizontal-logo.png", "assets/ote-stacked-logo.pdf", "assets/source-cover-photo.jpeg"]);
 const MEDIA_EXTENSION = /\.(png|jpe?g|pdf|tiff?|webp)$/i;
@@ -253,7 +263,8 @@ async function prepareRecipe(buffer: Buffer, directory: string, designcraftDir: 
     if (templateIds.has(id)) throw new NativeRequestError("Duplicate template ID.");
     templateIds.add(id);
     if (!["story", "cover", "ad", "custom"].includes(template.kind)) throw new NativeRequestError("Unknown template kind.");
-    finite(template.storyCount ?? 0, "Story count", 0, 3);
+    if (!Number.isInteger(template.storyCount ?? 0)) throw new NativeRequestError("Story count must be an integer.");
+    finite(template.storyCount ?? 0, "Story count", 0, template.kind === "cover" ? 3 : 12);
     const slotIds = new Set<string>();
     for (const slot of array(template.slots, "Template slots", 128)) {
       record(slot, "Slot"); const sid = identifier(slot.id, "Slot ID");
@@ -267,6 +278,7 @@ async function prepareRecipe(buffer: Buffer, directory: string, designcraftDir: 
       if (slot.fontSize !== undefined) finite(slot.fontSize, "Slot font size", 1, 300);
       if (slot.columns !== undefined && (!Number.isInteger(slot.columns) || slot.columns < 1 || slot.columns > 12)) throw new NativeRequestError("Invalid column count.");
       if (slot.asset) resource(slot.asset);
+      if (slot.pdfPage !== undefined && (!Number.isInteger(slot.pdfPage) || slot.pdfPage < 1 || slot.pdfPage > 256)) throw new NativeRequestError("A placed PDF page must be an integer from 1 to 256.");
       if (slot.fit !== undefined && !["contain", "cover"].includes(slot.fit)) throw new NativeRequestError("Invalid image fitting mode.");
       if (slot.focus) { const focus = record(slot.focus, "Photo focus"); finite(focus.x, "Focus X", 0, 1); finite(focus.y, "Focus Y", 0, 1); }
       if (slot.zoom !== undefined) finite(slot.zoom, "Photo zoom", 1, 8);
@@ -278,16 +290,38 @@ async function prepareRecipe(buffer: Buffer, directory: string, designcraftDir: 
       if (slot.numbering !== undefined && !["arabic", "arabicLeadingZero"].includes(slot.numbering)) throw new NativeRequestError("Invalid page numbering.");
       if (slot.text !== undefined && (typeof slot.text !== "string" || slot.text.length > 2000)) throw new NativeRequestError("Invalid slot text.");
       if (slot.stroke !== undefined) { const stroke = record(slot.stroke, "Slot stroke"); identifier(stroke.swatch, "Stroke swatch"); finite(stroke.weight, "Stroke weight", 0, 20); }
-      if (slot.role === "text" && !template.design) throw new NativeRequestError("Text slots belong to an original design.");
+      if (slot.role === "wrap") {
+        const points = array(slot.points, "Text-wrap points", 128);
+        if (points.length < 3) throw new NativeRequestError("A text-wrap exclusion needs at least three points.");
+        for (const point of points) {
+          const xy = array(point, "Text-wrap point", 2);
+          if (xy.length !== 2) throw new NativeRequestError("Text-wrap points need X and Y coordinates.");
+          finite(xy[0], "Text-wrap X", 0, width); finite(xy[1], "Text-wrap Y", 0, height);
+        }
+        if (slot.offset !== undefined) finite(slot.offset, "Text-wrap offset", 0, 72);
+      }
+      if (slot.contentLayout !== undefined) for (const part of array(slot.contentLayout, "Editorial field regions", 32)) {
+        record(part, "Editorial field region"); identifier(part.field, "Editorial field name");
+        const region = array(part.rect, "Editorial field rectangle", 4);
+        if (region.length !== 4 || region.some((n) => typeof n !== "number" || !Number.isFinite(n) || n < 0 || n > 1) || region[0] >= region[2] || region[1] >= region[3]) throw new NativeRequestError("Editorial field rectangles must be positive fractions within the reserved block.");
+        if (part.style !== undefined) typography(part.style, "Editorial field style");
+        if (part.fontSize !== undefined) finite(part.fontSize, "Editorial field size", 4, 144);
+        if (part.leading !== undefined) finite(part.leading, "Editorial field leading", 4, 200);
+        if (part.columns !== undefined && (!Number.isInteger(part.columns) || part.columns < 1 || part.columns > 12)) throw new NativeRequestError("Invalid editorial column count.");
+        for (const key of ["chars", "para"]) if (part[key] !== undefined) record(part[key], "Editorial " + key);
+      }
     }
     if (template.design !== undefined && !Object.hasOwn(designs, identifier(template.design, "Template design"))) throw new NativeRequestError("Template references an unknown design.");
     if (template.art !== undefined && (!template.design || !["interior", "cover", "left", "right"].includes(template.art))) throw new NativeRequestError("Invalid design layer.");
+    if (template.overArt !== undefined && (template.overArt !== "cover" || !template.design || !designs[template.design]?.art?.cover?.over)) throw new NativeRequestError("A cover overlay needs the cover over layer from a known design.");
   }
   const plan = record(issue.layoutPlan ?? {}, "Layout plan");
   for (const p of array(plan.pages ?? [], "Planned pages", 256)) {
     record(p, "Planned page"); identifier(p.id, "Page ID");
     if (!Number.isInteger(p.pageNumber) || p.pageNumber < 1 || p.pageNumber > 256 || !templateIds.has(p.templateId)) throw new NativeRequestError("Planned page references an unknown template or invalid page number.");
-    for (const aid of array(p.articleIds ?? [], "Article assignments", 3)) if (!articleIds.has(aid)) throw new NativeRequestError("Page references an unknown article.");
+    for (const aid of array(p.articleIds ?? [], "Article assignments", 12)) if (!articleIds.has(aid)) throw new NativeRequestError("Page references an unknown article.");
+    for (const media of Object.values(record(p.media ?? {}, "Page media"))) resource(record(media, "Page media record").path);
+    record(p.blocks ?? {}, "Page editorial blocks");
   }
   if (plan.cover?.photoPath) resource(plan.cover.photoPath);
   if (plan.cover?.focus) { finite(plan.cover.focus.x, "Cover focus X", 0, 1); finite(plan.cover.focus.y, "Cover focus Y", 0, 1); }
@@ -300,7 +334,7 @@ async function prepareRecipe(buffer: Buffer, directory: string, designcraftDir: 
   const pageNumber = Number(selected?.controls?.["page-number"] ?? 1);
   if (!Number.isInteger(pageNumber) || pageNumber < 1 || pageNumber > 9999) throw new NativeRequestError("Invalid selected page number.");
   const selectedArticles: string[] = selected?.articleIds ?? [];
-  for (const aid of array(selectedArticles, "Selected articles", 3)) if (!articleIds.has(aid)) throw new NativeRequestError("Selected page references an unknown article.");
+  for (const aid of array(selectedArticles, "Selected articles", 12)) if (!articleIds.has(aid)) throw new NativeRequestError("Selected page references an unknown article.");
   await mkdir(directory, { recursive: true });
   await writeFile(join(directory, "issue.json"), JSON.stringify(issue));
   await writeFile(join(directory, "templates.json"), JSON.stringify(library));
@@ -308,7 +342,10 @@ async function prepareRecipe(buffer: Buffer, directory: string, designcraftDir: 
   for (const path of resources) {
     const target = join(directory, path); await mkdir(dirname(target), { recursive: true });
     if (zip.file(path)) await writeFile(target, await entryBytes(zip, path, sizes.get(path)));
-    else if (BRAND.has(path)) await writeFile(target, await readFile(join(designcraftDir, path)));
+    else if (BRAND.has(path) || SOURCE_ART.test(path) || SOURCE_PDF.test(path)) {
+      try { await writeFile(target, await readFile(join(designcraftDir, path))); }
+      catch { throw new NativeRequestError("This server does not have the source artwork " + path + ".", 409); }
+    }
     else throw new NativeRequestError("Missing original media in the recipe ZIP: " + path);
   }
   for (const path of art) {
@@ -317,7 +354,9 @@ async function prepareRecipe(buffer: Buffer, directory: string, designcraftDir: 
     catch { throw new NativeRequestError("This server does not have the design layer " + path + ".", 409); }
   }
   // Archive scripts and executables are deliberately ignored. Only validated JSON/resources are staged.
-  return { templateId, pageNumber, articleIds: selectedArticles, designs: templates.some((t) => t.design && (mode === "page" ? t.id === templateId : (plan.pages ?? []).some((p: Json) => p.templateId === t.id))) };
+  const usedTemplates = templates.filter((t) => mode === "page" ? t.id === templateId : (plan.pages ?? []).some((p: Json) => p.templateId === t.id));
+  return { templateId, pageNumber, articleIds: selectedArticles, designs: usedTemplates.some((t) => t.design),
+    sharedCompiler: !!issue.sourceIssue || usedTemplates.some((t) => t.design || t.section || t.sourceCover || t.slots.some((s: Json) => s.pdfPage || s.role === "text" || s.role === "wrap" || s.contentLayout || typeof s.style === "object")) || (plan.pages ?? []).some((p: Json) => p.section) };
 }
 
 async function prepareBase(buffer: Buffer, directory: string, limits: typeof NATIVE_LIMITS, expandedBeforeNative: number) {
@@ -576,11 +615,11 @@ export function createNativeService(config: Config = {}) {
       const job: Job = { id, status: "queued", mode: input.mode, fontProfile: profile, directory, createdAt: Date.now(), artifacts: {}, args };
       // Original designs need the shared JavaScript compiler; with the CLI engine it runs on the bundled
       // WebAssembly engine too (the Python compilers have no design layer support).
-      if (selected.designs && engine !== "wasm") {
-        if (base) throw new NativeRequestError("Protected-page rebuilds are not available for original-design templates.", 409);
-        if (!(await staticDir)) throw new NativeRequestError("Original-design templates need the bundled DesignCraft WebAssembly engine on this server.", 503);
+      if (selected.sharedCompiler && engine !== "wasm") {
+        if (base) throw new NativeRequestError("Protected-page rebuilds are not available for original-design or structured source templates.", 409);
+        if (!(await staticDir)) throw new NativeRequestError("Original-design and structured source templates need the bundled DesignCraft WebAssembly engine on this server.", 503);
       }
-      if (engine === "wasm" || selected.designs) {
+      if (engine === "wasm" || selected.sharedCompiler) {
         job.wasm = { recipeDir: recipe, fontDir: profile === "original2025" ? resolve(originals!) : fonts, booklet: !!input.booklet, selected };
       }
       jobs.set(id, job); queueMicrotask(pump); return publicJob(job);

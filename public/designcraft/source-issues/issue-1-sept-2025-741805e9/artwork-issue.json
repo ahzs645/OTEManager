@@ -1,0 +1,334 @@
+{
+  "schemaVersion": "ote.designcraft.issue.v1",
+  "issue": {
+    "id": "issue-1-sept-2025-741805e9",
+    "title": "Over the Edge",
+    "date": "2025-09-12",
+    "volume": 32,
+    "number": 1
+  },
+  "sourceIssue": {
+    "documentId": "issue-1-sept-2025-741805e9",
+    "pageCount": 18,
+    "spreads": [
+      {
+        "id": "issue-1-sept-2025-741805e9-campus-corners-spread",
+        "pageNumbers": [
+          12,
+          13
+        ]
+      }
+    ],
+    "sourceSha256": "741805e923f0d604c01dda024bf66040d32257725682c05d1f28c21778ade43a",
+    "sourceMetadata": {
+      "date": "2025-09-12",
+      "volume": 32,
+      "number": 1,
+      "design": "ote-2025"
+    },
+    "mode": "artwork"
+  },
+  "articles": [],
+  "layoutPlan": {
+    "pages": [
+      {
+        "id": "issue-1-sept-2025-741805e9-page-1",
+        "pageNumber": 1,
+        "sourcePage": 1,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "cover",
+        "label": "September 2025 cover",
+        "templateId": "whole-issue-1-sept-2025-741805e9-p001-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-1-sept-2025-741805e9-page-2",
+        "pageNumber": 2,
+        "sourcePage": 2,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-1-sept-2025-741805e9-p002-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-1-sept-2025-741805e9-page-3",
+        "pageNumber": 3,
+        "sourcePage": 3,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-1-sept-2025-741805e9-p003-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-1-sept-2025-741805e9-page-4",
+        "pageNumber": 4,
+        "sourcePage": 4,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "recurring",
+        "label": "Our Board 2025–2026 · lower section, unfinished upper area",
+        "templateId": "whole-issue-1-sept-2025-741805e9-p004-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-1-sept-2025-741805e9-page-5",
+        "pageNumber": 5,
+        "sourcePage": 5,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-1-sept-2025-741805e9-p005-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-1-sept-2025-741805e9-page-6",
+        "pageNumber": 6,
+        "sourcePage": 6,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-1-sept-2025-741805e9-p006-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-1-sept-2025-741805e9-page-7",
+        "pageNumber": 7,
+        "sourcePage": 7,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-1-sept-2025-741805e9-p007-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-1-sept-2025-741805e9-page-8",
+        "pageNumber": 8,
+        "sourcePage": 8,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-1-sept-2025-741805e9-p008-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-1-sept-2025-741805e9-page-9",
+        "pageNumber": 9,
+        "sourcePage": 9,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-1-sept-2025-741805e9-p009-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-1-sept-2025-741805e9-page-10",
+        "pageNumber": 10,
+        "sourcePage": 10,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-1-sept-2025-741805e9-p010-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-1-sept-2025-741805e9-page-11",
+        "pageNumber": 11,
+        "sourcePage": 11,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "blank",
+        "label": "Wholly blank source page",
+        "templateId": "whole-issue-1-sept-2025-741805e9-p011-artwork",
+        "articleIds": [],
+        "sourceMode": "blank"
+      },
+      {
+        "id": "issue-1-sept-2025-741805e9-page-12",
+        "pageNumber": 12,
+        "sourcePage": 12,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "photo-spread",
+        "label": "Campus Corners · places to rest, study and recharge · left page",
+        "spreadId": "issue-1-sept-2025-741805e9-campus-corners-spread",
+        "templateId": "whole-issue-1-sept-2025-741805e9-p012-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-1-sept-2025-741805e9-page-13",
+        "pageNumber": 13,
+        "sourcePage": 13,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "photo-spread",
+        "label": "Campus Corners · places to rest, study and recharge · right page",
+        "spreadId": "issue-1-sept-2025-741805e9-campus-corners-spread",
+        "templateId": "whole-issue-1-sept-2025-741805e9-p013-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-1-sept-2025-741805e9-page-14",
+        "pageNumber": 14,
+        "sourcePage": 14,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-1-sept-2025-741805e9-p014-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-1-sept-2025-741805e9-page-15",
+        "pageNumber": 15,
+        "sourcePage": 15,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-1-sept-2025-741805e9-p015-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-1-sept-2025-741805e9-page-16",
+        "pageNumber": 16,
+        "sourcePage": 16,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-1-sept-2025-741805e9-p016-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-1-sept-2025-741805e9-page-17",
+        "pageNumber": 17,
+        "sourcePage": 17,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "reserved",
+        "label": "Unfilled right-half gray crossed reservation",
+        "templateId": "whole-issue-1-sept-2025-741805e9-p017-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-1-sept-2025-741805e9-page-18",
+        "pageNumber": 18,
+        "sourcePage": 18,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "ad",
+        "label": "Write for Over the Edge · right-half recruitment",
+        "templateId": "whole-issue-1-sept-2025-741805e9-p018-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      }
+    ],
+    "cover": {
+      "mode": "editable",
+      "articleIds": []
+    },
+    "truck": {
+      "mode": "editable",
+      "pageIds": []
+    }
+  }
+}

@@ -546,7 +546,10 @@ function ArticlesPage() {
         </div>
 
         {/* Add Article Button, Saved Views, and View Mode Toggle */}
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
+          <Link to="/utilities/source-archive" className="btn btn-secondary btn-sm">
+            Original issue archive
+          </Link>
           {(search.issueId || search.volumeId) && (
             <Link
               to="/utilities/payment-manager"

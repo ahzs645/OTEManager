@@ -1,0 +1,1585 @@
+{
+  "schemaVersion": "ote.original-archive-test-expectations.v1",
+  "sourceBackup": "otemanager-backup-database-2026-09-10.zip",
+  "sourceBackupSha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+  "interpretation": "Independent sanitized assertions from the original database backup. No email, payment or workflow values are copied. Stored-body hashes assert exact recovered copy without duplicating it. Missing bodies may be recovered from separately cited IDML sources. Normalized hashes allow only CRLF-to-LF and outer-whitespace differences. Anonymous source records retain Anonymous as their public credit and omit the source author identity. Verified source submission/record timestamps are retained separately; import-time creation is not a historical submission date.",
+  "articleCount": 87,
+  "storedBodyCount": 20,
+  "editions": {
+    "31/3": 11,
+    "31/4": 11,
+    "31/5": 13,
+    "31/6": 14,
+    "31/7": 17,
+    "32/1": 11,
+    "32/2": 10
+  },
+  "articles": [
+    {
+      "originalArticleId": "06640325-c8d8-4a49-b3a7-8581e80a8bda",
+      "originalAuthorId": "4e5d8029-09bc-45ac-90bb-94c8595b12ff",
+      "title": "How to Protect What is Ours?   ",
+      "authorName": "Alireza Noory",
+      "volume": 31,
+      "issueNumber": 3,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 4,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:03.000Z",
+        "createdAt": "2026-01-12T00:33:01.267Z",
+        "updatedAt": "2026-01-12T05:05:24.616Z"
+      }
+    },
+    {
+      "originalArticleId": "084387b3-87e0-48c9-8a2e-8dfac084aead",
+      "originalAuthorId": "8eaff171-5f04-43cf-baff-ac2b698191bb",
+      "title": "Caledonia Mountain Trip Report",
+      "authorName": "Caleb Mueller",
+      "volume": 31,
+      "issueNumber": 3,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 6,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:15:56.000Z",
+        "createdAt": "2026-01-12T00:33:01.461Z",
+        "updatedAt": "2026-01-12T05:05:24.616Z"
+      }
+    },
+    {
+      "originalArticleId": "418cd2e3-28e7-4f4c-a896-bea4eb890179",
+      "originalAuthorId": "552e66ce-cf3d-44c7-9ace-eeac044dbed8",
+      "title": "How to Balance Part-Time Work with Full-Time Study: A Survival Guide with a Dash of Sarcasm",
+      "authorName": "Lina Maksymova",
+      "volume": 31,
+      "issueNumber": 3,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 2,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:01.000Z",
+        "createdAt": "2026-01-12T00:33:01.323Z",
+        "updatedAt": "2026-01-12T05:05:24.616Z"
+      }
+    },
+    {
+      "originalArticleId": "475f8565-e5cf-4b1e-8c5e-19b4b138171b",
+      "originalAuthorId": "8eaff171-5f04-43cf-baff-ac2b698191bb",
+      "title": "Wii Night at Spark Lab - Gaming, Pizza, and 3D Printed Heads!",
+      "authorName": "Caleb Mueller",
+      "volume": 31,
+      "issueNumber": 3,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 4,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:15:59.000Z",
+        "createdAt": "2026-01-12T00:33:01.351Z",
+        "updatedAt": "2026-01-12T05:05:24.616Z"
+      }
+    },
+    {
+      "originalArticleId": "57970c81-218f-45f0-981a-658407a41bdd",
+      "originalAuthorId": null,
+      "title": "Congratulations!",
+      "authorName": "Anonymous",
+      "volume": 31,
+      "issueNumber": 3,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 4,
+      "normalizedBodySha256": null,
+      "anonymous": true,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:15:50.000Z",
+        "createdAt": "2026-01-12T00:33:01.598Z",
+        "updatedAt": "2026-01-12T05:05:24.616Z"
+      }
+    },
+    {
+      "originalArticleId": "6ea4662e-7143-421c-bf2a-189596cec94d",
+      "originalAuthorId": "439550c2-8ec2-4b2c-87bd-0877afbb7492",
+      "title": "The Introverts Guide to Networking",
+      "authorName": "Tiffany Kuku",
+      "volume": 31,
+      "issueNumber": 3,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:15:53.000Z",
+        "createdAt": "2026-01-12T00:33:01.547Z",
+        "updatedAt": "2026-01-12T05:05:24.616Z"
+      }
+    },
+    {
+      "originalArticleId": "89f84904-eef4-4e34-aefc-99d445453dbb",
+      "originalAuthorId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "title": "From Archives to Advocacy: Rediscovering a Legacy of Organ Donation",
+      "authorName": "Ahmad Jalil",
+      "volume": 31,
+      "issueNumber": 3,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 0,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:17.000Z",
+        "createdAt": "2026-01-12T00:32:59.034Z",
+        "updatedAt": "2026-01-12T05:05:24.616Z"
+      }
+    },
+    {
+      "originalArticleId": "9625b3c9-6ac5-405a-9bd5-52496eb61b46",
+      "originalAuthorId": "7c4a9078-6281-483d-9783-e9ae5d6dcda5",
+      "title": "UNBC to host events remembering deaths in transgender community",
+      "authorName": "Aubrey Potschka",
+      "volume": 31,
+      "issueNumber": 3,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:15:51.000Z",
+        "createdAt": "2026-01-12T00:33:01.577Z",
+        "updatedAt": "2026-01-12T05:05:24.616Z"
+      }
+    },
+    {
+      "originalArticleId": "a7795693-b827-4c6e-a4da-70c2ca5306a3",
+      "originalAuthorId": "16f7b97b-4d41-4e68-a8b0-3794609d489d",
+      "title": "Outside My Comfort Zone: Lessons from a Business Seminar",
+      "authorName": "Parniya Peykamiyan",
+      "volume": 31,
+      "issueNumber": 3,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:15:58.000Z",
+        "createdAt": "2026-01-12T00:33:01.433Z",
+        "updatedAt": "2026-01-12T05:05:24.616Z"
+      }
+    },
+    {
+      "originalArticleId": "e95039de-b595-41cc-b811-c254116987cd",
+      "originalAuthorId": "2b00e476-2840-4401-a69c-795ff8eacded",
+      "title": "Remembrance Day: Honoring Heroes of All Colors",
+      "authorName": "Bruce Danesh",
+      "volume": 31,
+      "issueNumber": 3,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:08.000Z",
+        "createdAt": "2026-01-12T00:33:01.226Z",
+        "updatedAt": "2026-01-12T05:05:24.616Z"
+      }
+    },
+    {
+      "originalArticleId": "ebd55d71-1c39-46bb-9a54-a5c0bc5c8587",
+      "originalAuthorId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "title": "Quack Attack: The Great Ducking Mystery Takes UNBC by Storm",
+      "authorName": "Ahmad Jalil",
+      "volume": 31,
+      "issueNumber": 3,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 9,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:18.000Z",
+        "createdAt": "2026-01-12T00:32:58.816Z",
+        "updatedAt": "2026-01-12T05:05:24.616Z"
+      }
+    },
+    {
+      "originalArticleId": "6ad32a09-4f30-40ee-87b2-5a361c6b97e0",
+      "originalAuthorId": "e33bf3eb-9c43-4c52-9806-3886de089edc",
+      "title": "A Road to New Beginnings: First Long Drive from Vancouver to PG",
+      "authorName": "Shivi Juyal",
+      "volume": 31,
+      "issueNumber": 4,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 6,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:12.000Z",
+        "createdAt": "2026-01-12T00:33:01.151Z",
+        "updatedAt": "2026-01-12T05:05:24.642Z"
+      }
+    },
+    {
+      "originalArticleId": "761756d4-ebc5-4402-9491-22d321f3316d",
+      "originalAuthorId": "1c433ef8-7e74-4924-8a63-d3b6460b6f89",
+      "title": "NUGSS Annual General Meeting 2024-25: A Student's Perspective on Campus Governance  ",
+      "authorName": "Syed Kazmi",
+      "volume": 31,
+      "issueNumber": 4,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:15.000Z",
+        "createdAt": "2026-01-12T00:33:01.106Z",
+        "updatedAt": "2026-01-12T05:05:24.642Z"
+      }
+    },
+    {
+      "originalArticleId": "7928fb7f-b5b3-4f32-a6d8-455e4572b785",
+      "originalAuthorId": "19c8f83b-da8d-42f0-b4a4-f04f31b412c2",
+      "title": "The UNBC Arts Club: an Overview",
+      "authorName": "Kiara Mills",
+      "volume": 31,
+      "issueNumber": 4,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 2,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:23.000Z",
+        "createdAt": "2026-01-12T00:33:00.981Z",
+        "updatedAt": "2026-01-12T05:05:24.642Z"
+      }
+    },
+    {
+      "originalArticleId": "99ccdc4c-ae5f-4081-8f5d-670cf2deccaa",
+      "originalAuthorId": "552e66ce-cf3d-44c7-9ace-eeac044dbed8",
+      "title": "Finding Hope and Inspiration in Stories of Indigenous Women's Resilience",
+      "authorName": "Lina Maksymova",
+      "volume": 31,
+      "issueNumber": 4,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:21.000Z",
+        "createdAt": "2026-01-12T00:33:00.992Z",
+        "updatedAt": "2026-01-12T05:05:24.642Z"
+      }
+    },
+    {
+      "originalArticleId": "99e8c277-636a-4496-8245-454b7603cbbc",
+      "originalAuthorId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "title": "Turning an Old iMac into a Standalone Display: A Student’s Journey ",
+      "authorName": "Ahmad Jalil",
+      "volume": 31,
+      "issueNumber": 4,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:22.000Z",
+        "createdAt": "2026-01-12T00:32:58.726Z",
+        "updatedAt": "2026-01-12T05:05:24.642Z"
+      }
+    },
+    {
+      "originalArticleId": "c03b48f2-8ced-4b35-872c-4c53a56a4c4f",
+      "originalAuthorId": "16f7b97b-4d41-4e68-a8b0-3794609d489d",
+      "title": "The History Behind Your Piercings: UNBC Exhibition Takes Body Mod From Ancient to Trending",
+      "authorName": "Parniya Peykamiyan",
+      "volume": 31,
+      "issueNumber": 4,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 4,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:19.000Z",
+        "createdAt": "2026-01-12T00:33:01.010Z",
+        "updatedAt": "2026-01-12T05:05:24.642Z"
+      }
+    },
+    {
+      "originalArticleId": "c32989bd-f313-41c8-8e83-ca9fdb4d081a",
+      "originalAuthorId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "title": "Building a Legacy of Impact: Insights from Dr. Rahim Somani, UNBC’s Vice President, Finance and Administration ",
+      "authorName": "Ahmad Jalil",
+      "volume": 31,
+      "issueNumber": 4,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 9,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:38.000Z",
+        "createdAt": "2026-01-12T00:32:57.113Z",
+        "updatedAt": "2026-01-12T05:05:24.642Z"
+      }
+    },
+    {
+      "originalArticleId": "dbdde0fe-d542-432f-82a4-69e33eb7a571",
+      "originalAuthorId": "838eafe3-e1f0-4e58-afc0-544471be12ff",
+      "title": "The Soda of Our Generation: Dr Pepper",
+      "authorName": "Hannah Carlson",
+      "volume": 31,
+      "issueNumber": 4,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:18.000Z",
+        "createdAt": "2026-01-12T00:33:01.075Z",
+        "updatedAt": "2026-01-12T05:05:24.642Z"
+      }
+    },
+    {
+      "originalArticleId": "fb332a32-0680-41ce-9fec-985557c189bd",
+      "originalAuthorId": "552e66ce-cf3d-44c7-9ace-eeac044dbed8",
+      "title": "In the Shoes of an Immigrant Transfer Student: A Day of First Impressions",
+      "authorName": "Lina Maksymova",
+      "volume": 31,
+      "issueNumber": 4,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:26.000Z",
+        "createdAt": "2026-01-12T00:33:00.954Z",
+        "updatedAt": "2026-01-12T05:05:24.642Z"
+      }
+    },
+    {
+      "originalArticleId": "fc1b5008-6940-41cf-98f8-4de949265357",
+      "originalAuthorId": "d38feb4b-5c56-40b6-b167-bc41fb0c7ba7",
+      "title": "People in the Trees",
+      "authorName": "Jacinta Mubiru",
+      "volume": 31,
+      "issueNumber": 4,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:16.000Z",
+        "createdAt": "2026-01-12T00:33:01.088Z",
+        "updatedAt": "2026-01-12T05:05:24.642Z"
+      }
+    },
+    {
+      "originalArticleId": "fd5d69cf-35a0-4507-817b-30fd15c650f9",
+      "originalAuthorId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "title": "Building Community Care: Kiara and Zehra's Impact on IWAU 2024 at UNBC ",
+      "authorName": "Ahmad Jalil",
+      "volume": 31,
+      "issueNumber": 4,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 1,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:20.000Z",
+        "createdAt": "2026-01-12T00:32:58.804Z",
+        "updatedAt": "2026-01-12T05:05:24.642Z"
+      }
+    },
+    {
+      "originalArticleId": "0105a0d0-cd7c-439a-b011-e5bfaca5b9cb",
+      "originalAuthorId": "ef0a948c-a140-47d9-a199-f40501a380f3",
+      "title": "Empowering Connections in UNBC",
+      "authorName": "Ehsan Taghizadehghoozhdi",
+      "volume": 31,
+      "issueNumber": 5,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 4,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:57.000Z",
+        "createdAt": "2026-01-12T00:33:00.572Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      }
+    },
+    {
+      "originalArticleId": "0c1f68f2-d73d-44c5-92df-476413210659",
+      "originalAuthorId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "title": "Down the Rabbit Hole: The Search for Prince George's Cold War Bunker",
+      "authorName": "Ahmad Jalil",
+      "volume": 31,
+      "issueNumber": 5,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 6,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:24.000Z",
+        "createdAt": "2026-01-12T00:32:58.674Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      }
+    },
+    {
+      "originalArticleId": "1c5b750a-c046-4086-a1e5-1180d2af2620",
+      "originalAuthorId": "a8cd2393-da04-4093-8b2d-c869a27d268e",
+      "title": "Reclaiming Time",
+      "authorName": "Bella Mesquita",
+      "volume": 31,
+      "issueNumber": 5,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:45.000Z",
+        "createdAt": "2026-01-12T00:33:00.745Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      }
+    },
+    {
+      "originalArticleId": "2883d9f0-b083-4f11-a2d9-ac80182f17b8",
+      "originalAuthorId": "2b00e476-2840-4401-a69c-795ff8eacded",
+      "title": "Rick you Rock my friend!",
+      "authorName": "Bruce Danesh",
+      "volume": 31,
+      "issueNumber": 5,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:36.000Z",
+        "createdAt": "2026-01-12T00:33:00.837Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      }
+    },
+    {
+      "originalArticleId": "49894031-7b78-4a23-8330-589df63590c9",
+      "originalAuthorId": "cc8a29c3-2b5a-4761-9870-eefd7b6d12a4",
+      "title": "UNBC Graduate Student Faculty Ambassadors (GSFA)",
+      "authorName": "Nazanin Soroosh",
+      "volume": 31,
+      "issueNumber": 5,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:47.000Z",
+        "createdAt": "2026-01-12T00:33:00.724Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      }
+    },
+    {
+      "originalArticleId": "5a8daea7-04b4-4fdc-998b-54f198b61f24",
+      "originalAuthorId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "title": "UNBC Submits Draft Business Case for New Student Housing",
+      "authorName": "Ahmad Jalil",
+      "volume": 31,
+      "issueNumber": 5,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 1,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:52.000Z",
+        "createdAt": "2026-01-12T00:33:00.659Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      }
+    },
+    {
+      "originalArticleId": "6e6cbd33-3af4-4c75-aa69-19fe170bec35",
+      "originalAuthorId": "5a7f4a3c-e5f2-40b9-b4f6-17ccba77e411",
+      "title": "Breaking Bug: A Student's Adventures in Legal Home Brewing  ",
+      "authorName": "Emma Gryg",
+      "volume": 31,
+      "issueNumber": 5,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 9,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:33.000Z",
+        "createdAt": "2026-01-12T00:32:57.634Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      }
+    },
+    {
+      "originalArticleId": "a13ccf0d-ed82-45e7-acc6-2312bb76163c",
+      "originalAuthorId": "d2ad9da4-5000-4d05-aa7c-24ba4d32f9a2",
+      "title": "Visiting Woodland Caribou at Kennedy Siding",
+      "authorName": "Klee Leman",
+      "volume": 31,
+      "issueNumber": 5,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 4,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:55.000Z",
+        "createdAt": "2026-01-12T00:33:00.603Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      }
+    },
+    {
+      "originalArticleId": "c2d7f21d-f1dd-4c4b-9ec8-60a36977f9a5",
+      "originalAuthorId": "2b00e476-2840-4401-a69c-795ff8eacded",
+      "title": "Rural Healthcare Through Northern Eyes: Inside the 2024 Rural Voices Gathering",
+      "authorName": "Bruce Danesh",
+      "volume": 31,
+      "issueNumber": 5,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 4,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:28.000Z",
+        "createdAt": "2026-01-12T00:33:00.923Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      }
+    },
+    {
+      "originalArticleId": "de3bd815-0807-43a2-86dc-ebeb1d56f7d6",
+      "originalAuthorId": null,
+      "title": "Brownridge Court Receives 2024 Sport Floor of the Year (SFOY) Award",
+      "authorName": "Anonymous",
+      "volume": 31,
+      "issueNumber": 5,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": null,
+      "anonymous": true,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:32.000Z",
+        "createdAt": "2026-01-12T00:33:00.899Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      }
+    },
+    {
+      "originalArticleId": "e595237b-a689-4c16-a24a-6239075b0d99",
+      "originalAuthorId": "d38feb4b-5c56-40b6-b167-bc41fb0c7ba7",
+      "title": "People in the Trees II",
+      "authorName": "Jacinta Mubiru",
+      "volume": 31,
+      "issueNumber": 5,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 2,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:54.000Z",
+        "createdAt": "2026-01-12T00:33:00.646Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      }
+    },
+    {
+      "originalArticleId": "e79d4ebe-d827-4fe2-943d-b5b1db05cc7b",
+      "originalAuthorId": "a8cd2393-da04-4093-8b2d-c869a27d268e",
+      "title": "The Lost Art of Conversation: Overcoming Avoidance in the Digital Age ",
+      "authorName": "Bella Mesquita",
+      "volume": 31,
+      "issueNumber": 5,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:44.000Z",
+        "createdAt": "2026-01-12T00:33:00.776Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      }
+    },
+    {
+      "originalArticleId": "ff630782-1706-4696-871b-3bfde02d92eb",
+      "originalAuthorId": "c7dcae2c-ce0c-4da5-829b-252c1ed9293c",
+      "title": "Green Force Unites UNBC Community for Sustainable Practices ",
+      "authorName": "Yug Shaileshkumar Rathod",
+      "volume": 31,
+      "issueNumber": 5,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 6,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:49.000Z",
+        "createdAt": "2026-01-12T00:33:00.667Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      }
+    },
+    {
+      "originalArticleId": "0312a4ac-5fbc-43e9-9375-80a91ba675a8",
+      "originalAuthorId": "c7dcae2c-ce0c-4da5-829b-252c1ed9293c",
+      "title": "\"Pink Shirt Day: Kindness Isn’t Just an Occasion—It’s a Habit\"",
+      "authorName": "Yug Shaileshkumar Rathod",
+      "volume": 31,
+      "issueNumber": 6,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:02.000Z",
+        "createdAt": "2026-01-12T00:33:00.458Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      }
+    },
+    {
+      "originalArticleId": "0ffec215-d195-4fa7-8bf3-b831fb544313",
+      "originalAuthorId": "7eac3b5d-6114-45d6-8da3-8af75c11b377",
+      "title": "The Pivot",
+      "authorName": "Trudy Bartels",
+      "volume": 31,
+      "issueNumber": 6,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 1,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:41.000Z",
+        "createdAt": "2026-01-12T00:33:00.802Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      }
+    },
+    {
+      "originalArticleId": "2568d312-9889-42fb-b6cc-56ca86229478",
+      "originalAuthorId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "title": "Student ID article",
+      "authorName": "Ahmad Jalil",
+      "volume": 31,
+      "issueNumber": 6,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 2,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:41.000Z",
+        "createdAt": "2026-01-12T00:32:57.091Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      }
+    },
+    {
+      "originalArticleId": "3ea22fc9-361f-4054-985b-30dfe7cb777c",
+      "originalAuthorId": "b9595e73-57de-480d-b73c-4390b2c47f0c",
+      "title": "Exploring the North with UNBC's Outdoors Club",
+      "authorName": "Amir Etminanrad",
+      "volume": 31,
+      "issueNumber": 6,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 5,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:09.000Z",
+        "createdAt": "2026-01-12T00:33:00.306Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      }
+    },
+    {
+      "originalArticleId": "5250c8ab-58cb-4108-b961-b704b697817e",
+      "originalAuthorId": "cad09163-f0bb-45e2-8fec-559e5e7b3884",
+      "title": "BCFC Leadership Workshop by NBCGSS",
+      "authorName": "Sriparna Dey",
+      "volume": 31,
+      "issueNumber": 6,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:03.000Z",
+        "createdAt": "2026-01-12T00:33:00.433Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      }
+    },
+    {
+      "originalArticleId": "52e232d3-f12f-4f36-a000-b4d3eaf7a371",
+      "originalAuthorId": "e33bf3eb-9c43-4c52-9806-3886de089edc",
+      "title": "New Year, Same Spirit: Timberwolves back with a fresh start!",
+      "authorName": "Shivi Juyal",
+      "volume": 31,
+      "issueNumber": 6,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 4,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:13.000Z",
+        "createdAt": "2026-01-12T00:33:00.159Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      }
+    },
+    {
+      "originalArticleId": "7361790b-11ea-4a8e-ac0c-2774238f19f7",
+      "originalAuthorId": "2b00e476-2840-4401-a69c-795ff8eacded",
+      "title": "Dating Ideas in Prince George 2.0",
+      "authorName": "Bruce Danesh",
+      "volume": 31,
+      "issueNumber": 6,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 4,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:22.000Z",
+        "createdAt": "2026-01-12T00:32:59.849Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      }
+    },
+    {
+      "originalArticleId": "74c62b63-3078-403f-9d41-1ab904b6fc24",
+      "originalAuthorId": "d6e50185-348e-4d60-9102-4b59e78b1ca1",
+      "title": "Delivery Drivers in Prince George: Exploring the Gig Economy's Dynamics",
+      "authorName": "Paul Peng",
+      "volume": 31,
+      "issueNumber": 6,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:34.000Z",
+        "createdAt": "2026-01-12T00:33:00.865Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      }
+    },
+    {
+      "originalArticleId": "8888ce16-f09c-48d8-aff0-b0479a3c1a99",
+      "originalAuthorId": "cad09163-f0bb-45e2-8fec-559e5e7b3884",
+      "title": "NBCGSS Industry Night: Bridging the Gap between Academia and Industry",
+      "authorName": "Sriparna Dey",
+      "volume": 31,
+      "issueNumber": 6,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:11.000Z",
+        "createdAt": "2026-01-12T00:33:00.235Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      }
+    },
+    {
+      "originalArticleId": "a825cb40-0062-45f2-8f84-dca89e3441da",
+      "originalAuthorId": "cad09163-f0bb-45e2-8fec-559e5e7b3884",
+      "title": "Empowering Students Through Finance: Discover the UNBC Investment Club",
+      "authorName": "Sriparna Dey",
+      "volume": 31,
+      "issueNumber": 6,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 2,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:39.000Z",
+        "createdAt": "2026-01-12T00:33:00.809Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      }
+    },
+    {
+      "originalArticleId": "bb7c8abe-7363-4001-8227-82923c1bdd6d",
+      "originalAuthorId": "a8cd2393-da04-4093-8b2d-c869a27d268e",
+      "title": "Active Allyship in Black History Month ",
+      "authorName": "Bella Mesquita",
+      "volume": 31,
+      "issueNumber": 6,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 5,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:07.000Z",
+        "createdAt": "2026-01-12T00:33:00.367Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      }
+    },
+    {
+      "originalArticleId": "e8b20576-a089-41a3-9da3-26d9fe6c6232",
+      "originalAuthorId": "cad09163-f0bb-45e2-8fec-559e5e7b3884",
+      "title": "Mastering The Balancing Act: Academics, Health, and Part-time Job   ",
+      "authorName": "Sriparna Dey",
+      "volume": 31,
+      "issueNumber": 6,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 2,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:38.000Z",
+        "createdAt": "2026-01-12T00:33:00.825Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      }
+    },
+    {
+      "originalArticleId": "f78ef82a-57eb-437a-b4dd-176aa1666b55",
+      "originalAuthorId": "27b2730f-6a4b-480a-9046-6e5374bc8e43",
+      "title": "Love Hues",
+      "authorName": "Inara Dhanani",
+      "volume": 31,
+      "issueNumber": 6,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 2,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:05.000Z",
+        "createdAt": "2026-01-12T00:33:00.418Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      }
+    },
+    {
+      "originalArticleId": "f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalAuthorId": null,
+      "title": "UNBC Safe App",
+      "authorName": "Anonymous",
+      "volume": 31,
+      "issueNumber": 6,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 16,
+      "normalizedBodySha256": null,
+      "anonymous": true,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:00.000Z",
+        "createdAt": "2026-01-12T00:33:00.484Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      }
+    },
+    {
+      "originalArticleId": "220d3d89-638c-459d-bcdd-76234bde474c",
+      "originalAuthorId": "d1d5eb50-ae1b-4175-b3dd-8f6089eca647",
+      "title": "Climate Change Education for Teachers in Northern BC",
+      "authorName": "Alex Lautensach",
+      "volume": 31,
+      "issueNumber": 7,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 2,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:33.000Z",
+        "createdAt": "2026-01-12T00:32:59.650Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      }
+    },
+    {
+      "originalArticleId": "2f039633-04e9-499e-92fa-81278f15067c",
+      "originalAuthorId": "a8cd2393-da04-4093-8b2d-c869a27d268e",
+      "title": "Living with Chronic Illness and Health Anxiety as a 20-Something-Year-Old ",
+      "authorName": "Bella Mesquita",
+      "volume": 31,
+      "issueNumber": 7,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 6,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:26.000Z",
+        "createdAt": "2026-01-12T00:32:59.767Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      }
+    },
+    {
+      "originalArticleId": "638fef49-a8bf-448d-b6c1-5b708fc0c313",
+      "originalAuthorId": "ef0a948c-a140-47d9-a199-f40501a380f3",
+      "title": "NBCGSS Student Week 2025: A Week of Diverse and Exciting Events",
+      "authorName": "Ehsan Taghizadehghoozhdi",
+      "volume": 31,
+      "issueNumber": 7,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 7,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:31.000Z",
+        "createdAt": "2026-01-12T00:32:57.927Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      }
+    },
+    {
+      "originalArticleId": "74d95b90-dc8f-475d-9c16-0a01049f3e47",
+      "originalAuthorId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "title": "From Student Writer to Professional Journalist: A Conversation with Former Over The Edge Editor Colin Slark",
+      "authorName": "Ahmad Jalil",
+      "volume": 31,
+      "issueNumber": 7,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:26.000Z",
+        "createdAt": "2026-01-12T00:32:58.653Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      }
+    },
+    {
+      "originalArticleId": "7cbf5b8f-a84d-4db6-ab5e-647ce732c65b",
+      "originalAuthorId": "4e5d8029-09bc-45ac-90bb-94c8595b12ff",
+      "title": "When Do Graduate Students Write?",
+      "authorName": "Alireza Noory",
+      "volume": 31,
+      "issueNumber": 7,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 7,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:30.000Z",
+        "createdAt": "2026-01-12T00:32:59.693Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      }
+    },
+    {
+      "originalArticleId": "833112ae-b84c-4c80-b513-2d19719f0dcc",
+      "originalAuthorId": "83446d71-f1f2-4d26-97b5-8a367baaff92",
+      "title": "Graduate Teaching Assistants at UNBC: Know Your Rights and Benefits",
+      "authorName": "Behnoosh Roknaldini Ghaleh Dezh",
+      "volume": 31,
+      "issueNumber": 7,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:41.000Z",
+        "createdAt": "2026-01-12T00:32:59.567Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      }
+    },
+    {
+      "originalArticleId": "9e6dc4d6-dc75-4323-a878-77c27021ffed",
+      "originalAuthorId": "ef0a948c-a140-47d9-a199-f40501a380f3",
+      "title": "22nd Annual BC Natural Resources Forum in Prince George",
+      "authorName": "Ehsan Taghizadehghoozhdi",
+      "volume": 31,
+      "issueNumber": 7,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 7,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:16.000Z",
+        "createdAt": "2026-01-12T00:33:00.035Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      }
+    },
+    {
+      "originalArticleId": "a95d6deb-c841-459d-951d-1eddf81a112d",
+      "originalAuthorId": "eaf43105-bfd7-454a-b2f0-edcd1f272cd2",
+      "title": "Bringing Home Bronze: The National Geomatics Competition",
+      "authorName": "Rachel Pagdin",
+      "volume": 31,
+      "issueNumber": 7,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 4,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:28.000Z",
+        "createdAt": "2026-01-12T00:32:59.738Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      }
+    },
+    {
+      "originalArticleId": "b0ff476a-f6b2-4db4-8be2-1b8a4e9ada59",
+      "originalAuthorId": "61e91831-1114-45b8-a6fd-4b449cc97e7d",
+      "title": "Unlocking Free Travel: How Smart Credit Card Use Can Get Students Free Flights",
+      "authorName": "Ayaan Punjani",
+      "volume": 31,
+      "issueNumber": 7,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 4,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:32.000Z",
+        "createdAt": "2026-01-12T00:32:59.666Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      }
+    },
+    {
+      "originalArticleId": "b5eee631-7d91-41d7-a66e-55fc81dae40b",
+      "originalAuthorId": "f089f245-4236-417f-87b1-86e856c5aa7c",
+      "title": "PEI, I Have A Question for You",
+      "authorName": "Nolan Maggs",
+      "volume": 31,
+      "issueNumber": 7,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 1,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:44.000Z",
+        "createdAt": "2026-01-12T00:32:57.067Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      }
+    },
+    {
+      "originalArticleId": "bc65e566-fb41-461a-9549-2a6ffd21e81c",
+      "originalAuthorId": "b511ac5f-6dc1-4794-ad23-326a84caf234",
+      "title": "A Mystic Semester",
+      "authorName": "Luthien Thielmann",
+      "volume": 31,
+      "issueNumber": 7,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 4,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:24.000Z",
+        "createdAt": "2026-01-12T00:32:59.821Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      }
+    },
+    {
+      "originalArticleId": "cc5909d5-ab48-46b3-8bef-e353a44e6e38",
+      "originalAuthorId": "2b00e476-2840-4401-a69c-795ff8eacded",
+      "title": "Nowruz at UNBC: Welcoming Spring and Saying Goodbye to Winter",
+      "authorName": "Bruce Danesh",
+      "volume": 31,
+      "issueNumber": 7,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 4,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:46.000Z",
+        "createdAt": "2026-01-12T00:32:59.470Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      }
+    },
+    {
+      "originalArticleId": "cf5a1a0e-c4f7-40f4-90be-d8945f90ac28",
+      "originalAuthorId": "9ed9f127-a575-4f85-8481-f88c07e9b5bd",
+      "title": "Growing Innovation: UNBC Student Leads Hydroponics Project for Sustainable Food Production",
+      "authorName": "Adrien Zimmerman",
+      "volume": 31,
+      "issueNumber": 7,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 4,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:10.000Z",
+        "createdAt": "2026-01-12T00:32:59.191Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      }
+    },
+    {
+      "originalArticleId": "d5f86ece-6c4e-47dd-a477-2d05aea855bb",
+      "originalAuthorId": "e33bf3eb-9c43-4c52-9806-3886de089edc",
+      "title": "Prince George finally Unfrozen- Welcoming Spring!",
+      "authorName": "Shivi Juyal",
+      "volume": 31,
+      "issueNumber": 7,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 8,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:43.000Z",
+        "createdAt": "2026-01-12T00:32:59.507Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      }
+    },
+    {
+      "originalArticleId": "dc60ed63-9c0d-4630-b521-93a33fcbd7c4",
+      "originalAuthorId": "ef0a948c-a140-47d9-a199-f40501a380f3",
+      "title": "Student Week 2025: British Columbia Federation of Students (BCFS) Leadership Workshop",
+      "authorName": "Ehsan Taghizadehghoozhdi",
+      "volume": 31,
+      "issueNumber": 7,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 7,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:20.000Z",
+        "createdAt": "2026-01-12T00:32:59.874Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      }
+    },
+    {
+      "originalArticleId": "e78ac902-5115-4c02-9891-0c413924a446",
+      "originalAuthorId": "6f93e597-65ae-4661-a4b1-6e5ffb9a7ee3",
+      "title": "Honoring Louis Riel Day and Advancing Reconciliation at UNBC",
+      "authorName": "Briana Greer",
+      "volume": 31,
+      "issueNumber": 7,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 2,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:37.000Z",
+        "createdAt": "2026-01-12T00:32:59.607Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      }
+    },
+    {
+      "originalArticleId": "ea13f4fe-f0f2-4133-89e3-c056ebe25e81",
+      "originalAuthorId": "ef0a948c-a140-47d9-a199-f40501a380f3",
+      "title": "The Year of the Snake",
+      "authorName": "Ehsan Taghizadehghoozhdi",
+      "volume": 31,
+      "issueNumber": 7,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 4,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:18.000Z",
+        "createdAt": "2026-01-12T00:32:59.964Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      }
+    },
+    {
+      "originalArticleId": "10c26fc2-826a-4726-9d38-71bf615ac578",
+      "originalAuthorId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "title": "From High School Crushing It to University... Not Crushing It (Yet)",
+      "authorName": "Ahmad Jalil",
+      "volume": 32,
+      "issueNumber": 1,
+      "storedBodySha256": "13f117cfe887c9c394ef971b021c9afeefe57857dc749648869250b7a4d6b03f",
+      "storedBodyCharacters": 2606,
+      "sourceAttachmentCount": 2,
+      "normalizedBodySha256": "9acab834b4fd2a3ced32e57a7a0a74259accadcfd1ff37cfd2ef62d87deded54",
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-09-05T20:05:55.000Z",
+        "createdAt": "2026-01-12T00:32:56.317Z",
+        "updatedAt": "2026-01-12T05:05:24.556Z"
+      }
+    },
+    {
+      "originalArticleId": "1f0091e9-d623-4238-b977-8c463dd1f010",
+      "originalAuthorId": null,
+      "title": "Hey First-Years, Let's Talk Timberwolves (And Why You Should Actually Care)",
+      "authorName": "Anonymous",
+      "volume": 32,
+      "issueNumber": 1,
+      "storedBodySha256": "3e3e367e6aff5e9a7cd803e3d53854bee4bdda998797d3f215d5ac1e597dac4a",
+      "storedBodyCharacters": 2409,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": "3e3e367e6aff5e9a7cd803e3d53854bee4bdda998797d3f215d5ac1e597dac4a",
+      "anonymous": true,
+      "originalDates": {
+        "submittedAt": "2025-09-05T21:17:53.000Z",
+        "createdAt": "2026-01-12T00:32:56.292Z",
+        "updatedAt": "2026-01-12T05:05:24.556Z"
+      }
+    },
+    {
+      "originalArticleId": "22f7f3e0-265c-4c72-81fa-150dfce29a5c",
+      "originalAuthorId": "2b00e476-2840-4401-a69c-795ff8eacded",
+      "title": "NBCGSS - Welcome to UNBC Graduate Life: Your NBCGSS Guide",
+      "authorName": "Bruce Danesh",
+      "volume": 32,
+      "issueNumber": 1,
+      "storedBodySha256": "aff07c0ba74908ecc908feac1e1cc6a3c6ee6e3fe08f7627000a9d2fa613c75c",
+      "storedBodyCharacters": 4416,
+      "sourceAttachmentCount": 7,
+      "normalizedBodySha256": "3a4bfe040ec348b62699ec8c9d2a7344eb5d4d3e8bd02b59003af22b2be46ff8",
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-09-03T03:01:56.000Z",
+        "createdAt": "2026-01-12T00:32:56.554Z",
+        "updatedAt": "2026-01-12T05:05:24.556Z"
+      }
+    },
+    {
+      "originalArticleId": "45b093cd-451d-494d-af21-2846276b8520",
+      "originalAuthorId": "5a7f4a3c-e5f2-40b9-b4f6-17ccba77e411",
+      "title": "The Traditions that Ground you aren't Distractions from Your Studies…",
+      "authorName": "Emma Gryg",
+      "volume": 32,
+      "issueNumber": 1,
+      "storedBodySha256": "9b259b09d0259d2b84cf860ccc8a093ac8c9a190ccc22a41f31768b3d53f1a80",
+      "storedBodyCharacters": 6430,
+      "sourceAttachmentCount": 4,
+      "normalizedBodySha256": "2f90d6e8475ce5989d49945bee6ecc45a02061aa5aa773ff88e5beb8c4093eda",
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-09-08T18:51:48.000Z",
+        "createdAt": "2026-01-12T00:32:56.253Z",
+        "updatedAt": "2026-01-12T05:05:24.556Z"
+      }
+    },
+    {
+      "originalArticleId": "71b09ef9-ccf2-4440-8832-4cd7101b2ff8",
+      "originalAuthorId": "9d51d002-65f2-4016-876e-373f9b4d2544",
+      "title": "So We Crunched All the RateMyProf Data and... Yeah",
+      "authorName": "Ahmad Jalil",
+      "volume": 32,
+      "issueNumber": 1,
+      "storedBodySha256": "fb60583d8ff5da560db4d911e1087a0ec90c8b2fbab9e813df6929d0ad4eff2e",
+      "storedBodyCharacters": 2564,
+      "sourceAttachmentCount": 4,
+      "normalizedBodySha256": "6215316b049e4f647cbcf8c2d670db46bc36d44b818f5e0b69a578f36ebe4355",
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-09-03T04:50:31.000Z",
+        "createdAt": "2026-01-12T00:32:56.501Z",
+        "updatedAt": "2026-01-12T05:05:24.556Z"
+      }
+    },
+    {
+      "originalArticleId": "8658cff1-4150-45b1-9fef-ddd392f233d2",
+      "originalAuthorId": "9d51d002-65f2-4016-876e-373f9b4d2544",
+      "title": "The Great Pizza Quest: A Slice-by-Slice Journey",
+      "authorName": "Ahmad Jalil",
+      "volume": 32,
+      "issueNumber": 1,
+      "storedBodySha256": "20c9614e3caafa9f2bdb44a7c8a0fd446ae888617c3a09363802443eb8ba0d6f",
+      "storedBodyCharacters": 6395,
+      "sourceAttachmentCount": 6,
+      "normalizedBodySha256": "be03064077e03c44bd5bd347a86d3bbb8669ff49369f50fc0a287941ace17ae9",
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-09-03T04:48:10.000Z",
+        "createdAt": "2026-01-12T00:32:56.522Z",
+        "updatedAt": "2026-01-12T05:05:24.556Z"
+      }
+    },
+    {
+      "originalArticleId": "a608ded1-b0b7-4b7e-8855-cbc3fb311433",
+      "originalAuthorId": "9d51d002-65f2-4016-876e-373f9b4d2544",
+      "title": "The Ultimate UNBC Study Spot Survival Guide",
+      "authorName": "Ahmad Jalil",
+      "volume": 32,
+      "issueNumber": 1,
+      "storedBodySha256": "869d4601f2ce2527dcdd2e8f492bec588a9c6079939b9867e31edc7694d389d2",
+      "storedBodyCharacters": 3226,
+      "sourceAttachmentCount": 7,
+      "normalizedBodySha256": "b65ffc7c3d7fb657993b861c44e3eccb1bc17de703da30250c01e17c0ffc2cd6",
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-09-03T04:59:42.000Z",
+        "createdAt": "2026-01-12T00:32:56.439Z",
+        "updatedAt": "2026-01-12T05:05:24.556Z"
+      }
+    },
+    {
+      "originalArticleId": "c0ca5bb9-ebbe-4dcc-ab17-e2d07bb2e60e",
+      "originalAuthorId": "96a02e03-a4f2-45b9-9ded-d80a8b4b172a",
+      "title": "Attached to Change",
+      "authorName": "Jhoan Chavez Suazo",
+      "volume": 32,
+      "issueNumber": 1,
+      "storedBodySha256": "b9075359cc8c05f29ebc0fff199f8b0f8450585e9ec2da12be221bb2974b5f00",
+      "storedBodyCharacters": 2683,
+      "sourceAttachmentCount": 2,
+      "normalizedBodySha256": "bc37851434b690a0b5d6128693708cce7831af1b15cfb0778ca5a4e368d69fec",
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-09-03T15:27:11.000Z",
+        "createdAt": "2026-01-12T00:32:56.360Z",
+        "updatedAt": "2026-01-12T05:05:24.556Z"
+      }
+    },
+    {
+      "originalArticleId": "d6bb0ea5-152a-41e3-b40d-cc9ea65fc637",
+      "originalAuthorId": null,
+      "title": "Never Miss Out Again: Over the Edge Launches All-in-One Campus Events Hub",
+      "authorName": "Anonymous",
+      "volume": 32,
+      "issueNumber": 1,
+      "storedBodySha256": "e40121912b687fb154e37a533a5854a7fee0f4c4926eb7a4ac4b02999ddecf6d",
+      "storedBodyCharacters": 1682,
+      "sourceAttachmentCount": 4,
+      "normalizedBodySha256": "8f708d06ede60b3c26b716b9914900a2cff610b9324ab84fe3067dd96d408ead",
+      "anonymous": true,
+      "originalDates": {
+        "submittedAt": "2025-09-05T19:52:08.000Z",
+        "createdAt": "2026-01-12T00:32:56.333Z",
+        "updatedAt": "2026-01-12T05:05:24.556Z"
+      }
+    },
+    {
+      "originalArticleId": "e6db968d-315b-4a57-82bc-f978ae6bddf7",
+      "originalAuthorId": "9d51d002-65f2-4016-876e-373f9b4d2544",
+      "title": "Never Miss Out Again Over the Edge Launches All-in-One Campus Events Hub",
+      "authorName": "Ahmad Jalil",
+      "volume": 32,
+      "issueNumber": 1,
+      "storedBodySha256": null,
+      "storedBodyCharacters": 0,
+      "sourceAttachmentCount": 4,
+      "normalizedBodySha256": null,
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-09-03T05:04:25.000Z",
+        "createdAt": "2026-01-12T00:32:56.407Z",
+        "updatedAt": "2026-01-12T05:05:24.556Z"
+      }
+    },
+    {
+      "originalArticleId": "eeb93103-e7bb-4bce-8875-3d29134cfeb1",
+      "originalAuthorId": "9d51d002-65f2-4016-876e-373f9b4d2544",
+      "title": "UNBC Grading System",
+      "authorName": "Ahmad Jalil",
+      "volume": 32,
+      "issueNumber": 1,
+      "storedBodySha256": "2847d41b644359579b7401e887652852131eed94df7a12daea5029752d2ad46e",
+      "storedBodyCharacters": 4197,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": "3ff254a2cef6ca82af12c7e4768a0e14e84905615e4f7ac55468e8a7057c4c52",
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-09-03T05:08:28.000Z",
+        "createdAt": "2026-01-12T00:32:56.377Z",
+        "updatedAt": "2026-01-12T05:05:24.556Z"
+      }
+    },
+    {
+      "originalArticleId": "0d0b7ce4-9855-4f17-a635-f8e25d288769",
+      "originalAuthorId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "title": "The Wait is Over: Prince George's Cold War Bunker Confirmed (But the Mystery Deepens)",
+      "authorName": "Ahmad Jalil",
+      "volume": 32,
+      "issueNumber": 2,
+      "storedBodySha256": "360b783d705935d1ae1da1d2d206f128f0423507d3fe3f8193eef6c3adcd5b13",
+      "storedBodyCharacters": 6622,
+      "sourceAttachmentCount": 2,
+      "normalizedBodySha256": "28fc59a22b094a2c4096e225afe591af8174960ed09320042262015f6aaac5e9",
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-10-07T18:58:01.000Z",
+        "createdAt": "2026-01-12T00:32:55.990Z",
+        "updatedAt": "2026-01-12T05:05:24.567Z"
+      }
+    },
+    {
+      "originalArticleId": "17874329-f633-4596-8739-eaf3dd74085b",
+      "originalAuthorId": null,
+      "title": "Is UNBC's Sustainable Event Certification Setting the Bar Too High, Or Just Grading Its Own Homework?",
+      "authorName": "Anonymous",
+      "volume": 32,
+      "issueNumber": 2,
+      "storedBodySha256": "a1caaf48e1c98f595085aa1df2c6a6ce777e36762640c858b2891946d45999a7",
+      "storedBodyCharacters": 2232,
+      "sourceAttachmentCount": 2,
+      "normalizedBodySha256": "d18fb4cb243ec6ea50cecf8d3c4ba854b4ea621c529f8280f44def82dd1f1892",
+      "anonymous": true,
+      "originalDates": {
+        "submittedAt": "2025-10-07T19:18:31.000Z",
+        "createdAt": "2026-01-12T00:32:55.954Z",
+        "updatedAt": "2026-01-12T05:05:24.567Z"
+      }
+    },
+    {
+      "originalArticleId": "2c7549e4-63df-437a-bbcd-5d82b6e0e5e2",
+      "originalAuthorId": "a35840bb-d982-4097-8f6a-06dc5bd740e9",
+      "title": "93.1 CFIS-FMBringing Nostalgia and Musical Culture Back to Prince George Authentically",
+      "authorName": "Jorden Evens",
+      "volume": 32,
+      "issueNumber": 2,
+      "storedBodySha256": "6c3f6ac0b78941f05e1c761ab5183136ed602c4d4c5b50e79bad64fc78d6e38c",
+      "storedBodyCharacters": 4632,
+      "sourceAttachmentCount": 2,
+      "normalizedBodySha256": "6c3f6ac0b78941f05e1c761ab5183136ed602c4d4c5b50e79bad64fc78d6e38c",
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-10-08T16:55:54.000Z",
+        "createdAt": "2026-01-12T00:32:55.920Z",
+        "updatedAt": "2026-01-12T05:05:24.567Z"
+      }
+    },
+    {
+      "originalArticleId": "449ae9e4-f65c-49ef-a2ea-f645dcfc40e9",
+      "originalAuthorId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "title": "So I Accidentally Became Someone's Boss (And It Was Weird)",
+      "authorName": "Ahmad Jalil",
+      "volume": 32,
+      "issueNumber": 2,
+      "storedBodySha256": "058a58f0bfdf6053dd835a6db94fa604319e52259d5dcecf76c12f0fb3d7ee3d",
+      "storedBodyCharacters": 4744,
+      "sourceAttachmentCount": 2,
+      "normalizedBodySha256": "6bc3b71864d9964feba001e9d52907d6b2121dc41bca74fc97600a9ec89a8961",
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-10-07T19:17:12.000Z",
+        "createdAt": "2026-01-12T00:32:55.971Z",
+        "updatedAt": "2026-01-12T05:05:24.567Z"
+      }
+    },
+    {
+      "originalArticleId": "535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalAuthorId": "ef0a948c-a140-47d9-a199-f40501a380f3",
+      "title": "A Living Legacy in the Woods Goodsir Nature Park",
+      "authorName": "Ehsan Taghizadehghoozhdi",
+      "volume": 32,
+      "issueNumber": 2,
+      "storedBodySha256": "12e6bcc72f9d169c3925f194c7294d12563e2b3be4a009e47c4e34c13c0242c6",
+      "storedBodyCharacters": 4244,
+      "sourceAttachmentCount": 15,
+      "normalizedBodySha256": "12e6bcc72f9d169c3925f194c7294d12563e2b3be4a009e47c4e34c13c0242c6",
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-10-08T17:06:02.000Z",
+        "createdAt": "2026-01-12T00:32:55.620Z",
+        "updatedAt": "2026-01-12T05:05:24.567Z"
+      }
+    },
+    {
+      "originalArticleId": "584afa80-49be-4799-b69d-bb3d1af5cfb7",
+      "originalAuthorId": null,
+      "title": "A Model for Environmental Education",
+      "authorName": "Anonymous",
+      "volume": 32,
+      "issueNumber": 2,
+      "storedBodySha256": "ba6dc4c853bf6e91c76c8f9d2cba853460b67e43b06b084d51eb0154b5f80d12",
+      "storedBodyCharacters": 2618,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": "a27a2ff4bce9889d0ef17d86718394134c863dd91bf0f12b38862319b30406d2",
+      "anonymous": true,
+      "originalDates": {
+        "submittedAt": "2025-10-08T17:18:54.000Z",
+        "createdAt": "2026-01-12T00:32:55.588Z",
+        "updatedAt": "2026-01-12T05:05:24.567Z"
+      }
+    },
+    {
+      "originalArticleId": "b84133dd-8224-41e0-a09e-a2946c0b4d8d",
+      "originalAuthorId": "e33bf3eb-9c43-4c52-9806-3886de089edc",
+      "title": "Bests of Home Echo at the Prince George Garba Night 2025",
+      "authorName": "Shivi Juyal",
+      "volume": 32,
+      "issueNumber": 2,
+      "storedBodySha256": "c868ec99c1d7fd73fd245df36c15aee0cdbeaae91d7f64c2d2cce61a08ad3e56",
+      "storedBodyCharacters": 2413,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": "d6e9fcfa74aabb5ce9c9fcfd09ad699362155f5ed3d825b7140ee4ed55c6a9ea",
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-10-07T06:56:28.000Z",
+        "createdAt": "2026-01-12T00:32:56.014Z",
+        "updatedAt": "2026-01-12T05:05:24.567Z"
+      }
+    },
+    {
+      "originalArticleId": "df64d724-3b8e-4506-89ed-21ce9ec312b9",
+      "originalAuthorId": "c763eec3-7d19-4e2f-839d-0fb2292a66ae",
+      "title": "Success Has No Single Map: Why Trying Something New Could Be Your Breakthrough",
+      "authorName": "Florence Ejodame Oisereime",
+      "volume": 32,
+      "issueNumber": 2,
+      "storedBodySha256": "858ea4e34c5ed7069f2917cd138c2a7bcf510b70db0cf078cdca60728fd3db6a",
+      "storedBodyCharacters": 1100,
+      "sourceAttachmentCount": 3,
+      "normalizedBodySha256": "858ea4e34c5ed7069f2917cd138c2a7bcf510b70db0cf078cdca60728fd3db6a",
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-09-12T11:58:55.000Z",
+        "createdAt": "2026-01-12T00:32:56.211Z",
+        "updatedAt": "2026-01-12T05:05:24.567Z"
+      }
+    },
+    {
+      "originalArticleId": "edcb75d9-0b10-4098-a3ce-0d6a69291d75",
+      "originalAuthorId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "title": "UNBC's OG Psychology Prof Takes the Helm as Interim President",
+      "authorName": "Ahmad Jalil",
+      "volume": 32,
+      "issueNumber": 2,
+      "storedBodySha256": "251c0783676cce26dfedd4497125753a5e2be79a88b0fa526b1911fc3876cfc1",
+      "storedBodyCharacters": 3774,
+      "sourceAttachmentCount": 2,
+      "normalizedBodySha256": "0c62d614e5e2c0d4dc060c35045badfae324c8407be46b1a7b7fbd47bcf70f3f",
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-10-07T20:50:48.000Z",
+        "createdAt": "2026-01-12T00:32:55.937Z",
+        "updatedAt": "2026-01-12T05:05:24.567Z"
+      }
+    },
+    {
+      "originalArticleId": "fa3a5be0-ce14-4336-b5f4-825b7b950078",
+      "originalAuthorId": "57a402b3-6674-4625-94a9-4b9120b2aca9",
+      "title": "Green So Far",
+      "authorName": "Madi Tokarchuk",
+      "volume": 32,
+      "issueNumber": 2,
+      "storedBodySha256": "8b2fe4713453ecdd865971c25173cd1529f91e6853e704aa53dd4484d19ecd73",
+      "storedBodyCharacters": 3580,
+      "sourceAttachmentCount": 6,
+      "normalizedBodySha256": "8b2fe4713453ecdd865971c25173cd1529f91e6853e704aa53dd4484d19ecd73",
+      "anonymous": false,
+      "originalDates": {
+        "submittedAt": "2025-10-05T05:19:15.000Z",
+        "createdAt": "2026-01-12T00:32:56.063Z",
+        "updatedAt": "2026-01-12T05:05:24.567Z"
+      }
+    }
+  ]
+}

@@ -17,6 +17,13 @@ export const Route = createFileRoute('/utilities/')({
 
 const utilities = [
   {
+    id: 'source-archive',
+    path: '/utilities/source-archive',
+    title: 'Original issue archive',
+    description: 'Review source articles, bylines, publication metadata, and page references before importing original issues',
+    icon: Files,
+  },
+  {
     id: 'designcraft',
     path: '/utilities/designcraft',
     title: 'DesignCraft web',

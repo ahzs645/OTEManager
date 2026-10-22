@@ -1,0 +1,5 @@
+{
+  "method": "Compare identical native field strings of at least4characters where resolved frame rectangles overlap by more than20% of enclosing box area; candidates need visual review.",
+  "pagesChecked": 153,
+  "matches": []
+}

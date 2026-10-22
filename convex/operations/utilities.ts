@@ -350,6 +350,7 @@ export const utilityMutations = {
         "attachments",
         "articleNotes",
         "statusHistory",
+        "sourceArchiveLinks",
       ] as const)
         for (const row of await s.by(table, "articleId", id))
           await s.patch(table, row.id, { articleId: keep.id });

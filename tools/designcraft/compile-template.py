@@ -13,6 +13,7 @@ import zipfile
 from markdown_story import compose_source
 from interchange_metadata import save_metadata
 from cover_fields import resolve_cover
+from structured_content import structured_content
 
 LIBRARY_SCHEMA = 'ote.designcraft.templates.v1'
 ISSUE_SCHEMA = 'ote.designcraft.issue.v1'
@@ -174,6 +175,15 @@ def compile_page(args):
                 target_font = document_fonts / font.name
                 if font.resolve() != target_font.resolve():
                     shutil.copyfile(font, target_font)
+    layout_plan = issue.get('layoutPlan', {}) if issue else {}
+    planned_page = next((p for p in layout_plan.get('pages', []) if p.get('id') == args.page_id and p.get('pageNumber', args.page_number) == args.page_number), None)
+    if planned_page is None:
+        planned_page = next((p for p in layout_plan.get('pages', []) if p.get('pageNumber') == args.page_number), {})
+    page_media = {**layout_plan.get('media', {}), **planned_page.get('media', {})}
+    page_blocks = {**layout_plan.get('blocks', {}), **planned_page.get('blocks', {})}
+    for block_id, block in planned_page.get('blocks', {}).items():
+        page_blocks[block_id] = {**layout_plan.get('blocks', {}).get(block_id, {}), **block,
+                                 'fields': {**layout_plan.get('blocks', {}).get(block_id, {}).get('fields', {}), **block.get('fields', {})}}
     steps = []
     slot_refs = []
     warnings = []
@@ -316,7 +326,7 @@ def compile_page(args):
                 if pi < len(photos):
                     media = photos[pi]
             elif issue:
-                media = issue.get('layoutPlan', {}).get('media', {}).get(slot['id'])
+                media = page_media.get(slot['id'])
             if media and media.get('path'):
                 source_path = Path(media['path'])
                 if not source_path.is_absolute():
@@ -346,6 +356,32 @@ def compile_page(args):
                                            **({'requestedZoom': zoom} if zoom else {}), 'nativeCrop': 'pending', 'exactFocusApplied': False})
                 label_frame(index, slot, article)
             else:
+                fields = {**slot.get('fields', {}), **(page_blocks.get(slot['id'], {}).get('fields', {}) if role == 'piece' else {})}
+                structured = structured_content(slot, fields) if role == 'piece' else None
+                if structured:
+                    if structured['separate']:
+                        for part in structured['parts']:
+                            child = {**part, 'id': slot['id'] + '-' + part['field'], 'role': 'piece-' + part['field']}
+                            l, t, r, b = part['rect']
+                            field_rect = [x + l * (right-x), y + t * (bottom-y), x + r * (right-x), y + b * (bottom-y)]
+                            part_style = part['style']
+                            if not isinstance(part_style, str) or part_style not in styles:
+                                raise ValueError('Captured editorial styles need the JavaScript compiler')
+                            if part.get('fontSize') or part.get('leading') or part.get('chars') or part.get('para'):
+                                family, face, size, leading = styles[part_style]
+                                size = part.get('fontSize', size)
+                                leading = part.get('leading', size*1.15 if part.get('fontSize') else leading)
+                                if not (4 <= size <= 144 and 4 <= leading <= 200):
+                                    raise ValueError('Typography values exceed supported bounds')
+                                part_style = 'OTE Slot ' + child['id']
+                                params = {'name': part_style, 'chars': {'fontFamily': family, 'fontStyle': face, 'size': size, 'leading': {'kind': 'points', 'value': leading}, **part.get('chars', {})}}
+                                if part.get('para'):
+                                    params['para'] = part['para']
+                                add('style.paragraph.create', **params)
+                            styled_text(field_rect, part['rich']['text'], part_style, columns=part.get('columns', 1), slot=child, rich=part['rich'])
+                    else:
+                        styled_text(rect, structured['rich']['text'], 'OTE Body', columns=slot.get('columns', 1), slot=slot, rich=structured['rich'])
+                    continue
                 if issue and role == 'photo' and article:
                     missing_media.append(slot['id'])
                 index = add('frame.create', rect=rect, content='unassigned')
@@ -353,9 +389,6 @@ def compile_page(args):
                 add('object.stroke', ids=[ref(index)], weight=0.5, swatch='OTE Green')
                 label_frame(index, slot, article)
                 caption = str(slot.get('text') or {'photo': 'ILLUSTRATIVE PHOTO SLOT', 'ad': 'ADVERTISING BOUNDARY', 'piece': 'CUSTOM BLOCK BOUNDARY'}[role])
-                fields = dict(slot.get('fields', {}))
-                if issue and role == 'piece':
-                    fields.update(issue.get('layoutPlan', {}).get('blocks', {}).get(slot['id'], {}).get('fields', {}))
                 if fields:
                     caption += '\n\n' + '\n\n'.join(str(key).replace('_', ' ').title() + ': ' + str(value) for key, value in fields.items())
                 h = bottom - y - 8 if fields or role == 'piece' else min(36, bottom - y - 8)

@@ -1,0 +1,2228 @@
+{
+  "schemaVersion": "ote.source-archive.issue.v1",
+  "archiveId": "ote-original-issues-2026-10-09",
+  "issue": {
+    "documentId": "issue-5-ba123d17",
+    "label": "Winter 2025 · Issue 5",
+    "volumeNumber": 31,
+    "issueNumber": 5,
+    "releaseDate": null,
+    "pageCount": 17,
+    "source": {
+      "path": "originals/issue-5-ba123d17.pdf",
+      "sha256": "ba123d177cdf5fd7a1cdd9e8a8617ccedf7bdb484050b0f327590c8387a296e6"
+    },
+    "sourceNotes": "Issue 5 source folder establishes issue number; no reliable actual publication date is supplied. The cover reuses December 5 / Issue 4 labels. Do not invent a January day.",
+    "sourceCoverMetadata": {
+      "date": "2024-12-05",
+      "volume": 31,
+      "number": 4
+    }
+  },
+  "articles": [
+    {
+      "sourceKey": "legacy:0105a0d0-cd7c-439a-b011-e5bfaca5b9cb",
+      "originalArticleId": "0105a0d0-cd7c-439a-b011-e5bfaca5b9cb",
+      "title": "Empowering Connections in UNBC",
+      "authorName": "Ehsan Taghizadehghoozhdi",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "0105a0d0-cd7c-439a-b011-e5bfaca5b9cb",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:57.000Z",
+            "createdAt": "2026-01-12T00:33:00.572Z",
+            "updatedAt": "2026-01-12T05:05:24.633Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:57.000Z",
+        "createdAt": "2026-01-12T00:33:00.572Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      },
+      "authorSourceId": "ef0a948c-a140-47d9-a199-f40501a380f3",
+      "exportPath": "source-archive/articles/legacy-0105a0d0-cd7c-439a-b011-e5bfaca5b9cb-empowering-connections-in-unbc.md"
+    },
+    {
+      "sourceKey": "legacy:0c1f68f2-d73d-44c5-92df-476413210659",
+      "originalArticleId": "0c1f68f2-d73d-44c5-92df-476413210659",
+      "title": "Down the Rabbit Hole: The Search for Prince George's Cold War Bunker",
+      "authorName": "Ahmad Jalil",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "0c1f68f2-d73d-44c5-92df-476413210659",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:18:24.000Z",
+            "createdAt": "2026-01-12T00:32:58.674Z",
+            "updatedAt": "2026-01-12T05:05:24.633Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:24.000Z",
+        "createdAt": "2026-01-12T00:32:58.674Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      },
+      "authorSourceId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "exportPath": "source-archive/articles/legacy-0c1f68f2-d73d-44c5-92df-476413210659-down-the-rabbit-hole-the-search-for-prince-george-s-cold-war-bunker.md"
+    },
+    {
+      "sourceKey": "legacy:1c5b750a-c046-4086-a1e5-1180d2af2620",
+      "originalArticleId": "1c5b750a-c046-4086-a1e5-1180d2af2620",
+      "title": "Reclaiming Time",
+      "authorName": "Bella Mesquita",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "1c5b750a-c046-4086-a1e5-1180d2af2620",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:45.000Z",
+            "createdAt": "2026-01-12T00:33:00.745Z",
+            "updatedAt": "2026-01-12T05:05:24.633Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:45.000Z",
+        "createdAt": "2026-01-12T00:33:00.745Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      },
+      "authorSourceId": "a8cd2393-da04-4093-8b2d-c869a27d268e",
+      "exportPath": "source-archive/articles/legacy-1c5b750a-c046-4086-a1e5-1180d2af2620-reclaiming-time.md"
+    },
+    {
+      "sourceKey": "legacy:2883d9f0-b083-4f11-a2d9-ac80182f17b8",
+      "originalArticleId": "2883d9f0-b083-4f11-a2d9-ac80182f17b8",
+      "title": "Rick you Rock my friend!",
+      "authorName": "Bruce Danesh",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "2883d9f0-b083-4f11-a2d9-ac80182f17b8",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:36.000Z",
+            "createdAt": "2026-01-12T00:33:00.837Z",
+            "updatedAt": "2026-01-12T05:05:24.633Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:36.000Z",
+        "createdAt": "2026-01-12T00:33:00.837Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      },
+      "authorSourceId": "2b00e476-2840-4401-a69c-795ff8eacded",
+      "exportPath": "source-archive/articles/legacy-2883d9f0-b083-4f11-a2d9-ac80182f17b8-rick-you-rock-my-friend.md"
+    },
+    {
+      "sourceKey": "legacy:49894031-7b78-4a23-8330-589df63590c9",
+      "originalArticleId": "49894031-7b78-4a23-8330-589df63590c9",
+      "title": "UNBC Graduate Student Faculty Ambassadors (GSFA)",
+      "authorName": "Nazanin Soroosh",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "49894031-7b78-4a23-8330-589df63590c9",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:47.000Z",
+            "createdAt": "2026-01-12T00:33:00.724Z",
+            "updatedAt": "2026-01-12T05:05:24.633Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:47.000Z",
+        "createdAt": "2026-01-12T00:33:00.724Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      },
+      "authorSourceId": "cc8a29c3-2b5a-4761-9870-eefd7b6d12a4",
+      "exportPath": "source-archive/articles/legacy-49894031-7b78-4a23-8330-589df63590c9-unbc-graduate-student-faculty-ambassadors-gsfa.md"
+    },
+    {
+      "sourceKey": "legacy:5a8daea7-04b4-4fdc-998b-54f198b61f24",
+      "originalArticleId": "5a8daea7-04b4-4fdc-998b-54f198b61f24",
+      "title": "UNBC Submits Draft Business Case for New Student Housing",
+      "authorName": "Ahmad Jalil",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "5a8daea7-04b4-4fdc-998b-54f198b61f24",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:52.000Z",
+            "createdAt": "2026-01-12T00:33:00.659Z",
+            "updatedAt": "2026-01-12T05:05:24.633Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:52.000Z",
+        "createdAt": "2026-01-12T00:33:00.659Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      },
+      "authorSourceId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "exportPath": "source-archive/articles/legacy-5a8daea7-04b4-4fdc-998b-54f198b61f24-unbc-submits-draft-business-case-for-new-student-housing.md"
+    },
+    {
+      "sourceKey": "legacy:6e6cbd33-3af4-4c75-aa69-19fe170bec35",
+      "originalArticleId": "6e6cbd33-3af4-4c75-aa69-19fe170bec35",
+      "title": "Breaking Bug: A Student's Adventures in Legal Home Brewing  ",
+      "authorName": "Emma Gryg",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "6e6cbd33-3af4-4c75-aa69-19fe170bec35",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:18:33.000Z",
+            "createdAt": "2026-01-12T00:32:57.634Z",
+            "updatedAt": "2026-01-12T05:05:24.633Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:33.000Z",
+        "createdAt": "2026-01-12T00:32:57.634Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      },
+      "authorSourceId": "5a7f4a3c-e5f2-40b9-b4f6-17ccba77e411",
+      "exportPath": "source-archive/articles/legacy-6e6cbd33-3af4-4c75-aa69-19fe170bec35-breaking-bug-a-student-s-adventures-in-legal-home-brewing.md"
+    },
+    {
+      "sourceKey": "legacy:a13ccf0d-ed82-45e7-acc6-2312bb76163c",
+      "originalArticleId": "a13ccf0d-ed82-45e7-acc6-2312bb76163c",
+      "title": "Visiting Woodland Caribou at Kennedy Siding",
+      "authorName": "Klee Leman",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "a13ccf0d-ed82-45e7-acc6-2312bb76163c",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:55.000Z",
+            "createdAt": "2026-01-12T00:33:00.603Z",
+            "updatedAt": "2026-01-12T05:05:24.633Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:55.000Z",
+        "createdAt": "2026-01-12T00:33:00.603Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      },
+      "authorSourceId": "d2ad9da4-5000-4d05-aa7c-24ba4d32f9a2",
+      "exportPath": "source-archive/articles/legacy-a13ccf0d-ed82-45e7-acc6-2312bb76163c-visiting-woodland-caribou-at-kennedy-siding.md"
+    },
+    {
+      "sourceKey": "legacy:c2d7f21d-f1dd-4c4b-9ec8-60a36977f9a5",
+      "originalArticleId": "c2d7f21d-f1dd-4c4b-9ec8-60a36977f9a5",
+      "title": "Rural Healthcare Through Northern Eyes: Inside the 2024 Rural Voices Gathering",
+      "authorName": "Bruce Danesh",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "c2d7f21d-f1dd-4c4b-9ec8-60a36977f9a5",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:28.000Z",
+            "createdAt": "2026-01-12T00:33:00.923Z",
+            "updatedAt": "2026-01-12T05:05:24.633Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:28.000Z",
+        "createdAt": "2026-01-12T00:33:00.923Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      },
+      "authorSourceId": "2b00e476-2840-4401-a69c-795ff8eacded",
+      "exportPath": "source-archive/articles/legacy-c2d7f21d-f1dd-4c4b-9ec8-60a36977f9a5-rural-healthcare-through-northern-eyes-inside-the-2024-rural-voices-gathering.md"
+    },
+    {
+      "sourceKey": "legacy:de3bd815-0807-43a2-86dc-ebeb1d56f7d6",
+      "originalArticleId": "de3bd815-0807-43a2-86dc-ebeb1d56f7d6",
+      "title": "Brownridge Court Receives 2024 Sport Floor of the Year (SFOY) Award",
+      "authorName": "Anonymous",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "de3bd815-0807-43a2-86dc-ebeb1d56f7d6",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:32.000Z",
+            "createdAt": "2026-01-12T00:33:00.899Z",
+            "updatedAt": "2026-01-12T05:05:24.633Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": true,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:32.000Z",
+        "createdAt": "2026-01-12T00:33:00.899Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      },
+      "exportPath": "source-archive/articles/legacy-de3bd815-0807-43a2-86dc-ebeb1d56f7d6-brownridge-court-receives-2024-sport-floor-of-the-year-sfoy-award.md"
+    },
+    {
+      "sourceKey": "legacy:e595237b-a689-4c16-a24a-6239075b0d99",
+      "originalArticleId": "e595237b-a689-4c16-a24a-6239075b0d99",
+      "title": "People in the Trees II",
+      "authorName": "Jacinta Mubiru",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "e595237b-a689-4c16-a24a-6239075b0d99",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:54.000Z",
+            "createdAt": "2026-01-12T00:33:00.646Z",
+            "updatedAt": "2026-01-12T05:05:24.633Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:54.000Z",
+        "createdAt": "2026-01-12T00:33:00.646Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      },
+      "authorSourceId": "d38feb4b-5c56-40b6-b167-bc41fb0c7ba7",
+      "exportPath": "source-archive/articles/legacy-e595237b-a689-4c16-a24a-6239075b0d99-people-in-the-trees-ii.md"
+    },
+    {
+      "sourceKey": "legacy:e79d4ebe-d827-4fe2-943d-b5b1db05cc7b",
+      "originalArticleId": "e79d4ebe-d827-4fe2-943d-b5b1db05cc7b",
+      "title": "The Lost Art of Conversation: Overcoming Avoidance in the Digital Age ",
+      "authorName": "Bella Mesquita",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "e79d4ebe-d827-4fe2-943d-b5b1db05cc7b",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:44.000Z",
+            "createdAt": "2026-01-12T00:33:00.776Z",
+            "updatedAt": "2026-01-12T05:05:24.633Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:44.000Z",
+        "createdAt": "2026-01-12T00:33:00.776Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      },
+      "authorSourceId": "a8cd2393-da04-4093-8b2d-c869a27d268e",
+      "exportPath": "source-archive/articles/legacy-e79d4ebe-d827-4fe2-943d-b5b1db05cc7b-the-lost-art-of-conversation-overcoming-avoidance-in-the-digital-age.md"
+    },
+    {
+      "sourceKey": "legacy:ff630782-1706-4696-871b-3bfde02d92eb",
+      "originalArticleId": "ff630782-1706-4696-871b-3bfde02d92eb",
+      "title": "Green Force Unites UNBC Community for Sustainable Practices ",
+      "authorName": "Yug Shaileshkumar Rathod",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "ff630782-1706-4696-871b-3bfde02d92eb",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:49.000Z",
+            "createdAt": "2026-01-12T00:33:00.667Z",
+            "updatedAt": "2026-01-12T05:05:24.633Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:49.000Z",
+        "createdAt": "2026-01-12T00:33:00.667Z",
+        "updatedAt": "2026-01-12T05:05:24.633Z"
+      },
+      "authorSourceId": "c7dcae2c-ce0c-4da5-829b-252c1ed9293c",
+      "exportPath": "source-archive/articles/legacy-ff630782-1706-4696-871b-3bfde02d92eb-green-force-unites-unbc-community-for-sustainable-practices.md"
+    },
+    {
+      "sourceKey": "recurring:president-qa:86f04668ab5b9dcc",
+      "title": "President Answers",
+      "authorName": null,
+      "content": "**Question**\n\nTrucks or Sedans?",
+      "bodyFormat": "markdown",
+      "kind": "recurring",
+      "placements": [
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumbers": [
+            6
+          ],
+          "section": "president-qa"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-idml/issue-5-5f404889.idml",
+          "sha256": "5f4048899b926d78ab54ec44f4a76360e940274701db287693e84257ee3dc5e2",
+          "storyIds": [
+            "u398"
+          ],
+          "notes": "Original question/response grouped semantically; no respondent byline is invented."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "visible-in-source-pdf",
+      "question": "Trucks or Sedans?",
+      "answer": null,
+      "exportPath": "source-archive/articles/recurring-president-qa-86f04668ab5b9dcc-president-answers.md"
+    },
+    {
+      "sourceKey": "recurring:inside-the-edge:be8d51e1de187063",
+      "title": "Inside the Edge",
+      "authorName": null,
+      "content": "**Question**\n\nI’ve noticed some articles in Over the Edge seem like they could be AI-generated. Can you clarify your stance on AI usage and explain how you ensure the content is original and student-driven?\n\n**Answer**\n\nYes, we use AI tools at Over the Edge, but our student journalists drive every story. AI helps with grammar, transitions, and flow, but the ideas and content are entirely student-created. We’re still learning how to best use these tools and value reader feedback as we refine our process. Student journalism remains at the core of what we do!",
+      "bodyFormat": "markdown",
+      "kind": "recurring",
+      "placements": [
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumbers": [
+            5
+          ],
+          "section": "inside-the-edge"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-idml/issue-5-5f404889.idml",
+          "sha256": "5f4048899b926d78ab54ec44f4a76360e940274701db287693e84257ee3dc5e2",
+          "storyIds": [
+            "u737",
+            "u752"
+          ],
+          "notes": "Original question/response grouped semantically; no respondent byline is invented."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "visible-in-source-pdf",
+      "question": "I’ve noticed some articles in Over the Edge seem like they could be AI-generated. Can you clarify your stance on AI usage and explain how you ensure the content is original and student-driven?",
+      "answer": "Yes, we use AI tools at Over the Edge, but our student journalists drive every story. AI helps with grammar, transitions, and flow, but the ideas and content are entirely student-created. We’re still learning how to best use these tools and value reader feedback as we refine our process. Student journalism remains at the core of what we do!",
+      "exportPath": "source-archive/articles/recurring-inside-the-edge-be8d51e1de187063-inside-the-edge.md"
+    }
+  ],
+  "assets": [
+    {
+      "id": "source-pdf:issue-5-ba123d17",
+      "path": "originals/issue-5-ba123d17.pdf",
+      "sha256": "ba123d177cdf5fd7a1cdd9e8a8617ccedf7bdb484050b0f327590c8387a296e6",
+      "mimeType": "application/pdf",
+      "availability": "reference-only",
+      "assetRole": "source-reference",
+      "documentIds": [
+        "issue-5-ba123d17"
+      ],
+      "label": "Winter 2025 · Issue 5"
+    },
+    {
+      "id": "attachment:799ea585-3fad-42d4-8e43-90e7aefbef4a",
+      "sourceKey": "legacy:0105a0d0-cd7c-439a-b011-e5bfaca5b9cb",
+      "originalArticleId": "0105a0d0-cd7c-439a-b011-e5bfaca5b9cb",
+      "originalAttachmentId": "799ea585-3fad-42d4-8e43-90e7aefbef4a",
+      "path": "source-archive-media/799ea585-3fad-42d4-8e43-90e7aefbef4a.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 106203,
+      "originalFileName": "empowering-connections-in-unbc-1.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:a69b49c5-2c3c-46e7-9abb-9314fd612fd8",
+      "sourceKey": "legacy:0105a0d0-cd7c-439a-b011-e5bfaca5b9cb",
+      "originalArticleId": "0105a0d0-cd7c-439a-b011-e5bfaca5b9cb",
+      "originalAttachmentId": "a69b49c5-2c3c-46e7-9abb-9314fd612fd8",
+      "path": "source-archive-media/a69b49c5-2c3c-46e7-9abb-9314fd612fd8.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 60721,
+      "originalFileName": "empowering-connections-in-unbc-2.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:48353b1d-a2d6-4308-82ea-1ef4fedb3add",
+      "sourceKey": "legacy:0105a0d0-cd7c-439a-b011-e5bfaca5b9cb",
+      "originalArticleId": "0105a0d0-cd7c-439a-b011-e5bfaca5b9cb",
+      "originalAttachmentId": "48353b1d-a2d6-4308-82ea-1ef4fedb3add",
+      "path": "source-archive-media/48353b1d-a2d6-4308-82ea-1ef4fedb3add.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 88791,
+      "originalFileName": "empowering-connections-in-unbc-3.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 3,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:70665647-b025-476c-9b70-5bf4e61db67e",
+      "sourceKey": "legacy:0105a0d0-cd7c-439a-b011-e5bfaca5b9cb",
+      "originalArticleId": "0105a0d0-cd7c-439a-b011-e5bfaca5b9cb",
+      "originalAttachmentId": "70665647-b025-476c-9b70-5bf4e61db67e",
+      "path": "source-archive-media/70665647-b025-476c-9b70-5bf4e61db67e.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21877,
+      "originalFileName": "empowering-connections-in-unbc-4.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:67e4f503-e94e-4afe-a88b-af8c74e3ecad",
+      "sourceKey": "legacy:0c1f68f2-d73d-44c5-92df-476413210659",
+      "originalArticleId": "0c1f68f2-d73d-44c5-92df-476413210659",
+      "originalAttachmentId": "67e4f503-e94e-4afe-a88b-af8c74e3ecad",
+      "path": "source-archive-media/67e4f503-e94e-4afe-a88b-af8c74e3ecad.jpeg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 2855419,
+      "originalFileName": "down-the-rabbit-hole-the-search-for-prince-george-s-cold-war-bunker-1.jpeg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:466505d9-f78a-4c86-9792-8c5edd988302",
+      "sourceKey": "legacy:0c1f68f2-d73d-44c5-92df-476413210659",
+      "originalArticleId": "0c1f68f2-d73d-44c5-92df-476413210659",
+      "originalAttachmentId": "466505d9-f78a-4c86-9792-8c5edd988302",
+      "path": "source-archive-media/466505d9-f78a-4c86-9792-8c5edd988302.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 22881,
+      "originalFileName": "down-the-rabbit-hole-the-search-for-prince-george-s-cold-war-bunker-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:67231614-48e0-4dc9-be90-ae9cd494af45",
+      "sourceKey": "legacy:0c1f68f2-d73d-44c5-92df-476413210659",
+      "originalArticleId": "0c1f68f2-d73d-44c5-92df-476413210659",
+      "originalAttachmentId": "67231614-48e0-4dc9-be90-ae9cd494af45",
+      "path": "source-archive-media/67231614-48e0-4dc9-be90-ae9cd494af45.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 1888888,
+      "originalFileName": "down-the-rabbit-hole-the-search-for-prince-george-s-cold-war-bunker-3.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:9afc4ef1-dd9b-4100-ac3f-959b36dd6193",
+      "sourceKey": "legacy:0c1f68f2-d73d-44c5-92df-476413210659",
+      "originalArticleId": "0c1f68f2-d73d-44c5-92df-476413210659",
+      "originalAttachmentId": "9afc4ef1-dd9b-4100-ac3f-959b36dd6193",
+      "path": "source-archive-media/9afc4ef1-dd9b-4100-ac3f-959b36dd6193.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 23495,
+      "originalFileName": "down-the-rabbit-hole-the-search-for-prince-george-s-cold-war-bunker-4.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:f2269348-f450-4248-b8e2-1c34713fd890",
+      "sourceKey": "legacy:0c1f68f2-d73d-44c5-92df-476413210659",
+      "originalArticleId": "0c1f68f2-d73d-44c5-92df-476413210659",
+      "originalAttachmentId": "f2269348-f450-4248-b8e2-1c34713fd890",
+      "path": "source-archive-media/f2269348-f450-4248-b8e2-1c34713fd890.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 641880,
+      "originalFileName": "down-the-rabbit-hole-the-search-for-prince-george-s-cold-war-bunker-5.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 3,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:09ba093a-ca10-4f63-8087-a9c898af1dda",
+      "sourceKey": "legacy:0c1f68f2-d73d-44c5-92df-476413210659",
+      "originalArticleId": "0c1f68f2-d73d-44c5-92df-476413210659",
+      "originalAttachmentId": "09ba093a-ca10-4f63-8087-a9c898af1dda",
+      "path": "source-archive-media/09ba093a-ca10-4f63-8087-a9c898af1dda.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21717,
+      "originalFileName": "down-the-rabbit-hole-the-search-for-prince-george-s-cold-war-bunker-6.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:0f519b9b-6ef7-458e-aac4-3b8ac441ed1c",
+      "sourceKey": "legacy:1c5b750a-c046-4086-a1e5-1180d2af2620",
+      "originalArticleId": "1c5b750a-c046-4086-a1e5-1180d2af2620",
+      "originalAttachmentId": "0f519b9b-6ef7-458e-aac4-3b8ac441ed1c",
+      "path": "source-archive-media/0f519b9b-6ef7-458e-aac4-3b8ac441ed1c.jpeg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 3389084,
+      "originalFileName": "reclaiming-time-1.jpeg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:e9e98d20-eb1d-4210-aad7-c266aadcf174",
+      "sourceKey": "legacy:1c5b750a-c046-4086-a1e5-1180d2af2620",
+      "originalArticleId": "1c5b750a-c046-4086-a1e5-1180d2af2620",
+      "originalAttachmentId": "e9e98d20-eb1d-4210-aad7-c266aadcf174",
+      "path": "source-archive-media/e9e98d20-eb1d-4210-aad7-c266aadcf174.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 23008,
+      "originalFileName": "reclaiming-time-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:d6b99e0a-1c1b-4276-a7a7-52ea0565df33",
+      "sourceKey": "legacy:1c5b750a-c046-4086-a1e5-1180d2af2620",
+      "originalArticleId": "1c5b750a-c046-4086-a1e5-1180d2af2620",
+      "originalAttachmentId": "d6b99e0a-1c1b-4276-a7a7-52ea0565df33",
+      "path": "source-archive-media/d6b99e0a-1c1b-4276-a7a7-52ea0565df33.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 23244,
+      "originalFileName": "reclaiming-time-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:b6ed97c9-fb7e-42b4-b3f4-718a7f59af8b",
+      "sourceKey": "legacy:2883d9f0-b083-4f11-a2d9-ac80182f17b8",
+      "originalArticleId": "2883d9f0-b083-4f11-a2d9-ac80182f17b8",
+      "originalAttachmentId": "b6ed97c9-fb7e-42b4-b3f4-718a7f59af8b",
+      "path": "source-archive-media/b6ed97c9-fb7e-42b4-b3f4-718a7f59af8b.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 3017583,
+      "originalFileName": "rick-you-rock-my-friend-1.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:9c39a219-4d81-4ffa-801d-17b431ca489c",
+      "sourceKey": "legacy:2883d9f0-b083-4f11-a2d9-ac80182f17b8",
+      "originalArticleId": "2883d9f0-b083-4f11-a2d9-ac80182f17b8",
+      "originalAttachmentId": "9c39a219-4d81-4ffa-801d-17b431ca489c",
+      "path": "source-archive-media/9c39a219-4d81-4ffa-801d-17b431ca489c.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21311,
+      "originalFileName": "rick-you-rock-my-friend-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:0f7a5211-7e1c-4633-9779-146f2a2f0377",
+      "sourceKey": "legacy:2883d9f0-b083-4f11-a2d9-ac80182f17b8",
+      "originalArticleId": "2883d9f0-b083-4f11-a2d9-ac80182f17b8",
+      "originalAttachmentId": "0f7a5211-7e1c-4633-9779-146f2a2f0377",
+      "path": "source-archive-media/0f7a5211-7e1c-4633-9779-146f2a2f0377.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 20400,
+      "originalFileName": "rick-you-rock-my-friend-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:97203672-e50d-4a2b-b454-f5f9b8542a96",
+      "sourceKey": "legacy:49894031-7b78-4a23-8330-589df63590c9",
+      "originalArticleId": "49894031-7b78-4a23-8330-589df63590c9",
+      "originalAttachmentId": "97203672-e50d-4a2b-b454-f5f9b8542a96",
+      "path": "source-archive-media/97203672-e50d-4a2b-b454-f5f9b8542a96.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 24169,
+      "originalFileName": "unbc-graduate-student-faculty-ambassadors-gsfa-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:34777d63-4bf0-4592-b139-1f647be00a80",
+      "sourceKey": "legacy:49894031-7b78-4a23-8330-589df63590c9",
+      "originalArticleId": "49894031-7b78-4a23-8330-589df63590c9",
+      "originalAttachmentId": "34777d63-4bf0-4592-b139-1f647be00a80",
+      "path": "source-archive-media/34777d63-4bf0-4592-b139-1f647be00a80.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 339232,
+      "originalFileName": "unbc-graduate-student-faculty-ambassadors-gsfa-2.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:8366ec89-1dcd-4e59-ac1e-6b649613d85d",
+      "sourceKey": "legacy:49894031-7b78-4a23-8330-589df63590c9",
+      "originalArticleId": "49894031-7b78-4a23-8330-589df63590c9",
+      "originalAttachmentId": "8366ec89-1dcd-4e59-ac1e-6b649613d85d",
+      "path": "source-archive-media/8366ec89-1dcd-4e59-ac1e-6b649613d85d.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21401,
+      "originalFileName": "unbc-graduate-student-faculty-ambassadors-gsfa-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:de756a68-66c1-4e84-9528-b560adf1a4ba",
+      "sourceKey": "legacy:5a8daea7-04b4-4fdc-998b-54f198b61f24",
+      "originalArticleId": "5a8daea7-04b4-4fdc-998b-54f198b61f24",
+      "originalAttachmentId": "de756a68-66c1-4e84-9528-b560adf1a4ba",
+      "path": "source-archive-media/de756a68-66c1-4e84-9528-b560adf1a4ba.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21169,
+      "originalFileName": "unbc-submits-draft-business-case-for-new-student-housing-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:c9cd25d3-a453-405c-81cf-2b4fb7b4f0e8",
+      "sourceKey": "legacy:6e6cbd33-3af4-4c75-aa69-19fe170bec35",
+      "originalArticleId": "6e6cbd33-3af4-4c75-aa69-19fe170bec35",
+      "originalAttachmentId": "c9cd25d3-a453-405c-81cf-2b4fb7b4f0e8",
+      "path": "source-archive-media/c9cd25d3-a453-405c-81cf-2b4fb7b4f0e8.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 31509,
+      "originalFileName": "breaking-bug-a-student-s-adventures-in-legal-home-brewing-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:ab938403-90e9-4d63-a657-d775c39423da",
+      "sourceKey": "legacy:6e6cbd33-3af4-4c75-aa69-19fe170bec35",
+      "originalArticleId": "6e6cbd33-3af4-4c75-aa69-19fe170bec35",
+      "originalAttachmentId": "ab938403-90e9-4d63-a657-d775c39423da",
+      "path": "source-archive-media/ab938403-90e9-4d63-a657-d775c39423da.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 24944,
+      "originalFileName": "breaking-bug-a-student-s-adventures-in-legal-home-brewing-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:38694596-9b4f-4d24-b141-a6b6d2063df8",
+      "sourceKey": "legacy:6e6cbd33-3af4-4c75-aa69-19fe170bec35",
+      "originalArticleId": "6e6cbd33-3af4-4c75-aa69-19fe170bec35",
+      "originalAttachmentId": "38694596-9b4f-4d24-b141-a6b6d2063df8",
+      "path": "source-archive-media/38694596-9b4f-4d24-b141-a6b6d2063df8.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 15697632,
+      "originalFileName": "breaking-bug-a-student-s-adventures-in-legal-home-brewing-3.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:4843f05d-67b9-4a20-bcbf-b42a2b96a906",
+      "sourceKey": "legacy:6e6cbd33-3af4-4c75-aa69-19fe170bec35",
+      "originalArticleId": "6e6cbd33-3af4-4c75-aa69-19fe170bec35",
+      "originalAttachmentId": "4843f05d-67b9-4a20-bcbf-b42a2b96a906",
+      "path": "source-archive-media/4843f05d-67b9-4a20-bcbf-b42a2b96a906.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 17122977,
+      "originalFileName": "breaking-bug-a-student-s-adventures-in-legal-home-brewing-4.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:e155f0c8-983b-4776-b988-f514a0d9ce03",
+      "sourceKey": "legacy:6e6cbd33-3af4-4c75-aa69-19fe170bec35",
+      "originalArticleId": "6e6cbd33-3af4-4c75-aa69-19fe170bec35",
+      "originalAttachmentId": "e155f0c8-983b-4776-b988-f514a0d9ce03",
+      "path": "source-archive-media/e155f0c8-983b-4776-b988-f514a0d9ce03.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 14448107,
+      "originalFileName": "breaking-bug-a-student-s-adventures-in-legal-home-brewing-5.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 3,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:cf24971c-a179-4b87-8cfe-7dd6d072cf2f",
+      "sourceKey": "legacy:6e6cbd33-3af4-4c75-aa69-19fe170bec35",
+      "originalArticleId": "6e6cbd33-3af4-4c75-aa69-19fe170bec35",
+      "originalAttachmentId": "cf24971c-a179-4b87-8cfe-7dd6d072cf2f",
+      "path": "source-archive-media/cf24971c-a179-4b87-8cfe-7dd6d072cf2f.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 15644687,
+      "originalFileName": "breaking-bug-a-student-s-adventures-in-legal-home-brewing-6.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 4,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:b029ec95-6124-4eec-b573-e08235972b7b",
+      "sourceKey": "legacy:6e6cbd33-3af4-4c75-aa69-19fe170bec35",
+      "originalArticleId": "6e6cbd33-3af4-4c75-aa69-19fe170bec35",
+      "originalAttachmentId": "b029ec95-6124-4eec-b573-e08235972b7b",
+      "path": "source-archive-media/b029ec95-6124-4eec-b573-e08235972b7b.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 13602064,
+      "originalFileName": "breaking-bug-a-student-s-adventures-in-legal-home-brewing-7.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 5,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:23d40d57-6bd1-4e32-834f-401589faa1e8",
+      "sourceKey": "legacy:6e6cbd33-3af4-4c75-aa69-19fe170bec35",
+      "originalArticleId": "6e6cbd33-3af4-4c75-aa69-19fe170bec35",
+      "originalAttachmentId": "23d40d57-6bd1-4e32-834f-401589faa1e8",
+      "path": "source-archive-media/23d40d57-6bd1-4e32-834f-401589faa1e8.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 13107427,
+      "originalFileName": "breaking-bug-a-student-s-adventures-in-legal-home-brewing-8.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 6,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:38c1f7bd-69fd-46fe-b748-a5362c70f9db",
+      "sourceKey": "legacy:6e6cbd33-3af4-4c75-aa69-19fe170bec35",
+      "originalArticleId": "6e6cbd33-3af4-4c75-aa69-19fe170bec35",
+      "originalAttachmentId": "38c1f7bd-69fd-46fe-b748-a5362c70f9db",
+      "path": "source-archive-media/38c1f7bd-69fd-46fe-b748-a5362c70f9db.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21867,
+      "originalFileName": "breaking-bug-a-student-s-adventures-in-legal-home-brewing-9.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:a1a796a0-6a4e-424a-9fa0-15864ca96613",
+      "sourceKey": "legacy:a13ccf0d-ed82-45e7-acc6-2312bb76163c",
+      "originalArticleId": "a13ccf0d-ed82-45e7-acc6-2312bb76163c",
+      "originalAttachmentId": "a1a796a0-6a4e-424a-9fa0-15864ca96613",
+      "path": "source-archive-media/a1a796a0-6a4e-424a-9fa0-15864ca96613.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 22021,
+      "originalFileName": "visiting-woodland-caribou-at-kennedy-siding-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:18238b3a-616a-4351-a323-12c702705bab",
+      "sourceKey": "legacy:a13ccf0d-ed82-45e7-acc6-2312bb76163c",
+      "originalArticleId": "a13ccf0d-ed82-45e7-acc6-2312bb76163c",
+      "originalAttachmentId": "18238b3a-616a-4351-a323-12c702705bab",
+      "path": "source-archive-media/18238b3a-616a-4351-a323-12c702705bab.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 4453281,
+      "originalFileName": "visiting-woodland-caribou-at-kennedy-siding-2.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:9eb1f155-8497-42a5-986d-25d449f2f6f5",
+      "sourceKey": "legacy:a13ccf0d-ed82-45e7-acc6-2312bb76163c",
+      "originalArticleId": "a13ccf0d-ed82-45e7-acc6-2312bb76163c",
+      "originalAttachmentId": "9eb1f155-8497-42a5-986d-25d449f2f6f5",
+      "path": "source-archive-media/9eb1f155-8497-42a5-986d-25d449f2f6f5.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 6680717,
+      "originalFileName": "visiting-woodland-caribou-at-kennedy-siding-3.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:4989fc61-79fc-47de-8709-3f7c0b059259",
+      "sourceKey": "legacy:a13ccf0d-ed82-45e7-acc6-2312bb76163c",
+      "originalArticleId": "a13ccf0d-ed82-45e7-acc6-2312bb76163c",
+      "originalAttachmentId": "4989fc61-79fc-47de-8709-3f7c0b059259",
+      "path": "source-archive-media/4989fc61-79fc-47de-8709-3f7c0b059259.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 24277,
+      "originalFileName": "visiting-woodland-caribou-at-kennedy-siding-4.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:a7dcc284-2325-4f70-b417-72c2bf77718e",
+      "sourceKey": "legacy:c2d7f21d-f1dd-4c4b-9ec8-60a36977f9a5",
+      "originalArticleId": "c2d7f21d-f1dd-4c4b-9ec8-60a36977f9a5",
+      "originalAttachmentId": "a7dcc284-2325-4f70-b417-72c2bf77718e",
+      "path": "source-archive-media/a7dcc284-2325-4f70-b417-72c2bf77718e.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 23072,
+      "originalFileName": "rural-healthcare-through-northern-eyes-inside-the-2024-rural-voices-gathering-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:b33bef61-f030-45cc-a2ef-99e6d022b4dc",
+      "sourceKey": "legacy:c2d7f21d-f1dd-4c4b-9ec8-60a36977f9a5",
+      "originalArticleId": "c2d7f21d-f1dd-4c4b-9ec8-60a36977f9a5",
+      "originalAttachmentId": "b33bef61-f030-45cc-a2ef-99e6d022b4dc",
+      "path": "source-archive-media/b33bef61-f030-45cc-a2ef-99e6d022b4dc.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 22727,
+      "originalFileName": "rural-healthcare-through-northern-eyes-inside-the-2024-rural-voices-gathering-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:b0207b0a-5750-4ea3-8336-f56ac1289093",
+      "sourceKey": "legacy:c2d7f21d-f1dd-4c4b-9ec8-60a36977f9a5",
+      "originalArticleId": "c2d7f21d-f1dd-4c4b-9ec8-60a36977f9a5",
+      "originalAttachmentId": "b0207b0a-5750-4ea3-8336-f56ac1289093",
+      "path": "source-archive-media/b0207b0a-5750-4ea3-8336-f56ac1289093.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 209794,
+      "originalFileName": "rural-healthcare-through-northern-eyes-inside-the-2024-rural-voices-gathering-3.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:182af3f7-dc29-4d1b-9721-6264967be89b",
+      "sourceKey": "legacy:c2d7f21d-f1dd-4c4b-9ec8-60a36977f9a5",
+      "originalArticleId": "c2d7f21d-f1dd-4c4b-9ec8-60a36977f9a5",
+      "originalAttachmentId": "182af3f7-dc29-4d1b-9721-6264967be89b",
+      "path": "source-archive-media/182af3f7-dc29-4d1b-9721-6264967be89b.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 113721,
+      "originalFileName": "rural-healthcare-through-northern-eyes-inside-the-2024-rural-voices-gathering-4.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:4846a7b6-6ac3-4389-b3d3-da50c338234f",
+      "sourceKey": "legacy:de3bd815-0807-43a2-86dc-ebeb1d56f7d6",
+      "originalArticleId": "de3bd815-0807-43a2-86dc-ebeb1d56f7d6",
+      "originalAttachmentId": "4846a7b6-6ac3-4389-b3d3-da50c338234f",
+      "path": "source-archive-media/4846a7b6-6ac3-4389-b3d3-da50c338234f.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 437137,
+      "originalFileName": "brownridge-court-receives-2024-sport-floor-of-the-year-sfoy-award-1.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:8bbdeff3-bbfc-4206-ac9b-9509371335cd",
+      "sourceKey": "legacy:de3bd815-0807-43a2-86dc-ebeb1d56f7d6",
+      "originalArticleId": "de3bd815-0807-43a2-86dc-ebeb1d56f7d6",
+      "originalAttachmentId": "8bbdeff3-bbfc-4206-ac9b-9509371335cd",
+      "path": "source-archive-media/8bbdeff3-bbfc-4206-ac9b-9509371335cd.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 22716,
+      "originalFileName": "brownridge-court-receives-2024-sport-floor-of-the-year-sfoy-award-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:62079a06-7c0f-499a-a84c-2674b33f14eb",
+      "sourceKey": "legacy:de3bd815-0807-43a2-86dc-ebeb1d56f7d6",
+      "originalArticleId": "de3bd815-0807-43a2-86dc-ebeb1d56f7d6",
+      "originalAttachmentId": "62079a06-7c0f-499a-a84c-2674b33f14eb",
+      "path": "source-archive-media/62079a06-7c0f-499a-a84c-2674b33f14eb.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21050,
+      "originalFileName": "brownridge-court-receives-2024-sport-floor-of-the-year-sfoy-award-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:0aae879a-c6e7-405b-bb55-8c7bb54c6972",
+      "sourceKey": "legacy:e595237b-a689-4c16-a24a-6239075b0d99",
+      "originalArticleId": "e595237b-a689-4c16-a24a-6239075b0d99",
+      "originalAttachmentId": "0aae879a-c6e7-405b-bb55-8c7bb54c6972",
+      "path": "source-archive-media/0aae879a-c6e7-405b-bb55-8c7bb54c6972.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 22121,
+      "originalFileName": "people-in-the-trees-ii-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:3831f424-aec8-4011-ac2d-db97a0dbc7bf",
+      "sourceKey": "legacy:e595237b-a689-4c16-a24a-6239075b0d99",
+      "originalArticleId": "e595237b-a689-4c16-a24a-6239075b0d99",
+      "originalAttachmentId": "3831f424-aec8-4011-ac2d-db97a0dbc7bf",
+      "path": "source-archive-media/3831f424-aec8-4011-ac2d-db97a0dbc7bf.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 22971,
+      "originalFileName": "people-in-the-trees-ii-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:5ad4946d-b388-4fd2-b2c4-f23cfbdbd228",
+      "sourceKey": "legacy:e79d4ebe-d827-4fe2-943d-b5b1db05cc7b",
+      "originalArticleId": "e79d4ebe-d827-4fe2-943d-b5b1db05cc7b",
+      "originalAttachmentId": "5ad4946d-b388-4fd2-b2c4-f23cfbdbd228",
+      "path": "source-archive-media/5ad4946d-b388-4fd2-b2c4-f23cfbdbd228.jpeg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 1729782,
+      "originalFileName": "the-lost-art-of-conversation-overcoming-avoidance-in-the-digital-age-1.jpeg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:42e9adef-888a-4eaa-a040-7c767a26e9fc",
+      "sourceKey": "legacy:e79d4ebe-d827-4fe2-943d-b5b1db05cc7b",
+      "originalArticleId": "e79d4ebe-d827-4fe2-943d-b5b1db05cc7b",
+      "originalAttachmentId": "42e9adef-888a-4eaa-a040-7c767a26e9fc",
+      "path": "source-archive-media/42e9adef-888a-4eaa-a040-7c767a26e9fc.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21702,
+      "originalFileName": "the-lost-art-of-conversation-overcoming-avoidance-in-the-digital-age-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:f6a0f7ad-5f34-460a-88fc-0e969ff346e1",
+      "sourceKey": "legacy:e79d4ebe-d827-4fe2-943d-b5b1db05cc7b",
+      "originalArticleId": "e79d4ebe-d827-4fe2-943d-b5b1db05cc7b",
+      "originalAttachmentId": "f6a0f7ad-5f34-460a-88fc-0e969ff346e1",
+      "path": "source-archive-media/f6a0f7ad-5f34-460a-88fc-0e969ff346e1.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21459,
+      "originalFileName": "the-lost-art-of-conversation-overcoming-avoidance-in-the-digital-age-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:a63aaa94-46b1-43e7-9a21-9787f0709e53",
+      "sourceKey": "legacy:ff630782-1706-4696-871b-3bfde02d92eb",
+      "originalArticleId": "ff630782-1706-4696-871b-3bfde02d92eb",
+      "originalAttachmentId": "a63aaa94-46b1-43e7-9a21-9787f0709e53",
+      "path": "source-archive-media/a63aaa94-46b1-43e7-9a21-9787f0709e53.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 475739,
+      "originalFileName": "green-force-unites-unbc-community-for-sustainable-practices-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:fc522ed8-0126-480a-87f1-d19862ed2f55",
+      "sourceKey": "legacy:ff630782-1706-4696-871b-3bfde02d92eb",
+      "originalArticleId": "ff630782-1706-4696-871b-3bfde02d92eb",
+      "originalAttachmentId": "fc522ed8-0126-480a-87f1-d19862ed2f55",
+      "path": "source-archive-media/fc522ed8-0126-480a-87f1-d19862ed2f55.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 5559617,
+      "originalFileName": "green-force-unites-unbc-community-for-sustainable-practices-2.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:179ad3ff-88e7-432c-bcf1-ad966f36e22f",
+      "sourceKey": "legacy:ff630782-1706-4696-871b-3bfde02d92eb",
+      "originalArticleId": "ff630782-1706-4696-871b-3bfde02d92eb",
+      "originalAttachmentId": "179ad3ff-88e7-432c-bcf1-ad966f36e22f",
+      "path": "source-archive-media/179ad3ff-88e7-432c-bcf1-ad966f36e22f.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 2717438,
+      "originalFileName": "green-force-unites-unbc-community-for-sustainable-practices-3.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:545ee867-bfe2-4675-8849-9c4ee7606404",
+      "sourceKey": "legacy:ff630782-1706-4696-871b-3bfde02d92eb",
+      "originalArticleId": "ff630782-1706-4696-871b-3bfde02d92eb",
+      "originalAttachmentId": "545ee867-bfe2-4675-8849-9c4ee7606404",
+      "path": "source-archive-media/545ee867-bfe2-4675-8849-9c4ee7606404.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 2456009,
+      "originalFileName": "green-force-unites-unbc-community-for-sustainable-practices-4.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 3,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:86a84c1c-67c4-49bc-85dc-03009025d2cb",
+      "sourceKey": "legacy:ff630782-1706-4696-871b-3bfde02d92eb",
+      "originalArticleId": "ff630782-1706-4696-871b-3bfde02d92eb",
+      "originalAttachmentId": "86a84c1c-67c4-49bc-85dc-03009025d2cb",
+      "path": "source-archive-media/86a84c1c-67c4-49bc-85dc-03009025d2cb.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21727,
+      "originalFileName": "green-force-unites-unbc-community-for-sustainable-practices-5.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:b3c30758-9194-429a-9d5b-a0ccf552db03",
+      "sourceKey": "legacy:ff630782-1706-4696-871b-3bfde02d92eb",
+      "originalArticleId": "ff630782-1706-4696-871b-3bfde02d92eb",
+      "originalAttachmentId": "b3c30758-9194-429a-9d5b-a0ccf552db03",
+      "path": "source-archive-media/b3c30758-9194-429a-9d5b-a0ccf552db03.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 306646,
+      "originalFileName": "green-force-unites-unbc-community-for-sustainable-practices-6.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 4,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "embedded-image:8101d22847ffd736ddc89131",
+      "path": "source-archive-media/8101d22847ffd736ddc89131.png",
+      "sha256": "8101d22847ffd736ddc89131fcb5bd1d83e66510dfa6078d49e3f6cd8e2d773e",
+      "size": 30845,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 644,
+      "height": 167,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 5,
+          "rect": [
+            47.981693267822266,
+            660.802734375,
+            202.52880859375,
+            700.7003173828125
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 5,
+          "rect": [
+            47.981693267822266,
+            660.802734375,
+            202.52880859375,
+            700.7003173828125
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 5,
+          "rect": [
+            47.981693267822266,
+            660.802734375,
+            202.52880859375,
+            700.7003173828125
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 5,
+          "rect": [
+            51.53889083862305,
+            705.1455078125,
+            206.0860137939453,
+            745.0430908203125
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:9b91a4dc299ad7576df9acb6",
+      "path": "source-archive-media/9b91a4dc299ad7576df9acb6.png",
+      "sha256": "9b91a4dc299ad7576df9acb66093471b3a261b58402af14450a6e6eea51f6214",
+      "size": 637420,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 2092,
+      "height": 420,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:62168541c16179e0063fc610",
+      "path": "source-archive-media/62168541c16179e0063fc610.png",
+      "sha256": "62168541c16179e0063fc6100e31ebbd4fda6a68949bd084c300d7f228e94e13",
+      "size": 560496,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1073,
+      "height": 1350,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:0eb846c1e44762a745997bdc",
+      "path": "source-archive-media/0eb846c1e44762a745997bdc.png",
+      "sha256": "0eb846c1e44762a745997bdccc16043a8c82eebd0b334ed1392a6c3759ae301b",
+      "size": 136931,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 513,
+      "height": 518,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:f05490026dfd90d468d675d0",
+      "path": "source-archive-media/f05490026dfd90d468d675d0.png",
+      "sha256": "f05490026dfd90d468d675d0a57e7f20c399326d5d11e04075dbf508e5a223ef",
+      "size": 63779,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 309,
+      "height": 228,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:8578443f23f678008e70d6a8",
+      "path": "source-archive-media/8578443f23f678008e70d6a8.png",
+      "sha256": "8578443f23f678008e70d6a884f7ced9f1b6874e29a552f32a99213f47cb22a2",
+      "size": 418082,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 2000,
+      "height": 2000,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 13,
+          "rect": [
+            376.52001953125,
+            411.9599914550781,
+            716.756591796875,
+            752.1965942382812
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 13,
+          "rect": [
+            376.52001953125,
+            411.9599914550781,
+            716.756591796875,
+            752.1965942382812
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 13,
+          "rect": [
+            376.52001953125,
+            411.9599914550781,
+            716.756591796875,
+            752.1965942382812
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 13,
+          "rect": [
+            376.52001953125,
+            411.9599914550781,
+            716.756591796875,
+            752.1965942382812
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:bcd4eafbb6316326ab6e3b42",
+      "path": "source-archive-media/bcd4eafbb6316326ab6e3b42.png",
+      "sha256": "bcd4eafbb6316326ab6e3b427b22d32bc2efad8d74416e469d497b50cb79b4eb",
+      "size": 2059967,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1321,
+      "height": 2750,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:dd7709092ba7285a09529706",
+      "path": "source-archive-media/dd7709092ba7285a09529706.jpeg",
+      "sha256": "dd7709092ba7285a095297063a1916ea5f48016610829c98addadd08fda29059",
+      "size": 142184,
+      "mimeType": "image/jpeg",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1162,
+      "height": 747,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-5-ba123d17"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 1,
+          "rect": [
+            43.517086029052734,
+            173.67999267578125,
+            711.037109375,
+            602.7999877929688
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:6ea4ad179dd1abbf4973644f",
+      "path": "source-archive-media/6ea4ad179dd1abbf4973644f.png",
+      "sha256": "6ea4ad179dd1abbf4973644f250ac699c924976e02b831f40a4d88b21cafe461",
+      "size": 73502,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 337,
+      "height": 248,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 5,
+          "rect": [
+            339.6184387207031,
+            392.1001892089844,
+            420.8031921386719,
+            452.22235107421875
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 5,
+          "rect": [
+            339.6184387207031,
+            392.1001892089844,
+            420.8031921386719,
+            452.22235107421875
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 5,
+          "rect": [
+            339.6184387207031,
+            392.1001892089844,
+            420.8031921386719,
+            452.22235107421875
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 5,
+          "rect": [
+            339.6184387207031,
+            392.1001892089844,
+            420.8031921386719,
+            452.22235107421875
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:abf76beec137c2828ac3da71",
+      "path": "source-archive-media/abf76beec137c2828ac3da71.png",
+      "sha256": "abf76beec137c2828ac3da71f4b213347c768ab34524eed115f5e5b59ef7f044",
+      "size": 18005,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 500,
+      "height": 500,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-b91aa3a0"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 5,
+          "rect": [
+            87.86996459960938,
+            585.27587890625,
+            170.77606201171875,
+            668.1819458007812
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 5,
+          "rect": [
+            82.51316833496094,
+            590.427001953125,
+            165.41925048828125,
+            673.3330688476562
+          ]
+        }
+      ]
+    }
+  ]
+}

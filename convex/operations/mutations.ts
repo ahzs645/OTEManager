@@ -42,6 +42,7 @@ export async function deleteArticleRecord(s: Store, id: string) {
     "articleMultimediaTypes",
     "articleNotes",
     "statusHistory",
+    "sourceArchiveLinks",
   ] as const)
     for (const row of await s.by(table, "articleId", id))
       await s.delete(table, row.id);

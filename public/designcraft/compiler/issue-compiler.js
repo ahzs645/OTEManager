@@ -92,7 +92,7 @@ async function namespaceStyles(nativeBytes, prefix, JSZip) {
     }
     return value;
   };
-  return writeNative(entries, rename(document), JSZip);
+  return { bytes: await writeNative(entries, rename(document), JSZip), hasObjects: document.spreads.some((spread) => spread.items.length > 0) };
 }
 
 async function restorePageHyperlinks(issueBytes, prepared, JSZip) {
@@ -303,6 +303,59 @@ async function embeddedCoverHash(entries, document) {
   return sha256Hex(entries.get(candidates[0]));
 }
 
+/** Source reconstruction keeps every printed page in its recorded position. */
+export function validateSourceIssuePlan(source, pages) {
+  if (source === undefined || source === null) return null;
+  if (typeof source !== 'object' || Array.isArray(source) || typeof source.documentId !== 'string' || !source.documentId || source.documentId.length > 200) throw new Error('A source issue needs its source document ID');
+  if (!Number.isInteger(source.pageCount) || source.pageCount < 1 || source.pageCount > 256 || source.pageCount !== pages.length) throw new Error('Source reconstruction must retain the complete original page count');
+  if (!['artwork', 'reconstruction'].includes(source.mode)) throw new Error('Choose source artwork or editable reconstruction mode');
+  for (let index = 0; index < pages.length; index++) {
+    const page = pages[index];
+    if (page.sourcePage !== index + 1) throw new Error('Source reconstruction must retain every source page exactly once in original order');
+    if (!['artwork', 'editable', 'blank'].includes(page.sourceMode)) throw new Error('Each source page needs an explicit artwork, editable or blank classification');
+    if (page.sourceRegion !== undefined) {
+      const region = page.sourceRegion;
+      const rectangle = Array.isArray(region) && region.length === 4 && region.every((n) => typeof n === 'number' && Number.isFinite(n) && n >= 0) && region[0] < region[2] && region[1] < region[3];
+      if (!rectangle && !['full', 'left', 'right'].includes(region)) throw new Error('Invalid source page region');
+    }
+  }
+  if (!Array.isArray(source.spreads ?? []) || (source.spreads ?? []).length > 256) throw new Error('Source spreads must be an array');
+  const ids = new Set(), assigned = new Set();
+  for (const spread of source.spreads ?? []) {
+    const numbers = spread?.pageNumbers;
+    if (typeof spread?.id !== 'string' || !spread.id || ids.has(spread.id) || !Array.isArray(numbers) || numbers.length < 1 || numbers.length > 2 || numbers.some((n, i) => !Number.isInteger(n) || n < 1 || n > pages.length || i > 0 && n !== numbers[i - 1] + 1 || assigned.has(n))) throw new Error('Source spreads need unique IDs and consecutive, non-overlapping source pages');
+    ids.add(spread.id); for (const n of numbers) assigned.add(n);
+  }
+  for (const page of pages) if (page.spreadId !== undefined && !(source.spreads ?? []).some((spread) => spread.id === page.spreadId && spread.pageNumbers.includes(page.pageNumber))) throw new Error('A source page references a different or missing source spread');
+  return clone(source);
+}
+
+function sourceReconstructionReport(source, pages, document) {
+  if (!source) return null;
+  const frames = textFrames(document);
+  const editableRole = (role) => ['headline', 'body', 'byline', 'caption', 'text', 'piece'].includes(role) || String(role ?? '').startsWith('piece-');
+  const physical = document.spreads.flatMap((spread, spreadIndex) => spread.pages.map((page) => ({ id: page.id, spreadId: spread.id, spreadIndex })));
+  if (physical.length !== source.pageCount) throw new Error('Native source reconstruction changed the original page count');
+  const coverage = pages.map((page, index) => {
+    const editableTextFrames = frames.filter((frame) => frame.pageIndex === index && editableRole(frame.label.role)).length;
+    if (page.sourceMode === 'editable' && !editableTextFrames) throw new Error('A page declared editable has no recovered native text: ' + page.id);
+    return { pageId: page.id, pageNumber: page.pageNumber, sourcePage: page.sourcePage, sourceMode: page.sourceMode,
+      ...(page.sourceRegion ? { sourceRegion: page.sourceRegion } : {}), role: page.role ?? null, spreadId: page.spreadId ?? null,
+      nativePageId: physical[index].id, nativeSpreadId: physical[index].spreadId, editableTextFrames };
+  });
+  const spreads = (source.spreads ?? []).map((spread) => {
+    const actual = spread.pageNumbers.map((number) => physical[number - 1]);
+    if (actual.some((page) => page.spreadIndex !== actual[0].spreadIndex)) throw new Error('Source facing pages no longer share one native spread: ' + spread.id);
+    return { ...clone(spread), nativeSpreadId: actual[0].spreadId, verified: true };
+  });
+  return { sourceDocumentId: source.documentId, sourcePageCount: source.pageCount, outputPageCount: physical.length, mode: source.mode,
+    complete: true, originalOrderPreserved: true, pages: coverage, spreads,
+    nativeSpreads: document.spreads.map((spread, index) => ({ nativeSpreadId: spread.id, pageNumbers: physical.map((page, i) => page.spreadIndex === index ? i + 1 : null).filter((number) => number !== null) })),
+    editablePageNumbers: coverage.filter((p) => p.sourceMode === 'editable').map((p) => p.pageNumber),
+    artworkPageNumbers: coverage.filter((p) => p.sourceMode === 'artwork').map((p) => p.pageNumber),
+    blankPageNumbers: coverage.filter((p) => p.sourceMode === 'blank').map((p) => p.pageNumber) };
+}
+
 /**
  * Compile a whole issue. Returns {manifest, artifacts: {native, pdf, idml, preflight,
  * sourceIssue, interchange, pages}}; throws CompileError with draft artifacts.
@@ -323,6 +376,7 @@ export async function compileIssue(options) {
   if (pages.some((p, i) => p.pageNumber !== i + 1)) throw new Error('Page numbers must be consecutive, starting at 1');
   if (new Set(pages.map((p) => p.id)).size !== pages.length) throw new Error('Page IDs must be unique');
   if (pages.some((p) => typeof p.id !== 'string' || !p.id)) throw new Error('Page IDs must be nonempty strings');
+  const sourceIssue = validateSourceIssuePlan(issue.sourceIssue, pages);
   if (booklet && pages.length % 4) throw new Error('A saddle-stitched booklet needs a multiple-of-four page count');
   const templates = new Map(library.templates.map((t) => [t.id, t]));
   const articles = new Map(issue.articles.map((a) => [a.id, a]));
@@ -390,7 +444,8 @@ export async function compileIssue(options) {
       const { manifest, artifacts } = await compilePage(built, { executor, fonts: options.fonts, JSZip });
       pageResults.push(manifest);
       pageArtifacts.push({ pageNumber: p.pageNumber, pageId: p.id, artifacts });
-      prepared.push(await namespaceStyles(artifacts.native, p.id, JSZip));
+      const namespaced = await namespaceStyles(artifacts.native, p.id, JSZip);
+      prepared.push(namespaced.hasObjects ? namespaced.bytes : null);
     } catch (error) {
       const failed = error.artifacts?.preflight ? clone(error.artifacts.preflight) : { errors: 1, warnings: 0, issues: [] };
       failed.issues = failed.issues.map((record) => ({ ...record, pageNumber: p.pageNumber, pageId: p.id }));
@@ -421,6 +476,9 @@ export async function compileIssue(options) {
   const assemble = [{ command: 'file.open', params: { path: '@doc' } }];
   const pageMedia = new Map();
   prepared.forEach((bytes, n) => {
+    // The destination already owns this physical page. A genuinely blank
+    // source page has no objects for file.place to import.
+    if (!bytes) return;
     const [si, page] = locations[n];
     const name = `page-${String(n + 1).padStart(3, '0')}.designcraft`;
     pageMedia.set(name, bytes);
@@ -453,6 +511,14 @@ export async function compileIssue(options) {
     }
   }
   const { document, entries } = await readNative(native, JSZip);
+  let sourceReconstruction = null, sourceReconstructionError = null;
+  try { sourceReconstruction = sourceReconstructionReport(sourceIssue, pages, document); }
+  catch (error) {
+    sourceReconstructionError = error.message;
+    preflight.errors += 1;
+    preflight.issues.push({ kind: 'source-reconstruction', severity: 'error', message: error.message });
+    sourceReconstruction = { sourceDocumentId: sourceIssue.documentId, sourcePageCount: sourceIssue.pageCount, mode: sourceIssue.mode, complete: false, error: error.message };
+  }
   const texts = new Map();
   for (const s of Object.values(document.stories)) texts.set(s.text, (texts.get(s.text) ?? 0) + 1);
   const bodyCopy = {};
@@ -479,12 +545,13 @@ export async function compileIssue(options) {
     fontProfile, ...(coverTitleFit.length ? { coverTitleFit } : {}), ...(options.substituteFonts?.length ? { substitutedFonts: options.substituteFonts } : {}), restoredHyperlinks: links.restored, removedReplacedStories: 0, checkedNativeCrossReferences: nativeXrefs.length,
     coverFields, coverReferences: references, preservedNativePages: {}, pageBuilds: pageResults,
     preflight, sourceMarkdownPreserved: true, adobeInDesignTested: false,
+    ...(sourceReconstruction ? { sourceReconstruction } : {}),
     status: preflight.errors ? 'needs-layout-adjustment' : 'exported',
   };
   const interchange = interchangeMetadata(document);
   manifest.interchangeHyperlinks = { nativeAndPdf: true, stockIdml: false, sidecarCount: interchange.hyperlinks.length, reopenTool: 'reopen-idml.py' };
   const artifacts = { native, preflight, manifest, sourceIssue: issue, interchange, pages: pageArtifacts };
-  if (preflight.errors) throw new CompileError('Issue preflight errors block final PDF/IDML export; native draft and source retained', artifacts);
+  if (preflight.errors) throw new CompileError(sourceReconstructionError ?? 'Issue preflight errors block final PDF/IDML export; native draft and source retained', artifacts);
   await verifyCoverReferences(native, referenced.manifest, ctx);
   progress({ stage: 'export' });
   const exported = await executor.run([

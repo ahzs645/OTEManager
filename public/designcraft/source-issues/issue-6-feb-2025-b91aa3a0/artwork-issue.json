@@ -1,0 +1,317 @@
+{
+  "schemaVersion": "ote.designcraft.issue.v1",
+  "issue": {
+    "id": "issue-6-feb-2025-b91aa3a0",
+    "title": "Over the Edge",
+    "volume": 31,
+    "number": 6
+  },
+  "sourceIssue": {
+    "documentId": "issue-6-feb-2025-b91aa3a0",
+    "pageCount": 17,
+    "spreads": [
+      {
+        "id": "issue-6-feb-2025-b91aa3a0-wildlife-spread",
+        "pageNumbers": [
+          8,
+          9
+        ]
+      }
+    ],
+    "sourceSha256": "b91aa3a0ecd76aa3200dbe756f937cfe096822106c16003e5ae652aa4c45cc8b",
+    "sourceMetadata": {
+      "date": null,
+      "volume": 31,
+      "number": 6,
+      "design": "ote-2024"
+    },
+    "mode": "artwork"
+  },
+  "articles": [],
+  "layoutPlan": {
+    "pages": [
+      {
+        "id": "issue-6-feb-2025-b91aa3a0-page-1",
+        "pageNumber": 1,
+        "sourcePage": 1,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "cover",
+        "label": "Archived cover · Christmas photo and stale December labels",
+        "templateId": "whole-issue-6-feb-2025-b91aa3a0-p001-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-6-feb-2025-b91aa3a0-page-2",
+        "pageNumber": 2,
+        "sourcePage": 2,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-6-feb-2025-b91aa3a0-p002-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-6-feb-2025-b91aa3a0-page-3",
+        "pageNumber": 3,
+        "sourcePage": 3,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-6-feb-2025-b91aa3a0-p003-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-6-feb-2025-b91aa3a0-page-4",
+        "pageNumber": 4,
+        "sourcePage": 4,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-6-feb-2025-b91aa3a0-p004-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-6-feb-2025-b91aa3a0-page-5",
+        "pageNumber": 5,
+        "sourcePage": 5,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "recurring",
+        "label": "Inside the Edge Q&A and board strip",
+        "templateId": "whole-issue-6-feb-2025-b91aa3a0-p005-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-6-feb-2025-b91aa3a0-page-6",
+        "pageNumber": 6,
+        "sourcePage": 6,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "recurring",
+        "label": "President Answers · go-to karaoke song",
+        "templateId": "whole-issue-6-feb-2025-b91aa3a0-p006-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-6-feb-2025-b91aa3a0-page-7",
+        "pageNumber": 7,
+        "sourcePage": 7,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-6-feb-2025-b91aa3a0-p007-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-6-feb-2025-b91aa3a0-page-8",
+        "pageNumber": 8,
+        "sourcePage": 8,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "photo-spread",
+        "label": "Wildlife Photo Contest winners · left page",
+        "spreadId": "issue-6-feb-2025-b91aa3a0-wildlife-spread",
+        "templateId": "whole-issue-6-feb-2025-b91aa3a0-p008-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-6-feb-2025-b91aa3a0-page-9",
+        "pageNumber": 9,
+        "sourcePage": 9,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "photo-spread",
+        "label": "Wildlife Photo Contest winners · right page",
+        "spreadId": "issue-6-feb-2025-b91aa3a0-wildlife-spread",
+        "templateId": "whole-issue-6-feb-2025-b91aa3a0-p009-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-6-feb-2025-b91aa3a0-page-10",
+        "pageNumber": 10,
+        "sourcePage": 10,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Handwriting tests · Ahmad",
+        "templateId": "whole-issue-6-feb-2025-b91aa3a0-p010-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-6-feb-2025-b91aa3a0-page-11",
+        "pageNumber": 11,
+        "sourcePage": 11,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-6-feb-2025-b91aa3a0-p011-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-6-feb-2025-b91aa3a0-page-12",
+        "pageNumber": 12,
+        "sourcePage": 12,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-6-feb-2025-b91aa3a0-p012-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-6-feb-2025-b91aa3a0-page-13",
+        "pageNumber": 13,
+        "sourcePage": 13,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "contribution",
+        "label": "CFUR Radio · unfinished contribution with placeholder copy",
+        "templateId": "whole-issue-6-feb-2025-b91aa3a0-p013-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-6-feb-2025-b91aa3a0-page-14",
+        "pageNumber": 14,
+        "sourcePage": 14,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-6-feb-2025-b91aa3a0-p014-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-6-feb-2025-b91aa3a0-page-15",
+        "pageNumber": 15,
+        "sourcePage": 15,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-6-feb-2025-b91aa3a0-p015-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-6-feb-2025-b91aa3a0-page-16",
+        "pageNumber": 16,
+        "sourcePage": 16,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "ad",
+        "label": "Thirsty Moose Pub · right-half ad",
+        "templateId": "whole-issue-6-feb-2025-b91aa3a0-p016-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "issue-6-feb-2025-b91aa3a0-page-17",
+        "pageNumber": 17,
+        "sourcePage": 17,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "ad",
+        "label": "Write content for Over the Edge · right-half recruitment",
+        "templateId": "whole-issue-6-feb-2025-b91aa3a0-p017-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      }
+    ],
+    "cover": {
+      "mode": "editable",
+      "articleIds": []
+    },
+    "truck": {
+      "mode": "editable",
+      "pageIds": []
+    }
+  }
+}

@@ -1,0 +1,318 @@
+{
+  "schemaVersion": "ote.designcraft.issue.v1",
+  "issue": {
+    "id": "cover-page-issue-3-lina-2dc29f52",
+    "title": "Over the Edge",
+    "date": "2024-12-05",
+    "volume": 31,
+    "number": 4
+  },
+  "sourceIssue": {
+    "documentId": "cover-page-issue-3-lina-2dc29f52",
+    "pageCount": 17,
+    "spreads": [
+      {
+        "id": "cover-page-issue-3-lina-2dc29f52-wildlife-spread",
+        "pageNumbers": [
+          8,
+          9
+        ]
+      }
+    ],
+    "sourceSha256": "2dc29f52db1488fecebd869762b895f021f35cfc925f2c108cdebf40f1d8aa2c",
+    "sourceMetadata": {
+      "date": "2024-12-05",
+      "volume": 31,
+      "number": 4,
+      "design": "ote-2024"
+    },
+    "mode": "artwork"
+  },
+  "articles": [],
+  "layoutPlan": {
+    "pages": [
+      {
+        "id": "cover-page-issue-3-lina-2dc29f52-page-1",
+        "pageNumber": 1,
+        "sourcePage": 1,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "cover",
+        "label": "Cover",
+        "templateId": "whole-cover-page-issue-3-lina-2dc29f52-p001-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "cover-page-issue-3-lina-2dc29f52-page-2",
+        "pageNumber": 2,
+        "sourcePage": 2,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-cover-page-issue-3-lina-2dc29f52-p002-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "cover-page-issue-3-lina-2dc29f52-page-3",
+        "pageNumber": 3,
+        "sourcePage": 3,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-cover-page-issue-3-lina-2dc29f52-p003-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "cover-page-issue-3-lina-2dc29f52-page-4",
+        "pageNumber": 4,
+        "sourcePage": 4,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-cover-page-issue-3-lina-2dc29f52-p004-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "cover-page-issue-3-lina-2dc29f52-page-5",
+        "pageNumber": 5,
+        "sourcePage": 5,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "recurring",
+        "label": "Over the Edge board strip",
+        "templateId": "whole-cover-page-issue-3-lina-2dc29f52-p005-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "cover-page-issue-3-lina-2dc29f52-page-6",
+        "pageNumber": 6,
+        "sourcePage": 6,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "recurring",
+        "label": "President Answers · go-to karaoke song",
+        "templateId": "whole-cover-page-issue-3-lina-2dc29f52-p006-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "cover-page-issue-3-lina-2dc29f52-page-7",
+        "pageNumber": 7,
+        "sourcePage": 7,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-cover-page-issue-3-lina-2dc29f52-p007-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "cover-page-issue-3-lina-2dc29f52-page-8",
+        "pageNumber": 8,
+        "sourcePage": 8,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "photo-spread",
+        "label": "Wildlife Photo Contest winners · left page",
+        "spreadId": "cover-page-issue-3-lina-2dc29f52-wildlife-spread",
+        "templateId": "whole-cover-page-issue-3-lina-2dc29f52-p008-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "cover-page-issue-3-lina-2dc29f52-page-9",
+        "pageNumber": 9,
+        "sourcePage": 9,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "photo-spread",
+        "label": "Wildlife Photo Contest winners · right page",
+        "spreadId": "cover-page-issue-3-lina-2dc29f52-wildlife-spread",
+        "templateId": "whole-cover-page-issue-3-lina-2dc29f52-p009-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "cover-page-issue-3-lina-2dc29f52-page-10",
+        "pageNumber": 10,
+        "sourcePage": 10,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-cover-page-issue-3-lina-2dc29f52-p010-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "cover-page-issue-3-lina-2dc29f52-page-11",
+        "pageNumber": 11,
+        "sourcePage": 11,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-cover-page-issue-3-lina-2dc29f52-p011-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "cover-page-issue-3-lina-2dc29f52-page-12",
+        "pageNumber": 12,
+        "sourcePage": 12,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-cover-page-issue-3-lina-2dc29f52-p012-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "cover-page-issue-3-lina-2dc29f52-page-13",
+        "pageNumber": 13,
+        "sourcePage": 13,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "ad",
+        "label": "CFUR Radio · bottom-right quarter recruitment ad",
+        "templateId": "whole-cover-page-issue-3-lina-2dc29f52-p013-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "cover-page-issue-3-lina-2dc29f52-page-14",
+        "pageNumber": 14,
+        "sourcePage": 14,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-cover-page-issue-3-lina-2dc29f52-p014-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "cover-page-issue-3-lina-2dc29f52-page-15",
+        "pageNumber": 15,
+        "sourcePage": 15,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-cover-page-issue-3-lina-2dc29f52-p015-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "cover-page-issue-3-lina-2dc29f52-page-16",
+        "pageNumber": 16,
+        "sourcePage": 16,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "ad",
+        "label": "Thirsty Moose Pub · right-half ad",
+        "templateId": "whole-cover-page-issue-3-lina-2dc29f52-p016-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      },
+      {
+        "id": "cover-page-issue-3-lina-2dc29f52-page-17",
+        "pageNumber": 17,
+        "sourcePage": 17,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "ad",
+        "label": "Write content for Over the Edge · full-page recruitment",
+        "templateId": "whole-cover-page-issue-3-lina-2dc29f52-p017-artwork",
+        "articleIds": [],
+        "sourceMode": "artwork"
+      }
+    ],
+    "cover": {
+      "mode": "editable",
+      "articleIds": []
+    },
+    "truck": {
+      "mode": "editable",
+      "pageIds": []
+    }
+  }
+}

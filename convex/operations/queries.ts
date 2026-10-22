@@ -1,4 +1,5 @@
 import { Store, newest, sumPayments } from "../lib/store";
+import { parseSourceProvenance } from "../../shared/source-archive";
 import {
   IN_PROGRESS_FILTER,
   IN_PROGRESS_STATUSES,
@@ -36,6 +37,7 @@ const matchesSearch = (
     a.title,
     author && `${author.givenName} ${author.surname}`,
     author?.email,
+    parseSourceProvenance(a.sourceProvenance)?.originalAuthorName,
   ]
     .filter(Boolean)
     .join(" ")

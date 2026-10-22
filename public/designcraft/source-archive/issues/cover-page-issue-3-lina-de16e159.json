@@ -1,0 +1,2010 @@
+{
+  "schemaVersion": "ote.source-archive.issue.v1",
+  "archiveId": "ote-original-issues-2026-10-09",
+  "issue": {
+    "documentId": "cover-page-issue-3-lina-de16e159",
+    "label": "December 2024 · print archive",
+    "volumeNumber": 31,
+    "issueNumber": 4,
+    "releaseDate": "2024-12-05",
+    "pageCount": 17,
+    "source": {
+      "path": "originals/cover-page-issue-3-lina-de16e159.pdf",
+      "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414"
+    },
+    "sourceNotes": "Intended issue metadata follows archive/folder provenance. Original cover is visibly stale and unfinished; full-art source recreation must preserve it until deliberately edited.",
+    "sourceCoverMetadata": {
+      "date": "2024-11-14",
+      "volume": 31,
+      "number": 3
+    }
+  },
+  "articles": [
+    {
+      "sourceKey": "legacy:6ad32a09-4f30-40ee-87b2-5a361c6b97e0",
+      "originalArticleId": "6ad32a09-4f30-40ee-87b2-5a361c6b97e0",
+      "title": "A Road to New Beginnings: First Long Drive from Vancouver to PG",
+      "authorName": "Shivi Juyal",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "6ad32a09-4f30-40ee-87b2-5a361c6b97e0",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:12.000Z",
+            "createdAt": "2026-01-12T00:33:01.151Z",
+            "updatedAt": "2026-01-12T05:05:24.642Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:12.000Z",
+        "createdAt": "2026-01-12T00:33:01.151Z",
+        "updatedAt": "2026-01-12T05:05:24.642Z"
+      },
+      "authorSourceId": "e33bf3eb-9c43-4c52-9806-3886de089edc",
+      "exportPath": "source-archive/articles/legacy-6ad32a09-4f30-40ee-87b2-5a361c6b97e0-a-road-to-new-beginnings-first-long-drive-from-vancouver-to-pg.md"
+    },
+    {
+      "sourceKey": "legacy:761756d4-ebc5-4402-9491-22d321f3316d",
+      "originalArticleId": "761756d4-ebc5-4402-9491-22d321f3316d",
+      "title": "NUGSS Annual General Meeting 2024-25: A Student's Perspective on Campus Governance  ",
+      "authorName": "Syed Kazmi",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "761756d4-ebc5-4402-9491-22d321f3316d",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:15.000Z",
+            "createdAt": "2026-01-12T00:33:01.106Z",
+            "updatedAt": "2026-01-12T05:05:24.642Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:15.000Z",
+        "createdAt": "2026-01-12T00:33:01.106Z",
+        "updatedAt": "2026-01-12T05:05:24.642Z"
+      },
+      "authorSourceId": "1c433ef8-7e74-4924-8a63-d3b6460b6f89",
+      "exportPath": "source-archive/articles/legacy-761756d4-ebc5-4402-9491-22d321f3316d-nugss-annual-general-meeting-2024-25-a-student-s-perspective-on-campus-governance.md"
+    },
+    {
+      "sourceKey": "legacy:7928fb7f-b5b3-4f32-a6d8-455e4572b785",
+      "originalArticleId": "7928fb7f-b5b3-4f32-a6d8-455e4572b785",
+      "title": "The UNBC Arts Club: an Overview",
+      "authorName": "Kiara Mills",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "7928fb7f-b5b3-4f32-a6d8-455e4572b785",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:23.000Z",
+            "createdAt": "2026-01-12T00:33:00.981Z",
+            "updatedAt": "2026-01-12T05:05:24.642Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:23.000Z",
+        "createdAt": "2026-01-12T00:33:00.981Z",
+        "updatedAt": "2026-01-12T05:05:24.642Z"
+      },
+      "authorSourceId": "19c8f83b-da8d-42f0-b4a4-f04f31b412c2",
+      "exportPath": "source-archive/articles/legacy-7928fb7f-b5b3-4f32-a6d8-455e4572b785-the-unbc-arts-club-an-overview.md"
+    },
+    {
+      "sourceKey": "legacy:99ccdc4c-ae5f-4081-8f5d-670cf2deccaa",
+      "originalArticleId": "99ccdc4c-ae5f-4081-8f5d-670cf2deccaa",
+      "title": "Finding Hope and Inspiration in Stories of Indigenous Women's Resilience",
+      "authorName": "Lina Maksymova",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "99ccdc4c-ae5f-4081-8f5d-670cf2deccaa",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:21.000Z",
+            "createdAt": "2026-01-12T00:33:00.992Z",
+            "updatedAt": "2026-01-12T05:05:24.642Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:21.000Z",
+        "createdAt": "2026-01-12T00:33:00.992Z",
+        "updatedAt": "2026-01-12T05:05:24.642Z"
+      },
+      "authorSourceId": "552e66ce-cf3d-44c7-9ace-eeac044dbed8",
+      "exportPath": "source-archive/articles/legacy-99ccdc4c-ae5f-4081-8f5d-670cf2deccaa-finding-hope-and-inspiration-in-stories-of-indigenous-women-s-resilience.md"
+    },
+    {
+      "sourceKey": "legacy:99e8c277-636a-4496-8245-454b7603cbbc",
+      "originalArticleId": "99e8c277-636a-4496-8245-454b7603cbbc",
+      "title": "Turning an Old iMac into a Standalone Display: A Student’s Journey ",
+      "authorName": "Ahmad Jalil",
+      "content": "After recently joining and getting the key to the Over the Edge office, I was excited to explore the space. But as I stepped in, it was clear that the room had been abandoned for some time. Dust coated everything, and the equipment seemed untouched for ages. Among the forgotten items was a 27-inch iMac, its screen silent but promising. Curiosity got the best of me, so I powered it on, and to my surprise, it worked! Though the display was still sharp and vibrant, the outdated hardware had its limitations. It felt like such a waste to let a beautiful 2K screen sit idle, so I started wondering how to repurpose it.\n\nMy research revealed a passionate community of users lamenting Apple’s discontinued “Target Display Mode,” which had once allowed older iMacs to serve as external monitors for other Macs and PCs. However, Apple’s recent software updates had made this feature unavailable, effectively limiting these older iMacs to their outdated internal hardware. I realized if I couldn’t solve this through software, maybe I could go the hardware route. I discovered that I could use a display driver board to bypass the iMac’s logic board, connecting directly to the display panel.\n\nThe next step was crucial: finding the exact model of the iMac’s display panel, as there are several variations, and the only way to confirm it was to open up the iMac. Once inside, I identified the panel model as “LM270WQ1 (SD)(F1)” and ordered a compatible driver board online. I also decided to wire up the iMac’s original power button to the driver board, letting me power the display on and off using its familiar button — a small touch, but one that gave the project a seamless, polished feel.\n\nWhile waiting for the board to arrive, I tackled another challenge: securely mounting the driver board. I wanted to avoid a makeshift solution like duct tape, so I designed and 3D-printed a custom platform to fasten the board to the iMac’s original standoff mounts, keeping the interior organized and accessible.\n\nFinally, the driver board arrived, and I set to work. With the old components removed, I carefully mounted and connected the board, then held my breath as I powered it up. Watching the screen light up independently was a triumphant moment. I’d managed to turn a forgotten iMac into a permanent, fully functional monitor. The one minor downside is the inaccessibility of some display ports due to the fixed nature of the setup, but it’s a small trade-off for having a customized display solution.\n\nThis project taught me so much about repurposing tech and creative problem-solving, and our refurbished monitor setup is about to get even better — our new Mac Mini will soon be powering these upgraded displays. Knowing I could salvage and reinvent technology that would otherwise be discarded has been incredibly rewarding. I hope my experience inspires others to think outside the box, seeing potential in old devices and giving them new life in innovative ways.",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "99e8c277-636a-4496-8245-454b7603cbbc",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:18:22.000Z",
+            "createdAt": "2026-01-12T00:32:58.726Z",
+            "updatedAt": "2026-01-12T05:05:24.642Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        },
+        {
+          "path": "source-idml/cover-page-issue-3-lina-66de36f6.idml",
+          "sha256": "66de36f68984351a5038dfbe7044da754d84220556970d1c2b2cf7de6d57bd54",
+          "storyIds": [
+            "u1684",
+            "u1649"
+          ],
+          "sourceTitle": "Turning an Old iMac into a Standalone Display: A Student’s Journey",
+          "sourceByline": null,
+          "notes": "Complete source story recovered from a fuller IDML revision. The paired issue PDF contains blank editorial areas. Original database publication assignment/title/byline remain primary."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "alternate-idml-not-in-paired-pdf",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:22.000Z",
+        "createdAt": "2026-01-12T00:32:58.726Z",
+        "updatedAt": "2026-01-12T05:05:24.642Z"
+      },
+      "authorSourceId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "exportPath": "source-archive/articles/legacy-99e8c277-636a-4496-8245-454b7603cbbc-turning-an-old-imac-into-a-standalone-display-a-students-journey.md"
+    },
+    {
+      "sourceKey": "legacy:c03b48f2-8ced-4b35-872c-4c53a56a4c4f",
+      "originalArticleId": "c03b48f2-8ced-4b35-872c-4c53a56a4c4f",
+      "title": "The History Behind Your Piercings: UNBC Exhibition Takes Body Mod From Ancient to Trending",
+      "authorName": "Parniya Peykamiyan",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "c03b48f2-8ced-4b35-872c-4c53a56a4c4f",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:19.000Z",
+            "createdAt": "2026-01-12T00:33:01.010Z",
+            "updatedAt": "2026-01-12T05:05:24.642Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:19.000Z",
+        "createdAt": "2026-01-12T00:33:01.010Z",
+        "updatedAt": "2026-01-12T05:05:24.642Z"
+      },
+      "authorSourceId": "16f7b97b-4d41-4e68-a8b0-3794609d489d",
+      "exportPath": "source-archive/articles/legacy-c03b48f2-8ced-4b35-872c-4c53a56a4c4f-the-history-behind-your-piercings-unbc-exhibition-takes-body-mod-from-ancient-to-trending.md"
+    },
+    {
+      "sourceKey": "legacy:c32989bd-f313-41c8-8e83-ca9fdb4d081a",
+      "originalArticleId": "c32989bd-f313-41c8-8e83-ca9fdb4d081a",
+      "title": "Building a Legacy of Impact: Insights from Dr. Rahim Somani, UNBC’s Vice President, Finance and Administration ",
+      "authorName": "Ahmad Jalil",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "c32989bd-f313-41c8-8e83-ca9fdb4d081a",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:18:38.000Z",
+            "createdAt": "2026-01-12T00:32:57.113Z",
+            "updatedAt": "2026-01-12T05:05:24.642Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:38.000Z",
+        "createdAt": "2026-01-12T00:32:57.113Z",
+        "updatedAt": "2026-01-12T05:05:24.642Z"
+      },
+      "authorSourceId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "exportPath": "source-archive/articles/legacy-c32989bd-f313-41c8-8e83-ca9fdb4d081a-building-a-legacy-of-impact-insights-from-dr-rahim-somani-unbcs-vice-president-finance-and-admi.md"
+    },
+    {
+      "sourceKey": "legacy:dbdde0fe-d542-432f-82a4-69e33eb7a571",
+      "originalArticleId": "dbdde0fe-d542-432f-82a4-69e33eb7a571",
+      "title": "The Soda of Our Generation: Dr Pepper",
+      "authorName": "Hannah Carlson",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "dbdde0fe-d542-432f-82a4-69e33eb7a571",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:18.000Z",
+            "createdAt": "2026-01-12T00:33:01.075Z",
+            "updatedAt": "2026-01-12T05:05:24.642Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:18.000Z",
+        "createdAt": "2026-01-12T00:33:01.075Z",
+        "updatedAt": "2026-01-12T05:05:24.642Z"
+      },
+      "authorSourceId": "838eafe3-e1f0-4e58-afc0-544471be12ff",
+      "exportPath": "source-archive/articles/legacy-dbdde0fe-d542-432f-82a4-69e33eb7a571-the-soda-of-our-generation-dr-pepper.md"
+    },
+    {
+      "sourceKey": "legacy:fb332a32-0680-41ce-9fec-985557c189bd",
+      "originalArticleId": "fb332a32-0680-41ce-9fec-985557c189bd",
+      "title": "In the Shoes of an Immigrant Transfer Student: A Day of First Impressions",
+      "authorName": "Lina Maksymova",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "fb332a32-0680-41ce-9fec-985557c189bd",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:26.000Z",
+            "createdAt": "2026-01-12T00:33:00.954Z",
+            "updatedAt": "2026-01-12T05:05:24.642Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:26.000Z",
+        "createdAt": "2026-01-12T00:33:00.954Z",
+        "updatedAt": "2026-01-12T05:05:24.642Z"
+      },
+      "authorSourceId": "552e66ce-cf3d-44c7-9ace-eeac044dbed8",
+      "exportPath": "source-archive/articles/legacy-fb332a32-0680-41ce-9fec-985557c189bd-in-the-shoes-of-an-immigrant-transfer-student-a-day-of-first-impressions.md"
+    },
+    {
+      "sourceKey": "legacy:fc1b5008-6940-41cf-98f8-4de949265357",
+      "originalArticleId": "fc1b5008-6940-41cf-98f8-4de949265357",
+      "title": "People in the Trees",
+      "authorName": "Jacinta Mubiru",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "fc1b5008-6940-41cf-98f8-4de949265357",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:16.000Z",
+            "createdAt": "2026-01-12T00:33:01.088Z",
+            "updatedAt": "2026-01-12T05:05:24.642Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:16.000Z",
+        "createdAt": "2026-01-12T00:33:01.088Z",
+        "updatedAt": "2026-01-12T05:05:24.642Z"
+      },
+      "authorSourceId": "d38feb4b-5c56-40b6-b167-bc41fb0c7ba7",
+      "exportPath": "source-archive/articles/legacy-fc1b5008-6940-41cf-98f8-4de949265357-people-in-the-trees.md"
+    },
+    {
+      "sourceKey": "legacy:fd5d69cf-35a0-4507-817b-30fd15c650f9",
+      "originalArticleId": "fd5d69cf-35a0-4507-817b-30fd15c650f9",
+      "title": "Building Community Care: Kiara and Zehra's Impact on IWAU 2024 at UNBC ",
+      "authorName": "Ahmad Jalil",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "fd5d69cf-35a0-4507-817b-30fd15c650f9",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:18:20.000Z",
+            "createdAt": "2026-01-12T00:32:58.804Z",
+            "updatedAt": "2026-01-12T05:05:24.642Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:20.000Z",
+        "createdAt": "2026-01-12T00:32:58.804Z",
+        "updatedAt": "2026-01-12T05:05:24.642Z"
+      },
+      "authorSourceId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "exportPath": "source-archive/articles/legacy-fd5d69cf-35a0-4507-817b-30fd15c650f9-building-community-care-kiara-and-zehra-s-impact-on-iwau-2024-at-unbc.md"
+    },
+    {
+      "sourceKey": "recurring:president-qa:a3cef1bbb4763da1",
+      "title": "President Answers",
+      "authorName": null,
+      "content": "**Question**\n\nDo you believe in horoscopes?\n\n**Answer**\n\nHoroscopes are not something I typically follow but do not discount for those that see value in them",
+      "bodyFormat": "markdown",
+      "kind": "recurring",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumbers": [
+            6
+          ],
+          "section": "president-qa"
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumbers": [
+            6
+          ],
+          "section": "president-qa"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-idml/cover-page-issue-3-lina-a8e3ae7d.idml",
+          "sha256": "a8e3ae7d0bef723679545dab0da03cb0e77ca0f4e2a1b86a89506722b734a4c1",
+          "storyIds": [
+            "u6a4",
+            "u6ba"
+          ],
+          "notes": "Original question/response grouped semantically; no respondent byline is invented."
+        },
+        {
+          "path": "source-idml/cover-page-issue-3-lina-b4b35ce4.idml",
+          "sha256": "b4b35ce4a9806030f83cce04aa24dcac1cba7de61a1d245bf8aa04b291a9dd55",
+          "storyIds": [
+            "u398",
+            "u3ae"
+          ],
+          "notes": "Original question/response grouped semantically; no respondent byline is invented."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "visible-in-source-pdf",
+      "question": "Do you believe in horoscopes?",
+      "answer": "Horoscopes are not something I typically follow but do not discount for those that see value in them",
+      "exportPath": "source-archive/articles/recurring-president-qa-a3cef1bbb4763da1-president-answers.md"
+    }
+  ],
+  "assets": [
+    {
+      "id": "source-pdf:cover-page-issue-3-lina-de16e159",
+      "path": "originals/cover-page-issue-3-lina-de16e159.pdf",
+      "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+      "mimeType": "application/pdf",
+      "availability": "reference-only",
+      "assetRole": "source-reference",
+      "documentIds": [
+        "cover-page-issue-3-lina-de16e159"
+      ],
+      "label": "December 2024 · print archive"
+    },
+    {
+      "id": "attachment:39040d0b-457b-4e22-88f5-8c170bc1d3ad",
+      "sourceKey": "legacy:6ad32a09-4f30-40ee-87b2-5a361c6b97e0",
+      "originalArticleId": "6ad32a09-4f30-40ee-87b2-5a361c6b97e0",
+      "originalAttachmentId": "39040d0b-457b-4e22-88f5-8c170bc1d3ad",
+      "path": "source-archive-media/39040d0b-457b-4e22-88f5-8c170bc1d3ad.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 1110393,
+      "originalFileName": "a-road-to-new-beginnings-first-long-drive-from-vancouver-to-pg-1.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:e89a6fe9-e057-4159-bb00-9c8d40050da8",
+      "sourceKey": "legacy:6ad32a09-4f30-40ee-87b2-5a361c6b97e0",
+      "originalArticleId": "6ad32a09-4f30-40ee-87b2-5a361c6b97e0",
+      "originalAttachmentId": "e89a6fe9-e057-4159-bb00-9c8d40050da8",
+      "path": "source-archive-media/e89a6fe9-e057-4159-bb00-9c8d40050da8.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 735887,
+      "originalFileName": "a-road-to-new-beginnings-first-long-drive-from-vancouver-to-pg-2.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:b5bc0ae1-c9f1-4563-81e2-30ac4d85bf00",
+      "sourceKey": "legacy:6ad32a09-4f30-40ee-87b2-5a361c6b97e0",
+      "originalArticleId": "6ad32a09-4f30-40ee-87b2-5a361c6b97e0",
+      "originalAttachmentId": "b5bc0ae1-c9f1-4563-81e2-30ac4d85bf00",
+      "path": "source-archive-media/b5bc0ae1-c9f1-4563-81e2-30ac4d85bf00.jpeg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 588089,
+      "originalFileName": "a-road-to-new-beginnings-first-long-drive-from-vancouver-to-pg-3.jpeg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 3,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:1d20cb6e-fee2-4fc2-b022-c15665047a88",
+      "sourceKey": "legacy:6ad32a09-4f30-40ee-87b2-5a361c6b97e0",
+      "originalArticleId": "6ad32a09-4f30-40ee-87b2-5a361c6b97e0",
+      "originalAttachmentId": "1d20cb6e-fee2-4fc2-b022-c15665047a88",
+      "path": "source-archive-media/1d20cb6e-fee2-4fc2-b022-c15665047a88.jpeg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 1152712,
+      "originalFileName": "a-road-to-new-beginnings-first-long-drive-from-vancouver-to-pg-4.jpeg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 4,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:a12af350-7e1e-4eca-97ab-0c63c9fa88ee",
+      "sourceKey": "legacy:6ad32a09-4f30-40ee-87b2-5a361c6b97e0",
+      "originalArticleId": "6ad32a09-4f30-40ee-87b2-5a361c6b97e0",
+      "originalAttachmentId": "a12af350-7e1e-4eca-97ab-0c63c9fa88ee",
+      "path": "source-archive-media/a12af350-7e1e-4eca-97ab-0c63c9fa88ee.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 23016,
+      "originalFileName": "a-road-to-new-beginnings-first-long-drive-from-vancouver-to-pg-5.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:580eb162-c00b-448c-8b4a-ecd778f2809f",
+      "sourceKey": "legacy:6ad32a09-4f30-40ee-87b2-5a361c6b97e0",
+      "originalArticleId": "6ad32a09-4f30-40ee-87b2-5a361c6b97e0",
+      "originalAttachmentId": "580eb162-c00b-448c-8b4a-ecd778f2809f",
+      "path": "source-archive-media/580eb162-c00b-448c-8b4a-ecd778f2809f.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 1316407,
+      "originalFileName": "a-road-to-new-beginnings-first-long-drive-from-vancouver-to-pg-6.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:bfa72763-c565-4fe1-bf07-0be342725d5d",
+      "sourceKey": "legacy:761756d4-ebc5-4402-9491-22d321f3316d",
+      "originalArticleId": "761756d4-ebc5-4402-9491-22d321f3316d",
+      "originalAttachmentId": "bfa72763-c565-4fe1-bf07-0be342725d5d",
+      "path": "source-archive-media/bfa72763-c565-4fe1-bf07-0be342725d5d.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 23320,
+      "originalFileName": "nugss-annual-general-meeting-2024-25-a-student-s-perspective-on-campus-governance-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:c5093674-feec-4efc-94bc-f5c281595003",
+      "sourceKey": "legacy:761756d4-ebc5-4402-9491-22d321f3316d",
+      "originalArticleId": "761756d4-ebc5-4402-9491-22d321f3316d",
+      "originalAttachmentId": "c5093674-feec-4efc-94bc-f5c281595003",
+      "path": "source-archive-media/c5093674-feec-4efc-94bc-f5c281595003.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 342810,
+      "originalFileName": "nugss-annual-general-meeting-2024-25-a-student-s-perspective-on-campus-governance-2.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:caec21e5-d524-40ff-9578-86e764c87946",
+      "sourceKey": "legacy:761756d4-ebc5-4402-9491-22d321f3316d",
+      "originalArticleId": "761756d4-ebc5-4402-9491-22d321f3316d",
+      "originalAttachmentId": "caec21e5-d524-40ff-9578-86e764c87946",
+      "path": "source-archive-media/caec21e5-d524-40ff-9578-86e764c87946.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 26176,
+      "originalFileName": "nugss-annual-general-meeting-2024-25-a-student-s-perspective-on-campus-governance-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:bbf14e14-5d47-4344-b93f-f34dc934aeda",
+      "sourceKey": "legacy:7928fb7f-b5b3-4f32-a6d8-455e4572b785",
+      "originalArticleId": "7928fb7f-b5b3-4f32-a6d8-455e4572b785",
+      "originalAttachmentId": "bbf14e14-5d47-4344-b93f-f34dc934aeda",
+      "path": "source-archive-media/bbf14e14-5d47-4344-b93f-f34dc934aeda.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21995,
+      "originalFileName": "the-unbc-arts-club-an-overview-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:066b2b07-9cdb-43ab-b0fc-43f94a35d576",
+      "sourceKey": "legacy:7928fb7f-b5b3-4f32-a6d8-455e4572b785",
+      "originalArticleId": "7928fb7f-b5b3-4f32-a6d8-455e4572b785",
+      "originalAttachmentId": "066b2b07-9cdb-43ab-b0fc-43f94a35d576",
+      "path": "source-archive-media/066b2b07-9cdb-43ab-b0fc-43f94a35d576.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 28859,
+      "originalFileName": "the-unbc-arts-club-an-overview-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:2082c944-3e74-43b7-8321-b4c15f1777c8",
+      "sourceKey": "legacy:99ccdc4c-ae5f-4081-8f5d-670cf2deccaa",
+      "originalArticleId": "99ccdc4c-ae5f-4081-8f5d-670cf2deccaa",
+      "originalAttachmentId": "2082c944-3e74-43b7-8321-b4c15f1777c8",
+      "path": "source-archive-media/2082c944-3e74-43b7-8321-b4c15f1777c8.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 23331,
+      "originalFileName": "finding-hope-and-inspiration-in-stories-of-indigenous-women-s-resilience-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:996e3a2a-9ea8-4e68-8303-b23124505261",
+      "sourceKey": "legacy:99ccdc4c-ae5f-4081-8f5d-670cf2deccaa",
+      "originalArticleId": "99ccdc4c-ae5f-4081-8f5d-670cf2deccaa",
+      "originalAttachmentId": "996e3a2a-9ea8-4e68-8303-b23124505261",
+      "path": "source-archive-media/996e3a2a-9ea8-4e68-8303-b23124505261.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 22769,
+      "originalFileName": "finding-hope-and-inspiration-in-stories-of-indigenous-women-s-resilience-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:af2e69c0-714a-436d-a82c-a535bc1015d2",
+      "sourceKey": "legacy:99ccdc4c-ae5f-4081-8f5d-670cf2deccaa",
+      "originalArticleId": "99ccdc4c-ae5f-4081-8f5d-670cf2deccaa",
+      "originalAttachmentId": "af2e69c0-714a-436d-a82c-a535bc1015d2",
+      "path": "source-archive-media/af2e69c0-714a-436d-a82c-a535bc1015d2.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 305346,
+      "originalFileName": "finding-hope-and-inspiration-in-stories-of-indigenous-women-s-resilience-3.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:c9b6cda9-eece-49e7-99e5-b18867355662",
+      "sourceKey": "legacy:99e8c277-636a-4496-8245-454b7603cbbc",
+      "originalArticleId": "99e8c277-636a-4496-8245-454b7603cbbc",
+      "originalAttachmentId": "c9b6cda9-eece-49e7-99e5-b18867355662",
+      "path": "source-archive-media/c9b6cda9-eece-49e7-99e5-b18867355662.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 14550759,
+      "originalFileName": "turning-an-old-imac-into-a-standalone-display-a-students-journey-1.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:b0aa68b8-580e-425c-94f0-399e59b6c4fe",
+      "sourceKey": "legacy:99e8c277-636a-4496-8245-454b7603cbbc",
+      "originalArticleId": "99e8c277-636a-4496-8245-454b7603cbbc",
+      "originalAttachmentId": "b0aa68b8-580e-425c-94f0-399e59b6c4fe",
+      "path": "source-archive-media/b0aa68b8-580e-425c-94f0-399e59b6c4fe.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 10940455,
+      "originalFileName": "turning-an-old-imac-into-a-standalone-display-a-students-journey-2.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:055fc476-cde3-4220-85c0-6bbc18174a02",
+      "sourceKey": "legacy:99e8c277-636a-4496-8245-454b7603cbbc",
+      "originalArticleId": "99e8c277-636a-4496-8245-454b7603cbbc",
+      "originalAttachmentId": "055fc476-cde3-4220-85c0-6bbc18174a02",
+      "path": "source-archive-media/055fc476-cde3-4220-85c0-6bbc18174a02.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 26673,
+      "originalFileName": "turning-an-old-imac-into-a-standalone-display-a-students-journey-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:0a7105da-24eb-41aa-a3a8-e020908c1879",
+      "sourceKey": "legacy:c03b48f2-8ced-4b35-872c-4c53a56a4c4f",
+      "originalArticleId": "c03b48f2-8ced-4b35-872c-4c53a56a4c4f",
+      "originalAttachmentId": "0a7105da-24eb-41aa-a3a8-e020908c1879",
+      "path": "source-archive-media/0a7105da-24eb-41aa-a3a8-e020908c1879.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 22057,
+      "originalFileName": "the-history-behind-your-piercings-unbc-exhibition-takes-body-mod-from-ancient-to-trending-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:10943779-5d6b-40f9-8295-f4b6cf055aee",
+      "sourceKey": "legacy:c03b48f2-8ced-4b35-872c-4c53a56a4c4f",
+      "originalArticleId": "c03b48f2-8ced-4b35-872c-4c53a56a4c4f",
+      "originalAttachmentId": "10943779-5d6b-40f9-8295-f4b6cf055aee",
+      "path": "source-archive-media/10943779-5d6b-40f9-8295-f4b6cf055aee.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 22830,
+      "originalFileName": "the-history-behind-your-piercings-unbc-exhibition-takes-body-mod-from-ancient-to-trending-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:a1fd4fc2-93b9-4437-bd47-2bbaab13ebac",
+      "sourceKey": "legacy:c03b48f2-8ced-4b35-872c-4c53a56a4c4f",
+      "originalArticleId": "c03b48f2-8ced-4b35-872c-4c53a56a4c4f",
+      "originalAttachmentId": "a1fd4fc2-93b9-4437-bd47-2bbaab13ebac",
+      "path": "source-archive-media/a1fd4fc2-93b9-4437-bd47-2bbaab13ebac.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 381724,
+      "originalFileName": "the-history-behind-your-piercings-unbc-exhibition-takes-body-mod-from-ancient-to-trending-3.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:7864e164-9855-4f54-927b-b17a425568d7",
+      "sourceKey": "legacy:c03b48f2-8ced-4b35-872c-4c53a56a4c4f",
+      "originalArticleId": "c03b48f2-8ced-4b35-872c-4c53a56a4c4f",
+      "originalAttachmentId": "7864e164-9855-4f54-927b-b17a425568d7",
+      "path": "source-archive-media/7864e164-9855-4f54-927b-b17a425568d7.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 94720,
+      "originalFileName": "the-history-behind-your-piercings-unbc-exhibition-takes-body-mod-from-ancient-to-trending-4.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:5a907c37-eec0-4e22-b2c8-4d69a9154a0a",
+      "sourceKey": "legacy:c32989bd-f313-41c8-8e83-ca9fdb4d081a",
+      "originalArticleId": "c32989bd-f313-41c8-8e83-ca9fdb4d081a",
+      "originalAttachmentId": "5a907c37-eec0-4e22-b2c8-4d69a9154a0a",
+      "path": "source-archive-media/5a907c37-eec0-4e22-b2c8-4d69a9154a0a.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 2670514,
+      "originalFileName": "building-a-legacy-of-impact-insights-from-dr-rahim-somani-unbcs-vice-president-finance-and-admi-1.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:3b1e599f-f600-4e02-9f56-88a6f6e8e01e",
+      "sourceKey": "legacy:c32989bd-f313-41c8-8e83-ca9fdb4d081a",
+      "originalArticleId": "c32989bd-f313-41c8-8e83-ca9fdb4d081a",
+      "originalAttachmentId": "3b1e599f-f600-4e02-9f56-88a6f6e8e01e",
+      "path": "source-archive-media/3b1e599f-f600-4e02-9f56-88a6f6e8e01e.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 1909978,
+      "originalFileName": "building-a-legacy-of-impact-insights-from-dr-rahim-somani-unbcs-vice-president-finance-and-admi-2.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:1e40819e-f166-4d96-8146-f0281dbcf834",
+      "sourceKey": "legacy:c32989bd-f313-41c8-8e83-ca9fdb4d081a",
+      "originalArticleId": "c32989bd-f313-41c8-8e83-ca9fdb4d081a",
+      "originalAttachmentId": "1e40819e-f166-4d96-8146-f0281dbcf834",
+      "path": "source-archive-media/1e40819e-f166-4d96-8146-f0281dbcf834.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 438790,
+      "originalFileName": "building-a-legacy-of-impact-insights-from-dr-rahim-somani-unbcs-vice-president-finance-and-admi-3.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 3,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:f198f228-d637-48bf-befb-13aa4702aaa0",
+      "sourceKey": "legacy:c32989bd-f313-41c8-8e83-ca9fdb4d081a",
+      "originalArticleId": "c32989bd-f313-41c8-8e83-ca9fdb4d081a",
+      "originalAttachmentId": "f198f228-d637-48bf-befb-13aa4702aaa0",
+      "path": "source-archive-media/f198f228-d637-48bf-befb-13aa4702aaa0.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 384072,
+      "originalFileName": "building-a-legacy-of-impact-insights-from-dr-rahim-somani-unbcs-vice-president-finance-and-admi-4.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 4,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:efff545e-7bc6-4974-a8d4-8a57fe063c45",
+      "sourceKey": "legacy:c32989bd-f313-41c8-8e83-ca9fdb4d081a",
+      "originalArticleId": "c32989bd-f313-41c8-8e83-ca9fdb4d081a",
+      "originalAttachmentId": "efff545e-7bc6-4974-a8d4-8a57fe063c45",
+      "path": "source-archive-media/efff545e-7bc6-4974-a8d4-8a57fe063c45.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 437831,
+      "originalFileName": "building-a-legacy-of-impact-insights-from-dr-rahim-somani-unbcs-vice-president-finance-and-admi-5.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 5,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:15ffa408-3ceb-4f30-9914-ce7299cceb1a",
+      "sourceKey": "legacy:c32989bd-f313-41c8-8e83-ca9fdb4d081a",
+      "originalArticleId": "c32989bd-f313-41c8-8e83-ca9fdb4d081a",
+      "originalAttachmentId": "15ffa408-3ceb-4f30-9914-ce7299cceb1a",
+      "path": "source-archive-media/15ffa408-3ceb-4f30-9914-ce7299cceb1a.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 52421,
+      "originalFileName": "building-a-legacy-of-impact-insights-from-dr-rahim-somani-unbcs-vice-president-finance-and-admi-6.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 6,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:b491282e-4720-4750-a0e8-330c7ab13ba0",
+      "sourceKey": "legacy:c32989bd-f313-41c8-8e83-ca9fdb4d081a",
+      "originalArticleId": "c32989bd-f313-41c8-8e83-ca9fdb4d081a",
+      "originalAttachmentId": "b491282e-4720-4750-a0e8-330c7ab13ba0",
+      "path": "source-archive-media/b491282e-4720-4750-a0e8-330c7ab13ba0.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 38104,
+      "originalFileName": "building-a-legacy-of-impact-insights-from-dr-rahim-somani-unbcs-vice-president-finance-and-admi-7.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 7,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:6e0acd1b-0dca-4bfe-bf91-aeceb855944f",
+      "sourceKey": "legacy:c32989bd-f313-41c8-8e83-ca9fdb4d081a",
+      "originalArticleId": "c32989bd-f313-41c8-8e83-ca9fdb4d081a",
+      "originalAttachmentId": "6e0acd1b-0dca-4bfe-bf91-aeceb855944f",
+      "path": "source-archive-media/6e0acd1b-0dca-4bfe-bf91-aeceb855944f.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 25546,
+      "originalFileName": "building-a-legacy-of-impact-insights-from-dr-rahim-somani-unbcs-vice-president-finance-and-admi-8.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:1aa0fb0f-8415-43c5-9493-839b99072e89",
+      "sourceKey": "legacy:c32989bd-f313-41c8-8e83-ca9fdb4d081a",
+      "originalArticleId": "c32989bd-f313-41c8-8e83-ca9fdb4d081a",
+      "originalAttachmentId": "1aa0fb0f-8415-43c5-9493-839b99072e89",
+      "path": "source-archive-media/1aa0fb0f-8415-43c5-9493-839b99072e89.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 23158,
+      "originalFileName": "building-a-legacy-of-impact-insights-from-dr-rahim-somani-unbcs-vice-president-finance-and-admi-9.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:c2502cdb-2cf6-4284-9ae9-a296dc527bc1",
+      "sourceKey": "legacy:dbdde0fe-d542-432f-82a4-69e33eb7a571",
+      "originalArticleId": "dbdde0fe-d542-432f-82a4-69e33eb7a571",
+      "originalAttachmentId": "c2502cdb-2cf6-4284-9ae9-a296dc527bc1",
+      "path": "source-archive-media/c2502cdb-2cf6-4284-9ae9-a296dc527bc1.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21800,
+      "originalFileName": "the-soda-of-our-generation-dr-pepper-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:30f2a04a-f582-4dd0-bf90-2dfaadf7b7fb",
+      "sourceKey": "legacy:dbdde0fe-d542-432f-82a4-69e33eb7a571",
+      "originalArticleId": "dbdde0fe-d542-432f-82a4-69e33eb7a571",
+      "originalAttachmentId": "30f2a04a-f582-4dd0-bf90-2dfaadf7b7fb",
+      "path": "source-archive-media/30f2a04a-f582-4dd0-bf90-2dfaadf7b7fb.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21199,
+      "originalFileName": "the-soda-of-our-generation-dr-pepper-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:e6ecfeef-5f9a-4c49-984d-f598bf27b134",
+      "sourceKey": "legacy:dbdde0fe-d542-432f-82a4-69e33eb7a571",
+      "originalArticleId": "dbdde0fe-d542-432f-82a4-69e33eb7a571",
+      "originalAttachmentId": "e6ecfeef-5f9a-4c49-984d-f598bf27b134",
+      "path": "source-archive-media/e6ecfeef-5f9a-4c49-984d-f598bf27b134.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 16785,
+      "originalFileName": "the-soda-of-our-generation-dr-pepper-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:7a766014-354f-4d2f-acfa-3bad6d3d2ecb",
+      "sourceKey": "legacy:fb332a32-0680-41ce-9fec-985557c189bd",
+      "originalArticleId": "fb332a32-0680-41ce-9fec-985557c189bd",
+      "originalAttachmentId": "7a766014-354f-4d2f-acfa-3bad6d3d2ecb",
+      "path": "source-archive-media/7a766014-354f-4d2f-acfa-3bad6d3d2ecb.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 23156,
+      "originalFileName": "in-the-shoes-of-an-immigrant-transfer-student-a-day-of-first-impressions-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:7f9817ea-b21d-4013-aa33-b71fb076e5f6",
+      "sourceKey": "legacy:fb332a32-0680-41ce-9fec-985557c189bd",
+      "originalArticleId": "fb332a32-0680-41ce-9fec-985557c189bd",
+      "originalAttachmentId": "7f9817ea-b21d-4013-aa33-b71fb076e5f6",
+      "path": "source-archive-media/7f9817ea-b21d-4013-aa33-b71fb076e5f6.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21926,
+      "originalFileName": "in-the-shoes-of-an-immigrant-transfer-student-a-day-of-first-impressions-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:0f6f1e76-5b7d-4055-96fb-01d73d3663b2",
+      "sourceKey": "legacy:fb332a32-0680-41ce-9fec-985557c189bd",
+      "originalArticleId": "fb332a32-0680-41ce-9fec-985557c189bd",
+      "originalAttachmentId": "0f6f1e76-5b7d-4055-96fb-01d73d3663b2",
+      "path": "source-archive-media/0f6f1e76-5b7d-4055-96fb-01d73d3663b2.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 158489,
+      "originalFileName": "in-the-shoes-of-an-immigrant-transfer-student-a-day-of-first-impressions-3.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:7cfc4250-e47c-472c-8368-7cf725c48fe9",
+      "sourceKey": "legacy:fc1b5008-6940-41cf-98f8-4de949265357",
+      "originalArticleId": "fc1b5008-6940-41cf-98f8-4de949265357",
+      "originalAttachmentId": "7cfc4250-e47c-472c-8368-7cf725c48fe9",
+      "path": "source-archive-media/7cfc4250-e47c-472c-8368-7cf725c48fe9.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 23814,
+      "originalFileName": "people-in-the-trees-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:37cdb4b9-9f93-40bc-af21-34987d8a4537",
+      "sourceKey": "legacy:fc1b5008-6940-41cf-98f8-4de949265357",
+      "originalArticleId": "fc1b5008-6940-41cf-98f8-4de949265357",
+      "originalAttachmentId": "37cdb4b9-9f93-40bc-af21-34987d8a4537",
+      "path": "source-archive-media/37cdb4b9-9f93-40bc-af21-34987d8a4537.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 22917,
+      "originalFileName": "people-in-the-trees-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:05508c9a-0b22-4f50-802e-5f32367992df",
+      "sourceKey": "legacy:fc1b5008-6940-41cf-98f8-4de949265357",
+      "originalArticleId": "fc1b5008-6940-41cf-98f8-4de949265357",
+      "originalAttachmentId": "05508c9a-0b22-4f50-802e-5f32367992df",
+      "path": "source-archive-media/05508c9a-0b22-4f50-802e-5f32367992df.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 22450,
+      "originalFileName": "people-in-the-trees-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:bc3629b2-2cb1-4c22-816e-9e4c41339f29",
+      "sourceKey": "legacy:fd5d69cf-35a0-4507-817b-30fd15c650f9",
+      "originalArticleId": "fd5d69cf-35a0-4507-817b-30fd15c650f9",
+      "originalAttachmentId": "bc3629b2-2cb1-4c22-816e-9e4c41339f29",
+      "path": "source-archive-media/bc3629b2-2cb1-4c22-816e-9e4c41339f29.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 25628,
+      "originalFileName": "building-community-care-kiara-and-zehra-s-impact-on-iwau-2024-at-unbc-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "embedded-image:f2b901bdba9e19ba32525e55",
+      "path": "source-archive-media/f2b901bdba9e19ba32525e55.png",
+      "sha256": "f2b901bdba9e19ba32525e5582550882184a977a9fa28e1ba7290e5ace3bba2c",
+      "size": 12895,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 289,
+      "height": 146,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 5,
+          "rect": [
+            51.519996643066406,
+            711.3600463867188,
+            120.64295959472656,
+            746.197998046875
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 5,
+          "rect": [
+            51.519996643066406,
+            711.3600463867188,
+            120.64295959472656,
+            746.197998046875
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 5,
+          "rect": [
+            51.519996643066406,
+            711.3600463867188,
+            120.64295959472656,
+            746.197998046875
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:8101d22847ffd736ddc89131",
+      "path": "source-archive-media/8101d22847ffd736ddc89131.png",
+      "sha256": "8101d22847ffd736ddc89131fcb5bd1d83e66510dfa6078d49e3f6cd8e2d773e",
+      "size": 30845,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 644,
+      "height": 167,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 5,
+          "rect": [
+            47.981693267822266,
+            660.802734375,
+            202.52880859375,
+            700.7003173828125
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 5,
+          "rect": [
+            47.981693267822266,
+            660.802734375,
+            202.52880859375,
+            700.7003173828125
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 5,
+          "rect": [
+            47.981693267822266,
+            660.802734375,
+            202.52880859375,
+            700.7003173828125
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 5,
+          "rect": [
+            51.53889083862305,
+            705.1455078125,
+            206.0860137939453,
+            745.0430908203125
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:9b91a4dc299ad7576df9acb6",
+      "path": "source-archive-media/9b91a4dc299ad7576df9acb6.png",
+      "sha256": "9b91a4dc299ad7576df9acb66093471b3a261b58402af14450a6e6eea51f6214",
+      "size": 637420,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 2092,
+      "height": 420,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:62168541c16179e0063fc610",
+      "path": "source-archive-media/62168541c16179e0063fc610.png",
+      "sha256": "62168541c16179e0063fc6100e31ebbd4fda6a68949bd084c300d7f228e94e13",
+      "size": 560496,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1073,
+      "height": 1350,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:0eb846c1e44762a745997bdc",
+      "path": "source-archive-media/0eb846c1e44762a745997bdc.png",
+      "sha256": "0eb846c1e44762a745997bdccc16043a8c82eebd0b334ed1392a6c3759ae301b",
+      "size": 136931,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 513,
+      "height": 518,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:f05490026dfd90d468d675d0",
+      "path": "source-archive-media/f05490026dfd90d468d675d0.png",
+      "sha256": "f05490026dfd90d468d675d0a57e7f20c399326d5d11e04075dbf508e5a223ef",
+      "size": 63779,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 309,
+      "height": 228,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:8578443f23f678008e70d6a8",
+      "path": "source-archive-media/8578443f23f678008e70d6a8.png",
+      "sha256": "8578443f23f678008e70d6a884f7ced9f1b6874e29a552f32a99213f47cb22a2",
+      "size": 418082,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 2000,
+      "height": 2000,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 13,
+          "rect": [
+            376.52001953125,
+            411.9599914550781,
+            716.756591796875,
+            752.1965942382812
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 13,
+          "rect": [
+            376.52001953125,
+            411.9599914550781,
+            716.756591796875,
+            752.1965942382812
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 13,
+          "rect": [
+            376.52001953125,
+            411.9599914550781,
+            716.756591796875,
+            752.1965942382812
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 13,
+          "rect": [
+            376.52001953125,
+            411.9599914550781,
+            716.756591796875,
+            752.1965942382812
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:bcd4eafbb6316326ab6e3b42",
+      "path": "source-archive-media/bcd4eafbb6316326ab6e3b42.png",
+      "sha256": "bcd4eafbb6316326ab6e3b427b22d32bc2efad8d74416e469d497b50cb79b4eb",
+      "size": 2059967,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1321,
+      "height": 2750,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:59c3b69a0c61273191d5a9eb",
+      "path": "source-archive-media/59c3b69a0c61273191d5a9eb.jpeg",
+      "sha256": "59c3b69a0c61273191d5a9eb3d635649745743737210b90640869408adf49617",
+      "size": 610028,
+      "mimeType": "image/jpeg",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 2847,
+      "height": 2878,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-de16e159"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 17,
+          "rect": [
+            35.76458740234375,
+            64.47802734375,
+            718.8685913085938,
+            754.9714965820312
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 17,
+          "rect": [
+            35.76458740234375,
+            64.47802734375,
+            718.8685913085938,
+            754.9714965820312
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:e56936b5e55ee101916bec3e",
+      "path": "source-archive-media/e56936b5e55ee101916bec3e.png",
+      "sha256": "e56936b5e55ee101916bec3e68e05e6c5acf8f96419d2d8b1ce4d2cd980d57e5",
+      "size": 137576,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 545,
+      "height": 545,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-de16e159"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 9,
+          "rect": [
+            487.27178955078125,
+            531.1349487304688,
+            697.6035766601562,
+            741.4667358398438
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -60,9 +60,10 @@ async function main() {
   const used = { ...library, templates: library.templates.filter((t) => planned.has(t.id)) };
   const designs = pages.usesDesigns(used);
   const fonts = await readFonts(resolve(args.fontDir ?? join(STATIC, 'assets/fonts')));
-  if (designs && args.fontProfile === 'original2025') {
+  if (args.fontProfile === 'original2025') {
     const present = new Set(fonts.map((f) => f.name));
-    fonts.push(...await readFonts(join(STATIC, 'assets/fonts'), (name) => pages.isDesignFont(name) && !present.has(name)));
+    const bundled = pages.documentFonts(await readFonts(join(STATIC, 'assets/fonts')), 'portable', designs);
+    fonts.push(...bundled.filter((f) => !present.has(f.name)));
   }
   const substituteFonts = args.fontProfile === 'original2025' ? pages.designFontGaps(used, fonts) : [];
   if (substituteFonts.length) console.error('Using open substitutes for: ' + substituteFonts.join(', '));

@@ -1,0 +1,496 @@
+{
+  "schemaVersion": "ote.designcraft.source-presets.v1",
+  "sections": [
+    {
+      "id": "editorial",
+      "label": "Editorial",
+      "code": "A"
+    },
+    {
+      "id": "inside-the-edge",
+      "label": "Inside the Edge",
+      "code": "A"
+    },
+    {
+      "id": "president-qa",
+      "label": "President question of the month",
+      "code": "A"
+    },
+    {
+      "id": "board",
+      "label": "Our Board",
+      "code": "A"
+    },
+    {
+      "id": "alumni",
+      "label": "Alumni Profiles",
+      "code": "A"
+    },
+    {
+      "id": "cfur",
+      "label": "CFUR Radio",
+      "code": "A"
+    }
+  ],
+  "blocks": [
+    {
+      "id": "2024-president-original",
+      "name": "President Answers",
+      "type": "president-qa",
+      "blockType": "president-qa",
+      "rect": [
+        374.698547,
+        400.000031,
+        717.664307,
+        757.440002
+      ],
+      "fields": {},
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 6,
+        "label": "President Answers",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": "Original question, answer and artwork preserved as one vector PDF placement."
+      },
+      "fit": "contain",
+      "asset": "source-art/2024-president-original.pdf",
+      "previewAsset": "source-art/2024-president-original.png"
+    },
+    {
+      "id": "2024-inside-edge",
+      "name": "Inside the Edge",
+      "type": "inside-edge",
+      "blockType": "inside-edge",
+      "rect": [
+        39,
+        374,
+        717,
+        759
+      ],
+      "fields": {},
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 5,
+        "label": "Inside the Edge",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": "Original bottom panel retained; the upper article frame uses the blank editorial area in the supplied PDF."
+      },
+      "fit": "contain",
+      "asset": "source-art/2024-inside-edge.pdf",
+      "previewAsset": "source-art/2024-inside-edge.png"
+    },
+    {
+      "id": "2024-moose-ad",
+      "name": "Thirsty Moose right-column ad",
+      "type": "ad",
+      "blockType": "ad",
+      "rect": [
+        386.601,
+        65.249,
+        716.849,
+        752.743
+      ],
+      "fields": {},
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 16,
+        "label": "Thirsty Moose right-column ad",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": "Ad rectangle measured from March page 16; adjacent editorial frame is a new placement option."
+      },
+      "fit": "contain",
+      "asset": "source-art/2024-moose-ad.pdf",
+      "previewAsset": "source-art/2024-moose-ad.png"
+    },
+    {
+      "id": "2024-recruitment-ad",
+      "name": "OTE recruitment right-half ad",
+      "type": "ad",
+      "blockType": "ad",
+      "rect": [
+        378.383,
+        64.185,
+        718.898,
+        755.94
+      ],
+      "fields": {},
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 17,
+        "label": "OTE recruitment right-half ad",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": ""
+      },
+      "fit": "contain",
+      "asset": "source-art/2024-recruitment-ad.pdf",
+      "previewAsset": "source-art/2024-recruitment-ad.png"
+    },
+    {
+      "id": "2024-alumni",
+      "name": "Alumni Profiles",
+      "type": "alumni-profile",
+      "blockType": "alumni-profile",
+      "rect": [
+        0,
+        0,
+        756,
+        792
+      ],
+      "fields": {},
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 10,
+        "label": "Alumni Profiles",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": "Archived full-page artwork, including source text and photographs. Use an article recipe for freely editable alumni copy."
+      },
+      "fit": "contain",
+      "asset": "source-art/2024-alumni.pdf",
+      "previewAsset": "source-art/2024-alumni.png"
+    },
+    {
+      "id": "2024-cfur-original",
+      "name": "CFUR Radio March page",
+      "type": "cfur",
+      "blockType": "cfur",
+      "rect": [
+        0,
+        0,
+        756,
+        792
+      ],
+      "fields": {},
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 13,
+        "label": "CFUR Radio March page",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": "Archived collage preserves the source torn photos, textured background and shaped text. The editable four-article companion rebuilds native text frames with source wrap contours."
+      },
+      "fit": "contain",
+      "asset": "source-art/2024-cfur-original.pdf",
+      "previewAsset": "source-art/2024-cfur-original.png"
+    },
+    {
+      "id": "2025-president-board",
+      "name": "Interim-President question and Our Board",
+      "type": "president-qa",
+      "blockType": "president-qa",
+      "rect": [
+        0,
+        0,
+        756,
+        792
+      ],
+      "fields": {},
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "pdfs/issue-2-october-2025-0eb630f7.pdf",
+        "page": 4,
+        "label": "Interim-President question and Our Board",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Complete original page including source names and question. A separate editable question panel is supplied below."
+      },
+      "fit": "contain",
+      "asset": "source-art/2025-president-board.pdf",
+      "previewAsset": "source-art/2025-president-board.png"
+    },
+    {
+      "id": "2025-board",
+      "name": "Our Board 2025–2026",
+      "type": "board",
+      "blockType": "board",
+      "rect": [
+        53.567,
+        446.614,
+        687.308,
+        740
+      ],
+      "fields": {},
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "pdfs/issue-2-october-2025-0eb630f7.pdf",
+        "page": 4,
+        "label": "Our Board 2025–2026",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": ""
+      },
+      "fit": "contain",
+      "asset": "source-art/2025-board.pdf",
+      "previewAsset": "source-art/2025-board.png"
+    },
+    {
+      "id": "2025-event-ad",
+      "name": "CFUR Queen Vinyl Night event ad",
+      "type": "ad",
+      "blockType": "ad",
+      "rect": [
+        34.954,
+        428.098,
+        365.221,
+        756.94
+      ],
+      "fields": {},
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "pdfs/issue-2-october-2025-0eb630f7.pdf",
+        "page": 14,
+        "label": "CFUR Queen Vinyl Night event ad",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Source advertises October 18, 2025, at Omineca Arts Centre; retained as historical artwork."
+      },
+      "fit": "contain",
+      "asset": "source-art/2025-event-ad.pdf",
+      "previewAsset": "source-art/2025-event-ad.png"
+    },
+    {
+      "id": "2025-moose-ad",
+      "name": "Thirsty Moose 2025 right-column ad",
+      "type": "ad",
+      "blockType": "ad",
+      "rect": [
+        386.348,
+        65.249,
+        716.849,
+        752.36
+      ],
+      "fields": {},
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "pdfs/issue-2-october-2025-0eb630f7.pdf",
+        "page": 15,
+        "label": "Thirsty Moose 2025 right-column ad",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": ""
+      },
+      "fit": "contain",
+      "asset": "source-art/2025-moose-ad.pdf",
+      "previewAsset": "source-art/2025-moose-ad.png"
+    },
+    {
+      "id": "2025-recruitment-ad",
+      "name": "OTE recruitment 2025 right-half ad",
+      "type": "ad",
+      "blockType": "ad",
+      "rect": [
+        380.88,
+        65.249,
+        717.356,
+        754.92
+      ],
+      "fields": {},
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "pdfs/issue-2-october-2025-0eb630f7.pdf",
+        "page": 16,
+        "label": "OTE recruitment 2025 right-half ad",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": ""
+      },
+      "fit": "contain",
+      "asset": "source-art/2025-recruitment-ad.pdf",
+      "previewAsset": "source-art/2025-recruitment-ad.png"
+    }
+  ],
+  "templates": [
+    {
+      "templateId": "source-2024-president-original",
+      "label": "President Answers · source artwork",
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 6,
+        "label": "President Answers",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": "Original question, answer and artwork preserved as one vector PDF placement."
+      }
+    },
+    {
+      "templateId": "source-2024-president-qa",
+      "label": "President Answers · editable",
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 6,
+        "label": "President Answers · editable",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": "Original illustration and portrait retained. Heading, subtitle, question and answer are editable native text. Portable fonts substitute the source faces."
+      }
+    },
+    {
+      "templateId": "source-2024-president-with-story",
+      "label": "President Answers + article",
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 6,
+        "label": "President Answers · editable",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": "Original illustration and portrait retained. Heading, subtitle, question and answer are editable native text. Portable fonts substitute the source faces."
+      }
+    },
+    {
+      "templateId": "source-2024-inside-edge",
+      "label": "Inside the Edge + article",
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 5,
+        "label": "Inside the Edge",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": "Original bottom panel retained; the upper article frame uses the blank editorial area in the supplied PDF."
+      }
+    },
+    {
+      "templateId": "source-2024-moose-ad",
+      "label": "Thirsty Moose right-column ad + article",
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 16,
+        "label": "Thirsty Moose right-column ad",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": "Ad rectangle measured from March page 16; adjacent editorial frame is a new placement option."
+      }
+    },
+    {
+      "templateId": "source-2024-recruitment-ad",
+      "label": "OTE recruitment right-half ad + article",
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 17,
+        "label": "OTE recruitment right-half ad",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": ""
+      }
+    },
+    {
+      "templateId": "source-2024-alumni",
+      "label": "Alumni Profiles · source artwork",
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 10,
+        "label": "Alumni Profiles",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": "Archived full-page artwork, including source text and photographs. Use an article recipe for freely editable alumni copy."
+      }
+    },
+    {
+      "templateId": "source-2024-cfur-original",
+      "label": "CFUR Radio March page · source artwork",
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 13,
+        "label": "CFUR Radio March page",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": "Archived collage preserves the source torn photos, textured background and shaped text. The editable four-article companion rebuilds native text frames with source wrap contours."
+      }
+    },
+    {
+      "templateId": "source-2025-president-board",
+      "label": "Interim-President question and Our Board · source artwork",
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "pdfs/issue-2-october-2025-0eb630f7.pdf",
+        "page": 4,
+        "label": "Interim-President question and Our Board",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Complete original page including source names and question. A separate editable question panel is supplied below."
+      }
+    },
+    {
+      "templateId": "source-2025-board",
+      "label": "Our Board 2025–2026 · source artwork",
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "pdfs/issue-2-october-2025-0eb630f7.pdf",
+        "page": 4,
+        "label": "Our Board 2025–2026",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": ""
+      }
+    },
+    {
+      "templateId": "source-2025-event-ad",
+      "label": "CFUR Queen Vinyl Night event ad + article",
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "pdfs/issue-2-october-2025-0eb630f7.pdf",
+        "page": 14,
+        "label": "CFUR Queen Vinyl Night event ad",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Source advertises October 18, 2025, at Omineca Arts Centre; retained as historical artwork."
+      }
+    },
+    {
+      "templateId": "source-2025-moose-ad",
+      "label": "Thirsty Moose 2025 right-column ad + article",
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "pdfs/issue-2-october-2025-0eb630f7.pdf",
+        "page": 15,
+        "label": "Thirsty Moose 2025 right-column ad",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": ""
+      }
+    },
+    {
+      "templateId": "source-2025-recruitment-ad",
+      "label": "OTE recruitment 2025 right-half ad + article",
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "pdfs/issue-2-october-2025-0eb630f7.pdf",
+        "page": 16,
+        "label": "OTE recruitment 2025 right-half ad",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": ""
+      }
+    },
+    {
+      "templateId": "source-2025-president-qa",
+      "label": "Interim-President question · editable",
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "pdfs/issue-2-october-2025-0eb630f7.pdf",
+        "page": 4,
+        "label": "Interim-President question · editable",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Question and response are editable native text; portrait and board panel retain original artwork. Portable fonts substitute unavailable source faces."
+      }
+    },
+    {
+      "templateId": "source-2024-inside-edge-editable",
+      "label": "Inside the Edge · editable Q&A",
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 5,
+        "label": "Inside the Edge · editable Q&A",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": "Original chat artwork and feedback QR retained; heading, question and response are editable native text."
+      }
+    },
+    {
+      "templateId": "source-2024-cfur-briefs",
+      "label": "CFUR Radio · four editable articles",
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 13,
+        "label": "CFUR Radio · four editable articles",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": "Frame coordinates and torn-photo wrap contours from the paired IDML. The CN Centre body extends 18pt into the empty source gap to fit the portable font at the source 10pt/14pt size; sourceRect retains the original bounds. Photos, texture, sponsor panel and folio remain artwork; all four complete titles and bodies are editable. Caveat Brush / Source Serif 4 replace Wordy Diva / Kefa unless original faces are supplied."
+      }
+    }
+  ],
+  "notes": "Measured from supplied PDFs. A is the literal source header marker; section names do not imply a different historical header code. Adjacent editorial frames are new editable placement options in source blank areas."
+}

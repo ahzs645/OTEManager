@@ -2,15 +2,15 @@ import { Link } from '@tanstack/react-router'
 import { Paperclip, Image, EyeOff, DollarSign } from 'lucide-react'
 import { StatusBadge, TierBadge, formatDate, Avatar } from '~/components/Layout'
 import type { Article } from './types'
+import { articleDisplayAuthor, articleDisplaySubmitted, readSourceProvenance, sourceRecoveryLabel } from '~/lib/source-archive-display'
 
 interface ArticleRowProps {
   article: Article
 }
 
 export function ArticleRow({ article }: ArticleRowProps) {
-  const authorName = article.author
-    ? `${article.author.givenName} ${article.author.surname}`
-    : 'Unknown'
+  const authorName = articleDisplayAuthor(article)
+  const source = readSourceProvenance(article.sourceProvenance)
 
   return (
     <Link
@@ -34,9 +34,10 @@ export function ArticleRow({ article }: ArticleRowProps) {
         >
           {article.title}
         </span>
+        {source && <span className="block text-xs mt-1" style={{ color: 'var(--fg-muted)' }}>{sourceRecoveryLabel(source.recoveryStatus)}</span>}
         {/* Phones hide the author and date columns, so show them here */}
         <span className="text-xs truncate block md:hidden" style={{ color: 'var(--fg-muted)' }}>
-          {authorName} · {formatDate(article.submittedAt || article.createdAt)}
+          {authorName} · {formatDate(articleDisplaySubmitted(article))}
         </span>
       </div>
 
@@ -91,7 +92,7 @@ export function ArticleRow({ article }: ArticleRowProps) {
           className="text-xs tabular-nums"
           style={{ color: 'var(--fg-muted)' }}
         >
-          {formatDate(article.submittedAt || article.createdAt)}
+          {formatDate(articleDisplaySubmitted(article))}
         </span>
       </div>
 

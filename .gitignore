@@ -31,6 +31,9 @@ app/routeTree.gen.ts
 # Uploads (local file storage)
 uploads/
 
+# Connector downloads may contain private source backups and credentials.
+attachments/
+
 # Database
 db/migrations/
 *.db

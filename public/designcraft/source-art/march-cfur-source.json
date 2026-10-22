@@ -1,0 +1,540 @@
+{
+  "source": "public/designcraft/originals/issue-7-march-2025-dfcbb959.pdf",
+  "page": 13,
+  "background": "source-art/march-cfur-background.pdf",
+  "frames": [
+    {
+      "articleIndex": 0,
+      "role": "headline",
+      "rect": [
+        460.86987612951816,
+        30.635043261962437,
+        707.1098761295179,
+        118.93433679242719
+      ],
+      "sourceStory": "u80d",
+      "sourceFrame": "u81f",
+      "sourceCharAttrs": [
+        {
+          "AppliedCharacterStyle": "CharacterStyle/$ID/[No character style]",
+          "FillColor": "Color/Paper",
+          "PointSize": "22",
+          "HorizontalScale": "108",
+          "StrokeWeight": "2.7042843434755226",
+          "MiterLimit": "10.81713737390209",
+          "RubyFontSize": "-2.602198822784806",
+          "RubyXScale": "108",
+          "KentenFontSize": "-2.602198822784806",
+          "KentenXScale": "108"
+        }
+      ],
+      "fontFamilies": [
+        "Wordy Diva"
+      ]
+    },
+    {
+      "articleIndex": 2,
+      "role": "body",
+      "rect": [
+        43.19999999999999,
+        381.6000000000022,
+        682.9127519638637,
+        528.4800000000004
+      ],
+      "sourceStory": "u876",
+      "sourceFrame": "u888",
+      "sourceCharAttrs": [
+        {
+          "AppliedCharacterStyle": "CharacterStyle/$ID/[No character style]",
+          "FillColor": "Color/Paper",
+          "PointSize": "11",
+          "StrokeWeight": "0",
+          "StrokeColor": "Color/Paper"
+        }
+      ],
+      "fontFamilies": [
+        "Kefa"
+      ]
+    },
+    {
+      "articleIndex": 0,
+      "role": "body",
+      "rect": [
+        462.1375423995313,
+        118.93433679242753,
+        719.9999957474809,
+        342.381079897943
+      ],
+      "sourceStory": "u88c",
+      "sourceFrame": "u89e",
+      "sourceCharAttrs": [
+        {
+          "AppliedCharacterStyle": "CharacterStyle/$ID/[No character style]",
+          "FillColor": "Color/Paper",
+          "PointSize": "10",
+          "StrokeWeight": "0",
+          "StrokeColor": "Color/Paper"
+        }
+      ],
+      "fontFamilies": [
+        "Kefa"
+      ]
+    },
+    {
+      "articleIndex": 1,
+      "role": "body",
+      "rect": [
+        43.19999999999999,
+        109.63743339802392,
+        437.69622630889734,
+        328.31999999999937
+      ],
+      "sourceStory": "u8a2",
+      "sourceFrame": "u8b4",
+      "sourceCharAttrs": [
+        {
+          "AppliedCharacterStyle": "CharacterStyle/$ID/[No character style]",
+          "FillColor": "Color/Paper",
+          "PointSize": "10",
+          "StrokeWeight": "0",
+          "StrokeColor": "Color/Paper"
+        }
+      ],
+      "fontFamilies": [
+        "Kefa"
+      ]
+    },
+    {
+      "articleIndex": 3,
+      "role": "body",
+      "rect": [
+        84.1363609712987,
+        582.0913532852264,
+        489.59999999999997,
+        770.5199999999995
+      ],
+      "sourceStory": "u8b8",
+      "sourceFrame": "u8ca",
+      "sourceCharAttrs": [
+        {
+          "AppliedCharacterStyle": "CharacterStyle/$ID/[No character style]",
+          "FillColor": "Color/Paper",
+          "PointSize": "11",
+          "StrokeWeight": "0",
+          "StrokeColor": "Color/Paper"
+        }
+      ],
+      "fontFamilies": [
+        "Kefa"
+      ]
+    },
+    {
+      "articleIndex": 2,
+      "role": "headline",
+      "rect": [
+        42.12000000000012,
+        348.19948621601156,
+        651.2400000000002,
+        381.60000000000196
+      ],
+      "sourceStory": "u8e4",
+      "sourceFrame": "u8f6",
+      "sourceCharAttrs": [
+        {
+          "AppliedCharacterStyle": "CharacterStyle/$ID/[No character style]",
+          "FillColor": "Color/Paper",
+          "PointSize": "22",
+          "HorizontalScale": "108",
+          "StrokeWeight": "2.7042843434755226",
+          "MiterLimit": "10.81713737390209",
+          "RubyFontSize": "-2.602198822784806",
+          "RubyXScale": "108",
+          "KentenFontSize": "-2.602198822784806",
+          "KentenXScale": "108"
+        }
+      ],
+      "fontFamilies": [
+        "Wordy Diva"
+      ]
+    },
+    {
+      "articleIndex": 1,
+      "role": "headline",
+      "rect": [
+        35.27999999999997,
+        42.930843261963616,
+        436.9270716458113,
+        102.94667347803141
+      ],
+      "sourceStory": "u911",
+      "sourceFrame": "u923",
+      "sourceCharAttrs": [
+        {
+          "AppliedCharacterStyle": "CharacterStyle/$ID/[No character style]",
+          "FillColor": "Color/Paper",
+          "PointSize": "22",
+          "HorizontalScale": "108",
+          "StrokeWeight": "2.7042843434755226",
+          "MiterLimit": "10.81713737390209",
+          "RubyFontSize": "-2.602198822784806",
+          "RubyXScale": "108",
+          "KentenFontSize": "-2.602198822784806",
+          "KentenXScale": "108"
+        }
+      ],
+      "fontFamilies": [
+        "Wordy Diva"
+      ]
+    },
+    {
+      "articleIndex": 3,
+      "role": "headline",
+      "rect": [
+        42.389042061965824,
+        541.2610760431843,
+        530.8886164920499,
+        579.0913532852261
+      ],
+      "sourceStory": "u927",
+      "sourceFrame": "u939",
+      "sourceCharAttrs": [
+        {
+          "AppliedCharacterStyle": "CharacterStyle/$ID/[No character style]",
+          "FillColor": "Color/Paper",
+          "PointSize": "22",
+          "HorizontalScale": "108",
+          "StrokeWeight": "2.7042843434755226",
+          "MiterLimit": "10.81713737390209",
+          "RubyFontSize": "-2.602198822784806",
+          "RubyXScale": "108",
+          "KentenFontSize": "-2.602198822784806",
+          "KentenXScale": "108"
+        }
+      ],
+      "fontFamilies": [
+        "Wordy Diva"
+      ]
+    }
+  ],
+  "wraps": [
+    {
+      "id": "source-wrap-u965",
+      "role": "wrap",
+      "points": [
+        [
+          637.8982365128187,
+          668.2518399781354
+        ],
+        [
+          640.7176198552739,
+          625.7021610677591
+        ],
+        [
+          682.1584308233009,
+          626.1176847824294
+        ],
+        [
+          719.7822539672267,
+          627.5129014429383
+        ],
+        [
+          720.711569087813,
+          628.0296191687358
+        ],
+        [
+          721.6528128316286,
+          628.5637859008472
+        ],
+        [
+          735.3027761892473,
+          636.363432666958
+        ],
+        [
+          735.6327320670688,
+          637.0933563443031
+        ],
+        [
+          742.6660388408494,
+          652.9802879013612
+        ],
+        [
+          741.0810373649394,
+          691.687406067584
+        ],
+        [
+          737.7501684965144,
+          733.6575702584867
+        ],
+        [
+          737.6466672723457,
+          733.8129192317854
+        ],
+        [
+          696.7760520735345,
+          733.5592685244852
+        ],
+        [
+          659.1479389989377,
+          732.2935343282882
+        ],
+        [
+          652.8726807848964,
+          728.7237576494613
+        ],
+        [
+          643.7123593936178,
+          723.488768020525
+        ],
+        [
+          641.819509190528,
+          719.2374791364824
+        ],
+        [
+          636.900019306632,
+          707.9837591502353
+        ],
+        [
+          636.48,
+          706.9656875274325
+        ]
+      ],
+      "offset": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sourceMode": "Contour",
+      "mode": "contour",
+      "sourceShape": "u965"
+    },
+    {
+      "id": "source-wrap-ub52",
+      "role": "wrap",
+      "points": [
+        [
+          10.179672723077786,
+          122.58648746681115
+        ],
+        [
+          213.4664944491484,
+          94.01638785743296
+        ],
+        [
+          234.89406915618207,
+          246.48150415198592
+        ],
+        [
+          31.607247430111443,
+          275.05160376136416
+        ]
+      ],
+      "offset": [
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "sourceMode": "BoundingBoxTextWrap",
+      "mode": "contour",
+      "sourceShape": "ub52"
+    },
+    {
+      "id": "source-wrap-ub78",
+      "role": "wrap",
+      "points": [
+        [
+          565.7510171018126,
+          388.4479664198643
+        ],
+        [
+          756.0,
+          381.6000000000022
+        ],
+        [
+          688.4922963909655,
+          497.9196947660512
+        ],
+        [
+          619.3108480643521,
+          511.1892457090162
+        ]
+      ],
+      "offset": [
+        22.5,
+        22.5,
+        22.5,
+        22.5
+      ],
+      "sourceMode": "Contour",
+      "mode": "contour",
+      "sourceShape": "ub78"
+    },
+    {
+      "id": "source-wrap-ub9a",
+      "role": "wrap",
+      "points": [
+        [
+          103.27911626960918,
+          801.1705938039577
+        ],
+        [
+          137.73607580656835,
+          761.4701883988046
+        ],
+        [
+          131.99324921707512,
+          723.6602784891338
+        ],
+        [
+          170.27875981369607,
+          699.0838370478496
+        ],
+        [
+          154.96455557504783,
+          653.7119451562448
+        ],
+        [
+          114.76476944859542,
+          619.6830262375424
+        ],
+        [
+          97.53628968011594,
+          593.216089300774
+        ],
+        [
+          64.99360567298822,
+          581.8731163278726
+        ],
+        [
+          47.76512590450852,
+          595.1065847962573
+        ],
+        [
+          45.85085037467775,
+          614.0115397510908
+        ],
+        [
+          5.1724953657678725,
+          649.9309541652774
+        ],
+        [
+          -2.0060378710986697,
+          678.2883865975309
+        ],
+        [
+          7.565339778056796,
+          712.3173055162342
+        ],
+        [
+          26.708095076367044,
+          719.8792874981673
+        ],
+        [
+          42.022299315015516,
+          784.1561343446056
+        ],
+        [
+          57.33650355366399,
+          810.6230712813749
+        ],
+        [
+          103.27911626960918,
+          810.6230712813749
+        ]
+      ],
+      "offset": [
+        13.5,
+        13.5,
+        13.5,
+        13.5
+      ],
+      "sourceMode": "Contour",
+      "mode": "contour",
+      "sourceShape": "ub9a"
+    },
+    {
+      "id": "source-wrap-ub8c",
+      "role": "wrap",
+      "points": [
+        [
+          101.41350876172328,
+          782.1374696629882
+        ],
+        [
+          130.61432192863754,
+          748.493058302689
+        ],
+        [
+          125.74751973415209,
+          716.4507617690697
+        ],
+        [
+          158.19286769739006,
+          695.6232690222187
+        ],
+        [
+          145.21472851209478,
+          657.1725131818757
+        ],
+        [
+          111.14711315069462,
+          628.3344463016192
+        ],
+        [
+          96.5467065672376,
+          605.9048387280864
+        ],
+        [
+          68.96816079848509,
+          596.292149768
+        ],
+        [
+          54.367754215027844,
+          607.5069535547664
+        ],
+        [
+          52.74548681686588,
+          623.5281018215755
+        ],
+        [
+          18.27230460592523,
+          653.968283528513
+        ],
+        [
+          12.188801862818082,
+          678.0000059287286
+        ],
+        [
+          20.300138853627686,
+          706.8380728089851
+        ],
+        [
+          36.52281283524667,
+          713.2465321157079
+        ],
+        [
+          49.50095202054217,
+          767.71843622286
+        ],
+        [
+          62.47909120583745,
+          790.1480437963919
+        ],
+        [
+          101.41350876172328,
+          790.1480437963919
+        ]
+      ],
+      "offset": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sourceMode": "Contour",
+      "mode": "contour",
+      "sourceShape": "ub8c"
+    }
+  ]
+}

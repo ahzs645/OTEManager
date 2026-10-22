@@ -1,0 +1,2118 @@
+{
+  "schemaVersion": "ote.source-archive.issue.v1",
+  "archiveId": "ote-original-issues-2026-10-09",
+  "issue": {
+    "documentId": "cover-page-issue-3-lina-6dd82589",
+    "label": "November 2024 · Issue 3",
+    "volumeNumber": 31,
+    "issueNumber": 3,
+    "releaseDate": "2024-11-14",
+    "pageCount": 17,
+    "source": {
+      "path": "originals/cover-page-issue-3-lina-6dd82589.pdf",
+      "sha256": "6dd825893953a1b049656a2ec41ef2c5513d215b8854351caf2ec47660fb72e5"
+    },
+    "sourceNotes": "Cover supplies issue metadata. Interior datelines are stale September 26, 2024. Most source article areas are blank.",
+    "sourceCoverMetadata": null
+  },
+  "articles": [
+    {
+      "sourceKey": "legacy:06640325-c8d8-4a49-b3a7-8581e80a8bda",
+      "originalArticleId": "06640325-c8d8-4a49-b3a7-8581e80a8bda",
+      "title": "How to Protect What is Ours?   ",
+      "authorName": "Alireza Noory",
+      "content": "Why do you lock the doors of your house, car, or workplace when you leave? These everyday actions safeguard our properties from theft. But what about the products of our intellectual labor? How do we protect our research outputs from unauthorized use?\n\nIn this article, we delve into the crucial topic of intellectual property (IP) protection.\n\nAccording to the World Intellectual Property Organization (WIPO), “intellectual property refers to creations of the mind, such as inventions; literary and artistic works; designs; and symbols, names, and images used in commerce.” Protecting IP allows individuals and institutions to earn recognition and financial benefits from their innovations and creations. This could encompass anything from a groundbreaking device to a scholarly paper published as a result of rigorous research.\n\nAs our university, the University of Northern British Columbia (UNBC), continues to grow—evidenced by an increasing student body, a rising number of alumni, and a plethora of published papers—it’s essential to examine our progress in registered patents and research-based companies. The World Intellectual Property Organization (WIPO) reported in 2020 that the IP system must balance the rights and interests of various groups, including creators, consumers, businesses, and countries at different income levels. This balance is achieved through various mechanisms. For instance, copyright protection is essential for thriving scientific publications that benefit millions globally. Similarly, patents reward inventors while promoting knowledge sharing through public patent applications, fostering innovation.\n\nLooking at patent registration activities in Canada provides an interesting perspective. In 2022-2023, Canadian residents were granted 2,398 patents, with British Columbia accounting for 243 of these. This raises an important question: what was UNBC’s contribution to these numbers?\n\nFortunately, UNBC has taken significant steps to provide a framework for intellectual property and enhance awareness among students and faculty about the importance of IP protection. This knowledge is vital for fostering university-based industrial activities. Many successful businesses, such as Dropbox, Snapchat, and Reddit, originated within university settings. UNBC has the potential to nurture the next wave of innovative enterprises. However, this potential hinges on our collective understanding of how to safeguard our research outputs from unauthorized use. By empowering students and faculty with the knowledge of IP protection, we can ensure that the fruits of their intellectual labor are rightfully theirs.\n\nIn conclusion, as we foster an environment of creativity and innovation at UNBC, it is imperative that we also prioritize the protection of our intellectual property. Recognizing and protecting what is ours is not just a matter of individual achievement; it is essential for the growth and reputation of our university in the competitive landscape of academia and industry.",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "06640325-c8d8-4a49-b3a7-8581e80a8bda",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:03.000Z",
+            "createdAt": "2026-01-12T00:33:01.267Z",
+            "updatedAt": "2026-01-12T05:05:24.616Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        },
+        {
+          "path": "source-idml/cover-page-issue-3-lina-66de36f6.idml",
+          "sha256": "66de36f68984351a5038dfbe7044da754d84220556970d1c2b2cf7de6d57bd54",
+          "storyIds": [
+            "u14ff",
+            "u14b7"
+          ],
+          "sourceTitle": "How to Protect What is Ours",
+          "sourceByline": "Author: Alireza Noory",
+          "notes": "Complete source story recovered from a fuller IDML revision. The paired issue PDF contains blank editorial areas. Original database publication assignment/title/byline remain primary."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "alternate-idml-not-in-paired-pdf",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:03.000Z",
+        "createdAt": "2026-01-12T00:33:01.267Z",
+        "updatedAt": "2026-01-12T05:05:24.616Z"
+      },
+      "authorSourceId": "4e5d8029-09bc-45ac-90bb-94c8595b12ff",
+      "exportPath": "source-archive/articles/legacy-06640325-c8d8-4a49-b3a7-8581e80a8bda-how-to-protect-what-is-ours.md"
+    },
+    {
+      "sourceKey": "legacy:084387b3-87e0-48c9-8a2e-8dfac084aead",
+      "originalArticleId": "084387b3-87e0-48c9-8a2e-8dfac084aead",
+      "title": "Caledonia Mountain Trip Report",
+      "authorName": "Caleb Mueller",
+      "content": "The Journey Begins\n\nOn October 26, a group of us from the UNBC Outdoors Club set out for Caledonia Mountain, a hidden hike about 2-3 hours from Prince George. It was a very rainy morning, which made it very difficult to get to the meeting spot, and a few people who said they were going were no-shows. Fortunately, having less people show up made driving there much faster, since we only had one car. Getting there required navigating the Bowron and Tumuch Forest Service Roads, where loose gravel makes for a cautious but fun drive. As we drove, I mentally prepared myself for 4-6 hours in the pouring rain and wet snow.\n\nTrail Conditions\n\nLuckily, once we got to the trailhead the rain and snow had stopped, our reward for showing up to brave the elements. Our adventure began at the end of a narrow road off Tumuch FSR, where we were immediately challenged by a creek crossing on large, frost-covered logs. Once across, we entered a second-growth spruce forest that led up to a more open, yet barren area. This section seemed like it had burned long ago, leaving muddy terrain that hadn’t fully regrown. Halfway through this clearing, the snow began to deepen, with each of us taking turns creating a trail.\n\nThe Ascent\n\nAs we continued past a large pond, we tried to reach the ridge using an alternate route by zigzagging through deep snow. Small balls of snow kept forming underfoot and rolled down, gathering size in the classic “snowball effect.” At this point, one of my gaiters decided to break, letting a generous amount of snow enter one of my boots. This didn’t really matter though, as my socks were already pretty wet. The real challenge began as we approached the ridge, where we were hit by some of the strongest winds I had ever experienced. Rain jackets were hurriedly thrown on, and everyone fought to keep their balance and prevent their gear from blowing away. The wind was relentless, making it hard to stay upright.\n\nSummit Success\n\nAt the summit, we found a sheltered depression in the rock to escape the wind and enjoy a much-needed lunch. Despite the fierce weather, the breathtaking views of snow-covered peaks and vast wilderness around us made it all worthwhile. Even though the sun wasn’t setting, the horizon was glowing a beautiful orange, making it look like the entirety of western BC was on fire.\n\nThe Descent\n\nOn the descent, we practically ran down the ridge, using the snow as a soft cushion in a style similar to scree skiing. Outdoors Club Executive Ben decided to try and roll down, which ended up being pretty brutal with his pack still on. Our pre-made trail from the hike and gravity made the return much easier, though the clearing was now muddier and slipperier than ever, resulting in a few memorable wipeouts. In total, we covered 9.09 km with 978 meters of elevation gain, pushing through snow, intense wind, and muddy terrain. We congratulated each other for showing up even though we were expecting a miserable rainy day.\n\nGetting There\n\nA detailed description of how to get to this trailhead is available on the Caledonia Ramblers website. An AWD or 4x4 vehicle is definitely required if you want to drive there in the fall or winter, unless you want to add a few kilometers onto your hike from the Tumuch FSR.\n\nJoin Us!\n\nIf you are a UNBC student, you can join the Outdoors Club if you want to go on fun, challenging trips like this!\n\nTrip Statistics:\n\nDistance: 9.09 km\n\nElevation Gain: 978 meters\n\nLocation: ~2-3 hours from Prince George\n\nRequired: AWD/4x4 vehicle (fall/winter)",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "084387b3-87e0-48c9-8a2e-8dfac084aead",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:15:56.000Z",
+            "createdAt": "2026-01-12T00:33:01.461Z",
+            "updatedAt": "2026-01-12T05:05:24.616Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        },
+        {
+          "path": "source-idml/cover-page-issue-3-lina-66de36f6.idml",
+          "sha256": "66de36f68984351a5038dfbe7044da754d84220556970d1c2b2cf7de6d57bd54",
+          "storyIds": [
+            "uc5b",
+            "uc27"
+          ],
+          "sourceTitle": "Caledonia Mountain Trip Report",
+          "sourceByline": "Author: Caleb Mueller",
+          "notes": "Complete source story recovered from a fuller IDML revision. The paired issue PDF contains blank editorial areas. Original database publication assignment/title/byline remain primary."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "alternate-idml-not-in-paired-pdf",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:15:56.000Z",
+        "createdAt": "2026-01-12T00:33:01.461Z",
+        "updatedAt": "2026-01-12T05:05:24.616Z"
+      },
+      "authorSourceId": "8eaff171-5f04-43cf-baff-ac2b698191bb",
+      "exportPath": "source-archive/articles/legacy-084387b3-87e0-48c9-8a2e-8dfac084aead-caledonia-mountain-trip-report.md"
+    },
+    {
+      "sourceKey": "legacy:418cd2e3-28e7-4f4c-a896-bea4eb890179",
+      "originalArticleId": "418cd2e3-28e7-4f4c-a896-bea4eb890179",
+      "title": "How to Balance Part-Time Work with Full-Time Study: A Survival Guide with a Dash of Sarcasm",
+      "authorName": "Lina Maksymova",
+      "content": "Warning: Sarcasm Ahead! If you’re the sensitive type, read with caution (and maybe a helmet). Cheers!\n\nAlright, buckle up, brave multitaskers! If you’re here, you’re probably trying to figure out how to work part-time while studying full-time without, you know, completely losing your sanity. Is it doable? Technically, yes. Is it survivable? Well, that’s the million-dollar question, isn’t it?\n\nThe First Truth: It’s (Almost) Impossible\n\nYes, the legends are true — it is nearly impossible to juggle classes, a job, assignments, social life, and a hint of personal hygiene. But hey, it builds “character,” right? And who doesn’t want to start adulthood with a near-constant state of exhaustion? Imagine the joy of deciding which of these absolutely vital things will be sacrificed each week. Pro tip: Make a list, roll a die, and voilà — one of them gets to go! You’ll just hope it’s not sleep for the third night in a row.\n\nAnd here’s the real kicker: just juggling work and school isn’t enough. Nope. To stand out in today’s job market, you also need experience—preferably ten years, and a Ph.D.-level skill set. Plus, a sprinkle of volunteering, a dash of publications, and ideally, a minor in “multi-tasking under extreme stress.” Not to mention that you’ll be adding all these skills on top of homework, work shifts, and the occasional shower. Fun! And get this —  all for an entry-level position. Yes, congratulations! You’re officially overqualified to start at the bottom.\n\nThe Big Question: Sleep or Social Life?\n\nAh, the age-old debate that students have pondered for generations. What’s more important: those precious few hours of sleep, or the deeply fulfilling experience of socializing? Personally, I like to think of it as a budget: if you spend five hours with friends, you’ll just have to “borrow” those hours from somewhere. Sleep is usually the easiest thing to cut back on since it’s not like your body really needs it... right?\n\nBut remember, with every lost hour of sleep, you earn one hour closer to the very fashionable zombie look. Think about it: trendy, mysterious, and perpetually a little cranky.\n\nClass Participation... or Silent Mode?\n\nSo, you’ve chosen both work and study (bold choice!), and here you are in class, pretending to listen while actively plotting your next nap. You might want to participate—raise that hand, share your brilliant thought — but there’s a slight problem. You’re either semi-conscious or running on a strong cup of coffee and two hours of sleep, and forming coherent sentences isn’t exactly on today’s menu.\n\nIn reality, you’ll probably end up sitting in the back, wearing your best “I’m totally here” face, but actually either trying to stay awake or low-key managing your work social media on the side. Because who needs “class participation” when you’ve got “invisible attendance,” right?\n\nThe Social Network Juggling Act\n\nAnd finally, let’s talk about the real balancing act: keeping up with friends, family, and maybe a few hundred followers while navigating work and study. Of course, if you decide to go all in on work and school, you may have to redefine “social life.” Suddenly, a late-night chat with your work buddies on WhatsApp counts as “socializing.” Meeting up for study groups doubles as friend time. And, for the super daring, you might even pull an all-nighter and manage to post a little something for the ‘gram so everyone knows you’re still surviving. Kinda.\n\nThe Dilemma That Keeps on Giving\n\nLet’s break it down: you have to get a degree (hello, Bachelor’s, our modern-day passport). You also need a job (unless you have a hidden inheritance... and if so, can we be friends?). And don’t forget volunteer work, because employers love a long list of unpaid experience and community service, too. Now, somehow, you’re also expected to keep up with friends, family, and eat three meals a day. Laughable? Absolutely.\n\nAnd speaking of balancing acts, let’s not forget about self-care! I even tried seeing a psychologist, thinking she’d help me organize this circus. Spoiler: instead of turning me into a productivity machine, I got “in touch” with my emotions. Now, here I am, sometimes combining class reflections with crying sessions. Who knew mental health and homework could go hand-in-hand?\n\nThe Bottom Line\n\nIn the end, you can balance it all... with a healthy dose of caffeine, sarcasm, and the expectation that sometimes things will just fall apart. But that’s all part of the journey, isn’t it? Remember, if you’re laughing instead of crying, you’re already winning. Cheers to the balancing act!",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "418cd2e3-28e7-4f4c-a896-bea4eb890179",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:01.000Z",
+            "createdAt": "2026-01-12T00:33:01.323Z",
+            "updatedAt": "2026-01-12T05:05:24.616Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        },
+        {
+          "path": "source-idml/cover-page-issue-3-lina-66de36f6.idml",
+          "sha256": "66de36f68984351a5038dfbe7044da754d84220556970d1c2b2cf7de6d57bd54",
+          "storyIds": [
+            "u149f",
+            "u1425"
+          ],
+          "sourceTitle": "How to Balance Part-Time Work with Full-Time Study: A Survival Guide with a Dash of Sarcasm",
+          "sourceByline": "Author: Lina Maksymova",
+          "notes": "Complete source story recovered from a fuller IDML revision. The paired issue PDF contains blank editorial areas. Original database publication assignment/title/byline remain primary."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "alternate-idml-not-in-paired-pdf",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:01.000Z",
+        "createdAt": "2026-01-12T00:33:01.323Z",
+        "updatedAt": "2026-01-12T05:05:24.616Z"
+      },
+      "authorSourceId": "552e66ce-cf3d-44c7-9ace-eeac044dbed8",
+      "exportPath": "source-archive/articles/legacy-418cd2e3-28e7-4f4c-a896-bea4eb890179-how-to-balance-part-time-work-with-full-time-study-a-survival-guide-with-a-dash-of-sarcasm.md"
+    },
+    {
+      "sourceKey": "legacy:475f8565-e5cf-4b1e-8c5e-19b4b138171b",
+      "originalArticleId": "475f8565-e5cf-4b1e-8c5e-19b4b138171b",
+      "title": "Wii Night at Spark Lab - Gaming, Pizza, and 3D Printed Heads!",
+      "authorName": "Caleb Mueller",
+      "content": "On October 28, Spark Lab at the Wood Innovation and Design Building downtown hosted an exciting Wii games night, drawing in a group of around 10 people for an evening of classic gaming, pizza, and 3D technology. The event was a perfect mix of nostalgia and innovation, bringing together people of all ages to experience both old-school fun and cutting-edge tech.\n\nGaming Above the Printers\n\nThe main attraction of the night was Wii Sports, projected on the wall above the 3D printers. Attendees took turns swinging virtual swords and competing in various games, all while sharing laughs and bonding over fond memories of the Wii era.\n\nFrom Virtual to Physical\n\nBut the fun didn’t stop there. Attendees also had the chance to step into the future with 3D face/body scanning. Our setup allowed guests to get their heads scanned, and then the real magic happened – their heads were 3D printed as miniature models! It was a unique and memorable experience, giving a few willing participants personalized keepsakes to remember the night.\n\nLooking Ahead\n\nSpark Lab plans to keep the momentum going with more events like this in the future. Whether you’re into gaming, tech, or just looking for a fun night out, keep an eye out for upcoming events at Spark Lab!",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "475f8565-e5cf-4b1e-8c5e-19b4b138171b",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:15:59.000Z",
+            "createdAt": "2026-01-12T00:33:01.351Z",
+            "updatedAt": "2026-01-12T05:05:24.616Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        },
+        {
+          "path": "source-idml/cover-page-issue-3-lina-66de36f6.idml",
+          "sha256": "66de36f68984351a5038dfbe7044da754d84220556970d1c2b2cf7de6d57bd54",
+          "storyIds": [
+            "u1552",
+            "u1535"
+          ],
+          "sourceTitle": "Wii Night at Spark Lab - Gaming, Pizza, and 3D Printed Heads!",
+          "sourceByline": "Author: Caleb Mueller",
+          "notes": "Complete source story recovered from a fuller IDML revision. The paired issue PDF contains blank editorial areas. Original database publication assignment/title/byline remain primary."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "alternate-idml-not-in-paired-pdf",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:15:59.000Z",
+        "createdAt": "2026-01-12T00:33:01.351Z",
+        "updatedAt": "2026-01-12T05:05:24.616Z"
+      },
+      "authorSourceId": "8eaff171-5f04-43cf-baff-ac2b698191bb",
+      "exportPath": "source-archive/articles/legacy-475f8565-e5cf-4b1e-8c5e-19b4b138171b-wii-night-at-spark-lab-gaming-pizza-and-3d-printed-heads.md"
+    },
+    {
+      "sourceKey": "legacy:57970c81-218f-45f0-981a-658407a41bdd",
+      "originalArticleId": "57970c81-218f-45f0-981a-658407a41bdd",
+      "title": "Congratulations!",
+      "authorName": "Anonymous",
+      "content": "“Congratulations!” he said with a big smile, as if this was a huge achievement. Our mutual friend had just shared the news of his new relationship, and my former boyfriend quickly offered his enthusiastic approval.\n\nIt struck me as odd, though not surprising. Over the past three years, I’ve noticed that it’s rarely about the milestones people work so hard to achieve — not the promotion they’ve earned, not the side business they’ve been building from the ground up, and not the fact that many of us have been navigating life solo after tough breakups and hardships. No, the loudest congratulations always seem to come when someone enters a new relationship.\n\n“Wow, that’s amazing! I’m so happy for you! Well done!” It almost feels as if finding a partner holds more weight than any personal accomplishment or growth.\n\nI’m happy for my friend, of course, and I’m sure his new girlfriend is wonderful. But I can’t help wondering why this is what everyone is so quick to celebrate. Does having a new partner really outrank all the other forms of success or happiness we work so hard for?\n\nSince I moved to this new place, I’ve spent time rediscovering who I am, strengthening friendships, and growing in ways I never imagined. Yet none of that has ever sparked the same level of excitement or praise. Is it easier to celebrate a new relationship than to acknowledge the more subtle but equally meaningful victories in life?\n\nMaybe I should check if I’m writing this out of unprocessed feelings about my ex.\n\nIt’s not about being bitter or resentful, but it does make me question our cultural priorities. Why do we place such emphasis on romantic relationships, as if they are the ultimate measure of success? I’ve known love in so many forms—through friends, family, and myself. But somehow, those things don’t seem to carry the same weight.\n\nSo yes, I’ll congratulate my friend because I’m genuinely happy for him. Still, I’ll also remind myself that the truest celebrations are the ones that recognize how we grow, whether in relationships or on our own.\n\nBy the way, congratulations to all the incredible humans defending their research this month — that’s also worth celebrating!",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "57970c81-218f-45f0-981a-658407a41bdd",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:15:50.000Z",
+            "createdAt": "2026-01-12T00:33:01.598Z",
+            "updatedAt": "2026-01-12T05:05:24.616Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        },
+        {
+          "path": "source-idml/cover-page-issue-3-lina-66de36f6.idml",
+          "sha256": "66de36f68984351a5038dfbe7044da754d84220556970d1c2b2cf7de6d57bd54",
+          "storyIds": [
+            "ude2",
+            "uda7"
+          ],
+          "sourceTitle": "Congratulations!",
+          "sourceByline": "Author: Anonymous",
+          "notes": "Complete source story recovered from a fuller IDML revision. The paired issue PDF contains blank editorial areas. Original database publication assignment/title/byline remain primary."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "alternate-idml-not-in-paired-pdf",
+      "prefersAnonymity": true,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:15:50.000Z",
+        "createdAt": "2026-01-12T00:33:01.598Z",
+        "updatedAt": "2026-01-12T05:05:24.616Z"
+      },
+      "exportPath": "source-archive/articles/legacy-57970c81-218f-45f0-981a-658407a41bdd-congratulations.md"
+    },
+    {
+      "sourceKey": "legacy:6ea4662e-7143-421c-bf2a-189596cec94d",
+      "originalArticleId": "6ea4662e-7143-421c-bf2a-189596cec94d",
+      "title": "The Introverts Guide to Networking",
+      "authorName": "Tiffany Kuku",
+      "content": "Breaking Down the Networking Myth\n\nNetworking can feel incredibly daunting for anyone, but for introverts, it often seems like an insurmountable challenge that is almost entirely avoided. Here at UNBC, with our intimate campus community, it could potentially be hypothesized as a social experiment designed to see who can climb some sort of invisible ladder to success. The prevailing myth, which is a subconscious belief that many of us hold, is that networking is solely an extrovert activity—implying that only extroverted personalities can thrive in this climate. This belief tends to further deter introverts from engaging in such activities, thus fostering unnecessary anxiety, stress and self-doubt for introverts. Trust me, I know the feeling. However, networking is an instrumental skill for all UNBC students, especially in today’s job market. To assuage some of these fears, here is a guide to connect with others successfully while staying true to your personality.\n\nLeveraging Introverted Strengths in the Northern Community\n\nAs affirmed previously, we tend to approach networking as a form of extraversion expression, that is, we assume these situations are cultivated only for socialites. This belief can overshadow the strengths that introverts also possess in a communication-based setting, which often differ from extroverts but\n\nremain crucial nonetheless. At UNBC, introverts frequently excel at listening, observing, and forming meaningful relationships due to their tendency to maintain a smaller circle. These skills can be harnessed in building networks by leaning towards one-on-one discussions, intimate interactions or small group conversations that are just as relevant as other networking associations. Recognizing these innate skills is the first step towards achieving networking success without the need to conform to our segregated beliefs.\n\nQuality Over Quantity: The UNBC Advantage\n\nAs an introvert at UNBC, you can leverage your ability to make unique, personal connections. Our university’s smaller size is actually perfect for this approach. Focusing on quality over quantity in these endeavours is the best fit, and is a phenomenon that can apply to all. However, due to our natural tendency to avoid big social interactions, determining what networks are of value to your personal growth is essential in forming quality connections regardless of how small these connections may be.\n\nWhen attending big networking events such as the UNBC Career Fair or Northern Development Initiative Trust events, it is expected to have a large gathering of participants and organizations alike. Instead of avoiding the whole event completely, set realistic and achievable goals based on your personality style. Focus on identifying potential rather than measuring size in comparison to others. This allows you to form a clear direction on who you are looking to engage with, and do so authentically as you will be more keen to express your interests this waywithout the pressure of the social situation\n\nitself.\n\nPractical Strategies for UNBC Students\n\nIf you’re feeling particularly overwhelmed just by the thought of attending these events, you can always consider bringing a fellow UNBC student along to serve as comfort and support during your discussions. Having a familiar face nearby can make the situation more relaxed while allowing you to express yourself more freely if you are too intimidated for a solitary encounter. Coupled with this, you can utilize online networking platforms like UNBC’s LinkedIn alumni network or the Northern BC job boards where social relationships can be more controlled, starting with direct messages that are not at face value. It also shows strong intent when you express interest in an organization’s journey or mission, or communicate your drive that aligns with their mission. Remember that the goal is to inform and engage, but know what’s best for you. It is perfectly okay to prioritize your well-being and engage at a pace that feels best for you!\n\nEmbracing Your Style in the North\n\nNetworking does not have to be this unappealing terminology, especially within our unique northern\n\ncommunity. You can transform it into something worthwhile based on your personal or professional interests, at a comfortable pace for you and fits who you are. Embrace your introversion and reform the act of networking from a source of discomfort into a more positive experience. UNBC’s close-knit community provides the perfect environment for introverts to shine - one meaningful connection at a time.",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "6ea4662e-7143-421c-bf2a-189596cec94d",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:15:53.000Z",
+            "createdAt": "2026-01-12T00:33:01.547Z",
+            "updatedAt": "2026-01-12T05:05:24.616Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        },
+        {
+          "path": "source-idml/cover-page-issue-3-lina-66de36f6.idml",
+          "sha256": "66de36f68984351a5038dfbe7044da754d84220556970d1c2b2cf7de6d57bd54",
+          "storyIds": [
+            "u1338",
+            "u12e6"
+          ],
+          "sourceTitle": "Networking for Introverts at UNBC: A Student’s Guide to Authentic Connections",
+          "sourceByline": null,
+          "notes": "Complete source story recovered from a fuller IDML revision. The paired issue PDF contains blank editorial areas. Original database publication assignment/title/byline remain primary."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "alternate-idml-not-in-paired-pdf",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:15:53.000Z",
+        "createdAt": "2026-01-12T00:33:01.547Z",
+        "updatedAt": "2026-01-12T05:05:24.616Z"
+      },
+      "authorSourceId": "439550c2-8ec2-4b2c-87bd-0877afbb7492",
+      "exportPath": "source-archive/articles/legacy-6ea4662e-7143-421c-bf2a-189596cec94d-the-introverts-guide-to-networking.md"
+    },
+    {
+      "sourceKey": "legacy:89f84904-eef4-4e34-aefc-99d445453dbb",
+      "originalArticleId": "89f84904-eef4-4e34-aefc-99d445453dbb",
+      "title": "From Archives to Advocacy: Rediscovering a Legacy of Organ Donation",
+      "authorName": "Ahmad Jalil",
+      "content": "While sifting through the archives of Over the Edge, UNBC’s student newspaper, I stumbled upon a 2004 article titled “Your Organs to Save Lives: Realistically, You’re Not Going to Need Them.” Written by then Editor-in-Chief Carolynne Burkholder, the piece passionately advocated for organ donation and encouraged readers to consider the life-saving impact of becoming donors.\n\nCurious about the author, I delved deeper and discovered that Carolynne Burkholder — now Carolynne Burkholder-James — not only wrote about organ donation but also lived her words. In 2022, nearly two decades after her original article, she donated one of her kidneys to a stranger in Winnipeg. This remarkable journey from advocacy to action is a powerful testament to the enduring impact one individual can have.\n\nUnearthing a Passionate Plea\n\nIn her 2004 article, Carolynne highlighted the critical shortage of organ donors in Canada. She wrote:\n\n“It has always surprised me that the only thing that is certain in life is something that we rarely discuss. Though our mortality is a difficult thing to think about, the possible good that can come out of a death should definitely be some comfort.”\n\nHer words were a call to action for students and the broader community to have conversations about organ donation and to make their wishes known to their families.\n\nFrom Page to Practice\n\nDiscovering that Carolynne had become a living organ donor added a profound layer to her original message. In a recent interview, she reflected on how her views on organ donation evolved over time.\n\n“As a lawyer working in wills and estates, I often help clients with end-of-life planning,” she said. “This work reinforced the importance of organ donation in my mind. I realized I could do more than just talk about it — I could be about it.”\n\nIn December 2022, after months of medical screenings, Carolynne underwent kidney removal surgery at Vancouver General Hospital. Her kidney was immediately transported to a recipient in Winnipeg, someone she has never met.\n\n“It’s really only a month or so out of my life to make such an impact on other people,” she shared. “I felt strongly that this was a way I could give back.”\n\nA Ripple Effect of Generosity\n\nCarolynne was part of the Canadian Blood Services’ national kidney-paired donation program, which relies on non-directed anonymous donors to provide kidneys to patients without matching directed donors. These altruistic donations often trigger a chain reaction, enabling multiple transplants to occur.\n\n“It takes a certain type of person to be so altruistic to do something like that,” said Dr. Olwyn Johnston, medical director of kidney transplant at Vancouver General Hospital. “They go through all those hoops, and they still want to donate.”\n\nInspiration for the UNBC Community\n\nCarolynne’s journey from writing about organ donation as a student to becoming a living donor herself is a powerful narrative that resonates deeply within the UNBC community. It serves as a reminder that our actions, no matter how small they may seem at the time, can lead to significant impacts down the road.\n\nHer story also underscores the value of our student newspaper archives. Hidden within those pages are voices and messages that continue to inspire and challenge us today.\n\nTaking Action\n\nFor those moved by Carolynne’s story, there are several ways to get involved:\n\nRegister as an Organ Donor: Visit the BC Transplant Society’s website at transplant.bc.ca to learn how you can register.\n\nHave the Conversation: Talk to your family and loved ones about your wishes regarding organ donation.\n\nSpread the Word: Use your platforms—be it writing for Over the Edge, social media, or community groups—to raise awareness about the importance of organ donation.\n\nConclusion\n\nThe serendipitous discovery of Carolynne’s 2004 article while exploring the Over the Edge archives led to uncovering a story of true altruism and commitment. Her journey exemplifies how advocacy can evolve into meaningful action, inspiring others to consider how they too can make a difference.\n\nAs members of the UNBC community, we have the opportunity to continue this legacy—through our words and our deeds.\n\n“Becoming an organ donor is more than just a personal decision; it’s a commitment to help others in the most profound way possible,” Carolynne said. “I encourage everyone to think about the difference they can make.”",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "89f84904-eef4-4e34-aefc-99d445453dbb",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:18:17.000Z",
+            "createdAt": "2026-01-12T00:32:59.034Z",
+            "updatedAt": "2026-01-12T05:05:24.616Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        },
+        {
+          "path": "source-idml/cover-page-issue-3-lina-66de36f6.idml",
+          "sha256": "66de36f68984351a5038dfbe7044da754d84220556970d1c2b2cf7de6d57bd54",
+          "storyIds": [
+            "u13c9",
+            "u13b0"
+          ],
+          "sourceTitle": "From Archives to Advocacy: Rediscovering a Legacy of Organ Donation",
+          "sourceByline": "Author: Ahmad Jalil",
+          "notes": "Complete source story recovered from a fuller IDML revision. The paired issue PDF contains blank editorial areas. Original database publication assignment/title/byline remain primary."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "alternate-idml-not-in-paired-pdf",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:17.000Z",
+        "createdAt": "2026-01-12T00:32:59.034Z",
+        "updatedAt": "2026-01-12T05:05:24.616Z"
+      },
+      "authorSourceId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "exportPath": "source-archive/articles/legacy-89f84904-eef4-4e34-aefc-99d445453dbb-from-archives-to-advocacy-rediscovering-a-legacy-of-organ-donation.md"
+    },
+    {
+      "sourceKey": "legacy:9625b3c9-6ac5-405a-9bd5-52496eb61b46",
+      "originalArticleId": "9625b3c9-6ac5-405a-9bd5-52496eb61b46",
+      "title": "UNBC to host events remembering deaths in transgender community",
+      "authorName": "Aubrey Potschka",
+      "content": "Since 1999, Transgender Day of Remembrance (TDoR) has been held globally on November 20 to honor transgender lives lost to violence and hate. This solemn occasion often concludes Transgender Awareness Week, which runs from November 13 to 20.\n\nThis year, the University of Northern British Columbia (UNBC) will observe TDoR as part of Inspiring Women Among Us’s (IWAU) week-long series of workshops and speakers. IWAU, in collaboration with the Northern Pride Centre, will host a ceremony on Wednesday, November 20, from 11:00 a.m. to 12:30 p.m., followed by a brunch. The exact location will be announced on their website, iwau.ca, and shared on social media.\n\nTransgender and gender-diverse individuals are those who live as a different gender than the one assigned to them at birth. Unfortunately, they experience disproportionately high rates of violence and suicide attempts compared to their cisgender (non-transgender) peers. According to Marci Ien, Canada’s Minister for Women and Gender Equality and Youth, 70% of trans youth have faced sexual harassment or assault. A study by the Canadian Centre for Justice and Community Safety Statistics further highlights that trans teens and adults experience more violence than their cisgender counterparts.\n\nThis year’s TDoR is particularly significant for Canadians due to a rise in anti-trans legislation targeting youth over the past two years. Provinces like Saskatchewan and New Brunswick have enacted laws restricting the use of transgender students’ chosen names and pronouns. In some instances, these laws mandate that teachers inform parents if a child is transgender and require transgender students to consult with a psychologist or social worker. Alberta’s provincial government is also expected to introduce similar legislation this fall. A study published in Nature Human Behaviour indicates that such policies significantly increase the risk of suicide among transgender youth.\n\nHostility towards transgender individuals isn’t confined to legislation. In June 2023, a former student attacked a gender studies class at the University of Waterloo, stabbing two students and a professor. The assailant has since pleaded guilty to charges related to the attack.\n\nSmall acts of support can make a significant difference. Using a transgender person’s chosen name, for example, can reduce the risk of suicide, as reported by Reuters. To foster a more inclusive environment, IWAU is hosting a “Lunch & Learn” event titled “Allies Supporting Queer Friendly Spaces—An Introductory Conversation” on Friday, November 15, from 11:30 a.m. to 1:00 p.m. in the Bentley Centre, room 7-172 at UNBC.\n\nStudents seeking a 2SLGBTQIA+ safe space on campus are welcome at the Northern Pride Centre located in room 6-344 of the NUSC building. The Centre offers comfortable seating areas, a library with a wide range of fiction and non-fiction books, and resources about the 2SLGBTQIA+ community.\n\nIf you or someone you know is experiencing suicidal thoughts, help is available. Call 9-8-8 to connect with a 24/7 national crisis hotline. Trans Lifeline also offers support at 877-330-6366 for trans, gender-diverse, and questioning individuals.",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "9625b3c9-6ac5-405a-9bd5-52496eb61b46",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:15:51.000Z",
+            "createdAt": "2026-01-12T00:33:01.577Z",
+            "updatedAt": "2026-01-12T05:05:24.616Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        },
+        {
+          "path": "source-idml/cover-page-issue-3-lina-66de36f6.idml",
+          "sha256": "66de36f68984351a5038dfbe7044da754d84220556970d1c2b2cf7de6d57bd54",
+          "storyIds": [
+            "ufef",
+            "ue3a"
+          ],
+          "sourceTitle": "UNBC Observes Transgender Day of Remembrance Amid Rising Anti-Trans Legislation",
+          "sourceByline": "Author: Aubrey Potschka",
+          "notes": "Complete source story recovered from a fuller IDML revision. The paired issue PDF contains blank editorial areas. Original database publication assignment/title/byline remain primary."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "alternate-idml-not-in-paired-pdf",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:15:51.000Z",
+        "createdAt": "2026-01-12T00:33:01.577Z",
+        "updatedAt": "2026-01-12T05:05:24.616Z"
+      },
+      "authorSourceId": "7c4a9078-6281-483d-9783-e9ae5d6dcda5",
+      "exportPath": "source-archive/articles/legacy-9625b3c9-6ac5-405a-9bd5-52496eb61b46-unbc-to-host-events-remembering-deaths-in-transgender-community.md"
+    },
+    {
+      "sourceKey": "legacy:a7795693-b827-4c6e-a4da-70c2ca5306a3",
+      "originalArticleId": "a7795693-b827-4c6e-a4da-70c2ca5306a3",
+      "title": "Outside My Comfort Zone: Lessons from a Business Seminar",
+      "authorName": "Parniya Peykamiyan",
+      "content": "The Power of Saying Yes\n\nAs a UNBC student, you get invited to countless events and seminars through your email inbox. I always try to attend these events, believing they offer fresh perspectives on different subjects and valuable networking opportunities. As a Computer Science student, I find it particularly enriching to venture outside my technical field and explore diverse subjects. While algorithms and programming might seem worlds apart from business theory and sustainability, I’ve learned that some of the most valuable insights come from cross-disciplinary exposure. Plus, observing different presentation styles and public speaking approaches helps me develop my own communication skills – something crucial in any field.\n\nAn Unexpected Journey\n\nWhen I received an invitation for a research presentation by Dr. Niki Khorasani, a postdoctoral fellow from the Alberta School of Business who was interviewing for an Organizational Development Professor position at UNBC’s School of Business, I was immediately intrigued. Her presentation title, “Trojan Mice: Unraveling Institutional Myths Through Entrepreneurship,” sparked my curiosity. As I added it to my calendar, I thought this might also make for an interesting article for Over The Edge, UNBC’s student newspaper, allowing me to share these innovative ideas with the broader student community.\n\nWhat struck me most was how her research could apply to our daily lives as students and community members. While we often think about success in terms of constant growth – better grades, higher salaries, bigger businesses – Dr. Khorasani suggested that sometimes “enough” can be better than “more.” This perspective challenges how we typically think about success and progress in our lives.\n\nThe Research: Small Changes, Big Impact\n\nDr. Khorasani’s research looks at something we rarely question: the idea that businesses must always grow bigger. She calls this the “growth myth” – the belief that success always means expansion. Through interviews with 50 entrepreneurs and 80 hours of watching how they work, she discovered something interesting: some business owners are choosing a different path. These “Trojan mice,” as she calls them, are making small but meaningful changes to how they run their businesses.\n\nThink of it like this: instead of trying to become the next Amazon or Walmart, these entrepreneurs ask themselves “What’s enough?” They focus on what their community needs and how they can make a positive impact, rather than just making more money. Some share their business solutions with others instead of keeping them secret. Others choose to grow slowly, like a tree, rather than rushing to expand.\n\nA New Perspective on Success\n\nThis way of thinking about business might seem unusual, but it’s catching on. From local farmers’ markets to community-owned shops, we can see examples all around us of businesses that prioritize community benefit over unlimited growth. Perhaps the most fascinating takeaway from Dr. Khorasani’s research is that meaningful change doesn’t always require massive disruption – sometimes small, thoughtful adjustments, like mice quietly making their way through walls, can lead to powerful transformations in how we think and act.\n\nLessons for Student Life\n\nAs students, we often feel pressure to constantly achieve more, grow faster, and compete harder. Dr. Khorasani’s research reminds us that there might be alternative paths to success. Maybe success isn’t always about being the biggest or the fastest, but about finding what works best for us and our communities.\n\nFinal Thoughts\n\nWhile I walked into this seminar with my computer programming mindset, I left with new perspectives on how we might think about growth and success in our own lives. Sometimes the most valuable learning experiences come from stepping outside our usual subjects and listening to different viewpoints. That’s the beauty of being part of a university community – these unexpected encounters can reshape how we think about success, growth, and what really matters in our careers and lives.",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "a7795693-b827-4c6e-a4da-70c2ca5306a3",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:15:58.000Z",
+            "createdAt": "2026-01-12T00:33:01.433Z",
+            "updatedAt": "2026-01-12T05:05:24.616Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        },
+        {
+          "path": "source-idml/cover-page-issue-3-lina-66de36f6.idml",
+          "sha256": "66de36f68984351a5038dfbe7044da754d84220556970d1c2b2cf7de6d57bd54",
+          "storyIds": [
+            "u104e",
+            "u1015"
+          ],
+          "sourceTitle": "Outside My Comfort Zone: Lessons from a Business Seminar",
+          "sourceByline": "Author: Parniya Peykamiyan",
+          "notes": "Complete source story recovered from a fuller IDML revision. The paired issue PDF contains blank editorial areas. Original database publication assignment/title/byline remain primary."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "alternate-idml-not-in-paired-pdf",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:15:58.000Z",
+        "createdAt": "2026-01-12T00:33:01.433Z",
+        "updatedAt": "2026-01-12T05:05:24.616Z"
+      },
+      "authorSourceId": "16f7b97b-4d41-4e68-a8b0-3794609d489d",
+      "exportPath": "source-archive/articles/legacy-a7795693-b827-4c6e-a4da-70c2ca5306a3-outside-my-comfort-zone-lessons-from-a-business-seminar.md"
+    },
+    {
+      "sourceKey": "legacy:e95039de-b595-41cc-b811-c254116987cd",
+      "originalArticleId": "e95039de-b595-41cc-b811-c254116987cd",
+      "title": "Remembrance Day: Honoring Heroes of All Colors",
+      "authorName": "Bruce Danesh",
+      "content": "If you’re new to Canada or curious about local traditions, you might wonder about the red poppies you see each November. What’s the meaning behind Remembrance Day, and why is it so significant here? Here’s a breakdown of what this day represents and how Prince George commemorates it.\n\nWhy Do We Have Remembrance Day?\n\nRemembrance Day has been a Canadian tradition since the end of World War I. Every November 11th, Canadians honor over 2 million people who have served in times of war, conflict, and peace. This day isn’t about celebrating military victories – it’s about remembering those who risked everything for the freedoms we enjoy today.\n\nHow Prince George Remembers\n\nIn Prince George, Remembrance Day isn’t just a televised event – it’s a day that brings the community together. The main ceremony happens at Veterans Plaza near the Civic Centre, where people from all walks of life gather to pay their respects. Organized by the Royal Canadian Legion Branch 43, the event includes a parade along Canada Games Way, featuring veterans, active service members, students, and families.\n\nWhat makes our local events unique is their inclusivity. After the ceremony, the Legion opens its doors to everyone, offering a chance to meet veterans, hear their stories, and understand why this day matters to so many.\n\nLocal Ways to Remember\n\nPrince George has its own traditions for this day. Local veteran Derk Grooten, for example, leads an 11-kilometer run at 2 a.m. in honor of fellow service members. This is just one way our community keeps the spirit of remembrance alive. Thanks to donations and community support, the Legion Branch 43 makes these events accessible, allowing everyone to participate – whether you’re new here or have lived in Prince George all your life.\n\nA Brief History of Remembrance Day\n\nRemembrance Day dates back to 1919, first celebrated in the British Commonwealth by King George V to remember those who lost their lives in the First World War. Initially called Armistice Day, it was observed on the Monday of the week of November 11th until 1931, when it was officially moved to November 11th. This shift marked a change from celebrating military victories to honoring those who made the ultimate sacrifice.\n\nThe Overlooked Stories of Remembrance Day\n\nYou may not read much about this in textbooks, but the history of Remembrance Day includes the contributions of millions of soldiers of color. For instance, during World War I, around 4 million non-European soldiers served in various theaters of the war. European powers, including Britain and France, recruited troops from their colonies – a reminder of the complex role colonialism played in both world wars. France recruited troops from Senegal, North Africa, Vietnam, and Madagascar, while Britain enlisted soldiers from India, Africa, and the Caribbean.\n\nRemembering Soldiers of Color\n\nThe experiences of soldiers of color were often shaped by discrimination within the military. Promotions and awards were frequently withheld, and these soldiers’ contributions were often overlooked. In World War I, West African soldiers on the Western Front faced higher casualty rates and endured great hardship, with many of their acts of bravery going unrecognized.\n\nTo give some perspective on the sacrifices made by soldiers of color:\n\nOver 3.8 million Indian soldiers served in both World Wars, yet only 31 received the prestigious Victoria Cross.\n\nThe British West Indies Regiment, comprised of 16,000 Caribbean soldiers, earned 81 medals during World War I.\n\nIn World War II, over a million African soldiers served, and 80,000 African workers contributed to building essential war resources.\n\nWhy This Matters Today\n\nAs a new Canadian, I’ve come to understand that Remembrance Day isn’t only about the past – it’s about recognizing how we arrived here and acknowledging everyone’s contributions, regardless of their background. When we gather at Veterans Plaza on November 11th, we’re honoring service members from every corner of the world.\n\nIf you’d like to participate, the Legion Branch 43 welcomes everyone to their events. Even if Remembrance Day is new to you, there’s a place for you in this tradition. The two-minute silence observed at 11:00 a.m. on November 11th may seem small, but it’s a meaningful way to say “thank you” to all who served – no matter their origin.\n\nLest we forget.",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "e95039de-b595-41cc-b811-c254116987cd",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:08.000Z",
+            "createdAt": "2026-01-12T00:33:01.226Z",
+            "updatedAt": "2026-01-12T05:05:24.616Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        },
+        {
+          "path": "source-idml/cover-page-issue-3-lina-66de36f6.idml",
+          "sha256": "66de36f68984351a5038dfbe7044da754d84220556970d1c2b2cf7de6d57bd54",
+          "storyIds": [
+            "ue76",
+            "ue55"
+          ],
+          "sourceTitle": "Remembrance Day: Honoring Heroes of All Backgrounds",
+          "sourceByline": "Author: Behrouz Danesh",
+          "notes": "Complete source story recovered from a fuller IDML revision. The paired issue PDF contains blank editorial areas. Original database publication assignment/title/byline remain primary."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "alternate-idml-not-in-paired-pdf",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:08.000Z",
+        "createdAt": "2026-01-12T00:33:01.226Z",
+        "updatedAt": "2026-01-12T05:05:24.616Z"
+      },
+      "authorSourceId": "2b00e476-2840-4401-a69c-795ff8eacded",
+      "exportPath": "source-archive/articles/legacy-e95039de-b595-41cc-b811-c254116987cd-remembrance-day-honoring-heroes-of-all-colors.md"
+    },
+    {
+      "sourceKey": "legacy:ebd55d71-1c39-46bb-9a54-a5c0bc5c8587",
+      "originalArticleId": "ebd55d71-1c39-46bb-9a54-a5c0bc5c8587",
+      "title": "Quack Attack: The Great Ducking Mystery Takes UNBC by Storm",
+      "authorName": "Ahmad Jalil",
+      "content": "The University of Northern British Columbia (UNBC) is buzzing with a playful phenomenon that’s left staff and students both puzzled and amused. Rubber ducks have been mysteriously appearing in offices across the campus, turning workspaces into whimsical displays and sparking a wave of speculation about the mastermind behind this lighthearted prank.\n\nThe Feathered Frenzy Begins\n\nThe “ducking” saga quietly started in March when a new face arrived on campus. What began as isolated incidents soon escalated by April and May, with rubber ducks popping up in more and more locations. During orientation week, the ducks seemed to multiply overnight, especially with office doors left open amid the campus hustle and bustle. Building 8 emerged as a hotspot, with numerous offices finding these feathered friends perched on desks, bookshelves, and computer monitors.\n\nSuspects and Speculations As the ducks continued to appear, theories about the culprit began to circulate. Marika Zacharias, an assistant in the Academic Success Centre, found her office adorned with glow-in-the-dark ducks. Some have associated her with the prank due to the sheer number of ducks in her workspace. However, her colleague Katherine Saunderson stated that Marika denies any involvement in orchestrating the prank.\n\nAttention also turned to Dakota Den Duyf, who works as a Career Readiness Coordinator. Given Dakota’s history of playful antics, many speculate that this “would be a Dakota move.” The idea that Dakota or their team might be behind the prank adds another layer to the campus mystery.\n\nEven the Registrar’s Office hasn’t been spared. Alongside other departments, they’ve discovered ducks nestled among paperwork and office supplies. This isn’t their first brush with campus hijinks—they’ve previously experienced a flamingo prank, possibly linked to the Geep Club, and even rumors of pothole pranks have surfaced.\n\nCommunity Embraces the Quackery\n\nRather than causing frustration, the ducking incidents have infused the campus with a sense of fun and camaraderie. On Valentine’s Day, ducks were given out as tokens of appreciation, adding to the festive atmosphere. Stories circulate of a father who asked a coworker to hide ducks in various offices, contributing to the ongoing prank and highlighting the community’s embrace of the unexpected.\n\nBill Clyne, involved in coordinating work-integrated learning projects, may have witnessed or even participated in some of the duck placements. His involvement underscores the widespread nature of the prank, bridging various departments and roles within the university.\n\nSome suggest that the Access Resource Centre (ARC) could be the source of the ducks, given their practice of handing out ducks and flamingos as “emotional support animals.” The fact that the archives remain untouched by the ducking suggests that the prank might be a departmental inside job or that the pranksters have yet to reach every corner of the campus. Note that graduation ducks are also given to students who have used ARC services and are graduating.\n\nA Campus United in Laughter\n\nWhat started as a small prank has evolved into a cherished campus tradition, offering a welcome distraction from academic pressures. Offices have begun to adopt the ducks, incorporating them into their décor and daily routines. The playful atmosphere fosters a sense of unity and joy among staff and students alike.\n\nThe Great Ducking Mystery has not only provided entertainment but also sparked conversations and connections across departments. Whether it’s Marika, Dakota, or someone from the Access Resource Centre, the campus is alive with speculation and delight.\n\nHave You Been Ducked?\n\nWe want to hear your stories! If you’ve found a rubber duck — or perhaps another unexpected guest like a flamingo — in your office or around campus, share your experience with Over the Edge. Let’s unravel this mystery together, one quack at a time.",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "ebd55d71-1c39-46bb-9a54-a5c0bc5c8587",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:18:18.000Z",
+            "createdAt": "2026-01-12T00:32:58.816Z",
+            "updatedAt": "2026-01-12T05:05:24.616Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        },
+        {
+          "path": "source-idml/cover-page-issue-3-lina-66de36f6.idml",
+          "sha256": "66de36f68984351a5038dfbe7044da754d84220556970d1c2b2cf7de6d57bd54",
+          "storyIds": [
+            "u10d1",
+            "u108d"
+          ],
+          "sourceTitle": "Quack Attack: The Great Ducking Mystery Takes UNBC by Storm",
+          "sourceByline": "Author: Ahmad Jalil",
+          "notes": "Complete source story recovered from a fuller IDML revision. The paired issue PDF contains blank editorial areas. Original database publication assignment/title/byline remain primary."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "alternate-idml-not-in-paired-pdf",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:18.000Z",
+        "createdAt": "2026-01-12T00:32:58.816Z",
+        "updatedAt": "2026-01-12T05:05:24.616Z"
+      },
+      "authorSourceId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "exportPath": "source-archive/articles/legacy-ebd55d71-1c39-46bb-9a54-a5c0bc5c8587-quack-attack-the-great-ducking-mystery-takes-unbc-by-storm.md"
+    },
+    {
+      "sourceKey": "idml:66de36f6:u129d",
+      "title": "Flash From the Past: Culture Shock: Delving into the dungeons of sub-culture",
+      "authorName": "Travis Nielsen",
+      "content": "This originally appeared in Over the Edge Volume 11, Issue 2\n\n“Gamer” is a loose term for anyone who enjoys playing the old-fashioned paper-and-pencil style role-playing games.\n\nUNBC is home to an ethnically diverse population, a multitude of people crusading for the rights of the less fortunate throughout the world. These larger, more official groups make us forget about the smaller clubs, groups, and organizations that bring us all together.\n\nIt is in these sub-cultural groups that we forge the most lasting friendships, and escape from pressures associated with the culture shock of university life. The fact that these groups get pushed out of the limelight is something that should bring shame to all of us, because of their importance in our lives.\n\nSomething must be done to help bring these great groups back into the glamour of the spotlight, and that is exactly what I intend to do! Now because this is the first article in this epic series, what better way to start than to expose the truth behind those high adventuring, dice-chucking Gamers?\n\n“Gamer” is a loose term for anyone who enjoys playing the old-fashioned paper-and-pencil style role-playing games. These use a dice-based rule system that gauges the ability to perform actions, and storytelling to create a game where player characters face many challenges and heroic struggles.\n\nIt is a common myth that gamers are a secretive group, lurking in empty university classrooms late at night, or in smelly living rooms and basements throughout the world. Subsisting on high-caffeine cola, large amounts of junk food, and pizza; staying up for all hours of the night in order to commit satanic rituals and beat up kittens.\n\nThis is entirely not true. Some gamers do have unhealthy obsessions with the games they play, making them painfully hard to be around most of the time. The majority are interesting, intelligent people who enjoy having a good time not involving Satanism or the beating of kittens.\n\nGamers are simply out to enjoy themselves by escaping into a fantasy world where they are not subject to the stresses of day-to-day life, and save fair maidens by slaying evil dragons deep within dangerous dungeons.\n\nSo the next time you meet a gamer, please do not pass them up as a geek or weirdo. Instead, ask them more about the exciting hobby of role-playing games. You just might want to get involved. On the other hand, if you are a gamer, please do not fear those that might judge you for engaging in this imaginative pastime.\n\nBe proud that you are Sir Gallant, knight of the western kingdoms for five hours a week. Roll your dice with dignity, hold your head high and say “I am a gamer!”",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumbers": [],
+          "section": "editorial",
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-idml/cover-page-issue-3-lina-66de36f6.idml",
+          "sha256": "66de36f68984351a5038dfbe7044da754d84220556970d1c2b2cf7de6d57bd54",
+          "storyIds": [
+            "u12c6",
+            "u129d"
+          ],
+          "sourceByline": "Author: Travis Nielsen",
+          "notes": "Byline is unknown unless explicitly printed. CFUR branding is a section attribution, not an invented personal byline."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "idml-only-not-in-paired-pdf",
+      "exportPath": "source-archive/articles/idml-66de36f6-u129d-flash-from-the-past-culture-shock-delving-into-the-dungeons-of-sub-culture.md"
+    },
+    {
+      "sourceKey": "idml:66de36f6:u123a",
+      "title": "Flash From the Past: Residence Security Insecure",
+      "authorName": "Carolynne Burkholder",
+      "content": "This originally appeared in Over the Edge Volume 11, Issue 5\n\nUNBC students living in residence are outraged at the amount of damage vandals were able to cause to their buildings on Saturday, October 30th, even though security was posted at the doors to residence.\n\nBoth buildings were targeted by a vandalism spree that took place over Halloween weekend. Neyoh received the brunt of the damage with several holes punched into the walls in the hallways and stairwells. Keyoh also received a fair share of vandalism when the culprits uncoiled one of the fire hoses and used it to spray down the hall, causing major damage to the drywall.\n\nAccording to Ali Sucro, Residence Life Coordinator of the UNBC Residences, the charges of the damage “are not finalized.” The holes in the walls should cost a few hundred dollars to repair, and the water damage is also costly but harder to assess at this time.\n\nIn addition to the building repair costs, students in residence will also bear the expense of recoiling the fire hose, which must be handled by the fire department. This will cost the residence upwards of $200.\n\nAlthough this rash of vandalism was extremely costly, Sucro asserts that this may not be the worst occurrence of vandalism in residence. She stated that “every year is different” in terms of the scope and cost of damages caused by students in residence and their guests.\n\nDespite the recurring issues, Sucro is adamant that the behavior must stop. “I want this to stop. I really do,” she said.\n\nA simple hose like this was turned into a weapon of mass destruction when a thoughtless vandal uncoiled it and used it to create a giant waterfall down the stairs in the Keyoh residence building.\n\nOutrage Over Vandalism Continues\n\nStudents in residence are understandably upset about the recent vandalism in their living space.\n\n“I find it really frustrating,” stated a second-year Social Work student. “When you move out on your own, it’s assumed that you have a certain amount of maturity. It’s obvious that this is not the case.”\n\nAnother second-year resident added, “It’s pretty sad that we have to live in this kind of environment.”\n\nA key concern about the October 30th incident is that University Security was present all weekend but was unable to prevent the vandalism. Their presence, intended to deter such acts, drew criticism for failing to protect the residence.\n\nSucro clarified that security officers were stationed at the residences primarily “to ensure the safety and security of students living in the residences. I can only imagine what might have happened if security had not been present,” she stated.\n\nHowever, many students feel that security measures are ineffective in preventing vandalism. A fourth-year English student remarked, “The security guards are totally ineffective because there are two ways to get into both buildings. All they do is turn away people’s friends, which is just annoying. If we’re paying for security, why aren’t they accountable when damage occurs? I’d rather pay for video cameras to be installed.”\n\nA third-year Psychology student echoed the frustration, particularly since they live on the floor where the majority of damage occurred. “[The extent of the damage] really upsets me. You’d think security would prevent this. They clearly can’t do their job.”\n\nGodfrey Medhurst, Head of Facilities at UNBC, stated that security guards are “not allowed on the premises at the residences unless specifically invited by a Resident Assistant.” This policy limits the ability of security to ensure the safety of residents.\n\nAs of press time, no suspects have been identified or caught. If the issue persists, residents will face large repair bills at the end of the semester.\n\nthe damage] really upsets me. You’d think security would prevent this. They clearly can’t do their job.”\n\nGodfrey Medhurst, Head of Facilities at UNBC, stated that security guards are “not allowed on the premises at the residences unless specifically invited by a Resident Assistant.” This policy limits the ability of security to ensure the safety of residents.\n\nAs of press time, no suspects have been identified or caught. If the issue persists, residents will face large repair bills at the end of the semester.",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumbers": [],
+          "section": "editorial",
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-idml/cover-page-issue-3-lina-66de36f6.idml",
+          "sha256": "66de36f68984351a5038dfbe7044da754d84220556970d1c2b2cf7de6d57bd54",
+          "storyIds": [
+            "u126c",
+            "u123a"
+          ],
+          "sourceByline": "By Carolynne Burkholder, Editor in Chief",
+          "notes": "Byline is unknown unless explicitly printed. CFUR branding is a section attribution, not an invented personal byline."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "idml-only-not-in-paired-pdf",
+      "exportPath": "source-archive/articles/idml-66de36f6-u123a-flash-from-the-past-residence-security-insecure.md"
+    },
+    {
+      "sourceKey": "recurring:president-qa:a3cef1bbb4763da1",
+      "title": "President Answers",
+      "authorName": null,
+      "content": "**Question**\n\nDo you believe in horoscopes?\n\n**Answer**\n\nHoroscopes are not something I typically follow but do not discount for those that see value in them",
+      "bodyFormat": "markdown",
+      "kind": "recurring",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumbers": [
+            6
+          ],
+          "section": "president-qa"
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumbers": [
+            6
+          ],
+          "section": "president-qa"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-idml/cover-page-issue-3-lina-a8e3ae7d.idml",
+          "sha256": "a8e3ae7d0bef723679545dab0da03cb0e77ca0f4e2a1b86a89506722b734a4c1",
+          "storyIds": [
+            "u6a4",
+            "u6ba"
+          ],
+          "notes": "Original question/response grouped semantically; no respondent byline is invented."
+        },
+        {
+          "path": "source-idml/cover-page-issue-3-lina-b4b35ce4.idml",
+          "sha256": "b4b35ce4a9806030f83cce04aa24dcac1cba7de61a1d245bf8aa04b291a9dd55",
+          "storyIds": [
+            "u398",
+            "u3ae"
+          ],
+          "notes": "Original question/response grouped semantically; no respondent byline is invented."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "visible-in-source-pdf",
+      "question": "Do you believe in horoscopes?",
+      "answer": "Horoscopes are not something I typically follow but do not discount for those that see value in them",
+      "exportPath": "source-archive/articles/recurring-president-qa-a3cef1bbb4763da1-president-answers.md"
+    }
+  ],
+  "assets": [
+    {
+      "id": "source-pdf:cover-page-issue-3-lina-6dd82589",
+      "path": "originals/cover-page-issue-3-lina-6dd82589.pdf",
+      "sha256": "6dd825893953a1b049656a2ec41ef2c5513d215b8854351caf2ec47660fb72e5",
+      "mimeType": "application/pdf",
+      "availability": "reference-only",
+      "assetRole": "source-reference",
+      "documentIds": [
+        "cover-page-issue-3-lina-6dd82589"
+      ],
+      "label": "November 2024 · Issue 3"
+    },
+    {
+      "id": "attachment:2f5ee6fa-468b-4f64-881b-87e1817506d8",
+      "sourceKey": "legacy:06640325-c8d8-4a49-b3a7-8581e80a8bda",
+      "originalArticleId": "06640325-c8d8-4a49-b3a7-8581e80a8bda",
+      "originalAttachmentId": "2f5ee6fa-468b-4f64-881b-87e1817506d8",
+      "path": "source-archive-media/2f5ee6fa-468b-4f64-881b-87e1817506d8.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 26584,
+      "originalFileName": "how-to-protect-what-is-ours-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:8ebdb4e8-05c4-4581-90a7-d5788c28b77d",
+      "sourceKey": "legacy:06640325-c8d8-4a49-b3a7-8581e80a8bda",
+      "originalArticleId": "06640325-c8d8-4a49-b3a7-8581e80a8bda",
+      "originalAttachmentId": "8ebdb4e8-05c4-4581-90a7-d5788c28b77d",
+      "path": "source-archive-media/8ebdb4e8-05c4-4581-90a7-d5788c28b77d.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 6959374,
+      "originalFileName": "how-to-protect-what-is-ours-2.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:65c60b93-8f58-44d0-99e6-e10379e4b747",
+      "sourceKey": "legacy:06640325-c8d8-4a49-b3a7-8581e80a8bda",
+      "originalArticleId": "06640325-c8d8-4a49-b3a7-8581e80a8bda",
+      "originalAttachmentId": "65c60b93-8f58-44d0-99e6-e10379e4b747",
+      "path": "source-archive-media/65c60b93-8f58-44d0-99e6-e10379e4b747.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 6985944,
+      "originalFileName": "how-to-protect-what-is-ours-3.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:0a8f7ba8-e990-4067-aa34-f3519558374f",
+      "sourceKey": "legacy:06640325-c8d8-4a49-b3a7-8581e80a8bda",
+      "originalArticleId": "06640325-c8d8-4a49-b3a7-8581e80a8bda",
+      "originalAttachmentId": "0a8f7ba8-e990-4067-aa34-f3519558374f",
+      "path": "source-archive-media/0a8f7ba8-e990-4067-aa34-f3519558374f.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 27497,
+      "originalFileName": "how-to-protect-what-is-ours-4.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:d36feb4d-0d67-4a1a-995c-865422c2a76f",
+      "sourceKey": "legacy:084387b3-87e0-48c9-8a2e-8dfac084aead",
+      "originalArticleId": "084387b3-87e0-48c9-8a2e-8dfac084aead",
+      "originalAttachmentId": "d36feb4d-0d67-4a1a-995c-865422c2a76f",
+      "path": "source-archive-media/d36feb4d-0d67-4a1a-995c-865422c2a76f.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 552932,
+      "originalFileName": "caledonia-mountain-trip-report-1.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:f4791d66-aaf1-42e6-8714-296a8ba78a5c",
+      "sourceKey": "legacy:084387b3-87e0-48c9-8a2e-8dfac084aead",
+      "originalArticleId": "084387b3-87e0-48c9-8a2e-8dfac084aead",
+      "originalAttachmentId": "f4791d66-aaf1-42e6-8714-296a8ba78a5c",
+      "path": "source-archive-media/f4791d66-aaf1-42e6-8714-296a8ba78a5c.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 426841,
+      "originalFileName": "caledonia-mountain-trip-report-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:7c7a2a31-3683-4f1e-9925-31ac3975094a",
+      "sourceKey": "legacy:084387b3-87e0-48c9-8a2e-8dfac084aead",
+      "originalArticleId": "084387b3-87e0-48c9-8a2e-8dfac084aead",
+      "originalAttachmentId": "7c7a2a31-3683-4f1e-9925-31ac3975094a",
+      "path": "source-archive-media/7c7a2a31-3683-4f1e-9925-31ac3975094a.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 28374,
+      "originalFileName": "caledonia-mountain-trip-report-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:59acbef6-ae22-49f7-863b-cbc60ddfc62f",
+      "sourceKey": "legacy:084387b3-87e0-48c9-8a2e-8dfac084aead",
+      "originalArticleId": "084387b3-87e0-48c9-8a2e-8dfac084aead",
+      "originalAttachmentId": "59acbef6-ae22-49f7-863b-cbc60ddfc62f",
+      "path": "source-archive-media/59acbef6-ae22-49f7-863b-cbc60ddfc62f.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 6294992,
+      "originalFileName": "caledonia-mountain-trip-report-4.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:3182f24e-4636-47f8-a5f3-32dc7343ffc0",
+      "sourceKey": "legacy:084387b3-87e0-48c9-8a2e-8dfac084aead",
+      "originalArticleId": "084387b3-87e0-48c9-8a2e-8dfac084aead",
+      "originalAttachmentId": "3182f24e-4636-47f8-a5f3-32dc7343ffc0",
+      "path": "source-archive-media/3182f24e-4636-47f8-a5f3-32dc7343ffc0.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 5376050,
+      "originalFileName": "caledonia-mountain-trip-report-5.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 3,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:43670498-130e-40dd-a175-c01b27c4f724",
+      "sourceKey": "legacy:084387b3-87e0-48c9-8a2e-8dfac084aead",
+      "originalArticleId": "084387b3-87e0-48c9-8a2e-8dfac084aead",
+      "originalAttachmentId": "43670498-130e-40dd-a175-c01b27c4f724",
+      "path": "source-archive-media/43670498-130e-40dd-a175-c01b27c4f724.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 1342597,
+      "originalFileName": "caledonia-mountain-trip-report-6.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 4,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:ce77e3ec-5d29-4d59-a809-aeb98ee31ffa",
+      "sourceKey": "legacy:418cd2e3-28e7-4f4c-a896-bea4eb890179",
+      "originalArticleId": "418cd2e3-28e7-4f4c-a896-bea4eb890179",
+      "originalAttachmentId": "ce77e3ec-5d29-4d59-a809-aeb98ee31ffa",
+      "path": "source-archive-media/ce77e3ec-5d29-4d59-a809-aeb98ee31ffa.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 24169,
+      "originalFileName": "how-to-balance-part-time-work-with-full-time-study-a-survival-guide-with-a-dash-of-sarcasm-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:b7800560-b06a-4e55-b09d-bb806cb7f4b3",
+      "sourceKey": "legacy:418cd2e3-28e7-4f4c-a896-bea4eb890179",
+      "originalArticleId": "418cd2e3-28e7-4f4c-a896-bea4eb890179",
+      "originalAttachmentId": "b7800560-b06a-4e55-b09d-bb806cb7f4b3",
+      "path": "source-archive-media/b7800560-b06a-4e55-b09d-bb806cb7f4b3.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 27876,
+      "originalFileName": "how-to-balance-part-time-work-with-full-time-study-a-survival-guide-with-a-dash-of-sarcasm-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:5e872a8a-7efd-42f4-8f55-4d3b2db245d5",
+      "sourceKey": "legacy:475f8565-e5cf-4b1e-8c5e-19b4b138171b",
+      "originalArticleId": "475f8565-e5cf-4b1e-8c5e-19b4b138171b",
+      "originalAttachmentId": "5e872a8a-7efd-42f4-8f55-4d3b2db245d5",
+      "path": "source-archive-media/5e872a8a-7efd-42f4-8f55-4d3b2db245d5.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 25851,
+      "originalFileName": "wii-night-at-spark-lab-gaming-pizza-and-3d-printed-heads-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:27edfcc4-141b-45df-bbbd-8bb47fe5aa59",
+      "sourceKey": "legacy:475f8565-e5cf-4b1e-8c5e-19b4b138171b",
+      "originalArticleId": "475f8565-e5cf-4b1e-8c5e-19b4b138171b",
+      "originalAttachmentId": "27edfcc4-141b-45df-bbbd-8bb47fe5aa59",
+      "path": "source-archive-media/27edfcc4-141b-45df-bbbd-8bb47fe5aa59.jpeg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 3947849,
+      "originalFileName": "wii-night-at-spark-lab-gaming-pizza-and-3d-printed-heads-2.jpeg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:098f8d6d-533c-4b9e-86bb-3bdebbf8a48b",
+      "sourceKey": "legacy:475f8565-e5cf-4b1e-8c5e-19b4b138171b",
+      "originalArticleId": "475f8565-e5cf-4b1e-8c5e-19b4b138171b",
+      "originalAttachmentId": "098f8d6d-533c-4b9e-86bb-3bdebbf8a48b",
+      "path": "source-archive-media/098f8d6d-533c-4b9e-86bb-3bdebbf8a48b.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 3951178,
+      "originalFileName": "wii-night-at-spark-lab-gaming-pizza-and-3d-printed-heads-3.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:eb1ae504-e2b1-4d51-873f-e05dc921be3a",
+      "sourceKey": "legacy:475f8565-e5cf-4b1e-8c5e-19b4b138171b",
+      "originalArticleId": "475f8565-e5cf-4b1e-8c5e-19b4b138171b",
+      "originalAttachmentId": "eb1ae504-e2b1-4d51-873f-e05dc921be3a",
+      "path": "source-archive-media/eb1ae504-e2b1-4d51-873f-e05dc921be3a.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 395764,
+      "originalFileName": "wii-night-at-spark-lab-gaming-pizza-and-3d-printed-heads-4.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:1cb59f68-2925-423b-bc18-1c27491f9f00",
+      "sourceKey": "legacy:57970c81-218f-45f0-981a-658407a41bdd",
+      "originalArticleId": "57970c81-218f-45f0-981a-658407a41bdd",
+      "originalAttachmentId": "1cb59f68-2925-423b-bc18-1c27491f9f00",
+      "path": "source-archive-media/1cb59f68-2925-423b-bc18-1c27491f9f00.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 25960,
+      "originalFileName": "congratulations-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:03b5cd54-91d6-47c1-a424-dfab2b558dc7",
+      "sourceKey": "legacy:57970c81-218f-45f0-981a-658407a41bdd",
+      "originalArticleId": "57970c81-218f-45f0-981a-658407a41bdd",
+      "originalAttachmentId": "03b5cd54-91d6-47c1-a424-dfab2b558dc7",
+      "path": "source-archive-media/03b5cd54-91d6-47c1-a424-dfab2b558dc7.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 26342,
+      "originalFileName": "congratulations-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:7a1f3751-bd74-498c-8191-4bf842fc049a",
+      "sourceKey": "legacy:57970c81-218f-45f0-981a-658407a41bdd",
+      "originalArticleId": "57970c81-218f-45f0-981a-658407a41bdd",
+      "originalAttachmentId": "7a1f3751-bd74-498c-8191-4bf842fc049a",
+      "path": "source-archive-media/7a1f3751-bd74-498c-8191-4bf842fc049a.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 22857,
+      "originalFileName": "congratulations-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:f5a85872-43a3-42a3-bb00-b89b29abab84",
+      "sourceKey": "legacy:57970c81-218f-45f0-981a-658407a41bdd",
+      "originalArticleId": "57970c81-218f-45f0-981a-658407a41bdd",
+      "originalAttachmentId": "f5a85872-43a3-42a3-bb00-b89b29abab84",
+      "path": "source-archive-media/f5a85872-43a3-42a3-bb00-b89b29abab84.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 394309,
+      "originalFileName": "congratulations-4.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:1c0ae50a-c7a9-473b-bd95-45c533a90f5d",
+      "sourceKey": "legacy:6ea4662e-7143-421c-bf2a-189596cec94d",
+      "originalArticleId": "6ea4662e-7143-421c-bf2a-189596cec94d",
+      "originalAttachmentId": "1c0ae50a-c7a9-473b-bd95-45c533a90f5d",
+      "path": "source-archive-media/1c0ae50a-c7a9-473b-bd95-45c533a90f5d.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 27905,
+      "originalFileName": "the-introverts-guide-to-networking-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:4e4db55c-98bd-4bf2-aec9-3877bdd7922a",
+      "sourceKey": "legacy:6ea4662e-7143-421c-bf2a-189596cec94d",
+      "originalArticleId": "6ea4662e-7143-421c-bf2a-189596cec94d",
+      "originalAttachmentId": "4e4db55c-98bd-4bf2-aec9-3877bdd7922a",
+      "path": "source-archive-media/4e4db55c-98bd-4bf2-aec9-3877bdd7922a.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 27467,
+      "originalFileName": "the-introverts-guide-to-networking-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:bf26a94e-bcdb-4f4f-8092-9d387e667efc",
+      "sourceKey": "legacy:6ea4662e-7143-421c-bf2a-189596cec94d",
+      "originalArticleId": "6ea4662e-7143-421c-bf2a-189596cec94d",
+      "originalAttachmentId": "bf26a94e-bcdb-4f4f-8092-9d387e667efc",
+      "path": "source-archive-media/bf26a94e-bcdb-4f4f-8092-9d387e667efc.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21720,
+      "originalFileName": "the-introverts-guide-to-networking-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:148ade04-869b-4c30-a80e-6c76ccdba776",
+      "sourceKey": "legacy:9625b3c9-6ac5-405a-9bd5-52496eb61b46",
+      "originalArticleId": "9625b3c9-6ac5-405a-9bd5-52496eb61b46",
+      "originalAttachmentId": "148ade04-869b-4c30-a80e-6c76ccdba776",
+      "path": "source-archive-media/148ade04-869b-4c30-a80e-6c76ccdba776.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 26965,
+      "originalFileName": "unbc-to-host-events-remembering-deaths-in-transgender-community-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:3478b86e-7f05-421c-af3d-d8dd58650802",
+      "sourceKey": "legacy:9625b3c9-6ac5-405a-9bd5-52496eb61b46",
+      "originalArticleId": "9625b3c9-6ac5-405a-9bd5-52496eb61b46",
+      "originalAttachmentId": "3478b86e-7f05-421c-af3d-d8dd58650802",
+      "path": "source-archive-media/3478b86e-7f05-421c-af3d-d8dd58650802.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 27157,
+      "originalFileName": "unbc-to-host-events-remembering-deaths-in-transgender-community-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:20d2e0ba-f215-4984-b507-c869de361679",
+      "sourceKey": "legacy:9625b3c9-6ac5-405a-9bd5-52496eb61b46",
+      "originalArticleId": "9625b3c9-6ac5-405a-9bd5-52496eb61b46",
+      "originalAttachmentId": "20d2e0ba-f215-4984-b507-c869de361679",
+      "path": "source-archive-media/20d2e0ba-f215-4984-b507-c869de361679.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 29039,
+      "originalFileName": "unbc-to-host-events-remembering-deaths-in-transgender-community-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:14c9c02c-6c9f-4535-987a-a521845eb9f0",
+      "sourceKey": "legacy:a7795693-b827-4c6e-a4da-70c2ca5306a3",
+      "originalArticleId": "a7795693-b827-4c6e-a4da-70c2ca5306a3",
+      "originalAttachmentId": "14c9c02c-6c9f-4535-987a-a521845eb9f0",
+      "path": "source-archive-media/14c9c02c-6c9f-4535-987a-a521845eb9f0.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 27483,
+      "originalFileName": "outside-my-comfort-zone-lessons-from-a-business-seminar-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:f97c4dd2-2901-45b3-a21e-dbbb7ab7f3fb",
+      "sourceKey": "legacy:a7795693-b827-4c6e-a4da-70c2ca5306a3",
+      "originalArticleId": "a7795693-b827-4c6e-a4da-70c2ca5306a3",
+      "originalAttachmentId": "f97c4dd2-2901-45b3-a21e-dbbb7ab7f3fb",
+      "path": "source-archive-media/f97c4dd2-2901-45b3-a21e-dbbb7ab7f3fb.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 23296,
+      "originalFileName": "outside-my-comfort-zone-lessons-from-a-business-seminar-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:a8598f3c-b71a-4bfb-ab46-c46466c277e8",
+      "sourceKey": "legacy:a7795693-b827-4c6e-a4da-70c2ca5306a3",
+      "originalArticleId": "a7795693-b827-4c6e-a4da-70c2ca5306a3",
+      "originalAttachmentId": "a8598f3c-b71a-4bfb-ab46-c46466c277e8",
+      "path": "source-archive-media/a8598f3c-b71a-4bfb-ab46-c46466c277e8.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 204207,
+      "originalFileName": "outside-my-comfort-zone-lessons-from-a-business-seminar-3.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:eda24bf6-d21f-4f16-bc5c-daee7fcc7457",
+      "sourceKey": "legacy:e95039de-b595-41cc-b811-c254116987cd",
+      "originalArticleId": "e95039de-b595-41cc-b811-c254116987cd",
+      "originalAttachmentId": "eda24bf6-d21f-4f16-bc5c-daee7fcc7457",
+      "path": "source-archive-media/eda24bf6-d21f-4f16-bc5c-daee7fcc7457.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 210543,
+      "originalFileName": "remembrance-day-honoring-heroes-of-all-colors-1.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:195b5872-845b-482f-b863-8240733fa908",
+      "sourceKey": "legacy:e95039de-b595-41cc-b811-c254116987cd",
+      "originalArticleId": "e95039de-b595-41cc-b811-c254116987cd",
+      "originalAttachmentId": "195b5872-845b-482f-b863-8240733fa908",
+      "path": "source-archive-media/195b5872-845b-482f-b863-8240733fa908.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 27170,
+      "originalFileName": "remembrance-day-honoring-heroes-of-all-colors-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:7e8d8c97-25d5-490d-9e5c-444cb549e68b",
+      "sourceKey": "legacy:e95039de-b595-41cc-b811-c254116987cd",
+      "originalArticleId": "e95039de-b595-41cc-b811-c254116987cd",
+      "originalAttachmentId": "7e8d8c97-25d5-490d-9e5c-444cb549e68b",
+      "path": "source-archive-media/7e8d8c97-25d5-490d-9e5c-444cb549e68b.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 31220,
+      "originalFileName": "remembrance-day-honoring-heroes-of-all-colors-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:24ff6c4b-9e7b-4c02-8a04-3b99bf9c0d9f",
+      "sourceKey": "legacy:ebd55d71-1c39-46bb-9a54-a5c0bc5c8587",
+      "originalArticleId": "ebd55d71-1c39-46bb-9a54-a5c0bc5c8587",
+      "originalAttachmentId": "24ff6c4b-9e7b-4c02-8a04-3b99bf9c0d9f",
+      "path": "source-archive-media/24ff6c4b-9e7b-4c02-8a04-3b99bf9c0d9f.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 10779476,
+      "originalFileName": "quack-attack-the-great-ducking-mystery-takes-unbc-by-storm-1.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:d273969e-0aaf-4889-979e-0833c87279ce",
+      "sourceKey": "legacy:ebd55d71-1c39-46bb-9a54-a5c0bc5c8587",
+      "originalArticleId": "ebd55d71-1c39-46bb-9a54-a5c0bc5c8587",
+      "originalAttachmentId": "d273969e-0aaf-4889-979e-0833c87279ce",
+      "path": "source-archive-media/d273969e-0aaf-4889-979e-0833c87279ce.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 9956065,
+      "originalFileName": "quack-attack-the-great-ducking-mystery-takes-unbc-by-storm-2.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:0643bfc5-bad5-4f71-a0b5-3057e592d646",
+      "sourceKey": "legacy:ebd55d71-1c39-46bb-9a54-a5c0bc5c8587",
+      "originalArticleId": "ebd55d71-1c39-46bb-9a54-a5c0bc5c8587",
+      "originalAttachmentId": "0643bfc5-bad5-4f71-a0b5-3057e592d646",
+      "path": "source-archive-media/0643bfc5-bad5-4f71-a0b5-3057e592d646.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 11725802,
+      "originalFileName": "quack-attack-the-great-ducking-mystery-takes-unbc-by-storm-3.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 3,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:a0fab996-edb6-461f-b123-12cb8c0d91b7",
+      "sourceKey": "legacy:ebd55d71-1c39-46bb-9a54-a5c0bc5c8587",
+      "originalArticleId": "ebd55d71-1c39-46bb-9a54-a5c0bc5c8587",
+      "originalAttachmentId": "a0fab996-edb6-461f-b123-12cb8c0d91b7",
+      "path": "source-archive-media/a0fab996-edb6-461f-b123-12cb8c0d91b7.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 13533605,
+      "originalFileName": "quack-attack-the-great-ducking-mystery-takes-unbc-by-storm-4.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 4,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:1c9e286f-af2c-4659-932a-e345589c500d",
+      "sourceKey": "legacy:ebd55d71-1c39-46bb-9a54-a5c0bc5c8587",
+      "originalArticleId": "ebd55d71-1c39-46bb-9a54-a5c0bc5c8587",
+      "originalAttachmentId": "1c9e286f-af2c-4659-932a-e345589c500d",
+      "path": "source-archive-media/1c9e286f-af2c-4659-932a-e345589c500d.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 8987582,
+      "originalFileName": "quack-attack-the-great-ducking-mystery-takes-unbc-by-storm-5.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 5,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:892821d0-ee1e-4516-9bfa-78064ebb626c",
+      "sourceKey": "legacy:ebd55d71-1c39-46bb-9a54-a5c0bc5c8587",
+      "originalArticleId": "ebd55d71-1c39-46bb-9a54-a5c0bc5c8587",
+      "originalAttachmentId": "892821d0-ee1e-4516-9bfa-78064ebb626c",
+      "path": "source-archive-media/892821d0-ee1e-4516-9bfa-78064ebb626c.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 9164442,
+      "originalFileName": "quack-attack-the-great-ducking-mystery-takes-unbc-by-storm-6.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 6,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:4ef45fc1-8420-4e6c-b0c6-2bd818852f89",
+      "sourceKey": "legacy:ebd55d71-1c39-46bb-9a54-a5c0bc5c8587",
+      "originalArticleId": "ebd55d71-1c39-46bb-9a54-a5c0bc5c8587",
+      "originalAttachmentId": "4ef45fc1-8420-4e6c-b0c6-2bd818852f89",
+      "path": "source-archive-media/4ef45fc1-8420-4e6c-b0c6-2bd818852f89.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 24317344,
+      "originalFileName": "quack-attack-the-great-ducking-mystery-takes-unbc-by-storm-7.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 7,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:1f969cf0-377c-4daf-87d0-2777effd431e",
+      "sourceKey": "legacy:ebd55d71-1c39-46bb-9a54-a5c0bc5c8587",
+      "originalArticleId": "ebd55d71-1c39-46bb-9a54-a5c0bc5c8587",
+      "originalAttachmentId": "1f969cf0-377c-4daf-87d0-2777effd431e",
+      "path": "source-archive-media/1f969cf0-377c-4daf-87d0-2777effd431e.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 25522,
+      "originalFileName": "quack-attack-the-great-ducking-mystery-takes-unbc-by-storm-8.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:58bc8f3a-4a55-45b2-9ad6-0d6436ffcf52",
+      "sourceKey": "legacy:ebd55d71-1c39-46bb-9a54-a5c0bc5c8587",
+      "originalArticleId": "ebd55d71-1c39-46bb-9a54-a5c0bc5c8587",
+      "originalAttachmentId": "58bc8f3a-4a55-45b2-9ad6-0d6436ffcf52",
+      "path": "source-archive-media/58bc8f3a-4a55-45b2-9ad6-0d6436ffcf52.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 23974,
+      "originalFileName": "quack-attack-the-great-ducking-mystery-takes-unbc-by-storm-9.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "embedded-image:f2b901bdba9e19ba32525e55",
+      "path": "source-archive-media/f2b901bdba9e19ba32525e55.png",
+      "sha256": "f2b901bdba9e19ba32525e5582550882184a977a9fa28e1ba7290e5ace3bba2c",
+      "size": 12895,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 289,
+      "height": 146,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 5,
+          "rect": [
+            51.519996643066406,
+            711.3600463867188,
+            120.64295959472656,
+            746.197998046875
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 5,
+          "rect": [
+            51.519996643066406,
+            711.3600463867188,
+            120.64295959472656,
+            746.197998046875
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 5,
+          "rect": [
+            51.519996643066406,
+            711.3600463867188,
+            120.64295959472656,
+            746.197998046875
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:8101d22847ffd736ddc89131",
+      "path": "source-archive-media/8101d22847ffd736ddc89131.png",
+      "sha256": "8101d22847ffd736ddc89131fcb5bd1d83e66510dfa6078d49e3f6cd8e2d773e",
+      "size": 30845,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 644,
+      "height": 167,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 5,
+          "rect": [
+            47.981693267822266,
+            660.802734375,
+            202.52880859375,
+            700.7003173828125
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 5,
+          "rect": [
+            47.981693267822266,
+            660.802734375,
+            202.52880859375,
+            700.7003173828125
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 5,
+          "rect": [
+            47.981693267822266,
+            660.802734375,
+            202.52880859375,
+            700.7003173828125
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 5,
+          "rect": [
+            51.53889083862305,
+            705.1455078125,
+            206.0860137939453,
+            745.0430908203125
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:9b91a4dc299ad7576df9acb6",
+      "path": "source-archive-media/9b91a4dc299ad7576df9acb6.png",
+      "sha256": "9b91a4dc299ad7576df9acb66093471b3a261b58402af14450a6e6eea51f6214",
+      "size": 637420,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 2092,
+      "height": 420,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:62168541c16179e0063fc610",
+      "path": "source-archive-media/62168541c16179e0063fc610.png",
+      "sha256": "62168541c16179e0063fc6100e31ebbd4fda6a68949bd084c300d7f228e94e13",
+      "size": 560496,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1073,
+      "height": 1350,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:0eb846c1e44762a745997bdc",
+      "path": "source-archive-media/0eb846c1e44762a745997bdc.png",
+      "sha256": "0eb846c1e44762a745997bdccc16043a8c82eebd0b334ed1392a6c3759ae301b",
+      "size": 136931,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 513,
+      "height": 518,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:f05490026dfd90d468d675d0",
+      "path": "source-archive-media/f05490026dfd90d468d675d0.png",
+      "sha256": "f05490026dfd90d468d675d0a57e7f20c399326d5d11e04075dbf508e5a223ef",
+      "size": 63779,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 309,
+      "height": 228,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:8578443f23f678008e70d6a8",
+      "path": "source-archive-media/8578443f23f678008e70d6a8.png",
+      "sha256": "8578443f23f678008e70d6a884f7ced9f1b6874e29a552f32a99213f47cb22a2",
+      "size": 418082,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 2000,
+      "height": 2000,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 13,
+          "rect": [
+            376.52001953125,
+            411.9599914550781,
+            716.756591796875,
+            752.1965942382812
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 13,
+          "rect": [
+            376.52001953125,
+            411.9599914550781,
+            716.756591796875,
+            752.1965942382812
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 13,
+          "rect": [
+            376.52001953125,
+            411.9599914550781,
+            716.756591796875,
+            752.1965942382812
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 13,
+          "rect": [
+            376.52001953125,
+            411.9599914550781,
+            716.756591796875,
+            752.1965942382812
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:bcd4eafbb6316326ab6e3b42",
+      "path": "source-archive-media/bcd4eafbb6316326ab6e3b42.png",
+      "sha256": "bcd4eafbb6316326ab6e3b427b22d32bc2efad8d74416e469d497b50cb79b4eb",
+      "size": 2059967,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1321,
+      "height": 2750,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:b98df3fed8d5f9a32682b40d",
+      "path": "source-archive-media/b98df3fed8d5f9a32682b40d.jpeg",
+      "sha256": "b98df3fed8d5f9a32682b40d38f39c83d316f03a23110d46d9149e8bca3b401f",
+      "size": 1970404,
+      "mimeType": "image/jpeg",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 2540,
+      "height": 1601,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-6dd82589"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 1,
+          "rect": [
+            43.03531265258789,
+            172.44076538085938,
+            712.8333129882812,
+            604.0330810546875
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:66fbaafde1a9b71db9fd54e6",
+      "path": "source-archive-media/66fbaafde1a9b71db9fd54e6.jpeg",
+      "sha256": "66fbaafde1a9b71db9fd54e696dad440363b25ae79283e7e8190a05c664f742a",
+      "size": 610029,
+      "mimeType": "image/jpeg",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 2847,
+      "height": 2876,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-6dd82589"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 17,
+          "rect": [
+            36.484554290771484,
+            65.197998046875,
+            719.5885620117188,
+            755.2069091796875
+          ]
+        }
+      ]
+    }
+  ]
+}

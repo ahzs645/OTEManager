@@ -1,0 +1,3603 @@
+{
+  "schemaVersion": "ote.source-archive.issue.v1",
+  "archiveId": "ote-original-issues-2026-10-09",
+  "issue": {
+    "documentId": "issue-7-march-2025-dfcbb959",
+    "label": "March 2025 · Issue 7",
+    "volumeNumber": 31,
+    "issueNumber": 7,
+    "releaseDate": "2025-03-20",
+    "pageCount": 17,
+    "source": {
+      "path": "originals/issue-7-march-2025-dfcbb959.pdf",
+      "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727"
+    },
+    "sourceNotes": "Source interior datelines are stale September 26, 2024; issue metadata follows the March cover. Source contains blank/uncompleted article areas.",
+    "sourceCoverMetadata": null
+  },
+  "articles": [
+    {
+      "sourceKey": "legacy:220d3d89-638c-459d-bcdd-76234bde474c",
+      "originalArticleId": "220d3d89-638c-459d-bcdd-76234bde474c",
+      "title": "Climate Change Education for Teachers in Northern BC",
+      "authorName": "Alex Lautensach",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "220d3d89-638c-459d-bcdd-76234bde474c",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:17:33.000Z",
+            "createdAt": "2026-01-12T00:32:59.650Z",
+            "updatedAt": "2026-01-12T05:05:24.607Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:33.000Z",
+        "createdAt": "2026-01-12T00:32:59.650Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      },
+      "authorSourceId": "d1d5eb50-ae1b-4175-b3dd-8f6089eca647",
+      "exportPath": "source-archive/articles/legacy-220d3d89-638c-459d-bcdd-76234bde474c-climate-change-education-for-teachers-in-northern-bc.md"
+    },
+    {
+      "sourceKey": "legacy:2f039633-04e9-499e-92fa-81278f15067c",
+      "originalArticleId": "2f039633-04e9-499e-92fa-81278f15067c",
+      "title": "Living with Chronic Illness and Health Anxiety as a 20-Something-Year-Old ",
+      "authorName": "Bella Mesquita",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "2f039633-04e9-499e-92fa-81278f15067c",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:17:26.000Z",
+            "createdAt": "2026-01-12T00:32:59.767Z",
+            "updatedAt": "2026-01-12T05:05:24.607Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:26.000Z",
+        "createdAt": "2026-01-12T00:32:59.767Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      },
+      "authorSourceId": "a8cd2393-da04-4093-8b2d-c869a27d268e",
+      "exportPath": "source-archive/articles/legacy-2f039633-04e9-499e-92fa-81278f15067c-living-with-chronic-illness-and-health-anxiety-as-a-20-something-year-old.md"
+    },
+    {
+      "sourceKey": "legacy:638fef49-a8bf-448d-b6c1-5b708fc0c313",
+      "originalArticleId": "638fef49-a8bf-448d-b6c1-5b708fc0c313",
+      "title": "NBCGSS Student Week 2025: A Week of Diverse and Exciting Events",
+      "authorName": "Ehsan Taghizadehghoozhdi",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "638fef49-a8bf-448d-b6c1-5b708fc0c313",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:18:31.000Z",
+            "createdAt": "2026-01-12T00:32:57.927Z",
+            "updatedAt": "2026-01-12T05:05:24.607Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:31.000Z",
+        "createdAt": "2026-01-12T00:32:57.927Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      },
+      "authorSourceId": "ef0a948c-a140-47d9-a199-f40501a380f3",
+      "exportPath": "source-archive/articles/legacy-638fef49-a8bf-448d-b6c1-5b708fc0c313-nbcgss-student-week-2025-a-week-of-diverse-and-exciting-events.md"
+    },
+    {
+      "sourceKey": "legacy:74d95b90-dc8f-475d-9c16-0a01049f3e47",
+      "originalArticleId": "74d95b90-dc8f-475d-9c16-0a01049f3e47",
+      "title": "From Student Writer to Professional Journalist: A Conversation with Former Over The Edge Editor Colin Slark",
+      "authorName": "Ahmad Jalil",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "74d95b90-dc8f-475d-9c16-0a01049f3e47",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:18:26.000Z",
+            "createdAt": "2026-01-12T00:32:58.653Z",
+            "updatedAt": "2026-01-12T05:05:24.607Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:26.000Z",
+        "createdAt": "2026-01-12T00:32:58.653Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      },
+      "authorSourceId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "exportPath": "source-archive/articles/legacy-74d95b90-dc8f-475d-9c16-0a01049f3e47-from-student-writer-to-professional-journalist-a-conversation-with-former-over-the-edge-editor-.md"
+    },
+    {
+      "sourceKey": "legacy:7cbf5b8f-a84d-4db6-ab5e-647ce732c65b",
+      "originalArticleId": "7cbf5b8f-a84d-4db6-ab5e-647ce732c65b",
+      "title": "When Do Graduate Students Write?",
+      "authorName": "Alireza Noory",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "7cbf5b8f-a84d-4db6-ab5e-647ce732c65b",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:17:30.000Z",
+            "createdAt": "2026-01-12T00:32:59.693Z",
+            "updatedAt": "2026-01-12T05:05:24.607Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:30.000Z",
+        "createdAt": "2026-01-12T00:32:59.693Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      },
+      "authorSourceId": "4e5d8029-09bc-45ac-90bb-94c8595b12ff",
+      "exportPath": "source-archive/articles/legacy-7cbf5b8f-a84d-4db6-ab5e-647ce732c65b-when-do-graduate-students-write.md"
+    },
+    {
+      "sourceKey": "legacy:833112ae-b84c-4c80-b513-2d19719f0dcc",
+      "originalArticleId": "833112ae-b84c-4c80-b513-2d19719f0dcc",
+      "title": "Graduate Teaching Assistants at UNBC: Know Your Rights and Benefits",
+      "authorName": "Behnoosh Roknaldini Ghaleh Dezh",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "833112ae-b84c-4c80-b513-2d19719f0dcc",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:17:41.000Z",
+            "createdAt": "2026-01-12T00:32:59.567Z",
+            "updatedAt": "2026-01-12T05:05:24.607Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:41.000Z",
+        "createdAt": "2026-01-12T00:32:59.567Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      },
+      "authorSourceId": "83446d71-f1f2-4d26-97b5-8a367baaff92",
+      "exportPath": "source-archive/articles/legacy-833112ae-b84c-4c80-b513-2d19719f0dcc-graduate-teaching-assistants-at-unbc-know-your-rights-and-benefits.md"
+    },
+    {
+      "sourceKey": "legacy:9e6dc4d6-dc75-4323-a878-77c27021ffed",
+      "originalArticleId": "9e6dc4d6-dc75-4323-a878-77c27021ffed",
+      "title": "22nd Annual BC Natural Resources Forum in Prince George",
+      "authorName": "Ehsan Taghizadehghoozhdi",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "9e6dc4d6-dc75-4323-a878-77c27021ffed",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:17:16.000Z",
+            "createdAt": "2026-01-12T00:33:00.035Z",
+            "updatedAt": "2026-01-12T05:05:24.607Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:16.000Z",
+        "createdAt": "2026-01-12T00:33:00.035Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      },
+      "authorSourceId": "ef0a948c-a140-47d9-a199-f40501a380f3",
+      "exportPath": "source-archive/articles/legacy-9e6dc4d6-dc75-4323-a878-77c27021ffed-22nd-annual-bc-natural-resources-forum-in-prince-george.md"
+    },
+    {
+      "sourceKey": "legacy:a95d6deb-c841-459d-951d-1eddf81a112d",
+      "originalArticleId": "a95d6deb-c841-459d-951d-1eddf81a112d",
+      "title": "Bringing Home Bronze: The National Geomatics Competition",
+      "authorName": "Rachel Pagdin",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "a95d6deb-c841-459d-951d-1eddf81a112d",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:17:28.000Z",
+            "createdAt": "2026-01-12T00:32:59.738Z",
+            "updatedAt": "2026-01-12T05:05:24.607Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:28.000Z",
+        "createdAt": "2026-01-12T00:32:59.738Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      },
+      "authorSourceId": "eaf43105-bfd7-454a-b2f0-edcd1f272cd2",
+      "exportPath": "source-archive/articles/legacy-a95d6deb-c841-459d-951d-1eddf81a112d-bringing-home-bronze-the-national-geomatics-competition.md"
+    },
+    {
+      "sourceKey": "legacy:b0ff476a-f6b2-4db4-8be2-1b8a4e9ada59",
+      "originalArticleId": "b0ff476a-f6b2-4db4-8be2-1b8a4e9ada59",
+      "title": "Unlocking Free Travel: How Smart Credit Card Use Can Get Students Free Flights",
+      "authorName": "Ayaan Punjani",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "b0ff476a-f6b2-4db4-8be2-1b8a4e9ada59",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:17:32.000Z",
+            "createdAt": "2026-01-12T00:32:59.666Z",
+            "updatedAt": "2026-01-12T05:05:24.607Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:32.000Z",
+        "createdAt": "2026-01-12T00:32:59.666Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      },
+      "authorSourceId": "61e91831-1114-45b8-a6fd-4b449cc97e7d",
+      "exportPath": "source-archive/articles/legacy-b0ff476a-f6b2-4db4-8be2-1b8a4e9ada59-unlocking-free-travel-how-smart-credit-card-use-can-get-students-free-flights.md"
+    },
+    {
+      "sourceKey": "legacy:b5eee631-7d91-41d7-a66e-55fc81dae40b",
+      "originalArticleId": "b5eee631-7d91-41d7-a66e-55fc81dae40b",
+      "title": "PEI, I Have A Question for You",
+      "authorName": "Nolan Maggs",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "b5eee631-7d91-41d7-a66e-55fc81dae40b",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:18:44.000Z",
+            "createdAt": "2026-01-12T00:32:57.067Z",
+            "updatedAt": "2026-01-12T05:05:24.607Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:44.000Z",
+        "createdAt": "2026-01-12T00:32:57.067Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      },
+      "authorSourceId": "f089f245-4236-417f-87b1-86e856c5aa7c",
+      "exportPath": "source-archive/articles/legacy-b5eee631-7d91-41d7-a66e-55fc81dae40b-pei-i-have-a-question-for-you.md"
+    },
+    {
+      "sourceKey": "legacy:bc65e566-fb41-461a-9549-2a6ffd21e81c",
+      "originalArticleId": "bc65e566-fb41-461a-9549-2a6ffd21e81c",
+      "title": "A Mystic Semester",
+      "authorName": "Luthien Thielmann",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "bc65e566-fb41-461a-9549-2a6ffd21e81c",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:17:24.000Z",
+            "createdAt": "2026-01-12T00:32:59.821Z",
+            "updatedAt": "2026-01-12T05:05:24.607Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:24.000Z",
+        "createdAt": "2026-01-12T00:32:59.821Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      },
+      "authorSourceId": "b511ac5f-6dc1-4794-ad23-326a84caf234",
+      "exportPath": "source-archive/articles/legacy-bc65e566-fb41-461a-9549-2a6ffd21e81c-a-mystic-semester.md"
+    },
+    {
+      "sourceKey": "legacy:cc5909d5-ab48-46b3-8bef-e353a44e6e38",
+      "originalArticleId": "cc5909d5-ab48-46b3-8bef-e353a44e6e38",
+      "title": "Nowruz at UNBC: Welcoming Spring and Saying Goodbye to Winter",
+      "authorName": "Bruce Danesh",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "cc5909d5-ab48-46b3-8bef-e353a44e6e38",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:17:46.000Z",
+            "createdAt": "2026-01-12T00:32:59.470Z",
+            "updatedAt": "2026-01-12T05:05:24.607Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:46.000Z",
+        "createdAt": "2026-01-12T00:32:59.470Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      },
+      "authorSourceId": "2b00e476-2840-4401-a69c-795ff8eacded",
+      "exportPath": "source-archive/articles/legacy-cc5909d5-ab48-46b3-8bef-e353a44e6e38-nowruz-at-unbc-welcoming-spring-and-saying-goodbye-to-winter.md"
+    },
+    {
+      "sourceKey": "legacy:cf5a1a0e-c4f7-40f4-90be-d8945f90ac28",
+      "originalArticleId": "cf5a1a0e-c4f7-40f4-90be-d8945f90ac28",
+      "title": "Growing Innovation: UNBC Student Leads Hydroponics Project for Sustainable Food Production",
+      "authorName": "Adrien Zimmerman",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "cf5a1a0e-c4f7-40f4-90be-d8945f90ac28",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:18:10.000Z",
+            "createdAt": "2026-01-12T00:32:59.191Z",
+            "updatedAt": "2026-01-12T05:05:24.607Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:10.000Z",
+        "createdAt": "2026-01-12T00:32:59.191Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      },
+      "authorSourceId": "9ed9f127-a575-4f85-8481-f88c07e9b5bd",
+      "exportPath": "source-archive/articles/legacy-cf5a1a0e-c4f7-40f4-90be-d8945f90ac28-growing-innovation-unbc-student-leads-hydroponics-project-for-sustainable-food-production.md"
+    },
+    {
+      "sourceKey": "legacy:d5f86ece-6c4e-47dd-a477-2d05aea855bb",
+      "originalArticleId": "d5f86ece-6c4e-47dd-a477-2d05aea855bb",
+      "title": "Prince George finally Unfrozen- Welcoming Spring!",
+      "authorName": "Shivi Juyal",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "d5f86ece-6c4e-47dd-a477-2d05aea855bb",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:17:43.000Z",
+            "createdAt": "2026-01-12T00:32:59.507Z",
+            "updatedAt": "2026-01-12T05:05:24.607Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:43.000Z",
+        "createdAt": "2026-01-12T00:32:59.507Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      },
+      "authorSourceId": "e33bf3eb-9c43-4c52-9806-3886de089edc",
+      "exportPath": "source-archive/articles/legacy-d5f86ece-6c4e-47dd-a477-2d05aea855bb-prince-george-finally-unfrozen-welcoming-spring.md"
+    },
+    {
+      "sourceKey": "legacy:dc60ed63-9c0d-4630-b521-93a33fcbd7c4",
+      "originalArticleId": "dc60ed63-9c0d-4630-b521-93a33fcbd7c4",
+      "title": "Student Week 2025: British Columbia Federation of Students (BCFS) Leadership Workshop",
+      "authorName": "Ehsan Taghizadehghoozhdi",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "dc60ed63-9c0d-4630-b521-93a33fcbd7c4",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:17:20.000Z",
+            "createdAt": "2026-01-12T00:32:59.874Z",
+            "updatedAt": "2026-01-12T05:05:24.607Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:20.000Z",
+        "createdAt": "2026-01-12T00:32:59.874Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      },
+      "authorSourceId": "ef0a948c-a140-47d9-a199-f40501a380f3",
+      "exportPath": "source-archive/articles/legacy-dc60ed63-9c0d-4630-b521-93a33fcbd7c4-student-week-2025-british-columbia-federation-of-students-bcfs-leadership-workshop.md"
+    },
+    {
+      "sourceKey": "legacy:e78ac902-5115-4c02-9891-0c413924a446",
+      "originalArticleId": "e78ac902-5115-4c02-9891-0c413924a446",
+      "title": "Honoring Louis Riel Day and Advancing Reconciliation at UNBC",
+      "authorName": "Briana Greer",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "e78ac902-5115-4c02-9891-0c413924a446",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:17:37.000Z",
+            "createdAt": "2026-01-12T00:32:59.607Z",
+            "updatedAt": "2026-01-12T05:05:24.607Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:37.000Z",
+        "createdAt": "2026-01-12T00:32:59.607Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      },
+      "authorSourceId": "6f93e597-65ae-4661-a4b1-6e5ffb9a7ee3",
+      "exportPath": "source-archive/articles/legacy-e78ac902-5115-4c02-9891-0c413924a446-honoring-louis-riel-day-and-advancing-reconciliation-at-unbc.md"
+    },
+    {
+      "sourceKey": "legacy:ea13f4fe-f0f2-4133-89e3-c056ebe25e81",
+      "originalArticleId": "ea13f4fe-f0f2-4133-89e3-c056ebe25e81",
+      "title": "The Year of the Snake",
+      "authorName": "Ehsan Taghizadehghoozhdi",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "ea13f4fe-f0f2-4133-89e3-c056ebe25e81",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:17:18.000Z",
+            "createdAt": "2026-01-12T00:32:59.964Z",
+            "updatedAt": "2026-01-12T05:05:24.607Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:18.000Z",
+        "createdAt": "2026-01-12T00:32:59.964Z",
+        "updatedAt": "2026-01-12T05:05:24.607Z"
+      },
+      "authorSourceId": "ef0a948c-a140-47d9-a199-f40501a380f3",
+      "exportPath": "source-archive/articles/legacy-ea13f4fe-f0f2-4133-89e3-c056ebe25e81-the-year-of-the-snake.md"
+    },
+    {
+      "sourceKey": "idml:da7e3ca1:u88c",
+      "title": "CFUR Radio: Carbon Capture Technology with Dr. Steve Helle",
+      "authorName": null,
+      "content": "CFUR Radio recently welcomed UNBC Associate Professor Dr. Steve Helle to discuss the realities of carbon capture technology. While often touted as a solution for reducing emissions, Dr. Helle reveals that carbon capture is universally energy-intensive, requiring 20-30% more energy consumption to implement. “If you’re capturing CO2 from natural gas combustion, you’ll need to burn about a third more gas just to power the capture process,” explained Helle. He noted that most operating carbon capture plants only achieve 50-80% capture rates, making it pollution reduction rather than elimination. When comparing energy solutions, Dr. Helle advocates for electrification as the more efficient path forward: “Electrify your heating, your hot water, your mobility around town - your carbon footprint becomes a fraction with clean electricity.”",
+      "bodyFormat": "plain",
+      "kind": "editorial",
+      "placements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [
+            13
+          ],
+          "section": "cfur",
+          "sourceVisibility": "visible-in-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-idml/issue-7-march-2025-da7e3ca1.idml",
+          "sha256": "da7e3ca113e50cbdc1c90965c92ed32e8fdc390fd49e90ef05a8b0807c599d67",
+          "storyIds": [
+            "u80d",
+            "u88c"
+          ],
+          "sourceByline": null,
+          "notes": "Byline is unknown unless explicitly printed. CFUR branding is a section attribution, not an invented personal byline."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "visible-in-source-pdf",
+      "sectionAttribution": "CFUR Radio",
+      "exportPath": "source-archive/articles/idml-da7e3ca1-u88c-cfur-radio-carbon-capture-technology-with-dr-steve-helle.md"
+    },
+    {
+      "sourceKey": "idml:da7e3ca1:u8a2",
+      "title": "CN Centre Gets Colourful Makeover for 30th Anniversary",
+      "authorName": null,
+      "content": "The CN Centre is celebrating its 30th anniversary with a fresh look! During a recent Wednesday walkabout, CFUR Radio chatted with manager Glenn Mickelson and local artist Mercedes Mink about the building’s transformation.\n\nThe centre’s iconic forest green interior has been updated to a creamy white, complemented by Mink’s vibrant 9×15-foot mural. The artwork depicts rolling hills with Prince George homes, regional animals, and a flowing river—capturing the essence of our community.\n\n“I wanted to represent those aspects and experiences where I’m connected to something small but vibrant,” Mink explained. Several local kids even contributed to the painting, creating lasting memories at the venue.\n\nMore of Mink’s murals can be found around Prince George at Pine Centre Mall, Clavie, Tanae, and McKenzie Skate Park.",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [
+            13
+          ],
+          "section": "cfur",
+          "sourceVisibility": "visible-in-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-idml/issue-7-march-2025-da7e3ca1.idml",
+          "sha256": "da7e3ca113e50cbdc1c90965c92ed32e8fdc390fd49e90ef05a8b0807c599d67",
+          "storyIds": [
+            "u911",
+            "u8a2"
+          ],
+          "sourceByline": null,
+          "notes": "Byline is unknown unless explicitly printed. CFUR branding is a section attribution, not an invented personal byline."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "visible-in-source-pdf",
+      "sectionAttribution": "CFUR Radio",
+      "exportPath": "source-archive/articles/idml-da7e3ca1-u8a2-cn-centre-gets-colourful-makeover-for-30th-anniversary.md"
+    },
+    {
+      "sourceKey": "idml:da7e3ca1:u876",
+      "title": "RCMP Warns of Job Scams Targeting Prince George",
+      "authorName": null,
+      "content": "Prince George RCMP is alerting residents about fraudulent job postings targeting our community. According to Cpl. Jennifer Cooper, these scams typically involve online job ads promising flexible or work-from-home opportunities.\n\n“If they ask you to accept funds into your bank account before you’ve done any work, stop right there,” Cooper warns.\n\nThe scam often involves victims receiving and depositing checks, then transferring money back to the “employer” before discovering the original checks were fraudulent.\n\nWorkBC Regional Manager Bev Schwartz advises job seekers to watch for red flags like unusually high salaries with no experience required, poor grammar in postings, or requests to transfer money.\n\nVictims should report incidents to the Canadian Anti-Fraud Centre and local police.",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [
+            13
+          ],
+          "section": "cfur",
+          "sourceVisibility": "visible-in-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-idml/issue-7-march-2025-da7e3ca1.idml",
+          "sha256": "da7e3ca113e50cbdc1c90965c92ed32e8fdc390fd49e90ef05a8b0807c599d67",
+          "storyIds": [
+            "u8e4",
+            "u876"
+          ],
+          "sourceByline": null,
+          "notes": "Byline is unknown unless explicitly printed. CFUR branding is a section attribution, not an invented personal byline."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "visible-in-source-pdf",
+      "sectionAttribution": "CFUR Radio",
+      "exportPath": "source-archive/articles/idml-da7e3ca1-u876-rcmp-warns-of-job-scams-targeting-prince-george.md"
+    },
+    {
+      "sourceKey": "idml:da7e3ca1:u8b8",
+      "title": "UNBC Compost Program Faces Uncertain Future",
+      "authorName": null,
+      "content": "Hey UNBC listeners! Things are heating up in the world of campus sustainability. Keaton Freel (aka local hip-hop artist Freaky T) has been running UNBC’s expanded compost program since September, diverting nearly 10,000 kilos of food waste from landfills. Despite this success, Keaton’s position might get tossed out this spring.\n\n“I love this job,” says Keaton, who processes 500-700 kilos of food waste weekly. “I just hope we can continue.”\n\nWhile UNBC Facilities Director David Claus appreciates the program’s success, the original plan was for the position to be temporary until the system stabilized.\n\nWant to support keeping this position? Email sustainability@unbc.ca to add your name to the support letter.",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [
+            13
+          ],
+          "section": "cfur",
+          "sourceVisibility": "visible-in-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-idml/issue-7-march-2025-da7e3ca1.idml",
+          "sha256": "da7e3ca113e50cbdc1c90965c92ed32e8fdc390fd49e90ef05a8b0807c599d67",
+          "storyIds": [
+            "u927",
+            "u8b8"
+          ],
+          "sourceByline": null,
+          "notes": "Byline is unknown unless explicitly printed. CFUR branding is a section attribution, not an invented personal byline."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "visible-in-source-pdf",
+      "sectionAttribution": "CFUR Radio",
+      "exportPath": "source-archive/articles/idml-da7e3ca1-u8b8-unbc-compost-program-faces-uncertain-future.md"
+    },
+    {
+      "sourceKey": "idml:da7e3ca1:ue6a",
+      "title": "Lindsay Harkness",
+      "authorName": null,
+      "content": "I grew up in Valemount, BC, and my family moved to Prince George the year I graduated high school. I started at UNBC in the fall of 1998, after I spent six months working and backpacking across Australia. During my first semester I attended an International Studies class taught by Geoffrey Weller, and I was hooked.\n\nI was keen to find a job that required me to travel and learn about other countries, cultures and languages. The professors at UNBC stoked this passion, and I took advantage of the language classes and co-op program to work in China for a semester. After graduating, I moved to New York to intern for an international humanitarian NGO. From there, I moved overseas to work with NGOs in Kenya, South Sudan, Zimbabwe, Somaliland, and later with the United Nations in Uganda, Ethiopia, Sudan, Liberia, Palestinian Territories, Somalia, and Iraq. I gained extensive experience with program and project management in development, humanitarian and emergency situations.\n\nIn 2022, I left the United Nations and accepted a position with Women and Gender Equality with the Government of Canada. In 2022 and 2023, I worked remotely from all over the country including Charlottetown, Yellowknife, and Whitehorse. I’ve now taken a job with Public Safety Canada, Emergency Management and Programs Branch, and settled in Victoria, BC. After 18 years working overseas, British Columbia is still my favourite place to be.",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [
+            10
+          ],
+          "section": "alumni",
+          "sourceVisibility": "visible-in-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-idml/issue-7-march-2025-da7e3ca1.idml",
+          "sha256": "da7e3ca113e50cbdc1c90965c92ed32e8fdc390fd49e90ef05a8b0807c599d67",
+          "storyIds": [
+            "uea7",
+            "ue6a"
+          ],
+          "sourceByline": null,
+          "notes": "Byline is unknown unless explicitly printed. CFUR branding is a section attribution, not an invented personal byline."
+        }
+      ],
+      "photos": [
+        {
+          "assetId": "embedded-image:d1c8a4d8fdc1a8fd31a544d3",
+          "path": "source-archive-media/d1c8a4d8fdc1a8fd31a544d3.jpeg",
+          "mimeType": "image/jpeg",
+          "caption": null,
+          "photoNumber": 1
+        }
+      ],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "visible-in-source-pdf",
+      "exportPath": "source-archive/articles/idml-da7e3ca1-ue6a-lindsay-harkness.md"
+    },
+    {
+      "sourceKey": "idml:da7e3ca1:ue4e",
+      "title": "Tanner Moulton",
+      "authorName": null,
+      "content": "I chose UNBC due to the proximity to my hometown of Fort St. John, BC. A few other things that I found attractive about UNBC were the small class sizes and the ability to really feel a part of the University community. The professors were very personable and approachable throughout my time at UNBC which proved to be very valuable, and is something that sets UNBC apart. Graduating from the Prince George campus and now working in the community has opened many doors for me. When attending events in the community the UNBC alumni presence is always strong, which allows those connections to continue to build.\n\nSince I graduated from UNBC, I have been employed by TC Energy as a Public Affairs Advisor. Later this year, I will be celebrating six years working for the company and I couldn’t be more thankful. Having been able to work on the largest private investment project in Canadian history has been an unimaginable experience, and I appreciate the doors that opened for me because of the degree that I received at UNBC.\n\nI now serve as a member of the UNBC Alumni Council and have for the past 4 years. This position has allowed me to stay closely connected to the University, and represent and advocate for other alumni. I also am a board member of the Prince George Chamber of Commerce where I can connect with like-minded individuals to ensure local businesses are supported and advocated for.",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [
+            10
+          ],
+          "section": "alumni",
+          "sourceVisibility": "visible-in-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-idml/issue-7-march-2025-da7e3ca1.idml",
+          "sha256": "da7e3ca113e50cbdc1c90965c92ed32e8fdc390fd49e90ef05a8b0807c599d67",
+          "storyIds": [
+            "ufe6",
+            "ue4e"
+          ],
+          "sourceByline": null,
+          "notes": "Byline is unknown unless explicitly printed. CFUR branding is a section attribution, not an invented personal byline."
+        }
+      ],
+      "photos": [
+        {
+          "assetId": "embedded-image:684590ac54eaff54e9fc4f16",
+          "path": "source-archive-media/684590ac54eaff54e9fc4f16.jpeg",
+          "mimeType": "image/jpeg",
+          "caption": null,
+          "photoNumber": 1
+        }
+      ],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "visible-in-source-pdf",
+      "exportPath": "source-archive/articles/idml-da7e3ca1-ue4e-tanner-moulton.md"
+    },
+    {
+      "sourceKey": "recurring:president-qa:99c1e7982ebd15cb",
+      "title": "President Answers",
+      "authorName": null,
+      "content": "**Question**\n\nPineapple on pizza—yes or no?\n\n**Answer**\n\nI really like pizza but I would be a no for pineapple on mine",
+      "bodyFormat": "markdown",
+      "kind": "recurring",
+      "placements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumbers": [
+            6
+          ],
+          "section": "president-qa"
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [
+            6
+          ],
+          "section": "president-qa"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-idml/issue-6-feb-2025-8395eefe.idml",
+          "sha256": "8395eefedc9d3cc5c2eb023b5f25559e76d8781b192f75d4580ef065a1470404",
+          "storyIds": [
+            "u49e",
+            "u4b4"
+          ],
+          "notes": "Original question/response grouped semantically; no respondent byline is invented."
+        },
+        {
+          "path": "source-idml/issue-7-march-2025-da7e3ca1.idml",
+          "sha256": "da7e3ca113e50cbdc1c90965c92ed32e8fdc390fd49e90ef05a8b0807c599d67",
+          "storyIds": [
+            "u49e",
+            "u4b4"
+          ],
+          "notes": "Original question/response grouped semantically; no respondent byline is invented."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "visible-in-source-pdf",
+      "question": "Pineapple on pizza—yes or no?",
+      "answer": "I really like pizza but I would be a no for pineapple on mine",
+      "exportPath": "source-archive/articles/recurring-president-qa-99c1e7982ebd15cb-president-answers.md"
+    },
+    {
+      "sourceKey": "recurring:inside-the-edge:8bc0d3e7863a9065",
+      "title": "Inside the Edge",
+      "authorName": null,
+      "content": "**Question**\n\nAre there any topics that are off-limits? How does OTE handle controversial or sensitive subjects?\n\n**Answer**\n\nAt Over the Edge, we’re open to all topics you’re passionate about writing on! While no subjects are off-limits, we do consider where pieces might fit best. Our print newspaper, which goes out through our media partnership, typically features content that speaks to a broader community audience. But don’t worry if your piece tackles more controversial or mature themes – our website is a perfect platform for these stories, giving writers more flexibility to explore complex or sensitive topics. Our editorial team is always here to chat about the best home for your work and help you shape your ideas.",
+      "bodyFormat": "markdown",
+      "kind": "recurring",
+      "placements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumbers": [
+            5
+          ],
+          "section": "inside-the-edge"
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumbers": [
+            5
+          ],
+          "section": "inside-the-edge"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-idml/issue-6-feb-2025-8395eefe.idml",
+          "sha256": "8395eefedc9d3cc5c2eb023b5f25559e76d8781b192f75d4580ef065a1470404",
+          "storyIds": [
+            "u409",
+            "u41f"
+          ],
+          "notes": "Original question/response grouped semantically; no respondent byline is invented."
+        },
+        {
+          "path": "source-idml/issue-7-march-2025-da7e3ca1.idml",
+          "sha256": "da7e3ca113e50cbdc1c90965c92ed32e8fdc390fd49e90ef05a8b0807c599d67",
+          "storyIds": [
+            "u409",
+            "u41f"
+          ],
+          "notes": "Original question/response grouped semantically; no respondent byline is invented."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "visible-in-source-pdf",
+      "question": "Are there any topics that are off-limits? How does OTE handle controversial or sensitive subjects?",
+      "answer": "At Over the Edge, we’re open to all topics you’re passionate about writing on! While no subjects are off-limits, we do consider where pieces might fit best. Our print newspaper, which goes out through our media partnership, typically features content that speaks to a broader community audience. But don’t worry if your piece tackles more controversial or mature themes – our website is a perfect platform for these stories, giving writers more flexibility to explore complex or sensitive topics. Our editorial team is always here to chat about the best home for your work and help you shape your ideas.",
+      "exportPath": "source-archive/articles/recurring-inside-the-edge-8bc0d3e7863a9065-inside-the-edge.md"
+    }
+  ],
+  "assets": [
+    {
+      "id": "source-pdf:issue-7-march-2025-dfcbb959",
+      "path": "originals/issue-7-march-2025-dfcbb959.pdf",
+      "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+      "mimeType": "application/pdf",
+      "availability": "reference-only",
+      "assetRole": "source-reference",
+      "documentIds": [
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "label": "March 2025 · Issue 7"
+    },
+    {
+      "id": "attachment:10aabe50-fbe0-4a83-ba07-81c1fa0818ae",
+      "sourceKey": "legacy:220d3d89-638c-459d-bcdd-76234bde474c",
+      "originalArticleId": "220d3d89-638c-459d-bcdd-76234bde474c",
+      "originalAttachmentId": "10aabe50-fbe0-4a83-ba07-81c1fa0818ae",
+      "path": "source-archive-media/10aabe50-fbe0-4a83-ba07-81c1fa0818ae.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21911,
+      "originalFileName": "climate-change-education-for-teachers-in-northern-bc-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:e1d953bc-a4b3-4f3a-9f6a-b49e2dd54484",
+      "sourceKey": "legacy:220d3d89-638c-459d-bcdd-76234bde474c",
+      "originalArticleId": "220d3d89-638c-459d-bcdd-76234bde474c",
+      "originalAttachmentId": "e1d953bc-a4b3-4f3a-9f6a-b49e2dd54484",
+      "path": "source-archive-media/e1d953bc-a4b3-4f3a-9f6a-b49e2dd54484.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 36294,
+      "originalFileName": "climate-change-education-for-teachers-in-northern-bc-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:bdb66e5f-9333-4ac4-8b3d-c7f448df5628",
+      "sourceKey": "legacy:2f039633-04e9-499e-92fa-81278f15067c",
+      "originalArticleId": "2f039633-04e9-499e-92fa-81278f15067c",
+      "originalAttachmentId": "bdb66e5f-9333-4ac4-8b3d-c7f448df5628",
+      "path": "source-archive-media/bdb66e5f-9333-4ac4-8b3d-c7f448df5628.txt",
+      "sha256": null,
+      "mimeType": "text/plain",
+      "size": 47,
+      "originalFileName": "living-with-chronic-illness-and-health-anxiety-as-a-20-something-year-old-1.txt",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:ee9430a4-0e7c-4efe-ba5b-c92ce2780b81",
+      "sourceKey": "legacy:2f039633-04e9-499e-92fa-81278f15067c",
+      "originalArticleId": "2f039633-04e9-499e-92fa-81278f15067c",
+      "originalAttachmentId": "ee9430a4-0e7c-4efe-ba5b-c92ce2780b81",
+      "path": "source-archive-media/ee9430a4-0e7c-4efe-ba5b-c92ce2780b81.jpeg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 2601077,
+      "originalFileName": "living-with-chronic-illness-and-health-anxiety-as-a-20-something-year-old-2.jpeg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:ee7df603-0597-4c37-9981-c0a4db470c6c",
+      "sourceKey": "legacy:2f039633-04e9-499e-92fa-81278f15067c",
+      "originalArticleId": "2f039633-04e9-499e-92fa-81278f15067c",
+      "originalAttachmentId": "ee7df603-0597-4c37-9981-c0a4db470c6c",
+      "path": "source-archive-media/ee7df603-0597-4c37-9981-c0a4db470c6c.jpeg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 2601077,
+      "originalFileName": "living-with-chronic-illness-and-health-anxiety-as-a-20-something-year-old-3.jpeg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:db818378-c092-46a0-9b52-2971212cf502",
+      "sourceKey": "legacy:2f039633-04e9-499e-92fa-81278f15067c",
+      "originalArticleId": "2f039633-04e9-499e-92fa-81278f15067c",
+      "originalAttachmentId": "db818378-c092-46a0-9b52-2971212cf502",
+      "path": "source-archive-media/db818378-c092-46a0-9b52-2971212cf502.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 1339723,
+      "originalFileName": "living-with-chronic-illness-and-health-anxiety-as-a-20-something-year-old-4.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:d62c6d0e-ae29-47bf-80b1-69086f7c8f93",
+      "sourceKey": "legacy:2f039633-04e9-499e-92fa-81278f15067c",
+      "originalArticleId": "2f039633-04e9-499e-92fa-81278f15067c",
+      "originalAttachmentId": "d62c6d0e-ae29-47bf-80b1-69086f7c8f93",
+      "path": "source-archive-media/d62c6d0e-ae29-47bf-80b1-69086f7c8f93.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 1345478,
+      "originalFileName": "living-with-chronic-illness-and-health-anxiety-as-a-20-something-year-old-5.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:485f8d69-f928-42d4-a980-fe84594c8b08",
+      "sourceKey": "legacy:2f039633-04e9-499e-92fa-81278f15067c",
+      "originalArticleId": "2f039633-04e9-499e-92fa-81278f15067c",
+      "originalAttachmentId": "485f8d69-f928-42d4-a980-fe84594c8b08",
+      "path": "source-archive-media/485f8d69-f928-42d4-a980-fe84594c8b08.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 22558,
+      "originalFileName": "living-with-chronic-illness-and-health-anxiety-as-a-20-something-year-old-6.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:1654df63-5015-477b-ad77-8b2f8b4d5a87",
+      "sourceKey": "legacy:638fef49-a8bf-448d-b6c1-5b708fc0c313",
+      "originalArticleId": "638fef49-a8bf-448d-b6c1-5b708fc0c313",
+      "originalAttachmentId": "1654df63-5015-477b-ad77-8b2f8b4d5a87",
+      "path": "source-archive-media/1654df63-5015-477b-ad77-8b2f8b4d5a87.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 3849700,
+      "originalFileName": "nbcgss-student-week-2025-a-week-of-diverse-and-exciting-events-1.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:39d06258-0a97-439c-8b33-e316a3208363",
+      "sourceKey": "legacy:638fef49-a8bf-448d-b6c1-5b708fc0c313",
+      "originalArticleId": "638fef49-a8bf-448d-b6c1-5b708fc0c313",
+      "originalAttachmentId": "39d06258-0a97-439c-8b33-e316a3208363",
+      "path": "source-archive-media/39d06258-0a97-439c-8b33-e316a3208363.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 4046525,
+      "originalFileName": "nbcgss-student-week-2025-a-week-of-diverse-and-exciting-events-2.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:f31c2137-c0df-48d9-bfa9-a8a57fc65183",
+      "sourceKey": "legacy:638fef49-a8bf-448d-b6c1-5b708fc0c313",
+      "originalArticleId": "638fef49-a8bf-448d-b6c1-5b708fc0c313",
+      "originalAttachmentId": "f31c2137-c0df-48d9-bfa9-a8a57fc65183",
+      "path": "source-archive-media/f31c2137-c0df-48d9-bfa9-a8a57fc65183.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 5799400,
+      "originalFileName": "nbcgss-student-week-2025-a-week-of-diverse-and-exciting-events-3.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 3,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:ec4f13aa-a5b5-436d-95f7-ea6e85dca032",
+      "sourceKey": "legacy:638fef49-a8bf-448d-b6c1-5b708fc0c313",
+      "originalArticleId": "638fef49-a8bf-448d-b6c1-5b708fc0c313",
+      "originalAttachmentId": "ec4f13aa-a5b5-436d-95f7-ea6e85dca032",
+      "path": "source-archive-media/ec4f13aa-a5b5-436d-95f7-ea6e85dca032.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 5916460,
+      "originalFileName": "nbcgss-student-week-2025-a-week-of-diverse-and-exciting-events-4.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 4,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:0b9e5551-2aed-4343-94e7-7e98c8b602c9",
+      "sourceKey": "legacy:638fef49-a8bf-448d-b6c1-5b708fc0c313",
+      "originalArticleId": "638fef49-a8bf-448d-b6c1-5b708fc0c313",
+      "originalAttachmentId": "0b9e5551-2aed-4343-94e7-7e98c8b602c9",
+      "path": "source-archive-media/0b9e5551-2aed-4343-94e7-7e98c8b602c9.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 6599911,
+      "originalFileName": "nbcgss-student-week-2025-a-week-of-diverse-and-exciting-events-5.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 5,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:5b507892-e14f-405d-a9ae-6de854b60bb8",
+      "sourceKey": "legacy:638fef49-a8bf-448d-b6c1-5b708fc0c313",
+      "originalArticleId": "638fef49-a8bf-448d-b6c1-5b708fc0c313",
+      "originalAttachmentId": "5b507892-e14f-405d-a9ae-6de854b60bb8",
+      "path": "source-archive-media/5b507892-e14f-405d-a9ae-6de854b60bb8.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 849031,
+      "originalFileName": "nbcgss-student-week-2025-a-week-of-diverse-and-exciting-events-6.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 6,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:e9d43409-3589-4c05-a9ad-b4addae2a1ac",
+      "sourceKey": "legacy:638fef49-a8bf-448d-b6c1-5b708fc0c313",
+      "originalArticleId": "638fef49-a8bf-448d-b6c1-5b708fc0c313",
+      "originalAttachmentId": "e9d43409-3589-4c05-a9ad-b4addae2a1ac",
+      "path": "source-archive-media/e9d43409-3589-4c05-a9ad-b4addae2a1ac.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 24687,
+      "originalFileName": "nbcgss-student-week-2025-a-week-of-diverse-and-exciting-events-7.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:5f5d76c2-0bda-4847-961f-bd9eed12bd71",
+      "sourceKey": "legacy:74d95b90-dc8f-475d-9c16-0a01049f3e47",
+      "originalArticleId": "74d95b90-dc8f-475d-9c16-0a01049f3e47",
+      "originalAttachmentId": "5f5d76c2-0bda-4847-961f-bd9eed12bd71",
+      "path": "source-archive-media/5f5d76c2-0bda-4847-961f-bd9eed12bd71.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 22269,
+      "originalFileName": "from-student-writer-to-professional-journalist-a-conversation-with-former-over-the-edge-editor--1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:1fb598b3-37ca-4b93-86e0-ed669a7c8d5d",
+      "sourceKey": "legacy:74d95b90-dc8f-475d-9c16-0a01049f3e47",
+      "originalArticleId": "74d95b90-dc8f-475d-9c16-0a01049f3e47",
+      "originalAttachmentId": "1fb598b3-37ca-4b93-86e0-ed669a7c8d5d",
+      "path": "source-archive-media/1fb598b3-37ca-4b93-86e0-ed669a7c8d5d.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 51427,
+      "originalFileName": "from-student-writer-to-professional-journalist-a-conversation-with-former-over-the-edge-editor--2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:c184cec7-2a61-4dd8-94c4-2fda8d35af17",
+      "sourceKey": "legacy:74d95b90-dc8f-475d-9c16-0a01049f3e47",
+      "originalArticleId": "74d95b90-dc8f-475d-9c16-0a01049f3e47",
+      "originalAttachmentId": "c184cec7-2a61-4dd8-94c4-2fda8d35af17",
+      "path": "source-archive-media/c184cec7-2a61-4dd8-94c4-2fda8d35af17.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21247,
+      "originalFileName": "from-student-writer-to-professional-journalist-a-conversation-with-former-over-the-edge-editor--3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:e85dfa3c-ca0f-41c9-8457-920b7491c7f1",
+      "sourceKey": "legacy:7cbf5b8f-a84d-4db6-ab5e-647ce732c65b",
+      "originalArticleId": "7cbf5b8f-a84d-4db6-ab5e-647ce732c65b",
+      "originalAttachmentId": "e85dfa3c-ca0f-41c9-8457-920b7491c7f1",
+      "path": "source-archive-media/e85dfa3c-ca0f-41c9-8457-920b7491c7f1.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 511053,
+      "originalFileName": "when-do-graduate-students-write-1.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:99401caf-2bb6-4591-acba-b8fe4b1b2418",
+      "sourceKey": "legacy:7cbf5b8f-a84d-4db6-ab5e-647ce732c65b",
+      "originalArticleId": "7cbf5b8f-a84d-4db6-ab5e-647ce732c65b",
+      "originalAttachmentId": "99401caf-2bb6-4591-acba-b8fe4b1b2418",
+      "path": "source-archive-media/99401caf-2bb6-4591-acba-b8fe4b1b2418.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 58924,
+      "originalFileName": "when-do-graduate-students-write-2.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 3,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:58d79813-9e62-478f-aa46-6eecf09ce97a",
+      "sourceKey": "legacy:7cbf5b8f-a84d-4db6-ab5e-647ce732c65b",
+      "originalArticleId": "7cbf5b8f-a84d-4db6-ab5e-647ce732c65b",
+      "originalAttachmentId": "58d79813-9e62-478f-aa46-6eecf09ce97a",
+      "path": "source-archive-media/58d79813-9e62-478f-aa46-6eecf09ce97a.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 19583,
+      "originalFileName": "when-do-graduate-students-write-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:d3f0a740-1734-4e45-9538-f8ddd64ac161",
+      "sourceKey": "legacy:7cbf5b8f-a84d-4db6-ab5e-647ce732c65b",
+      "originalArticleId": "7cbf5b8f-a84d-4db6-ab5e-647ce732c65b",
+      "originalAttachmentId": "d3f0a740-1734-4e45-9538-f8ddd64ac161",
+      "path": "source-archive-media/d3f0a740-1734-4e45-9538-f8ddd64ac161.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 241120,
+      "originalFileName": "when-do-graduate-students-write-4.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:a8d0132a-d2e7-4166-8441-967f81112ecf",
+      "sourceKey": "legacy:7cbf5b8f-a84d-4db6-ab5e-647ce732c65b",
+      "originalArticleId": "7cbf5b8f-a84d-4db6-ab5e-647ce732c65b",
+      "originalAttachmentId": "a8d0132a-d2e7-4166-8441-967f81112ecf",
+      "path": "source-archive-media/a8d0132a-d2e7-4166-8441-967f81112ecf.txt",
+      "sha256": null,
+      "mimeType": "text/plain",
+      "size": 100,
+      "originalFileName": "when-do-graduate-students-write-5.txt",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:3563e8ef-69ee-4ec1-b2c3-8baec897cde2",
+      "sourceKey": "legacy:7cbf5b8f-a84d-4db6-ab5e-647ce732c65b",
+      "originalArticleId": "7cbf5b8f-a84d-4db6-ab5e-647ce732c65b",
+      "originalAttachmentId": "3563e8ef-69ee-4ec1-b2c3-8baec897cde2",
+      "path": "source-archive-media/3563e8ef-69ee-4ec1-b2c3-8baec897cde2.txt",
+      "sha256": null,
+      "mimeType": "text/plain",
+      "size": 83,
+      "originalFileName": "when-do-graduate-students-write-6.txt",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:8a0c3361-e4a0-4f32-99a7-b02b01365378",
+      "sourceKey": "legacy:7cbf5b8f-a84d-4db6-ab5e-647ce732c65b",
+      "originalArticleId": "7cbf5b8f-a84d-4db6-ab5e-647ce732c65b",
+      "originalAttachmentId": "8a0c3361-e4a0-4f32-99a7-b02b01365378",
+      "path": "source-archive-media/8a0c3361-e4a0-4f32-99a7-b02b01365378.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 212457,
+      "originalFileName": "when-do-graduate-students-write-7.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:a40415f4-1d9a-4b12-911d-77c53539526c",
+      "sourceKey": "legacy:833112ae-b84c-4c80-b513-2d19719f0dcc",
+      "originalArticleId": "833112ae-b84c-4c80-b513-2d19719f0dcc",
+      "originalAttachmentId": "a40415f4-1d9a-4b12-911d-77c53539526c",
+      "path": "source-archive-media/a40415f4-1d9a-4b12-911d-77c53539526c.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 129135,
+      "originalFileName": "graduate-teaching-assistants-at-unbc-know-your-rights-and-benefits-1.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:f60944d9-88c7-4302-9df3-caf7f6cce07f",
+      "sourceKey": "legacy:833112ae-b84c-4c80-b513-2d19719f0dcc",
+      "originalArticleId": "833112ae-b84c-4c80-b513-2d19719f0dcc",
+      "originalAttachmentId": "f60944d9-88c7-4302-9df3-caf7f6cce07f",
+      "path": "source-archive-media/f60944d9-88c7-4302-9df3-caf7f6cce07f.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 38428,
+      "originalFileName": "graduate-teaching-assistants-at-unbc-know-your-rights-and-benefits-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:08573f13-7263-4266-8a64-4708ad8e4f09",
+      "sourceKey": "legacy:833112ae-b84c-4c80-b513-2d19719f0dcc",
+      "originalArticleId": "833112ae-b84c-4c80-b513-2d19719f0dcc",
+      "originalAttachmentId": "08573f13-7263-4266-8a64-4708ad8e4f09",
+      "path": "source-archive-media/08573f13-7263-4266-8a64-4708ad8e4f09.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 23188,
+      "originalFileName": "graduate-teaching-assistants-at-unbc-know-your-rights-and-benefits-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:27ad199f-4d92-4bd0-98ad-b6c60872fecf",
+      "sourceKey": "legacy:9e6dc4d6-dc75-4323-a878-77c27021ffed",
+      "originalArticleId": "9e6dc4d6-dc75-4323-a878-77c27021ffed",
+      "originalAttachmentId": "27ad199f-4d92-4bd0-98ad-b6c60872fecf",
+      "path": "source-archive-media/27ad199f-4d92-4bd0-98ad-b6c60872fecf.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 1766902,
+      "originalFileName": "22nd-annual-bc-natural-resources-forum-in-prince-george-1.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:9d6b231b-0c69-4c15-8645-0bfb38e24ebe",
+      "sourceKey": "legacy:9e6dc4d6-dc75-4323-a878-77c27021ffed",
+      "originalArticleId": "9e6dc4d6-dc75-4323-a878-77c27021ffed",
+      "originalAttachmentId": "9d6b231b-0c69-4c15-8645-0bfb38e24ebe",
+      "path": "source-archive-media/9d6b231b-0c69-4c15-8645-0bfb38e24ebe.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 2141227,
+      "originalFileName": "22nd-annual-bc-natural-resources-forum-in-prince-george-2.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:94bf9a62-3e9a-4258-aa06-9a0945a35992",
+      "sourceKey": "legacy:9e6dc4d6-dc75-4323-a878-77c27021ffed",
+      "originalArticleId": "9e6dc4d6-dc75-4323-a878-77c27021ffed",
+      "originalAttachmentId": "94bf9a62-3e9a-4258-aa06-9a0945a35992",
+      "path": "source-archive-media/94bf9a62-3e9a-4258-aa06-9a0945a35992.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 4159341,
+      "originalFileName": "22nd-annual-bc-natural-resources-forum-in-prince-george-3.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 3,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:a0e00d76-f555-4587-98b6-0652201052d2",
+      "sourceKey": "legacy:9e6dc4d6-dc75-4323-a878-77c27021ffed",
+      "originalArticleId": "9e6dc4d6-dc75-4323-a878-77c27021ffed",
+      "originalAttachmentId": "a0e00d76-f555-4587-98b6-0652201052d2",
+      "path": "source-archive-media/a0e00d76-f555-4587-98b6-0652201052d2.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 2487666,
+      "originalFileName": "22nd-annual-bc-natural-resources-forum-in-prince-george-4.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 4,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:2dcea583-669a-40bc-8904-97e0bad9dc1e",
+      "sourceKey": "legacy:9e6dc4d6-dc75-4323-a878-77c27021ffed",
+      "originalArticleId": "9e6dc4d6-dc75-4323-a878-77c27021ffed",
+      "originalAttachmentId": "2dcea583-669a-40bc-8904-97e0bad9dc1e",
+      "path": "source-archive-media/2dcea583-669a-40bc-8904-97e0bad9dc1e.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 4159913,
+      "originalFileName": "22nd-annual-bc-natural-resources-forum-in-prince-george-5.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 5,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:39dcb2a2-fc1e-4aea-8c3b-0d8160a3316f",
+      "sourceKey": "legacy:9e6dc4d6-dc75-4323-a878-77c27021ffed",
+      "originalArticleId": "9e6dc4d6-dc75-4323-a878-77c27021ffed",
+      "originalAttachmentId": "39dcb2a2-fc1e-4aea-8c3b-0d8160a3316f",
+      "path": "source-archive-media/39dcb2a2-fc1e-4aea-8c3b-0d8160a3316f.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 2396219,
+      "originalFileName": "22nd-annual-bc-natural-resources-forum-in-prince-george-6.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 6,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:5ce5c6c0-ef01-4904-b768-50a3faf4e091",
+      "sourceKey": "legacy:9e6dc4d6-dc75-4323-a878-77c27021ffed",
+      "originalArticleId": "9e6dc4d6-dc75-4323-a878-77c27021ffed",
+      "originalAttachmentId": "5ce5c6c0-ef01-4904-b768-50a3faf4e091",
+      "path": "source-archive-media/5ce5c6c0-ef01-4904-b768-50a3faf4e091.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 25274,
+      "originalFileName": "22nd-annual-bc-natural-resources-forum-in-prince-george-7.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:619023ea-8fd1-4f7f-a4ee-83fa0b429c3d",
+      "sourceKey": "legacy:a95d6deb-c841-459d-951d-1eddf81a112d",
+      "originalArticleId": "a95d6deb-c841-459d-951d-1eddf81a112d",
+      "originalAttachmentId": "619023ea-8fd1-4f7f-a4ee-83fa0b429c3d",
+      "path": "source-archive-media/619023ea-8fd1-4f7f-a4ee-83fa0b429c3d.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 24572,
+      "originalFileName": "bringing-home-bronze-the-national-geomatics-competition-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:8e34d54f-c2e6-4bbc-8204-066d772b4d27",
+      "sourceKey": "legacy:a95d6deb-c841-459d-951d-1eddf81a112d",
+      "originalArticleId": "a95d6deb-c841-459d-951d-1eddf81a112d",
+      "originalAttachmentId": "8e34d54f-c2e6-4bbc-8204-066d772b4d27",
+      "path": "source-archive-media/8e34d54f-c2e6-4bbc-8204-066d772b4d27.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 252298,
+      "originalFileName": "bringing-home-bronze-the-national-geomatics-competition-2.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:be9e5706-5b39-4cbb-8760-b6b663175604",
+      "sourceKey": "legacy:a95d6deb-c841-459d-951d-1eddf81a112d",
+      "originalArticleId": "a95d6deb-c841-459d-951d-1eddf81a112d",
+      "originalAttachmentId": "be9e5706-5b39-4cbb-8760-b6b663175604",
+      "path": "source-archive-media/be9e5706-5b39-4cbb-8760-b6b663175604.txt",
+      "sha256": null,
+      "mimeType": "text/plain",
+      "size": 221,
+      "originalFileName": "bringing-home-bronze-the-national-geomatics-competition-3.txt",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:48531db6-ca94-47ac-b3df-e9dd04588e64",
+      "sourceKey": "legacy:a95d6deb-c841-459d-951d-1eddf81a112d",
+      "originalArticleId": "a95d6deb-c841-459d-951d-1eddf81a112d",
+      "originalAttachmentId": "48531db6-ca94-47ac-b3df-e9dd04588e64",
+      "path": "source-archive-media/48531db6-ca94-47ac-b3df-e9dd04588e64.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 24033,
+      "originalFileName": "bringing-home-bronze-the-national-geomatics-competition-4.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:4c0c62f3-de38-42de-8359-9cd1c8acab92",
+      "sourceKey": "legacy:b0ff476a-f6b2-4db4-8be2-1b8a4e9ada59",
+      "originalArticleId": "b0ff476a-f6b2-4db4-8be2-1b8a4e9ada59",
+      "originalAttachmentId": "4c0c62f3-de38-42de-8359-9cd1c8acab92",
+      "path": "source-archive-media/4c0c62f3-de38-42de-8359-9cd1c8acab92.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 327780,
+      "originalFileName": "unlocking-free-travel-how-smart-credit-card-use-can-get-students-free-flights-1.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:8600d7e9-2091-47b7-b068-e08877dfb1ef",
+      "sourceKey": "legacy:b0ff476a-f6b2-4db4-8be2-1b8a4e9ada59",
+      "originalArticleId": "b0ff476a-f6b2-4db4-8be2-1b8a4e9ada59",
+      "originalAttachmentId": "8600d7e9-2091-47b7-b068-e08877dfb1ef",
+      "path": "source-archive-media/8600d7e9-2091-47b7-b068-e08877dfb1ef.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 361566,
+      "originalFileName": "unlocking-free-travel-how-smart-credit-card-use-can-get-students-free-flights-2.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:aa5838cc-9239-425c-9d0c-b3afec93e9dc",
+      "sourceKey": "legacy:b0ff476a-f6b2-4db4-8be2-1b8a4e9ada59",
+      "originalArticleId": "b0ff476a-f6b2-4db4-8be2-1b8a4e9ada59",
+      "originalAttachmentId": "aa5838cc-9239-425c-9d0c-b3afec93e9dc",
+      "path": "source-archive-media/aa5838cc-9239-425c-9d0c-b3afec93e9dc.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 23647,
+      "originalFileName": "unlocking-free-travel-how-smart-credit-card-use-can-get-students-free-flights-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:8c9d25b5-6e1d-4bdd-9bd2-db04fd78f01e",
+      "sourceKey": "legacy:b0ff476a-f6b2-4db4-8be2-1b8a4e9ada59",
+      "originalArticleId": "b0ff476a-f6b2-4db4-8be2-1b8a4e9ada59",
+      "originalAttachmentId": "8c9d25b5-6e1d-4bdd-9bd2-db04fd78f01e",
+      "path": "source-archive-media/8c9d25b5-6e1d-4bdd-9bd2-db04fd78f01e.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 429790,
+      "originalFileName": "unlocking-free-travel-how-smart-credit-card-use-can-get-students-free-flights-4.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:cf6edd29-4cc6-4c9b-9198-c797763a6bf7",
+      "sourceKey": "legacy:b5eee631-7d91-41d7-a66e-55fc81dae40b",
+      "originalArticleId": "b5eee631-7d91-41d7-a66e-55fc81dae40b",
+      "originalAttachmentId": "cf6edd29-4cc6-4c9b-9198-c797763a6bf7",
+      "path": "source-archive-media/cf6edd29-4cc6-4c9b-9198-c797763a6bf7.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21633,
+      "originalFileName": "pei-i-have-a-question-for-you-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:ee4fe46e-c380-4656-9a0f-205843778ceb",
+      "sourceKey": "legacy:bc65e566-fb41-461a-9549-2a6ffd21e81c",
+      "originalArticleId": "bc65e566-fb41-461a-9549-2a6ffd21e81c",
+      "originalAttachmentId": "ee4fe46e-c380-4656-9a0f-205843778ceb",
+      "path": "source-archive-media/ee4fe46e-c380-4656-9a0f-205843778ceb.txt",
+      "sha256": null,
+      "mimeType": "text/plain",
+      "size": 72,
+      "originalFileName": "a-mystic-semester-1.txt",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:bf4be52f-35c1-4769-93b0-e36131279244",
+      "sourceKey": "legacy:bc65e566-fb41-461a-9549-2a6ffd21e81c",
+      "originalArticleId": "bc65e566-fb41-461a-9549-2a6ffd21e81c",
+      "originalAttachmentId": "bf4be52f-35c1-4769-93b0-e36131279244",
+      "path": "source-archive-media/bf4be52f-35c1-4769-93b0-e36131279244.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 1295797,
+      "originalFileName": "a-mystic-semester-2.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:8c435308-e26b-49d3-ae93-1db3061d5ec6",
+      "sourceKey": "legacy:bc65e566-fb41-461a-9549-2a6ffd21e81c",
+      "originalArticleId": "bc65e566-fb41-461a-9549-2a6ffd21e81c",
+      "originalAttachmentId": "8c435308-e26b-49d3-ae93-1db3061d5ec6",
+      "path": "source-archive-media/8c435308-e26b-49d3-ae93-1db3061d5ec6.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 24844,
+      "originalFileName": "a-mystic-semester-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:2888f336-c9db-4560-a858-1ffa44261834",
+      "sourceKey": "legacy:bc65e566-fb41-461a-9549-2a6ffd21e81c",
+      "originalArticleId": "bc65e566-fb41-461a-9549-2a6ffd21e81c",
+      "originalAttachmentId": "2888f336-c9db-4560-a858-1ffa44261834",
+      "path": "source-archive-media/2888f336-c9db-4560-a858-1ffa44261834.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 26240,
+      "originalFileName": "a-mystic-semester-4.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:f4559e7e-06c8-442a-be6f-070ebdb599cb",
+      "sourceKey": "legacy:cc5909d5-ab48-46b3-8bef-e353a44e6e38",
+      "originalArticleId": "cc5909d5-ab48-46b3-8bef-e353a44e6e38",
+      "originalAttachmentId": "f4559e7e-06c8-442a-be6f-070ebdb599cb",
+      "path": "source-archive-media/f4559e7e-06c8-442a-be6f-070ebdb599cb.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 3431227,
+      "originalFileName": "nowruz-at-unbc-welcoming-spring-and-saying-goodbye-to-winter-1.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:7004cfe8-329e-49da-953a-98f8c0872a73",
+      "sourceKey": "legacy:cc5909d5-ab48-46b3-8bef-e353a44e6e38",
+      "originalArticleId": "cc5909d5-ab48-46b3-8bef-e353a44e6e38",
+      "originalAttachmentId": "7004cfe8-329e-49da-953a-98f8c0872a73",
+      "path": "source-archive-media/7004cfe8-329e-49da-953a-98f8c0872a73.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 28838,
+      "originalFileName": "nowruz-at-unbc-welcoming-spring-and-saying-goodbye-to-winter-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:777d8f93-4481-47fb-9d8e-9e8bb8c29308",
+      "sourceKey": "legacy:cc5909d5-ab48-46b3-8bef-e353a44e6e38",
+      "originalArticleId": "cc5909d5-ab48-46b3-8bef-e353a44e6e38",
+      "originalAttachmentId": "777d8f93-4481-47fb-9d8e-9e8bb8c29308",
+      "path": "source-archive-media/777d8f93-4481-47fb-9d8e-9e8bb8c29308.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 289249,
+      "originalFileName": "nowruz-at-unbc-welcoming-spring-and-saying-goodbye-to-winter-3.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:5e9f88b2-259c-4cbd-b02f-b95312954186",
+      "sourceKey": "legacy:cc5909d5-ab48-46b3-8bef-e353a44e6e38",
+      "originalArticleId": "cc5909d5-ab48-46b3-8bef-e353a44e6e38",
+      "originalAttachmentId": "5e9f88b2-259c-4cbd-b02f-b95312954186",
+      "path": "source-archive-media/5e9f88b2-259c-4cbd-b02f-b95312954186.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 289249,
+      "originalFileName": "nowruz-at-unbc-welcoming-spring-and-saying-goodbye-to-winter-4.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 3,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:60a05d01-8123-4aae-af57-38a2d210c752",
+      "sourceKey": "legacy:cf5a1a0e-c4f7-40f4-90be-d8945f90ac28",
+      "originalArticleId": "cf5a1a0e-c4f7-40f4-90be-d8945f90ac28",
+      "originalAttachmentId": "60a05d01-8123-4aae-af57-38a2d210c752",
+      "path": "source-archive-media/60a05d01-8123-4aae-af57-38a2d210c752.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 22416,
+      "originalFileName": "growing-innovation-unbc-student-leads-hydroponics-project-for-sustainable-food-production-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:084659fb-a700-4054-b4dd-30fc402280c9",
+      "sourceKey": "legacy:cf5a1a0e-c4f7-40f4-90be-d8945f90ac28",
+      "originalArticleId": "cf5a1a0e-c4f7-40f4-90be-d8945f90ac28",
+      "originalAttachmentId": "084659fb-a700-4054-b4dd-30fc402280c9",
+      "path": "source-archive-media/084659fb-a700-4054-b4dd-30fc402280c9.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 475201,
+      "originalFileName": "growing-innovation-unbc-student-leads-hydroponics-project-for-sustainable-food-production-2.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:e0184bca-63ae-4f0e-9ab7-8ab17ca0ff40",
+      "sourceKey": "legacy:cf5a1a0e-c4f7-40f4-90be-d8945f90ac28",
+      "originalArticleId": "cf5a1a0e-c4f7-40f4-90be-d8945f90ac28",
+      "originalAttachmentId": "e0184bca-63ae-4f0e-9ab7-8ab17ca0ff40",
+      "path": "source-archive-media/e0184bca-63ae-4f0e-9ab7-8ab17ca0ff40.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 322831,
+      "originalFileName": "growing-innovation-unbc-student-leads-hydroponics-project-for-sustainable-food-production-3.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:1c64bad8-60b6-4e2d-ae3f-2044f3a50ca6",
+      "sourceKey": "legacy:cf5a1a0e-c4f7-40f4-90be-d8945f90ac28",
+      "originalArticleId": "cf5a1a0e-c4f7-40f4-90be-d8945f90ac28",
+      "originalAttachmentId": "1c64bad8-60b6-4e2d-ae3f-2044f3a50ca6",
+      "path": "source-archive-media/1c64bad8-60b6-4e2d-ae3f-2044f3a50ca6.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 332176,
+      "originalFileName": "growing-innovation-unbc-student-leads-hydroponics-project-for-sustainable-food-production-4.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 3,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:93c74a14-71e0-4f51-9772-bff559903300",
+      "sourceKey": "legacy:d5f86ece-6c4e-47dd-a477-2d05aea855bb",
+      "originalArticleId": "d5f86ece-6c4e-47dd-a477-2d05aea855bb",
+      "originalAttachmentId": "93c74a14-71e0-4f51-9772-bff559903300",
+      "path": "source-archive-media/93c74a14-71e0-4f51-9772-bff559903300.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 1437257,
+      "originalFileName": "prince-george-finally-unfrozen-welcoming-spring-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:d53f5cda-d00b-4f65-802c-8591f5f39e7d",
+      "sourceKey": "legacy:d5f86ece-6c4e-47dd-a477-2d05aea855bb",
+      "originalArticleId": "d5f86ece-6c4e-47dd-a477-2d05aea855bb",
+      "originalAttachmentId": "d53f5cda-d00b-4f65-802c-8591f5f39e7d",
+      "path": "source-archive-media/d53f5cda-d00b-4f65-802c-8591f5f39e7d.txt",
+      "sha256": null,
+      "mimeType": "text/plain",
+      "size": 73,
+      "originalFileName": "prince-george-finally-unfrozen-welcoming-spring-2.txt",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:8f284842-c0cd-4ff8-b9d9-3f3c3b336afd",
+      "sourceKey": "legacy:d5f86ece-6c4e-47dd-a477-2d05aea855bb",
+      "originalArticleId": "d5f86ece-6c4e-47dd-a477-2d05aea855bb",
+      "originalAttachmentId": "8f284842-c0cd-4ff8-b9d9-3f3c3b336afd",
+      "path": "source-archive-media/8f284842-c0cd-4ff8-b9d9-3f3c3b336afd.txt",
+      "sha256": null,
+      "mimeType": "text/plain",
+      "size": 104,
+      "originalFileName": "prince-george-finally-unfrozen-welcoming-spring-3.txt",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:e1448181-c7ea-4dfe-aa8c-427521b14e28",
+      "sourceKey": "legacy:d5f86ece-6c4e-47dd-a477-2d05aea855bb",
+      "originalArticleId": "d5f86ece-6c4e-47dd-a477-2d05aea855bb",
+      "originalAttachmentId": "e1448181-c7ea-4dfe-aa8c-427521b14e28",
+      "path": "source-archive-media/e1448181-c7ea-4dfe-aa8c-427521b14e28.txt",
+      "sha256": null,
+      "mimeType": "text/plain",
+      "size": 73,
+      "originalFileName": "prince-george-finally-unfrozen-welcoming-spring-4.txt",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:3719096b-c052-4ff6-8df0-5382b44425ed",
+      "sourceKey": "legacy:d5f86ece-6c4e-47dd-a477-2d05aea855bb",
+      "originalArticleId": "d5f86ece-6c4e-47dd-a477-2d05aea855bb",
+      "originalAttachmentId": "3719096b-c052-4ff6-8df0-5382b44425ed",
+      "path": "source-archive-media/3719096b-c052-4ff6-8df0-5382b44425ed.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21702,
+      "originalFileName": "prince-george-finally-unfrozen-welcoming-spring-5.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:6049c12d-afc5-4428-8c68-2fb6818e2c91",
+      "sourceKey": "legacy:d5f86ece-6c4e-47dd-a477-2d05aea855bb",
+      "originalArticleId": "d5f86ece-6c4e-47dd-a477-2d05aea855bb",
+      "originalAttachmentId": "6049c12d-afc5-4428-8c68-2fb6818e2c91",
+      "path": "source-archive-media/6049c12d-afc5-4428-8c68-2fb6818e2c91.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 2553008,
+      "originalFileName": "prince-george-finally-unfrozen-welcoming-spring-6.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:8d35dce0-39df-4122-945c-a56a5803f590",
+      "sourceKey": "legacy:d5f86ece-6c4e-47dd-a477-2d05aea855bb",
+      "originalArticleId": "d5f86ece-6c4e-47dd-a477-2d05aea855bb",
+      "originalAttachmentId": "8d35dce0-39df-4122-945c-a56a5803f590",
+      "path": "source-archive-media/8d35dce0-39df-4122-945c-a56a5803f590.jpeg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 107974,
+      "originalFileName": "prince-george-finally-unfrozen-welcoming-spring-7.jpeg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:3d839de0-b5d0-4fb9-9586-1e2991a1deac",
+      "sourceKey": "legacy:d5f86ece-6c4e-47dd-a477-2d05aea855bb",
+      "originalArticleId": "d5f86ece-6c4e-47dd-a477-2d05aea855bb",
+      "originalAttachmentId": "3d839de0-b5d0-4fb9-9586-1e2991a1deac",
+      "path": "source-archive-media/3d839de0-b5d0-4fb9-9586-1e2991a1deac.jpeg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 132380,
+      "originalFileName": "prince-george-finally-unfrozen-welcoming-spring-8.jpeg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 3,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:2e769175-24f6-48bd-a0f8-cefade4cb190",
+      "sourceKey": "legacy:dc60ed63-9c0d-4630-b521-93a33fcbd7c4",
+      "originalArticleId": "dc60ed63-9c0d-4630-b521-93a33fcbd7c4",
+      "originalAttachmentId": "2e769175-24f6-48bd-a0f8-cefade4cb190",
+      "path": "source-archive-media/2e769175-24f6-48bd-a0f8-cefade4cb190.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 3849700,
+      "originalFileName": "student-week-2025-british-columbia-federation-of-students-bcfs-leadership-workshop-1.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:816bb1bf-c4c1-4065-bafe-b1e11173ba3d",
+      "sourceKey": "legacy:dc60ed63-9c0d-4630-b521-93a33fcbd7c4",
+      "originalArticleId": "dc60ed63-9c0d-4630-b521-93a33fcbd7c4",
+      "originalAttachmentId": "816bb1bf-c4c1-4065-bafe-b1e11173ba3d",
+      "path": "source-archive-media/816bb1bf-c4c1-4065-bafe-b1e11173ba3d.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 4046525,
+      "originalFileName": "student-week-2025-british-columbia-federation-of-students-bcfs-leadership-workshop-2.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:05a9d63d-d56b-4db0-baa7-785c0b50b52e",
+      "sourceKey": "legacy:dc60ed63-9c0d-4630-b521-93a33fcbd7c4",
+      "originalArticleId": "dc60ed63-9c0d-4630-b521-93a33fcbd7c4",
+      "originalAttachmentId": "05a9d63d-d56b-4db0-baa7-785c0b50b52e",
+      "path": "source-archive-media/05a9d63d-d56b-4db0-baa7-785c0b50b52e.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 5799400,
+      "originalFileName": "student-week-2025-british-columbia-federation-of-students-bcfs-leadership-workshop-3.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 3,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:c75aa109-a376-4b99-99e3-cea942dcf59b",
+      "sourceKey": "legacy:dc60ed63-9c0d-4630-b521-93a33fcbd7c4",
+      "originalArticleId": "dc60ed63-9c0d-4630-b521-93a33fcbd7c4",
+      "originalAttachmentId": "c75aa109-a376-4b99-99e3-cea942dcf59b",
+      "path": "source-archive-media/c75aa109-a376-4b99-99e3-cea942dcf59b.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 5916460,
+      "originalFileName": "student-week-2025-british-columbia-federation-of-students-bcfs-leadership-workshop-4.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 4,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:3342a82f-4a17-4d04-8c4e-cec5e102d5b2",
+      "sourceKey": "legacy:dc60ed63-9c0d-4630-b521-93a33fcbd7c4",
+      "originalArticleId": "dc60ed63-9c0d-4630-b521-93a33fcbd7c4",
+      "originalAttachmentId": "3342a82f-4a17-4d04-8c4e-cec5e102d5b2",
+      "path": "source-archive-media/3342a82f-4a17-4d04-8c4e-cec5e102d5b2.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 6599911,
+      "originalFileName": "student-week-2025-british-columbia-federation-of-students-bcfs-leadership-workshop-5.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 5,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:69491562-2b37-45da-9a8c-aeadc0a99773",
+      "sourceKey": "legacy:dc60ed63-9c0d-4630-b521-93a33fcbd7c4",
+      "originalArticleId": "dc60ed63-9c0d-4630-b521-93a33fcbd7c4",
+      "originalAttachmentId": "69491562-2b37-45da-9a8c-aeadc0a99773",
+      "path": "source-archive-media/69491562-2b37-45da-9a8c-aeadc0a99773.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 849031,
+      "originalFileName": "student-week-2025-british-columbia-federation-of-students-bcfs-leadership-workshop-6.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 6,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:1bc3a54c-a8c6-43ef-bc22-9e2463652014",
+      "sourceKey": "legacy:dc60ed63-9c0d-4630-b521-93a33fcbd7c4",
+      "originalArticleId": "dc60ed63-9c0d-4630-b521-93a33fcbd7c4",
+      "originalAttachmentId": "1bc3a54c-a8c6-43ef-bc22-9e2463652014",
+      "path": "source-archive-media/1bc3a54c-a8c6-43ef-bc22-9e2463652014.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 24694,
+      "originalFileName": "student-week-2025-british-columbia-federation-of-students-bcfs-leadership-workshop-7.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:c69ceeb4-10cc-40b6-b9eb-69d28ea9fb27",
+      "sourceKey": "legacy:e78ac902-5115-4c02-9891-0c413924a446",
+      "originalArticleId": "e78ac902-5115-4c02-9891-0c413924a446",
+      "originalAttachmentId": "c69ceeb4-10cc-40b6-b9eb-69d28ea9fb27",
+      "path": "source-archive-media/c69ceeb4-10cc-40b6-b9eb-69d28ea9fb27.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 27340,
+      "originalFileName": "honoring-louis-riel-day-and-advancing-reconciliation-at-unbc-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:487e798b-6cf5-400d-8fec-121b605aeadf",
+      "sourceKey": "legacy:e78ac902-5115-4c02-9891-0c413924a446",
+      "originalArticleId": "e78ac902-5115-4c02-9891-0c413924a446",
+      "originalAttachmentId": "487e798b-6cf5-400d-8fec-121b605aeadf",
+      "path": "source-archive-media/487e798b-6cf5-400d-8fec-121b605aeadf.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 22465,
+      "originalFileName": "honoring-louis-riel-day-and-advancing-reconciliation-at-unbc-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:c3b3aaaf-a095-43e5-a144-8e92486b9c5f",
+      "sourceKey": "legacy:ea13f4fe-f0f2-4133-89e3-c056ebe25e81",
+      "originalArticleId": "ea13f4fe-f0f2-4133-89e3-c056ebe25e81",
+      "originalAttachmentId": "c3b3aaaf-a095-43e5-a144-8e92486b9c5f",
+      "path": "source-archive-media/c3b3aaaf-a095-43e5-a144-8e92486b9c5f.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 3198183,
+      "originalFileName": "the-year-of-the-snake-1.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:cead097b-e851-4946-a556-f39d2e8199c1",
+      "sourceKey": "legacy:ea13f4fe-f0f2-4133-89e3-c056ebe25e81",
+      "originalArticleId": "ea13f4fe-f0f2-4133-89e3-c056ebe25e81",
+      "originalAttachmentId": "cead097b-e851-4946-a556-f39d2e8199c1",
+      "path": "source-archive-media/cead097b-e851-4946-a556-f39d2e8199c1.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 3702829,
+      "originalFileName": "the-year-of-the-snake-2.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:39179392-f616-4668-bfa0-b9974c54bbdb",
+      "sourceKey": "legacy:ea13f4fe-f0f2-4133-89e3-c056ebe25e81",
+      "originalArticleId": "ea13f4fe-f0f2-4133-89e3-c056ebe25e81",
+      "originalAttachmentId": "39179392-f616-4668-bfa0-b9974c54bbdb",
+      "path": "source-archive-media/39179392-f616-4668-bfa0-b9974c54bbdb.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 3406904,
+      "originalFileName": "the-year-of-the-snake-3.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 3,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:51d1fbf1-87fa-4c19-b2b5-18aa089f16b7",
+      "sourceKey": "legacy:ea13f4fe-f0f2-4133-89e3-c056ebe25e81",
+      "originalArticleId": "ea13f4fe-f0f2-4133-89e3-c056ebe25e81",
+      "originalAttachmentId": "51d1fbf1-87fa-4c19-b2b5-18aa089f16b7",
+      "path": "source-archive-media/51d1fbf1-87fa-4c19-b2b5-18aa089f16b7.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 27086,
+      "originalFileName": "the-year-of-the-snake-4.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "embedded-image:9b91a4dc299ad7576df9acb6",
+      "path": "source-archive-media/9b91a4dc299ad7576df9acb6.png",
+      "sha256": "9b91a4dc299ad7576df9acb66093471b3a261b58402af14450a6e6eea51f6214",
+      "size": 637420,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 2092,
+      "height": 420,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:62168541c16179e0063fc610",
+      "path": "source-archive-media/62168541c16179e0063fc610.png",
+      "sha256": "62168541c16179e0063fc6100e31ebbd4fda6a68949bd084c300d7f228e94e13",
+      "size": 560496,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1073,
+      "height": 1350,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:0eb846c1e44762a745997bdc",
+      "path": "source-archive-media/0eb846c1e44762a745997bdc.png",
+      "sha256": "0eb846c1e44762a745997bdccc16043a8c82eebd0b334ed1392a6c3759ae301b",
+      "size": 136931,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 513,
+      "height": 518,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:f05490026dfd90d468d675d0",
+      "path": "source-archive-media/f05490026dfd90d468d675d0.png",
+      "sha256": "f05490026dfd90d468d675d0a57e7f20c399326d5d11e04075dbf508e5a223ef",
+      "size": 63779,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 309,
+      "height": 228,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:bcd4eafbb6316326ab6e3b42",
+      "path": "source-archive-media/bcd4eafbb6316326ab6e3b42.png",
+      "sha256": "bcd4eafbb6316326ab6e3b427b22d32bc2efad8d74416e469d497b50cb79b4eb",
+      "size": 2059967,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1321,
+      "height": 2750,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:6ea4ad179dd1abbf4973644f",
+      "path": "source-archive-media/6ea4ad179dd1abbf4973644f.png",
+      "sha256": "6ea4ad179dd1abbf4973644f250ac699c924976e02b831f40a4d88b21cafe461",
+      "size": 73502,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 337,
+      "height": 248,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 5,
+          "rect": [
+            339.6184387207031,
+            392.1001892089844,
+            420.8031921386719,
+            452.22235107421875
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 5,
+          "rect": [
+            339.6184387207031,
+            392.1001892089844,
+            420.8031921386719,
+            452.22235107421875
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 5,
+          "rect": [
+            339.6184387207031,
+            392.1001892089844,
+            420.8031921386719,
+            452.22235107421875
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 5,
+          "rect": [
+            339.6184387207031,
+            392.1001892089844,
+            420.8031921386719,
+            452.22235107421875
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:7fb10b13e83e19b67a8a832c",
+      "path": "source-archive-media/7fb10b13e83e19b67a8a832c.png",
+      "sha256": "7fb10b13e83e19b67a8a832c5fe80ea06a7a7ab91a7fb6e7fcbd14803638177b",
+      "size": 888748,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 212,
+      "height": 4762,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-6-feb-2025-5ed75bab",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 12,
+          "rect": [
+            721.7015380859375,
+            -1.2343324422836304,
+            788.1719360351562,
+            793.2684936523438
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 12,
+          "rect": [
+            721.7015380859375,
+            -1.2343324422836304,
+            788.1719360351562,
+            793.2684936523438
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:a876947f218d6f427807f936",
+      "path": "source-archive-media/a876947f218d6f427807f936.png",
+      "sha256": "a876947f218d6f427807f9368a3b06601b1aa5dfc2223655560772fd67a4be85",
+      "size": 22598691,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 4733,
+      "height": 4940,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-6-feb-2025-5ed75bab",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 13,
+          "rect": [
+            -32.29981994628906,
+            -30.897424697875977,
+            788.3121948242188,
+            822.8359985351562
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 13,
+          "rect": [
+            -32.29981994628906,
+            -30.897424697875977,
+            788.3121948242188,
+            822.8359985351562
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:cc878e7b5b68683b61020cce",
+      "path": "source-archive-media/cc878e7b5b68683b61020cce.png",
+      "sha256": "cc878e7b5b68683b61020cce27d9440776a567aefe4ba80c554aee4811dae519",
+      "size": 627011,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1397,
+      "height": 2838,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 17,
+          "rect": [
+            378.38250732421875,
+            64.1849365234375,
+            718.8975830078125,
+            755.9400024414062
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 17,
+          "rect": [
+            378.38250732421875,
+            64.1849365234375,
+            718.8975830078125,
+            755.9400024414062
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 17,
+          "rect": [
+            378.38250732421875,
+            64.1849365234375,
+            718.8975830078125,
+            755.9400024414062
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:73597dd6f5c539fd3e2f9c88",
+      "path": "source-archive-media/73597dd6f5c539fd3e2f9c88.jpeg",
+      "sha256": "73597dd6f5c539fd3e2f9c88861db27d802d47f0891996b7cf2179e8422e9f2b",
+      "size": 180718,
+      "mimeType": "image/jpeg",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 960,
+      "height": 621,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 1,
+          "rect": [
+            44.184600830078125,
+            172.5023193359375,
+            711.8154296875,
+            604.3760375976562
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:0cab0ed09c5a4f0aa5428f6c",
+      "path": "source-archive-media/0cab0ed09c5a4f0aa5428f6c.png",
+      "sha256": "0cab0ed09c5a4f0aa5428f6c18d31a5b3afe85e23bb43a5f93917de64680eb7b",
+      "size": 302978,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 401,
+      "height": 412,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 1,
+          "rect": [
+            493.3612060546875,
+            261.0,
+            589.5189208984375,
+            359.79705810546875
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:d0fa291a9f758258336921e6",
+      "path": "source-archive-media/d0fa291a9f758258336921e6.png",
+      "sha256": "d0fa291a9f758258336921e668ea21f6d32e9eefdec1984717ff260131c2b37d",
+      "size": 1740,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 487,
+      "height": 70,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 5,
+          "rect": [
+            82.51316833496094,
+            590.4269409179688,
+            165.41925048828125,
+            602.3436279296875
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:f0169314bea9cb99669fa25a",
+      "path": "source-archive-media/f0169314bea9cb99669fa25a.png",
+      "sha256": "f0169314bea9cb99669fa25aad696dc65824dd11232856a1d6a11c0d9c4722b2",
+      "size": 2374,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 487,
+      "height": 70,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 5,
+          "rect": [
+            82.51316833496094,
+            602.3436889648438,
+            165.41925048828125,
+            614.2603759765625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:e335c22d12bd9ddfdfa93b74",
+      "path": "source-archive-media/e335c22d12bd9ddfdfa93b74.png",
+      "sha256": "e335c22d12bd9ddfdfa93b74b7654833b44c5e0db446248bbbf4ce8f6922e557",
+      "size": 2703,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 487,
+      "height": 70,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 5,
+          "rect": [
+            82.51316833496094,
+            614.2603149414062,
+            165.41925048828125,
+            626.177001953125
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:ca723056b559f2525f17a90d",
+      "path": "source-archive-media/ca723056b559f2525f17a90d.png",
+      "sha256": "ca723056b559f2525f17a90da2098a5d8b089947a7daa91f1a1367079dde4914",
+      "size": 2588,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 487,
+      "height": 70,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 5,
+          "rect": [
+            82.51316833496094,
+            626.1770629882812,
+            165.41925048828125,
+            638.09375
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:80412b44b179fb22a48d7b1d",
+      "path": "source-archive-media/80412b44b179fb22a48d7b1d.png",
+      "sha256": "80412b44b179fb22a48d7b1d0df1936952ec4e5e0dcc58911c6e458408da269a",
+      "size": 2445,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 487,
+      "height": 70,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 5,
+          "rect": [
+            82.51316833496094,
+            638.0936889648438,
+            165.41925048828125,
+            650.0103759765625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:20a31e0755753ed836046e07",
+      "path": "source-archive-media/20a31e0755753ed836046e07.png",
+      "sha256": "20a31e0755753ed836046e0783322fafe8e50db037970b87f05f4bc5def43007",
+      "size": 2547,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 487,
+      "height": 70,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 5,
+          "rect": [
+            82.51316833496094,
+            650.0104370117188,
+            165.41925048828125,
+            661.9271240234375
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:6a02e713460ad4cd3e8ad7d6",
+      "path": "source-archive-media/6a02e713460ad4cd3e8ad7d6.png",
+      "sha256": "6a02e713460ad4cd3e8ad7d6f508763f17649554cca482145f74004b9276eef0",
+      "size": 1810,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 487,
+      "height": 67,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 5,
+          "rect": [
+            82.51316833496094,
+            661.9271240234375,
+            165.41925048828125,
+            673.3330688476562
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:d1c8a4d8fdc1a8fd31a544d3",
+      "path": "source-archive-media/d1c8a4d8fdc1a8fd31a544d3.jpeg",
+      "sha256": "d1c8a4d8fdc1a8fd31a544d3065b3f397fead5766e14191ffb7b3e7401c6560c",
+      "size": 10798,
+      "mimeType": "image/jpeg",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 110,
+      "height": 200,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 10,
+          "rect": [
+            612.2750244140625,
+            98.98480224609375,
+            735.1751098632812,
+            322.439453125
+          ]
+        }
+      ],
+      "articleSourceKeys": [
+        "idml:da7e3ca1:ue6a"
+      ],
+      "sourceKey": "idml:da7e3ca1:ue6a",
+      "attachmentType": "photo",
+      "caption": null,
+      "photoNumber": 1
+    },
+    {
+      "id": "embedded-image:684590ac54eaff54e9fc4f16",
+      "path": "source-archive-media/684590ac54eaff54e9fc4f16.jpeg",
+      "sha256": "684590ac54eaff54e9fc4f16bd49c6de61c600b9bd2afdde24041ee08685e648",
+      "size": 15469,
+      "mimeType": "image/jpeg",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 134,
+      "height": 251,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 10,
+          "rect": [
+            24.216976165771484,
+            457.662353515625,
+            147.6456756591797,
+            688.8609008789062
+          ]
+        }
+      ],
+      "articleSourceKeys": [
+        "idml:da7e3ca1:ue4e"
+      ],
+      "sourceKey": "idml:da7e3ca1:ue4e",
+      "attachmentType": "photo",
+      "caption": null,
+      "photoNumber": 1
+    },
+    {
+      "id": "embedded-image:382499e6a583fbb22bc0a27b",
+      "path": "source-archive-media/382499e6a583fbb22bc0a27b.png",
+      "sha256": "382499e6a583fbb22bc0a27bf636cf604a6405d692e45ba5c4b6039fa0c68c8f",
+      "size": 432440,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 452,
+      "height": 967,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 12,
+          "rect": [
+            648.6435546875,
+            560.8402099609375,
+            757.0741577148438,
+            792.7442626953125
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:4d3533ef192d6cb9181bffd9",
+      "path": "source-archive-media/4d3533ef192d6cb9181bffd9.png",
+      "sha256": "4d3533ef192d6cb9181bffd96bb349dbf896fea90450c2df8003d45c33fb5b91",
+      "size": 95169,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 718,
+      "height": 313,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 13,
+          "rect": [
+            544.0677490234375,
+            562.2655639648438,
+            717.0,
+            638.7149658203125
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:e2cdcacd9f69be72206290dd",
+      "path": "source-archive-media/e2cdcacd9f69be72206290dd.png",
+      "sha256": "e2cdcacd9f69be72206290dd21f5efd80d0c4d9fb43958319cf4e4744a11a9c2",
+      "size": 231761,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 474,
+      "height": 450,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 13,
+          "rect": [
+            630.45166015625,
+            625.4110717773438,
+            748.3531494140625,
+            737.571044921875
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:c901339451d7f4b785c7cd4a",
+      "path": "source-archive-media/c901339451d7f4b785c7cd4a.png",
+      "sha256": "c901339451d7f4b785c7cd4a2ee1a27add8041cbef637ef52a3de8f088d04d0b",
+      "size": 9975,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 316,
+      "height": 316,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 13,
+          "rect": [
+            651.7224731445312,
+            643.4911499023438,
+            727.4235229492188,
+            719.1921997070312
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:7fea86d351c6c56393b5f223",
+      "path": "source-archive-media/7fea86d351c6c56393b5f223.png",
+      "sha256": "7fea86d351c6c56393b5f2231ab8b906493642b068e9bf11b3307ed4fc27d2e3",
+      "size": 710756,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 898,
+      "height": 783,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 13,
+          "rect": [
+            -11.906388282775879,
+            79.54576110839844,
+            227.42620849609375,
+            295.403564453125
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:0a7f7a30a34a10647a2fe8e7",
+      "path": "source-archive-media/0a7f7a30a34a10647a2fe8e7.png",
+      "sha256": "0a7f7a30a34a10647a2fe8e7b0cd0d312e5ce7e9cef77444d6e68dbe6e43d18b",
+      "size": 551974,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 856,
+      "height": 642,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 13,
+          "rect": [
+            9.645248413085938,
+            90.21357727050781,
+            234.35964965820312,
+            271.248779296875
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:717cf1b8bce081cc35fc9622",
+      "path": "source-archive-media/717cf1b8bce081cc35fc9622.png",
+      "sha256": "717cf1b8bce081cc35fc96221e9cbc7f14ed02f223d4391a14988ff72fd59d73",
+      "size": 824847,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1028,
+      "height": 799,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 13,
+          "rect": [
+            509.28326416015625,
+            331.87554931640625,
+            755.9999389648438,
+            523.4310913085938
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:c7d77191dabe1f88a10013de",
+      "path": "source-archive-media/c7d77191dabe1f88a10013de.png",
+      "sha256": "c7d77191dabe1f88a10013de8d998f27da40b1eb6bfbd5169fb97721f5647f7e",
+      "size": 518419,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 804,
+      "height": 692,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 13,
+          "rect": [
+            539.953125,
+            371.34820556640625,
+            732.6837768554688,
+            537.402587890625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:8f9cd156a6bf7e0a449f3a3c",
+      "path": "source-archive-media/8f9cd156a6bf7e0a449f3a3c.png",
+      "sha256": "8f9cd156a6bf7e0a449f3a3c8bf200de05252aed7b03dd4694cd4f0ec9f1819b",
+      "size": 938861,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1007,
+      "height": 967,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 13,
+          "rect": [
+            -1.012803077697754,
+            560.8402099609375,
+            240.45616149902344,
+            792.7442626953125
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:3d4cf1f93883f20b0b6f9b2f",
+      "path": "source-archive-media/3d4cf1f93883f20b0b6f9b2f.png",
+      "sha256": "3d4cf1f93883f20b0b6f9b2f0e6d3c19cb34ff6739979b7213a97a105b710eb2",
+      "size": 771568,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 909,
+      "height": 880,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 13,
+          "rect": [
+            -1.0312539339065552,
+            581.872802734375,
+            217.0885772705078,
+            793.0658569335938
+          ]
+        }
+      ]
+    }
+  ]
+}

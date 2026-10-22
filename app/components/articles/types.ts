@@ -13,6 +13,7 @@ export type Article = {
   createdAt: Date
   prefersAnonymity: boolean | null
   paymentStatus: boolean | null
+  sourceProvenance?: string | null
   author: {
     id: string
     givenName: string

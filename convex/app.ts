@@ -7,11 +7,25 @@ import { analytics } from "./operations/analytics";
 import { mutations } from "./operations/mutations";
 import { fromWire, toWire } from "../shared/codec";
 import { utilityQueries, utilityMutations } from "./operations/utilities";
-const queryOperations = { ...queries, ...analytics, ...utilityQueries };
-const writeOperations = { ...mutations, ...utilityMutations };
+import {
+  sourceArchiveQueries,
+  sourceArchiveMutations,
+} from "./operations/sourceArchive";
+const queryOperations = {
+  ...queries,
+  ...analytics,
+  ...utilityQueries,
+  ...sourceArchiveQueries,
+};
+const writeOperations = {
+  ...mutations,
+  ...utilityMutations,
+  ...sourceArchiveMutations,
+};
 // Only the trusted application server can call this bridge. Operation names are allowlisted.
 export const read = query({
   args: { secret: v.string(), operation: v.string(), data: v.any() },
+  returns: v.any(),
   handler: async (ctx, args) => {
     requireServer(args.secret);
     if (!Object.hasOwn(queryOperations, args.operation))
@@ -24,6 +38,7 @@ export const read = query({
 });
 export const write = mutation({
   args: { secret: v.string(), operation: v.string(), data: v.any() },
+  returns: v.any(),
   handler: async (ctx, args) => {
     requireServer(args.secret);
     if (!Object.hasOwn(writeOperations, args.operation))
@@ -36,6 +51,7 @@ export const write = mutation({
 });
 export const health = query({
   args: { secret: v.string() },
+  returns: v.any(),
   handler: async (ctx, args) => {
     requireServer(args.secret);
     await ctx.db.query("articles").first();

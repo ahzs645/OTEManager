@@ -37113,6 +37113,2534 @@
       ],
       "design": "ote-2025",
       "art": "interior"
+    },
+    {
+      "id": "source-2024-president-original",
+      "name": "President Answers · source artwork",
+      "kind": "custom",
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "art": "interior",
+      "section": {
+        "code": "A",
+        "label": "President Answers"
+      },
+      "slots": [
+        {
+          "id": "2024-president-original",
+          "role": "piece",
+          "rect": [
+            374.698547,
+            400.000031,
+            717.664307,
+            757.440002
+          ],
+          "fit": "contain",
+          "asset": "source-art/2024-president-original.pdf",
+          "previewAsset": "source-art/2024-president-original.png"
+        },
+        {
+          "id": "dateline-left",
+          "role": "text",
+          "side": "left",
+          "field": "issueDate",
+          "format": "{WEEKDAY}, {MONTH} {D}, {YYYY}",
+          "text": "THURSDAY, SEPTEMBER 26, 2024",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Bold",
+            "size": 8,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "center",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            183.58,
+            47.52,
+            448.7,
+            67.3
+          ]
+        },
+        {
+          "id": "dateline-right",
+          "role": "text",
+          "side": "right",
+          "field": "issueDate",
+          "format": "{WEEKDAY}, {MONTH} {D}, {YYYY}",
+          "text": "THURSDAY, SEPTEMBER 26, 2024",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Bold",
+            "size": 8,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "center",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            305.59,
+            46.58,
+            570.7,
+            66.35
+          ]
+        }
+      ],
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 6,
+        "label": "President Answers",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": "Original question, answer and artwork preserved as one vector PDF placement."
+      }
+    },
+    {
+      "id": "source-2024-president-qa",
+      "name": "President Answers · editable",
+      "kind": "custom",
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "art": "interior",
+      "section": {
+        "code": "A",
+        "label": "President Answers"
+      },
+      "slots": [
+        {
+          "id": "president-background",
+          "role": "ad",
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ],
+          "asset": "source-art/march-president-background.pdf",
+          "previewAsset": "source-art/march-president-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "president-qa",
+          "role": "piece",
+          "blockType": "president-qa",
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ],
+          "fields": {
+            "heading": "President  Answers",
+            "subtitle": "Getting the Answers You Crave: We Ask, the\nPresident Delivers!",
+            "question": "Pineapple on pizza—yes or no?",
+            "answer": "I really like pizza but I would be a no for pineapple on mine"
+          },
+          "contentLayout": [
+            {
+              "field": "heading",
+              "rect": [
+                0.22689423224255756,
+                0.022621055610828375,
+                0.8409628216077483,
+                0.3070724544086864
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 20,
+                "leading": 21.6,
+                "para": {
+                  "align": "center",
+                  "hyphenate": false
+                },
+                "chars": {
+                  "fill": "[Black]"
+                }
+              }
+            },
+            {
+              "field": "subtitle",
+              "rect": [
+                0.12311827491377257,
+                0.09490060470811196,
+                0.873195193793511,
+                0.19158816825616662
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 12,
+                "leading": 12.96,
+                "para": {
+                  "align": "center",
+                  "hyphenate": false
+                },
+                "chars": {
+                  "fill": "[Black]"
+                }
+              }
+            },
+            {
+              "field": "question",
+              "rect": [
+                0.14188428821364654,
+                0.46086319220483457,
+                0.5521128948140672,
+                0.6036033384044677
+              ],
+              "style": {
+                "fontFamily": "Minion Pro",
+                "fontStyle": "Regular",
+                "size": 15,
+                "leading": 16.200000000000003,
+                "para": {
+                  "align": "center",
+                  "hyphenate": false
+                },
+                "chars": {
+                  "fill": "[Black]"
+                }
+              }
+            },
+            {
+              "field": "answer",
+              "rect": [
+                0.3623144564009758,
+                0.6636078449921381,
+                0.9179273528064864,
+                0.8255914164667312
+              ],
+              "style": {
+                "fontFamily": "Minion Pro",
+                "fontStyle": "Regular",
+                "size": 15,
+                "leading": 16.200000000000003,
+                "para": {
+                  "align": "center",
+                  "hyphenate": false
+                },
+                "chars": {
+                  "fill": "[Paper]"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "dateline-left",
+          "role": "text",
+          "side": "left",
+          "field": "issueDate",
+          "format": "{WEEKDAY}, {MONTH} {D}, {YYYY}",
+          "text": "THURSDAY, SEPTEMBER 26, 2024",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Bold",
+            "size": 8,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "center",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            183.58,
+            47.52,
+            448.7,
+            67.3
+          ]
+        },
+        {
+          "id": "dateline-right",
+          "role": "text",
+          "side": "right",
+          "field": "issueDate",
+          "format": "{WEEKDAY}, {MONTH} {D}, {YYYY}",
+          "text": "THURSDAY, SEPTEMBER 26, 2024",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Bold",
+            "size": 8,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "center",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            305.59,
+            46.58,
+            570.7,
+            66.35
+          ]
+        }
+      ],
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 6,
+        "label": "President Answers · editable",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": "Original illustration and portrait retained. Heading, subtitle, question and answer are editable native text. Portable fonts substitute the source faces."
+      }
+    },
+    {
+      "id": "source-2024-president-with-story",
+      "name": "President Answers + article",
+      "kind": "story",
+      "storyCount": 1,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "art": "interior",
+      "section": {
+        "code": "A",
+        "label": "President Answers"
+      },
+      "slots": [
+        {
+          "id": "headline-1",
+          "role": "headline",
+          "articleIndex": 0,
+          "rect": [
+            49,
+            70,
+            365,
+            133
+          ],
+          "fontSize": 22
+        },
+        {
+          "id": "byline-1",
+          "role": "byline",
+          "articleIndex": 0,
+          "rect": [
+            49,
+            137,
+            365,
+            155
+          ]
+        },
+        {
+          "id": "body-1",
+          "role": "body",
+          "articleIndex": 0,
+          "rect": [
+            49,
+            165,
+            365,
+            743
+          ],
+          "columns": 1
+        },
+        {
+          "id": "president-background",
+          "role": "ad",
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ],
+          "asset": "source-art/march-president-background.pdf",
+          "previewAsset": "source-art/march-president-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "president-qa",
+          "role": "piece",
+          "blockType": "president-qa",
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ],
+          "fields": {
+            "heading": "President  Answers",
+            "subtitle": "Getting the Answers You Crave: We Ask, the\nPresident Delivers!",
+            "question": "Pineapple on pizza—yes or no?",
+            "answer": "I really like pizza but I would be a no for pineapple on mine"
+          },
+          "contentLayout": [
+            {
+              "field": "heading",
+              "rect": [
+                0.22689423224255756,
+                0.022621055610828375,
+                0.8409628216077483,
+                0.3070724544086864
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 20,
+                "leading": 21.6,
+                "para": {
+                  "align": "center",
+                  "hyphenate": false
+                },
+                "chars": {
+                  "fill": "[Black]"
+                }
+              }
+            },
+            {
+              "field": "subtitle",
+              "rect": [
+                0.12311827491377257,
+                0.09490060470811196,
+                0.873195193793511,
+                0.19158816825616662
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 12,
+                "leading": 12.96,
+                "para": {
+                  "align": "center",
+                  "hyphenate": false
+                },
+                "chars": {
+                  "fill": "[Black]"
+                }
+              }
+            },
+            {
+              "field": "question",
+              "rect": [
+                0.14188428821364654,
+                0.46086319220483457,
+                0.5521128948140672,
+                0.6036033384044677
+              ],
+              "style": {
+                "fontFamily": "Minion Pro",
+                "fontStyle": "Regular",
+                "size": 15,
+                "leading": 16.200000000000003,
+                "para": {
+                  "align": "center",
+                  "hyphenate": false
+                },
+                "chars": {
+                  "fill": "[Black]"
+                }
+              }
+            },
+            {
+              "field": "answer",
+              "rect": [
+                0.3623144564009758,
+                0.6636078449921381,
+                0.9179273528064864,
+                0.8255914164667312
+              ],
+              "style": {
+                "fontFamily": "Minion Pro",
+                "fontStyle": "Regular",
+                "size": 15,
+                "leading": 16.200000000000003,
+                "para": {
+                  "align": "center",
+                  "hyphenate": false
+                },
+                "chars": {
+                  "fill": "[Paper]"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "dateline-left",
+          "role": "text",
+          "side": "left",
+          "field": "issueDate",
+          "format": "{WEEKDAY}, {MONTH} {D}, {YYYY}",
+          "text": "THURSDAY, SEPTEMBER 26, 2024",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Bold",
+            "size": 8,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "center",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            183.58,
+            47.52,
+            448.7,
+            67.3
+          ]
+        },
+        {
+          "id": "dateline-right",
+          "role": "text",
+          "side": "right",
+          "field": "issueDate",
+          "format": "{WEEKDAY}, {MONTH} {D}, {YYYY}",
+          "text": "THURSDAY, SEPTEMBER 26, 2024",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Bold",
+            "size": 8,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "center",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            305.59,
+            46.58,
+            570.7,
+            66.35
+          ]
+        }
+      ],
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 6,
+        "label": "President Answers · editable",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": "Original illustration and portrait retained. Heading, subtitle, question and answer are editable native text. Portable fonts substitute the source faces."
+      }
+    },
+    {
+      "id": "source-2024-inside-edge",
+      "name": "Inside the Edge + article",
+      "kind": "story",
+      "storyCount": 1,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "art": "interior",
+      "section": {
+        "code": "A",
+        "label": "Inside the Edge"
+      },
+      "slots": [
+        {
+          "id": "headline-1",
+          "role": "headline",
+          "articleIndex": 0,
+          "rect": [
+            49,
+            70,
+            706,
+            133
+          ],
+          "fontSize": 22
+        },
+        {
+          "id": "byline-1",
+          "role": "byline",
+          "articleIndex": 0,
+          "rect": [
+            49,
+            137,
+            706,
+            155
+          ]
+        },
+        {
+          "id": "body-1",
+          "role": "body",
+          "articleIndex": 0,
+          "rect": [
+            49,
+            165,
+            706,
+            356
+          ],
+          "columns": 1
+        },
+        {
+          "id": "2024-inside-edge",
+          "role": "piece",
+          "rect": [
+            39,
+            374,
+            717,
+            759
+          ],
+          "fit": "contain",
+          "asset": "source-art/2024-inside-edge.pdf",
+          "previewAsset": "source-art/2024-inside-edge.png"
+        },
+        {
+          "id": "dateline-left",
+          "role": "text",
+          "side": "left",
+          "field": "issueDate",
+          "format": "{WEEKDAY}, {MONTH} {D}, {YYYY}",
+          "text": "THURSDAY, SEPTEMBER 26, 2024",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Bold",
+            "size": 8,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "center",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            183.58,
+            47.52,
+            448.7,
+            67.3
+          ]
+        },
+        {
+          "id": "dateline-right",
+          "role": "text",
+          "side": "right",
+          "field": "issueDate",
+          "format": "{WEEKDAY}, {MONTH} {D}, {YYYY}",
+          "text": "THURSDAY, SEPTEMBER 26, 2024",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Bold",
+            "size": 8,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "center",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            305.59,
+            46.58,
+            570.7,
+            66.35
+          ]
+        }
+      ],
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 5,
+        "label": "Inside the Edge",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": "Original bottom panel retained; the upper article frame uses the blank editorial area in the supplied PDF."
+      }
+    },
+    {
+      "id": "source-2024-moose-ad",
+      "name": "Thirsty Moose right-column ad + article",
+      "kind": "story",
+      "storyCount": 1,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "art": "interior",
+      "section": {
+        "code": "A",
+        "label": "Thirsty Moose right-column ad"
+      },
+      "slots": [
+        {
+          "id": "headline-1",
+          "role": "headline",
+          "articleIndex": 0,
+          "rect": [
+            49,
+            70,
+            370,
+            133
+          ],
+          "fontSize": 22
+        },
+        {
+          "id": "byline-1",
+          "role": "byline",
+          "articleIndex": 0,
+          "rect": [
+            49,
+            137,
+            370,
+            155
+          ]
+        },
+        {
+          "id": "body-1",
+          "role": "body",
+          "articleIndex": 0,
+          "rect": [
+            49,
+            165,
+            370,
+            743
+          ],
+          "columns": 1
+        },
+        {
+          "id": "2024-moose-ad",
+          "role": "ad",
+          "rect": [
+            386.601,
+            65.249,
+            716.849,
+            752.743
+          ],
+          "fit": "contain",
+          "asset": "source-art/2024-moose-ad.pdf",
+          "previewAsset": "source-art/2024-moose-ad.png"
+        },
+        {
+          "id": "dateline-left",
+          "role": "text",
+          "side": "left",
+          "field": "issueDate",
+          "format": "{WEEKDAY}, {MONTH} {D}, {YYYY}",
+          "text": "THURSDAY, SEPTEMBER 26, 2024",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Bold",
+            "size": 8,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "center",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            183.58,
+            47.52,
+            448.7,
+            67.3
+          ]
+        },
+        {
+          "id": "dateline-right",
+          "role": "text",
+          "side": "right",
+          "field": "issueDate",
+          "format": "{WEEKDAY}, {MONTH} {D}, {YYYY}",
+          "text": "THURSDAY, SEPTEMBER 26, 2024",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Bold",
+            "size": 8,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "center",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            305.59,
+            46.58,
+            570.7,
+            66.35
+          ]
+        }
+      ],
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 16,
+        "label": "Thirsty Moose right-column ad",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": "Ad rectangle measured from March page 16; adjacent editorial frame is a new placement option."
+      }
+    },
+    {
+      "id": "source-2024-recruitment-ad",
+      "name": "OTE recruitment right-half ad + article",
+      "kind": "story",
+      "storyCount": 1,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "art": "interior",
+      "section": {
+        "code": "A",
+        "label": "OTE recruitment right-half ad"
+      },
+      "slots": [
+        {
+          "id": "headline-1",
+          "role": "headline",
+          "articleIndex": 0,
+          "rect": [
+            49,
+            70,
+            365,
+            133
+          ],
+          "fontSize": 22
+        },
+        {
+          "id": "byline-1",
+          "role": "byline",
+          "articleIndex": 0,
+          "rect": [
+            49,
+            137,
+            365,
+            155
+          ]
+        },
+        {
+          "id": "body-1",
+          "role": "body",
+          "articleIndex": 0,
+          "rect": [
+            49,
+            165,
+            365,
+            743
+          ],
+          "columns": 1
+        },
+        {
+          "id": "2024-recruitment-ad",
+          "role": "ad",
+          "rect": [
+            378.383,
+            64.185,
+            718.898,
+            755.94
+          ],
+          "fit": "contain",
+          "asset": "source-art/2024-recruitment-ad.pdf",
+          "previewAsset": "source-art/2024-recruitment-ad.png"
+        },
+        {
+          "id": "dateline-left",
+          "role": "text",
+          "side": "left",
+          "field": "issueDate",
+          "format": "{WEEKDAY}, {MONTH} {D}, {YYYY}",
+          "text": "THURSDAY, SEPTEMBER 26, 2024",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Bold",
+            "size": 8,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "center",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            183.58,
+            47.52,
+            448.7,
+            67.3
+          ]
+        },
+        {
+          "id": "dateline-right",
+          "role": "text",
+          "side": "right",
+          "field": "issueDate",
+          "format": "{WEEKDAY}, {MONTH} {D}, {YYYY}",
+          "text": "THURSDAY, SEPTEMBER 26, 2024",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Bold",
+            "size": 8,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "center",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            305.59,
+            46.58,
+            570.7,
+            66.35
+          ]
+        }
+      ],
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 17,
+        "label": "OTE recruitment right-half ad",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": ""
+      }
+    },
+    {
+      "id": "source-2024-alumni",
+      "name": "Alumni Profiles · source artwork",
+      "kind": "custom",
+      "storyCount": 0,
+      "photoCount": 0,
+      "slots": [
+        {
+          "id": "2024-alumni",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fit": "contain",
+          "asset": "source-art/2024-alumni.pdf",
+          "previewAsset": "source-art/2024-alumni.png"
+        }
+      ],
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 10,
+        "label": "Alumni Profiles",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": "Archived full-page artwork, including source text and photographs. Use an article recipe for freely editable alumni copy."
+      }
+    },
+    {
+      "id": "source-2024-cfur-original",
+      "name": "CFUR Radio March page · source artwork",
+      "kind": "custom",
+      "storyCount": 0,
+      "photoCount": 0,
+      "slots": [
+        {
+          "id": "2024-cfur-original",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fit": "contain",
+          "asset": "source-art/2024-cfur-original.pdf",
+          "previewAsset": "source-art/2024-cfur-original.png"
+        }
+      ],
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 13,
+        "label": "CFUR Radio March page",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": "Archived collage preserves the source torn photos, textured background and shaped text. The editable four-article companion rebuilds native text frames with source wrap contours."
+      }
+    },
+    {
+      "id": "source-2025-president-board",
+      "name": "Interim-President question and Our Board · source artwork",
+      "kind": "custom",
+      "storyCount": 0,
+      "photoCount": 0,
+      "slots": [
+        {
+          "id": "2025-president-board",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fit": "contain",
+          "asset": "source-art/2025-president-board.pdf",
+          "previewAsset": "source-art/2025-president-board.png"
+        }
+      ],
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "pdfs/issue-2-october-2025-0eb630f7.pdf",
+        "page": 4,
+        "label": "Interim-President question and Our Board",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Complete original page including source names and question. A separate editable question panel is supplied below."
+      }
+    },
+    {
+      "id": "source-2025-board",
+      "name": "Our Board 2025–2026 · source artwork",
+      "kind": "custom",
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2025",
+      "art": "interior",
+      "section": {
+        "code": "A",
+        "label": "Our Board 2025–2026"
+      },
+      "slots": [
+        {
+          "id": "2025-board",
+          "role": "piece",
+          "rect": [
+            53.567,
+            446.614,
+            687.308,
+            740
+          ],
+          "fit": "contain",
+          "asset": "source-art/2025-board.pdf",
+          "previewAsset": "source-art/2025-board.png"
+        },
+        {
+          "id": "dateline-left",
+          "role": "text",
+          "side": "left",
+          "field": "issueDate",
+          "format": "{MONTH} {D}, {YYYY}",
+          "text": "SEPTEMBER 12, 2024",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Condensed Black",
+            "size": 10,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "center",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            11.72,
+            46.84,
+            186.08,
+            69.07
+          ]
+        },
+        {
+          "id": "dateline-right",
+          "role": "text",
+          "side": "right",
+          "field": "issueDate",
+          "format": "{MONTH} {D}, {YYYY}",
+          "text": "SEPTEMBER 12, 2025",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Condensed Black",
+            "size": 10,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "right",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            550.05,
+            46.79,
+            724.42,
+            69.02
+          ]
+        }
+      ],
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "pdfs/issue-2-october-2025-0eb630f7.pdf",
+        "page": 4,
+        "label": "Our Board 2025–2026",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": ""
+      }
+    },
+    {
+      "id": "source-2025-event-ad",
+      "name": "CFUR Queen Vinyl Night event ad + article",
+      "kind": "story",
+      "storyCount": 1,
+      "photoCount": 0,
+      "design": "ote-2025",
+      "art": "interior",
+      "section": {
+        "code": "A",
+        "label": "CFUR Queen Vinyl Night event ad"
+      },
+      "slots": [
+        {
+          "id": "headline-1",
+          "role": "headline",
+          "articleIndex": 0,
+          "rect": [
+            385,
+            70,
+            706,
+            133
+          ],
+          "fontSize": 22
+        },
+        {
+          "id": "byline-1",
+          "role": "byline",
+          "articleIndex": 0,
+          "rect": [
+            385,
+            137,
+            706,
+            155
+          ]
+        },
+        {
+          "id": "body-1",
+          "role": "body",
+          "articleIndex": 0,
+          "rect": [
+            385,
+            165,
+            706,
+            743
+          ],
+          "columns": 1
+        },
+        {
+          "id": "2025-event-ad",
+          "role": "ad",
+          "rect": [
+            34.954,
+            428.098,
+            365.221,
+            756.94
+          ],
+          "fit": "contain",
+          "asset": "source-art/2025-event-ad.pdf",
+          "previewAsset": "source-art/2025-event-ad.png"
+        },
+        {
+          "id": "dateline-left",
+          "role": "text",
+          "side": "left",
+          "field": "issueDate",
+          "format": "{MONTH} {D}, {YYYY}",
+          "text": "SEPTEMBER 12, 2024",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Condensed Black",
+            "size": 10,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "center",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            11.72,
+            46.84,
+            186.08,
+            69.07
+          ]
+        },
+        {
+          "id": "dateline-right",
+          "role": "text",
+          "side": "right",
+          "field": "issueDate",
+          "format": "{MONTH} {D}, {YYYY}",
+          "text": "SEPTEMBER 12, 2025",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Condensed Black",
+            "size": 10,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "right",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            550.05,
+            46.79,
+            724.42,
+            69.02
+          ]
+        }
+      ],
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "pdfs/issue-2-october-2025-0eb630f7.pdf",
+        "page": 14,
+        "label": "CFUR Queen Vinyl Night event ad",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Source advertises October 18, 2025, at Omineca Arts Centre; retained as historical artwork."
+      }
+    },
+    {
+      "id": "source-2025-moose-ad",
+      "name": "Thirsty Moose 2025 right-column ad + article",
+      "kind": "story",
+      "storyCount": 1,
+      "photoCount": 0,
+      "design": "ote-2025",
+      "art": "interior",
+      "section": {
+        "code": "A",
+        "label": "Thirsty Moose 2025 right-column ad"
+      },
+      "slots": [
+        {
+          "id": "headline-1",
+          "role": "headline",
+          "articleIndex": 0,
+          "rect": [
+            49,
+            70,
+            370,
+            133
+          ],
+          "fontSize": 22
+        },
+        {
+          "id": "byline-1",
+          "role": "byline",
+          "articleIndex": 0,
+          "rect": [
+            49,
+            137,
+            370,
+            155
+          ]
+        },
+        {
+          "id": "body-1",
+          "role": "body",
+          "articleIndex": 0,
+          "rect": [
+            49,
+            165,
+            370,
+            743
+          ],
+          "columns": 1
+        },
+        {
+          "id": "2025-moose-ad",
+          "role": "ad",
+          "rect": [
+            386.348,
+            65.249,
+            716.849,
+            752.36
+          ],
+          "fit": "contain",
+          "asset": "source-art/2025-moose-ad.pdf",
+          "previewAsset": "source-art/2025-moose-ad.png"
+        },
+        {
+          "id": "dateline-left",
+          "role": "text",
+          "side": "left",
+          "field": "issueDate",
+          "format": "{MONTH} {D}, {YYYY}",
+          "text": "SEPTEMBER 12, 2024",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Condensed Black",
+            "size": 10,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "center",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            11.72,
+            46.84,
+            186.08,
+            69.07
+          ]
+        },
+        {
+          "id": "dateline-right",
+          "role": "text",
+          "side": "right",
+          "field": "issueDate",
+          "format": "{MONTH} {D}, {YYYY}",
+          "text": "SEPTEMBER 12, 2025",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Condensed Black",
+            "size": 10,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "right",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            550.05,
+            46.79,
+            724.42,
+            69.02
+          ]
+        }
+      ],
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "pdfs/issue-2-october-2025-0eb630f7.pdf",
+        "page": 15,
+        "label": "Thirsty Moose 2025 right-column ad",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": ""
+      }
+    },
+    {
+      "id": "source-2025-recruitment-ad",
+      "name": "OTE recruitment 2025 right-half ad + article",
+      "kind": "story",
+      "storyCount": 1,
+      "photoCount": 0,
+      "design": "ote-2025",
+      "art": "interior",
+      "section": {
+        "code": "A",
+        "label": "OTE recruitment 2025 right-half ad"
+      },
+      "slots": [
+        {
+          "id": "headline-1",
+          "role": "headline",
+          "articleIndex": 0,
+          "rect": [
+            49,
+            70,
+            365,
+            133
+          ],
+          "fontSize": 22
+        },
+        {
+          "id": "byline-1",
+          "role": "byline",
+          "articleIndex": 0,
+          "rect": [
+            49,
+            137,
+            365,
+            155
+          ]
+        },
+        {
+          "id": "body-1",
+          "role": "body",
+          "articleIndex": 0,
+          "rect": [
+            49,
+            165,
+            365,
+            743
+          ],
+          "columns": 1
+        },
+        {
+          "id": "2025-recruitment-ad",
+          "role": "ad",
+          "rect": [
+            380.88,
+            65.249,
+            717.356,
+            754.92
+          ],
+          "fit": "contain",
+          "asset": "source-art/2025-recruitment-ad.pdf",
+          "previewAsset": "source-art/2025-recruitment-ad.png"
+        },
+        {
+          "id": "dateline-left",
+          "role": "text",
+          "side": "left",
+          "field": "issueDate",
+          "format": "{MONTH} {D}, {YYYY}",
+          "text": "SEPTEMBER 12, 2024",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Condensed Black",
+            "size": 10,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "center",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            11.72,
+            46.84,
+            186.08,
+            69.07
+          ]
+        },
+        {
+          "id": "dateline-right",
+          "role": "text",
+          "side": "right",
+          "field": "issueDate",
+          "format": "{MONTH} {D}, {YYYY}",
+          "text": "SEPTEMBER 12, 2025",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Condensed Black",
+            "size": 10,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "right",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            550.05,
+            46.79,
+            724.42,
+            69.02
+          ]
+        }
+      ],
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "pdfs/issue-2-october-2025-0eb630f7.pdf",
+        "page": 16,
+        "label": "OTE recruitment 2025 right-half ad",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": ""
+      }
+    },
+    {
+      "id": "source-2025-president-qa",
+      "name": "Interim-President question · editable",
+      "kind": "custom",
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2025",
+      "art": "interior",
+      "section": {
+        "code": "A",
+        "label": "President question and Our Board"
+      },
+      "slots": [
+        {
+          "id": "president-background",
+          "role": "ad",
+          "rect": [
+            54.622,
+            69.39,
+            676.838,
+            439
+          ],
+          "fit": "contain",
+          "asset": "source-art/october-president-background.pdf",
+          "previewAsset": "source-art/october-president-background.png"
+        },
+        {
+          "id": "interim-president-qa",
+          "role": "piece",
+          "blockType": "president-qa",
+          "rect": [
+            54.622,
+            69.39,
+            676.838,
+            439
+          ],
+          "fields": {
+            "heading": "interim-President",
+            "subtitle": "Question",
+            "question": "Double-dipping:\nacceptable or unforgivable\n?",
+            "answer": "As for double-dipping, in the words of\nGeorge Costanza, “so??... you dip the way\nyou want to dip, and I dip the way I want to\ndip.”  Double, triple it is all good."
+          },
+          "contentLayout": [
+            {
+              "field": "heading",
+              "rect": [
+                0.0,
+                0.0016503882470712357,
+                0.4827551846947041,
+                0.15586699494061307
+              ],
+              "style": {
+                "fontFamily": "Salted",
+                "fontStyle": "Regular",
+                "size": 44,
+                "leading": 48,
+                "chars": {
+                  "fill": "OTE 2025 Green"
+                },
+                "para": {
+                  "align": "left",
+                  "hyphenate": false
+                }
+              }
+            },
+            {
+              "field": "subtitle",
+              "rect": [
+                0.4827551846947041,
+                0.01517816076404859,
+                0.7479364079355079,
+                0.13963366792024023
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 35,
+                "leading": 38,
+                "chars": {
+                  "fill": "[Black]"
+                },
+                "para": {
+                  "align": "left",
+                  "hyphenate": false
+                }
+              }
+            },
+            {
+              "field": "answer",
+              "rect": [
+                0.3686469007547218,
+                0.3019669381239685,
+                0.8090084472273293,
+                0.534644625415979
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Italic",
+                "size": 12,
+                "leading": 18,
+                "chars": {
+                  "fill": "[Black]"
+                },
+                "para": {
+                  "align": "left",
+                  "hyphenate": false
+                }
+              }
+            },
+            {
+              "field": "question",
+              "rect": [
+                0.5229341579130077,
+                0.6915667866129164,
+                0.9006165061650617,
+                0.9783555639728362
+              ],
+              "style": {
+                "fontFamily": "Salted",
+                "fontStyle": "Regular",
+                "size": 21,
+                "leading": 30,
+                "chars": {
+                  "fill": "[Black]"
+                },
+                "para": {
+                  "align": "center",
+                  "hyphenate": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "2025-board",
+          "role": "piece",
+          "rect": [
+            53.567,
+            446.614,
+            687.308,
+            740
+          ],
+          "fit": "contain",
+          "asset": "source-art/2025-board.pdf",
+          "previewAsset": "source-art/2025-board.png"
+        },
+        {
+          "id": "dateline-left",
+          "role": "text",
+          "side": "left",
+          "field": "issueDate",
+          "format": "{MONTH} {D}, {YYYY}",
+          "text": "SEPTEMBER 12, 2024",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Condensed Black",
+            "size": 10,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "center",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            11.72,
+            46.84,
+            186.08,
+            69.07
+          ]
+        },
+        {
+          "id": "dateline-right",
+          "role": "text",
+          "side": "right",
+          "field": "issueDate",
+          "format": "{MONTH} {D}, {YYYY}",
+          "text": "SEPTEMBER 12, 2025",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Condensed Black",
+            "size": 10,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "right",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            550.05,
+            46.79,
+            724.42,
+            69.02
+          ]
+        }
+      ],
+      "source": {
+        "documentId": "issue-2-october-2025-0eb630f7",
+        "pdf": "pdfs/issue-2-october-2025-0eb630f7.pdf",
+        "page": 4,
+        "label": "Interim-President question · editable",
+        "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+        "notes": "Question and response are editable native text; portrait and board panel retain original artwork. Portable fonts substitute unavailable source faces."
+      }
+    },
+    {
+      "id": "source-2024-inside-edge-editable",
+      "name": "Inside the Edge · editable Q&A",
+      "kind": "custom",
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "art": "interior",
+      "section": {
+        "code": "A",
+        "label": "Inside the Edge"
+      },
+      "slots": [
+        {
+          "id": "inside-edge-background",
+          "role": "ad",
+          "rect": [
+            39,
+            374,
+            717,
+            759
+          ],
+          "fit": "contain",
+          "asset": "source-art/march-inside-edge-background.pdf",
+          "previewAsset": "source-art/march-inside-edge-background.png"
+        },
+        {
+          "id": "inside-edge-qa",
+          "role": "piece",
+          "blockType": "inside-edge",
+          "rect": [
+            39,
+            374,
+            717,
+            759
+          ],
+          "fields": {
+            "heading": "Inside the Edge",
+            "subtitle": "*Q&A section",
+            "question": "Are there any topics that are off-limits? How does OTE handle controversial or sensitive subjects?",
+            "answer": "At Over the Edge, we’re open to all topics you’re passionate about writing on! While no subjects are off-limits, we do consider where pieces might fit best. Our print newspaper, which goes out through our media partnership, typically features content that speaks to a broader community audience. But don’t worry if your piece tackles more controversial or mature themes – our website is a perfect platform for these stories, giving writers more flexibility to explore complex or sensitive topics. Our editorial team is always here to chat about the best home for your work and help you shape your ideas."
+          },
+          "contentLayout": [
+            {
+              "field": "heading",
+              "rect": [
+                0.644542772861357,
+                0.012987012987012988,
+                0.9690265486725663,
+                0.12207792207792208
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 28,
+                "leading": 31,
+                "chars": {
+                  "fill": "[Black]"
+                },
+                "para": {
+                  "align": "left",
+                  "hyphenate": false
+                }
+              }
+            },
+            {
+              "field": "subtitle",
+              "rect": [
+                0.8023598820058997,
+                0.1038961038961039,
+                0.9129793510324484,
+                0.15064935064935064
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Italic",
+                "size": 10,
+                "leading": 12,
+                "chars": {
+                  "fill": "[Black]"
+                },
+                "para": {
+                  "align": "left",
+                  "hyphenate": false
+                }
+              }
+            },
+            {
+              "field": "question",
+              "rect": [
+                0.4469026548672566,
+                0.24935064935064935,
+                0.9011799410029498,
+                0.35324675324675325
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 10,
+                "leading": 13,
+                "chars": {
+                  "fill": "[Paper]"
+                },
+                "para": {
+                  "align": "left",
+                  "hyphenate": false
+                }
+              }
+            },
+            {
+              "field": "answer",
+              "rect": [
+                0.29646017699115046,
+                0.412987012987013,
+                0.9690265486725663,
+                0.6649350649350649
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 9,
+                "leading": 12,
+                "chars": {
+                  "fill": "[Black]"
+                },
+                "para": {
+                  "align": "left",
+                  "hyphenate": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "dateline-left",
+          "role": "text",
+          "side": "left",
+          "field": "issueDate",
+          "format": "{WEEKDAY}, {MONTH} {D}, {YYYY}",
+          "text": "THURSDAY, SEPTEMBER 26, 2024",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Bold",
+            "size": 8,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "center",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            183.58,
+            47.52,
+            448.7,
+            67.3
+          ]
+        },
+        {
+          "id": "dateline-right",
+          "role": "text",
+          "side": "right",
+          "field": "issueDate",
+          "format": "{WEEKDAY}, {MONTH} {D}, {YYYY}",
+          "text": "THURSDAY, SEPTEMBER 26, 2024",
+          "style": {
+            "fontFamily": "Helvetica Neue",
+            "fontStyle": "Bold",
+            "size": 8,
+            "leading": 10.25,
+            "chars": {
+              "tracking": 120,
+              "capitalization": "allCaps",
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "center",
+              "hyphenate": false
+            }
+          },
+          "rect": [
+            305.59,
+            46.58,
+            570.7,
+            66.35
+          ]
+        }
+      ],
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 5,
+        "label": "Inside the Edge · editable Q&A",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": "Original chat artwork and feedback QR retained; heading, question and response are editable native text."
+      }
+    },
+    {
+      "id": "source-2024-cfur-briefs",
+      "name": "CFUR Radio · four editable articles",
+      "kind": "story",
+      "storyCount": 4,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "slots": [
+        {
+          "id": "cfur-background",
+          "role": "ad",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/march-cfur-background.pdf",
+          "previewAsset": "source-art/march-cfur-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "cfur-headline-1",
+          "role": "headline",
+          "articleIndex": 0,
+          "rect": [
+            460.86987612951816,
+            30.635043261962437,
+            707.1098761295179,
+            118.93433679242719
+          ],
+          "sourceRect": [
+            460.86987612951816,
+            30.635043261962437,
+            707.1098761295179,
+            118.93433679242719
+          ],
+          "style": {
+            "fontFamily": "Wordy Diva",
+            "fontStyle": "Regular",
+            "size": 22,
+            "leading": 26.4,
+            "chars": {
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "left",
+              "hyphenate": false,
+              "spaceAfter": 0
+            },
+            "portable": {
+              "fontFamily": "Caveat Brush",
+              "fontStyle": "Regular"
+            }
+          }
+        },
+        {
+          "id": "cfur-body-3",
+          "role": "body",
+          "articleIndex": 2,
+          "rect": [
+            43.19999999999999,
+            381.6000000000022,
+            682.9127519638637,
+            528.4800000000004
+          ],
+          "sourceRect": [
+            43.19999999999999,
+            381.6000000000022,
+            682.9127519638637,
+            528.4800000000004
+          ],
+          "style": {
+            "fontFamily": "Kefa",
+            "fontStyle": "Regular",
+            "size": 11,
+            "leading": 15,
+            "chars": {
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "left",
+              "hyphenate": true,
+              "spaceAfter": 0
+            },
+            "portable": {
+              "fontFamily": "Source Serif 4",
+              "fontStyle": "Regular"
+            }
+          }
+        },
+        {
+          "id": "cfur-body-1",
+          "role": "body",
+          "articleIndex": 0,
+          "rect": [
+            462.1375423995313,
+            118.93433679242753,
+            719.9999957474809,
+            342.381079897943
+          ],
+          "sourceRect": [
+            462.1375423995313,
+            118.93433679242753,
+            719.9999957474809,
+            342.381079897943
+          ],
+          "style": {
+            "fontFamily": "Kefa",
+            "fontStyle": "Regular",
+            "size": 10,
+            "leading": 14,
+            "chars": {
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "left",
+              "hyphenate": true,
+              "spaceAfter": 0
+            },
+            "portable": {
+              "fontFamily": "Source Serif 4",
+              "fontStyle": "Regular"
+            }
+          }
+        },
+        {
+          "id": "cfur-body-2",
+          "role": "body",
+          "articleIndex": 1,
+          "rect": [
+            43.19999999999999,
+            109.63743339802392,
+            437.69622630889734,
+            346.31999999999937
+          ],
+          "sourceRect": [
+            43.19999999999999,
+            109.63743339802392,
+            437.69622630889734,
+            328.31999999999937
+          ],
+          "style": {
+            "fontFamily": "Kefa",
+            "fontStyle": "Regular",
+            "size": 10,
+            "leading": 14,
+            "chars": {
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "left",
+              "hyphenate": true,
+              "spaceAfter": 0
+            },
+            "portable": {
+              "fontFamily": "Source Serif 4",
+              "fontStyle": "Regular"
+            }
+          }
+        },
+        {
+          "id": "cfur-body-4",
+          "role": "body",
+          "articleIndex": 3,
+          "rect": [
+            84.1363609712987,
+            582.0913532852264,
+            489.59999999999997,
+            770.5199999999995
+          ],
+          "sourceRect": [
+            84.1363609712987,
+            582.0913532852264,
+            489.59999999999997,
+            770.5199999999995
+          ],
+          "style": {
+            "fontFamily": "Kefa",
+            "fontStyle": "Regular",
+            "size": 11,
+            "leading": 15,
+            "chars": {
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "left",
+              "hyphenate": true,
+              "spaceAfter": 0
+            },
+            "portable": {
+              "fontFamily": "Source Serif 4",
+              "fontStyle": "Regular"
+            }
+          }
+        },
+        {
+          "id": "cfur-headline-3",
+          "role": "headline",
+          "articleIndex": 2,
+          "rect": [
+            42.12000000000012,
+            348.19948621601156,
+            651.2400000000002,
+            381.60000000000196
+          ],
+          "sourceRect": [
+            42.12000000000012,
+            348.19948621601156,
+            651.2400000000002,
+            381.60000000000196
+          ],
+          "style": {
+            "fontFamily": "Wordy Diva",
+            "fontStyle": "Regular",
+            "size": 22,
+            "leading": 26.4,
+            "chars": {
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "left",
+              "hyphenate": false,
+              "spaceAfter": 0
+            },
+            "portable": {
+              "fontFamily": "Caveat Brush",
+              "fontStyle": "Regular"
+            }
+          }
+        },
+        {
+          "id": "cfur-headline-2",
+          "role": "headline",
+          "articleIndex": 1,
+          "rect": [
+            35.27999999999997,
+            42.930843261963616,
+            436.9270716458113,
+            102.94667347803141
+          ],
+          "sourceRect": [
+            35.27999999999997,
+            42.930843261963616,
+            436.9270716458113,
+            102.94667347803141
+          ],
+          "style": {
+            "fontFamily": "Wordy Diva",
+            "fontStyle": "Regular",
+            "size": 22,
+            "leading": 26.4,
+            "chars": {
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "left",
+              "hyphenate": false,
+              "spaceAfter": 0
+            },
+            "portable": {
+              "fontFamily": "Caveat Brush",
+              "fontStyle": "Regular"
+            }
+          }
+        },
+        {
+          "id": "cfur-headline-4",
+          "role": "headline",
+          "articleIndex": 3,
+          "rect": [
+            42.389042061965824,
+            541.2610760431843,
+            530.8886164920499,
+            579.0913532852261
+          ],
+          "sourceRect": [
+            42.389042061965824,
+            541.2610760431843,
+            530.8886164920499,
+            579.0913532852261
+          ],
+          "style": {
+            "fontFamily": "Wordy Diva",
+            "fontStyle": "Regular",
+            "size": 22,
+            "leading": 26.4,
+            "chars": {
+              "fill": "[Paper]"
+            },
+            "para": {
+              "align": "left",
+              "hyphenate": false,
+              "spaceAfter": 0
+            },
+            "portable": {
+              "fontFamily": "Caveat Brush",
+              "fontStyle": "Regular"
+            }
+          }
+        },
+        {
+          "id": "source-wrap-u965",
+          "role": "wrap",
+          "points": [
+            [
+              637.8982365128187,
+              668.2518399781354
+            ],
+            [
+              640.7176198552739,
+              625.7021610677591
+            ],
+            [
+              682.1584308233009,
+              626.1176847824294
+            ],
+            [
+              719.7822539672267,
+              627.5129014429383
+            ],
+            [
+              720.711569087813,
+              628.0296191687358
+            ],
+            [
+              721.6528128316286,
+              628.5637859008472
+            ],
+            [
+              735.3027761892473,
+              636.363432666958
+            ],
+            [
+              735.6327320670688,
+              637.0933563443031
+            ],
+            [
+              742.6660388408494,
+              652.9802879013612
+            ],
+            [
+              741.0810373649394,
+              691.687406067584
+            ],
+            [
+              737.7501684965144,
+              733.6575702584867
+            ],
+            [
+              737.6466672723457,
+              733.8129192317854
+            ],
+            [
+              696.7760520735345,
+              733.5592685244852
+            ],
+            [
+              659.1479389989377,
+              732.2935343282882
+            ],
+            [
+              652.8726807848964,
+              728.7237576494613
+            ],
+            [
+              643.7123593936178,
+              723.488768020525
+            ],
+            [
+              641.819509190528,
+              719.2374791364824
+            ],
+            [
+              636.900019306632,
+              707.9837591502353
+            ],
+            [
+              636.48,
+              706.9656875274325
+            ]
+          ],
+          "offset": 0.0,
+          "rect": [
+            636.48,
+            625.7021610677591,
+            742.6660388408494,
+            733.8129192317854
+          ]
+        },
+        {
+          "id": "source-wrap-ub52",
+          "role": "wrap",
+          "points": [
+            [
+              10.179672723077786,
+              122.58648746681115
+            ],
+            [
+              213.4664944491484,
+              94.01638785743296
+            ],
+            [
+              234.89406915618207,
+              246.48150415198592
+            ],
+            [
+              31.607247430111443,
+              275.05160376136416
+            ]
+          ],
+          "offset": 4.5,
+          "rect": [
+            10.179672723077786,
+            94.01638785743296,
+            234.89406915618207,
+            275.05160376136416
+          ]
+        },
+        {
+          "id": "source-wrap-ub78",
+          "role": "wrap",
+          "points": [
+            [
+              565.7510171018126,
+              388.4479664198643
+            ],
+            [
+              756.0,
+              381.6000000000022
+            ],
+            [
+              688.4922963909655,
+              497.9196947660512
+            ],
+            [
+              619.3108480643521,
+              511.1892457090162
+            ]
+          ],
+          "offset": 22.5,
+          "rect": [
+            565.7510171018126,
+            381.6000000000022,
+            756.0,
+            511.1892457090162
+          ]
+        },
+        {
+          "id": "source-wrap-ub9a",
+          "role": "wrap",
+          "points": [
+            [
+              111.23850047256853,
+              792
+            ],
+            [
+              137.73607580656835,
+              761.4701883988046
+            ],
+            [
+              131.99324921707512,
+              723.6602784891338
+            ],
+            [
+              170.27875981369607,
+              699.0838370478496
+            ],
+            [
+              154.96455557504783,
+              653.7119451562448
+            ],
+            [
+              114.76476944859542,
+              619.6830262375424
+            ],
+            [
+              97.53628968011594,
+              593.216089300774
+            ],
+            [
+              64.99360567298822,
+              581.8731163278726
+            ],
+            [
+              47.76512590450852,
+              595.1065847962573
+            ],
+            [
+              45.85085037467775,
+              614.0115397510908
+            ],
+            [
+              5.1724953657678725,
+              649.9309541652774
+            ],
+            [
+              0,
+              670.3639149110206
+            ],
+            [
+              0,
+              685.4204111153899
+            ],
+            [
+              7.565339778056796,
+              712.3173055162342
+            ],
+            [
+              26.708095076367044,
+              719.8792874981673
+            ],
+            [
+              42.022299315015516,
+              784.1561343446056
+            ],
+            [
+              46.560888761697946,
+              792
+            ]
+          ],
+          "offset": 13.5,
+          "rect": [
+            0,
+            581.8731163278726,
+            170.27875981369607,
+            792
+          ]
+        },
+        {
+          "id": "source-wrap-ub8c",
+          "role": "wrap",
+          "points": [
+            [
+              101.41350876172328,
+              782.1374696629882
+            ],
+            [
+              130.61432192863754,
+              748.493058302689
+            ],
+            [
+              125.74751973415209,
+              716.4507617690697
+            ],
+            [
+              158.19286769739006,
+              695.6232690222187
+            ],
+            [
+              145.21472851209478,
+              657.1725131818757
+            ],
+            [
+              111.14711315069462,
+              628.3344463016192
+            ],
+            [
+              96.5467065672376,
+              605.9048387280864
+            ],
+            [
+              68.96816079848509,
+              596.292149768
+            ],
+            [
+              54.367754215027844,
+              607.5069535547664
+            ],
+            [
+              52.74548681686588,
+              623.5281018215755
+            ],
+            [
+              18.27230460592523,
+              653.968283528513
+            ],
+            [
+              12.188801862818082,
+              678.0000059287286
+            ],
+            [
+              20.300138853627686,
+              706.8380728089851
+            ],
+            [
+              36.52281283524667,
+              713.2465321157079
+            ],
+            [
+              49.50095202054217,
+              767.71843622286
+            ],
+            [
+              62.47909120583745,
+              790.1480437963919
+            ],
+            [
+              101.41350876172328,
+              790.1480437963919
+            ]
+          ],
+          "offset": 0.0,
+          "rect": [
+            12.188801862818082,
+            596.292149768,
+            158.19286769739006,
+            790.1480437963919
+          ]
+        }
+      ],
+      "section": {
+        "code": "A",
+        "label": "CFUR Radio"
+      },
+      "source": {
+        "documentId": "issue-7-march-2025-dfcbb959",
+        "pdf": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+        "page": 13,
+        "label": "CFUR Radio · four editable articles",
+        "sha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+        "notes": "Frame coordinates and torn-photo wrap contours from the paired IDML. The CN Centre body extends 18pt into the empty source gap to fit the portable font at the source 10pt/14pt size; sourceRect retains the original bounds. Photos, texture, sponsor panel and folio remain artwork; all four complete titles and bodies are editable. Caveat Brush / Source Serif 4 replace Wordy Diva / Kefa unless original faces are supplied."
+      }
     }
   ],
   "designs": {

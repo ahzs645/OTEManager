@@ -5,3 +5,8 @@
 
 # Preserve the upstream font licence notices byte-for-byte.
 **/OFL-*.txt whitespace=-blank-at-eol
+
+# Historical article exports preserve source whitespace verbatim.
+public/designcraft/source-archive/articles/*.md -whitespace
+# Preserve CSV's record separators and literal multiline source fields.
+public/designcraft/source-archive/articles.csv -text -whitespace

@@ -9,6 +9,7 @@ export type Volume = {
 }
 
 export type Issue = {
+  sourceProvenance?: string | null
   id: string
   volumeId: string
   issueNumber: number

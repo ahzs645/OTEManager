@@ -14,6 +14,8 @@ const DESIGN_FONT_FILES = ['Barlow-Black.ttf', 'Barlow-ExtraBold.ttf', 'Barlow-S
   'texgyreheros-regular.otf', 'texgyreheros-bold.otf', 'texgyreheros-italic.otf', 'texgyreheros-bolditalic.otf', 'texgyreheroscn-bold.otf',
   'OFL-Barlow.txt', 'OFL-CaveatBrush.txt', 'GUST-FONT-LICENSE-TeXGyreHeros.txt'];
 const DESIGN_ART = /^original-art\/[a-z0-9][a-z0-9.-]{0,120}\.designcraft$/;
+const SOURCE_ART = /^source-art\/[a-z0-9][a-z0-9-]{0,120}\.(?:pdf|png|jpe?g|tiff?|webp)$/;
+const SOURCE_PDF = /^originals\/[a-z0-9][a-z0-9-]{0,120}\.pdf$/;
 let modules, executor, portableFonts, designFonts, version;
 
 async function fetchBytes(path) {
@@ -42,7 +44,7 @@ async function readRecipe(bytes) {
     if (typeof path !== 'string' || path.startsWith('/') || path.split('/').includes('..')) return null;
     const entry = zip.file(path);
     if (entry) return entry.async('uint8array');
-    return BRAND.has(path) || DESIGN_ART.test(path) ? fetchBytes('../' + path) : null;
+    return BRAND.has(path) || DESIGN_ART.test(path) || SOURCE_ART.test(path) || SOURCE_PDF.test(path) ? fetchBytes('../' + path) : null;
   };
   return { zip, issue, library, plan: await json('page-plan.json'), loadMedia };
 }
@@ -67,7 +69,13 @@ async function bundle(prefix, artifacts, fonts, recipeZip) {
 
 async function fontsFor(message, library) {
   const extra = (message.fonts || []).map((f) => ({ name: f.name, bytes: new Uint8Array(f.bytes) }));
-  const fonts = message.fontProfile === 'original2025' ? [...extra, ...portableFonts.filter((f) => f.name.startsWith('JetBrainsMono-') || f.name.startsWith('OFL-') || f.name.startsWith('Salted-') || f.name === 'LICENSE-Salted.txt')] : [...portableFonts];
+  const fonts = message.fontProfile === 'original2025' ? [...extra] : [...portableFonts];
+  if (message.fontProfile === 'original2025') {
+    // A captured source style may name any bundled open family as its scoped
+    // substitute. Keep that full fallback scope; uploaded filenames win.
+    const present = new Set(fonts.map((f) => f.name));
+    fonts.push(...portableFonts.filter((f) => !present.has(f.name)));
+  }
   if (modules.pages.usesDesigns(library)) {
     designFonts ??= await Promise.all(DESIGN_FONT_FILES.map(async (name) => ({ name, bytes: await fetchBytes('../assets/fonts/' + name) })));
     const present = new Set(fonts.map((f) => f.name));

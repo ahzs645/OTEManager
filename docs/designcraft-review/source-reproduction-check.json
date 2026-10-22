@@ -1,0 +1,191 @@
+{
+  "schemaVersion": "ote.source-reconstruction-comparison.v1",
+  "renderDpi": 72,
+  "engine": "designcraft-headless 0.9.0 (WebAssembly)",
+  "fontProfile": "portable",
+  "interpretation": "These are pixel differences over the indicated source region, not a quality score. Original artwork is retained; typography remains editable and differs with portable font substitutes. The source PDF and paired IDML also differ in some frame positions. Adobe InDesign and press proofs remain unverified.",
+  "compositions": {
+    "exported": 16,
+    "failed": 0
+  },
+  "presets": [
+    {
+      "templateId": "source-2024-president-original",
+      "status": "exported",
+      "errors": 0,
+      "fullArticleCopy": true,
+      "fullEditorialCopy": true
+    },
+    {
+      "templateId": "source-2024-president-qa",
+      "status": "exported",
+      "errors": 0,
+      "fullArticleCopy": true,
+      "fullEditorialCopy": true
+    },
+    {
+      "templateId": "source-2024-president-with-story",
+      "status": "exported",
+      "errors": 0,
+      "fullArticleCopy": true,
+      "fullEditorialCopy": true
+    },
+    {
+      "templateId": "source-2024-inside-edge",
+      "status": "exported",
+      "errors": 0,
+      "fullArticleCopy": true,
+      "fullEditorialCopy": true
+    },
+    {
+      "templateId": "source-2024-moose-ad",
+      "status": "exported",
+      "errors": 0,
+      "fullArticleCopy": true,
+      "fullEditorialCopy": true
+    },
+    {
+      "templateId": "source-2024-recruitment-ad",
+      "status": "exported",
+      "errors": 0,
+      "fullArticleCopy": true,
+      "fullEditorialCopy": true
+    },
+    {
+      "templateId": "source-2024-alumni",
+      "status": "exported",
+      "errors": 0,
+      "fullArticleCopy": true,
+      "fullEditorialCopy": true
+    },
+    {
+      "templateId": "source-2024-cfur-original",
+      "status": "exported",
+      "errors": 0,
+      "fullArticleCopy": true,
+      "fullEditorialCopy": true
+    },
+    {
+      "templateId": "source-2025-president-board",
+      "status": "exported",
+      "errors": 0,
+      "fullArticleCopy": true,
+      "fullEditorialCopy": true
+    },
+    {
+      "templateId": "source-2025-board",
+      "status": "exported",
+      "errors": 0,
+      "fullArticleCopy": true,
+      "fullEditorialCopy": true
+    },
+    {
+      "templateId": "source-2025-event-ad",
+      "status": "exported",
+      "errors": 0,
+      "fullArticleCopy": true,
+      "fullEditorialCopy": true
+    },
+    {
+      "templateId": "source-2025-moose-ad",
+      "status": "exported",
+      "errors": 0,
+      "fullArticleCopy": true,
+      "fullEditorialCopy": true
+    },
+    {
+      "templateId": "source-2025-recruitment-ad",
+      "status": "exported",
+      "errors": 0,
+      "fullArticleCopy": true,
+      "fullEditorialCopy": true
+    },
+    {
+      "templateId": "source-2025-president-qa",
+      "status": "exported",
+      "errors": 0,
+      "fullArticleCopy": true,
+      "fullEditorialCopy": true
+    },
+    {
+      "templateId": "source-2024-inside-edge-editable",
+      "status": "exported",
+      "errors": 0,
+      "fullArticleCopy": true,
+      "fullEditorialCopy": true
+    },
+    {
+      "templateId": "source-2024-cfur-briefs",
+      "status": "exported",
+      "errors": 0,
+      "fullArticleCopy": true,
+      "fullEditorialCopy": true
+    }
+  ],
+  "comparisons": [
+    {
+      "templateId": "source-2024-president-qa",
+      "source": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+      "page": 6,
+      "region": [
+        374.6985,
+        400,
+        717.6643,
+        757.44
+      ],
+      "pixels": 123152,
+      "meanAbsoluteRgbDifference": 8.562987202806289,
+      "fractionPixelsWithin12Levels": 0.9187589320514487,
+      "sourceRendererWarnings": "",
+      "generatedRendererWarnings": ""
+    },
+    {
+      "templateId": "source-2025-president-qa",
+      "source": "pdfs/issue-2-october-2025-0eb630f7.pdf",
+      "page": 4,
+      "region": [
+        54.622,
+        69.39,
+        676.838,
+        439
+      ],
+      "pixels": 230510,
+      "meanAbsoluteRgbDifference": 11.719069310080545,
+      "fractionPixelsWithin12Levels": 0.9178343672725695,
+      "sourceRendererWarnings": "",
+      "generatedRendererWarnings": ""
+    },
+    {
+      "templateId": "source-2024-inside-edge-editable",
+      "source": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+      "page": 5,
+      "region": [
+        39,
+        374,
+        717,
+        759
+      ],
+      "pixels": 261030,
+      "meanAbsoluteRgbDifference": 10.802285816445108,
+      "fractionPixelsWithin12Levels": 0.903620273531778,
+      "sourceRendererWarnings": "syntax error: cannot find Pattern resource 'P0'\nencountered syntax errors; page may not be correct",
+      "generatedRendererWarnings": ""
+    },
+    {
+      "templateId": "source-2024-cfur-briefs",
+      "source": "pdfs/issue-7-march-2025-dfcbb959.pdf",
+      "page": 13,
+      "region": [
+        0,
+        0,
+        756,
+        792
+      ],
+      "pixels": 598752,
+      "meanAbsoluteRgbDifference": 23.604060891097927,
+      "fractionPixelsWithin12Levels": 0.7702855272299717,
+      "sourceRendererWarnings": "",
+      "generatedRendererWarnings": ""
+    }
+  ]
+}

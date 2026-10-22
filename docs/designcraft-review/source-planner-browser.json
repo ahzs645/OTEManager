@@ -1,0 +1,160 @@
+{
+  "status": "passed",
+  "base": "http://127.0.0.1:8923/",
+  "roundtrip": {
+    "answer": "Send your questions to the newspaper.",
+    "section": {
+      "code": "A",
+      "label": "President question of the month"
+    },
+    "savedPages": 1
+  },
+  "sourceAssets": [
+    "source-art/",
+    "source-art/march-president-background.pdf",
+    "source-art/march-president-background.png"
+  ],
+  "composed": {
+    "status": "completed",
+    "preflight": {
+      "errors": 0,
+      "issues": [
+        {
+          "item": 8,
+          "kind": "emptyText",
+          "message": "Empty text frame",
+          "page": 0,
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: OTE 2024 Green",
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: NEcolorLightGray",
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: NEcolorSeeMeYellow",
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: NEcolorUltraLightGray",
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: NElinkColor",
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: NEstatusEditable",
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: NEstatusLocked",
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: NEwarningColor",
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: PANTONE 305 C",
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: PANTONE 340 CV",
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: PANTONE 426 U",
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: PANTONE Process Blue C",
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: Word_R0_G0_B0",
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: Word_R32_G31_B30",
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: Word_R33_G33_B33",
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: r0g0b0",
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: r183g183b183",
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: r219g219b219",
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: r255g255b255",
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: r51g51b51",
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: CMYK OTE Green",
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: R=45 G=104 B=83",
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: R=255 G=255 B=255",
+          "severity": "warning"
+        },
+        {
+          "kind": "rgbColor",
+          "message": "RGB swatch in a print document: R=33 G=33 B=33",
+          "severity": "warning"
+        }
+      ],
+      "warnings": 25
+    },
+    "version": "designcraft-headless 0.9.0 (WebAssembly)",
+    "outputs": {
+      "native": 460115,
+      "pdf": 1245349,
+      "idml": 487426
+    }
+  },
+  "pageErrors": []
+}

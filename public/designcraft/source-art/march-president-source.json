@@ -1,0 +1,68 @@
+{
+  "source": "public/designcraft/originals/issue-7-march-2025-dfcbb959.pdf",
+  "sourceSha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+  "page": 6,
+  "clip": [
+    374.69854736328125,
+    400.0000305175781,
+    717.664306640625,
+    757.4400024414062
+  ],
+  "background": "source-art/march-president-background.pdf",
+  "backgroundConstruction": "Vector PDF crop; removed only PDF text operators in the clip with PyMuPDF redaction (images=0, graphics=0, text=0). Original background images, portrait and vector speech bubbles retained.",
+  "texts": [
+    {
+      "role": "heading",
+      "text": "President  Answers",
+      "rect": [
+        467.9007873535156,
+        401.82928466796875,
+        647.7307739257812,
+        429.20928955078125
+      ],
+      "fontFamily": "Decalotype",
+      "fontStyle": "Black",
+      "size": 20
+    },
+    {
+      "role": "subtitle",
+      "text": "Getting the Answers You Crave: We Ask, the\nPresident Delivers!",
+      "rect": [
+        426.7685852050781,
+        432.42120361328125,
+        667.6661987304688,
+        465.5172119140625
+      ],
+      "fontFamily": "Helvetica Neue",
+      "fontStyle": "Regular",
+      "size": 12
+    },
+    {
+      "role": "question",
+      "text": "Pineapple on pizza\u2014\nyes or no?",
+      "rect": [
+        423.3599853515625,
+        560.80078125,
+        549.4185180664062,
+        599.0358276367188
+      ],
+      "fontFamily": "Minion Pro",
+      "fontStyle": "Regular",
+      "size": 15
+    },
+    {
+      "role": "answer",
+      "text": "I really like pizza but I would\nbe a no for pineapple on mine",
+      "rect": [
+        498.9599914550781,
+        633.2698974609375,
+        677.9673461914062,
+        671.5049438476562
+      ],
+      "fontFamily": "Minion Pro",
+      "fontStyle": "Regular",
+      "size": 15,
+      "fill": "white"
+    }
+  ]
+}

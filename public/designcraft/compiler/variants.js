@@ -23,7 +23,7 @@ export function enumerateCandidates(library, articles, design = null) {
   const count = articles.length;
   const out = [];
   for (const template of library.templates) {
-    if (template.kind !== 'story' || template.storyCount !== count || (template.design ?? null) !== design) continue;
+    if (template.source || template.kind !== 'story' || template.storyCount !== count || (template.design ?? null) !== design) continue;
     for (const order of permutations(articles)) {
       const used = new Map();
       let feasible = true;

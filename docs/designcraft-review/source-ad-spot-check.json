@@ -1,0 +1,648 @@
+{
+  "schemaVersion": "ote.source-ad-spots-check.v1",
+  "renderDpi": 72,
+  "interpretation": "Each mapped advertisement is a separate native graphic containing the source crop. The original advertisement image must be absent from the page background; the three-point-inset background must be over 99.5% white. The blank September reservation is vector artwork and is checked by the clear-background measurement. Source/output pixel differences are measurements, not a quality score.",
+  "sourceIssueCount": 9,
+  "adSpotCount": 22,
+  "expectedAdSpotCount": 22,
+  "allMappedSpotsPresent": true,
+  "passed": true,
+  "spots": [
+    {
+      "documentId": "cover-page-issue-3-lina-2dc29f52",
+      "pageNumber": 13,
+      "slotId": "source-ad-cfur-radio-promo",
+      "label": "CFUR Radio \u00b7 bottom-right quarter recruitment ad",
+      "rect": [
+        376.52001953125,
+        411.9599914550781,
+        716.756591796875,
+        752.1965942382812
+      ],
+      "asset": "source-art/whole-cover-page-issue-3-lina-2dc29f52-p013-ad-cfur-radio-promo.pdf",
+      "background": "source-art/whole-cover-page-issue-3-lina-2dc29f52-p013-background.pdf",
+      "backgroundSha256": "c306dbc71c2bbc01681cb760a0976c6d8104078693aa065ce7d7ab8e739bc6e8",
+      "backgroundInsetPoints": 3,
+      "backgroundFractionWhite": 1.0,
+      "sourceAdImageCount": 1,
+      "sourceAdImageDigests": [
+        "c5a2bf6f345896bd64cce920553ad32e"
+      ],
+      "meanAbsoluteRgbDifference": 11.536339627171545,
+      "fractionPixelsWithin12Levels": 0.6862941812008025,
+      "checks": {
+        "nativeSeparatePlacement": true,
+        "nativeOriginalCropBytes": true,
+        "backgroundIsClear": true,
+        "originalAdImageRemoved": true
+      }
+    },
+    {
+      "documentId": "cover-page-issue-3-lina-2dc29f52",
+      "pageNumber": 16,
+      "slotId": "source-ad-thirsty-moose",
+      "label": "Thirsty Moose Pub \u00b7 right-half ad",
+      "rect": [
+        386.6011657714844,
+        65.2486572265625,
+        716.8486328125,
+        752.7434692382812
+      ],
+      "asset": "source-art/whole-cover-page-issue-3-lina-2dc29f52-p016-ad-thirsty-moose.pdf",
+      "background": "source-art/whole-cover-page-issue-3-lina-2dc29f52-p016-background.pdf",
+      "backgroundSha256": "fe7d2e2ea1553c939b294d79e9d435ac0a335cd103fcb1d784071e7b0c65f283",
+      "backgroundInsetPoints": 3,
+      "backgroundFractionWhite": 1.0,
+      "sourceAdImageCount": 1,
+      "sourceAdImageDigests": [
+        "7ac9c48cda1fd2ac223f0503b75694b5"
+      ],
+      "meanAbsoluteRgbDifference": 2.7485977423358863,
+      "fractionPixelsWithin12Levels": 0.9538484507833908,
+      "checks": {
+        "nativeSeparatePlacement": true,
+        "nativeOriginalCropBytes": true,
+        "backgroundIsClear": true,
+        "originalAdImageRemoved": true
+      }
+    },
+    {
+      "documentId": "cover-page-issue-3-lina-2dc29f52",
+      "pageNumber": 17,
+      "slotId": "source-ad-ote-recruitment",
+      "label": "Write content for Over the Edge \u00b7 full-page recruitment",
+      "rect": [
+        35.76458740234375,
+        64.47802734375,
+        718.8685913085938,
+        754.9714965820312
+      ],
+      "asset": "source-art/whole-cover-page-issue-3-lina-2dc29f52-p017-ad-ote-recruitment.pdf",
+      "background": "source-art/whole-cover-page-issue-3-lina-2dc29f52-p017-background.pdf",
+      "backgroundSha256": "8edecccf7e2160ad01400c2d7875077ce414ebeb15c466738a3910aecc37f3cc",
+      "backgroundInsetPoints": 3,
+      "backgroundFractionWhite": 0.9985250737463127,
+      "sourceAdImageCount": 1,
+      "sourceAdImageDigests": [
+        "ab5395ece755a4fd6e88f17f07cfa07b"
+      ],
+      "meanAbsoluteRgbDifference": 3.2182022833252932,
+      "fractionPixelsWithin12Levels": 0.9144133851270724,
+      "checks": {
+        "nativeSeparatePlacement": true,
+        "nativeOriginalCropBytes": true,
+        "backgroundIsClear": true,
+        "originalAdImageRemoved": true
+      }
+    },
+    {
+      "documentId": "cover-page-issue-3-lina-6dd82589",
+      "pageNumber": 13,
+      "slotId": "source-ad-cfur-radio-promo",
+      "label": "CFUR Radio \u00b7 bottom-right quarter recruitment ad",
+      "rect": [
+        376.52001953125,
+        411.9599914550781,
+        716.756591796875,
+        752.1965942382812
+      ],
+      "asset": "source-art/whole-cover-page-issue-3-lina-6dd82589-p013-ad-cfur-radio-promo.pdf",
+      "background": "source-art/whole-cover-page-issue-3-lina-6dd82589-p013-background.pdf",
+      "backgroundSha256": "0193f2a9cb0befcae2e83c879b7f52d208c73f450f453db7c7b467da4d22c556",
+      "backgroundInsetPoints": 3,
+      "backgroundFractionWhite": 1.0,
+      "sourceAdImageCount": 1,
+      "sourceAdImageDigests": [
+        "c5a2bf6f345896bd64cce920553ad32e"
+      ],
+      "meanAbsoluteRgbDifference": 11.536339627171545,
+      "fractionPixelsWithin12Levels": 0.6862941812008025,
+      "checks": {
+        "nativeSeparatePlacement": true,
+        "nativeOriginalCropBytes": true,
+        "backgroundIsClear": true,
+        "originalAdImageRemoved": true
+      }
+    },
+    {
+      "documentId": "cover-page-issue-3-lina-6dd82589",
+      "pageNumber": 16,
+      "slotId": "source-ad-thirsty-moose",
+      "label": "Thirsty Moose Pub \u00b7 right-half ad",
+      "rect": [
+        386.6011657714844,
+        65.2486572265625,
+        716.8486328125,
+        752.7434692382812
+      ],
+      "asset": "source-art/whole-cover-page-issue-3-lina-6dd82589-p016-ad-thirsty-moose.pdf",
+      "background": "source-art/whole-cover-page-issue-3-lina-6dd82589-p016-background.pdf",
+      "backgroundSha256": "c2ed7fe384487bc20a249d0563d3bd9faefad368aa6545d5f37bcbc5395bae5d",
+      "backgroundInsetPoints": 3,
+      "backgroundFractionWhite": 1.0,
+      "sourceAdImageCount": 1,
+      "sourceAdImageDigests": [
+        "7ac9c48cda1fd2ac223f0503b75694b5"
+      ],
+      "meanAbsoluteRgbDifference": 2.74858749619429,
+      "fractionPixelsWithin12Levels": 0.9538484507833908,
+      "checks": {
+        "nativeSeparatePlacement": true,
+        "nativeOriginalCropBytes": true,
+        "backgroundIsClear": true,
+        "originalAdImageRemoved": true
+      }
+    },
+    {
+      "documentId": "cover-page-issue-3-lina-6dd82589",
+      "pageNumber": 17,
+      "slotId": "source-ad-ote-recruitment",
+      "label": "Write content for Over the Edge \u00b7 full-page recruitment",
+      "rect": [
+        36.484554290771484,
+        65.197998046875,
+        719.5885620117188,
+        755.2069091796875
+      ],
+      "asset": "source-art/whole-cover-page-issue-3-lina-6dd82589-p017-ad-ote-recruitment.pdf",
+      "background": "source-art/whole-cover-page-issue-3-lina-6dd82589-p017-background.pdf",
+      "backgroundSha256": "ad48984c5c27811985c583f273fcb10df808af37aae3e6ebb59ecd887f86da90",
+      "backgroundInsetPoints": 3,
+      "backgroundFractionWhite": 0.9985401459854014,
+      "sourceAdImageCount": 1,
+      "sourceAdImageDigests": [
+        "4aa43c2f4ba6c4332965e895c2741ae7"
+      ],
+      "meanAbsoluteRgbDifference": 2.3306766473991702,
+      "fractionPixelsWithin12Levels": 0.9343628608424099,
+      "checks": {
+        "nativeSeparatePlacement": true,
+        "nativeOriginalCropBytes": true,
+        "backgroundIsClear": true,
+        "originalAdImageRemoved": true
+      }
+    },
+    {
+      "documentId": "cover-page-issue-3-lina-de16e159",
+      "pageNumber": 13,
+      "slotId": "source-ad-cfur-radio-promo",
+      "label": "CFUR Radio \u00b7 bottom-right quarter recruitment ad",
+      "rect": [
+        376.52001953125,
+        411.9599914550781,
+        716.756591796875,
+        752.1965942382812
+      ],
+      "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p013-ad-cfur-radio-promo.pdf",
+      "background": "source-art/whole-cover-page-issue-3-lina-de16e159-p013-background.pdf",
+      "backgroundSha256": "c9cdc5219fc696188f6a061a611106b5ffee5923e2afa198cb58cec21c1e77bf",
+      "backgroundInsetPoints": 3,
+      "backgroundFractionWhite": 1.0,
+      "sourceAdImageCount": 1,
+      "sourceAdImageDigests": [
+        "c5a2bf6f345896bd64cce920553ad32e"
+      ],
+      "meanAbsoluteRgbDifference": 11.536339627171545,
+      "fractionPixelsWithin12Levels": 0.6862941812008025,
+      "checks": {
+        "nativeSeparatePlacement": true,
+        "nativeOriginalCropBytes": true,
+        "backgroundIsClear": true,
+        "originalAdImageRemoved": true
+      }
+    },
+    {
+      "documentId": "cover-page-issue-3-lina-de16e159",
+      "pageNumber": 16,
+      "slotId": "source-ad-thirsty-moose",
+      "label": "Thirsty Moose Pub \u00b7 right-half ad",
+      "rect": [
+        386.6011657714844,
+        65.2486572265625,
+        716.8486328125,
+        752.7434692382812
+      ],
+      "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p016-ad-thirsty-moose.pdf",
+      "background": "source-art/whole-cover-page-issue-3-lina-de16e159-p016-background.pdf",
+      "backgroundSha256": "c8dfab464f92bab218332cd8a87111da8bb1aa0e6b50284b022aba89d25db882",
+      "backgroundInsetPoints": 3,
+      "backgroundFractionWhite": 1.0,
+      "sourceAdImageCount": 1,
+      "sourceAdImageDigests": [
+        "7ac9c48cda1fd2ac223f0503b75694b5"
+      ],
+      "meanAbsoluteRgbDifference": 2.74858749619429,
+      "fractionPixelsWithin12Levels": 0.9538484507833908,
+      "checks": {
+        "nativeSeparatePlacement": true,
+        "nativeOriginalCropBytes": true,
+        "backgroundIsClear": true,
+        "originalAdImageRemoved": true
+      }
+    },
+    {
+      "documentId": "cover-page-issue-3-lina-de16e159",
+      "pageNumber": 17,
+      "slotId": "source-ad-ote-recruitment",
+      "label": "Write content for Over the Edge \u00b7 full-page recruitment",
+      "rect": [
+        35.76458740234375,
+        64.47802734375,
+        718.8685913085938,
+        754.9714965820312
+      ],
+      "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p017-ad-ote-recruitment.pdf",
+      "background": "source-art/whole-cover-page-issue-3-lina-de16e159-p017-background.pdf",
+      "backgroundSha256": "0d5cfe55420016fa91740c95d77a3598177d1ffd5da8d9e3c657cb4e369243d3",
+      "backgroundInsetPoints": 3,
+      "backgroundFractionWhite": 0.9985250737463127,
+      "sourceAdImageCount": 1,
+      "sourceAdImageDigests": [
+        "ab5395ece755a4fd6e88f17f07cfa07b"
+      ],
+      "meanAbsoluteRgbDifference": 3.2011690264413244,
+      "fractionPixelsWithin12Levels": 0.9158013219251699,
+      "checks": {
+        "nativeSeparatePlacement": true,
+        "nativeOriginalCropBytes": true,
+        "backgroundIsClear": true,
+        "originalAdImageRemoved": true
+      }
+    },
+    {
+      "documentId": "issue-1-sept-2025-741805e9",
+      "pageNumber": 17,
+      "slotId": "source-ad-reserved-ad",
+      "label": "Unfilled right-half ad reservation",
+      "rect": [
+        380.8511962890625,
+        65.24871826171875,
+        716.8482055664062,
+        752.7437133789062
+      ],
+      "asset": "source-art/whole-issue-1-sept-2025-741805e9-p017-ad-reserved-ad.pdf",
+      "background": "source-art/whole-issue-1-sept-2025-741805e9-p017-background.pdf",
+      "backgroundSha256": "97dbc1413c324d3f1a312d9bcf8831aff1e907219e69dcca8b7e833bbfb67859",
+      "backgroundInsetPoints": 3,
+      "backgroundFractionWhite": 1.0,
+      "sourceAdImageCount": 0,
+      "sourceAdImageDigests": [],
+      "meanAbsoluteRgbDifference": 25.771107929059415,
+      "fractionPixelsWithin12Levels": 0.02371299427230695,
+      "checks": {
+        "nativeSeparatePlacement": true,
+        "nativeOriginalCropBytes": true,
+        "backgroundIsClear": true,
+        "originalAdImageRemoved": true
+      }
+    },
+    {
+      "documentId": "issue-1-sept-2025-741805e9",
+      "pageNumber": 18,
+      "slotId": "source-ad-ote-recruitment",
+      "label": "Write for Over the Edge \u00b7 right-half recruitment",
+      "rect": [
+        380.8800048828125,
+        65.2486572265625,
+        717.3560180664062,
+        754.9199829101562
+      ],
+      "asset": "source-art/whole-issue-1-sept-2025-741805e9-p018-ad-ote-recruitment.pdf",
+      "background": "source-art/whole-issue-1-sept-2025-741805e9-p018-background.pdf",
+      "backgroundSha256": "9a1587bc3a7b00f8f1df19e53b7ec29100ff89729ba4923ca5da2ba0455f6fec",
+      "backgroundInsetPoints": 3,
+      "backgroundFractionWhite": 1.0,
+      "sourceAdImageCount": 1,
+      "sourceAdImageDigests": [
+        "701a0b8e24e2ae2b3790f82a95af2712"
+      ],
+      "meanAbsoluteRgbDifference": 2.56098104793757,
+      "fractionPixelsWithin12Levels": 1.0,
+      "checks": {
+        "nativeSeparatePlacement": true,
+        "nativeOriginalCropBytes": true,
+        "backgroundIsClear": true,
+        "originalAdImageRemoved": true
+      }
+    },
+    {
+      "documentId": "issue-2-october-2025-0eb630f7",
+      "pageNumber": 14,
+      "slotId": "source-ad-cfur-event",
+      "label": "CFUR Radiothon \u00b7 Queen Vinyl Night \u00b7 bottom-left quarter ad",
+      "rect": [
+        34.95400619506836,
+        428.0980224609375,
+        365.22064208984375,
+        756.9400024414062
+      ],
+      "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p014-ad-cfur-event.pdf",
+      "background": "source-art/whole-issue-2-october-2025-0eb630f7-p014-background.pdf",
+      "backgroundSha256": "d77e02c146088cddac81156bb0385c7a1dd80612f0455a2ba523a77f511eedbb",
+      "backgroundInsetPoints": 3,
+      "backgroundFractionWhite": 0.9983475469619556,
+      "sourceAdImageCount": 1,
+      "sourceAdImageDigests": [
+        "583f99a7ffe7426c19bb07e669010f1d"
+      ],
+      "meanAbsoluteRgbDifference": 6.164625065611992,
+      "fractionPixelsWithin12Levels": 0.7857142857142857,
+      "checks": {
+        "nativeSeparatePlacement": true,
+        "nativeOriginalCropBytes": true,
+        "backgroundIsClear": true,
+        "originalAdImageRemoved": true
+      }
+    },
+    {
+      "documentId": "issue-2-october-2025-0eb630f7",
+      "pageNumber": 15,
+      "slotId": "source-ad-thirsty-moose",
+      "label": "Thirsty Moose Pub \u00b7 right-half ad",
+      "rect": [
+        386.34808349609375,
+        65.2486572265625,
+        716.8486328125,
+        752.3599853515625
+      ],
+      "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p015-ad-thirsty-moose.pdf",
+      "background": "source-art/whole-issue-2-october-2025-0eb630f7-p015-background.pdf",
+      "backgroundSha256": "202ac1aeb853b1572cef41079570ede623432e8338721519f3e4dfdf92e1de26",
+      "backgroundInsetPoints": 3,
+      "backgroundFractionWhite": 1.0,
+      "sourceAdImageCount": 1,
+      "sourceAdImageDigests": [
+        "b5bd16713bcaa6fc2d28e3d7c83c13ff"
+      ],
+      "meanAbsoluteRgbDifference": 2.016976392889763,
+      "fractionPixelsWithin12Levels": 0.9904798707229677,
+      "checks": {
+        "nativeSeparatePlacement": true,
+        "nativeOriginalCropBytes": true,
+        "backgroundIsClear": true,
+        "originalAdImageRemoved": true
+      }
+    },
+    {
+      "documentId": "issue-2-october-2025-0eb630f7",
+      "pageNumber": 16,
+      "slotId": "source-ad-ote-recruitment",
+      "label": "Write for Over the Edge \u00b7 right-half recruitment",
+      "rect": [
+        380.8800048828125,
+        65.2486572265625,
+        717.3560180664062,
+        754.9199829101562
+      ],
+      "asset": "source-art/whole-issue-2-october-2025-0eb630f7-p016-ad-ote-recruitment.pdf",
+      "background": "source-art/whole-issue-2-october-2025-0eb630f7-p016-background.pdf",
+      "backgroundSha256": "41740af1e69c195ee5d6ee1872fb0e8ee06829b82f507e02bb4d732e99a4dfa9",
+      "backgroundInsetPoints": 3,
+      "backgroundFractionWhite": 1.0,
+      "sourceAdImageCount": 1,
+      "sourceAdImageDigests": [
+        "701a0b8e24e2ae2b3790f82a95af2712"
+      ],
+      "meanAbsoluteRgbDifference": 2.56098104793757,
+      "fractionPixelsWithin12Levels": 1.0,
+      "checks": {
+        "nativeSeparatePlacement": true,
+        "nativeOriginalCropBytes": true,
+        "backgroundIsClear": true,
+        "originalAdImageRemoved": true
+      }
+    },
+    {
+      "documentId": "issue-5-ba123d17",
+      "pageNumber": 13,
+      "slotId": "source-ad-cfur-radio-promo",
+      "label": "CFUR Radio \u00b7 bottom-right quarter recruitment ad",
+      "rect": [
+        376.52001953125,
+        411.9599914550781,
+        716.756591796875,
+        752.1965942382812
+      ],
+      "asset": "source-art/whole-issue-5-ba123d17-p013-ad-cfur-radio-promo.pdf",
+      "background": "source-art/whole-issue-5-ba123d17-p013-background.pdf",
+      "backgroundSha256": "815ab6f08124c41a61c2b4c282bdd5c678d0597474c012fe387098667a7d8e43",
+      "backgroundInsetPoints": 3,
+      "backgroundFractionWhite": 1.0,
+      "sourceAdImageCount": 1,
+      "sourceAdImageDigests": [
+        "c5a2bf6f345896bd64cce920553ad32e"
+      ],
+      "meanAbsoluteRgbDifference": 11.550024866663236,
+      "fractionPixelsWithin12Levels": 0.6833616298811545,
+      "checks": {
+        "nativeSeparatePlacement": true,
+        "nativeOriginalCropBytes": true,
+        "backgroundIsClear": true,
+        "originalAdImageRemoved": true
+      }
+    },
+    {
+      "documentId": "issue-5-ba123d17",
+      "pageNumber": 16,
+      "slotId": "source-ad-thirsty-moose",
+      "label": "Thirsty Moose Pub \u00b7 right-half ad",
+      "rect": [
+        386.6011657714844,
+        65.2486572265625,
+        716.8486328125,
+        752.7434692382812
+      ],
+      "asset": "source-art/whole-issue-5-ba123d17-p016-ad-thirsty-moose.pdf",
+      "background": "source-art/whole-issue-5-ba123d17-p016-background.pdf",
+      "backgroundSha256": "b613c5e4d3c764f26472a27f55b97b664feaf11f09a7be17983e05d5b4fe123c",
+      "backgroundInsetPoints": 3,
+      "backgroundFractionWhite": 1.0,
+      "sourceAdImageCount": 1,
+      "sourceAdImageDigests": [
+        "7ac9c48cda1fd2ac223f0503b75694b5"
+      ],
+      "meanAbsoluteRgbDifference": 2.767364282535891,
+      "fractionPixelsWithin12Levels": 0.9538484507833908,
+      "checks": {
+        "nativeSeparatePlacement": true,
+        "nativeOriginalCropBytes": true,
+        "backgroundIsClear": true,
+        "originalAdImageRemoved": true
+      }
+    },
+    {
+      "documentId": "issue-6-feb-2025-5ed75bab",
+      "pageNumber": 16,
+      "slotId": "source-ad-thirsty-moose",
+      "label": "Thirsty Moose Pub \u00b7 right-half ad",
+      "rect": [
+        386.6011657714844,
+        65.2486572265625,
+        716.8486328125,
+        752.7434692382812
+      ],
+      "asset": "source-art/whole-issue-6-feb-2025-5ed75bab-p016-ad-thirsty-moose.pdf",
+      "background": "source-art/whole-issue-6-feb-2025-5ed75bab-p016-background.pdf",
+      "backgroundSha256": "022dfcada7dbd84d626a3f07f385db87be2fb1fafd3e2ae48b5eef375df62463",
+      "backgroundInsetPoints": 3,
+      "backgroundFractionWhite": 1.0,
+      "sourceAdImageCount": 1,
+      "sourceAdImageDigests": [
+        "7ac9c48cda1fd2ac223f0503b75694b5"
+      ],
+      "meanAbsoluteRgbDifference": 2.7485816412562354,
+      "fractionPixelsWithin12Levels": 0.9538484507833908,
+      "checks": {
+        "nativeSeparatePlacement": true,
+        "nativeOriginalCropBytes": true,
+        "backgroundIsClear": true,
+        "originalAdImageRemoved": true
+      }
+    },
+    {
+      "documentId": "issue-6-feb-2025-5ed75bab",
+      "pageNumber": 17,
+      "slotId": "source-ad-ote-recruitment",
+      "label": "Write content for Over the Edge \u00b7 right-half recruitment",
+      "rect": [
+        378.38250732421875,
+        64.1849365234375,
+        718.8975830078125,
+        755.9400024414062
+      ],
+      "asset": "source-art/whole-issue-6-feb-2025-5ed75bab-p017-ad-ote-recruitment.pdf",
+      "background": "source-art/whole-issue-6-feb-2025-5ed75bab-p017-background.pdf",
+      "backgroundSha256": "cce75cd4a5916fcf46f5e595035e7fed51a0a98e635fcc52b565254f2a69cb69",
+      "backgroundInsetPoints": 3,
+      "backgroundFractionWhite": 1.0,
+      "sourceAdImageCount": 1,
+      "sourceAdImageDigests": [
+        "2e9f2bef6e704573795d060a5b0eb1c9"
+      ],
+      "meanAbsoluteRgbDifference": 5.5451790890444626,
+      "fractionPixelsWithin12Levels": 0.8784008272167885,
+      "checks": {
+        "nativeSeparatePlacement": true,
+        "nativeOriginalCropBytes": true,
+        "backgroundIsClear": true,
+        "originalAdImageRemoved": true
+      }
+    },
+    {
+      "documentId": "issue-6-feb-2025-b91aa3a0",
+      "pageNumber": 16,
+      "slotId": "source-ad-thirsty-moose",
+      "label": "Thirsty Moose Pub \u00b7 right-half ad",
+      "rect": [
+        386.6011657714844,
+        65.2486572265625,
+        716.8486328125,
+        752.7434692382812
+      ],
+      "asset": "source-art/whole-issue-6-feb-2025-b91aa3a0-p016-ad-thirsty-moose.pdf",
+      "background": "source-art/whole-issue-6-feb-2025-b91aa3a0-p016-background.pdf",
+      "backgroundSha256": "f5e82cd366f2b8e22a3c8fca763f6e748f64013fe5127181b74c13bdf2370c2d",
+      "backgroundInsetPoints": 3,
+      "backgroundFractionWhite": 1.0,
+      "sourceAdImageCount": 1,
+      "sourceAdImageDigests": [
+        "7ac9c48cda1fd2ac223f0503b75694b5"
+      ],
+      "meanAbsoluteRgbDifference": 2.7485816412562354,
+      "fractionPixelsWithin12Levels": 0.9538484507833908,
+      "checks": {
+        "nativeSeparatePlacement": true,
+        "nativeOriginalCropBytes": true,
+        "backgroundIsClear": true,
+        "originalAdImageRemoved": true
+      }
+    },
+    {
+      "documentId": "issue-6-feb-2025-b91aa3a0",
+      "pageNumber": 17,
+      "slotId": "source-ad-ote-recruitment",
+      "label": "Write content for Over the Edge \u00b7 right-half recruitment",
+      "rect": [
+        378.38250732421875,
+        64.1849365234375,
+        718.8975830078125,
+        755.9400024414062
+      ],
+      "asset": "source-art/whole-issue-6-feb-2025-b91aa3a0-p017-ad-ote-recruitment.pdf",
+      "background": "source-art/whole-issue-6-feb-2025-b91aa3a0-p017-background.pdf",
+      "backgroundSha256": "ee2b89d8f5be16b2f5b3e2c34fcddf21bc18286d4b3478d2344ccbfddf2ff313",
+      "backgroundInsetPoints": 3,
+      "backgroundFractionWhite": 1.0,
+      "sourceAdImageCount": 1,
+      "sourceAdImageDigests": [
+        "2e9f2bef6e704573795d060a5b0eb1c9"
+      ],
+      "meanAbsoluteRgbDifference": 5.5451790890444626,
+      "fractionPixelsWithin12Levels": 0.8784008272167885,
+      "checks": {
+        "nativeSeparatePlacement": true,
+        "nativeOriginalCropBytes": true,
+        "backgroundIsClear": true,
+        "originalAdImageRemoved": true
+      }
+    },
+    {
+      "documentId": "issue-7-march-2025-dfcbb959",
+      "pageNumber": 16,
+      "slotId": "source-ad-thirsty-moose",
+      "label": "Thirsty Moose Pub \u00b7 right-half ad",
+      "rect": [
+        386.6011657714844,
+        65.2486572265625,
+        716.8486328125,
+        752.7434692382812
+      ],
+      "asset": "source-art/whole-issue-7-march-2025-dfcbb959-p016-ad-thirsty-moose.pdf",
+      "background": "source-art/whole-issue-7-march-2025-dfcbb959-p016-background.pdf",
+      "backgroundSha256": "5a9aa3e41bb079b6ff490674a9d95d889463b56dd0da8b5bbf6903c0163e2c3e",
+      "backgroundInsetPoints": 3,
+      "backgroundFractionWhite": 1.0,
+      "sourceAdImageCount": 1,
+      "sourceAdImageDigests": [
+        "7ac9c48cda1fd2ac223f0503b75694b5"
+      ],
+      "meanAbsoluteRgbDifference": 2.7485816412562354,
+      "fractionPixelsWithin12Levels": 0.9538484507833908,
+      "checks": {
+        "nativeSeparatePlacement": true,
+        "nativeOriginalCropBytes": true,
+        "backgroundIsClear": true,
+        "originalAdImageRemoved": true
+      }
+    },
+    {
+      "documentId": "issue-7-march-2025-dfcbb959",
+      "pageNumber": 17,
+      "slotId": "source-ad-ote-recruitment",
+      "label": "Write content for Over the Edge \u00b7 right-half recruitment",
+      "rect": [
+        378.38250732421875,
+        64.1849365234375,
+        718.8975830078125,
+        755.9400024414062
+      ],
+      "asset": "source-art/whole-issue-7-march-2025-dfcbb959-p017-ad-ote-recruitment.pdf",
+      "background": "source-art/whole-issue-7-march-2025-dfcbb959-p017-background.pdf",
+      "backgroundSha256": "661e721a9b5e17f6fd064dd1e792de0abc10a8a4468ac9ebe985f70a18eda1fc",
+      "backgroundInsetPoints": 3,
+      "backgroundFractionWhite": 1.0,
+      "sourceAdImageCount": 1,
+      "sourceAdImageDigests": [
+        "2e9f2bef6e704573795d060a5b0eb1c9"
+      ],
+      "meanAbsoluteRgbDifference": 5.5451790890444626,
+      "fractionPixelsWithin12Levels": 0.8784008272167885,
+      "checks": {
+        "nativeSeparatePlacement": true,
+        "nativeOriginalCropBytes": true,
+        "backgroundIsClear": true,
+        "originalAdImageRemoved": true
+      }
+    }
+  ]
+}

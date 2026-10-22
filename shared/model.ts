@@ -1,5 +1,6 @@
 // Application IDs stay stable across backup restores; Convex also assigns an internal _id.
 export interface Authors {
+  sourceAuthorKey?: string | null;
   id: string;
   givenName: string;
   surname: string;
@@ -22,6 +23,9 @@ export interface Authors {
 }
 
 export interface Articles {
+  sourceImportKey?: string | null;
+  sourceFingerprint?: string | null;
+  sourceProvenance?: string | null;
   id: string;
   title: string;
   authorId: string;
@@ -160,6 +164,7 @@ export interface Volumes {
 }
 
 export interface Issues {
+  sourceProvenance?: string | null;
   id: string;
   volumeId: string;
   issueNumber: number;
@@ -184,7 +189,18 @@ export interface SavedArticleViews {
   updatedAt: Date;
 }
 
+export interface SourceArchiveLinks {
+  id: string;
+  archiveId: string;
+  sourceKey: string;
+  publicationKey: string;
+  articleId: string;
+  sourceFingerprint: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
 export interface RowMap {
+  sourceArchiveLinks: SourceArchiveLinks;
   authors: Authors;
   articles: Articles;
   articleMultimediaTypes: ArticleMultimediaTypes;
@@ -199,6 +215,7 @@ export interface RowMap {
 }
 export type TableName = keyof RowMap;
 export const tableNames = [
+  "sourceArchiveLinks",
   "authors",
   "articles",
   "articleMultimediaTypes",
@@ -212,7 +229,9 @@ export const tableNames = [
   "savedArticleViews",
 ] as const;
 export const recordDefaults: Record<TableName, Record<string, unknown>> = {
+  sourceArchiveLinks: { createdAt: "$now", updatedAt: "$now" },
   authors: {
+    sourceAuthorKey: null,
     role: "Guest Contributor",
     authorType: "Student",
     studentType: null,
@@ -222,6 +241,9 @@ export const recordDefaults: Record<TableName, Record<string, unknown>> = {
     updatedAt: "$now",
   },
   articles: {
+    sourceImportKey: null,
+    sourceFingerprint: null,
+    sourceProvenance: null,
     articleTier: "Tier 1 (Basic)",
     internalStatus: "Draft",
     automationStatus: "Pending Review",
@@ -296,6 +318,7 @@ export const recordDefaults: Record<TableName, Record<string, unknown>> = {
     updatedAt: "$now",
   },
   issues: {
+    sourceProvenance: null,
     title: null,
     releaseDate: null,
     description: null,
@@ -315,6 +338,7 @@ export const recordDefaults: Record<TableName, Record<string, unknown>> = {
   },
 };
 export const dateFields: Record<TableName, readonly string[]> = {
+  sourceArchiveLinks: ["createdAt", "updatedAt"],
   authors: ["createdAt", "updatedAt"],
   articles: [
     "paidAt",
@@ -334,7 +358,18 @@ export const dateFields: Record<TableName, readonly string[]> = {
   savedArticleViews: ["createdAt", "updatedAt"],
 };
 export const recordFields = {
+  sourceArchiveLinks: {
+    id: { kind: "uuid", nullable: false, enum: null },
+    archiveId: { kind: "text", nullable: false, enum: null },
+    sourceKey: { kind: "text", nullable: false, enum: null },
+    publicationKey: { kind: "text", nullable: false, enum: null },
+    articleId: { kind: "uuid", nullable: false, enum: null },
+    sourceFingerprint: { kind: "text", nullable: false, enum: null },
+    createdAt: { kind: "timestamp", nullable: false, enum: null },
+    updatedAt: { kind: "timestamp", nullable: false, enum: null },
+  },
   authors: {
+    sourceAuthorKey: { kind: "text", nullable: true, enum: null },
     id: {
       kind: "uuid",
       nullable: false,
@@ -399,6 +434,9 @@ export const recordFields = {
     },
   },
   articles: {
+    sourceImportKey: { kind: "text", nullable: true, enum: null },
+    sourceFingerprint: { kind: "text", nullable: true, enum: null },
+    sourceProvenance: { kind: "text", nullable: true, enum: null },
     id: {
       kind: "uuid",
       nullable: false,
@@ -847,6 +885,7 @@ export const recordFields = {
     },
   },
   issues: {
+    sourceProvenance: { kind: "text", nullable: true, enum: null },
     id: {
       kind: "uuid",
       nullable: false,

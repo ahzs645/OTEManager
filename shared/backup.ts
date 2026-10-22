@@ -7,6 +7,7 @@ export const importOrder: TableName[] = [
   "volumes",
   "issues",
   "articles",
+  "sourceArchiveLinks",
   "attachments",
   "articleMultimediaTypes",
   "articleNotes",
@@ -50,9 +51,28 @@ export function validateSnapshot(snapshot: Snapshot) {
     }
     ids.set(table, set);
   }
+  const sourceAuthors = new Set<string>();
+  for (const author of snapshot.authors)
+    if (author.sourceAuthorKey) {
+      if (sourceAuthors.has(author.sourceAuthorKey))
+        throw new Error("Duplicate source author key in backup");
+      sourceAuthors.add(author.sourceAuthorKey);
+    }
+  const sourceLinks = new Set<string>();
+  for (const link of snapshot.sourceArchiveLinks) {
+    const key = JSON.stringify([
+      link.archiveId,
+      link.sourceKey,
+      link.publicationKey,
+    ]);
+    if (sourceLinks.has(key))
+      throw new Error("Duplicate source archive link in backup");
+    sourceLinks.add(key);
+  }
   const emails = new Set<string>();
   for (const a of snapshot.authors) {
     const key = a.email.trim().toLowerCase();
+    if (!key && a.sourceAuthorKey) continue;
     if (emails.has(key)) throw new Error("Duplicate author email in backup");
     emails.add(key);
   }
@@ -80,6 +100,7 @@ export function validateSnapshot(snapshot: Snapshot) {
     "articleMultimediaTypes",
     "articleNotes",
     "statusHistory",
+    "sourceArchiveLinks",
   ] as const)
     for (const row of snapshot[table])
       if (!ids.get("articles")!.has(row.articleId))

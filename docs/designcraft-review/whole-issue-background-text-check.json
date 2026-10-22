@@ -1,0 +1,5 @@
+{
+  "method": "For every reconstructed page, compare normalized native field strings of at least12characters with extracted text in its placed PDF graphics; matches are review candidates, not proof of visual duplication. Raster/image letters are outside this text check.",
+  "pagesChecked": 153,
+  "matches": []
+}

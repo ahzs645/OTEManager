@@ -11,7 +11,7 @@ async function setupNativeExport(){
  const status=document.createElement('p');status.textContent='Checking native generator…';panel.append(status);
  const mode=document.createElement('select');mode.id='native-export-mode';for(const [value,label] of [['issue','Saved whole issue'],['page','Current page']]){const o=document.createElement('option');o.value=value;o.textContent=label;mode.append(o);}panel.append(mode);
  const baseLabel=document.createElement('label');baseLabel.textContent='Existing issue for protected pages (ZIP containing .designcraft and build-manifest.json)';const base=document.createElement('input');base.type='file';base.accept='.zip';baseLabel.append(base);panel.append(baseLabel);
- const bookletLabel=document.createElement('label'),booklet=document.createElement('input');booklet.type='checkbox';bookletLabel.append(booklet,' Check booklet page count');panel.append(bookletLabel);
+ const bookletLabel=document.createElement('label'),booklet=document.createElement('input');booklet.type='checkbox';booklet.id='native-export-booklet';bookletLabel.append(booklet,' Check booklet page count');panel.append(bookletLabel);
  const button=document.createElement('button');button.id='native-export-generate';button.textContent='Generate native, PDF and IDML';button.disabled=true;panel.append(button);
  const downloads=document.createElement('div');panel.append(downloads);$('export-recipe').parentElement.append(panel);
  let capabilities;window.oteNativeGeneratorAvailable=false;

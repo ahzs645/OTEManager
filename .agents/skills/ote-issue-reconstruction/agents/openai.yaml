@@ -1,0 +1,4 @@
+interface:
+  display_name: "OTE Issue Reconstruction"
+  short_description: "Recreate full OTE issues and original article imports"
+  default_prompt: "Use $ote-issue-reconstruction to recreate the supplied OTE issues, recover source article metadata, verify the outputs, and package the requested deliverables."

@@ -1,0 +1,573 @@
+{
+  "verifiedAt": "2026-10-22T22:46:39.867Z",
+  "folderUrl": "https://drive.google.com/drive/folders/1yR2KV9cd5DHDE_xzny43te-ncE9kKr3W",
+  "fileCount": 37,
+  "verification": "Uploaded file IDs and byte counts were read back from all four Drive folder listings. SHA-256 values describe local uploaded bytes; they are not claimed as remote hash checks.",
+  "folders": [
+    {
+      "folderKey": "root",
+      "folderId": "1yR2KV9cd5DHDE_xzny43te-ncE9kKr3W",
+      "files": [
+        {
+          "id": "1f8oRQH5SElxYTZ_COdBp6JskqVDIrDIf",
+          "name": "OTEManager \u2014 generated file index.json",
+          "url": "https://drive.google.com/file/d/1f8oRQH5SElxYTZ_COdBp6JskqVDIrDIf/view?usp=drivesdk",
+          "bytes": 15897,
+          "mimeType": "application/json"
+        },
+        {
+          "id": "1X_5wJ3JIgUdvMwB7xvVBN6YBeP6EsFn0",
+          "name": "START HERE \u2014 OTEManager original issues.txt",
+          "url": "https://drive.google.com/file/d/1X_5wJ3JIgUdvMwB7xvVBN6YBeP6EsFn0/view?usp=drivesdk",
+          "bytes": 3118,
+          "mimeType": "text/plain"
+        },
+        {
+          "id": "12EjQGRtIiG_Kv15__-JcGGczgKzrawYg",
+          "name": "OTEManager \u2014 article import guide.md",
+          "url": "https://drive.google.com/file/d/12EjQGRtIiG_Kv15__-JcGGczgKzrawYg/view?usp=drivesdk",
+          "bytes": 6080,
+          "mimeType": "text/markdown"
+        },
+        {
+          "id": "1Zyot2nCS1TVb2Ukqk4UfYF_bwzvk7QYT",
+          "name": "03 \u2014 Editable issues and import recipes",
+          "url": "https://drive.google.com/drive/folders/1Zyot2nCS1TVb2Ukqk4UfYF_bwzvk7QYT",
+          "bytes": 0,
+          "mimeType": "application/vnd.google-apps.folder"
+        },
+        {
+          "id": "1EP84Edg09nHkZqQqlDlysSf7L-NuQKfp",
+          "name": "01 \u2014 Recreated issue PDFs",
+          "url": "https://drive.google.com/drive/folders/1EP84Edg09nHkZqQqlDlysSf7L-NuQKfp",
+          "bytes": 0,
+          "mimeType": "application/vnd.google-apps.folder"
+        },
+        {
+          "id": "1OV-CIprNIfjQVAcaKs7Zzxe16S8TPgJ2",
+          "name": "02 \u2014 Original articles and metadata",
+          "url": "https://drive.google.com/drive/folders/1OV-CIprNIfjQVAcaKs7Zzxe16S8TPgJ2",
+          "bytes": 0,
+          "mimeType": "application/vnd.google-apps.folder"
+        }
+      ]
+    },
+    {
+      "folderKey": "proofs",
+      "folderId": "1EP84Edg09nHkZqQqlDlysSf7L-NuQKfp",
+      "files": [
+        {
+          "id": "1mHapdCZu3N7ecoGqrIl-kZ_uEZ-Yjnq1",
+          "name": "March 2025 \u2014 Issue 7 \u2014 recreated.pdf",
+          "url": "https://drive.google.com/file/d/1mHapdCZu3N7ecoGqrIl-kZ_uEZ-Yjnq1/view?usp=drivesdk",
+          "bytes": 26358201,
+          "mimeType": "application/pdf"
+        },
+        {
+          "id": "1kF8p4gmbli2SmRZsmgkWrHveYjrzAQxa",
+          "name": "February 2025 \u2014 archived revision \u2014 recreated.pdf",
+          "url": "https://drive.google.com/file/d/1kF8p4gmbli2SmRZsmgkWrHveYjrzAQxa/view?usp=drivesdk",
+          "bytes": 32531009,
+          "mimeType": "application/pdf"
+        },
+        {
+          "id": "1cpQ-YuWyUzJux-YzrjjgvuGajslXt0Jn",
+          "name": "February 2025 \u2014 current revision \u2014 recreated.pdf",
+          "url": "https://drive.google.com/file/d/1cpQ-YuWyUzJux-YzrjjgvuGajslXt0Jn/view?usp=drivesdk",
+          "bytes": 27860297,
+          "mimeType": "application/pdf"
+        },
+        {
+          "id": "1gS3Zg3bdaBWxHL-bm7MyBRJehZ7MkSN7",
+          "name": "Winter 2025 \u2014 Issue 5 \u2014 recreated.pdf",
+          "url": "https://drive.google.com/file/d/1gS3Zg3bdaBWxHL-bm7MyBRJehZ7MkSN7/view?usp=drivesdk",
+          "bytes": 4639659,
+          "mimeType": "application/pdf"
+        },
+        {
+          "id": "1GiBCHA3KsTod_nLNuCFYi8rets5r7zHR",
+          "name": "October 2025 \u2014 Issue 2 \u2014 recreated.pdf",
+          "url": "https://drive.google.com/file/d/1GiBCHA3KsTod_nLNuCFYi8rets5r7zHR/view?usp=drivesdk",
+          "bytes": 4744313,
+          "mimeType": "application/pdf"
+        },
+        {
+          "id": "1bp7fBW6No6rUOfvvCwAicxSvYqKbalCT",
+          "name": "September 2025 \u2014 Issue 1 \u2014 recreated.pdf",
+          "url": "https://drive.google.com/file/d/1bp7fBW6No6rUOfvvCwAicxSvYqKbalCT/view?usp=drivesdk",
+          "bytes": 6153581,
+          "mimeType": "application/pdf"
+        },
+        {
+          "id": "1rmdDaKkhuqUETW06A0kqQGVrdoHT2gnU",
+          "name": "December 2024 \u2014 print archive \u2014 recreated.pdf",
+          "url": "https://drive.google.com/file/d/1rmdDaKkhuqUETW06A0kqQGVrdoHT2gnU/view?usp=drivesdk",
+          "bytes": 5096646,
+          "mimeType": "application/pdf"
+        },
+        {
+          "id": "1gBNqsc2bZtC_gG1GZKdJkD2Lk6GucV1m",
+          "name": "November 2024 \u2014 Issue 3 \u2014 recreated.pdf",
+          "url": "https://drive.google.com/file/d/1gBNqsc2bZtC_gG1GZKdJkD2Lk6GucV1m/view?usp=drivesdk",
+          "bytes": 6997193,
+          "mimeType": "application/pdf"
+        },
+        {
+          "id": "1w4XLVu7IlZUDgV8z-aLdvpRCiAd8YoJ8",
+          "name": "December 2024 \u2014 final layout \u2014 recreated.pdf",
+          "url": "https://drive.google.com/file/d/1w4XLVu7IlZUDgV8z-aLdvpRCiAd8YoJ8/view?usp=drivesdk",
+          "bytes": 7260422,
+          "mimeType": "application/pdf"
+        }
+      ]
+    },
+    {
+      "folderKey": "articles",
+      "folderId": "1OV-CIprNIfjQVAcaKs7Zzxe16S8TPgJ2",
+      "files": [
+        {
+          "id": "1pjNUU0ez0MdCL1mxhcvymJ5Zmkp-LreE",
+          "name": "OTE original articles \u2014 recovery coverage.md",
+          "url": "https://drive.google.com/file/d/1pjNUU0ez0MdCL1mxhcvymJ5Zmkp-LreE/view?usp=drivesdk",
+          "bytes": 1169,
+          "mimeType": "text/markdown"
+        },
+        {
+          "id": "13qloKZFoA2ecLikSztidTe7DLlS1AEFN",
+          "name": "OTE original articles \u2014 catalogue.csv",
+          "url": "https://drive.google.com/file/d/13qloKZFoA2ecLikSztidTe7DLlS1AEFN/view?usp=drivesdk",
+          "bytes": 188004,
+          "mimeType": "text/csv"
+        },
+        {
+          "id": "1dYoeOnFCiAQrnjDPjrNBCdAPLXkRNDM3",
+          "name": "OTE original articles \u2014 full metadata.json",
+          "url": "https://drive.google.com/file/d/1dYoeOnFCiAQrnjDPjrNBCdAPLXkRNDM3/view?usp=drivesdk",
+          "bytes": 715266,
+          "mimeType": "application/json"
+        },
+        {
+          "id": "1AY9f07Jd3b9SLr_Fl-iAcQgjHXGynMPm",
+          "name": "OTE original articles \u2014 import package.zip",
+          "url": "https://drive.google.com/file/d/1AY9f07Jd3b9SLr_Fl-iAcQgjHXGynMPm/view?usp=drivesdk",
+          "bytes": 550671,
+          "mimeType": "application/zip"
+        }
+      ]
+    },
+    {
+      "folderKey": "editable",
+      "folderId": "1Zyot2nCS1TVb2Ukqk4UfYF_bwzvk7QYT",
+      "files": [
+        {
+          "id": "1AFnm0DT3Uwn-uainCaWNcZEqJoFnKD6F",
+          "name": "OTEManager \u2014 complete issue recreation guide.md",
+          "url": "https://drive.google.com/file/d/1AFnm0DT3Uwn-uainCaWNcZEqJoFnKD6F/view?usp=drivesdk",
+          "bytes": 8559,
+          "mimeType": "text/markdown"
+        },
+        {
+          "id": "1kAKcmfTKEQfEpNOKmz8xbj2oHtAvhDu7",
+          "name": "OTE DesignCraft \u2014 compiler checksum.sha256",
+          "url": "https://drive.google.com/file/d/1kAKcmfTKEQfEpNOKmz8xbj2oHtAvhDu7/view?usp=drivesdk",
+          "bytes": 83,
+          "mimeType": "text/plain"
+        },
+        {
+          "id": "1abrjwvpXLDdOS2yj8SANenXz8RQgxr-E",
+          "name": "OTE DesignCraft \u2014 offline compiler kit.zip",
+          "url": "https://drive.google.com/file/d/1abrjwvpXLDdOS2yj8SANenXz8RQgxr-E/view?usp=drivesdk",
+          "bytes": 24854654,
+          "mimeType": "application/zip"
+        },
+        {
+          "id": "1fYoxEQwBA7LyXtl_ila-FEKEyZAUudsu",
+          "name": "March 2025 \u2014 Issue 7 \u2014 issue recipe.zip",
+          "url": "https://drive.google.com/file/d/1fYoxEQwBA7LyXtl_ila-FEKEyZAUudsu/view?usp=drivesdk",
+          "bytes": 26264119,
+          "mimeType": "application/zip"
+        },
+        {
+          "id": "11NDBxlxCHmsMxPm9pWxDzNb6nCiE8OBw",
+          "name": "March 2025 \u2014 Issue 7 \u2014 editable files.zip",
+          "url": "https://drive.google.com/file/d/11NDBxlxCHmsMxPm9pWxDzNb6nCiE8OBw/view?usp=drivesdk",
+          "bytes": 51513712,
+          "mimeType": "application/zip"
+        },
+        {
+          "id": "1SVfGRuYx2D1m9h6hOZhPB9_nDNmxo5If",
+          "name": "February 2025 \u2014 archived revision \u2014 issue recipe.zip",
+          "url": "https://drive.google.com/file/d/1SVfGRuYx2D1m9h6hOZhPB9_nDNmxo5If/view?usp=drivesdk",
+          "bytes": 32771847,
+          "mimeType": "application/zip"
+        },
+        {
+          "id": "1COd3_e7_dAD5U0XpXvc48HE_pOaA2T4q",
+          "name": "February 2025 \u2014 archived revision \u2014 editable files.zip",
+          "url": "https://drive.google.com/file/d/1COd3_e7_dAD5U0XpXvc48HE_pOaA2T4q/view?usp=drivesdk",
+          "bytes": 63938318,
+          "mimeType": "application/zip"
+        },
+        {
+          "id": "1pivVbQlJawueCcrnJQrvKUqSJdpUeO1K",
+          "name": "February 2025 \u2014 current revision \u2014 issue recipe.zip",
+          "url": "https://drive.google.com/file/d/1pivVbQlJawueCcrnJQrvKUqSJdpUeO1K/view?usp=drivesdk",
+          "bytes": 27988181,
+          "mimeType": "application/zip"
+        },
+        {
+          "id": "170tC0aO4IAc-N8qqZlfzlQ-6ZFTpgy2l",
+          "name": "February 2025 \u2014 current revision \u2014 editable files.zip",
+          "url": "https://drive.google.com/file/d/170tC0aO4IAc-N8qqZlfzlQ-6ZFTpgy2l/view?usp=drivesdk",
+          "bytes": 54473498,
+          "mimeType": "application/zip"
+        },
+        {
+          "id": "116tWPzJF8UcbUzgQqRYK_nGra-_YEKtN",
+          "name": "Winter 2025 \u2014 Issue 5 \u2014 issue recipe.zip",
+          "url": "https://drive.google.com/file/d/116tWPzJF8UcbUzgQqRYK_nGra-_YEKtN/view?usp=drivesdk",
+          "bytes": 4170373,
+          "mimeType": "application/zip"
+        },
+        {
+          "id": "1Bq2h-e1MXiPQjFTMFGcrQSmmlpHdNmRg",
+          "name": "Winter 2025 \u2014 Issue 5 \u2014 editable files.zip",
+          "url": "https://drive.google.com/file/d/1Bq2h-e1MXiPQjFTMFGcrQSmmlpHdNmRg/view?usp=drivesdk",
+          "bytes": 7671160,
+          "mimeType": "application/zip"
+        },
+        {
+          "id": "1QbNWy9wi55tLHgh_nSnnVXsH0R-mLO6M",
+          "name": "October 2025 \u2014 Issue 2 \u2014 issue recipe.zip",
+          "url": "https://drive.google.com/file/d/1QbNWy9wi55tLHgh_nSnnVXsH0R-mLO6M/view?usp=drivesdk",
+          "bytes": 4391201,
+          "mimeType": "application/zip"
+        },
+        {
+          "id": "1eVT_XFDT-aIGrtE-ZTlWA8-nCwxV6r_U",
+          "name": "October 2025 \u2014 Issue 2 \u2014 editable files.zip",
+          "url": "https://drive.google.com/file/d/1eVT_XFDT-aIGrtE-ZTlWA8-nCwxV6r_U/view?usp=drivesdk",
+          "bytes": 7966154,
+          "mimeType": "application/zip"
+        },
+        {
+          "id": "1QU3bZf7G4UcmYow5kpK2Zdfo5M6L9I_l",
+          "name": "September 2025 \u2014 Issue 1 \u2014 issue recipe.zip",
+          "url": "https://drive.google.com/file/d/1QU3bZf7G4UcmYow5kpK2Zdfo5M6L9I_l/view?usp=drivesdk",
+          "bytes": 6337192,
+          "mimeType": "application/zip"
+        },
+        {
+          "id": "18KDiGHgfhPV81qgiYlJ8zBqy86XMxjhP",
+          "name": "September 2025 \u2014 Issue 1 \u2014 editable files.zip",
+          "url": "https://drive.google.com/file/d/18KDiGHgfhPV81qgiYlJ8zBqy86XMxjhP/view?usp=drivesdk",
+          "bytes": 10977050,
+          "mimeType": "application/zip"
+        },
+        {
+          "id": "14lZF0W1T70_HW3omEi7Xy_SB3owEWD-V",
+          "name": "December 2024 \u2014 print archive \u2014 issue recipe.zip",
+          "url": "https://drive.google.com/file/d/14lZF0W1T70_HW3omEi7Xy_SB3owEWD-V/view?usp=drivesdk",
+          "bytes": 4551095,
+          "mimeType": "application/zip"
+        },
+        {
+          "id": "1jB4Qqv1ATtzPGeAe5o3y4Rx-xtRk7uVi",
+          "name": "December 2024 \u2014 print archive \u2014 editable files.zip",
+          "url": "https://drive.google.com/file/d/1jB4Qqv1ATtzPGeAe5o3y4Rx-xtRk7uVi/view?usp=drivesdk",
+          "bytes": 8350286,
+          "mimeType": "application/zip"
+        },
+        {
+          "id": "1ZyLbU615xJ6VvinJFVrTU2z6Rz-WfoX9",
+          "name": "November 2024 \u2014 Issue 3 \u2014 issue recipe.zip",
+          "url": "https://drive.google.com/file/d/1ZyLbU615xJ6VvinJFVrTU2z6Rz-WfoX9/view?usp=drivesdk",
+          "bytes": 6563928,
+          "mimeType": "application/zip"
+        },
+        {
+          "id": "1g6gzuTIp-4_R82S4uERC4eOxJGhz-gZj",
+          "name": "November 2024 \u2014 Issue 3 \u2014 editable files.zip",
+          "url": "https://drive.google.com/file/d/1g6gzuTIp-4_R82S4uERC4eOxJGhz-gZj/view?usp=drivesdk",
+          "bytes": 12215183,
+          "mimeType": "application/zip"
+        },
+        {
+          "id": "1cH2GlZj0R9u7-p8uqCO9CACACsNj1ZWD",
+          "name": "December 2024 \u2014 final layout \u2014 issue recipe.zip",
+          "url": "https://drive.google.com/file/d/1cH2GlZj0R9u7-p8uqCO9CACACsNj1ZWD/view?usp=drivesdk",
+          "bytes": 7408890,
+          "mimeType": "application/zip"
+        },
+        {
+          "id": "15V5Z1YXtWZuQ_0i9hKQNVyM-zhUkgCJM",
+          "name": "December 2024 \u2014 final layout \u2014 editable files.zip",
+          "url": "https://drive.google.com/file/d/15V5Z1YXtWZuQ_0i9hKQNVyM-zhUkgCJM/view?usp=drivesdk",
+          "bytes": 12571321,
+          "mimeType": "application/zip"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "id": "1X_5wJ3JIgUdvMwB7xvVBN6YBeP6EsFn0",
+      "name": "START HERE \u2014 OTEManager original issues.txt",
+      "bytes": 3118,
+      "sha256Local": "b65852183bbe3da26ca10c17802cc9b99621daf201953266d187fcc80f77377a",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1w4XLVu7IlZUDgV8z-aLdvpRCiAd8YoJ8",
+      "name": "December 2024 \u2014 final layout \u2014 recreated.pdf",
+      "bytes": 7260422,
+      "sha256Local": "8a9b6d8e4452989edb43a6726d440b6ed0421fa5fc792ca0eb9bd446d639db46",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1gBNqsc2bZtC_gG1GZKdJkD2Lk6GucV1m",
+      "name": "November 2024 \u2014 Issue 3 \u2014 recreated.pdf",
+      "bytes": 6997193,
+      "sha256Local": "375f7d4eb87ca9dc3c1057aef5e2bf363dc8b7773eb0e6ab495ace46464af5a3",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1rmdDaKkhuqUETW06A0kqQGVrdoHT2gnU",
+      "name": "December 2024 \u2014 print archive \u2014 recreated.pdf",
+      "bytes": 5096646,
+      "sha256Local": "fb58d17f3786d2aea4fd8a379a181b4e693e77dec1e71306fa0e35decc66ace5",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1bp7fBW6No6rUOfvvCwAicxSvYqKbalCT",
+      "name": "September 2025 \u2014 Issue 1 \u2014 recreated.pdf",
+      "bytes": 6153581,
+      "sha256Local": "f19b1df3b6e18b9a89054610ee8f72ca6b34e45f2d38f80b0201c21e83e5130a",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1GiBCHA3KsTod_nLNuCFYi8rets5r7zHR",
+      "name": "October 2025 \u2014 Issue 2 \u2014 recreated.pdf",
+      "bytes": 4744313,
+      "sha256Local": "7e5e0ddd3f60f5845acedfc48caeaac5b644a016473f190db3df9a689ecbcdf2",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1gS3Zg3bdaBWxHL-bm7MyBRJehZ7MkSN7",
+      "name": "Winter 2025 \u2014 Issue 5 \u2014 recreated.pdf",
+      "bytes": 4639659,
+      "sha256Local": "9f2d04b308657b63339ce03555d5fbb30fca6c906113413b011e74790b8c58e6",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1cpQ-YuWyUzJux-YzrjjgvuGajslXt0Jn",
+      "name": "February 2025 \u2014 current revision \u2014 recreated.pdf",
+      "bytes": 27860297,
+      "sha256Local": "c1b2fde15e4a49d009c0f91ffda2906ee07edf4e557704eedf8c39f59f660c92",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1kF8p4gmbli2SmRZsmgkWrHveYjrzAQxa",
+      "name": "February 2025 \u2014 archived revision \u2014 recreated.pdf",
+      "bytes": 32531009,
+      "sha256Local": "5c83a81afde5715dc90cdd87b98030f988c651d0a153a083b3b37036db763be5",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1mHapdCZu3N7ecoGqrIl-kZ_uEZ-Yjnq1",
+      "name": "March 2025 \u2014 Issue 7 \u2014 recreated.pdf",
+      "bytes": 26358201,
+      "sha256Local": "f4937d81c8beeb7944f4f27d820c17c6c0c8035a3b57aa55076418fc9256395d",
+      "driveListingVerified": true
+    },
+    {
+      "id": "15V5Z1YXtWZuQ_0i9hKQNVyM-zhUkgCJM",
+      "name": "December 2024 \u2014 final layout \u2014 editable files.zip",
+      "bytes": 12571321,
+      "sha256Local": "9ac0cbf5113a8f7bbeca6e1e6046dd4506742bc4820c8555894ecbbd62f4ffcb",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1cH2GlZj0R9u7-p8uqCO9CACACsNj1ZWD",
+      "name": "December 2024 \u2014 final layout \u2014 issue recipe.zip",
+      "bytes": 7408890,
+      "sha256Local": "63c618b0c7579830f5db3869a08b92105aaaca5f1c0d9b6958919c7a23d58a6f",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1g6gzuTIp-4_R82S4uERC4eOxJGhz-gZj",
+      "name": "November 2024 \u2014 Issue 3 \u2014 editable files.zip",
+      "bytes": 12215183,
+      "sha256Local": "9934adea7fe2fa9ffcde8096cf1b322d10d86b28dc01ae6177588325ac5d74a2",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1ZyLbU615xJ6VvinJFVrTU2z6Rz-WfoX9",
+      "name": "November 2024 \u2014 Issue 3 \u2014 issue recipe.zip",
+      "bytes": 6563928,
+      "sha256Local": "7b36252ab1e2de174f2ab59028d20b67ab5cd6148c29774aa3b760a7ed71730c",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1jB4Qqv1ATtzPGeAe5o3y4Rx-xtRk7uVi",
+      "name": "December 2024 \u2014 print archive \u2014 editable files.zip",
+      "bytes": 8350286,
+      "sha256Local": "d5555a414cb337ed5ce1cd8a7faf129971ecbc6def0e193b001d3d6999a35739",
+      "driveListingVerified": true
+    },
+    {
+      "id": "14lZF0W1T70_HW3omEi7Xy_SB3owEWD-V",
+      "name": "December 2024 \u2014 print archive \u2014 issue recipe.zip",
+      "bytes": 4551095,
+      "sha256Local": "3b36bce5f5209394158969d51c3ef079c678e6cbf2d4206863c043b8ee4a1c5d",
+      "driveListingVerified": true
+    },
+    {
+      "id": "18KDiGHgfhPV81qgiYlJ8zBqy86XMxjhP",
+      "name": "September 2025 \u2014 Issue 1 \u2014 editable files.zip",
+      "bytes": 10977050,
+      "sha256Local": "1da4b7bd6d3125bbc524a1ee2aeff8b23d8aad4e12a8d178af597a68d0e79f0a",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1QU3bZf7G4UcmYow5kpK2Zdfo5M6L9I_l",
+      "name": "September 2025 \u2014 Issue 1 \u2014 issue recipe.zip",
+      "bytes": 6337192,
+      "sha256Local": "b384a4d94f7234875ec7225d67211a06b43da6a74d7e1898f3ec1040dccc9773",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1eVT_XFDT-aIGrtE-ZTlWA8-nCwxV6r_U",
+      "name": "October 2025 \u2014 Issue 2 \u2014 editable files.zip",
+      "bytes": 7966154,
+      "sha256Local": "f31f6bfe392c9fd6df74ccaf1f95c59b3a5f5e0fadb1001bb310e837ebf96ec5",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1QbNWy9wi55tLHgh_nSnnVXsH0R-mLO6M",
+      "name": "October 2025 \u2014 Issue 2 \u2014 issue recipe.zip",
+      "bytes": 4391201,
+      "sha256Local": "e4ff9ef41697d1ba552adfc24f5cab6bf6378de400e9f7374d0b168136bf6a2b",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1Bq2h-e1MXiPQjFTMFGcrQSmmlpHdNmRg",
+      "name": "Winter 2025 \u2014 Issue 5 \u2014 editable files.zip",
+      "bytes": 7671160,
+      "sha256Local": "17d59360b654cd811d86747debd0dec67adfbb33d46e8aa05848b42442b7e3ed",
+      "driveListingVerified": true
+    },
+    {
+      "id": "116tWPzJF8UcbUzgQqRYK_nGra-_YEKtN",
+      "name": "Winter 2025 \u2014 Issue 5 \u2014 issue recipe.zip",
+      "bytes": 4170373,
+      "sha256Local": "d0505c94e994671d48cd18b13a3d9632d8b426d8924f41e9dd9300753b84f205",
+      "driveListingVerified": true
+    },
+    {
+      "id": "170tC0aO4IAc-N8qqZlfzlQ-6ZFTpgy2l",
+      "name": "February 2025 \u2014 current revision \u2014 editable files.zip",
+      "bytes": 54473498,
+      "sha256Local": "c019ade55356858e89da3eee9332afa36fb058e4bf227532306d75c0a1f9a037",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1pivVbQlJawueCcrnJQrvKUqSJdpUeO1K",
+      "name": "February 2025 \u2014 current revision \u2014 issue recipe.zip",
+      "bytes": 27988181,
+      "sha256Local": "701f8dec8f06961255e7a43e7a69086ac31f3ad27a6eca1630810483d0ea188a",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1COd3_e7_dAD5U0XpXvc48HE_pOaA2T4q",
+      "name": "February 2025 \u2014 archived revision \u2014 editable files.zip",
+      "bytes": 63938318,
+      "sha256Local": "2db6014cf39b468f850b50426aa608a6bd643134d9014b759cb26aafc0946d9b",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1SVfGRuYx2D1m9h6hOZhPB9_nDNmxo5If",
+      "name": "February 2025 \u2014 archived revision \u2014 issue recipe.zip",
+      "bytes": 32771847,
+      "sha256Local": "9cf90ad8ee0ce237481815865d9c4f0621f1fb3dc1e41b9ff825202cc271e9a2",
+      "driveListingVerified": true
+    },
+    {
+      "id": "11NDBxlxCHmsMxPm9pWxDzNb6nCiE8OBw",
+      "name": "March 2025 \u2014 Issue 7 \u2014 editable files.zip",
+      "bytes": 51513712,
+      "sha256Local": "a0952e69f482f450f37e07005c787131f6fb0b1fd366baf3eec2b76ee1043dd5",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1fYoxEQwBA7LyXtl_ila-FEKEyZAUudsu",
+      "name": "March 2025 \u2014 Issue 7 \u2014 issue recipe.zip",
+      "bytes": 26264119,
+      "sha256Local": "19f13bf645bd6013b90f2005fbd7af02b0a35a030ae8db9474c69bebdb215edc",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1AY9f07Jd3b9SLr_Fl-iAcQgjHXGynMPm",
+      "name": "OTE original articles \u2014 import package.zip",
+      "bytes": 550671,
+      "sha256Local": "da8e19f1e732ee7c242970749a1dc138c4f6a8103025ee49b711a8a55bec9397",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1dYoeOnFCiAQrnjDPjrNBCdAPLXkRNDM3",
+      "name": "OTE original articles \u2014 full metadata.json",
+      "bytes": 715266,
+      "sha256Local": "1f0fbee8c16dbc8d70376b49d30aad292bd629d233fd813ef957ed33b0387261",
+      "driveListingVerified": true
+    },
+    {
+      "id": "13qloKZFoA2ecLikSztidTe7DLlS1AEFN",
+      "name": "OTE original articles \u2014 catalogue.csv",
+      "bytes": 188004,
+      "sha256Local": "3c9d5dec58eacbf9dcccd0e2d79d45115a6fe09a1274ebe67cdeb5b61701da96",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1pjNUU0ez0MdCL1mxhcvymJ5Zmkp-LreE",
+      "name": "OTE original articles \u2014 recovery coverage.md",
+      "bytes": 1169,
+      "sha256Local": "f95028733689e33af2d56e7fb092280719cc4aa3a33bd903299a9a18e3bb1213",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1abrjwvpXLDdOS2yj8SANenXz8RQgxr-E",
+      "name": "OTE DesignCraft \u2014 offline compiler kit.zip",
+      "bytes": 24854654,
+      "sha256Local": "b008298c4008d6113341ead583f99ddd3ff1dabe3cad1fe423a409ba88661304",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1kAKcmfTKEQfEpNOKmz8xbj2oHtAvhDu7",
+      "name": "OTE DesignCraft \u2014 compiler checksum.sha256",
+      "bytes": 83,
+      "sha256Local": "0f6071a3ac4b3548b1a348935043380c06f21aad85be5ee045b01232b46ade4d",
+      "driveListingVerified": true
+    },
+    {
+      "id": "12EjQGRtIiG_Kv15__-JcGGczgKzrawYg",
+      "name": "OTEManager \u2014 article import guide.md",
+      "bytes": 6080,
+      "sha256Local": "e5b6923f4821cb36070a8e1817b394c9610a1395b965065b05aa486544f03b21",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1AFnm0DT3Uwn-uainCaWNcZEqJoFnKD6F",
+      "name": "OTEManager \u2014 complete issue recreation guide.md",
+      "bytes": 8559,
+      "sha256Local": "1f5008ae02547a17ad3cda2a71b06e2b2b6f6e169a2b73f8278d94cb5264588d",
+      "driveListingVerified": true
+    },
+    {
+      "id": "1f8oRQH5SElxYTZ_COdBp6JskqVDIrDIf",
+      "name": "OTEManager \u2014 generated file index.json",
+      "bytes": 15897,
+      "sha256Local": "e8c811ba8a56f803ed586ff168857cb8621fc0745e9e560ceaa91b7954939b81",
+      "driveListingVerified": true
+    }
+  ]
+}

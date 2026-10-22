@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "ote.whole-issue-visual-review.v1",
+  "reviewedAt": "2026-10-22T22:15:29.090587+00:00",
+  "fontProfile": "portable",
+  "physicalPagesReviewed": 153,
+  "issues": [
+    {
+      "documentId": "cover-page-issue-3-lina-2dc29f52",
+      "pdf": "artifacts/source-reconstruction/whole-issues/cover-page-issue-3-lina-2dc29f52-reconstruction/issue.pdf",
+      "sha256": "8a9b6d8e4452989edb43a6726d440b6ed0421fa5fc792ca0eb9bd446d639db46",
+      "pageCount": 17,
+      "fullContactSheetReviewed": true,
+      "linkedSpreads": [
+        "cover-page-issue-3-lina-2dc29f52-wildlife-spread"
+      ]
+    },
+    {
+      "documentId": "cover-page-issue-3-lina-6dd82589",
+      "pdf": "artifacts/source-reconstruction/whole-issues/cover-page-issue-3-lina-6dd82589-reconstruction/issue.pdf",
+      "sha256": "375f7d4eb87ca9dc3c1057aef5e2bf363dc8b7773eb0e6ab495ace46464af5a3",
+      "pageCount": 17,
+      "fullContactSheetReviewed": true,
+      "linkedSpreads": []
+    },
+    {
+      "documentId": "cover-page-issue-3-lina-de16e159",
+      "pdf": "artifacts/source-reconstruction/whole-issues/cover-page-issue-3-lina-de16e159-reconstruction/issue.pdf",
+      "sha256": "fb58d17f3786d2aea4fd8a379a181b4e693e77dec1e71306fa0e35decc66ace5",
+      "pageCount": 17,
+      "fullContactSheetReviewed": true,
+      "linkedSpreads": []
+    },
+    {
+      "documentId": "issue-1-sept-2025-741805e9",
+      "pdf": "artifacts/source-reconstruction/whole-issues/issue-1-sept-2025-741805e9-reconstruction/issue.pdf",
+      "sha256": "f19b1df3b6e18b9a89054610ee8f72ca6b34e45f2d38f80b0201c21e83e5130a",
+      "pageCount": 18,
+      "fullContactSheetReviewed": true,
+      "linkedSpreads": [
+        "issue-1-sept-2025-741805e9-campus-corners-spread"
+      ]
+    },
+    {
+      "documentId": "issue-2-october-2025-0eb630f7",
+      "pdf": "artifacts/source-reconstruction/whole-issues/issue-2-october-2025-0eb630f7-reconstruction/issue.pdf",
+      "sha256": "7e5e0ddd3f60f5845acedfc48caeaac5b644a016473f190db3df9a689ecbcdf2",
+      "pageCount": 16,
+      "fullContactSheetReviewed": true,
+      "linkedSpreads": []
+    },
+    {
+      "documentId": "issue-5-ba123d17",
+      "pdf": "artifacts/source-reconstruction/whole-issues/issue-5-ba123d17-reconstruction/issue.pdf",
+      "sha256": "9f2d04b308657b63339ce03555d5fbb30fca6c906113413b011e74790b8c58e6",
+      "pageCount": 17,
+      "fullContactSheetReviewed": true,
+      "linkedSpreads": []
+    },
+    {
+      "documentId": "issue-6-feb-2025-5ed75bab",
+      "pdf": "artifacts/source-reconstruction/whole-issues/issue-6-feb-2025-5ed75bab-reconstruction/issue.pdf",
+      "sha256": "c1b2fde15e4a49d009c0f91ffda2906ee07edf4e557704eedf8c39f59f660c92",
+      "pageCount": 17,
+      "fullContactSheetReviewed": true,
+      "linkedSpreads": [
+        "issue-6-feb-2025-5ed75bab-winter-photo-spread"
+      ]
+    },
+    {
+      "documentId": "issue-6-feb-2025-b91aa3a0",
+      "pdf": "artifacts/source-reconstruction/whole-issues/issue-6-feb-2025-b91aa3a0-reconstruction/issue.pdf",
+      "sha256": "5c83a81afde5715dc90cdd87b98030f988c651d0a153a083b3b37036db763be5",
+      "pageCount": 17,
+      "fullContactSheetReviewed": true,
+      "linkedSpreads": [
+        "issue-6-feb-2025-b91aa3a0-wildlife-spread"
+      ]
+    },
+    {
+      "documentId": "issue-7-march-2025-dfcbb959",
+      "pdf": "artifacts/source-reconstruction/whole-issues/issue-7-march-2025-dfcbb959-reconstruction/issue.pdf",
+      "sha256": "f4937d81c8beeb7944f4f27d820c17c6c0c8035a3b57aa55076418fc9256395d",
+      "pageCount": 17,
+      "fullContactSheetReviewed": true,
+      "linkedSpreads": []
+    }
+  ],
+  "targetedFinalChecks": {
+    "octoberPresidentQuestionHeadingSingle": true,
+    "octoberFeedbackRuleSeparated": true,
+    "septemberCoverPhotoFrameMatchesOwnSource": true,
+    "septemberReservationBackgroundHasNoGrayOrCross": true,
+    "all22NativeAdSlotsPresent": true,
+    "all21OriginalAdRastersRemovedFromBackgrounds": true,
+    "both2025CoverNumbersSeparatedFromRules": true
+  },
+  "knownAppearanceLimits": [
+    "Portable substitute letterforms differ from source fonts.",
+    "Whole-issue private-original-font profile requires fresh fit and visual checking.",
+    "The unfilled September gray reservation lightens through PDF color conversion."
+  ]
+}

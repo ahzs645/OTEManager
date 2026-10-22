@@ -1,0 +1,3051 @@
+{
+  "schemaVersion": "ote.source-archive.issue.v1",
+  "archiveId": "ote-original-issues-2026-10-09",
+  "issue": {
+    "documentId": "issue-6-feb-2025-b91aa3a0",
+    "label": "February 2025 · archived revision",
+    "volumeNumber": 31,
+    "issueNumber": 6,
+    "releaseDate": null,
+    "pageCount": 17,
+    "source": {
+      "path": "originals/issue-6-feb-2025-b91aa3a0.pdf",
+      "sha256": "b91aa3a0ecd76aa3200dbe756f937cfe096822106c16003e5ae652aa4c45cc8b"
+    },
+    "sourceNotes": "Archived issue revision is not a completed February issue: reused December cover, typography tests and CFUR draft. Do not infer a publication day from this stale cover.",
+    "sourceCoverMetadata": {
+      "date": "2024-12-05",
+      "volume": 31,
+      "number": 4
+    }
+  },
+  "articles": [
+    {
+      "sourceKey": "legacy:0312a4ac-5fbc-43e9-9375-80a91ba675a8",
+      "originalArticleId": "0312a4ac-5fbc-43e9-9375-80a91ba675a8",
+      "title": "\"Pink Shirt Day: Kindness Isn’t Just an Occasion—It’s a Habit\"",
+      "authorName": "Yug Shaileshkumar Rathod",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "0312a4ac-5fbc-43e9-9375-80a91ba675a8",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:17:02.000Z",
+            "createdAt": "2026-01-12T00:33:00.458Z",
+            "updatedAt": "2026-01-12T05:05:24.581Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:02.000Z",
+        "createdAt": "2026-01-12T00:33:00.458Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      },
+      "authorSourceId": "c7dcae2c-ce0c-4da5-829b-252c1ed9293c",
+      "exportPath": "source-archive/articles/legacy-0312a4ac-5fbc-43e9-9375-80a91ba675a8-pink-shirt-day-kindness-isnt-just-an-occasionits-a-habit.md"
+    },
+    {
+      "sourceKey": "legacy:0ffec215-d195-4fa7-8bf3-b831fb544313",
+      "originalArticleId": "0ffec215-d195-4fa7-8bf3-b831fb544313",
+      "title": "The Pivot",
+      "authorName": "Trudy Bartels",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "0ffec215-d195-4fa7-8bf3-b831fb544313",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:41.000Z",
+            "createdAt": "2026-01-12T00:33:00.802Z",
+            "updatedAt": "2026-01-12T05:05:24.581Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:41.000Z",
+        "createdAt": "2026-01-12T00:33:00.802Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      },
+      "authorSourceId": "7eac3b5d-6114-45d6-8da3-8af75c11b377",
+      "exportPath": "source-archive/articles/legacy-0ffec215-d195-4fa7-8bf3-b831fb544313-the-pivot.md"
+    },
+    {
+      "sourceKey": "legacy:2568d312-9889-42fb-b6cc-56ca86229478",
+      "originalArticleId": "2568d312-9889-42fb-b6cc-56ca86229478",
+      "title": "Student ID article",
+      "authorName": "Ahmad Jalil",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "2568d312-9889-42fb-b6cc-56ca86229478",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:18:41.000Z",
+            "createdAt": "2026-01-12T00:32:57.091Z",
+            "updatedAt": "2026-01-12T05:05:24.581Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:18:41.000Z",
+        "createdAt": "2026-01-12T00:32:57.091Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      },
+      "authorSourceId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "exportPath": "source-archive/articles/legacy-2568d312-9889-42fb-b6cc-56ca86229478-student-id-article.md"
+    },
+    {
+      "sourceKey": "legacy:3ea22fc9-361f-4054-985b-30dfe7cb777c",
+      "originalArticleId": "3ea22fc9-361f-4054-985b-30dfe7cb777c",
+      "title": "Exploring the North with UNBC's Outdoors Club",
+      "authorName": "Amir Etminanrad",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "3ea22fc9-361f-4054-985b-30dfe7cb777c",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:17:09.000Z",
+            "createdAt": "2026-01-12T00:33:00.306Z",
+            "updatedAt": "2026-01-12T05:05:24.581Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:09.000Z",
+        "createdAt": "2026-01-12T00:33:00.306Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      },
+      "authorSourceId": "b9595e73-57de-480d-b73c-4390b2c47f0c",
+      "exportPath": "source-archive/articles/legacy-3ea22fc9-361f-4054-985b-30dfe7cb777c-exploring-the-north-with-unbc-s-outdoors-club.md"
+    },
+    {
+      "sourceKey": "legacy:5250c8ab-58cb-4108-b961-b704b697817e",
+      "originalArticleId": "5250c8ab-58cb-4108-b961-b704b697817e",
+      "title": "BCFC Leadership Workshop by NBCGSS",
+      "authorName": "Sriparna Dey",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "5250c8ab-58cb-4108-b961-b704b697817e",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:17:03.000Z",
+            "createdAt": "2026-01-12T00:33:00.433Z",
+            "updatedAt": "2026-01-12T05:05:24.581Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:03.000Z",
+        "createdAt": "2026-01-12T00:33:00.433Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      },
+      "authorSourceId": "cad09163-f0bb-45e2-8fec-559e5e7b3884",
+      "exportPath": "source-archive/articles/legacy-5250c8ab-58cb-4108-b961-b704b697817e-bcfc-leadership-workshop-by-nbcgss.md"
+    },
+    {
+      "sourceKey": "legacy:52e232d3-f12f-4f36-a000-b4d3eaf7a371",
+      "originalArticleId": "52e232d3-f12f-4f36-a000-b4d3eaf7a371",
+      "title": "New Year, Same Spirit: Timberwolves back with a fresh start!",
+      "authorName": "Shivi Juyal",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "52e232d3-f12f-4f36-a000-b4d3eaf7a371",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:17:13.000Z",
+            "createdAt": "2026-01-12T00:33:00.159Z",
+            "updatedAt": "2026-01-12T05:05:24.581Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:13.000Z",
+        "createdAt": "2026-01-12T00:33:00.159Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      },
+      "authorSourceId": "e33bf3eb-9c43-4c52-9806-3886de089edc",
+      "exportPath": "source-archive/articles/legacy-52e232d3-f12f-4f36-a000-b4d3eaf7a371-new-year-same-spirit-timberwolves-back-with-a-fresh-start.md"
+    },
+    {
+      "sourceKey": "legacy:7361790b-11ea-4a8e-ac0c-2774238f19f7",
+      "originalArticleId": "7361790b-11ea-4a8e-ac0c-2774238f19f7",
+      "title": "Dating Ideas in Prince George 2.0",
+      "authorName": "Bruce Danesh",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "7361790b-11ea-4a8e-ac0c-2774238f19f7",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:17:22.000Z",
+            "createdAt": "2026-01-12T00:32:59.849Z",
+            "updatedAt": "2026-01-12T05:05:24.581Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:22.000Z",
+        "createdAt": "2026-01-12T00:32:59.849Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      },
+      "authorSourceId": "2b00e476-2840-4401-a69c-795ff8eacded",
+      "exportPath": "source-archive/articles/legacy-7361790b-11ea-4a8e-ac0c-2774238f19f7-dating-ideas-in-prince-george-2-0.md"
+    },
+    {
+      "sourceKey": "legacy:74c62b63-3078-403f-9d41-1ab904b6fc24",
+      "originalArticleId": "74c62b63-3078-403f-9d41-1ab904b6fc24",
+      "title": "Delivery Drivers in Prince George: Exploring the Gig Economy's Dynamics",
+      "authorName": "Paul Peng",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "74c62b63-3078-403f-9d41-1ab904b6fc24",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:34.000Z",
+            "createdAt": "2026-01-12T00:33:00.865Z",
+            "updatedAt": "2026-01-12T05:05:24.581Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:34.000Z",
+        "createdAt": "2026-01-12T00:33:00.865Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      },
+      "authorSourceId": "d6e50185-348e-4d60-9102-4b59e78b1ca1",
+      "exportPath": "source-archive/articles/legacy-74c62b63-3078-403f-9d41-1ab904b6fc24-delivery-drivers-in-prince-george-exploring-the-gig-economy-s-dynamics.md"
+    },
+    {
+      "sourceKey": "legacy:8888ce16-f09c-48d8-aff0-b0479a3c1a99",
+      "originalArticleId": "8888ce16-f09c-48d8-aff0-b0479a3c1a99",
+      "title": "NBCGSS Industry Night: Bridging the Gap between Academia and Industry",
+      "authorName": "Sriparna Dey",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "8888ce16-f09c-48d8-aff0-b0479a3c1a99",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:17:11.000Z",
+            "createdAt": "2026-01-12T00:33:00.235Z",
+            "updatedAt": "2026-01-12T05:05:24.581Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:11.000Z",
+        "createdAt": "2026-01-12T00:33:00.235Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      },
+      "authorSourceId": "cad09163-f0bb-45e2-8fec-559e5e7b3884",
+      "exportPath": "source-archive/articles/legacy-8888ce16-f09c-48d8-aff0-b0479a3c1a99-nbcgss-industry-night-bridging-the-gap-between-academia-and-industry.md"
+    },
+    {
+      "sourceKey": "legacy:a825cb40-0062-45f2-8f84-dca89e3441da",
+      "originalArticleId": "a825cb40-0062-45f2-8f84-dca89e3441da",
+      "title": "Empowering Students Through Finance: Discover the UNBC Investment Club",
+      "authorName": "Sriparna Dey",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "a825cb40-0062-45f2-8f84-dca89e3441da",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:39.000Z",
+            "createdAt": "2026-01-12T00:33:00.809Z",
+            "updatedAt": "2026-01-12T05:05:24.581Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:39.000Z",
+        "createdAt": "2026-01-12T00:33:00.809Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      },
+      "authorSourceId": "cad09163-f0bb-45e2-8fec-559e5e7b3884",
+      "exportPath": "source-archive/articles/legacy-a825cb40-0062-45f2-8f84-dca89e3441da-empowering-students-through-finance-discover-the-unbc-investment-club.md"
+    },
+    {
+      "sourceKey": "legacy:bb7c8abe-7363-4001-8227-82923c1bdd6d",
+      "originalArticleId": "bb7c8abe-7363-4001-8227-82923c1bdd6d",
+      "title": "Active Allyship in Black History Month ",
+      "authorName": "Bella Mesquita",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "bb7c8abe-7363-4001-8227-82923c1bdd6d",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:17:07.000Z",
+            "createdAt": "2026-01-12T00:33:00.367Z",
+            "updatedAt": "2026-01-12T05:05:24.581Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:07.000Z",
+        "createdAt": "2026-01-12T00:33:00.367Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      },
+      "authorSourceId": "a8cd2393-da04-4093-8b2d-c869a27d268e",
+      "exportPath": "source-archive/articles/legacy-bb7c8abe-7363-4001-8227-82923c1bdd6d-active-allyship-in-black-history-month.md"
+    },
+    {
+      "sourceKey": "legacy:e8b20576-a089-41a3-9da3-26d9fe6c6232",
+      "originalArticleId": "e8b20576-a089-41a3-9da3-26d9fe6c6232",
+      "title": "Mastering The Balancing Act: Academics, Health, and Part-time Job   ",
+      "authorName": "Sriparna Dey",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "e8b20576-a089-41a3-9da3-26d9fe6c6232",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:16:38.000Z",
+            "createdAt": "2026-01-12T00:33:00.825Z",
+            "updatedAt": "2026-01-12T05:05:24.581Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:16:38.000Z",
+        "createdAt": "2026-01-12T00:33:00.825Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      },
+      "authorSourceId": "cad09163-f0bb-45e2-8fec-559e5e7b3884",
+      "exportPath": "source-archive/articles/legacy-e8b20576-a089-41a3-9da3-26d9fe6c6232-mastering-the-balancing-act-academics-health-and-part-time-job.md"
+    },
+    {
+      "sourceKey": "legacy:f78ef82a-57eb-437a-b4dd-176aa1666b55",
+      "originalArticleId": "f78ef82a-57eb-437a-b4dd-176aa1666b55",
+      "title": "Love Hues",
+      "authorName": "Inara Dhanani",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "f78ef82a-57eb-437a-b4dd-176aa1666b55",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:17:05.000Z",
+            "createdAt": "2026-01-12T00:33:00.418Z",
+            "updatedAt": "2026-01-12T05:05:24.581Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:05.000Z",
+        "createdAt": "2026-01-12T00:33:00.418Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      },
+      "authorSourceId": "27b2730f-6a4b-480a-9046-6e5374bc8e43",
+      "exportPath": "source-archive/articles/legacy-f78ef82a-57eb-437a-b4dd-176aa1666b55-love-hues.md"
+    },
+    {
+      "sourceKey": "legacy:f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalArticleId": "f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "title": "UNBC Safe App",
+      "authorName": "Anonymous",
+      "content": "",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+          "originalDates": {
+            "submittedAt": "2025-06-29T18:17:00.000Z",
+            "createdAt": "2026-01-12T00:33:00.484Z",
+            "updatedAt": "2026-01-12T05:05:24.581Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "metadata-only",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": true,
+      "originalDates": {
+        "submittedAt": "2025-06-29T18:17:00.000Z",
+        "createdAt": "2026-01-12T00:33:00.484Z",
+        "updatedAt": "2026-01-12T05:05:24.581Z"
+      },
+      "exportPath": "source-archive/articles/legacy-f7a1302d-47b7-4dc2-af23-6e080d4b8d7e-unbc-safe-app.md"
+    },
+    {
+      "sourceKey": "idml:8395eefe:u88c",
+      "title": "Prince George Welcomes New Salmon Hatchery",
+      "authorName": null,
+      "content": "The Department of Fisheries and Oceans (DFO) is bringing new life to local salmon conservation with plans for a state-of-the-art hatchery on the north bank of the Nechako River. The facility, part of the Pacific Salmon Strategy Initiative, will focus on supporting chinook and sockeye salmon populations across the Upper Fraser watershed.\n\nAdam Silverstein, DFO’s Regional Manager of Hatchery Reform, says the project is ready to break ground as soon as weather permits. The strategically chosen location offers ideal water conditions and easy access for fish transport throughout the region.\n\nThe project is a collaboration with Lheidli T’enneh First Nation and includes support from Canfor, who sold the 4-5 acre parcel for the facility’s construction.",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumbers": [
+            13
+          ],
+          "section": "cfur",
+          "sourceVisibility": "visible-in-pdf"
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumbers": [],
+          "section": "cfur",
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-idml/issue-6-feb-2025-8395eefe.idml",
+          "sha256": "8395eefedc9d3cc5c2eb023b5f25559e76d8781b192f75d4580ef065a1470404",
+          "storyIds": [
+            "u80d",
+            "u88c"
+          ],
+          "sourceByline": null,
+          "notes": "Byline is unknown unless explicitly printed. CFUR branding is a section attribution, not an invented personal byline."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "visible-in-source-pdf",
+      "sectionAttribution": "CFUR Radio",
+      "exportPath": "source-archive/articles/idml-8395eefe-u88c-prince-george-welcomes-new-salmon-hatchery.md"
+    },
+    {
+      "sourceKey": "idml:8395eefe:u8a2",
+      "title": "Tourism PG Opens Doors at New Downtown Location",
+      "authorName": null,
+      "content": "Tourism Prince George has officially opened its new headquarters at the Prince George Civic Center, marking a strategic move to better serve visitors in the heart of downtown. CEO Colin Carson says the relocation from First Avenue aims to enhance visitor engagement and encourage longer stays in the city.\n\n“We wanted to move away from being just a quick stop for travelers,” Carson explains. “Our downtown location connects visitors directly to local restaurants, Two Rivers Art Gallery, and Connaught Hill.”\n\nThe new office, which showed promising results during its temporary summer operation, is now open Monday to Friday, 9:00 AM to 4:30 PM. A grand opening celebration is planned for spring 2025, coinciding with the activation of the Canada Games Plaza.",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumbers": [
+            13
+          ],
+          "section": "cfur",
+          "sourceVisibility": "visible-in-pdf"
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumbers": [],
+          "section": "cfur",
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-idml/issue-6-feb-2025-8395eefe.idml",
+          "sha256": "8395eefedc9d3cc5c2eb023b5f25559e76d8781b192f75d4580ef065a1470404",
+          "storyIds": [
+            "u911",
+            "u8a2"
+          ],
+          "sourceByline": null,
+          "notes": "Byline is unknown unless explicitly printed. CFUR branding is a section attribution, not an invented personal byline."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "visible-in-source-pdf",
+      "sectionAttribution": "CFUR Radio",
+      "exportPath": "source-archive/articles/idml-8395eefe-u8a2-tourism-pg-opens-doors-at-new-downtown-location.md"
+    },
+    {
+      "sourceKey": "idml:8395eefe:u876",
+      "title": "Examining the Bore",
+      "authorName": null,
+      "content": "Local band Examine the Boar is making waves in Prince George’s music scene, bringing their unique blend of 70s blues and 2000s indie garage rock to stages across the city. The trio, consisting of brothers Wiley (drums) and Hamish (bass/keyboards), along with guitarist Xavier, formed in late 2022 and has quickly become a fixture in the local music community.\n\nThe band’s name originated from a gun safety manual, specifically the PAL (Possession and Acquisition License) book, adding an unexpected twist to their laid-back musical style. In 2024, dubbed their “year of the boar,” the group completed their first BC tour alongside Brainy M and Infectious, and performed a memorable free show covering Rush’s “2112.”\n\nCatch their original music on Deadfall Brewing’s YouTube channel or experience their energetic live performances around town.",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumbers": [
+            13
+          ],
+          "section": "cfur",
+          "sourceVisibility": "visible-in-pdf"
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumbers": [],
+          "section": "cfur",
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-idml/issue-6-feb-2025-8395eefe.idml",
+          "sha256": "8395eefedc9d3cc5c2eb023b5f25559e76d8781b192f75d4580ef065a1470404",
+          "storyIds": [
+            "u8e4",
+            "u876"
+          ],
+          "sourceByline": null,
+          "notes": "Byline is unknown unless explicitly printed. CFUR branding is a section attribution, not an invented personal byline."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "visible-in-source-pdf",
+      "sectionAttribution": "CFUR Radio",
+      "exportPath": "source-archive/articles/idml-8395eefe-u876-examining-the-bore.md"
+    },
+    {
+      "sourceKey": "idml:8395eefe:u8b8",
+      "title": "UNBC Professor Develops Cyber Defense Toolkit for Women",
+      "authorName": null,
+      "content": "Dr. Luna Casey, Assistant Professor in Global International Studies at UNBC, has received a $50,000 MINDS grant from the Department of National Defense to develop a women’s cyber defense toolkit. The project aims to address online harassment while keeping women empowered in digital spaces.\n\n“Simply deleting social media accounts isn’t helpful – it only disempowers women,” explains Dr. Casey. “Given that the internet is crucial for career advancement, we need better rights and regulations.”\n\nThe research includes local Prince George perspectives, with Dr. Casey recently hosting workshops gathering insights from students and community members. The project emphasizes intersectional collaboration, incorporating diverse viewpoints from women of color and minority groups.",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumbers": [
+            13
+          ],
+          "section": "cfur",
+          "sourceVisibility": "visible-in-pdf"
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumbers": [],
+          "section": "cfur",
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-idml/issue-6-feb-2025-8395eefe.idml",
+          "sha256": "8395eefedc9d3cc5c2eb023b5f25559e76d8781b192f75d4580ef065a1470404",
+          "storyIds": [
+            "u927",
+            "u8b8"
+          ],
+          "sourceByline": null,
+          "notes": "Byline is unknown unless explicitly printed. CFUR branding is a section attribution, not an invented personal byline."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "visible-in-source-pdf",
+      "sectionAttribution": "CFUR Radio",
+      "exportPath": "source-archive/articles/idml-8395eefe-u8b8-unbc-professor-develops-cyber-defense-toolkit-for-women.md"
+    },
+    {
+      "sourceKey": "idml:8395eefe:u7e0",
+      "title": "Pedestrian Safety",
+      "authorName": null,
+      "content": "Prince George RCMP is urging both drivers and pedestrians to exercise extra caution following two pedestrian-involved accidents within 24 hours this January. Speaking with CFUR Radio, Media Relations Officer Corporal Jennifer Cooper emphasized that winter’s extended dark hours and black winter clothing create heightened risks.\n\n“Road safety is everyone’s responsibility,” Cooper shared from UNBC’s campus. She recommends drivers take extra time to check intersections and avoid distractions, while pedestrians should make eye contact with drivers and consider wearing reflective gear.\n\nThe timing isn’t unusual, as December and January typically see an increase in pedestrian-vehicle incidents. Cooper suggests simple solutions like removing earbuds and ensuring vehicle headlights are on during twilight hours.",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumbers": [],
+          "section": "cfur",
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumbers": [],
+          "section": "cfur",
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-idml/issue-6-feb-2025-8395eefe.idml",
+          "sha256": "8395eefedc9d3cc5c2eb023b5f25559e76d8781b192f75d4580ef065a1470404",
+          "storyIds": [
+            "u7f6",
+            "u7e0"
+          ],
+          "sourceByline": null,
+          "notes": "Byline is unknown unless explicitly printed. CFUR branding is a section attribution, not an invented personal byline."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "idml-only-not-in-paired-pdf",
+      "sectionAttribution": "CFUR Radio",
+      "exportPath": "source-archive/articles/idml-8395eefe-u7e0-pedestrian-safety.md"
+    },
+    {
+      "sourceKey": "recurring:president-qa:f8c375304db1dd44",
+      "title": "President Answers",
+      "authorName": null,
+      "content": "**Question**\n\nWhat’s your go-to karaoke song?\n\n**Answer**\n\nTrue: Spandau Ballet",
+      "bodyFormat": "markdown",
+      "kind": "recurring",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumbers": [
+            6
+          ],
+          "section": "president-qa"
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumbers": [
+            6
+          ],
+          "section": "president-qa"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-idml/cover-page-issue-3-lina-db450802.idml",
+          "sha256": "db450802a8ab52ffe7507d70c698e72bd89ddafbe7f9806747e64350fb39be95",
+          "storyIds": [
+            "u394",
+            "u3aa"
+          ],
+          "notes": "Original question/response grouped semantically; no respondent byline is invented."
+        },
+        {
+          "path": "source-idml/issue-6-feb-2025-ff0c4263.idml",
+          "sha256": "ff0c42636dd4402d3324faea45f0873be463643c0840368e72cd399ea781d4b7",
+          "storyIds": [
+            "u48c",
+            "u4a2"
+          ],
+          "notes": "Original question/response grouped semantically; no respondent byline is invented."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "visible-in-source-pdf",
+      "question": "What’s your go-to karaoke song?",
+      "answer": "True: Spandau Ballet",
+      "exportPath": "source-archive/articles/recurring-president-qa-f8c375304db1dd44-president-answers.md"
+    },
+    {
+      "sourceKey": "recurring:inside-the-edge:64e1a38154c872cb",
+      "title": "Inside the Edge",
+      "authorName": null,
+      "content": "**Question**\n\nI’ve noticed some articles in Over the Edge seem like they could be AI-generated. Can you clarify your stance on AI usage and explain how you ensure the content is original and student-driven?\n\n**Answer**\n\nThanks for asking about AI in Over the Edge! Yes, we do use AI tools, and we want to be upfront about that. While our students are the creative force behind every story, we use AI to help with things like smoothing out paragraph transitions, grammar checks, and making our writing flow more naturally. Right now, we’re experimenting with these tools to figure out what works best - it’s very much a learning process for all of us. Everything you read still comes from our student journalists’ minds and experiences, with AI just helping to polish the final product. We’re learning and improving as we go, and we really appreciate feedback from our readers as we work to find the right balance. Student journalism is still at the heart of everything we do!",
+      "bodyFormat": "markdown",
+      "kind": "recurring",
+      "placements": [
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumbers": [
+            5
+          ],
+          "section": "inside-the-edge"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-idml/issue-6-feb-2025-ff0c4263.idml",
+          "sha256": "ff0c42636dd4402d3324faea45f0873be463643c0840368e72cd399ea781d4b7",
+          "storyIds": [
+            "u3fc",
+            "u412"
+          ],
+          "notes": "Original question/response grouped semantically; no respondent byline is invented."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "visible-in-source-pdf",
+      "question": "I’ve noticed some articles in Over the Edge seem like they could be AI-generated. Can you clarify your stance on AI usage and explain how you ensure the content is original and student-driven?",
+      "answer": "Thanks for asking about AI in Over the Edge! Yes, we do use AI tools, and we want to be upfront about that. While our students are the creative force behind every story, we use AI to help with things like smoothing out paragraph transitions, grammar checks, and making our writing flow more naturally. Right now, we’re experimenting with these tools to figure out what works best - it’s very much a learning process for all of us. Everything you read still comes from our student journalists’ minds and experiences, with AI just helping to polish the final product. We’re learning and improving as we go, and we really appreciate feedback from our readers as we work to find the right balance. Student journalism is still at the heart of everything we do!",
+      "exportPath": "source-archive/articles/recurring-inside-the-edge-64e1a38154c872cb-inside-the-edge.md"
+    },
+    {
+      "sourceKey": "feature:wildlife-photo-contest",
+      "title": "Wildlife Photo Contest Winners!",
+      "authorName": null,
+      "content": "We hope you enjoy the winning photographs from this collaboration between the Wildlife Society and Over the Edge student newspaper. As our first attempt at this format, we’re excited to showcase the incredible talent within our community and would love to hear your thoughts. Feel free to share your feedback at ote@unbc.ca!\n\nCaught in the Act\n\n#1\n\nBy: Laura Olson\n\nAnimal: Lynx\n\nLocation: Chilcotin, BC\n\nBirds of a Feather\n\n#1\n\nBy: Ally Truscott\n\nAnimal: Turkey Vulture\n\nLocation: Pemberton, BC\n\nPeoples Choice\n\n#1\n\nBy: Lauren Elviss\n\nAnimal: Lynx kitten\n\nLocation: Prince George, BC\n\nPeoples Choice &\n\nMajestic Mammals\n\n#2\n\nBy: Jasper Kohut\n\nAnimal: Hoary Marmot\n\nLocation: Kananaskis, Alberta",
+      "bodyFormat": "plain",
+      "kind": "photo-feature",
+      "placements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumbers": [
+            8,
+            9
+          ],
+          "section": "photo-feature"
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumbers": [
+            8,
+            9
+          ],
+          "section": "photo-feature"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-idml/cover-page-issue-3-lina-db450802.idml",
+          "sha256": "db450802a8ab52ffe7507d70c698e72bd89ddafbe7f9806747e64350fb39be95",
+          "storyIds": [
+            "u824",
+            "u586",
+            "u4e0",
+            "u5b2",
+            "u59d",
+            "u6b0",
+            "u741",
+            "u64d",
+            "u6cb",
+            "u7ae",
+            "u696",
+            "u67f",
+            "u777"
+          ],
+          "notes": "Source feature captions/bios grouped as one feature; photographer names are not inferred article bylines."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "visible-in-source-pdf",
+      "exportPath": "source-archive/articles/feature-wildlife-photo-contest-wildlife-photo-contest-winners.md"
+    }
+  ],
+  "assets": [
+    {
+      "id": "source-pdf:issue-6-feb-2025-b91aa3a0",
+      "path": "originals/issue-6-feb-2025-b91aa3a0.pdf",
+      "sha256": "b91aa3a0ecd76aa3200dbe756f937cfe096822106c16003e5ae652aa4c45cc8b",
+      "mimeType": "application/pdf",
+      "availability": "reference-only",
+      "assetRole": "source-reference",
+      "documentIds": [
+        "issue-6-feb-2025-b91aa3a0"
+      ],
+      "label": "February 2025 · archived revision"
+    },
+    {
+      "id": "attachment:b917058e-ff37-499a-ace6-27b5e3cbc643",
+      "sourceKey": "legacy:0312a4ac-5fbc-43e9-9375-80a91ba675a8",
+      "originalArticleId": "0312a4ac-5fbc-43e9-9375-80a91ba675a8",
+      "originalAttachmentId": "b917058e-ff37-499a-ace6-27b5e3cbc643",
+      "path": "source-archive-media/b917058e-ff37-499a-ace6-27b5e3cbc643.jpeg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 550313,
+      "originalFileName": "pink-shirt-day-kindness-isnt-just-an-occasionits-a-habit-1.jpeg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:dfe83ba2-6688-44fc-86a1-b443ac90fc5a",
+      "sourceKey": "legacy:0312a4ac-5fbc-43e9-9375-80a91ba675a8",
+      "originalArticleId": "0312a4ac-5fbc-43e9-9375-80a91ba675a8",
+      "originalAttachmentId": "dfe83ba2-6688-44fc-86a1-b443ac90fc5a",
+      "path": "source-archive-media/dfe83ba2-6688-44fc-86a1-b443ac90fc5a.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21590,
+      "originalFileName": "pink-shirt-day-kindness-isnt-just-an-occasionits-a-habit-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:914fbd73-efe5-439d-9cdf-174d68098a92",
+      "sourceKey": "legacy:0312a4ac-5fbc-43e9-9375-80a91ba675a8",
+      "originalArticleId": "0312a4ac-5fbc-43e9-9375-80a91ba675a8",
+      "originalAttachmentId": "914fbd73-efe5-439d-9cdf-174d68098a92",
+      "path": "source-archive-media/914fbd73-efe5-439d-9cdf-174d68098a92.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 23782,
+      "originalFileName": "pink-shirt-day-kindness-isnt-just-an-occasionits-a-habit-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:3b59f90d-cdc2-4f4b-8176-efcaabc17f12",
+      "sourceKey": "legacy:0ffec215-d195-4fa7-8bf3-b831fb544313",
+      "originalArticleId": "0ffec215-d195-4fa7-8bf3-b831fb544313",
+      "originalAttachmentId": "3b59f90d-cdc2-4f4b-8176-efcaabc17f12",
+      "path": "source-archive-media/3b59f90d-cdc2-4f4b-8176-efcaabc17f12.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 23195,
+      "originalFileName": "the-pivot-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:96055776-2d00-4e1d-82ad-9d5813c4f3ac",
+      "sourceKey": "legacy:2568d312-9889-42fb-b6cc-56ca86229478",
+      "originalArticleId": "2568d312-9889-42fb-b6cc-56ca86229478",
+      "originalAttachmentId": "96055776-2d00-4e1d-82ad-9d5813c4f3ac",
+      "path": "source-archive-media/96055776-2d00-4e1d-82ad-9d5813c4f3ac.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21616,
+      "originalFileName": "student-id-article-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:e645dadf-64f2-42ff-9bba-2bd8a3eb3b6f",
+      "sourceKey": "legacy:2568d312-9889-42fb-b6cc-56ca86229478",
+      "originalArticleId": "2568d312-9889-42fb-b6cc-56ca86229478",
+      "originalAttachmentId": "e645dadf-64f2-42ff-9bba-2bd8a3eb3b6f",
+      "path": "source-archive-media/e645dadf-64f2-42ff-9bba-2bd8a3eb3b6f.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 186172,
+      "originalFileName": "student-id-article-2.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:392cfefe-88f8-42fa-bf61-6e6cc45922f1",
+      "sourceKey": "legacy:3ea22fc9-361f-4054-985b-30dfe7cb777c",
+      "originalArticleId": "3ea22fc9-361f-4054-985b-30dfe7cb777c",
+      "originalAttachmentId": "392cfefe-88f8-42fa-bf61-6e6cc45922f1",
+      "path": "source-archive-media/392cfefe-88f8-42fa-bf61-6e6cc45922f1.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 25013,
+      "originalFileName": "exploring-the-north-with-unbc-s-outdoors-club-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:6bd0a3ed-cec3-4b9d-b014-d5211b2d562f",
+      "sourceKey": "legacy:3ea22fc9-361f-4054-985b-30dfe7cb777c",
+      "originalArticleId": "3ea22fc9-361f-4054-985b-30dfe7cb777c",
+      "originalAttachmentId": "6bd0a3ed-cec3-4b9d-b014-d5211b2d562f",
+      "path": "source-archive-media/6bd0a3ed-cec3-4b9d-b014-d5211b2d562f.jpeg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 2194657,
+      "originalFileName": "exploring-the-north-with-unbc-s-outdoors-club-2.jpeg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:cecad489-dc5c-4858-81cb-cd776142dbe6",
+      "sourceKey": "legacy:3ea22fc9-361f-4054-985b-30dfe7cb777c",
+      "originalArticleId": "3ea22fc9-361f-4054-985b-30dfe7cb777c",
+      "originalAttachmentId": "cecad489-dc5c-4858-81cb-cd776142dbe6",
+      "path": "source-archive-media/cecad489-dc5c-4858-81cb-cd776142dbe6.jpeg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 2288477,
+      "originalFileName": "exploring-the-north-with-unbc-s-outdoors-club-3.jpeg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:00bc1f97-0b24-4d75-9162-bde5e9e17497",
+      "sourceKey": "legacy:3ea22fc9-361f-4054-985b-30dfe7cb777c",
+      "originalArticleId": "3ea22fc9-361f-4054-985b-30dfe7cb777c",
+      "originalAttachmentId": "00bc1f97-0b24-4d75-9162-bde5e9e17497",
+      "path": "source-archive-media/00bc1f97-0b24-4d75-9162-bde5e9e17497.jpeg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 3613005,
+      "originalFileName": "exploring-the-north-with-unbc-s-outdoors-club-4.jpeg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 3,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:be18c6e9-3653-41d8-b392-67f2b3e7231a",
+      "sourceKey": "legacy:3ea22fc9-361f-4054-985b-30dfe7cb777c",
+      "originalArticleId": "3ea22fc9-361f-4054-985b-30dfe7cb777c",
+      "originalAttachmentId": "be18c6e9-3653-41d8-b392-67f2b3e7231a",
+      "path": "source-archive-media/be18c6e9-3653-41d8-b392-67f2b3e7231a.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 23456,
+      "originalFileName": "exploring-the-north-with-unbc-s-outdoors-club-5.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:b1172938-85f8-4de7-9442-7a8fa976acdd",
+      "sourceKey": "legacy:5250c8ab-58cb-4108-b961-b704b697817e",
+      "originalArticleId": "5250c8ab-58cb-4108-b961-b704b697817e",
+      "originalAttachmentId": "b1172938-85f8-4de7-9442-7a8fa976acdd",
+      "path": "source-archive-media/b1172938-85f8-4de7-9442-7a8fa976acdd.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 17677,
+      "originalFileName": "bcfc-leadership-workshop-by-nbcgss-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:c140ad0b-a840-4143-bb62-b7282c0f34d9",
+      "sourceKey": "legacy:5250c8ab-58cb-4108-b961-b704b697817e",
+      "originalArticleId": "5250c8ab-58cb-4108-b961-b704b697817e",
+      "originalAttachmentId": "c140ad0b-a840-4143-bb62-b7282c0f34d9",
+      "path": "source-archive-media/c140ad0b-a840-4143-bb62-b7282c0f34d9.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 164429,
+      "originalFileName": "bcfc-leadership-workshop-by-nbcgss-2.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:6ff032de-eac6-4f23-86ff-d2e7000b540b",
+      "sourceKey": "legacy:5250c8ab-58cb-4108-b961-b704b697817e",
+      "originalArticleId": "5250c8ab-58cb-4108-b961-b704b697817e",
+      "originalAttachmentId": "6ff032de-eac6-4f23-86ff-d2e7000b540b",
+      "path": "source-archive-media/6ff032de-eac6-4f23-86ff-d2e7000b540b.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 22086,
+      "originalFileName": "bcfc-leadership-workshop-by-nbcgss-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:454fa299-2021-4f58-a1c5-4c128dd6f69c",
+      "sourceKey": "legacy:52e232d3-f12f-4f36-a000-b4d3eaf7a371",
+      "originalArticleId": "52e232d3-f12f-4f36-a000-b4d3eaf7a371",
+      "originalAttachmentId": "454fa299-2021-4f58-a1c5-4c128dd6f69c",
+      "path": "source-archive-media/454fa299-2021-4f58-a1c5-4c128dd6f69c.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 2986345,
+      "originalFileName": "new-year-same-spirit-timberwolves-back-with-a-fresh-start-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:f3846876-4a19-48f3-a624-9b2f49f15904",
+      "sourceKey": "legacy:52e232d3-f12f-4f36-a000-b4d3eaf7a371",
+      "originalArticleId": "52e232d3-f12f-4f36-a000-b4d3eaf7a371",
+      "originalAttachmentId": "f3846876-4a19-48f3-a624-9b2f49f15904",
+      "path": "source-archive-media/f3846876-4a19-48f3-a624-9b2f49f15904.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21453,
+      "originalFileName": "new-year-same-spirit-timberwolves-back-with-a-fresh-start-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:7ebe7a7f-da8b-432e-881a-7f44fe4f5c50",
+      "sourceKey": "legacy:52e232d3-f12f-4f36-a000-b4d3eaf7a371",
+      "originalArticleId": "52e232d3-f12f-4f36-a000-b4d3eaf7a371",
+      "originalAttachmentId": "7ebe7a7f-da8b-432e-881a-7f44fe4f5c50",
+      "path": "source-archive-media/7ebe7a7f-da8b-432e-881a-7f44fe4f5c50.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 3835386,
+      "originalFileName": "new-year-same-spirit-timberwolves-back-with-a-fresh-start-3.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:2851c10e-3120-43e4-957d-c67c5f9473e5",
+      "sourceKey": "legacy:52e232d3-f12f-4f36-a000-b4d3eaf7a371",
+      "originalArticleId": "52e232d3-f12f-4f36-a000-b4d3eaf7a371",
+      "originalAttachmentId": "2851c10e-3120-43e4-957d-c67c5f9473e5",
+      "path": "source-archive-media/2851c10e-3120-43e4-957d-c67c5f9473e5.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 1315597,
+      "originalFileName": "new-year-same-spirit-timberwolves-back-with-a-fresh-start-4.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:6e57709d-836d-4bfa-a837-2cc36cabe3c0",
+      "sourceKey": "legacy:7361790b-11ea-4a8e-ac0c-2774238f19f7",
+      "originalArticleId": "7361790b-11ea-4a8e-ac0c-2774238f19f7",
+      "originalAttachmentId": "6e57709d-836d-4bfa-a837-2cc36cabe3c0",
+      "path": "source-archive-media/6e57709d-836d-4bfa-a837-2cc36cabe3c0.txt",
+      "sha256": null,
+      "mimeType": "text/plain",
+      "size": 48,
+      "originalFileName": "dating-ideas-in-prince-george-2-0-1.txt",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:28168f88-a4c1-48e0-9011-8a5b50c84af7",
+      "sourceKey": "legacy:7361790b-11ea-4a8e-ac0c-2774238f19f7",
+      "originalArticleId": "7361790b-11ea-4a8e-ac0c-2774238f19f7",
+      "originalAttachmentId": "28168f88-a4c1-48e0-9011-8a5b50c84af7",
+      "path": "source-archive-media/28168f88-a4c1-48e0-9011-8a5b50c84af7.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 27386,
+      "originalFileName": "dating-ideas-in-prince-george-2-0-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:35c7f2e0-6d1e-48c7-b50a-5cf7172376db",
+      "sourceKey": "legacy:7361790b-11ea-4a8e-ac0c-2774238f19f7",
+      "originalArticleId": "7361790b-11ea-4a8e-ac0c-2774238f19f7",
+      "originalAttachmentId": "35c7f2e0-6d1e-48c7-b50a-5cf7172376db",
+      "path": "source-archive-media/35c7f2e0-6d1e-48c7-b50a-5cf7172376db.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 1322339,
+      "originalFileName": "dating-ideas-in-prince-george-2-0-3.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:f0ce79cc-e52b-412a-93f4-062c39e888ba",
+      "sourceKey": "legacy:7361790b-11ea-4a8e-ac0c-2774238f19f7",
+      "originalArticleId": "7361790b-11ea-4a8e-ac0c-2774238f19f7",
+      "originalAttachmentId": "f0ce79cc-e52b-412a-93f4-062c39e888ba",
+      "path": "source-archive-media/f0ce79cc-e52b-412a-93f4-062c39e888ba.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 25790,
+      "originalFileName": "dating-ideas-in-prince-george-2-0-4.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:8f610c88-f514-4996-94d5-5d736ce135ee",
+      "sourceKey": "legacy:74c62b63-3078-403f-9d41-1ab904b6fc24",
+      "originalArticleId": "74c62b63-3078-403f-9d41-1ab904b6fc24",
+      "originalAttachmentId": "8f610c88-f514-4996-94d5-5d736ce135ee",
+      "path": "source-archive-media/8f610c88-f514-4996-94d5-5d736ce135ee.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 9358202,
+      "originalFileName": "delivery-drivers-in-prince-george-exploring-the-gig-economy-s-dynamics-1.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:4bf1f397-1829-4a56-b847-842d86a62a0d",
+      "sourceKey": "legacy:74c62b63-3078-403f-9d41-1ab904b6fc24",
+      "originalArticleId": "74c62b63-3078-403f-9d41-1ab904b6fc24",
+      "originalAttachmentId": "4bf1f397-1829-4a56-b847-842d86a62a0d",
+      "path": "source-archive-media/4bf1f397-1829-4a56-b847-842d86a62a0d.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 22786,
+      "originalFileName": "delivery-drivers-in-prince-george-exploring-the-gig-economy-s-dynamics-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:c9ce222b-d438-4b0c-987f-a211b48d556b",
+      "sourceKey": "legacy:74c62b63-3078-403f-9d41-1ab904b6fc24",
+      "originalArticleId": "74c62b63-3078-403f-9d41-1ab904b6fc24",
+      "originalAttachmentId": "c9ce222b-d438-4b0c-987f-a211b48d556b",
+      "path": "source-archive-media/c9ce222b-d438-4b0c-987f-a211b48d556b.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 1021757,
+      "originalFileName": "delivery-drivers-in-prince-george-exploring-the-gig-economy-s-dynamics-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:2125fe71-9691-4903-910f-166abb3d82c3",
+      "sourceKey": "legacy:8888ce16-f09c-48d8-aff0-b0479a3c1a99",
+      "originalArticleId": "8888ce16-f09c-48d8-aff0-b0479a3c1a99",
+      "originalAttachmentId": "2125fe71-9691-4903-910f-166abb3d82c3",
+      "path": "source-archive-media/2125fe71-9691-4903-910f-166abb3d82c3.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 22989,
+      "originalFileName": "nbcgss-industry-night-bridging-the-gap-between-academia-and-industry-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:d65c5016-89c0-43c5-8f9c-98a26a40ac5f",
+      "sourceKey": "legacy:8888ce16-f09c-48d8-aff0-b0479a3c1a99",
+      "originalArticleId": "8888ce16-f09c-48d8-aff0-b0479a3c1a99",
+      "originalAttachmentId": "d65c5016-89c0-43c5-8f9c-98a26a40ac5f",
+      "path": "source-archive-media/d65c5016-89c0-43c5-8f9c-98a26a40ac5f.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 18120,
+      "originalFileName": "nbcgss-industry-night-bridging-the-gap-between-academia-and-industry-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:e60a1d10-455b-4048-8101-6519c9499387",
+      "sourceKey": "legacy:8888ce16-f09c-48d8-aff0-b0479a3c1a99",
+      "originalArticleId": "8888ce16-f09c-48d8-aff0-b0479a3c1a99",
+      "originalAttachmentId": "e60a1d10-455b-4048-8101-6519c9499387",
+      "path": "source-archive-media/e60a1d10-455b-4048-8101-6519c9499387.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 56142,
+      "originalFileName": "nbcgss-industry-night-bridging-the-gap-between-academia-and-industry-3.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:8e660d90-90cf-4113-9d03-422619ed55dc",
+      "sourceKey": "legacy:a825cb40-0062-45f2-8f84-dca89e3441da",
+      "originalArticleId": "a825cb40-0062-45f2-8f84-dca89e3441da",
+      "originalAttachmentId": "8e660d90-90cf-4113-9d03-422619ed55dc",
+      "path": "source-archive-media/8e660d90-90cf-4113-9d03-422619ed55dc.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21999,
+      "originalFileName": "empowering-students-through-finance-discover-the-unbc-investment-club-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:11b0aae3-0de9-4d89-be7b-fe30f03ddb5b",
+      "sourceKey": "legacy:a825cb40-0062-45f2-8f84-dca89e3441da",
+      "originalArticleId": "a825cb40-0062-45f2-8f84-dca89e3441da",
+      "originalAttachmentId": "11b0aae3-0de9-4d89-be7b-fe30f03ddb5b",
+      "path": "source-archive-media/11b0aae3-0de9-4d89-be7b-fe30f03ddb5b.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 25272,
+      "originalFileName": "empowering-students-through-finance-discover-the-unbc-investment-club-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:0156b6ee-b2a7-475b-b3b4-a0cdf05e8758",
+      "sourceKey": "legacy:bb7c8abe-7363-4001-8227-82923c1bdd6d",
+      "originalArticleId": "bb7c8abe-7363-4001-8227-82923c1bdd6d",
+      "originalAttachmentId": "0156b6ee-b2a7-475b-b3b4-a0cdf05e8758",
+      "path": "source-archive-media/0156b6ee-b2a7-475b-b3b4-a0cdf05e8758.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21656,
+      "originalFileName": "active-allyship-in-black-history-month-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:c8ed18da-dd6b-4eff-beeb-1296b40ef9eb",
+      "sourceKey": "legacy:bb7c8abe-7363-4001-8227-82923c1bdd6d",
+      "originalArticleId": "bb7c8abe-7363-4001-8227-82923c1bdd6d",
+      "originalAttachmentId": "c8ed18da-dd6b-4eff-beeb-1296b40ef9eb",
+      "path": "source-archive-media/c8ed18da-dd6b-4eff-beeb-1296b40ef9eb.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 4851645,
+      "originalFileName": "active-allyship-in-black-history-month-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:9211a0fc-73cf-4ddf-9a59-431a0f0ef0a3",
+      "sourceKey": "legacy:bb7c8abe-7363-4001-8227-82923c1bdd6d",
+      "originalArticleId": "bb7c8abe-7363-4001-8227-82923c1bdd6d",
+      "originalAttachmentId": "9211a0fc-73cf-4ddf-9a59-431a0f0ef0a3",
+      "path": "source-archive-media/9211a0fc-73cf-4ddf-9a59-431a0f0ef0a3.jpeg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 2906751,
+      "originalFileName": "active-allyship-in-black-history-month-3.jpeg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:c40e3500-932c-4efd-b7da-94c3e4168425",
+      "sourceKey": "legacy:bb7c8abe-7363-4001-8227-82923c1bdd6d",
+      "originalArticleId": "bb7c8abe-7363-4001-8227-82923c1bdd6d",
+      "originalAttachmentId": "c40e3500-932c-4efd-b7da-94c3e4168425",
+      "path": "source-archive-media/c40e3500-932c-4efd-b7da-94c3e4168425.jpeg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 2906751,
+      "originalFileName": "active-allyship-in-black-history-month-4.jpeg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:75104f1e-4892-4099-bc80-7c695b8f1c86",
+      "sourceKey": "legacy:bb7c8abe-7363-4001-8227-82923c1bdd6d",
+      "originalArticleId": "bb7c8abe-7363-4001-8227-82923c1bdd6d",
+      "originalAttachmentId": "75104f1e-4892-4099-bc80-7c695b8f1c86",
+      "path": "source-archive-media/75104f1e-4892-4099-bc80-7c695b8f1c86.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 25156,
+      "originalFileName": "active-allyship-in-black-history-month-5.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:6137e3d6-db89-450b-9b4c-cddc8e398d2e",
+      "sourceKey": "legacy:e8b20576-a089-41a3-9da3-26d9fe6c6232",
+      "originalArticleId": "e8b20576-a089-41a3-9da3-26d9fe6c6232",
+      "originalAttachmentId": "6137e3d6-db89-450b-9b4c-cddc8e398d2e",
+      "path": "source-archive-media/6137e3d6-db89-450b-9b4c-cddc8e398d2e.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21901,
+      "originalFileName": "mastering-the-balancing-act-academics-health-and-part-time-job-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:0cf10c5d-6a88-4d2c-a548-0ac469ee19e1",
+      "sourceKey": "legacy:e8b20576-a089-41a3-9da3-26d9fe6c6232",
+      "originalArticleId": "e8b20576-a089-41a3-9da3-26d9fe6c6232",
+      "originalAttachmentId": "0cf10c5d-6a88-4d2c-a548-0ac469ee19e1",
+      "path": "source-archive-media/0cf10c5d-6a88-4d2c-a548-0ac469ee19e1.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 23781,
+      "originalFileName": "mastering-the-balancing-act-academics-health-and-part-time-job-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:571bc4ae-f4b8-44ad-b210-b9558e8ee808",
+      "sourceKey": "legacy:f78ef82a-57eb-437a-b4dd-176aa1666b55",
+      "originalArticleId": "f78ef82a-57eb-437a-b4dd-176aa1666b55",
+      "originalAttachmentId": "571bc4ae-f4b8-44ad-b210-b9558e8ee808",
+      "path": "source-archive-media/571bc4ae-f4b8-44ad-b210-b9558e8ee808.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21883,
+      "originalFileName": "love-hues-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:e456d029-e55e-4599-af7d-2e652bf22946",
+      "sourceKey": "legacy:f78ef82a-57eb-437a-b4dd-176aa1666b55",
+      "originalArticleId": "f78ef82a-57eb-437a-b4dd-176aa1666b55",
+      "originalAttachmentId": "e456d029-e55e-4599-af7d-2e652bf22946",
+      "path": "source-archive-media/e456d029-e55e-4599-af7d-2e652bf22946.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 21827,
+      "originalFileName": "love-hues-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:c79f4ff7-5fdc-4cc9-b8d2-418baaa503c2",
+      "sourceKey": "legacy:f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalArticleId": "f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalAttachmentId": "c79f4ff7-5fdc-4cc9-b8d2-418baaa503c2",
+      "path": "source-archive-media/c79f4ff7-5fdc-4cc9-b8d2-418baaa503c2.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 22754,
+      "originalFileName": "unbc-safe-app-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:a253e766-9bde-43c8-8ad8-59ede328fe16",
+      "sourceKey": "legacy:f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalArticleId": "f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalAttachmentId": "a253e766-9bde-43c8-8ad8-59ede328fe16",
+      "path": "source-archive-media/a253e766-9bde-43c8-8ad8-59ede328fe16.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 712944,
+      "originalFileName": "unbc-safe-app-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:2608ca3c-da15-4412-8d2e-8c6776f6d68f",
+      "sourceKey": "legacy:f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalArticleId": "f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalAttachmentId": "2608ca3c-da15-4412-8d2e-8c6776f6d68f",
+      "path": "source-archive-media/2608ca3c-da15-4412-8d2e-8c6776f6d68f.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 712944,
+      "originalFileName": "unbc-safe-app-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:0f2b67f4-ba32-43f4-a2e5-fd22704e08e5",
+      "sourceKey": "legacy:f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalArticleId": "f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalAttachmentId": "0f2b67f4-ba32-43f4-a2e5-fd22704e08e5",
+      "path": "source-archive-media/0f2b67f4-ba32-43f4-a2e5-fd22704e08e5.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 712944,
+      "originalFileName": "unbc-safe-app-4.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:7cbd9e43-15aa-459d-9e7d-25c63674dcba",
+      "sourceKey": "legacy:f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalArticleId": "f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalAttachmentId": "7cbd9e43-15aa-459d-9e7d-25c63674dcba",
+      "path": "source-archive-media/7cbd9e43-15aa-459d-9e7d-25c63674dcba.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 144028,
+      "originalFileName": "unbc-safe-app-5.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:0cdb17d3-b179-42db-bd74-a807f99fae28",
+      "sourceKey": "legacy:f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalArticleId": "f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalAttachmentId": "0cdb17d3-b179-42db-bd74-a807f99fae28",
+      "path": "source-archive-media/0cdb17d3-b179-42db-bd74-a807f99fae28.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 144028,
+      "originalFileName": "unbc-safe-app-6.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:03fffcc3-b4e3-400b-b1e6-d760497ba304",
+      "sourceKey": "legacy:f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalArticleId": "f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalAttachmentId": "03fffcc3-b4e3-400b-b1e6-d760497ba304",
+      "path": "source-archive-media/03fffcc3-b4e3-400b-b1e6-d760497ba304.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 144028,
+      "originalFileName": "unbc-safe-app-7.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 3,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:50828ca6-af71-4ad3-beb6-4f72163e05ac",
+      "sourceKey": "legacy:f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalArticleId": "f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalAttachmentId": "50828ca6-af71-4ad3-beb6-4f72163e05ac",
+      "path": "source-archive-media/50828ca6-af71-4ad3-beb6-4f72163e05ac.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 25114,
+      "originalFileName": "unbc-safe-app-8.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 4,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:b476794b-e474-4400-93e4-3dc6227d5843",
+      "sourceKey": "legacy:f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalArticleId": "f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalAttachmentId": "b476794b-e474-4400-93e4-3dc6227d5843",
+      "path": "source-archive-media/b476794b-e474-4400-93e4-3dc6227d5843.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 25114,
+      "originalFileName": "unbc-safe-app-9.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 5,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:5d4ba710-b640-40fc-a08f-0a0177c34c0d",
+      "sourceKey": "legacy:f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalArticleId": "f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalAttachmentId": "5d4ba710-b640-40fc-a08f-0a0177c34c0d",
+      "path": "source-archive-media/5d4ba710-b640-40fc-a08f-0a0177c34c0d.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 25114,
+      "originalFileName": "unbc-safe-app-10.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 6,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:956bb301-dfbf-423f-9448-76be3067de11",
+      "sourceKey": "legacy:f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalArticleId": "f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalAttachmentId": "956bb301-dfbf-423f-9448-76be3067de11",
+      "path": "source-archive-media/956bb301-dfbf-423f-9448-76be3067de11.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 49498,
+      "originalFileName": "unbc-safe-app-11.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 7,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:3b3264e8-6bef-45fe-9566-98e7a6e0a6f7",
+      "sourceKey": "legacy:f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalArticleId": "f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalAttachmentId": "3b3264e8-6bef-45fe-9566-98e7a6e0a6f7",
+      "path": "source-archive-media/3b3264e8-6bef-45fe-9566-98e7a6e0a6f7.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 49498,
+      "originalFileName": "unbc-safe-app-12.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 8,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:82ef4889-3091-4c63-b82b-9d503419c380",
+      "sourceKey": "legacy:f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalArticleId": "f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalAttachmentId": "82ef4889-3091-4c63-b82b-9d503419c380",
+      "path": "source-archive-media/82ef4889-3091-4c63-b82b-9d503419c380.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 49498,
+      "originalFileName": "unbc-safe-app-13.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 9,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:92b49d4a-dbc4-4583-adce-af09d9118c07",
+      "sourceKey": "legacy:f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalArticleId": "f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalAttachmentId": "92b49d4a-dbc4-4583-adce-af09d9118c07",
+      "path": "source-archive-media/92b49d4a-dbc4-4583-adce-af09d9118c07.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 41707,
+      "originalFileName": "unbc-safe-app-14.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 10,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:5962952e-3b2b-427b-8991-2395913e62bb",
+      "sourceKey": "legacy:f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalArticleId": "f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalAttachmentId": "5962952e-3b2b-427b-8991-2395913e62bb",
+      "path": "source-archive-media/5962952e-3b2b-427b-8991-2395913e62bb.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 41707,
+      "originalFileName": "unbc-safe-app-15.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 11,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:4dff54dc-db27-4b71-a5eb-3579ba678b5d",
+      "sourceKey": "legacy:f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalArticleId": "f7a1302d-47b7-4dc2-af23-6e080d4b8d7e",
+      "originalAttachmentId": "4dff54dc-db27-4b71-a5eb-3579ba678b5d",
+      "path": "source-archive-media/4dff54dc-db27-4b71-a5eb-3579ba678b5d.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 41707,
+      "originalFileName": "unbc-safe-app-16.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 12,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "embedded-image:4cc0f18d42472b944b1a4ffb",
+      "path": "source-archive-media/4cc0f18d42472b944b1a4ffb.jpeg",
+      "sha256": "4cc0f18d42472b944b1a4ffb2639662ab33b20dc0a7106008635575ad297b90a",
+      "size": 190771,
+      "mimeType": "image/jpeg",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1058,
+      "height": 667,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "issue-6-feb-2025-b91aa3a0"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 1,
+          "rect": [
+            42.845394134521484,
+            172.06610107421875,
+            713.1942138671875,
+            604.095458984375
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 1,
+          "rect": [
+            42.845394134521484,
+            172.06610107421875,
+            713.1942138671875,
+            604.095458984375
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:9b91a4dc299ad7576df9acb6",
+      "path": "source-archive-media/9b91a4dc299ad7576df9acb6.png",
+      "sha256": "9b91a4dc299ad7576df9acb66093471b3a261b58402af14450a6e6eea51f6214",
+      "size": 637420,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 2092,
+      "height": 420,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 5,
+          "rect": [
+            214.5361328125,
+            653.7167358398438,
+            716.5996704101562,
+            754.43994140625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:62168541c16179e0063fc610",
+      "path": "source-archive-media/62168541c16179e0063fc610.png",
+      "sha256": "62168541c16179e0063fc6100e31ebbd4fda6a68949bd084c300d7f228e94e13",
+      "size": 560496,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1073,
+      "height": 1350,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 6,
+          "rect": [
+            374.69854736328125,
+            400.0000305175781,
+            717.664306640625,
+            757.4400024414062
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:0eb846c1e44762a745997bdc",
+      "path": "source-archive-media/0eb846c1e44762a745997bdc.png",
+      "sha256": "0eb846c1e44762a745997bdccc16043a8c82eebd0b334ed1392a6c3759ae301b",
+      "size": 136931,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 513,
+      "height": 518,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 6,
+          "rect": [
+            584.36669921875,
+            498.96856689453125,
+            707.41162109375,
+            623.0757446289062
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:f05490026dfd90d468d675d0",
+      "path": "source-archive-media/f05490026dfd90d468d675d0.png",
+      "sha256": "f05490026dfd90d468d675d0a57e7f20c399326d5d11e04075dbf508e5a223ef",
+      "size": 63779,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 309,
+      "height": 228,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 6,
+          "rect": [
+            377.6184997558594,
+            501.55364990234375,
+            452.0908203125,
+            556.704833984375
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:6ceabae34cee8548ebc81216",
+      "path": "source-archive-media/6ceabae34cee8548ebc81216.jpeg",
+      "sha256": "6ceabae34cee8548ebc81216a4b1b70f12ac8d2bd6cf4163c277ccaf3e924fd4",
+      "size": 257201,
+      "mimeType": "image/jpeg",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1618,
+      "height": 1079,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "issue-6-feb-2025-b91aa3a0"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 8,
+          "rect": [
+            56.40550231933594,
+            466.2215881347656,
+            444.71893310546875,
+            725.0222778320312
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 8,
+          "rect": [
+            56.40550231933594,
+            466.2215881347656,
+            444.71893310546875,
+            725.0222778320312
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:18e6173c5b5c51d9508dd5c1",
+      "path": "source-archive-media/18e6173c5b5c51d9508dd5c1.jpeg",
+      "sha256": "18e6173c5b5c51d9508dd5c1a7474f3a723e36efa4a22f5e32fa13c47e5c2f49",
+      "size": 628103,
+      "mimeType": "image/jpeg",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 2021,
+      "height": 1303,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "issue-6-feb-2025-b91aa3a0"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 8,
+          "rect": [
+            137.54991149902344,
+            99.74778747558594,
+            517.3732299804688,
+            344.63140869140625
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 8,
+          "rect": [
+            137.54991149902344,
+            99.74778747558594,
+            517.3732299804688,
+            344.63140869140625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:858b0afdb5384f318dc4a051",
+      "path": "source-archive-media/858b0afdb5384f318dc4a051.png",
+      "sha256": "858b0afdb5384f318dc4a05197b86cb1d89c1daf0b9b38996c5fa1e8beee942c",
+      "size": 47869,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 840,
+      "height": 1245,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "issue-6-feb-2025-b91aa3a0"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 8,
+          "rect": [
+            621.4027099609375,
+            120.96002197265625,
+            757.13330078125,
+            322.1321105957031
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 8,
+          "rect": [
+            621.4027099609375,
+            120.96002197265625,
+            757.13330078125,
+            322.1321105957031
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:3c5457a5f8e503579c5774c0",
+      "path": "source-archive-media/3c5457a5f8e503579c5774c0.jpeg",
+      "sha256": "3c5457a5f8e503579c5774c0117ad01a5b3419631f4b2dead272529dc64fceed",
+      "size": 451413,
+      "mimeType": "image/jpeg",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1628,
+      "height": 1085,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "issue-6-feb-2025-b91aa3a0"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 9,
+          "rect": [
+            212.75784301757812,
+            455.71697998046875,
+            603.3541870117188,
+            716.0849609375
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 9,
+          "rect": [
+            212.75784301757812,
+            455.71697998046875,
+            603.3541870117188,
+            716.0849609375
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:69e8ff67f7c851cc963737fb",
+      "path": "source-archive-media/69e8ff67f7c851cc963737fb.jpeg",
+      "sha256": "69e8ff67f7c851cc963737fbba9c8d04411651240cd5ae3513683046cbe94fb0",
+      "size": 333639,
+      "mimeType": "image/jpeg",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1668,
+      "height": 1112,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "issue-6-feb-2025-b91aa3a0"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 9,
+          "rect": [
+            258.37457275390625,
+            83.8900146484375,
+            658.6092529296875,
+            350.7131652832031
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 9,
+          "rect": [
+            258.37457275390625,
+            83.8900146484375,
+            658.6092529296875,
+            350.7131652832031
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:23a4f8998fce345893c68b4a",
+      "path": "source-archive-media/23a4f8998fce345893c68b4a.png",
+      "sha256": "23a4f8998fce345893c68b4a5ad1222953035d6488fe6cc86daa32ddb039ea25",
+      "size": 37452,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 814,
+      "height": 1245,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "issue-6-feb-2025-b91aa3a0"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 9,
+          "rect": [
+            -1.1288855075836182,
+            120.96002197265625,
+            130.40049743652344,
+            322.1321105957031
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 9,
+          "rect": [
+            -1.1288855075836182,
+            120.96002197265625,
+            130.40049743652344,
+            322.1321105957031
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:bcd4eafbb6316326ab6e3b42",
+      "path": "source-archive-media/bcd4eafbb6316326ab6e3b42.png",
+      "sha256": "bcd4eafbb6316326ab6e3b427b22d32bc2efad8d74416e469d497b50cb79b4eb",
+      "size": 2059967,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1321,
+      "height": 2750,
+      "label": "Embedded source image",
+      "documentIds": [
+        "cover-page-issue-3-lina-2dc29f52",
+        "cover-page-issue-3-lina-6dd82589",
+        "cover-page-issue-3-lina-de16e159",
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "cover-page-issue-3-lina-2dc29f52",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-6dd82589",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "cover-page-issue-3-lina-de16e159",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 16,
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:6ea4ad179dd1abbf4973644f",
+      "path": "source-archive-media/6ea4ad179dd1abbf4973644f.png",
+      "sha256": "6ea4ad179dd1abbf4973644f250ac699c924976e02b831f40a4d88b21cafe461",
+      "size": 73502,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 337,
+      "height": 248,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 5,
+          "rect": [
+            339.6184387207031,
+            392.1001892089844,
+            420.8031921386719,
+            452.22235107421875
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 5,
+          "rect": [
+            339.6184387207031,
+            392.1001892089844,
+            420.8031921386719,
+            452.22235107421875
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 5,
+          "rect": [
+            339.6184387207031,
+            392.1001892089844,
+            420.8031921386719,
+            452.22235107421875
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 5,
+          "rect": [
+            339.6184387207031,
+            392.1001892089844,
+            420.8031921386719,
+            452.22235107421875
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:abf76beec137c2828ac3da71",
+      "path": "source-archive-media/abf76beec137c2828ac3da71.png",
+      "sha256": "abf76beec137c2828ac3da71f4b213347c768ab34524eed115f5e5b59ef7f044",
+      "size": 18005,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 500,
+      "height": 500,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-5-ba123d17",
+        "issue-6-feb-2025-b91aa3a0"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-5-ba123d17",
+          "pageNumber": 5,
+          "rect": [
+            87.86996459960938,
+            585.27587890625,
+            170.77606201171875,
+            668.1819458007812
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 5,
+          "rect": [
+            82.51316833496094,
+            590.427001953125,
+            165.41925048828125,
+            673.3330688476562
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:cc878e7b5b68683b61020cce",
+      "path": "source-archive-media/cc878e7b5b68683b61020cce.png",
+      "sha256": "cc878e7b5b68683b61020cce27d9440776a567aefe4ba80c554aee4811dae519",
+      "size": 627011,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1397,
+      "height": 2838,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-6-feb-2025-5ed75bab",
+        "issue-6-feb-2025-b91aa3a0",
+        "issue-7-march-2025-dfcbb959"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-6-feb-2025-5ed75bab",
+          "pageNumber": 17,
+          "rect": [
+            378.38250732421875,
+            64.1849365234375,
+            718.8975830078125,
+            755.9400024414062
+          ]
+        },
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 17,
+          "rect": [
+            378.38250732421875,
+            64.1849365234375,
+            718.8975830078125,
+            755.9400024414062
+          ]
+        },
+        {
+          "documentId": "issue-7-march-2025-dfcbb959",
+          "pageNumber": 17,
+          "rect": [
+            378.38250732421875,
+            64.1849365234375,
+            718.8975830078125,
+            755.9400024414062
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:6ac125eee57771f1d822ed75",
+      "path": "source-archive-media/6ac125eee57771f1d822ed75.png",
+      "sha256": "6ac125eee57771f1d822ed75b6586c46ab8a32a8a8fc255e06a6ced4d9fc0e88",
+      "size": 1363283,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 357,
+      "height": 4705,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-6-feb-2025-b91aa3a0"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 12,
+          "rect": [
+            698.1328735351562,
+            6.0485734939575195,
+            812.1973876953125,
+            792.515869140625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:697c9d59ee67965f2151a471",
+      "path": "source-archive-media/697c9d59ee67965f2151a471.png",
+      "sha256": "697c9d59ee67965f2151a471d724ace055880474f52d4d7b86256c83ec04bcf4",
+      "size": 5411102,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 2548,
+      "height": 2667,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-6-feb-2025-b91aa3a0"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 13,
+          "rect": [
+            0.43109598755836487,
+            0.0,
+            757.092529296875,
+            792.0
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:02b06525e3ccefe55b3b87d9",
+      "path": "source-archive-media/02b06525e3ccefe55b3b87d9.png",
+      "sha256": "02b06525e3ccefe55b3b87d9076110fc8d142c0fc1b6674f8a95fd866cb31e6d",
+      "size": 23190374,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 4869,
+      "height": 4986,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-6-feb-2025-b91aa3a0"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 13,
+          "rect": [
+            -55.705589294433594,
+            -46.563499450683594,
+            811.851806640625,
+            839.0875244140625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:62c043ff3074782929d59067",
+      "path": "source-archive-media/62c043ff3074782929d59067.png",
+      "sha256": "62c043ff3074782929d59067c166f4d2d215ff9b80a5a33fe8988e4a7065b3d1",
+      "size": 904588,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1086,
+      "height": 830,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-6-feb-2025-b91aa3a0"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 13,
+          "rect": [
+            -1.0297280550003052,
+            330.82781982421875,
+            259.54248046875,
+            529.895751953125
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:7d60fe83476f5c1c9bd26f0b",
+      "path": "source-archive-media/7d60fe83476f5c1c9bd26f0b.png",
+      "sha256": "7d60fe83476f5c1c9bd26f0b6fa272d95a15cbf5a849eff2c0c0374535f9bcb7",
+      "size": 1508066,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 997,
+      "height": 1333,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-6-feb-2025-b91aa3a0"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 13,
+          "rect": [
+            9.265579223632812,
+            256.03765869140625,
+            248.37432861328125,
+            575.905517578125
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:ea730d835a625caeda25a055",
+      "path": "source-archive-media/ea730d835a625caeda25a055.png",
+      "sha256": "ea730d835a625caeda25a0553f969261d3aab9eff839bc24f3fa71f2228aceab",
+      "size": 911748,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1096,
+      "height": 830,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-6-feb-2025-b91aa3a0"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 13,
+          "rect": [
+            464.4454345703125,
+            30.928970336914062,
+            727.4808349609375,
+            229.99688720703125
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:90b6e9341050a8fc37fff23d",
+      "path": "source-archive-media/90b6e9341050a8fc37fff23d.png",
+      "sha256": "90b6e9341050a8fc37fff23d20e6f91a1d8a6c8480d9bd00d1849060745831eb",
+      "size": 974600,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1036,
+      "height": 896,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-6-feb-2025-b91aa3a0"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-6-feb-2025-b91aa3a0",
+          "pageNumber": 13,
+          "rect": [
+            459.7086181640625,
+            12.114715576171875,
+            708.1873779296875,
+            227.1444091796875
+          ]
+        }
+      ]
+    }
+  ]
+}

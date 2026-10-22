@@ -1,4 +1,4 @@
-import { createFileRoute, useRouter } from '@tanstack/react-router'
+import { createFileRoute, Link, useRouter } from '@tanstack/react-router'
 import { useState } from 'react'
 import { Plus } from 'lucide-react'
 import { getVolumes } from '../lib/queries'
@@ -90,16 +90,21 @@ function PublicationsPage() {
             Manage volumes and issues
           </p>
         </div>
-        <button
-          className="btn btn-primary"
-          onClick={() => {
-            setShowNewVolumeForm(true)
-            setVolumeForm(emptyVolumeForm)
-          }}
-        >
-          <Plus className="w-4 h-4" />
-          New Volume
-        </button>
+        <div className="flex flex-wrap items-center gap-2">
+          <Link to="/utilities/source-archive" className="btn btn-secondary">
+            Import original issues
+          </Link>
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              setShowNewVolumeForm(true)
+              setVolumeForm(emptyVolumeForm)
+            }}
+          >
+            <Plus className="w-4 h-4" />
+            New Volume
+          </button>
+        </div>
       </div>
 
       {/* New Volume Form */}

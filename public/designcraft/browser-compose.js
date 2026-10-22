@@ -34,7 +34,7 @@ async function setupBrowserCompose(){
  async function fontPayload(){const files=[...fontInput.files];return {fontProfile:files.length?'original2025':(issue.layoutPlan?.fontProfile||'portable'),fonts:await Promise.all(files.map(async f=>({name:f.name,bytes:await f.arrayBuffer()})))};}
  const toBuffer=u8=>u8.buffer.slice(u8.byteOffset,u8.byteOffset+u8.byteLength);
  const designOf=t=>t?.design||null;
- function storyLibrary(count,design){return {...library,templates:library.templates.filter(t=>t.kind==='story'&&t.storyCount===count&&designOf(t)===design).map(t=>({...copy(resolved(t)),id:t.id,name:t.name}))};}
+ function storyLibrary(count,design){return {...library,templates:library.templates.filter(t=>t.kind==='story'&&!t.source&&t.storyCount===count&&designOf(t)===design).map(t=>({...copy(resolved(t)),id:t.id,name:t.name}))};}
  function offer(result,label){
   downloads.replaceChildren();const p=result.prefix,add=(bytes,name,type)=>{if(bytes)downloads.append(element('a',{href:blobUrl(bytes,type),download:name,className:'text-link',textContent:'Download '+name}),' ');};
   add(result.bundle,'ote-'+p+'-native-output.zip','application/zip');add(result.native,result.draftName||p+'.designcraft','application/zip');add(result.pdf,p+'.pdf','application/pdf');add(result.idml,p+'.idml','application/zip');
@@ -83,7 +83,7 @@ async function setupBrowserCompose(){
   try{
    status.textContent='Preparing the articles…';const recipe=await buildPageZip();
    const design=designSelect.value||null,inDesign=t=>designOf(t)===design;
-   const libraryForPlan={...library,templates:library.templates.filter(t=>t.kind==='story'&&inDesign(t)).map(t=>({...copy(resolved(t)),id:t.id,name:t.name})).concat(library.templates.filter(t=>t.kind==='cover'&&inDesign(t)))};
+   const libraryForPlan={...library,templates:library.templates.filter(t=>t.kind==='story'&&!t.source&&inDesign(t)).map(t=>({...copy(resolved(t)),id:t.id,name:t.name})).concat(library.templates.filter(t=>t.kind==='cover'&&inDesign(t)))};
    const result=await call('suggestIssue',{recipe:toBuffer(recipe),library:libraryForPlan,articleIds:issue.articles.map(a=>a.id),design,tightenHeadlines:tighten.checked,...await fontPayload()},p=>status.textContent=describe(p));
    const list=element('ol');for(const p of result.pages)list.append(element('li',{textContent:`Page ${p.pageNumber}: ${p.template?.name||library.templates.find(t=>t.id===p.templateId)?.name||p.templateId} — ${p.articleIds.map(id=>issue.articles.find(a=>a.id===id)?.title||id).join(', ')}`}));
    results.append(element('p',{textContent:'Suggested plan (every interior page passed native preflight):'}),list);

@@ -1,0 +1,1484 @@
+{
+  "schemaVersion": "ote.source-archive.issue.v1",
+  "archiveId": "ote-original-issues-2026-10-09",
+  "issue": {
+    "documentId": "issue-2-october-2025-0eb630f7",
+    "label": "October 2025 · Issue 2",
+    "volumeNumber": 32,
+    "issueNumber": 2,
+    "releaseDate": "2025-10-16",
+    "pageCount": 16,
+    "source": {
+      "path": "originals/issue-2-october-2025-0eb630f7.pdf",
+      "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9"
+    },
+    "sourceNotes": "Source interior datelines alternate September 12, 2024/2025; issue metadata follows the October cover. Source page 11 renders wholly white despite hidden header text objects.",
+    "sourceCoverMetadata": null
+  },
+  "articles": [
+    {
+      "sourceKey": "legacy:0d0b7ce4-9855-4f17-a635-f8e25d288769",
+      "originalArticleId": "0d0b7ce4-9855-4f17-a635-f8e25d288769",
+      "title": "The Wait is Over: Prince George's Cold War Bunker Confirmed (But the Mystery Deepens)",
+      "authorName": "Ahmad Jalil",
+      "content": "A year. That's how long I waited after submitting my Access to Information and Privacy (ATIP) request to National Defence, hoping to find concrete evidence of Prince George's Cold War bunker. When the package finally arrived this fall, it contained both the confirmation I'd been seeking and a new puzzle to solve. \n\nThe Breakthrough \n\nThe declassified documents definitively confirmed what I'd suspected: Prince George did indeed serve as a Zone Emergency Government Headquarters (ZEGHQ) during the Cold War. According to the records, \"Pacific Region has six ZEGHQs of which four are established in Federal buildings at Kamloops, Nelson, Prince George, and Prince Rupert.\" \n\nThis wasn't just speculation based on a historical map anymore. The federal government had maintained an emergency operations facility in our city, designed to coordinate regional responses in the event of nuclear attack. The ZEGHQ served as the critical link between the Regional Emergency Government Headquarters and local municipalities, part of a provincewide network of emergency preparedness. \n\nThe Plot Thickens: A Building Sold \n\nBut here's where things get interesting. Buried in the documents was a tantalizing note: \"This building has just been sold (April 90) and a new location has not been promulgated.\" \n\nApril 1990. Just as the Cold War was ending, Prince George's emergency government facility was being quietly disposed of. This timing detail became my new lead. \n\nTwo Suspects Emerge \n\nMy research has narrowed the location down to two prime candidates, each with compelling evidence: \n\nSuspect #1: The Old Post Office (1288-1294 Third Avenue) \n\nThe Federal Government Building, Prince George's original post office, fits the profile almost perfectly. Built in 1939, this Art Deco structure housed federal services for decades and featured a full basement. Crucially, it was sold in 1991, which aligns closely with the \"April 90\" sale mentioned in the documents (the discrepancy could be explained by the difference between an offer being accepted and a sale finalizing). \n\nThe building matches the pattern seen across B.C., where postal facilities frequently played dual roles in civil defense. The 1955 addition expanded the building significantly, and the timing of Cold War bunker construction (1958-1968) would have made it feasible to retrofit or integrate emergency facilities into the existing structure. \n\nSuspect #2: The RCMP Connection (1323 5th Avenue) \n\nThe documents also reference something intriguing: \"PRINCE GEORGE RCMP Sub-Div HQ, 1323 5th Avenue\" is listed with Bob Kelly identified as \"PEP Zone Manager, Prince George.\" \n\nProvincial Emergency Program (PEP) Zone Managers were the key personnel who would have operated the ZEGHQs. Having the Zone Manager working out of the RCMP Sub-Division headquarters suggests this location may have housed the emergency facilities, or at least the operational command. \n\nThis location later became the site of a new Canada Post facility, adding another layer to the postal service connection that appears throughout B.C.'s civil defense infrastructure. \n\nThe Redactions Tell Their Own Story \n\nWhat's perhaps most fascinating is what I didn't get in the ATIP response. Sections were heavily redacted under sections 19 and 15 of the Access to Information Act, provisions covering \"Defence and International Affairs.\" Even decades after the Cold War ended, specific details about these facilities remain classified. \n\nWhat We Now Know \n\nThe confirmation from National Defence establishes several facts: \n\nPrince George definitely had a ZEGHQ as part of the provincial civil defense network \n\nIt was housed in a federal building (ruling out city-owned facilities) \n\nThe facility was active until at least 1990 \n\nThe building it occupied was sold around April 1990 \n\nA PEP Zone Manager operated from the RCMP Sub-Division headquarters \n\nThe picture that emerges is of a modest but functional emergency operations center, nothing like the massive Diefenbunker in Ontario, but an essential node in Canada's civil defense network. These facilities weren't designed to survive direct nuclear strikes; they were meant to provide safe locations in \"non-target\" areas where government operations could continue during and after an attack. \n\nThe Search Continues \n\nI'm currently pursuing several new leads. The Heritage Register documents for the Old Post Office building are detailed, but they focus on architectural features visible from the outside. What modifications were made to that basement in the 1950s and 60s? The 1955 addition expanded the building significantly, was this expansion partly driven by civil defense requirements? \n\nI'm also working to track down former federal employees who worked in these buildings during the Cold War era, and I've submitted additional ATIP requests to Public Safety Canada (which absorbed the old Emergency Management Organizations). \n\nThe irony isn't lost on me: in an age where we can find almost anything with a quick Google search, uncovering recent local history requires patience, persistence, and the willingness to wait eighteen months for heavily redacted documents that raise as many questions as they answer. \n\nA Personal Reflection \n\nStanding outside the Old Post Office today, watching people walk past without a second glance, I can't help but think about what might lie beneath. This unassuming Art Deco building, with its decorative pilasters and commemorative plaque, might have been designed to help coordinate the response to nuclear war. Or perhaps it was the RCMP building, now gone, that held those secrets. \n\nPrince George always seemed too quiet, too ordinary for Cold War intrigue. But the documents prove otherwise. Our city was part of a vast, interconnected system designed to ensure government survival in humanity's darkest possible scenario. That system existed here, in concrete and steel, staffed by our neighbors and hidden in plain sight. \n\nThe question isn't whether Prince George had a Cold War bunker anymore. The question is: which building was it, and what exactly lies beneath? \n\nIf you have any information that might help solve this mystery, please contact me at ote@unbc.ca. Sometimes the best historical evidence isn't in government archives, it's in the memories of those who were there. \n\nI also have the full 400-page document package from National Defence available for anyone interested in reviewing it themselves. There may be details I've missed or connections others might see. If you'd like to examine the documents, reach out and I'm happy to share them. \n\nThe search continues. ",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-2-october-2025-0eb630f7",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "0d0b7ce4-9855-4f17-a635-f8e25d288769",
+          "originalDates": {
+            "submittedAt": "2025-10-07T18:58:01.000Z",
+            "createdAt": "2026-01-12T00:32:55.990Z",
+            "updatedAt": "2026-01-12T05:05:24.567Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-backup",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-10-07T18:58:01.000Z",
+        "createdAt": "2026-01-12T00:32:55.990Z",
+        "updatedAt": "2026-01-12T05:05:24.567Z"
+      },
+      "authorSourceId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "exportPath": "source-archive/articles/legacy-0d0b7ce4-9855-4f17-a635-f8e25d288769-the-wait-is-over-prince-george-s-cold-war-bunker-confirmed-but-the-mystery-deepens.md"
+    },
+    {
+      "sourceKey": "legacy:17874329-f633-4596-8739-eaf3dd74085b",
+      "originalArticleId": "17874329-f633-4596-8739-eaf3dd74085b",
+      "title": "Is UNBC's Sustainable Event Certification Setting the Bar Too High, Or Just Grading Its Own Homework?",
+      "authorName": "Anonymous",
+      "content": "UNBC recently launched its Sustainable Event Certification program, adapted from McGill University's model. While the initiative's environmental goals are admirable, several aspects of the program raise questions about its effectiveness and credibility. \n\nThe Self-Certification Problem \n\nThe most glaring issue? UNBC is both issuing and receiving these certifications. Of the five events listed as participants, UNBC Sustainability itself organized the flagship event that achieved platinum status. When an institution grades its own sustainability efforts, can we truly call this an independent certification? While there may be genuine oversight and standards in place, the optics alone undermine the program's credibility to outside observers. \n\nBronze or Bust: A Counterproductive Starting Point \n\nThe certification begins at bronze level, requiring 50-75% of available points. But here's the problem: if your event scores below 50%, you receive no certification at all. This creates a perverse incentive where organizers might prefer no certification over a bronze one, which could be seen as barely passing. \n\nWouldn't it make more sense to start certifications at a lower threshold, say 25%, to encourage participation? As it stands, the message seems to be: be exceptionally sustainable or don't bother trying. For a program meant to encourage environmental responsibility, this all-or-nothing approach could actually discourage organizers from making incremental improvements. \n\nPlatinum's Prohibitive Standards \n\nThe platinum tier requires 95% of points plus three additional criteria, including options like \"exclusive provision of vegan and vegetarian options\" and \"zero-waste\" standards. While aspirational, these requirements may be unrealistic for many campus events, particularly those serving diverse communities with varying dietary needs and budgets. \n\nMoving Forward \n\nUNBC's sustainability goals deserve support, but this certification program needs refinement. Consider external validation, lower entry barriers to encourage participation, and more achievable incremental goals. Otherwise, we risk creating a system where only the most resourced events can participate, while everyone else opts out entirely. ",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-2-october-2025-0eb630f7",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "17874329-f633-4596-8739-eaf3dd74085b",
+          "originalDates": {
+            "submittedAt": "2025-10-07T19:18:31.000Z",
+            "createdAt": "2026-01-12T00:32:55.954Z",
+            "updatedAt": "2026-01-12T05:05:24.567Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-backup",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": true,
+      "originalDates": {
+        "submittedAt": "2025-10-07T19:18:31.000Z",
+        "createdAt": "2026-01-12T00:32:55.954Z",
+        "updatedAt": "2026-01-12T05:05:24.567Z"
+      },
+      "exportPath": "source-archive/articles/legacy-17874329-f633-4596-8739-eaf3dd74085b-is-unbc-s-sustainable-event-certification-setting-the-bar-too-high-or-just-grading-its-own-home.md"
+    },
+    {
+      "sourceKey": "legacy:2c7549e4-63df-437a-bbcd-5d82b6e0e5e2",
+      "originalArticleId": "2c7549e4-63df-437a-bbcd-5d82b6e0e5e2",
+      "title": "93.1 CFIS-FMBringing Nostalgia and Musical Culture Back to Prince George Authentically",
+      "authorName": "Jorden Evens",
+      "content": "Nostalgia is a powerful experience. A story makes a song better. Knowing something about the artist, their life, and their passions makes you really understand what the song's purpose is, and a personal connection to a song is even more impactful. A song that brings you back to the past and gives you that hit of nostalgia is a thing that cannot be replicated. Memories slip away more easily than I'd like them to, but the right song can cause those memories to materialize as if you were experiencing them again.\n\nJust about every day, I find myself in the passenger seat of my dad's truck asking him: \"Who sings this?\" \"Do you know this song?\" as I flip through radio stations. These sound like simple questions that would have brief answers, but I get a full story every time.\n\nMy dad can tell me just about anything about the artists of the songs he listened to in high school and all about the rock-star 80s culture. I get to experience Led Zeppelin, Pearl Jam, AC/DC, Bon Jovi, and a ton of other classic artists and timeless hits with a story from my dad. When we flip the station to CFIS and the Beneath the Grooves radio show comes on, my dad has story after story. When Way Back Radio comes on, my dad gets the same experience that I get hearing 70s and 80s music: the experience of listening to the music his parents grew up on and going all the way back to some of the first songs he listened to while growing up.\n\nAuthenticity is hard to come by. It's overrun all too often by what's most popular or what's most convenient. Too many music platforms try to cater to a certain audience or play music more suited to listeners who prefer a modern touch. Right now, most people listen to the same playlist every day on their phone and miss out on the culture and community that music has to offer.\n\nCFIS-FM is a genuinely authentic radio station. Turn it on and listen for just 10 minutes, and whatever songs or radio shows play will send you back in time. I have to wonder why so many radio stations avoid playing older music when the 60s through 90s were such a revolutionary period for music. Artists were trying new things, music became more than an industry, and some of the greatest songs ever were produced and performed. That's genuine authenticity.\n\nThe production of songs during this time changed music not only through the songs themselves but also through culture. That's what music is: culture. Music isn't an app that you play on your phone. It's an experience to be shared between a passionate artist and people who find meaning and insight in their songs.\n\nPrince George has retained musical culture, its main lifeline being local radio stations and the dedicated, hardworking people who run them. Coldsnap Radio, hosted by Gerry Dombrowski on CFIS, is a radio show that brings local artists from Prince George into the spotlight by sharing their music on the CFIS radio station. Gerry also shares insights on the artists' lives and music, and interviews and live performances are featured for an extra boost of connection to the artist. Coldsnap Radio and the local artists involved bring back musical culture and highlight the diversity, creativity, and passion that is so important to recognize, as it connects Prince George citizens and gives us a place to immerse ourselves in our very own local musical culture. Homegrown is another radio show from CFIS featuring music and interviews from local artists that has covered over 30 years of musical talent. A classic 90s touch to our local music and radio shows adds that nostalgic feeling. Our Prince George culture has grown with its music, and this growth displays the hard work and dedication of Prince George's talented musicians and, of course, the hosts of radio shows like Homegrown and Coldsnap Radio, who have captivated listeners for decades with their dedication and passion for supporting local artists and sharing their stories.\n\nI encourage you to take that trip down memory lane and enjoy some timeless hits from CFIS. Connecting to your local community and connecting with your past truly reconnects you with yourself. Rediscovering some of your favorite songs and artists that you haven't heard in a while and being able to share that experience with other Prince George citizens is a nostalgic feeling that is truly an authentic experience. I firmly believe music should be an experience rather than a convenience. Instead of using your phone to listen to music, I advise that you take advantage of the opportunity to engage with other locals, immerse yourself in a nostalgic experience, and listen to the passion that CFIS-FM offers.",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-2-october-2025-0eb630f7",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "2c7549e4-63df-437a-bbcd-5d82b6e0e5e2",
+          "originalDates": {
+            "submittedAt": "2025-10-08T16:55:54.000Z",
+            "createdAt": "2026-01-12T00:32:55.920Z",
+            "updatedAt": "2026-01-12T05:05:24.567Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-backup",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-10-08T16:55:54.000Z",
+        "createdAt": "2026-01-12T00:32:55.920Z",
+        "updatedAt": "2026-01-12T05:05:24.567Z"
+      },
+      "authorSourceId": "a35840bb-d982-4097-8f6a-06dc5bd740e9",
+      "exportPath": "source-archive/articles/legacy-2c7549e4-63df-437a-bbcd-5d82b6e0e5e2-93-1-cfis-fmbringing-nostalgia-and-musical-culture-back-to-prince-george-authentically.md"
+    },
+    {
+      "sourceKey": "legacy:449ae9e4-f65c-49ef-a2ea-f645dcfc40e9",
+      "originalArticleId": "449ae9e4-f65c-49ef-a2ea-f645dcfc40e9",
+      "title": "So I Accidentally Became Someone's Boss (And It Was Weird)",
+      "authorName": "Ahmad Jalil",
+      "content": "Hey there! So this summer, something kind of wild happened, I became someone's actual employer. Like, with paperwork and everything. Through the Canada Summer Jobs wage subsidy program, we brought on William Ramsay from SFU to work with Over the Edge, and suddenly I went from \"editor who occasionally remembers to check their email\" to \"person responsible for another human's professional development.\" \n\nNo pressure, right? \n\nThe Part Where I Pretend I Know What I'm Doing \n\nHere's the thing nobody tells you about managing someone when you're still a student yourself: it's deeply, profoundly weird. William and I are basically peers, we're both students, we both understand the struggle of trying to sound professional in emails while eating instant ramen at 2 AM. But suddenly I had to figure out how to be... what? A boss? A mentor? That person who sets expectations and follows up on tasks? (Spoiler: following up was my absolute weakest point. I'd assign something and then three days later be like \"oh right, I should probably check on that.\") \n\nThe strangest part was realizing my job wasn't just doing the work anymore, it was figuring out where to point William's energy and skills. It's like being handed a really talented person and going \"okay, now what?\" I had to learn the difference between what I wanted done and what would actually help them grow. Sometimes those things aligned. Sometimes they... didn't. \n\nWhat We Actually Built (Besides Character) \n\nWe spent the summer bouncing ideas around and building some genuinely cool stuff for the paper. If you're curious about the technical side, you can check out our GitHub (github.com/Over-the-Edge-Newspaper-Society) and see what happens when you give two students too much caffeine and repository access. \n\nBut beyond the code and projects, we built something else, a whole new calendar system on our website that's honestly kind of amazing. Not to be that person who promotes their own stuff, but we now have ALL the Timberwolves events, plus basically every event happening in Prince George (we've gotten pretty good at... let's say \"aggregating\" that information). Want to know what clubs are doing? It's there. Need a complete list of every club on campus because you forgot which ones you signed up for at orientation? We've got you covered. It's basically the answer to \"wait, what's happening this weekend?\" that doesn't involve scrolling through seventeen different Instagram accounts. \n\nThe Learning Curve Was More Like a Learning Cliff \n\nSetting expectations turned out to be this whole thing I wasn't prepared for. How do you tell someone what you need when you're still figuring it out yourself? How do you balance giving them interesting work with getting the necessary-but-boring stuff done? How do you create growth opportunities when you're still growing yourself? \n\nI think (hopefully) William got as much out of this experience as I did. We had genuinely fun brainstorming sessions where we'd throw around increasingly ridiculous ideas until we landed on something actually workable. There's something special about that collaborative energy when you're both invested in making something better. \n\nThe Weird Wisdom I Gained From This \n\nIf you ever find yourself in a position where you're suddenly managing someone (and given how many student organizations need help, you might), here's what I learned the hard way: \n\nYou're going to feel like you're making it up as you go because you literally are, and that's okay \n\nThe power dynamic is weird when you're both students, lean into the weirdness rather than pretending it doesn't exist \n\nFollowing up on tasks is harder than it sounds when you can barely keep track of your own deadlines \n\nSometimes the best thing you can do is admit you don't know something and figure it out together \n\nThe whole experience taught me that leadership (ugh, I hate that word but I can't think of a better one) isn't about knowing everything or being the most qualified person in the room. Sometimes it's just about being willing to take responsibility for pointing things in a direction and hoping it's the right one. \n\nWould I do it again? Absolutely. Did I mess up a bunch? Also absolutely. But that's kind of the whole point of these opportunities – we get to practice being semi-functional professionals while we're still in an environment where eating cereal for dinner three nights in a row is socially acceptable. \n\nIf you're thinking about applying for summer positions or taking on management roles in student organizations, just know that everyone else is also secretly panicking and googling \"how to be a good manager\" at midnight. We're all just figuring it out together, one awkward team meeting at a time. ",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-2-october-2025-0eb630f7",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "449ae9e4-f65c-49ef-a2ea-f645dcfc40e9",
+          "originalDates": {
+            "submittedAt": "2025-10-07T19:17:12.000Z",
+            "createdAt": "2026-01-12T00:32:55.971Z",
+            "updatedAt": "2026-01-12T05:05:24.567Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-backup",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-10-07T19:17:12.000Z",
+        "createdAt": "2026-01-12T00:32:55.971Z",
+        "updatedAt": "2026-01-12T05:05:24.567Z"
+      },
+      "authorSourceId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "exportPath": "source-archive/articles/legacy-449ae9e4-f65c-49ef-a2ea-f645dcfc40e9-so-i-accidentally-became-someone-s-boss-and-it-was-weird.md"
+    },
+    {
+      "sourceKey": "legacy:535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalArticleId": "535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "title": "A Living Legacy in the Woods Goodsir Nature Park",
+      "authorName": "Ehsan Taghizadehghoozhdi",
+      "content": "Just twenty minutes north of Prince George, nestled in the quiet folds of Salmon Valley, lies a place that feels like stepping into a living museum—one curated not by a committee or a government agency, but by a man with a lifelong devotion to Canada’s natural beauty. Goodsir Nature Park is not just a park. It’s a personal archive of native plant life, a sanctuary of ecological storytelling, and a testament to what one person can build with vision, patience, and love. \n\nThis September, a group from Students for a Green University (SGU) at UNBC had the privilege of spending a lovely weekend at the park. The event was organized by SGU’s co-president, Madi Tokarchuk, whose energy and commitment to sustainability made the day not only possible but unforgettable. While there, visitors are invited to listen to stories and find themselves immersed in a world shaped by Jim Good—a world where nature speaks, and every trail tells a tale. \n\nGoodsir Nature Park spans 160 acres of forest, wetland, and garden. It features ((over 3km of) wheelchair accessible) walking trails, each lined with interpretive signs that identify native plant species and explain their ecological roles. But what makes this park extraordinary isn’t just its biodiversity—it’s the fact that it was built, maintained, and curated by one person. \n\nJim Good purchased the land in 1987, and by 1988, he began planting native trees from across British Columbia and Canada to bring his dream to life—a space where Canadians could learn about their native flora through hands-on, immersive experiences. But his journey started long before that. As a child, Jim was captivated by plants, a curiosity that blossomed into a lifelong passion and ultimately a remarkable legacy. Over the decades, he traveled to all ten provinces and two territories, collecting plant samples, photographing habitats, and pressing specimens for display. Today, Goodsir Nature Park features over 3,000 plant species, two botanical gardens, and an indoor museum showcasing native trees, shrubs, vines, grasses, and wildflowers—alongside more than 3,000 habitat photographs from across the country. \n\nMadi Tokarchuk, SGU’s co-president, had coordinated the event with care and enthusiasm. She arranged carpools, promoted the fundraiser, and ensured that everyone felt included. Her leadership reflects the values of SGU: sustainability, community, and education. Under her guidance, the event became more than just a field trip—it was a celebration of local stewardship and intergenerational learning. \n\nAs you stroll along the trails, you’ll encounter handcrafted interpretive signs that highlight the park’s seasonal rhythms—vibrant wildflowers blooming in June and July, ripe berries in August, and a blaze of autumn colors in September and October. Towering trees line the path, some bearing deep claw marks etched high into their trunks—a silent reminder of the bears that roam these woods. These scratches, reaching several meters above ground, speak to the strength and presence of wildlife in the area. Among them stand ancient trees, their bark weathered and roots sprawling, some estimated to be over a hundred years old. And if you’re lucky, you might catch a glimpse of the passing train, its iconic horn echoing through the forest like a call from another time. \n\nInside the botanical museum, thousands of pressed plant specimens are displayed, each labeled with its origin and ecological significance. The collection is complemented by nature-themed books, poems, paintings, and even songs—all created or curated by Jim. It’s a space where science meets art, inviting visitors to experience nature not just as a subject of study, but as a wellspring of inspiration. \n\nJust steps away, the second museum on site offers a nostalgic journey through time. Shelves are lined with gramophone records, cassette tapes, and VHS collections. At its heart is a century-old gramophone that still plays without electricity, its warm crackle echoing through the room like a voice from the past. The museum also proudly displays awards and medals, recognizing the significance of Goodsir Nature Park as acknowledged by both the provincial government and the University of Northern British Columbia.",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-2-october-2025-0eb630f7",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "535910db-ee65-4012-91a8-fb0d4afbe3f6",
+          "originalDates": {
+            "submittedAt": "2025-10-08T17:06:02.000Z",
+            "createdAt": "2026-01-12T00:32:55.620Z",
+            "updatedAt": "2026-01-12T05:05:24.567Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-backup",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-10-08T17:06:02.000Z",
+        "createdAt": "2026-01-12T00:32:55.620Z",
+        "updatedAt": "2026-01-12T05:05:24.567Z"
+      },
+      "authorSourceId": "ef0a948c-a140-47d9-a199-f40501a380f3",
+      "exportPath": "source-archive/articles/legacy-535910db-ee65-4012-91a8-fb0d4afbe3f6-a-living-legacy-in-the-woods-goodsir-nature-park.md"
+    },
+    {
+      "sourceKey": "legacy:584afa80-49be-4799-b69d-bb3d1af5cfb7",
+      "originalArticleId": "584afa80-49be-4799-b69d-bb3d1af5cfb7",
+      "title": "A Model for Environmental Education",
+      "authorName": "Anonymous",
+      "content": "Goodsir Nature Park offers a model for what environmental education can look like when it’s rooted in place and passion. Educational signs along the trails explain the ecological roles of native species and engage visitors of all backgrounds, from schoolchildren to scientists. \n\nAdmission by Donation: A Gift to the Community \n\nOne of the most remarkable aspects of Goodsir Nature Park is that it operates on a donation basis. There are no entry fees, no commercial gimmicks. Jim built the park as a gift to the community, and he continues to maintain it with the help of volunteers and supporters. \n\nThis model reflects a philosophy of accessibility and generosity. It ensures that everyone—regardless of income—can experience the beauty and learning the park offers. For SGU, this aligns perfectly with our values. We believe that environmental education should be inclusive, and that nature belongs to everyone. \n\nMadi Tokarchuk has already begun exploring ways to support the park through student initiatives, volunteer programs, and awareness campaigns. Her leadership is a beacon, and her vision is clear: to ensure that Goodsir Nature Park remains a place of learning, beauty, and community for generations to come. \n\nFor those of us who visited with SGU, the experience was a reminder of what’s possible when passion meets purpose. If you haven’t yet visited Goodsir Nature Park, make the trip. Bring your curiosity and your camera, and gratitude to live in harmony with nature. \n\n“I am in awe of Jim Good’s work and have been left speechless by Goodsir Nature Park. I’m in my third year of Environmental and Sustainability Studies and I aspire to accomplish a fraction of what Jim has in his life. Not only is he an inspiring environmentalist, but he is also a role model for being a good person. Jim’s heart is as big as his park and his philosophy is to be kind to everyone, no matter their background. His kindness is something we could all learn from. Jim’s dedication to his work is incredible because not only did he handwrite all his park signs and plant ID cards, but he also handwrote a 300-page autobiography. His dream is to have his book published and to have his life’s work turned into a motion picture. If anyone deserves to have all their dreams come true in life, it is Jim, and I truly hope that he can add author and actor/director to his list of many accomplishments. I will definitely be returning to Goodsir Nature Park on a regular basis and encourage everyone to go at least once. You will not find anything like Goodsir Nature Park anywhere else! It is a must-see!” – Madi Tokarchuk\n",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-2-october-2025-0eb630f7",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "584afa80-49be-4799-b69d-bb3d1af5cfb7",
+          "originalDates": {
+            "submittedAt": "2025-10-08T17:18:54.000Z",
+            "createdAt": "2026-01-12T00:32:55.588Z",
+            "updatedAt": "2026-01-12T05:05:24.567Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-backup",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": true,
+      "originalDates": {
+        "submittedAt": "2025-10-08T17:18:54.000Z",
+        "createdAt": "2026-01-12T00:32:55.588Z",
+        "updatedAt": "2026-01-12T05:05:24.567Z"
+      },
+      "exportPath": "source-archive/articles/legacy-584afa80-49be-4799-b69d-bb3d1af5cfb7-a-model-for-environmental-education.md"
+    },
+    {
+      "sourceKey": "legacy:b84133dd-8224-41e0-a09e-a2946c0b4d8d",
+      "originalArticleId": "b84133dd-8224-41e0-a09e-a2946c0b4d8d",
+      "title": "Bests of Home Echo at the Prince George Garba Night 2025",
+      "authorName": "Shivi Juyal",
+      "content": "On September 26th and 27th, several students and families across Prince George joined the Garba celebration at UNBC's Northern Sports Centre. The two-day event was filled with the enthusiastic fervor of music and dance, connecting the Indian community to the cultural essence of their homeland.\n\nGarba, popularized for its joyful energy and vibrancy, is a folk dance that originates from the state of Gujarat, India. More than just a form of dance, Garba serves as a profound ritual and communal celebration, especially during the auspicious nine-night festival of Navratri. Navratri celebrates the victory of Goddess Durga over the evil demon, Mahishasura. During these days, devotees across India observe fasts, pray, and celebrate within their communities in the form of Garba and Dandiya.\n\nIn recognition of its cultural depth, Garba was inscribed on UNESCO's Representative List of Intangible Cultural Heritage of Humanity in 2023.\n\nThe word 'Garba' derives from the Sanskrit word \"Garbha,\" literally meaning \"womb.\" Traditionally, Garba is performed as a devotional tribute to Goddess Durga, the universal divine mother and source of all creation and power (Shakti).\n\nThis dance is performed in concentric patterns around an earthen pot with a lantern inside called 'Garbha Deep' (Womb lamp). There is a beautiful interpretation behind this tradition. The clay vessel symbolizes a 'womb,' while the light inside the vessel represents the presence of the 'divine feminine.' In another sense, Garba highlights the cycle of life, death, and rebirth. While the dancers move in circles and enjoy the music and dance of \"life,\" the origin of life and the ultimate truth, the presence of Goddess Durga, remains constant, like the 'Garbha Deep.' These graceful steps, rhythmic claps, and coordination celebrate the divine feminine, the source of life.\n\nThe Garba evenings at the NSC were filled with boundless energy and joy as friends joined hands, danced together, and reveled in the festive spirit. The celebrations reached their peak with the lively beats of the final 'Sanedo' performance, leaving smiles on every face and hearts full of nostalgia. For many, it was a moment of reconnecting with the rhythms and warmth of their homeland. A special thanks goes to the Shah Brothers Convenience Store, the event organizer, and to Chopped Leaf, the generous sponsor, for making this vibrant celebration possible.\n",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-2-october-2025-0eb630f7",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "b84133dd-8224-41e0-a09e-a2946c0b4d8d",
+          "originalDates": {
+            "submittedAt": "2025-10-07T06:56:28.000Z",
+            "createdAt": "2026-01-12T00:32:56.014Z",
+            "updatedAt": "2026-01-12T05:05:24.567Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-backup",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-10-07T06:56:28.000Z",
+        "createdAt": "2026-01-12T00:32:56.014Z",
+        "updatedAt": "2026-01-12T05:05:24.567Z"
+      },
+      "authorSourceId": "e33bf3eb-9c43-4c52-9806-3886de089edc",
+      "exportPath": "source-archive/articles/legacy-b84133dd-8224-41e0-a09e-a2946c0b4d8d-bests-of-home-echo-at-the-prince-george-garba-night-2025.md"
+    },
+    {
+      "sourceKey": "legacy:df64d724-3b8e-4506-89ed-21ce9ec312b9",
+      "originalArticleId": "df64d724-3b8e-4506-89ed-21ce9ec312b9",
+      "title": "Success Has No Single Map: Why Trying Something New Could Be Your Breakthrough",
+      "authorName": "Florence Ejodame Oisereime",
+      "content": "People often say the secret is simple: attend job fairs, turn up at networking events, hang out in the right spaces, and you will meet the right people.\n\nAnd yes, sometimes that works. Opportunities can appear when you walk into a room full of strangers or exchange a few words with someone at an industry mixer. But here is the twist: success does not follow just one map.\n\nFor someone who has never stepped into a networking room, maybe that is the new path to try. For another person, it could mean starting a blog, reaching out to a mentor online, or volunteering somewhere they have never considered before. What opens doors for one individual might not work for another, and that is perfectly fine.\n\nThe truth is, there is no single road to success. We find our way by being open, experimenting, and daring to step into the unfamiliar. Growth often lives outside our comfort zone.\n\nSo today, challenge yourself: try something new. It might feel uncertain at first, but you never know where that bold step might lead. Your breakthrough could be waiting in the very place you have yet to explore.",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-2-october-2025-0eb630f7",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "df64d724-3b8e-4506-89ed-21ce9ec312b9",
+          "originalDates": {
+            "submittedAt": "2025-09-12T11:58:55.000Z",
+            "createdAt": "2026-01-12T00:32:56.211Z",
+            "updatedAt": "2026-01-12T05:05:24.567Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-backup",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-09-12T11:58:55.000Z",
+        "createdAt": "2026-01-12T00:32:56.211Z",
+        "updatedAt": "2026-01-12T05:05:24.567Z"
+      },
+      "authorSourceId": "c763eec3-7d19-4e2f-839d-0fb2292a66ae",
+      "exportPath": "source-archive/articles/legacy-df64d724-3b8e-4506-89ed-21ce9ec312b9-success-has-no-single-map-why-trying-something-new-could-be-your-breakthrough.md"
+    },
+    {
+      "sourceKey": "legacy:edcb75d9-0b10-4098-a3ce-0d6a69291d75",
+      "originalArticleId": "edcb75d9-0b10-4098-a3ce-0d6a69291d75",
+      "title": "UNBC's OG Psychology Prof Takes the Helm as Interim President",
+      "authorName": "Ahmad Jalil",
+      "content": "Dr. Bill Owen steps up as Dr. Payne heads to new gig \n\nIf you've been at UNBC for more than a hot minute, chances are you've heard of Dr. Bill Owen. The longtime psychology professor has been a fixture on campus for over two decades, and now he's trading research labs for the president's office. \n\nDr. William (Bill) Owen officially became UNBC's Interim President and Vice-Chancellor on October 4, stepping into the role as Dr. Geoff Payne wrapped up five and a half years as president to take on a new leadership position with Michael Smith Health Research BC. \n\nBeen Here Since Day (Well, 2002) \n\nDr. Owen isn't some outsider parachuting in to run the show. The guy's been at UNBC since 2002, back when he was a fresh-faced Assistant Professor setting up his cognitive psychology lab and building his now-iconic personal website (yes, it still exists: https://web.unbc.ca/~owenw/webpages/unbc/billunbc.htm). That's right, Dr. Owen has his own corner of the UNBC web server, complete with early 2000s academic website vibes. If that doesn't make him an OG, I don't know what does. \n\nOver 23 years, he's taught everything from research methods and statistics to advanced cognitive psychology seminars. His research focuses on how we recognize words and process language, plus the scholarship of teaching and learning, basically, figuring out how our brains read stuff and how we actually learn things. \n\nNot His First Rodeo \n\nThis isn't Dr. Owen's first time in the big chair. Most recently, he was Interim Provost and Vice-President Academic, where he spearheaded the development of the Ready Roadmap: Academic Plan 2025–2031, you know, that strategic document that's supposed to guide UNBC's future (and that you probably got an email about). \n\nBefore that, he's held basically every VP and dean job you can think of: Vice-Provost Faculty Relations, Interim Dean of the College of Arts, Social and Health Sciences, and Vice-Provost Student Engagement. Dude's been around the administrative block. \n\nWhat's the Plan? \n\nDr. Owen's got an 18-month term to work with, and according to Board of Governors Chair Joel McKay, he'll be focusing on four big things: fiscal management (aka money stuff), enrolment and student experience (aka keeping us happy and getting more of us here), operational effectiveness (aka making things actually work), and engagement (aka talking to people). \n\nThese aren't just buzzwords, universities across Canada are dealing with budget crunches and enrolment challenges, and UNBC's no exception. Dr. Owen's deep knowledge of how this place actually works could be exactly what's needed right now. \n\nMeanwhile, the Search Begins \n\nThe Board of Governors will launch the search for UNBC's next permanent President and Vice-Chancellor this fall. So if you've got opinions about what qualities UNBC's next leader should have, now's probably the time to make your voice heard through student government or other channels. \n\nAs for Dr. Payne? The board thanked him for his five and a half years of service, which included steering the ship through COVID-19 and developing UNBC's current strategic plan. Not exactly an easy gig. \n\nThe Bottom Line \n\nLook, leadership transitions at universities can be rocky. But having someone who's been here since 2002, who actually knows the students, faculty, and staff, and who understands what makes UNBC tick? That's probably the best-case sc—enario for an interim situation. \n\nPlus, he's a psychology professor. If anyone understands how to read the room and figure out what makes people tick, it's probably him. \n\nWelcome to the big office, Dr. Owen. Try not to miss the research lab too much. And hey, while you're settling in, any chance you could greenlight that new student ID design we made? Just saying. ",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-2-october-2025-0eb630f7",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "edcb75d9-0b10-4098-a3ce-0d6a69291d75",
+          "originalDates": {
+            "submittedAt": "2025-10-07T20:50:48.000Z",
+            "createdAt": "2026-01-12T00:32:55.937Z",
+            "updatedAt": "2026-01-12T05:05:24.567Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-backup",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-10-07T20:50:48.000Z",
+        "createdAt": "2026-01-12T00:32:55.937Z",
+        "updatedAt": "2026-01-12T05:05:24.567Z"
+      },
+      "authorSourceId": "e8a5e97c-c678-4273-831b-9d5855aa987a",
+      "exportPath": "source-archive/articles/legacy-edcb75d9-0b10-4098-a3ce-0d6a69291d75-unbc-s-og-psychology-prof-takes-the-helm-as-interim-president.md"
+    },
+    {
+      "sourceKey": "legacy:fa3a5be0-ce14-4336-b5f4-825b7b950078",
+      "originalArticleId": "fa3a5be0-ce14-4336-b5f4-825b7b950078",
+      "title": "Green So Far",
+      "authorName": "Madi Tokarchuk",
+      "content": "The Students for a Green University (SGU) club hopes you started the fall season in high spirits because we kicked it off with a lot of exciting activities.\n\nWe started the semester with an All-Day Apple Goodie Workshop, featuring Rosie the pig, on September 8th. We made no-canning, no-cooking-required, freezer-friendly, ready-to-\"dump-and-bake\" apple pie filling, along with pie dough and crumble topping. This was not just an opportunity for people to help out, but also a way to learn how to use available resources. The apples were collected from trees in the community as a bear preventative measure in collaboration with the Gleaning Abundance Program. This was also an opportunity for students to talk to other students and community members in a neutral environment, surrounded by the aroma of fresh apples, keeping their hands busy and their minds relaxed.\n\nSGU, being an environmental action club, donated all the apple scraps to the PG Tickled Pig Rescue to ensure zero food waste at this workshop. Rosie the pig was there representing all the pigs from the shelter, and with all the pets Rosie received, the trip up to the university was surely worthwhile.\n\nSGU members also visited Goodsir Nature Park, which runs solely on donations, on September 20th. We learned more about this hidden gem and its kind owner, Jim Good. I recommend everyone go check it out to admire over 3,000 varieties of plants on the 160-acre park. Jim Good, the person who made Goodsir Nature Park a living, breathing place, is someone who believes in being kind to others, no matter what. This is reflected in how inclusive the park is, including wheelchair-accessible trails, an abundance of washrooms, entrance by donation, and Jim's welcoming nature. The park also features an extensive botanical museum and a music museum with nearly 50,000 vinyl records.\n\nOn September 21st, SGU members helped remove common tansy and other invasive plant species at Carrie Jane Gray Park. The event was hosted by the Prince George Naturalists Club. We pulled 13 bags of invasive plant material to help protect our native species.\n\nWe ended the first month of school by cleaning up our Dome Greenhouse, which is located at the northern end of campus, past the parking lot at the end of building 10. Volunteers helped revitalize the greenhouse by cleaning the floor, organizing pots, topping the beds with soil, and prepping the outdoor beds on the last Saturday of September. We also spent October 1st cleaning the hydroponics in the Thirsty Moose. On the first Friday of October, we hosted a Planting Bee, where students came together to plant cold-hardy crops in the greenhouse, garlic in the outdoor beds, and a take-home plant box. Keep an eye on the hydroponics at the pub to watch our seeds germinate there too.\n\nThis was just the beginning, and there are many activities planned for the rest of the semester. Anyone can participate—you don't need any prior experience because we have a great team of people who can help you each step of the way. If you want to engage in any of the activities, visit us on our Instagram page @sgu.unbc to see which activity works well with your schedule. We also provide reference letters for volunteer hours signed by the club and our faculty advisor to help with scholarship and job applications. Our goal is to give you the skills you need to become an environmental citizen and steward. Remember, the little things we do for the environment can help meet the needs of today without compromising the ability of future generations to meet their needs tomorrow.",
+      "bodyFormat": "plain",
+      "kind": "article",
+      "placements": [
+        {
+          "documentId": "issue-2-october-2025-0eb630f7",
+          "pageNumbers": [],
+          "section": null,
+          "sourceVisibility": "not-confirmed-in-this-pdf"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-metadata/otemanager-source-metadata.json",
+          "sha256": "e55d34abfa95ed4b6dc8023ad1daf845b5f4e0df12d9f589871b82c64ed998e7",
+          "notes": "Sanitized metadata-only backup derivative; no original attachment bytes were included in that backup.",
+          "originalArticleId": "fa3a5be0-ce14-4336-b5f4-825b7b950078",
+          "originalDates": {
+            "submittedAt": "2025-10-05T05:19:15.000Z",
+            "createdAt": "2026-01-12T00:32:56.063Z",
+            "updatedAt": "2026-01-12T05:05:24.567Z"
+          }
+        },
+        {
+          "path": "otemanager-backup-database-2026-09-10.zip",
+          "sha256": "35595c1df1e0e2c42e00e917417e8423f968f53d6d6cc15a8245ffa3e1690ea5",
+          "notes": "Referenced original input backup. Only its sanitized selected article metadata is included in the generated archive."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-backup",
+      "sourceVisibility": "backup-only",
+      "prefersAnonymity": false,
+      "originalDates": {
+        "submittedAt": "2025-10-05T05:19:15.000Z",
+        "createdAt": "2026-01-12T00:32:56.063Z",
+        "updatedAt": "2026-01-12T05:05:24.567Z"
+      },
+      "authorSourceId": "57a402b3-6674-4625-94a9-4b9120b2aca9",
+      "exportPath": "source-archive/articles/legacy-fa3a5be0-ce14-4336-b5f4-825b7b950078-green-so-far.md"
+    },
+    {
+      "sourceKey": "recurring:president-qa:e097823b5241bc38",
+      "title": "Interim-President Question",
+      "authorName": null,
+      "content": "**Question**\n\nDouble-dipping:\n\nacceptable or unforgivable ?\n\n**Answer**\n\nAs for double-dipping, in the words of George Costanza, “so??... you dip the way you want to dip, and I dip the way I want to dip.”  Double, triple it is all good.",
+      "bodyFormat": "markdown",
+      "kind": "recurring",
+      "placements": [
+        {
+          "documentId": "issue-2-october-2025-0eb630f7",
+          "pageNumbers": [
+            4
+          ],
+          "section": "president-qa"
+        }
+      ],
+      "provenance": [
+        {
+          "path": "source-idml/issue-2-october-2025-c98939e6.idml",
+          "sha256": "c98939e689d0c67bfc029ea800b6b2dce3da9c5e0764089518d38037a2ba5eaf",
+          "storyIds": [
+            "u589",
+            "u59f"
+          ],
+          "notes": "Original question/response grouped semantically; no respondent byline is invented."
+        }
+      ],
+      "photos": [],
+      "recoveryStatus": "source-idml",
+      "sourceVisibility": "visible-in-source-pdf",
+      "question": "Double-dipping:\n\nacceptable or unforgivable ?",
+      "answer": "As for double-dipping, in the words of George Costanza, “so??... you dip the way you want to dip, and I dip the way I want to dip.”  Double, triple it is all good.",
+      "exportPath": "source-archive/articles/recurring-president-qa-e097823b5241bc38-interim-president-question.md"
+    }
+  ],
+  "assets": [
+    {
+      "id": "source-pdf:issue-2-october-2025-0eb630f7",
+      "path": "originals/issue-2-october-2025-0eb630f7.pdf",
+      "sha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+      "mimeType": "application/pdf",
+      "availability": "reference-only",
+      "assetRole": "source-reference",
+      "documentIds": [
+        "issue-2-october-2025-0eb630f7"
+      ],
+      "label": "October 2025 · Issue 2"
+    },
+    {
+      "id": "attachment:ea419175-d4fd-4dda-87df-44d32831535a",
+      "sourceKey": "legacy:0d0b7ce4-9855-4f17-a635-f8e25d288769",
+      "originalArticleId": "0d0b7ce4-9855-4f17-a635-f8e25d288769",
+      "originalAttachmentId": "ea419175-d4fd-4dda-87df-44d32831535a",
+      "path": "source-archive-media/ea419175-d4fd-4dda-87df-44d32831535a.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 232389,
+      "originalFileName": "the-wait-is-over-prince-george-s-cold-war-bunker-confirmed-but-the-mystery-deepens-1.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:1455ba1b-1c00-4c3b-8aa2-bf92c8b5eb1b",
+      "sourceKey": "legacy:0d0b7ce4-9855-4f17-a635-f8e25d288769",
+      "originalArticleId": "0d0b7ce4-9855-4f17-a635-f8e25d288769",
+      "originalAttachmentId": "1455ba1b-1c00-4c3b-8aa2-bf92c8b5eb1b",
+      "path": "source-archive-media/1455ba1b-1c00-4c3b-8aa2-bf92c8b5eb1b.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 30654,
+      "originalFileName": "the-wait-is-over-prince-george-s-cold-war-bunker-confirmed-but-the-mystery-deepens-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:12e7a111-3c3f-43a2-81cf-61a04be9dd70",
+      "sourceKey": "legacy:17874329-f633-4596-8739-eaf3dd74085b",
+      "originalArticleId": "17874329-f633-4596-8739-eaf3dd74085b",
+      "originalAttachmentId": "12e7a111-3c3f-43a2-81cf-61a04be9dd70",
+      "path": "source-archive-media/12e7a111-3c3f-43a2-81cf-61a04be9dd70.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 83205,
+      "originalFileName": "is-unbc-s-sustainable-event-certification-setting-the-bar-too-high-or-just-grading-its-own-home-1.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": "UNBC Event Receiving a Sustainability Certificate",
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:f40d04f4-96a4-447e-a6ef-ec1cb4ebc322",
+      "sourceKey": "legacy:17874329-f633-4596-8739-eaf3dd74085b",
+      "originalArticleId": "17874329-f633-4596-8739-eaf3dd74085b",
+      "originalAttachmentId": "f40d04f4-96a4-447e-a6ef-ec1cb4ebc322",
+      "path": "source-archive-media/f40d04f4-96a4-447e-a6ef-ec1cb4ebc322.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 35081,
+      "originalFileName": "is-unbc-s-sustainable-event-certification-setting-the-bar-too-high-or-just-grading-its-own-home-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:fe35719f-668b-4138-8b84-a6d97603cdbb",
+      "sourceKey": "legacy:2c7549e4-63df-437a-bbcd-5d82b6e0e5e2",
+      "originalArticleId": "2c7549e4-63df-437a-bbcd-5d82b6e0e5e2",
+      "originalAttachmentId": "fe35719f-668b-4138-8b84-a6d97603cdbb",
+      "path": "source-archive-media/fe35719f-668b-4138-8b84-a6d97603cdbb.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 612058,
+      "originalFileName": "93-1-cfis-fmbringing-nostalgia-and-musical-culture-back-to-prince-george-authentically-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:f07a3ab6-8448-4df0-b8ef-34ad8aefcc49",
+      "sourceKey": "legacy:2c7549e4-63df-437a-bbcd-5d82b6e0e5e2",
+      "originalArticleId": "2c7549e4-63df-437a-bbcd-5d82b6e0e5e2",
+      "originalAttachmentId": "f07a3ab6-8448-4df0-b8ef-34ad8aefcc49",
+      "path": "source-archive-media/f07a3ab6-8448-4df0-b8ef-34ad8aefcc49.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 70471,
+      "originalFileName": "93-1-cfis-fmbringing-nostalgia-and-musical-culture-back-to-prince-george-authentically-2.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": "CFIS logo in all its glory",
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:88e961dc-3268-4394-b057-925647bde680",
+      "sourceKey": "legacy:449ae9e4-f65c-49ef-a2ea-f645dcfc40e9",
+      "originalArticleId": "449ae9e4-f65c-49ef-a2ea-f645dcfc40e9",
+      "originalAttachmentId": "88e961dc-3268-4394-b057-925647bde680",
+      "path": "source-archive-media/88e961dc-3268-4394-b057-925647bde680.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 94454,
+      "originalFileName": "so-i-accidentally-became-someone-s-boss-and-it-was-weird-1.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": "Our Projects this summer.",
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:b86cba8a-024a-4987-bf8f-635b232b44d9",
+      "sourceKey": "legacy:449ae9e4-f65c-49ef-a2ea-f645dcfc40e9",
+      "originalArticleId": "449ae9e4-f65c-49ef-a2ea-f645dcfc40e9",
+      "originalAttachmentId": "b86cba8a-024a-4987-bf8f-635b232b44d9",
+      "path": "source-archive-media/b86cba8a-024a-4987-bf8f-635b232b44d9.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 36540,
+      "originalFileName": "so-i-accidentally-became-someone-s-boss-and-it-was-weird-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:60700d75-362d-4130-9194-5cbf12fce979",
+      "sourceKey": "legacy:535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalArticleId": "535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalAttachmentId": "60700d75-362d-4130-9194-5cbf12fce979",
+      "path": "source-archive-media/60700d75-362d-4130-9194-5cbf12fce979.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 5204475,
+      "originalFileName": "a-living-legacy-in-the-woods-goodsir-nature-park-1.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": "A vintage 1971 radio chart from CKLG displaying the year's top hits, part of the nostalgic music memorabilia collection at Goodsir Nature Park's second museum, where Students for a Green University members explored during their September visit.",
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:d65dee6f-2875-465a-b90d-05a2a6d701f5",
+      "sourceKey": "legacy:535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalArticleId": "535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalAttachmentId": "d65dee6f-2875-465a-b90d-05a2a6d701f5",
+      "path": "source-archive-media/d65dee6f-2875-465a-b90d-05a2a6d701f5.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 7561793,
+      "originalFileName": "a-living-legacy-in-the-woods-goodsir-nature-park-2.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": "A trail junction at Goodsir Nature Park features clear signage directing visitors along the wheelchair accessible paths.",
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:fb15b35c-ceca-45e2-99bc-c2208aad01d2",
+      "sourceKey": "legacy:535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalArticleId": "535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalAttachmentId": "fb15b35c-ceca-45e2-99bc-c2208aad01d2",
+      "path": "source-archive-media/fb15b35c-ceca-45e2-99bc-c2208aad01d2.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 5219773,
+      "originalFileName": "a-living-legacy-in-the-woods-goodsir-nature-park-3.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 3,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:5a1553f5-4416-44f6-b9fc-94fdd8f8a957",
+      "sourceKey": "legacy:535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalArticleId": "535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalAttachmentId": "5a1553f5-4416-44f6-b9fc-94fdd8f8a957",
+      "path": "source-archive-media/5a1553f5-4416-44f6-b9fc-94fdd8f8a957.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 7403783,
+      "originalFileName": "a-living-legacy-in-the-woods-goodsir-nature-park-4.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 4,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:4a384eaf-e3db-4e35-85ff-fcf393722a35",
+      "sourceKey": "legacy:535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalArticleId": "535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalAttachmentId": "4a384eaf-e3db-4e35-85ff-fcf393722a35",
+      "path": "source-archive-media/4a384eaf-e3db-4e35-85ff-fcf393722a35.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 5985761,
+      "originalFileName": "a-living-legacy-in-the-woods-goodsir-nature-park-5.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": "Greeting cards at the Museum!",
+      "photoNumber": 5,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:b449b7a0-a173-4f95-a3fb-fe4ba7a43140",
+      "sourceKey": "legacy:535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalArticleId": "535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalAttachmentId": "b449b7a0-a173-4f95-a3fb-fe4ba7a43140",
+      "path": "source-archive-media/b449b7a0-a173-4f95-a3fb-fe4ba7a43140.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 5981516,
+      "originalFileName": "a-living-legacy-in-the-woods-goodsir-nature-park-6.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 6,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:9e97332d-4866-4604-a562-df5523118c09",
+      "sourceKey": "legacy:535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalArticleId": "535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalAttachmentId": "9e97332d-4866-4604-a562-df5523118c09",
+      "path": "source-archive-media/9e97332d-4866-4604-a562-df5523118c09.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 4272951,
+      "originalFileName": "a-living-legacy-in-the-woods-goodsir-nature-park-7.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 7,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:0b4ef7c9-f363-433d-8cef-88cb036002e0",
+      "sourceKey": "legacy:535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalArticleId": "535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalAttachmentId": "0b4ef7c9-f363-433d-8cef-88cb036002e0",
+      "path": "source-archive-media/0b4ef7c9-f363-433d-8cef-88cb036002e0.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 5655593,
+      "originalFileName": "a-living-legacy-in-the-woods-goodsir-nature-park-8.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 8,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:91ce3323-9ca9-4c5f-ab58-34d6645ccbfd",
+      "sourceKey": "legacy:535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalArticleId": "535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalAttachmentId": "91ce3323-9ca9-4c5f-ab58-34d6645ccbfd",
+      "path": "source-archive-media/91ce3323-9ca9-4c5f-ab58-34d6645ccbfd.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 5125943,
+      "originalFileName": "a-living-legacy-in-the-woods-goodsir-nature-park-9.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 9,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:118b9e30-b2c7-4c7f-bc24-51735841a8d2",
+      "sourceKey": "legacy:535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalArticleId": "535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalAttachmentId": "118b9e30-b2c7-4c7f-bc24-51735841a8d2",
+      "path": "source-archive-media/118b9e30-b2c7-4c7f-bc24-51735841a8d2.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 6056646,
+      "originalFileName": "a-living-legacy-in-the-woods-goodsir-nature-park-10.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 10,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:59f0b6bd-dccc-4604-83b5-41127df1b69d",
+      "sourceKey": "legacy:535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalArticleId": "535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalAttachmentId": "59f0b6bd-dccc-4604-83b5-41127df1b69d",
+      "path": "source-archive-media/59f0b6bd-dccc-4604-83b5-41127df1b69d.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 4557569,
+      "originalFileName": "a-living-legacy-in-the-woods-goodsir-nature-park-11.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 11,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:5fdeeecf-92cd-4ff9-889a-1d8f9328a2ba",
+      "sourceKey": "legacy:535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalArticleId": "535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalAttachmentId": "5fdeeecf-92cd-4ff9-889a-1d8f9328a2ba",
+      "path": "source-archive-media/5fdeeecf-92cd-4ff9-889a-1d8f9328a2ba.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 5011541,
+      "originalFileName": "a-living-legacy-in-the-woods-goodsir-nature-park-12.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": "A century-old gramophone that still plays without electricity sits in the museum at Goodsir Nature Park, part of Jim Good's collection of vintage music memorabilia including gramophone records, cassette tapes, and VHS collections.",
+      "photoNumber": 12,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:4a060232-4629-458c-b8de-e9b164e938f8",
+      "sourceKey": "legacy:535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalArticleId": "535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalAttachmentId": "4a060232-4629-458c-b8de-e9b164e938f8",
+      "path": "source-archive-media/4a060232-4629-458c-b8de-e9b164e938f8.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 5645887,
+      "originalFileName": "a-living-legacy-in-the-woods-goodsir-nature-park-13.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 13,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:0edb6071-8385-425f-8fb1-cb950957d7fc",
+      "sourceKey": "legacy:535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalArticleId": "535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalAttachmentId": "0edb6071-8385-425f-8fb1-cb950957d7fc",
+      "path": "source-archive-media/0edb6071-8385-425f-8fb1-cb950957d7fc.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 6921163,
+      "originalFileName": "a-living-legacy-in-the-woods-goodsir-nature-park-14.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 14,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:d572773c-0495-4de4-a6c9-34fffb7cb107",
+      "sourceKey": "legacy:535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalArticleId": "535910db-ee65-4012-91a8-fb0d4afbe3f6",
+      "originalAttachmentId": "d572773c-0495-4de4-a6c9-34fffb7cb107",
+      "path": "source-archive-media/d572773c-0495-4de4-a6c9-34fffb7cb107.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 24343,
+      "originalFileName": "a-living-legacy-in-the-woods-goodsir-nature-park-15.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:d63ac986-9f40-4c34-bf6c-d301a2eeb33a",
+      "sourceKey": "legacy:584afa80-49be-4799-b69d-bb3d1af5cfb7",
+      "originalArticleId": "584afa80-49be-4799-b69d-bb3d1af5cfb7",
+      "originalAttachmentId": "d63ac986-9f40-4c34-bf6c-d301a2eeb33a",
+      "path": "source-archive-media/d63ac986-9f40-4c34-bf6c-d301a2eeb33a.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 1078090,
+      "originalFileName": "a-model-for-environmental-education-1.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": "Jim Good, founder of Goodsir Nature Park, shares his passion for preservation and education at the park's collection space.",
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:78443d1b-a292-4238-81f1-ffd75a794849",
+      "sourceKey": "legacy:584afa80-49be-4799-b69d-bb3d1af5cfb7",
+      "originalArticleId": "584afa80-49be-4799-b69d-bb3d1af5cfb7",
+      "originalAttachmentId": "78443d1b-a292-4238-81f1-ffd75a794849",
+      "path": "source-archive-media/78443d1b-a292-4238-81f1-ffd75a794849.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 1170445,
+      "originalFileName": "a-model-for-environmental-education-2.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": "Jim Good, founder of Goodsir Nature Park, shares his passion for preservation and education at the park's collection space.",
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:b7f41889-e5a3-4e55-9d86-b6b1bb91f7f9",
+      "sourceKey": "legacy:584afa80-49be-4799-b69d-bb3d1af5cfb7",
+      "originalArticleId": "584afa80-49be-4799-b69d-bb3d1af5cfb7",
+      "originalAttachmentId": "b7f41889-e5a3-4e55-9d86-b6b1bb91f7f9",
+      "path": "source-archive-media/b7f41889-e5a3-4e55-9d86-b6b1bb91f7f9.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 23523,
+      "originalFileName": "a-model-for-environmental-education-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:633b9685-8d91-441c-8ee8-f0c6704447f0",
+      "sourceKey": "legacy:b84133dd-8224-41e0-a09e-a2946c0b4d8d",
+      "originalArticleId": "b84133dd-8224-41e0-a09e-a2946c0b4d8d",
+      "originalAttachmentId": "633b9685-8d91-441c-8ee8-f0c6704447f0",
+      "path": "source-archive-media/633b9685-8d91-441c-8ee8-f0c6704447f0.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 2135546,
+      "originalFileName": "bests-of-home-echo-at-the-prince-george-garba-night-2025-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:3395cad6-b3ef-4e01-b9a7-55a32c78f2fa",
+      "sourceKey": "legacy:b84133dd-8224-41e0-a09e-a2946c0b4d8d",
+      "originalArticleId": "b84133dd-8224-41e0-a09e-a2946c0b4d8d",
+      "originalAttachmentId": "3395cad6-b3ef-4e01-b9a7-55a32c78f2fa",
+      "path": "source-archive-media/3395cad6-b3ef-4e01-b9a7-55a32c78f2fa.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 3850697,
+      "originalFileName": "bests-of-home-echo-at-the-prince-george-garba-night-2025-2.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": "Celebrating Navratri with friends at the NSC",
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:88ae0880-d9d7-4402-bdbb-2af9ab185dbe",
+      "sourceKey": "legacy:b84133dd-8224-41e0-a09e-a2946c0b4d8d",
+      "originalArticleId": "b84133dd-8224-41e0-a09e-a2946c0b4d8d",
+      "originalAttachmentId": "88ae0880-d9d7-4402-bdbb-2af9ab185dbe",
+      "path": "source-archive-media/88ae0880-d9d7-4402-bdbb-2af9ab185dbe.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 1419068,
+      "originalFileName": "bests-of-home-echo-at-the-prince-george-garba-night-2025-3.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": "Celebrating Navratri with friends at the NSC",
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:07332ecf-4edb-47b3-8380-b4687e4dffe0",
+      "sourceKey": "legacy:df64d724-3b8e-4506-89ed-21ce9ec312b9",
+      "originalArticleId": "df64d724-3b8e-4506-89ed-21ce9ec312b9",
+      "originalAttachmentId": "07332ecf-4edb-47b3-8380-b4687e4dffe0",
+      "path": "source-archive-media/07332ecf-4edb-47b3-8380-b4687e4dffe0.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 18701,
+      "originalFileName": "success-has-no-single-map-why-trying-something-new-could-be-your-breakthrough-1.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:f76ddc94-821b-4af4-a623-53ad6c936d74",
+      "sourceKey": "legacy:df64d724-3b8e-4506-89ed-21ce9ec312b9",
+      "originalArticleId": "df64d724-3b8e-4506-89ed-21ce9ec312b9",
+      "originalAttachmentId": "f76ddc94-821b-4af4-a623-53ad6c936d74",
+      "path": "source-archive-media/f76ddc94-821b-4af4-a623-53ad6c936d74.png",
+      "sha256": null,
+      "mimeType": "image/png",
+      "size": 1450520,
+      "originalFileName": "success-has-no-single-map-why-trying-something-new-could-be-your-breakthrough-2.png",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:4c75da56-1663-4c86-a583-fbb7d3a8c01d",
+      "sourceKey": "legacy:df64d724-3b8e-4506-89ed-21ce9ec312b9",
+      "originalArticleId": "df64d724-3b8e-4506-89ed-21ce9ec312b9",
+      "originalAttachmentId": "4c75da56-1663-4c86-a583-fbb7d3a8c01d",
+      "path": "source-archive-media/4c75da56-1663-4c86-a583-fbb7d3a8c01d.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 33861,
+      "originalFileName": "success-has-no-single-map-why-trying-something-new-could-be-your-breakthrough-3.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:76e68363-0fe5-43eb-a199-741d35983b72",
+      "sourceKey": "legacy:edcb75d9-0b10-4098-a3ce-0d6a69291d75",
+      "originalArticleId": "edcb75d9-0b10-4098-a3ce-0d6a69291d75",
+      "originalAttachmentId": "76e68363-0fe5-43eb-a199-741d35983b72",
+      "path": "source-archive-media/76e68363-0fe5-43eb-a199-741d35983b72.jpg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 14196,
+      "originalFileName": "unbc-s-og-psychology-prof-takes-the-helm-as-interim-president-1.jpg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": "Dr. Bill Owen doing what he does best, teaching.",
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:fb383c08-fc44-442f-bc4b-cefacf23a8c8",
+      "sourceKey": "legacy:edcb75d9-0b10-4098-a3ce-0d6a69291d75",
+      "originalArticleId": "edcb75d9-0b10-4098-a3ce-0d6a69291d75",
+      "originalAttachmentId": "fb383c08-fc44-442f-bc4b-cefacf23a8c8",
+      "path": "source-archive-media/fb383c08-fc44-442f-bc4b-cefacf23a8c8.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 27363,
+      "originalFileName": "unbc-s-og-psychology-prof-takes-the-helm-as-interim-president-2.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:b57bd6c3-6fce-4ffb-bd76-9a6a18fb82b7",
+      "sourceKey": "legacy:fa3a5be0-ce14-4336-b5f4-825b7b950078",
+      "originalArticleId": "fa3a5be0-ce14-4336-b5f4-825b7b950078",
+      "originalAttachmentId": "b57bd6c3-6fce-4ffb-bd76-9a6a18fb82b7",
+      "path": "source-archive-media/b57bd6c3-6fce-4ffb-bd76-9a6a18fb82b7.jpeg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 3392970,
+      "originalFileName": "green-so-far-1.jpeg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": "SGU & PGNC Invasive Plant Pull",
+      "photoNumber": 1,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:d640eaad-8c15-4fc4-8985-1a355e4b223c",
+      "sourceKey": "legacy:fa3a5be0-ce14-4336-b5f4-825b7b950078",
+      "originalArticleId": "fa3a5be0-ce14-4336-b5f4-825b7b950078",
+      "originalAttachmentId": "d640eaad-8c15-4fc4-8985-1a355e4b223c",
+      "path": "source-archive-media/d640eaad-8c15-4fc4-8985-1a355e4b223c.jpeg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 1667439,
+      "originalFileName": "green-so-far-2.jpeg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": "SGU’s Apple Goodie Workshop",
+      "photoNumber": 2,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:49fd0113-9c2d-487a-aa98-61c0a884041d",
+      "sourceKey": "legacy:fa3a5be0-ce14-4336-b5f4-825b7b950078",
+      "originalArticleId": "fa3a5be0-ce14-4336-b5f4-825b7b950078",
+      "originalAttachmentId": "49fd0113-9c2d-487a-aa98-61c0a884041d",
+      "path": "source-archive-media/49fd0113-9c2d-487a-aa98-61c0a884041d.jpeg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 3256794,
+      "originalFileName": "green-so-far-3.jpeg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": "SGU members with Jim Good at Goodsir Nature Park",
+      "photoNumber": 3,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:1ab2e4fd-2dba-48a3-9ece-b072f7df31a6",
+      "sourceKey": "legacy:fa3a5be0-ce14-4336-b5f4-825b7b950078",
+      "originalArticleId": "fa3a5be0-ce14-4336-b5f4-825b7b950078",
+      "originalAttachmentId": "1ab2e4fd-2dba-48a3-9ece-b072f7df31a6",
+      "path": "source-archive-media/1ab2e4fd-2dba-48a3-9ece-b072f7df31a6.jpeg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 3599965,
+      "originalFileName": "green-so-far-4.jpeg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": "SGU Dome Greenhouse Cleanup ",
+      "photoNumber": 4,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:88ebf213-5998-48ea-ad3b-14514ff34d54",
+      "sourceKey": "legacy:fa3a5be0-ce14-4336-b5f4-825b7b950078",
+      "originalArticleId": "fa3a5be0-ce14-4336-b5f4-825b7b950078",
+      "originalAttachmentId": "88ebf213-5998-48ea-ad3b-14514ff34d54",
+      "path": "source-archive-media/88ebf213-5998-48ea-ad3b-14514ff34d54.jpeg",
+      "sha256": null,
+      "mimeType": "image/jpeg",
+      "size": 3782177,
+      "originalFileName": "green-so-far-5.jpeg",
+      "attachmentType": "photo",
+      "availability": "missing",
+      "caption": "SGU’s Planting Bee",
+      "photoNumber": 5,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "attachment:e67d8da5-91c7-4dfc-9e71-b18a5724a8ab",
+      "sourceKey": "legacy:fa3a5be0-ce14-4336-b5f4-825b7b950078",
+      "originalArticleId": "fa3a5be0-ce14-4336-b5f4-825b7b950078",
+      "originalAttachmentId": "e67d8da5-91c7-4dfc-9e71-b18a5724a8ab",
+      "path": "source-archive-media/e67d8da5-91c7-4dfc-9e71-b18a5724a8ab.docx",
+      "sha256": null,
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size": 2669158,
+      "originalFileName": "green-so-far-6.docx",
+      "attachmentType": "word_document",
+      "availability": "missing",
+      "caption": null,
+      "photoNumber": null,
+      "assetRole": "article-attachment"
+    },
+    {
+      "id": "embedded-image:c1916bb565e1b54c653a20e1",
+      "path": "source-archive-media/c1916bb565e1b54c653a20e1.png",
+      "sha256": "c1916bb565e1b54c653a20e1787b1a918b57a3612c3bc85a48df147868bf489d",
+      "size": 41862,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 644,
+      "height": 1320,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-1-sept-2025-741805e9",
+        "issue-2-october-2025-0eb630f7"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-1-sept-2025-741805e9",
+          "pageNumber": 18,
+          "rect": [
+            380.8800048828125,
+            65.2486572265625,
+            717.3560180664062,
+            754.9199829101562
+          ]
+        },
+        {
+          "documentId": "issue-2-october-2025-0eb630f7",
+          "pageNumber": 16,
+          "rect": [
+            380.8800048828125,
+            65.2486572265625,
+            717.3560180664062,
+            754.9199829101562
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:9c7e0ecb4a1cd286324ed618",
+      "path": "source-archive-media/9c7e0ecb4a1cd286324ed618.jpeg",
+      "sha256": "9c7e0ecb4a1cd286324ed6187df70eea663cc70eac7d5e416ac664084140b237",
+      "size": 1114979,
+      "mimeType": "image/jpeg",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1800,
+      "height": 888,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-2-october-2025-0eb630f7"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-2-october-2025-0eb630f7",
+          "pageNumber": 1,
+          "rect": [
+            60.634033203125,
+            149.2183837890625,
+            695.4150390625,
+            462.37701416015625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:5fd0f9ba2ca0a8b65894bfc3",
+      "path": "source-archive-media/5fd0f9ba2ca0a8b65894bfc3.png",
+      "sha256": "5fd0f9ba2ca0a8b65894bfc32f264c433fd6cc2c8823469b7100165dd09a7add",
+      "size": 558879,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 373,
+      "height": 501,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-2-october-2025-0eb630f7"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-2-october-2025-0eb630f7",
+          "pageNumber": 4,
+          "rect": [
+            240.59007263183594,
+            550.6246337890625,
+            330.0550537109375,
+            670.8612060546875
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:cbee752d48bde32db6a00295",
+      "path": "source-archive-media/cbee752d48bde32db6a00295.jpeg",
+      "sha256": "cbee752d48bde32db6a002955f03c7b4b610e958449b9cab6ccd65928c5f3a59",
+      "size": 54729,
+      "mimeType": "image/jpeg",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 402,
+      "height": 489,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-2-october-2025-0eb630f7"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-2-october-2025-0eb630f7",
+          "pageNumber": 4,
+          "rect": [
+            422.45819091796875,
+            541.1236572265625,
+            530.9055786132812,
+            673.041015625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:48e8f2d4cd39870b6478735f",
+      "path": "source-archive-media/48e8f2d4cd39870b6478735f.jpeg",
+      "sha256": "48e8f2d4cd39870b6478735f0c9dd7f4faf48587a56826e8e15ae0c5eb027cbc",
+      "size": 109363,
+      "mimeType": "image/jpeg",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 357,
+      "height": 506,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-2-october-2025-0eb630f7"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-2-october-2025-0eb630f7",
+          "pageNumber": 4,
+          "rect": [
+            337.577880859375,
+            520.1746826171875,
+            423.14947509765625,
+            641.4476928710938
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:b7c6cd2a9a85fc6b012c5f71",
+      "path": "source-archive-media/b7c6cd2a9a85fc6b012c5f71.jpeg",
+      "sha256": "b7c6cd2a9a85fc6b012c5f71d6b2f454557397b33438f66ca3c028a87e68db61",
+      "size": 117922,
+      "mimeType": "image/jpeg",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 350,
+      "height": 497,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-2-october-2025-0eb630f7"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-2-october-2025-0eb630f7",
+          "pageNumber": 4,
+          "rect": [
+            148.12191772460938,
+            521.19189453125,
+            232.02964782714844,
+            640.42138671875
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:4f426d5ee8a85b10b84ee2e1",
+      "path": "source-archive-media/4f426d5ee8a85b10b84ee2e1.jpeg",
+      "sha256": "4f426d5ee8a85b10b84ee2e1d04383166d26d5ad252e6d4a91cad233f8ccfbfc",
+      "size": 73802,
+      "mimeType": "image/jpeg",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 359,
+      "height": 502,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-2-october-2025-0eb630f7"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-2-october-2025-0eb630f7",
+          "pageNumber": 4,
+          "rect": [
+            53.56733703613281,
+            551.6316528320312,
+            139.61148071289062,
+            671.8978881835938
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:d6cc1275c611ff47b1544988",
+      "path": "source-archive-media/d6cc1275c611ff47b1544988.png",
+      "sha256": "d6cc1275c611ff47b1544988f26e10cd64b90e72415a869cb489455ccd9d8655",
+      "size": 7512,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 327,
+      "height": 327,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-2-october-2025-0eb630f7"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-2-october-2025-0eb630f7",
+          "pageNumber": 4,
+          "rect": [
+            579.162841796875,
+            599.767578125,
+            657.6289672851562,
+            678.2337036132812
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:83256a3a638c210a3bee9017",
+      "path": "source-archive-media/83256a3a638c210a3bee9017.png",
+      "sha256": "83256a3a638c210a3bee9017b7b452449d4ea8433f47ecaf9240b2331d550cd7",
+      "size": 427943,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 552,
+      "height": 617,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-2-october-2025-0eb630f7"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-2-october-2025-0eb630f7",
+          "pageNumber": 4,
+          "rect": [
+            59.837890625,
+            3.884033203125,
+            676.837890625,
+            555.884033203125
+          ]
+        },
+        {
+          "documentId": "issue-2-october-2025-0eb630f7",
+          "pageNumber": 4,
+          "rect": [
+            129.60000610351562,
+            153.82177734375,
+            248.76434326171875,
+            286.03411865234375
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:3f1685fd798769aaba97bd19",
+      "path": "source-archive-media/3f1685fd798769aaba97bd19.png",
+      "sha256": "3f1685fd798769aaba97bd197d3db31d987a59dedd49d80bbaf59588a05da498",
+      "size": 545175,
+      "mimeType": "image/png",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 1377,
+      "height": 1371,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-2-october-2025-0eb630f7"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-2-october-2025-0eb630f7",
+          "pageNumber": 14,
+          "rect": [
+            34.95400619506836,
+            428.0980224609375,
+            365.22064208984375,
+            756.9400024414062
+          ]
+        }
+      ]
+    },
+    {
+      "id": "embedded-image:a2807f0b58ec3cdabba7cc8c",
+      "path": "source-archive-media/a2807f0b58ec3cdabba7cc8c.jpeg",
+      "sha256": "a2807f0b58ec3cdabba7cc8c755b95f66269e0e3e23151fb0aa13ce7aa77a262",
+      "size": 391213,
+      "mimeType": "image/jpeg",
+      "availability": "available",
+      "assetRole": "embedded-source-image",
+      "width": 962,
+      "height": 2000,
+      "label": "Embedded source image",
+      "documentIds": [
+        "issue-2-october-2025-0eb630f7"
+      ],
+      "sourcePlacements": [
+        {
+          "documentId": "issue-2-october-2025-0eb630f7",
+          "pageNumber": 15,
+          "rect": [
+            386.34808349609375,
+            65.2486572265625,
+            716.8486328125,
+            752.3599853515625
+          ]
+        }
+      ]
+    }
+  ]
+}

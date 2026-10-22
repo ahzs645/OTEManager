@@ -89,10 +89,16 @@ export class Store {
   private async validateRelations(table: TableName, row: any) {
     if (table === "authors") {
       const email = row.email.trim().toLowerCase();
-      const others = await this.all("authors");
+      // Source bylines have no asserted contact address. Their stable source
+      // key owns identity; an empty address is not a shared email identity.
+      const others =
+        !email && row.sourceAuthorKey ? [] : await this.all("authors");
       if (
         others.some(
-          (a) => a.id !== row.id && a.email.trim().toLowerCase() === email,
+          (a) =>
+            a.id !== row.id &&
+            a.email.trim().toLowerCase() === email &&
+            !(!email && a.sourceAuthorKey),
         )
       )
         throw new Error("An author with that email already exists");
@@ -123,6 +129,7 @@ export class Store {
         "articleNotes",
         "articleMultimediaTypes",
         "statusHistory",
+        "sourceArchiveLinks",
       ].includes(table)
     )
       await this.require("articles", row.articleId);

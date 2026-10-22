@@ -1,0 +1,559 @@
+{
+  "schemaVersion": "ote.source-server-whole-issue-check.v1",
+  "engine": "wasm",
+  "source": {
+    "documentId": "issue-7-march-2025-dfcbb959",
+    "pageCount": 17,
+    "spreads": [],
+    "sourceSha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+    "sourceMetadata": {
+      "date": "2025-03-20",
+      "volume": 31,
+      "number": 7,
+      "design": "ote-2024"
+    },
+    "mode": "reconstruction"
+  },
+  "status": "passed",
+  "capabilities": {
+    "available": true,
+    "engine": "wasm",
+    "version": "designcraft-headless 0.9.0 (WebAssembly)",
+    "fontProfiles": [
+      "portable"
+    ],
+    "limits": {
+      "compressedBytes": 67108864,
+      "uncompressedBytes": 268435456,
+      "entries": 2048,
+      "jsonBytes": 8388608,
+      "jobs": 12,
+      "concurrentJobs": 1,
+      "concurrentUploads": 2,
+      "timeoutMs": 600000,
+      "retentionMs": 3600000,
+      "outputBytes": 536870912,
+      "memoryBytes": 2147483648,
+      "uploadTimeoutMs": 60000,
+      "persistenceTimeoutMs": 15000
+    },
+    "persistence": false,
+    "preservation": false,
+    "message": "Native export is available on this server (WebAssembly engine)."
+  },
+  "job": {
+    "id": "51c64e9c-3d3a-4182-ac63-1b93ea961e8c",
+    "status": "completed",
+    "mode": "issue",
+    "fontProfile": "portable",
+    "createdAt": "2026-10-22T22:06:26.746Z",
+    "finishedAt": "2026-10-22T22:06:56.042Z",
+    "expiresAt": "2026-10-22T23:06:56.042Z",
+    "message": "Native, PDF and IDML output passed compiler preflight.",
+    "artifacts": {
+      "native": {
+        "name": "issue.designcraft",
+        "mimeType": "application/zip",
+        "bytes": 25391671,
+        "persisted": false
+      },
+      "pdf": {
+        "name": "issue.pdf",
+        "mimeType": "application/pdf",
+        "bytes": 26358201,
+        "persisted": false
+      },
+      "idml": {
+        "name": "issue.idml",
+        "mimeType": "application/zip",
+        "bytes": 26124634,
+        "persisted": false
+      },
+      "manifest": {
+        "name": "build-manifest.json",
+        "mimeType": "application/json",
+        "bytes": 198536,
+        "persisted": false
+      },
+      "preflight": {
+        "name": "preflight.json",
+        "mimeType": "application/json",
+        "bytes": 895,
+        "persisted": false
+      },
+      "source": {
+        "name": "source-issue.json",
+        "mimeType": "application/json",
+        "bytes": 12935,
+        "persisted": false
+      },
+      "interchange": {
+        "name": "interchange-metadata.json",
+        "mimeType": "application/json",
+        "bytes": 89196,
+        "persisted": false
+      },
+      "log": {
+        "name": "native-service-log.json",
+        "mimeType": "application/json",
+        "bytes": 152785,
+        "persisted": false
+      },
+      "bundle": {
+        "name": "ote-issue-native-output.zip",
+        "mimeType": "application/zip",
+        "bytes": 130629991,
+        "persisted": false
+      }
+    }
+  },
+  "checks": {
+    "serverCompleted": true,
+    "nativePageCount": true,
+    "idmlPageCount": true,
+    "pdfPageCount": true,
+    "sourceComplete": true,
+    "sourcePageOrder": true,
+    "linkedSpreadsVerified": true,
+    "preflightPassed": true,
+    "articleBodiesPreserved": true,
+    "recipeSourceRetained": true,
+    "bundleContainsNativePdfIdml": true,
+    "bundleContainsSourceAssets": true,
+    "bundleContainsPortableFonts": true,
+    "independentAdPlacements": true,
+    "marchTwoIndependentAds": true
+  },
+  "pageCounts": {
+    "expected": 17,
+    "native": 17,
+    "idml": 17,
+    "pdf": 17
+  },
+  "sourceReconstruction": {
+    "sourceDocumentId": "issue-7-march-2025-dfcbb959",
+    "sourcePageCount": 17,
+    "outputPageCount": 17,
+    "mode": "reconstruction",
+    "complete": true,
+    "originalOrderPreserved": true,
+    "pages": [
+      {
+        "pageId": "issue-7-march-2025-dfcbb959-page-1",
+        "pageNumber": 1,
+        "sourcePage": 1,
+        "sourceMode": "editable",
+        "sourceRegion": [
+          0,
+          0,
+          756,
+          792
+        ],
+        "role": "cover",
+        "spreadId": null,
+        "nativePageId": 5,
+        "nativeSpreadId": 32,
+        "editableTextFrames": 18
+      },
+      {
+        "pageId": "issue-7-march-2025-dfcbb959-page-2",
+        "pageNumber": 2,
+        "sourcePage": 2,
+        "sourceMode": "editable",
+        "sourceRegion": [
+          0,
+          0,
+          756,
+          792
+        ],
+        "role": "editorial",
+        "spreadId": null,
+        "nativePageId": 6,
+        "nativeSpreadId": 33,
+        "editableTextFrames": 2
+      },
+      {
+        "pageId": "issue-7-march-2025-dfcbb959-page-3",
+        "pageNumber": 3,
+        "sourcePage": 3,
+        "sourceMode": "editable",
+        "sourceRegion": [
+          0,
+          0,
+          756,
+          792
+        ],
+        "role": "editorial",
+        "spreadId": null,
+        "nativePageId": 7,
+        "nativeSpreadId": 33,
+        "editableTextFrames": 2
+      },
+      {
+        "pageId": "issue-7-march-2025-dfcbb959-page-4",
+        "pageNumber": 4,
+        "sourcePage": 4,
+        "sourceMode": "editable",
+        "sourceRegion": [
+          0,
+          0,
+          756,
+          792
+        ],
+        "role": "editorial",
+        "spreadId": null,
+        "nativePageId": 8,
+        "nativeSpreadId": 34,
+        "editableTextFrames": 2
+      },
+      {
+        "pageId": "issue-7-march-2025-dfcbb959-page-5",
+        "pageNumber": 5,
+        "sourcePage": 5,
+        "sourceMode": "editable",
+        "sourceRegion": [
+          0,
+          0,
+          756,
+          792
+        ],
+        "role": "recurring",
+        "spreadId": null,
+        "nativePageId": 9,
+        "nativeSpreadId": 34,
+        "editableTextFrames": 25
+      },
+      {
+        "pageId": "issue-7-march-2025-dfcbb959-page-6",
+        "pageNumber": 6,
+        "sourcePage": 6,
+        "sourceMode": "editable",
+        "sourceRegion": [
+          0,
+          0,
+          756,
+          792
+        ],
+        "role": "recurring",
+        "spreadId": null,
+        "nativePageId": 10,
+        "nativeSpreadId": 35,
+        "editableTextFrames": 6
+      },
+      {
+        "pageId": "issue-7-march-2025-dfcbb959-page-7",
+        "pageNumber": 7,
+        "sourcePage": 7,
+        "sourceMode": "editable",
+        "sourceRegion": [
+          0,
+          0,
+          756,
+          792
+        ],
+        "role": "editorial",
+        "spreadId": null,
+        "nativePageId": 11,
+        "nativeSpreadId": 35,
+        "editableTextFrames": 2
+      },
+      {
+        "pageId": "issue-7-march-2025-dfcbb959-page-8",
+        "pageNumber": 8,
+        "sourcePage": 8,
+        "sourceMode": "editable",
+        "sourceRegion": [
+          0,
+          0,
+          756,
+          792
+        ],
+        "role": "editorial",
+        "spreadId": null,
+        "nativePageId": 12,
+        "nativeSpreadId": 36,
+        "editableTextFrames": 2
+      },
+      {
+        "pageId": "issue-7-march-2025-dfcbb959-page-9",
+        "pageNumber": 9,
+        "sourcePage": 9,
+        "sourceMode": "editable",
+        "sourceRegion": [
+          0,
+          0,
+          756,
+          792
+        ],
+        "role": "editorial",
+        "spreadId": null,
+        "nativePageId": 13,
+        "nativeSpreadId": 36,
+        "editableTextFrames": 2
+      },
+      {
+        "pageId": "issue-7-march-2025-dfcbb959-page-10",
+        "pageNumber": 10,
+        "sourcePage": 10,
+        "sourceMode": "editable",
+        "sourceRegion": [
+          0,
+          0,
+          756,
+          792
+        ],
+        "role": "contribution",
+        "spreadId": null,
+        "nativePageId": 14,
+        "nativeSpreadId": 37,
+        "editableTextFrames": 92
+      },
+      {
+        "pageId": "issue-7-march-2025-dfcbb959-page-11",
+        "pageNumber": 11,
+        "sourcePage": 11,
+        "sourceMode": "editable",
+        "sourceRegion": [
+          0,
+          0,
+          756,
+          792
+        ],
+        "role": "editorial",
+        "spreadId": null,
+        "nativePageId": 15,
+        "nativeSpreadId": 37,
+        "editableTextFrames": 2
+      },
+      {
+        "pageId": "issue-7-march-2025-dfcbb959-page-12",
+        "pageNumber": 12,
+        "sourcePage": 12,
+        "sourceMode": "editable",
+        "sourceRegion": [
+          0,
+          0,
+          756,
+          792
+        ],
+        "role": "editorial",
+        "spreadId": null,
+        "nativePageId": 16,
+        "nativeSpreadId": 38,
+        "editableTextFrames": 2
+      },
+      {
+        "pageId": "issue-7-march-2025-dfcbb959-page-13",
+        "pageNumber": 13,
+        "sourcePage": 13,
+        "sourceMode": "editable",
+        "sourceRegion": [
+          0,
+          0,
+          756,
+          792
+        ],
+        "role": "contribution",
+        "spreadId": null,
+        "nativePageId": 17,
+        "nativeSpreadId": 38,
+        "editableTextFrames": 8
+      },
+      {
+        "pageId": "issue-7-march-2025-dfcbb959-page-14",
+        "pageNumber": 14,
+        "sourcePage": 14,
+        "sourceMode": "editable",
+        "sourceRegion": [
+          0,
+          0,
+          756,
+          792
+        ],
+        "role": "editorial",
+        "spreadId": null,
+        "nativePageId": 18,
+        "nativeSpreadId": 39,
+        "editableTextFrames": 2
+      },
+      {
+        "pageId": "issue-7-march-2025-dfcbb959-page-15",
+        "pageNumber": 15,
+        "sourcePage": 15,
+        "sourceMode": "editable",
+        "sourceRegion": [
+          0,
+          0,
+          756,
+          792
+        ],
+        "role": "editorial",
+        "spreadId": null,
+        "nativePageId": 19,
+        "nativeSpreadId": 39,
+        "editableTextFrames": 2
+      },
+      {
+        "pageId": "issue-7-march-2025-dfcbb959-page-16",
+        "pageNumber": 16,
+        "sourcePage": 16,
+        "sourceMode": "editable",
+        "sourceRegion": [
+          0,
+          0,
+          756,
+          792
+        ],
+        "role": "ad",
+        "spreadId": null,
+        "nativePageId": 20,
+        "nativeSpreadId": 40,
+        "editableTextFrames": 2
+      },
+      {
+        "pageId": "issue-7-march-2025-dfcbb959-page-17",
+        "pageNumber": 17,
+        "sourcePage": 17,
+        "sourceMode": "editable",
+        "sourceRegion": [
+          0,
+          0,
+          756,
+          792
+        ],
+        "role": "ad",
+        "spreadId": null,
+        "nativePageId": 21,
+        "nativeSpreadId": 40,
+        "editableTextFrames": 2
+      }
+    ],
+    "spreads": [],
+    "nativeSpreads": [
+      {
+        "nativeSpreadId": 32,
+        "pageNumbers": [
+          1
+        ]
+      },
+      {
+        "nativeSpreadId": 33,
+        "pageNumbers": [
+          2,
+          3
+        ]
+      },
+      {
+        "nativeSpreadId": 34,
+        "pageNumbers": [
+          4,
+          5
+        ]
+      },
+      {
+        "nativeSpreadId": 35,
+        "pageNumbers": [
+          6,
+          7
+        ]
+      },
+      {
+        "nativeSpreadId": 36,
+        "pageNumbers": [
+          8,
+          9
+        ]
+      },
+      {
+        "nativeSpreadId": 37,
+        "pageNumbers": [
+          10,
+          11
+        ]
+      },
+      {
+        "nativeSpreadId": 38,
+        "pageNumbers": [
+          12,
+          13
+        ]
+      },
+      {
+        "nativeSpreadId": 39,
+        "pageNumbers": [
+          14,
+          15
+        ]
+      },
+      {
+        "nativeSpreadId": 40,
+        "pageNumbers": [
+          16,
+          17
+        ]
+      }
+    ],
+    "editablePageNumbers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "artworkPageNumbers": [],
+    "blankPageNumbers": []
+  },
+  "preflight": {
+    "errors": 0,
+    "warnings": 6
+  },
+  "validatedPortableScales": {
+    "count": 161,
+    "min": 0.950963,
+    "max": 1.289701
+  },
+  "independentAds": {
+    "expected": [
+      {
+        "pageId": "issue-7-march-2025-dfcbb959-page-16",
+        "pageNumber": 16,
+        "slotId": "source-ad-thirsty-moose"
+      },
+      {
+        "pageId": "issue-7-march-2025-dfcbb959-page-17",
+        "pageNumber": 17,
+        "slotId": "source-ad-ote-recruitment"
+      }
+    ],
+    "native": [
+      {
+        "pageId": "issue-7-march-2025-dfcbb959-page-16",
+        "slotId": "source-ad-thirsty-moose",
+        "assetId": 440
+      },
+      {
+        "pageId": "issue-7-march-2025-dfcbb959-page-17",
+        "slotId": "source-ad-ote-recruitment",
+        "assetId": 449
+      }
+    ]
+  },
+  "validatedSourceMedia": {
+    "jpeg": 1,
+    "png": 1,
+    "pdf": 36
+  },
+  "elapsedSeconds": 32.14
+}

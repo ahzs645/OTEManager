@@ -1,0 +1,2643 @@
+{
+  "schemaVersion": "ote.designcraft.source-issue-maps.v1",
+  "sourceArchive": "OneDrive_2026-10-09.zip",
+  "coordinateConvention": "PDF points [left,top,right,bottom]; sourcePage and pageNumber are one-based. Each local source page is 756×792; facing-page feature spreads remain separate adjacent physical pages linked by spreadId.",
+  "issues": [
+    {
+      "id": "cover-page-issue-3-lina-2dc29f52",
+      "label": "December 2024 · final layout",
+      "pdf": "originals/cover-page-issue-3-lina-2dc29f52.pdf",
+      "sourcePdfPages": 17,
+      "physicalPageCount": 17,
+      "sourceSha256": "2dc29f52db1488fecebd869762b895f021f35cfc925f2c108cdebf40f1d8aa2c",
+      "metadata": {
+        "date": "2024-12-05",
+        "volume": 31,
+        "number": 4,
+        "design": "ote-2024"
+      },
+      "pages": [
+        {
+          "pageNumber": 1,
+          "sourcePage": 1,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Cover",
+          "role": "cover"
+        },
+        {
+          "pageNumber": 2,
+          "sourcePage": 2,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 3,
+          "sourcePage": 3,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 4,
+          "sourcePage": 4,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 5,
+          "sourcePage": 5,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Over the Edge board strip",
+          "role": "recurring",
+          "section": "board"
+        },
+        {
+          "pageNumber": 6,
+          "sourcePage": 6,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "President Answers · go-to karaoke song",
+          "role": "recurring",
+          "section": "president-qa"
+        },
+        {
+          "pageNumber": 7,
+          "sourcePage": 7,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 8,
+          "sourcePage": 8,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Wildlife Photo Contest winners · left page",
+          "role": "photo-spread",
+          "section": "editorial",
+          "spreadId": "cover-page-issue-3-lina-2dc29f52-wildlife-spread",
+          "spreadSide": "left"
+        },
+        {
+          "pageNumber": 9,
+          "sourcePage": 9,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Wildlife Photo Contest winners · right page",
+          "role": "photo-spread",
+          "section": "editorial",
+          "spreadId": "cover-page-issue-3-lina-2dc29f52-wildlife-spread",
+          "spreadSide": "right"
+        },
+        {
+          "pageNumber": 10,
+          "sourcePage": 10,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 11,
+          "sourcePage": 11,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 12,
+          "sourcePage": 12,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 13,
+          "sourcePage": 13,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "CFUR Radio · bottom-right quarter recruitment ad",
+          "role": "ad",
+          "adSpots": [
+            {
+              "id": "cfur-radio-promo",
+              "label": "CFUR Radio · bottom-right quarter recruitment ad",
+              "rect": [
+                376.52001953125,
+                411.9599914550781,
+                716.756591796875,
+                752.1965942382812
+              ]
+            }
+          ]
+        },
+        {
+          "pageNumber": 14,
+          "sourcePage": 14,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 15,
+          "sourcePage": 15,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 16,
+          "sourcePage": 16,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Thirsty Moose Pub · right-half ad",
+          "role": "ad",
+          "adSpots": [
+            {
+              "id": "thirsty-moose",
+              "label": "Thirsty Moose Pub · right-half ad",
+              "rect": [
+                386.6011657714844,
+                65.2486572265625,
+                716.8486328125,
+                752.7434692382812
+              ]
+            }
+          ]
+        },
+        {
+          "pageNumber": 17,
+          "sourcePage": 17,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Write content for Over the Edge · full-page recruitment",
+          "role": "ad",
+          "adSpots": [
+            {
+              "id": "ote-recruitment",
+              "label": "Write content for Over the Edge · full-page recruitment",
+              "rect": [
+                35.76458740234375,
+                64.47802734375,
+                718.8685913085938,
+                754.9714965820312
+              ]
+            }
+          ]
+        }
+      ],
+      "notes": "Final December layout source path and cover agree. Feature spreads preserve consecutive source pages 8 and 9.",
+      "readingPdf": "pdfs/cover-page-issue-3-lina-2dc29f52.pdf"
+    },
+    {
+      "id": "cover-page-issue-3-lina-6dd82589",
+      "label": "November 2024 · Issue 3",
+      "pdf": "originals/cover-page-issue-3-lina-6dd82589.pdf",
+      "sourcePdfPages": 17,
+      "physicalPageCount": 17,
+      "sourceSha256": "6dd825893953a1b049656a2ec41ef2c5513d215b8854351caf2ec47660fb72e5",
+      "metadata": {
+        "date": "2024-11-14",
+        "volume": 31,
+        "number": 3,
+        "design": "ote-2024"
+      },
+      "pages": [
+        {
+          "pageNumber": 1,
+          "sourcePage": 1,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Cover",
+          "role": "cover"
+        },
+        {
+          "pageNumber": 2,
+          "sourcePage": 2,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 3,
+          "sourcePage": 3,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 4,
+          "sourcePage": 4,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 5,
+          "sourcePage": 5,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Over the Edge board strip",
+          "role": "recurring",
+          "section": "board"
+        },
+        {
+          "pageNumber": 6,
+          "sourcePage": 6,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "President Answers · horoscopes",
+          "role": "recurring",
+          "section": "president-qa"
+        },
+        {
+          "pageNumber": 7,
+          "sourcePage": 7,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 8,
+          "sourcePage": 8,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 9,
+          "sourcePage": 9,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 10,
+          "sourcePage": 10,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 11,
+          "sourcePage": 11,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 12,
+          "sourcePage": 12,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 13,
+          "sourcePage": 13,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "CFUR Radio · bottom-right quarter recruitment ad",
+          "role": "ad",
+          "adSpots": [
+            {
+              "id": "cfur-radio-promo",
+              "label": "CFUR Radio · bottom-right quarter recruitment ad",
+              "rect": [
+                376.52001953125,
+                411.9599914550781,
+                716.756591796875,
+                752.1965942382812
+              ]
+            }
+          ]
+        },
+        {
+          "pageNumber": 14,
+          "sourcePage": 14,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 15,
+          "sourcePage": 15,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 16,
+          "sourcePage": 16,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Thirsty Moose Pub · right-half ad",
+          "role": "ad",
+          "adSpots": [
+            {
+              "id": "thirsty-moose",
+              "label": "Thirsty Moose Pub · right-half ad",
+              "rect": [
+                386.6011657714844,
+                65.2486572265625,
+                716.8486328125,
+                752.7434692382812
+              ]
+            }
+          ]
+        },
+        {
+          "pageNumber": 17,
+          "sourcePage": 17,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Write content for Over the Edge · full-page recruitment",
+          "role": "ad",
+          "adSpots": [
+            {
+              "id": "ote-recruitment",
+              "label": "Write content for Over the Edge · full-page recruitment",
+              "rect": [
+                36.484554290771484,
+                65.197998046875,
+                719.5885620117188,
+                755.2069091796875
+              ]
+            }
+          ]
+        }
+      ],
+      "notes": "Cover supplies issue metadata. Interior datelines are stale September 26, 2024. Most source article areas are blank.",
+      "readingPdf": "pdfs/cover-page-issue-3-lina-6dd82589.pdf"
+    },
+    {
+      "id": "cover-page-issue-3-lina-de16e159",
+      "label": "December 2024 · print archive",
+      "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+      "sourcePdfPages": 17,
+      "physicalPageCount": 17,
+      "sourceSha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+      "metadata": {
+        "date": "2024-12-05",
+        "volume": 31,
+        "number": 4,
+        "design": "ote-2024"
+      },
+      "pages": [
+        {
+          "pageNumber": 1,
+          "sourcePage": 1,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Unfinished cover · empty crossed photo frame",
+          "role": "cover",
+          "notes": "Cover retains November 14, 2024 / Issue 3 metadata despite the December print-archive source path."
+        },
+        {
+          "pageNumber": 2,
+          "sourcePage": 2,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 3,
+          "sourcePage": 3,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 4,
+          "sourcePage": 4,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 5,
+          "sourcePage": 5,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Over the Edge board strip",
+          "role": "recurring",
+          "section": "board"
+        },
+        {
+          "pageNumber": 6,
+          "sourcePage": 6,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "President Answers · horoscopes",
+          "role": "recurring",
+          "section": "president-qa"
+        },
+        {
+          "pageNumber": 7,
+          "sourcePage": 7,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 8,
+          "sourcePage": 8,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 9,
+          "sourcePage": 9,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page with Wildlife Society logo",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Only a small Wildlife Society logo in the lower-right region; no photo-contest article or winners supplied on this page."
+        },
+        {
+          "pageNumber": 10,
+          "sourcePage": 10,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 11,
+          "sourcePage": 11,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 12,
+          "sourcePage": 12,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 13,
+          "sourcePage": 13,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "CFUR Radio · bottom-right quarter recruitment ad",
+          "role": "ad",
+          "adSpots": [
+            {
+              "id": "cfur-radio-promo",
+              "label": "CFUR Radio · bottom-right quarter recruitment ad",
+              "rect": [
+                376.52001953125,
+                411.9599914550781,
+                716.756591796875,
+                752.1965942382812
+              ]
+            }
+          ]
+        },
+        {
+          "pageNumber": 14,
+          "sourcePage": 14,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 15,
+          "sourcePage": 15,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 16,
+          "sourcePage": 16,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Thirsty Moose Pub · right-half ad",
+          "role": "ad",
+          "adSpots": [
+            {
+              "id": "thirsty-moose",
+              "label": "Thirsty Moose Pub · right-half ad",
+              "rect": [
+                386.6011657714844,
+                65.2486572265625,
+                716.8486328125,
+                752.7434692382812
+              ]
+            }
+          ]
+        },
+        {
+          "pageNumber": 17,
+          "sourcePage": 17,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Write content for Over the Edge · full-page recruitment",
+          "role": "ad",
+          "adSpots": [
+            {
+              "id": "ote-recruitment",
+              "label": "Write content for Over the Edge · full-page recruitment",
+              "rect": [
+                35.76458740234375,
+                64.47802734375,
+                718.8685913085938,
+                754.9714965820312
+              ]
+            }
+          ]
+        }
+      ],
+      "metadataEvidence": {
+        "date": "December 5 archive path",
+        "volume": "cover",
+        "number": "Issue 4 source folder"
+      },
+      "sourceCoverMetadata": {
+        "date": "2024-11-14",
+        "volume": 31,
+        "number": 3
+      },
+      "notes": "Intended issue metadata follows archive/folder provenance. Original cover is visibly stale and unfinished; full-art source recreation must preserve it until deliberately edited.",
+      "readingPdf": "pdfs/cover-page-issue-3-lina-de16e159.pdf"
+    },
+    {
+      "id": "issue-1-sept-2025-741805e9",
+      "label": "September 2025 · Issue 1",
+      "pdf": "originals/issue-1-sept-2025-741805e9.pdf",
+      "sourcePdfPages": 18,
+      "physicalPageCount": 18,
+      "sourceSha256": "741805e923f0d604c01dda024bf66040d32257725682c05d1f28c21778ade43a",
+      "metadata": {
+        "date": "2025-09-12",
+        "volume": 32,
+        "number": 1,
+        "design": "ote-2025"
+      },
+      "pages": [
+        {
+          "pageNumber": 1,
+          "sourcePage": 1,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "September 2025 cover",
+          "role": "cover"
+        },
+        {
+          "pageNumber": 2,
+          "sourcePage": 2,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 3,
+          "sourcePage": 3,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 4,
+          "sourcePage": 4,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Our Board 2025–2026 · lower section, unfinished upper area",
+          "role": "recurring",
+          "section": "board",
+          "notes": "Board/feedback section supplied; upper area contains only stray name/role text, not a completed President question."
+        },
+        {
+          "pageNumber": 5,
+          "sourcePage": 5,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 6,
+          "sourcePage": 6,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 7,
+          "sourcePage": 7,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 8,
+          "sourcePage": 8,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 9,
+          "sourcePage": 9,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 10,
+          "sourcePage": 10,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 11,
+          "sourcePage": 11,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Wholly blank source page",
+          "role": "blank",
+          "blankEditorial": true,
+          "notes": "Renders wholly white despite hidden source header text objects."
+        },
+        {
+          "pageNumber": 12,
+          "sourcePage": 12,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Campus Corners · places to rest, study and recharge · left page",
+          "role": "photo-spread",
+          "section": "editorial",
+          "spreadId": "issue-1-sept-2025-741805e9-campus-corners-spread",
+          "spreadSide": "left"
+        },
+        {
+          "pageNumber": 13,
+          "sourcePage": 13,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Campus Corners · places to rest, study and recharge · right page",
+          "role": "photo-spread",
+          "section": "editorial",
+          "spreadId": "issue-1-sept-2025-741805e9-campus-corners-spread",
+          "spreadSide": "right"
+        },
+        {
+          "pageNumber": 14,
+          "sourcePage": 14,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 15,
+          "sourcePage": 15,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 16,
+          "sourcePage": 16,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 17,
+          "sourcePage": 17,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Unfilled right-half gray crossed reservation",
+          "role": "reserved",
+          "notes": "Visible gray crossed frame on the right; no supplied creative, advertiser or booking can be inferred.",
+          "adSpots": [
+            {
+              "id": "reserved-ad",
+              "label": "Unfilled right-half ad reservation",
+              "rect": [
+                380.8511962890625,
+                65.24871826171875,
+                716.8482055664062,
+                752.7437133789062
+              ]
+            }
+          ]
+        },
+        {
+          "pageNumber": 18,
+          "sourcePage": 18,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Write for Over the Edge · right-half recruitment",
+          "role": "ad",
+          "adSpots": [
+            {
+              "id": "ote-recruitment",
+              "label": "Write for Over the Edge · right-half recruitment",
+              "rect": [
+                380.8800048828125,
+                65.2486572265625,
+                717.3560180664062,
+                754.9199829101562
+              ]
+            }
+          ]
+        }
+      ],
+      "notes": "Cover supplies issue metadata. Interior datelines alternate September 12, 2024/2025. Campus Corners is a continuous designed photo spread across physical pages 12 and 13.",
+      "readingPdf": "pdfs/issue-1-sept-2025-741805e9.pdf"
+    },
+    {
+      "id": "issue-2-october-2025-0eb630f7",
+      "label": "October 2025 · Issue 2",
+      "pdf": "originals/issue-2-october-2025-0eb630f7.pdf",
+      "sourcePdfPages": 16,
+      "physicalPageCount": 16,
+      "sourceSha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+      "metadata": {
+        "date": "2025-10-16",
+        "volume": 32,
+        "number": 2,
+        "design": "ote-2025"
+      },
+      "pages": [
+        {
+          "pageNumber": 1,
+          "sourcePage": 1,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "October 2025 cover",
+          "role": "cover"
+        },
+        {
+          "pageNumber": 2,
+          "sourcePage": 2,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 3,
+          "sourcePage": 3,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 4,
+          "sourcePage": 4,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Interim-President Question and Our Board 2025–2026",
+          "role": "recurring",
+          "section": "president-qa",
+          "sections": [
+            "president-qa",
+            "board"
+          ]
+        },
+        {
+          "pageNumber": 5,
+          "sourcePage": 5,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 6,
+          "sourcePage": 6,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 7,
+          "sourcePage": 7,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 8,
+          "sourcePage": 8,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 9,
+          "sourcePage": 9,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 10,
+          "sourcePage": 10,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 11,
+          "sourcePage": 11,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Wholly blank source page",
+          "role": "blank",
+          "blankEditorial": true,
+          "notes": "Wholly blank source page."
+        },
+        {
+          "pageNumber": 12,
+          "sourcePage": 12,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 13,
+          "sourcePage": 13,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 14,
+          "sourcePage": 14,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "CFUR Radiothon · Queen Vinyl Night · bottom-left quarter ad",
+          "role": "ad",
+          "adSpots": [
+            {
+              "id": "cfur-event",
+              "label": "CFUR Radiothon · Queen Vinyl Night · bottom-left quarter ad",
+              "rect": [
+                34.95400619506836,
+                428.0980224609375,
+                365.22064208984375,
+                756.9400024414062
+              ]
+            }
+          ]
+        },
+        {
+          "pageNumber": 15,
+          "sourcePage": 15,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Thirsty Moose Pub · right-half ad",
+          "role": "ad",
+          "adSpots": [
+            {
+              "id": "thirsty-moose",
+              "label": "Thirsty Moose Pub · right-half ad",
+              "rect": [
+                386.34808349609375,
+                65.2486572265625,
+                716.8486328125,
+                752.3599853515625
+              ]
+            }
+          ]
+        },
+        {
+          "pageNumber": 16,
+          "sourcePage": 16,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Write for Over the Edge · right-half recruitment",
+          "role": "ad",
+          "adSpots": [
+            {
+              "id": "ote-recruitment",
+              "label": "Write for Over the Edge · right-half recruitment",
+              "rect": [
+                380.8800048828125,
+                65.2486572265625,
+                717.3560180664062,
+                754.9199829101562
+              ]
+            }
+          ]
+        }
+      ],
+      "notes": "Source interior datelines alternate September 12, 2024/2025; issue metadata follows the October cover. Source page 11 renders wholly white despite hidden header text objects.",
+      "readingPdf": "pdfs/issue-2-october-2025-0eb630f7.pdf"
+    },
+    {
+      "id": "issue-5-ba123d17",
+      "label": "Winter 2025 · Issue 5",
+      "pdf": "originals/issue-5-ba123d17.pdf",
+      "sourcePdfPages": 17,
+      "physicalPageCount": 17,
+      "sourceSha256": "ba123d177cdf5fd7a1cdd9e8a8617ccedf7bdb484050b0f327590c8387a296e6",
+      "metadata": {
+        "date": null,
+        "volume": 31,
+        "number": 5,
+        "design": "ote-2024"
+      },
+      "pages": [
+        {
+          "pageNumber": 1,
+          "sourcePage": 1,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Fireworks cover · stale December cover labels",
+          "role": "cover"
+        },
+        {
+          "pageNumber": 2,
+          "sourcePage": 2,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 3,
+          "sourcePage": 3,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 4,
+          "sourcePage": 4,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 5,
+          "sourcePage": 5,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Inside the Edge Q&A and board strip",
+          "role": "recurring",
+          "section": "inside-the-edge"
+        },
+        {
+          "pageNumber": 6,
+          "sourcePage": 6,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "President Answers · Trucks or Sedans?",
+          "role": "recurring",
+          "section": "president-qa",
+          "notes": "Question supplied; visible answer panel is blank in source."
+        },
+        {
+          "pageNumber": 7,
+          "sourcePage": 7,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 8,
+          "sourcePage": 8,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 9,
+          "sourcePage": 9,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 10,
+          "sourcePage": 10,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 11,
+          "sourcePage": 11,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 12,
+          "sourcePage": 12,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 13,
+          "sourcePage": 13,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "CFUR Radio · bottom-right quarter recruitment ad",
+          "role": "ad",
+          "adSpots": [
+            {
+              "id": "cfur-radio-promo",
+              "label": "CFUR Radio · bottom-right quarter recruitment ad",
+              "rect": [
+                376.52001953125,
+                411.9599914550781,
+                716.756591796875,
+                752.1965942382812
+              ]
+            }
+          ]
+        },
+        {
+          "pageNumber": 14,
+          "sourcePage": 14,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 15,
+          "sourcePage": 15,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 16,
+          "sourcePage": 16,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Thirsty Moose Pub · right-half ad",
+          "role": "ad",
+          "adSpots": [
+            {
+              "id": "thirsty-moose",
+              "label": "Thirsty Moose Pub · right-half ad",
+              "rect": [
+                386.6011657714844,
+                65.2486572265625,
+                716.8486328125,
+                752.7434692382812
+              ]
+            }
+          ]
+        },
+        {
+          "pageNumber": 17,
+          "sourcePage": 17,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        }
+      ],
+      "metadataEvidence": {
+        "date": "unknown; cover reuses December 5, 2024",
+        "volume": "cover",
+        "number": "Issue 5 source folder"
+      },
+      "sourceCoverMetadata": {
+        "date": "2024-12-05",
+        "volume": 31,
+        "number": 4
+      },
+      "notes": "Issue 5 source folder establishes issue number; no reliable actual publication date is supplied. The cover reuses December 5 / Issue 4 labels. Do not invent a January day.",
+      "readingPdf": "pdfs/issue-5-ba123d17.pdf"
+    },
+    {
+      "id": "issue-6-feb-2025-5ed75bab",
+      "label": "February 2025 · current revision",
+      "pdf": "originals/issue-6-feb-2025-5ed75bab.pdf",
+      "sourcePdfPages": 17,
+      "physicalPageCount": 17,
+      "sourceSha256": "5ed75bab165062053148e8970def293393356c7973ccf8a03ad38d1d11e9cdb7",
+      "metadata": {
+        "date": "2025-02-13",
+        "volume": 31,
+        "number": 6,
+        "design": "ote-2024"
+      },
+      "pages": [
+        {
+          "pageNumber": 1,
+          "sourcePage": 1,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Cover",
+          "role": "cover"
+        },
+        {
+          "pageNumber": 2,
+          "sourcePage": 2,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 3,
+          "sourcePage": 3,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 4,
+          "sourcePage": 4,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 5,
+          "sourcePage": 5,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Inside the Edge Q&A and board strip",
+          "role": "recurring",
+          "section": "inside-the-edge"
+        },
+        {
+          "pageNumber": 6,
+          "sourcePage": 6,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "President Answers · pineapple on pizza",
+          "role": "recurring",
+          "section": "president-qa"
+        },
+        {
+          "pageNumber": 7,
+          "sourcePage": 7,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 8,
+          "sourcePage": 8,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Winter Photo Contest · left page",
+          "role": "photo-spread",
+          "section": "editorial",
+          "spreadId": "issue-6-feb-2025-5ed75bab-winter-photo-spread",
+          "spreadSide": "left"
+        },
+        {
+          "pageNumber": 9,
+          "sourcePage": 9,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Winter Photo Contest · right page",
+          "role": "photo-spread",
+          "section": "editorial",
+          "spreadId": "issue-6-feb-2025-5ed75bab-winter-photo-spread",
+          "spreadSide": "right"
+        },
+        {
+          "pageNumber": 10,
+          "sourcePage": 10,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 11,
+          "sourcePage": 11,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 12,
+          "sourcePage": 12,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 13,
+          "sourcePage": 13,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "CFUR Radio · completed editorial contribution",
+          "role": "contribution",
+          "section": "cfur"
+        },
+        {
+          "pageNumber": 14,
+          "sourcePage": 14,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 15,
+          "sourcePage": 15,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 16,
+          "sourcePage": 16,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Thirsty Moose Pub · right-half ad",
+          "role": "ad",
+          "adSpots": [
+            {
+              "id": "thirsty-moose",
+              "label": "Thirsty Moose Pub · right-half ad",
+              "rect": [
+                386.6011657714844,
+                65.2486572265625,
+                716.8486328125,
+                752.7434692382812
+              ]
+            }
+          ]
+        },
+        {
+          "pageNumber": 17,
+          "sourcePage": 17,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Write content for Over the Edge · right-half recruitment",
+          "role": "ad",
+          "adSpots": [
+            {
+              "id": "ote-recruitment",
+              "label": "Write content for Over the Edge · right-half recruitment",
+              "rect": [
+                378.38250732421875,
+                64.1849365234375,
+                718.8975830078125,
+                755.9400024414062
+              ]
+            }
+          ]
+        }
+      ],
+      "metadataEvidence": {
+        "date": "February 13, 2025 cover",
+        "volume": "cover",
+        "number": "Issue 6 source filename/folder"
+      },
+      "sourceCoverMetadata": {
+        "date": "2025-02-13",
+        "volume": 31,
+        "number": 4
+      },
+      "notes": "The cover date is current, but its issue number still says 4. Number 6 follows source filename and folder. Interior headers remain September 26, 2024.",
+      "readingPdf": "pdfs/issue-6-feb-2025-5ed75bab.pdf"
+    },
+    {
+      "id": "issue-6-feb-2025-b91aa3a0",
+      "label": "February 2025 · archived revision",
+      "pdf": "originals/issue-6-feb-2025-b91aa3a0.pdf",
+      "sourcePdfPages": 17,
+      "physicalPageCount": 17,
+      "sourceSha256": "b91aa3a0ecd76aa3200dbe756f937cfe096822106c16003e5ae652aa4c45cc8b",
+      "metadata": {
+        "date": null,
+        "volume": 31,
+        "number": 6,
+        "design": "ote-2024"
+      },
+      "pages": [
+        {
+          "pageNumber": 1,
+          "sourcePage": 1,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Archived cover · Christmas photo and stale December labels",
+          "role": "cover"
+        },
+        {
+          "pageNumber": 2,
+          "sourcePage": 2,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 3,
+          "sourcePage": 3,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 4,
+          "sourcePage": 4,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 5,
+          "sourcePage": 5,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Inside the Edge Q&A and board strip",
+          "role": "recurring",
+          "section": "inside-the-edge"
+        },
+        {
+          "pageNumber": 6,
+          "sourcePage": 6,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "President Answers · go-to karaoke song",
+          "role": "recurring",
+          "section": "president-qa"
+        },
+        {
+          "pageNumber": 7,
+          "sourcePage": 7,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 8,
+          "sourcePage": 8,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Wildlife Photo Contest winners · left page",
+          "role": "photo-spread",
+          "section": "editorial",
+          "spreadId": "issue-6-feb-2025-b91aa3a0-wildlife-spread",
+          "spreadSide": "left"
+        },
+        {
+          "pageNumber": 9,
+          "sourcePage": 9,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Wildlife Photo Contest winners · right page",
+          "role": "photo-spread",
+          "section": "editorial",
+          "spreadId": "issue-6-feb-2025-b91aa3a0-wildlife-spread",
+          "spreadSide": "right"
+        },
+        {
+          "pageNumber": 10,
+          "sourcePage": 10,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Handwriting tests · Ahmad",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": false,
+          "notes": "Four handwriting/typeface samples only, not a supplied source article."
+        },
+        {
+          "pageNumber": 11,
+          "sourcePage": 11,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 12,
+          "sourcePage": 12,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 13,
+          "sourcePage": 13,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "CFUR Radio · unfinished contribution with placeholder copy",
+          "role": "contribution",
+          "section": "cfur",
+          "notes": "Draft collage includes placeholder TITLE and lorem-ipsum copy. Preserve as source artwork; do not present placeholder copy as a completed real article."
+        },
+        {
+          "pageNumber": 14,
+          "sourcePage": 14,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 15,
+          "sourcePage": 15,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 16,
+          "sourcePage": 16,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Thirsty Moose Pub · right-half ad",
+          "role": "ad",
+          "adSpots": [
+            {
+              "id": "thirsty-moose",
+              "label": "Thirsty Moose Pub · right-half ad",
+              "rect": [
+                386.6011657714844,
+                65.2486572265625,
+                716.8486328125,
+                752.7434692382812
+              ]
+            }
+          ]
+        },
+        {
+          "pageNumber": 17,
+          "sourcePage": 17,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Write content for Over the Edge · right-half recruitment",
+          "role": "ad",
+          "adSpots": [
+            {
+              "id": "ote-recruitment",
+              "label": "Write content for Over the Edge · right-half recruitment",
+              "rect": [
+                378.38250732421875,
+                64.1849365234375,
+                718.8975830078125,
+                755.9400024414062
+              ]
+            }
+          ]
+        }
+      ],
+      "metadataEvidence": {
+        "date": "unknown; archived cover reuses December 5, 2024",
+        "volume": "cover",
+        "number": "Issue 6 source filename/folder"
+      },
+      "sourceCoverMetadata": {
+        "date": "2024-12-05",
+        "volume": 31,
+        "number": 4
+      },
+      "notes": "Archived issue revision is not a completed February issue: reused December cover, typography tests and CFUR draft. Do not infer a publication day from this stale cover.",
+      "readingPdf": "pdfs/issue-6-feb-2025-b91aa3a0.pdf"
+    },
+    {
+      "id": "issue-7-march-2025-dfcbb959",
+      "label": "March 2025 · Issue 7",
+      "pdf": "originals/issue-7-march-2025-dfcbb959.pdf",
+      "sourcePdfPages": 17,
+      "physicalPageCount": 17,
+      "sourceSha256": "dfcbb959013fdf497118b82621e0d6f233c9755ac67dd5db6155ca2f6fa84727",
+      "metadata": {
+        "date": "2025-03-20",
+        "volume": 31,
+        "number": 7,
+        "design": "ote-2024"
+      },
+      "pages": [
+        {
+          "pageNumber": 1,
+          "sourcePage": 1,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "March 2025 cover",
+          "role": "cover"
+        },
+        {
+          "pageNumber": 2,
+          "sourcePage": 2,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 3,
+          "sourcePage": 3,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 4,
+          "sourcePage": 4,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 5,
+          "sourcePage": 5,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Inside the Edge Q&A and board strip",
+          "role": "recurring",
+          "section": "inside-the-edge"
+        },
+        {
+          "pageNumber": 6,
+          "sourcePage": 6,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "President Answers · pineapple on pizza",
+          "role": "recurring",
+          "section": "president-qa"
+        },
+        {
+          "pageNumber": 7,
+          "sourcePage": 7,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 8,
+          "sourcePage": 8,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 9,
+          "sourcePage": 9,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 10,
+          "sourcePage": 10,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Alumni Profiles · Lindsay Harkness and Tanner Moulton",
+          "role": "contribution",
+          "section": "alumni"
+        },
+        {
+          "pageNumber": 11,
+          "sourcePage": 11,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Unfinished editorial page · small S C O text remnants",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Almost empty source page; retains small partial letters near the middle, not a source article."
+        },
+        {
+          "pageNumber": 12,
+          "sourcePage": 12,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page with small source artwork remnants",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "No article copy; two source image objects are visually unobtrusive within the otherwise blank editorial area."
+        },
+        {
+          "pageNumber": 13,
+          "sourcePage": 13,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "CFUR Radio · four news briefs",
+          "role": "contribution",
+          "section": "cfur"
+        },
+        {
+          "pageNumber": 14,
+          "sourcePage": 14,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 15,
+          "sourcePage": 15,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Blank editorial page",
+          "role": "editorial",
+          "section": "editorial",
+          "blankEditorial": true,
+          "notes": "Blank editorial area with source house header/frame; no source article supplied."
+        },
+        {
+          "pageNumber": 16,
+          "sourcePage": 16,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Thirsty Moose Pub · right-half ad",
+          "role": "ad",
+          "adSpots": [
+            {
+              "id": "thirsty-moose",
+              "label": "Thirsty Moose Pub · right-half ad",
+              "rect": [
+                386.6011657714844,
+                65.2486572265625,
+                716.8486328125,
+                752.7434692382812
+              ]
+            }
+          ]
+        },
+        {
+          "pageNumber": 17,
+          "sourcePage": 17,
+          "sourceRegion": [
+            0,
+            0,
+            756.0,
+            792.0
+          ],
+          "label": "Write content for Over the Edge · right-half recruitment",
+          "role": "ad",
+          "adSpots": [
+            {
+              "id": "ote-recruitment",
+              "label": "Write content for Over the Edge · right-half recruitment",
+              "rect": [
+                378.38250732421875,
+                64.1849365234375,
+                718.8975830078125,
+                755.9400024414062
+              ]
+            }
+          ]
+        }
+      ],
+      "notes": "Source interior datelines are stale September 26, 2024; issue metadata follows the March cover. Source contains blank/uncompleted article areas.",
+      "readingPdf": "pdfs/issue-7-march-2025-dfcbb959.pdf"
+    }
+  ],
+  "notes": "Maps classify visible supplied source content. Blank editorial flags describe missing source articles, not permission to invent copy. Recurring/ad/contribution pages can also contain unfilled article regions. Source cover metadata residue is retained separately where it conflicts with intended issue metadata. Unknown actual publication dates are null."
+}

@@ -8,8 +8,17 @@ import type {
   utilityQueries,
   utilityMutations,
 } from "../convex/operations/utilities";
-type Queries = typeof queries & typeof analytics & typeof utilityQueries;
-type Mutations = typeof mutations & typeof utilityMutations;
+import type {
+  sourceArchiveQueries,
+  sourceArchiveMutations,
+} from "../convex/operations/sourceArchive";
+type Queries = typeof queries &
+  typeof analytics &
+  typeof utilityQueries &
+  typeof sourceArchiveQueries;
+type Mutations = typeof mutations &
+  typeof utilityMutations &
+  typeof sourceArchiveMutations;
 export function connection() {
   const url = process.env.CONVEX_URL || process.env.VITE_CONVEX_URL;
   const secret = process.env.CONVEX_SERVER_SECRET;

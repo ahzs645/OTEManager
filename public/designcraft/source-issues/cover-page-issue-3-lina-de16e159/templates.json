@@ -1,0 +1,4116 @@
+{
+  "schemaVersion": "ote.designcraft.templates.v1",
+  "page": {
+    "width": 756,
+    "height": 792,
+    "margin": 36,
+    "gutter": 12
+  },
+  "provenance": "Reconstructed from the earlier build record and recovered source covers. Not the lost original prototype.",
+  "fontProfile": {
+    "portable": {
+      "headline": "Source Sans 3 Bold",
+      "body": "Source Serif 4 Regular"
+    },
+    "original2025": {
+      "date": "Decalotype Black",
+      "handwritten": "Salted",
+      "references": "Helvetica Neue Bold / Condensed Bold"
+    },
+    "original2024": {
+      "text": "Helvetica Neue / Heavy"
+    },
+    "missingSourceFont": "Salted Regular is bundled with its supplied personal-use-only notice. Helvetica Neue and Decalotype are not bundled."
+  },
+  "templates": [
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p001-artwork",
+      "name": "01 · Unfinished cover · empty crossed photo frame · original artwork",
+      "kind": "cover",
+      "sourceCover": true,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 1,
+        "label": "Unfinished cover · empty crossed photo frame",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Cover retains November 14, 2024 / Issue 3 metadata despite the December print-archive source path."
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p001-art.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p001-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p001-editable",
+      "name": "01 · Unfinished cover · empty crossed photo frame · editable source text",
+      "kind": "cover",
+      "sourceCover": true,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 1,
+        "label": "Unfinished cover · empty crossed photo frame",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p001-background.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p001-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "VOLUME 31 | ISSUE 3"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.7541089739118304,
+                0.08553179345949731,
+                0.8911035123956267,
+                0.104218662146366
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 8.0,
+                "leading": 8.4,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.151694
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-2-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "Where to live, "
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.17594364711216517,
+                0.8175156718552715,
+                0.2929965387576472,
+                0.8442833486229483
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 12.0,
+                "leading": 12.600000000000001,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.0
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-3-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "residence or "
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.17726125162114542,
+                0.8439297916913273,
+                0.29167921681883474,
+                0.8706974684590042
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 12.0,
+                "leading": 12.600000000000001,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 1.0
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-4-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "off-campus?"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.17684272483543115,
+                0.8679196906812263,
+                0.287689285681992,
+                0.8946873674489032
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 12.0,
+                "leading": 12.600000000000001,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 1.0
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-5-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "An introduction to "
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.4806194406337839,
+                0.8180508083767362,
+                0.6241643754262773,
+                0.8448184851444129
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 12.0,
+                "leading": 12.600000000000001,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.0
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-6-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "Over the Edge  "
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.4885791193240534,
+                0.844464928212792,
+                0.6206320061254754,
+                0.8712326049804688
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 12.0,
+                "leading": 12.600000000000001,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 1.0
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-7-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "Newspaper",
+            "line2run1": "3"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.5000421836893395,
+                0.868454827202691,
+                0.6003331744481647,
+                0.8952225039703678
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 12.0,
+                "leading": 12.600000000000001,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 1.0
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.40667260386956433,
+                0.802753564083215,
+                0.5132241869729662,
+                0.9123495236791745
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 53.0,
+                "leading": 55.650000000000006,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 1.080935
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-8-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "N O V E M B E R "
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.815237943457548,
+                0.11035679325912938,
+                0.9483258444165426,
+                0.13712447002680614
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 12.0,
+                "leading": 12.600000000000001,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 0.931321
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-9-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "T H U R S D A Y ",
+            "line2run1": "14",
+            "line2run2": " 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.8152381049262153,
+                0.15852700821076982,
+                0.9412577957072585,
+                0.18529468497844656
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 12.0,
+                "leading": 12.600000000000001,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 0.900558
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.7148675666284309,
+                0.09660571512549815,
+                0.871894037155878,
+                0.21226228078206383
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 56.0,
+                "leading": 58.800000000000004,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 1.205617
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run2",
+              "rect": [
+                0.8039046191664599,
+                0.13049671866677023,
+                0.8934736625227349,
+                0.18055268489953244
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Medium",
+                "size": 19.0,
+                "leading": 19.95,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "SemiBold",
+                  "chars": {
+                    "hScale": 1.063655
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-10-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "In search of the "
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.8146631957361938,
+                0.8175156718552715,
+                0.9440969800192212,
+                0.8442833486229483
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 12.0,
+                "leading": 12.600000000000001,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 0.999999
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-11-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "best chicken \n"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.8212899505776703,
+                0.8439297916913273,
+                0.9418816299034805,
+                0.8706974684590042
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 12.0,
+                "leading": 12.600000000000001,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 1.043867
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-12-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "tenders",
+            "line1run2": " in town",
+            "line2run1": "12",
+            "line3run1": "5"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.8133495673931465,
+                0.8679196906812263,
+                0.8862912778501156,
+                0.8946873674489032
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Bold",
+                "size": 12.0,
+                "leading": 12.600000000000001,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold",
+                  "chars": {
+                    "hScale": 0.999998
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line1run2",
+              "rect": [
+                0.8706877370360037,
+                0.8654954698350694,
+                0.9409946017795139,
+                0.8922631466027463
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 12.0,
+                "leading": 12.600000000000001,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.0
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.71181072255291,
+                0.8022183504971591,
+                0.8604959800760582,
+                0.9118143100931186
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 53.0,
+                "leading": 55.650000000000006,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 1.289701
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line3run1",
+              "rect": [
+                0.09439153519887773,
+                0.8039400505297112,
+                0.20094311830227968,
+                0.9135360101256708
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 53.0,
+                "leading": 55.650000000000006,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 1.082883
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p002-artwork",
+      "name": "02 · Blank editorial page · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 2,
+        "label": "Blank editorial page",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Blank editorial area with source house header/frame; no source article supplied."
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p002-art.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p002-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p002-editable",
+      "name": "02 · Blank editorial page · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 2,
+        "label": "Blank editorial page",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p002-background.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p002-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "THURSDAY, SEPTEMBER 26, 2024",
+            "line3run1": "SEPTEMBER 26, 2024 | VOLUME 30 | ISSUE 1"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.0540723548364387,
+                0.05904345560555506,
+                0.07550601391565231,
+                0.08243476886941929
+              ],
+              "style": {
+                "fontFamily": "GillSans",
+                "fontStyle": "Bold Italic",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold Italic",
+                  "chars": {
+                    "hScale": 0.792244
+                  }
+                },
+                "chars": {
+                  "fill": "Source 006f54"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.3169362507169209,
+                0.059151485712841304,
+                0.5286715472186053,
+                0.07783835439970999
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 8.0,
+                "leading": 8.4,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.151884
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line3run1",
+              "rect": [
+                0.6950420399822256,
+                0.057322083097515686,
+                0.9502934370091353,
+                0.07802915380458639
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 9.0,
+                "leading": 9.450000000000001,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 0.953871
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p003-artwork",
+      "name": "03 · Blank editorial page · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 3,
+        "label": "Blank editorial page",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Blank editorial area with source house header/frame; no source article supplied."
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p003-art.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p003-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p003-editable",
+      "name": "03 · Blank editorial page · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 3,
+        "label": "Blank editorial page",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p003-background.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p003-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "THURSDAY, SEPTEMBER 26, 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.9337317249762318,
+                0.05674161333026308,
+                0.9551653891013412,
+                0.08013292659412731
+              ],
+              "style": {
+                "fontFamily": "GillSans",
+                "fontStyle": "Bold Italic",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold Italic",
+                  "chars": {
+                    "hScale": 0.792244
+                  }
+                },
+                "chars": {
+                  "fill": "Source 006f54"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.4788502688130374,
+                0.05914038841170494,
+                0.6905855854983052,
+                0.07782725709857362
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 8.0,
+                "leading": 8.4,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.151884
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p004-artwork",
+      "name": "04 · Blank editorial page · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 4,
+        "label": "Blank editorial page",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Blank editorial area with source house header/frame; no source article supplied."
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p004-art.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p004-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p004-editable",
+      "name": "04 · Blank editorial page · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 4,
+        "label": "Blank editorial page",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p004-background.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p004-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "THURSDAY, SEPTEMBER 26, 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.0540723548364387,
+                0.05904345560555506,
+                0.07550601391565231,
+                0.08243476886941929
+              ],
+              "style": {
+                "fontFamily": "GillSans",
+                "fontStyle": "Bold Italic",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold Italic",
+                  "chars": {
+                    "hScale": 0.792244
+                  }
+                },
+                "chars": {
+                  "fill": "Source 006f54"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.3169362507169209,
+                0.059151485712841304,
+                0.5286715472186053,
+                0.07783835439970999
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 8.0,
+                "leading": 8.4,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.151884
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p005-artwork",
+      "name": "05 · Over the Edge board strip · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 5,
+        "label": "Over the Edge board strip",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": ""
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p005-art.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p005-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p005-editable",
+      "name": "05 · Over the Edge board strip · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 5,
+        "label": "Over the Edge board strip",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p005-background.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p005-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-5-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "THURSDAY, SEPTEMBER 26, 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.9337317249762318,
+                0.05674161333026308,
+                0.9551653891013412,
+                0.08013292659412731
+              ],
+              "style": {
+                "fontFamily": "GillSans",
+                "fontStyle": "Bold Italic",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold Italic",
+                  "chars": {
+                    "hScale": 0.792244
+                  }
+                },
+                "chars": {
+                  "fill": "Source 006f54"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.4788502688130374,
+                0.05914038841170494,
+                0.6905855854983052,
+                0.07782725709857362
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 8.0,
+                "leading": 8.4,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.151884
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p006-artwork",
+      "name": "06 · President Answers · horoscopes · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 6,
+        "label": "President Answers · horoscopes",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": ""
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p006-art.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p006-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p006-editable",
+      "name": "06 · President Answers · horoscopes · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 6,
+        "label": "President Answers · horoscopes",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p006-background.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p006-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "THURSDAY, SEPTEMBER 26, 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.0540723548364387,
+                0.05904345560555506,
+                0.07550601391565231,
+                0.08243476886941929
+              ],
+              "style": {
+                "fontFamily": "GillSans",
+                "fontStyle": "Bold Italic",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold Italic",
+                  "chars": {
+                    "hScale": 0.792244
+                  }
+                },
+                "chars": {
+                  "fill": "Source 006f54"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.3169362507169209,
+                0.059151485712841304,
+                0.5286715472186053,
+                0.07783835439970999
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 8.0,
+                "leading": 8.4,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.151884
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-7-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "President  Answers"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.6013654678586929,
+                0.507360207914102,
+                0.8643680148654513,
+                0.5502895008433949
+              ],
+              "style": {
+                "fontFamily": "Decalotype",
+                "fontStyle": "Black",
+                "size": 20.0,
+                "leading": 21.0,
+                "portable": {
+                  "fontFamily": "Barlow",
+                  "fontStyle": "Black",
+                  "chars": {
+                    "hScale": 1.013812
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-8-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "Getting the Answers You Crave: We Ask, the "
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.5631859592659764,
+                0.5447237419359612,
+                0.8974420618127893,
+                0.571491418703638
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 12.0,
+                "leading": 12.600000000000001,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 0.992279
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-text-9-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "President Delivers!"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.6543124163592303,
+                0.5629055524113202,
+                0.8019049266028025,
+                0.589673229178997
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 12.0,
+                "leading": 12.600000000000001,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 0.990942
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-president-prompt",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "prompt": "Do you believe in horoscopes?"
+          },
+          "contentLayout": [
+            {
+              "field": "prompt",
+              "rect": [
+                0.548941798941799,
+                0.696969696969697,
+                0.7566137566137566,
+                0.7828282828282829
+              ],
+              "style": {
+                "fontFamily": "Minion Pro",
+                "fontStyle": "Regular",
+                "size": 15.0,
+                "leading": 15.75,
+                "portable": {
+                  "fontFamily": "Source Serif 4",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 0.909388
+                  }
+                },
+                "chars": {
+                  "fill": "Source 231f20"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0,
+                  "align": "center"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-president-response",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "response": "Horoscopes are not something I typically follow but do not discount for those that see value in them"
+          },
+          "contentLayout": [
+            {
+              "field": "response",
+              "rect": [
+                0.6349206349206349,
+                0.7954545454545454,
+                0.9325396825396826,
+                0.8964646464646465
+              ],
+              "style": {
+                "fontFamily": "Minion Pro",
+                "fontStyle": "Regular",
+                "size": 14.0,
+                "leading": 14.700000000000001,
+                "portable": {
+                  "fontFamily": "Source Serif 4",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 0.892686
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0,
+                  "align": "center"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p007-artwork",
+      "name": "07 · Blank editorial page · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 7,
+        "label": "Blank editorial page",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Blank editorial area with source house header/frame; no source article supplied."
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p007-art.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p007-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p007-editable",
+      "name": "07 · Blank editorial page · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 7,
+        "label": "Blank editorial page",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p007-background.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p007-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "THURSDAY, SEPTEMBER 26, 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.9337317249762318,
+                0.05674161333026308,
+                0.9551653891013412,
+                0.08013292659412731
+              ],
+              "style": {
+                "fontFamily": "GillSans",
+                "fontStyle": "Bold Italic",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold Italic",
+                  "chars": {
+                    "hScale": 0.792244
+                  }
+                },
+                "chars": {
+                  "fill": "Source 006f54"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.4788502688130374,
+                0.05914038841170494,
+                0.6905855854983052,
+                0.07782725709857362
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 8.0,
+                "leading": 8.4,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.151884
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p008-artwork",
+      "name": "08 · Blank editorial page · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 8,
+        "label": "Blank editorial page",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Blank editorial area with source house header/frame; no source article supplied."
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p008-art.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p008-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p008-editable",
+      "name": "08 · Blank editorial page · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 8,
+        "label": "Blank editorial page",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p008-background.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p008-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "THURSDAY, SEPTEMBER 26, 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.0540723548364387,
+                0.05904345560555506,
+                0.07550601391565231,
+                0.08243476886941929
+              ],
+              "style": {
+                "fontFamily": "GillSans",
+                "fontStyle": "Bold Italic",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold Italic",
+                  "chars": {
+                    "hScale": 0.792244
+                  }
+                },
+                "chars": {
+                  "fill": "Source 006f54"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.3169362507169209,
+                0.059151485712841304,
+                0.5286715472186053,
+                0.07783835439970999
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 8.0,
+                "leading": 8.4,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.151884
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p009-artwork",
+      "name": "09 · Blank editorial page with Wildlife Society logo · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 9,
+        "label": "Blank editorial page with Wildlife Society logo",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Only a small Wildlife Society logo in the lower-right region; no photo-contest article or winners supplied on this page."
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p009-art.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p009-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p009-editable",
+      "name": "09 · Blank editorial page with Wildlife Society logo · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 9,
+        "label": "Blank editorial page with Wildlife Society logo",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p009-background.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p009-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-3-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "THURSDAY, SEPTEMBER 26, 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.9337317249762318,
+                0.05674161333026308,
+                0.9551653891013412,
+                0.08013292659412731
+              ],
+              "style": {
+                "fontFamily": "GillSans",
+                "fontStyle": "Bold Italic",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold Italic",
+                  "chars": {
+                    "hScale": 0.792244
+                  }
+                },
+                "chars": {
+                  "fill": "Source 006f54"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.4788502688130374,
+                0.05914038841170494,
+                0.6905855854983052,
+                0.07782725709857362
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 8.0,
+                "leading": 8.4,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.151884
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p010-artwork",
+      "name": "10 · Blank editorial page · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 10,
+        "label": "Blank editorial page",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Blank editorial area with source house header/frame; no source article supplied."
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p010-art.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p010-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p010-editable",
+      "name": "10 · Blank editorial page · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 10,
+        "label": "Blank editorial page",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p010-background.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p010-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "THURSDAY, SEPTEMBER 26, 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.0540723548364387,
+                0.05904345560555506,
+                0.07550601391565231,
+                0.08243476886941929
+              ],
+              "style": {
+                "fontFamily": "GillSans",
+                "fontStyle": "Bold Italic",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold Italic",
+                  "chars": {
+                    "hScale": 0.792244
+                  }
+                },
+                "chars": {
+                  "fill": "Source 006f54"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.3169362507169209,
+                0.059151485712841304,
+                0.5286715472186053,
+                0.07783835439970999
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 8.0,
+                "leading": 8.4,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.151884
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p011-artwork",
+      "name": "11 · Blank editorial page · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 11,
+        "label": "Blank editorial page",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Blank editorial area with source house header/frame; no source article supplied."
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p011-art.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p011-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p011-editable",
+      "name": "11 · Blank editorial page · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 11,
+        "label": "Blank editorial page",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p011-background.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p011-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "THURSDAY, SEPTEMBER 26, 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.9337317249762318,
+                0.05674161333026308,
+                0.9551653891013412,
+                0.08013292659412731
+              ],
+              "style": {
+                "fontFamily": "GillSans",
+                "fontStyle": "Bold Italic",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold Italic",
+                  "chars": {
+                    "hScale": 0.792244
+                  }
+                },
+                "chars": {
+                  "fill": "Source 006f54"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.4788502688130374,
+                0.05914038841170494,
+                0.6905855854983052,
+                0.07782725709857362
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 8.0,
+                "leading": 8.4,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.151884
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p012-artwork",
+      "name": "12 · Blank editorial page · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 12,
+        "label": "Blank editorial page",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Blank editorial area with source house header/frame; no source article supplied."
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p012-art.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p012-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p012-editable",
+      "name": "12 · Blank editorial page · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 12,
+        "label": "Blank editorial page",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p012-background.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p012-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "THURSDAY, SEPTEMBER 26, 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.0540723548364387,
+                0.05904345560555506,
+                0.07550601391565231,
+                0.08243476886941929
+              ],
+              "style": {
+                "fontFamily": "GillSans",
+                "fontStyle": "Bold Italic",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold Italic",
+                  "chars": {
+                    "hScale": 0.792244
+                  }
+                },
+                "chars": {
+                  "fill": "Source 006f54"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.3169362507169209,
+                0.059151485712841304,
+                0.5286715472186053,
+                0.07783835439970999
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 8.0,
+                "leading": 8.4,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.151884
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p013-artwork",
+      "name": "13 · CFUR Radio · bottom-right quarter recruitment ad · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 13,
+        "label": "CFUR Radio · bottom-right quarter recruitment ad",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": ""
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p013-art.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p013-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p013-editable",
+      "name": "13 · CFUR Radio · bottom-right quarter recruitment ad · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 13,
+        "label": "CFUR Radio · bottom-right quarter recruitment ad",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p013-background.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p013-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "THURSDAY, SEPTEMBER 26, 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.9337317249762318,
+                0.05674161333026308,
+                0.9551653891013412,
+                0.08013292659412731
+              ],
+              "style": {
+                "fontFamily": "GillSans",
+                "fontStyle": "Bold Italic",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold Italic",
+                  "chars": {
+                    "hScale": 0.792244
+                  }
+                },
+                "chars": {
+                  "fill": "Source 006f54"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.4788502688130374,
+                0.05914038841170494,
+                0.6905855854983052,
+                0.07782725709857362
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 8.0,
+                "leading": 8.4,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.151884
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-ad-cfur-radio-promo",
+          "role": "ad",
+          "rect": [
+            376.52001953125,
+            411.9599914550781,
+            716.756591796875,
+            752.1965942382812
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p013-ad-cfur-radio-promo.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p013-ad-cfur-radio-promo.png",
+          "fit": "contain",
+          "source": {
+            "id": "cfur-radio-promo",
+            "label": "CFUR Radio · bottom-right quarter recruitment ad",
+            "rect": [
+              376.52001953125,
+              411.9599914550781,
+              716.756591796875,
+              752.1965942382812
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p014-artwork",
+      "name": "14 · Blank editorial page · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 14,
+        "label": "Blank editorial page",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Blank editorial area with source house header/frame; no source article supplied."
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p014-art.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p014-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p014-editable",
+      "name": "14 · Blank editorial page · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 14,
+        "label": "Blank editorial page",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p014-background.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p014-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "THURSDAY, SEPTEMBER 26, 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.0540723548364387,
+                0.05904345560555506,
+                0.07550601391565231,
+                0.08243476886941929
+              ],
+              "style": {
+                "fontFamily": "GillSans",
+                "fontStyle": "Bold Italic",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold Italic",
+                  "chars": {
+                    "hScale": 0.792244
+                  }
+                },
+                "chars": {
+                  "fill": "Source 006f54"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.3169362507169209,
+                0.059151485712841304,
+                0.5286715472186053,
+                0.07783835439970999
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 8.0,
+                "leading": 8.4,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.151884
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p015-artwork",
+      "name": "15 · Blank editorial page · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 15,
+        "label": "Blank editorial page",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Blank editorial area with source house header/frame; no source article supplied."
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p015-art.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p015-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p015-editable",
+      "name": "15 · Blank editorial page · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 15,
+        "label": "Blank editorial page",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p015-background.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p015-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "THURSDAY, SEPTEMBER 26, 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.9337317249762318,
+                0.05674161333026308,
+                0.9551653891013412,
+                0.08013292659412731
+              ],
+              "style": {
+                "fontFamily": "GillSans",
+                "fontStyle": "Bold Italic",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold Italic",
+                  "chars": {
+                    "hScale": 0.792244
+                  }
+                },
+                "chars": {
+                  "fill": "Source 006f54"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.4788502688130374,
+                0.05914038841170494,
+                0.6905855854983052,
+                0.07782725709857362
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 8.0,
+                "leading": 8.4,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.151884
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p016-artwork",
+      "name": "16 · Thirsty Moose Pub · right-half ad · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 16,
+        "label": "Thirsty Moose Pub · right-half ad",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": ""
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p016-art.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p016-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p016-editable",
+      "name": "16 · Thirsty Moose Pub · right-half ad · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 16,
+        "label": "Thirsty Moose Pub · right-half ad",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p016-background.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p016-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-1-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "THURSDAY, SEPTEMBER 26, 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.0540723548364387,
+                0.05904345560555506,
+                0.07550601391565231,
+                0.08243476886941929
+              ],
+              "style": {
+                "fontFamily": "GillSans",
+                "fontStyle": "Bold Italic",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold Italic",
+                  "chars": {
+                    "hScale": 0.792244
+                  }
+                },
+                "chars": {
+                  "fill": "Source 006f54"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.3169362507169209,
+                0.059151485712841304,
+                0.5286715472186053,
+                0.07783835439970999
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 8.0,
+                "leading": 8.4,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.151884
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-ad-thirsty-moose",
+          "role": "ad",
+          "rect": [
+            386.6011657714844,
+            65.2486572265625,
+            716.8486328125,
+            752.7434692382812
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p016-ad-thirsty-moose.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p016-ad-thirsty-moose.png",
+          "fit": "contain",
+          "source": {
+            "id": "thirsty-moose",
+            "label": "Thirsty Moose Pub · right-half ad",
+            "rect": [
+              386.6011657714844,
+              65.2486572265625,
+              716.8486328125,
+              752.7434692382812
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p017-artwork",
+      "name": "17 · Write content for Over the Edge · full-page recruitment · original artwork",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 17,
+        "label": "Write content for Over the Edge · full-page recruitment",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": ""
+      },
+      "slots": [
+        {
+          "id": "source-page-artwork",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p017-art.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p017-art.png",
+          "fit": "contain"
+        }
+      ]
+    },
+    {
+      "id": "whole-cover-page-issue-3-lina-de16e159-p017-editable",
+      "name": "17 · Write content for Over the Edge · full-page recruitment · editable source text",
+      "kind": "custom",
+      "sourceCover": false,
+      "storyCount": 0,
+      "photoCount": 0,
+      "design": "ote-2024",
+      "source": {
+        "documentId": "cover-page-issue-3-lina-de16e159",
+        "pdf": "originals/cover-page-issue-3-lina-de16e159.pdf",
+        "page": 17,
+        "label": "Write content for Over the Edge · full-page recruitment",
+        "sha256": "de16e159b5128e06c256e77e69e3d9c2a42a1f1e1a55fe2fb3f7134562248414",
+        "notes": "Supported source text is rebuilt as native editable regions; original graphics and rotated lettering remain artwork. Measured advertisement frames are separate replaceable artwork."
+      },
+      "slots": [
+        {
+          "id": "source-page-graphics",
+          "role": "piece",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p017-background.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p017-background.png",
+          "fit": "contain"
+        },
+        {
+          "id": "source-text-2-1",
+          "role": "piece",
+          "blockType": "source-text",
+          "rect": [
+            0,
+            0,
+            756,
+            792
+          ],
+          "fields": {
+            "line1run1": "A",
+            "line2run1": "THURSDAY, SEPTEMBER 26, 2024"
+          },
+          "contentLayout": [
+            {
+              "field": "line1run1",
+              "rect": [
+                0.9337317249762318,
+                0.05674161333026308,
+                0.9551653891013412,
+                0.08013292659412731
+              ],
+              "style": {
+                "fontFamily": "GillSans",
+                "fontStyle": "Bold Italic",
+                "size": 10.328700065612793,
+                "leading": 10.845135068893432,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Bold Italic",
+                  "chars": {
+                    "hScale": 0.792244
+                  }
+                },
+                "chars": {
+                  "fill": "Source 006f54"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            },
+            {
+              "field": "line2run1",
+              "rect": [
+                0.4788502688130374,
+                0.05914038841170494,
+                0.6905855854983052,
+                0.07782725709857362
+              ],
+              "style": {
+                "fontFamily": "Helvetica Neue",
+                "fontStyle": "Regular",
+                "size": 8.0,
+                "leading": 8.4,
+                "portable": {
+                  "fontFamily": "TeX Gyre Heros",
+                  "fontStyle": "Regular",
+                  "chars": {
+                    "hScale": 1.151884
+                  }
+                },
+                "chars": {
+                  "fill": "Source ffffff"
+                },
+                "para": {
+                  "hyphenate": false,
+                  "spaceAfter": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "source-ad-ote-recruitment",
+          "role": "ad",
+          "rect": [
+            35.76458740234375,
+            64.47802734375,
+            718.8685913085938,
+            754.9714965820312
+          ],
+          "asset": "source-art/whole-cover-page-issue-3-lina-de16e159-p017-ad-ote-recruitment.pdf",
+          "previewAsset": "source-art/whole-cover-page-issue-3-lina-de16e159-p017-ad-ote-recruitment.png",
+          "fit": "contain",
+          "source": {
+            "id": "ote-recruitment",
+            "label": "Write content for Over the Edge · full-page recruitment",
+            "rect": [
+              35.76458740234375,
+              64.47802734375,
+              718.8685913085938,
+              754.9714965820312
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "designs": {
+    "ote-2024": {
+      "name": "OTE 2024–25",
+      "description": "Fall 2024 – Winter 2025 design, from Issue 7 (March 2025): green header bar, solid frame, masthead cover with numbered feature boxes.",
+      "source": "Indesign Template/Fall 2024- Winter 2025/Issue 7 March 2025/Issue 7 March 2025 Folder/Issue 7 March 2025.idml",
+      "numbering": "arabic",
+      "art": {
+        "left": {
+          "original": "original-art/ote-2024-left.designcraft",
+          "portable": "original-art/ote-2024-left-portable.designcraft"
+        },
+        "right": {
+          "original": "original-art/ote-2024-right.designcraft",
+          "portable": "original-art/ote-2024-right-portable.designcraft"
+        },
+        "cover": {
+          "original": "original-art/ote-2024-cover.designcraft",
+          "portable": "original-art/ote-2024-cover-portable.designcraft"
+        }
+      },
+      "styles": {
+        "OTE Headline": {
+          "fontFamily": "Decalotype",
+          "fontStyle": "Black",
+          "size": 24,
+          "leading": 25
+        },
+        "OTE Body": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Regular",
+          "size": 10,
+          "leading": 15
+        },
+        "OTE Byline": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 8,
+          "leading": 11,
+          "chars": {
+            "tracking": 60,
+            "capitalization": "allCaps",
+            "fill": "OTE 2024 Green"
+          }
+        },
+        "OTE Caption": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Italic",
+          "size": 8,
+          "leading": 10
+        },
+        "OTE Label": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 12,
+          "leading": 15
+        },
+        "OTE Quote": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Italic",
+          "size": 10,
+          "leading": 15
+        },
+        "OTE Heading 1": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 18,
+          "leading": 21.599999999999998
+        },
+        "OTE Heading 2": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 16,
+          "leading": 19.2
+        },
+        "OTE Heading 3": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 14,
+          "leading": 16.8
+        },
+        "OTE Heading 4": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 12,
+          "leading": 14.399999999999999
+        },
+        "OTE Heading 5": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 11,
+          "leading": 13.2
+        },
+        "OTE Heading 6": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 10,
+          "leading": 12
+        }
+      },
+      "fonts": {
+        "portable": {
+          "Helvetica Neue|Regular": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue|Bold": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue|Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue|Bold Italic": [
+            "TeX Gyre Heros",
+            "Bold Italic"
+          ],
+          "Helvetica Neue|Medium": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue|Medium Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue|Light": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue|Heavy": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue|Oblique": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue|Condensed Black": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica Neue|Condensed Bold": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica Neue (TT)|Regular": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (TT)|Bold": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue (TT)|Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (TT)|Bold Italic": [
+            "TeX Gyre Heros",
+            "Bold Italic"
+          ],
+          "Helvetica Neue (TT)|Medium": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (TT)|Medium Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (TT)|Light": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (TT)|Heavy": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue (TT)|Oblique": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (TT)|Condensed Black": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica Neue (TT)|Condensed Bold": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica Neue (OTF)|Regular": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (OTF)|Bold": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue (OTF)|Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (OTF)|Bold Italic": [
+            "TeX Gyre Heros",
+            "Bold Italic"
+          ],
+          "Helvetica Neue (OTF)|Medium": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (OTF)|Medium Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (OTF)|Light": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (OTF)|Heavy": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue (OTF)|Oblique": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (OTF)|Condensed Black": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica Neue (OTF)|Condensed Bold": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica|Regular": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica|Bold": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica|Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica|Bold Italic": [
+            "TeX Gyre Heros",
+            "Bold Italic"
+          ],
+          "Helvetica|Medium": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica|Medium Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica|Light": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica|Heavy": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica|Oblique": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica|Condensed Black": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica|Condensed Bold": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Decalotype|Black": [
+            "Barlow",
+            "Black"
+          ],
+          "Decalotype|Bold": [
+            "Barlow",
+            "ExtraBold"
+          ],
+          "Decalotype|Medium": [
+            "Barlow",
+            "SemiBold"
+          ],
+          "Salted|Regular": [
+            "Caveat Brush",
+            "Regular"
+          ],
+          "Wordy Diva|Regular": [
+            "Caveat Brush",
+            "Regular"
+          ],
+          "Kefa|Regular": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Kefa|Bold": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Minion Pro|Regular": [
+            "Source Serif 4",
+            "Regular"
+          ]
+        }
+      },
+      "swatches": [
+        {
+          "name": "OTE 2024 Green",
+          "color": {
+            "model": "rgb",
+            "r": 0.17647058823529413,
+            "g": 0.40784313725490196,
+            "b": 0.3254901960784314
+          }
+        },
+        {
+          "name": "C=0 M=0 Y=0 K=0",
+          "color": {
+            "model": "cmyk",
+            "c": 0,
+            "m": 0,
+            "y": 0,
+            "k": 0
+          }
+        },
+        {
+          "name": "Source ffffff",
+          "color": {
+            "model": "rgb",
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          }
+        },
+        {
+          "name": "Source 006f54",
+          "color": {
+            "model": "rgb",
+            "r": 0.0,
+            "g": 0.43529411764705883,
+            "b": 0.32941176470588235
+          }
+        },
+        {
+          "name": "Source 231f20",
+          "color": {
+            "model": "rgb",
+            "r": 0.13725490196078433,
+            "g": 0.12156862745098039,
+            "b": 0.12549019607843137
+          }
+        }
+      ],
+      "content": [
+        49.02,
+        73.98,
+        706.4,
+        743.94
+      ]
+    },
+    "ote-2025": {
+      "name": "OTE 2025–26",
+      "description": "2025 – 2026 design, from Issue 2 (October 2025): dark green header bar, dashed frame, framed-photo cover with handwritten issue line and numbered feature list.",
+      "source": "Indesign Template/2025-2026 Ahmad's Version/Issue 2/Issue 2 October 2025 Folder/Issue 2 October 2025.idml",
+      "numbering": "arabicLeadingZero",
+      "art": {
+        "left": {
+          "original": "original-art/ote-2025-left.designcraft",
+          "portable": "original-art/ote-2025-left-portable.designcraft"
+        },
+        "right": {
+          "original": "original-art/ote-2025-right.designcraft",
+          "portable": "original-art/ote-2025-right-portable.designcraft"
+        },
+        "cover": {
+          "original": "original-art/ote-2025-cover.designcraft",
+          "portable": "original-art/ote-2025-cover-portable.designcraft",
+          "over": {
+            "original": "original-art/ote-2025-cover-over.designcraft",
+            "portable": "original-art/ote-2025-cover-over-portable.designcraft"
+          }
+        }
+      },
+      "styles": {
+        "OTE Headline": {
+          "fontFamily": "Decalotype",
+          "fontStyle": "Black",
+          "size": 24,
+          "leading": 25
+        },
+        "OTE Body": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Medium",
+          "size": 9.5,
+          "leading": 14.5
+        },
+        "OTE Byline": {
+          "fontFamily": "Salted",
+          "fontStyle": "Regular",
+          "size": 13,
+          "leading": 14,
+          "chars": {
+            "fill": "OTE 2025 Ink Green"
+          }
+        },
+        "OTE Caption": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Medium Italic",
+          "size": 8,
+          "leading": 11
+        },
+        "OTE Label": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 12,
+          "leading": 15
+        },
+        "OTE Quote": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Medium Italic",
+          "size": 10,
+          "leading": 15
+        },
+        "OTE Heading 1": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 18,
+          "leading": 21.599999999999998
+        },
+        "OTE Heading 2": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 16,
+          "leading": 19.2
+        },
+        "OTE Heading 3": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 14,
+          "leading": 16.8
+        },
+        "OTE Heading 4": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 12,
+          "leading": 14.399999999999999
+        },
+        "OTE Heading 5": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 11,
+          "leading": 13.2
+        },
+        "OTE Heading 6": {
+          "fontFamily": "Helvetica Neue",
+          "fontStyle": "Bold",
+          "size": 10,
+          "leading": 12
+        }
+      },
+      "fonts": {
+        "portable": {
+          "Helvetica Neue|Regular": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue|Bold": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue|Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue|Bold Italic": [
+            "TeX Gyre Heros",
+            "Bold Italic"
+          ],
+          "Helvetica Neue|Medium": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue|Medium Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue|Light": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue|Heavy": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue|Oblique": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue|Condensed Black": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica Neue|Condensed Bold": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica Neue (TT)|Regular": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (TT)|Bold": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue (TT)|Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (TT)|Bold Italic": [
+            "TeX Gyre Heros",
+            "Bold Italic"
+          ],
+          "Helvetica Neue (TT)|Medium": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (TT)|Medium Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (TT)|Light": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (TT)|Heavy": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue (TT)|Oblique": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (TT)|Condensed Black": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica Neue (TT)|Condensed Bold": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica Neue (OTF)|Regular": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (OTF)|Bold": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue (OTF)|Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (OTF)|Bold Italic": [
+            "TeX Gyre Heros",
+            "Bold Italic"
+          ],
+          "Helvetica Neue (OTF)|Medium": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (OTF)|Medium Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (OTF)|Light": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica Neue (OTF)|Heavy": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica Neue (OTF)|Oblique": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica Neue (OTF)|Condensed Black": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica Neue (OTF)|Condensed Bold": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica|Regular": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica|Bold": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica|Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica|Bold Italic": [
+            "TeX Gyre Heros",
+            "Bold Italic"
+          ],
+          "Helvetica|Medium": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica|Medium Italic": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica|Light": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Helvetica|Heavy": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Helvetica|Oblique": [
+            "TeX Gyre Heros",
+            "Italic"
+          ],
+          "Helvetica|Condensed Black": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Helvetica|Condensed Bold": [
+            "TeX Gyre Heros Cn",
+            "Bold"
+          ],
+          "Decalotype|Black": [
+            "Barlow",
+            "Black"
+          ],
+          "Decalotype|Bold": [
+            "Barlow",
+            "ExtraBold"
+          ],
+          "Decalotype|Medium": [
+            "Barlow",
+            "SemiBold"
+          ],
+          "Salted|Regular": [
+            "Caveat Brush",
+            "Regular"
+          ],
+          "Wordy Diva|Regular": [
+            "Caveat Brush",
+            "Regular"
+          ],
+          "Kefa|Regular": [
+            "TeX Gyre Heros",
+            "Regular"
+          ],
+          "Kefa|Bold": [
+            "TeX Gyre Heros",
+            "Bold"
+          ],
+          "Minion Pro|Regular": [
+            "Source Serif 4",
+            "Regular"
+          ]
+        }
+      },
+      "swatches": [
+        {
+          "name": "OTE 2025 Green",
+          "color": {
+            "model": "rgb",
+            "r": 0.08235294117647059,
+            "g": 0.3254901960784314,
+            "b": 0.1607843137254902
+          }
+        },
+        {
+          "name": "OTE 2025 Ink Green",
+          "color": {
+            "model": "cmyk",
+            "c": 0.87,
+            "m": 0.4,
+            "y": 0.99,
+            "k": 0.41
+          }
+        },
+        {
+          "name": "R=255 G=251 B=242",
+          "color": {
+            "model": "rgb",
+            "r": 1,
+            "g": 0.98333335,
+            "b": 0.95
+          }
+        },
+        {
+          "name": "C=81 M=42 Y=91 K=41",
+          "color": {
+            "model": "cmyk",
+            "c": 0.81,
+            "m": 0.42,
+            "y": 0.91,
+            "k": 0.41
+          }
+        },
+        {
+          "name": "C=0 M=1 Y=4 K=0",
+          "color": {
+            "model": "cmyk",
+            "c": 0,
+            "m": 0.01,
+            "y": 0.04,
+            "k": 0
+          }
+        },
+        {
+          "name": "R=0 G=0 B=0",
+          "color": {
+            "model": "rgb",
+            "r": 0,
+            "g": 0,
+            "b": 0
+          }
+        },
+        {
+          "name": "Source ffffff",
+          "color": {
+            "model": "rgb",
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          }
+        },
+        {
+          "name": "Source 006f54",
+          "color": {
+            "model": "rgb",
+            "r": 0.0,
+            "g": 0.43529411764705883,
+            "b": 0.32941176470588235
+          }
+        },
+        {
+          "name": "Source 231f20",
+          "color": {
+            "model": "rgb",
+            "r": 0.13725490196078433,
+            "g": 0.12156862745098039,
+            "b": 0.12549019607843137
+          }
+        }
+      ],
+      "content": [
+        49.02,
+        66.33,
+        706.4,
+        743.94
+      ]
+    }
+  }
+}

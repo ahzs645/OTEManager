@@ -1,0 +1,45 @@
+{
+  "verifiedAt": "2026-10-22T22:49:28.085562+00:00",
+  "fullTestSuite": {
+    "passed": 310,
+    "skipped": 3,
+    "skipReason": "Optional external native CLI checks; WASM engine verification passed.",
+    "log": "/tmp/ote-source-final-tests.log"
+  },
+  "finalExportAndImportTests": {
+    "passed": 12,
+    "files": [
+      "tests/designcraft-export-selection.test.ts",
+      "tests/source-archive-display.test.ts",
+      "tests/source-archive-assets.test.ts"
+    ]
+  },
+  "typecheck": {
+    "app": true,
+    "convex": true
+  },
+  "finalProductionBuild": true,
+  "localBrowser": {
+    "sourceDocuments": 9,
+    "publicationEditions": 7,
+    "articles": 100,
+    "repeatCreates": 0,
+    "conflicts": 0,
+    "browserErrors": 0,
+    "missingBodies": 55,
+    "actualPortraits": 2
+  },
+  "driveFilesReadBack": 37,
+  "productionDeploymentPerformed": false,
+  "builtStaticMatchesPublished": true,
+  "prePushVerification": {
+    "verifiedAt": "2026-10-22T22:58:38.799549+00:00",
+    "fullTestSuite": {
+      "passed": 312,
+      "skipped": 3,
+      "testFiles": 31
+    },
+    "skillMetadataValidated": true,
+    "stagedPrivateInputPathsExcluded": true
+  }
+}

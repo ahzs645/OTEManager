@@ -7,7 +7,8 @@
 //   @out:<name>     an export collected by the executor
 import { composeSource, utf8Length } from './markdown-story.js';
 import { resolveCover, resolveFields } from './cover-fields.js';
-import { IDENTITY, clone, deepEqual, interchangeMetadata, readNative, sha256Hex, writeNative } from './native-doc.js';
+import { IDENTITY, clone, deepEqual, interchangeMetadata, readNative, sha256Hex, textFrames, writeNative } from './native-doc.js';
+import { pageBindings, structuredContent } from './structured-content.js';
 
 export const LIBRARY_SCHEMA = 'ote.designcraft.templates.v1';
 export const ISSUE_SCHEMA = 'ote.designcraft.issue.v1';
@@ -57,8 +58,8 @@ export function documentFonts(fonts, fontProfile, designs = false) {
   });
 }
 
-/** True when any template in the library uses an original design. */
-export const usesDesigns = (library) => (library?.templates ?? []).some((t) => t?.design);
+/** Original designs and captured source styles share the bundled substitute scope. */
+export const usesDesigns = (library) => (library?.templates ?? []).some((t) => t?.design || (t?.slots ?? []).some((slot) => slot.style?.portable || (slot.contentLayout ?? []).some((part) => part.style?.portable)));
 
 export async function fontScope(fonts) {
   const scope = {};
@@ -122,7 +123,10 @@ export function designFontGaps(library, fonts) {
   const want = (style) => { if (style && typeof style === 'object' && style.fontFamily) wanted.add(style.fontFamily); };
   const used = new Set(library.templates.map((t) => t.design).filter(Boolean));
   for (const name of used) for (const style of Object.values(library.designs?.[name]?.styles ?? {})) want(style);
-  for (const template of library.templates) if (template.design) for (const slot of template.slots) want(slot.style);
+  for (const template of library.templates) for (const slot of template.slots) {
+    want(slot.style);
+    for (const part of slot.contentLayout ?? []) want(part.style);
+  }
   for (const font of fonts) if (/\.(ttf|otf|ttc|otc)$/i.test(font.name)) for (const family of fontFamilies(font.bytes)) available.add(family);
   return [...wanted].filter((family) => !available.has(family)).sort();
 }
@@ -151,12 +155,13 @@ export async function buildPage(options) {
   if (issue && issue.schemaVersion !== ISSUE_SCHEMA) throw new Error('Unsupported issue schema');
   const storyCount = template.storyCount ?? 0;
   const isCover = template.kind === 'cover';
+  if (!Number.isInteger(storyCount) || storyCount < 0 || storyCount > (isCover ? 3 : 12)) throw new Error('A template supports up to 12 stories, or up to 3 cover references');
   if (!['portable', 'original2025'].includes(fontProfile)) throw new Error('Unknown font profile');
   let articles = issue ? issue.articles ?? [] : exampleArticles(storyCount);
   if (options.articleIds) {
     const selected = options.articleIds;
     const index = new Map(articles.map((a) => [String(a.id), a]));
-    const validCount = isCover ? selected.length >= 1 && selected.length <= 3 : selected.length === storyCount;
+    const validCount = isCover ? selected.length <= 3 && (selected.length >= 1 || template.sourceCover === true) : selected.length === storyCount;
     if (!validCount || new Set(selected).size !== selected.length) throw new Error('--articles requires 1–3 distinct IDs for a cover, or one distinct ID per story slot');
     if (selected.some((i) => !index.has(i))) throw new Error('An article ID is absent from the issue');
     articles = selected.map((i) => index.get(i));
@@ -186,16 +191,38 @@ export async function buildPage(options) {
   // Original fonts by default; open substitutes for portable builds, or for faces a build lists
   // in substituteFonts because their licensed files are not available.
   const mapFont = designFontMapper(family, fontProfile, options.substituteFonts);
-  if (isCover && issue) template = resolveCover(template, issue, articles.map((a) => a.id), options.references ?? null);
+  if (isCover && issue) {
+    if (template.sourceCover && !articles.length) {
+      // A reconstructed source cover retains its printed teasers and page
+      // numbers; there are no new article references to resolve. A chosen
+      // replacement photograph still uses the ordinary cover controls.
+      template = clone(template);
+      const cover = issue.layoutPlan?.cover ?? {};
+      if (cover.photoPath) for (const slot of template.slots) if (slot.id === 'cover-photo') {
+        Object.assign(slot, {
+          asset: cover.photoPath, assetRoot: 'issue', fit: cover.fit ?? slot.fit ?? 'cover',
+          focus: cover.focus ?? slot.focus ?? { x: 0.5, y: 0.5 }, ...(cover.zoom ? { zoom: cover.zoom } : {}),
+        });
+        delete slot.articleIndex;
+        if (cover.pdfPage !== undefined) slot.pdfPage = cover.pdfPage;
+        else delete slot.pdfPage;
+      }
+    } else template = resolveCover(template, issue, articles.map((a) => a.id), options.references ?? null);
+  }
   if (family) template = resolveFields(template, issue, family);
+  const bindings = pageBindings(issue, pageId, pageNumber);
+  const section = bindings.section ?? template.section ?? null;
+  if (section && (typeof section !== 'object' || !/^[A-Z]$/.test(section.code) || section.label !== undefined && typeof section.label !== 'string')) throw new Error('A page section needs a single uppercase code and an optional text label');
 
-  const steps = [], slotRefs = [], warnings = [], missingMedia = [], focusRequests = [];
+  const steps = [], slotRefs = [], warnings = [], missingMedia = [], focusRequests = [], structuredBlocks = [];
   const bodyCounts = {}, photoCounts = {}, media = new Map();
   const add = (command, params = {}) => { steps.push({ command, params }); return steps.length - 1; };
   const ref = (index, key = 'id') => `$${index}.${key}`;
   const labelFrame = (index, slot, article) => {
     const metadata = { templateId: template.id, slotId: slot.id, role: slot.role, articleId: article ? article.id ?? null : null, pageId };
     if (slot.cardPart) metadata.cardPart = slot.cardPart;
+    if (slot.blockId) metadata.blockId = slot.blockId;
+    if (slot.contentField) metadata.contentField = slot.contentField;
     add('object.label', { ids: [ref(index)], label: pythonJson(metadata) });
     add('object.rename', { id: ref(index), name: slot.id });
     slotRefs.push({ ...metadata, commandIndex: index });
@@ -271,6 +298,8 @@ export async function buildPage(options) {
   // An optional `over` part (items the original stacked above its photo) is placed after the slots.
   const art = family && template.art ? family.art?.[template.art === 'interior' ? (pageNumber % 2 === 0 ? 'left' : 'right') : template.art] : null;
   if (family && template.art && !art) throw new Error(`Design ${template.design} has no design layer for ${template.art}`);
+  if (template.overArt !== undefined && (template.overArt !== 'cover' || !family?.art?.cover?.over)) throw new Error('A cover overlay needs the cover over layer from a known design');
+  const overlayArt = template.overArt ? family.art.cover.over : art?.over;
   const placeArt = async (layer) => {
     const path = fontProfile === 'original2025' ? layer.original : layer.portable;
     const bytes = await loadMedia({ root: 'library', path });
@@ -286,16 +315,26 @@ export async function buildPage(options) {
     const leading = Number(slot.leading ?? (!slot.fontSize ? defaultLeading : size * 1.15));
     if (!(size >= 4 && size <= 144 && leading >= 4 && leading <= 200)) throw new Error('Typography values exceed supported bounds');
     const name = 'OTE Slot ' + slot.id;
-    const params = { name, chars: { fontFamily, fontStyle, size, leading: { kind: 'points', value: leading }, ...chars } };
-    if (para && Object.keys(para).length) params.para = para;
+    const params = { name, chars: { fontFamily, fontStyle, size, leading: { kind: 'points', value: leading }, ...chars, ...(slot.chars ?? {}) } };
+    if (para || slot.para) params.para = { ...(para ?? {}), ...(slot.para ?? {}) };
     add('style.paragraph.create', params);
     return name;
   };
   // A slot's own captured typography ({fontFamily, fontStyle, size, leading, chars, para}) or a house style name.
+  // portable:{fontFamily,fontStyle,chars:{hScale}} can fit a substitute to the
+  // source glyph width. Those character overrides follow the substitute face,
+  // including an original-font build missing that face; supplied originals
+  // retain their captured character attributes.
   const slotStyle = (slot) => {
     if (typeof slot.style === 'string') return slot.style;
     const def = slot.style;
-    styles['OTE Slot ' + slot.id] = [...mapFont(def.fontFamily, def.fontStyle), def.size, def.leading ?? def.size * 1.2, def.chars ?? {}, def.para ?? {}];
+    const portable = def.portable && (fontProfile !== 'original2025' || options.substituteFonts?.includes(def.fontFamily));
+    const face = portable ? [def.portable.fontFamily, def.portable.fontStyle ?? def.fontStyle] : mapFont(def.fontFamily, def.fontStyle);
+    const portableChars = def.portable?.chars;
+    if (portableChars !== undefined && (!portableChars || typeof portableChars !== 'object' || Array.isArray(portableChars))) throw new Error('Portable character overrides must be an object');
+    if (portableChars?.hScale !== undefined && (!isNumber(portableChars.hScale) || portableChars.hScale < 0.25 || portableChars.hScale > 4)) throw new Error('Portable horizontal scale must be a finite fraction from 0.25 to 4');
+    const chars = { ...(def.chars ?? {}), ...(portable ? portableChars ?? {} : {}) };
+    styles['OTE Slot ' + slot.id] = [...face, def.size, def.leading ?? def.size * 1.2, chars, def.para ?? {}];
     return customStyle({ ...slot, fontSize: undefined, leading: undefined }, 'OTE Slot ' + slot.id);
   };
   for (const slot of template.slots) {
@@ -328,13 +367,23 @@ export async function buildPage(options) {
         text = `  |  ${info.title || 'OVER THE EDGE'}  |  ${info.date || 'ILLUSTRATIVE TEMPLATE'}`;
         style = 'OTE Folio';
       }
-      if (family && slot.style) style = typeof slot.style === 'string' ? slot.style : style;
+      if (slot.style) style = slotStyle(slot);
       if (isCover && fontProfile === 'original2025' && !family) {
         style = { 'cover-date': 'OTE Cover Date', 'cover-year': 'OTE Cover Date', 'cover-issue': 'OTE Cover Issue', 'cover-line': 'OTE Cover Hand' }[slot.id] ?? style;
       }
       if (slot.fontSize || slot.leading) style = customStyle(slot, style);
       styledText(rect, text, style, slot.columns ?? 1, slot, article,
         role === 'body' && article && !continuationIds.has(article.id) ? composed[article.id] : null);
+    } else if (role === 'wrap') {
+      const points = slot.points;
+      if (!Array.isArray(points) || points.length < 3 || points.length > 128 || points.some((p) => !Array.isArray(p) || p.length !== 2 || p.some((v) => !isNumber(v)) || p[0] < 0 || p[0] > width || p[1] < 0 || p[1] > height)) throw new Error('A text-wrap exclusion needs 3–128 finite page points');
+      const offset = slot.offset ?? 0;
+      if (!isNumber(offset) || offset < 0 || offset > 72) throw new Error('Text-wrap offset must be from 0 to 72 points');
+      const index = add('path.create', { anchors: points.map((p) => ({ p })), closed: true });
+      add('object.textWrap', { ids: [ref(index)], mode: 'contour', offset });
+      add('object.fill', { ids: [ref(index)], swatch: '[None]' });
+      add('object.stroke', { ids: [ref(index)], weight: 0 });
+      labelFrame(index, slot, null);
     } else if (['photo', 'ad', 'piece'].includes(role)) {
       if (isCover && slot.id.startsWith('cover-card-') && slot.text === '' && !slot.fields) continue;
       let mediaRecord = null, root = issue ? 'issue' : 'library';
@@ -344,7 +393,7 @@ export async function buildPage(options) {
         photoCounts[ai] = pi + 1;
         const photos = article.photos ?? [];
         if (pi < photos.length) mediaRecord = photos[pi];
-      } else if (issue) mediaRecord = issue.layoutPlan?.media?.[slot.id] ?? null;
+      } else if (issue) mediaRecord = bindings.media[slot.id] ?? null;
       if (mediaRecord && mediaRecord.path) {
         const suffix = suffixOf(mediaRecord.path);
         if (!MEDIA_SUFFIXES.includes(suffix)) throw new Error('Unsupported media format: ' + suffix);
@@ -353,7 +402,9 @@ export async function buildPage(options) {
         const name = (await sha256Hex(bytes)).slice(0, 16) + suffix;
         media.set(name, bytes);
         const index = add('frame.create', { rect, content: 'graphic' });
-        const placed = add('file.place', { path: '@media:' + name, frame: ref(index) });
+        const pdfPage = slot.pdfPage ?? mediaRecord.pdfPage;
+        if (pdfPage !== undefined && (suffix !== '.pdf' || !Number.isInteger(pdfPage) || pdfPage < 1 || pdfPage > 256)) throw new Error('A placed PDF page must be an integer from 1 to 256');
+        const placed = add('file.place', { path: '@media:' + name, frame: ref(index), ...(pdfPage !== undefined ? { pdfPage } : {}) });
         add('links.embed', { asset: ref(placed, 'asset') });
         // A photo's own focal point and zoom (set once, like a WordPress focal point) follow it into every
         // layout; a slot's explicit focus or zoom still wins.
@@ -365,14 +416,33 @@ export async function buildPage(options) {
         if (fitting === 'cover') focusRequests.push({ slotId: slot.id, requestedFocus: focus ?? { x: 0.5, y: 0.5 }, ...(zoom ? { requestedZoom: zoom } : {}), nativeCrop: 'pending', exactFocusApplied: false });
         labelFrame(index, slot, article);
       } else {
+        const fields = { ...(slot.fields ?? {}), ...(role === 'piece' ? bindings.blocks[slot.id]?.fields ?? {} : {}) };
+        const structured = role === 'piece' ? structuredContent(slot, fields, markdownit) : null;
+        if (structured) {
+          structuredBlocks.push({ slotId: slot.id, type: slot.blockType ?? ('question' in fields ? 'president-qa' : 'editorial'), fields: structured.parts.map((p) => ({ field: p.field, source: p.source, text: p.rich.text })), separateFields: structured.separate });
+          if (structured.separate) {
+            for (const part of structured.parts) {
+              const child = { ...part, id: slot.id + '-' + part.field, role: 'piece-' + part.field, blockId: slot.id, contentField: part.field };
+              const region = part.rect;
+              const fieldRect = [x + region[0] * (right - x), y + region[1] * (bottom - y), x + region[2] * (right - x), y + region[3] * (bottom - y)];
+              let style = typeof part.style === 'object' ? slotStyle(child) : part.style;
+              if (!styles[style]) throw new Error('Unknown editorial paragraph style: ' + style);
+              if (part.fontSize || part.leading || part.chars || part.para) style = customStyle(child, style);
+              styledText(fieldRect, part.rich.text, style, part.columns ?? 1, child, null, part.rich);
+            }
+          } else {
+            let style = 'OTE Body';
+            if (slot.fontSize || slot.leading || slot.chars || slot.para) style = customStyle(slot, style);
+            styledText(rect, structured.rich.text, style, slot.columns ?? 1, slot, null, structured.rich);
+          }
+          continue;
+        }
         if (issue && role === 'photo' && article) missingMedia.push(slot.id);
         const index = add('frame.create', { rect, content: 'unassigned' });
         add('object.fill', { ids: [ref(index)], swatch: 'OTE Placeholder' });
         add('object.stroke', { ids: [ref(index)], weight: 0.5, swatch: 'OTE Green' });
         labelFrame(index, slot, article);
         let caption = String(slot.text || { photo: 'ILLUSTRATIVE PHOTO SLOT', ad: 'ADVERTISING BOUNDARY', piece: 'CUSTOM BLOCK BOUNDARY' }[role]);
-        const fields = { ...(slot.fields ?? {}) };
-        if (issue && role === 'piece') Object.assign(fields, issue.layoutPlan?.blocks?.[slot.id]?.fields ?? {});
         const keys = Object.keys(fields);
         if (keys.length) caption += '\n\n' + keys.map((key) => titleCase(String(key).replaceAll('_', ' ')) + ': ' + pyStr(fields[key])).join('\n\n');
         const h = keys.length || role === 'piece' ? bottom - y - 8 : Math.min(36, bottom - y - 8);
@@ -380,13 +450,15 @@ export async function buildPage(options) {
         styledText([x + 4, y + 4, right - 4, y + 4 + h], caption, labelStyle, 1, slot, article);
         warnings.push(`${slot.id}: no media supplied; boundary placeholder drawn`);
       }
-    } else if (role === 'text' && family) {
+    } else if (role === 'text') {
       // Fixed or field text in captured original typography (datelines, cover dates, feature cards).
       if (!slot.text) continue;
-      styledText(rect, String(slot.text), slotStyle(slot), slot.columns ?? 1, slot, article);
+      let style = slot.style ? slotStyle(slot) : 'OTE Label';
+      if (!slot.style && (slot.fontSize || slot.leading || slot.chars || slot.para)) style = customStyle(slot, style);
+      styledText(rect, String(slot.text), style, slot.columns ?? 1, slot, article);
     } else throw new Error('Unsupported slot role: ' + role);
   }
-  if (art?.over) await placeArt(art.over);
+  if (overlayArt) await placeArt(overlayArt);
   for (let i = 0; i < storyCount; i++) if (bodyCounts[i] !== 1) throw new Error('Each article needs exactly one body slot; use its columns option for text columns');
   const preflightIndex = add('preflight.run', { minPpi: 150 });
   const inspectIndex = add('document.inspect');
@@ -394,7 +466,7 @@ export async function buildPage(options) {
   return {
     steps, template, articles, composed, slotRefs, warnings, missingMedia, focusRequests, media,
     preflightIndex, inspectIndex, pageId, pageNumber, fontProfile, isCover, issue,
-    continuationIds: [...continuationIds], stagedFlowIds: [...stagedFlowIds],
+    continuationIds: [...continuationIds], stagedFlowIds: [...stagedFlowIds], structuredBlocks, section, substituteFonts: options.substituteFonts ?? [],
   };
 }
 
@@ -441,11 +513,22 @@ const textOf = (bytes) => new TextDecoder().decode(bytes);
  * inspect, sourceRecord, composedRecord, interchange, focalCrop?
  */
 export async function compilePage(built, { executor, fonts, JSZip }) {
-  const docFonts = documentFonts(fonts, built.fontProfile, Boolean(built.template.design));
+  const docFonts = documentFonts(fonts, built.fontProfile, usesDesigns({ templates: [built.template] }));
   const session = { fonts: docFonts, media: built.media };
   const first = await executor.run(built.steps, session);
   const results = first.results;
   let native = first.doc;
+  if (built.section && built.template.design && built.template.art && built.template.kind !== 'cover') {
+    const { document, entries } = await readNative(native, JSZip);
+    // The supplied interior layers contain exactly one unlabeled A. Article
+    // frames carry labels, so an article whose complete text is A is safe.
+    const headers = textFrames(document).filter((f) => !f.item.label && document.stories[String(f.item.content.story)]?.text === 'A');
+    if (headers.length !== 1) throw new Error('The original design needs one unambiguous section header');
+    const header = document.stories[String(headers[0].item.content.story)];
+    header.text = built.section.code;
+    header.rev = (header.rev ?? 0) + 1;
+    native = await writeNative(entries, document, JSZip);
+  }
   let cropHashes = {};
   if (built.focusRequests.length) ({ bytes: native, hashes: cropHashes } = await applyFocalCrops(native, built.focusRequests, built.template.slots, JSZip));
   const reopened = await executor.run([
@@ -458,6 +541,14 @@ export async function compilePage(built, { executor, fonts, JSZip }) {
   results[built.preflightIndex] = reopened.results[1];
   results[built.inspectIndex] = reopened.results[2];
   const { document, entries } = await readNative(native, JSZip);
+  const editorialFrames = textFrames(document);
+  for (const block of built.structuredBlocks ?? []) {
+    const expected = block.separateFields ? block.fields.map((f) => [block.slotId + '-' + f.field, f.text]) : [[block.slotId, block.fields.map((f) => f.text).join('\n')]];
+    for (const [slotId, text] of expected) {
+      const frames = editorialFrames.filter((f) => f.label.slotId === slotId);
+      if (frames.length !== 1 || document.stories[String(frames[0].item.content.story)].text !== text) throw new Error('Native document failed editorial-copy check for ' + slotId);
+    }
+  }
   for (const [name, expected] of Object.entries(cropHashes)) {
     if (await sha256Hex(entries.get(name)) !== expected) throw new Error('Reopening focal crop changed an embedded asset payload');
   }
@@ -498,6 +589,8 @@ export async function compilePage(built, { executor, fonts, JSZip }) {
     sourceMarkdownPreserved: true, nativeTextScope: 'rendered-commonmark-or-plain',
     articleBodiesInNative: !built.isCover, focalPointRequests: built.focusRequests,
     fontProfile: built.fontProfile,
+    structuredBlocks: built.structuredBlocks ?? [], section: built.section ?? null,
+    ...(built.substituteFonts?.length ? { substitutedFonts: built.substituteFonts } : {}),
     fonts: built.fontProfile === 'original2025' ? ['Helvetica Neue', 'Decalotype', 'Salted'] : ['Source Sans 3', 'Source Serif 4'],
     status: errors.length ? 'needs-layout-adjustment' : 'exported', errors, warnings: built.warnings,
     nativeWarnings: preflight.issues.filter((x) => x.severity === 'warning'),

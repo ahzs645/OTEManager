@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "ote.source-offline-whole-issue-check.v1",
+  "status": "passed",
+  "toolkit": "public/designcraft/template-kit.zip",
+  "source": "issue-7-march-2025-dfcbb959",
+  "engine": "DesignCraft 0.9.0 WebAssembly",
+  "nodeDependenciesInstalledSeparately": true,
+  "checks": {
+    "complete": true,
+    "counts": true,
+    "order": true,
+    "preflight": true,
+    "allArticles": true
+  },
+  "pageCounts": {
+    "native": 17,
+    "pdf": 17,
+    "idml": 17
+  },
+  "preflight": {
+    "errors": 0,
+    "warnings": 6
+  },
+  "toolkitSha256": "1169ab521a1a1ab448c4036c8bc117f5f25bff6b4b8526437877df60bb5bd3b1",
+  "sharedCompilerFilesVerifiedAgainstFinalKit": 11,
+  "sharedCompilerMatchesFinalKit": true
+}

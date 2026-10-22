@@ -5,6 +5,7 @@ import { LoadingSpinner } from '~/components/Layout'
 import { getIssueArticles } from '~/lib/queries'
 import { setAttachmentsIncludeInExport } from '~/lib/mutations'
 import { fileUrl } from '~/lib/files'
+import { readSourceProvenance } from '~/lib/source-archive-display'
 
 interface ExportPhoto {
   id: string
@@ -18,6 +19,8 @@ interface ExportPhoto {
 interface ExportArticle {
   id: string
   title: string
+  hasContent: boolean
+  fromSourceArchive: boolean
   photos: ExportPhoto[]
 }
 
@@ -51,12 +54,14 @@ export function IssueExportModal({
     getIssueArticles({ data: { issueId } })
       .then(({ articles }) => {
         if (cancelled) return
-        setSelectedArticleIds(new Set(articles.map((a) => a.id)))
+        setSelectedArticleIds(new Set(articles.filter((a) => !isDesignCraft || a.content?.trim()).map((a) => a.id)))
         setArticles(
           articles
             .map((a) => ({
               id: a.id,
               title: a.title,
+              hasContent: Boolean(a.content?.trim()),
+              fromSourceArchive: Boolean(readSourceProvenance(a.sourceProvenance)),
               photos: a.attachments
                 .filter(
                   (f) => f.attachmentType === 'photo' || (isDesignCraft && f.attachmentType === 'graphic'),
@@ -100,11 +105,11 @@ export function IssueExportModal({
   }
 
   const handleExport = async (destination: 'download' | 'planner' = 'download') => {
-    if (isSaving || isExporting || !articles || (isDesignCraft && !selectedArticleIds.size)) return
+    if (isSaving || isExporting || !articles || (isDesignCraft && !exportArticles.length)) return
     setIsExporting(true)
     try {
       const success = await onExport(
-        isDesignCraft ? articles.filter((a) => selectedArticleIds.has(a.id)).map((a) => a.id) : undefined,
+        isDesignCraft ? exportArticles.map((a) => a.id) : undefined,
         destination,
       )
       if (success) onClose()
@@ -113,7 +118,7 @@ export function IssueExportModal({
     }
   }
 
-  const exportArticles = articles?.filter((a) => !isDesignCraft || selectedArticleIds.has(a.id)) ?? []
+  const exportArticles = articles?.filter((a) => !isDesignCraft || (a.hasContent && selectedArticleIds.has(a.id))) ?? []
   const allPhotos = exportArticles.flatMap((a) => a.photos)
   const selectedCount = allPhotos.filter(isSelectedForExport).length
 
@@ -221,6 +226,10 @@ export function IssueExportModal({
                 gap: '1.25rem',
               }}
             >
+              {isDesignCraft && articles.some((article) => !article.hasContent) && <div role="status" className="rounded-md p-3 text-sm" style={{ background: 'var(--bg-subtle)', color: 'var(--fg-muted)' }}>
+                <p>{articles.filter((article) => !article.hasContent).length} article records have no recovered text and are excluded from this content export. Full text is required for article layouts.</p>
+                {articles.some((article) => article.fromSourceArchive) && <Link to="/utilities/designcraft" className="inline-block mt-2" style={{ color: 'var(--accent)' }}>Recreate the complete original issue from its source pages →</Link>}
+              </div>}
               {isDesignCraft && (
                 <div
                   style={{
@@ -234,9 +243,9 @@ export function IssueExportModal({
                   <button
                     className="btn btn-ghost btn-sm"
                     disabled={isExporting}
-                    onClick={() => setSelectedArticleIds(new Set(articles.map((a) => a.id)))}
+                    onClick={() => setSelectedArticleIds(new Set(articles.filter((a) => a.hasContent).map((a) => a.id)))}
                   >
-                    Select all articles
+                    Select all with text
                   </button>
                   <button
                     className="btn btn-ghost btn-sm"
@@ -248,7 +257,7 @@ export function IssueExportModal({
                 </div>
               )}
               {articles.map((article) => {
-                const included = !isDesignCraft || selectedArticleIds.has(article.id)
+                const included = !isDesignCraft || (article.hasContent && selectedArticleIds.has(article.id))
                 const selectionDisabled = isSaving || isExporting || !included
                 const articleSelected = article.photos.filter(isSelectedForExport)
                 return (
@@ -269,11 +278,11 @@ export function IssueExportModal({
                             type="checkbox"
                             aria-label={`Include ${article.title} in DesignCraft export`}
                             checked={included}
-                            disabled={isExporting}
+                            disabled={isExporting || !article.hasContent}
                             onChange={(event) =>
                               setSelectedArticleIds((previous) => {
                                 const next = new Set(previous)
-                                if (event.target.checked) next.add(article.id)
+                                if (event.target.checked && article.hasContent) next.add(article.id)
                                 else next.delete(article.id)
                                 return next
                               })
@@ -342,6 +351,7 @@ export function IssueExportModal({
                         </div>
                       )}
                     </div>
+                    {isDesignCraft && !article.hasContent && <p className="text-xs mb-2" style={{ color: 'var(--fg-muted)' }}>{article.fromSourceArchive ? 'Metadata only · original article text has not been recovered.' : 'Article text is empty. Add full text to include this article.'}</p>}
                     {article.photos.length === 0 ? (
                       <p
                         style={{
@@ -461,12 +471,12 @@ export function IssueExportModal({
             <button className="btn btn-ghost btn-sm" onClick={onClose} disabled={isSaving || isExporting}>
               Cancel
             </button>
-            {isDesignCraft && <button className="btn btn-primary btn-sm" onClick={() => handleExport('planner')} disabled={!articles || isSaving || isExporting || selectedArticleIds.size === 0}>Open selected in DesignCraft</button>}
+            {isDesignCraft && <button className="btn btn-primary btn-sm" onClick={() => handleExport('planner')} disabled={!articles || isSaving || isExporting || exportArticles.length === 0}>Open selected in DesignCraft</button>}
             <button
               className="btn btn-primary btn-sm"
               onClick={() => handleExport()}
               disabled={
-                !articles || isExporting || isSaving || (isDesignCraft && selectedArticleIds.size === 0)
+                !articles || isExporting || isSaving || (isDesignCraft && exportArticles.length === 0)
               }
             >
               {isExporting ? <LoadingSpinner size="sm" /> : <Download className="w-3.5 h-3.5" />}

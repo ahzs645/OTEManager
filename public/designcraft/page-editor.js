@@ -21,6 +21,43 @@ function editorLabel(parent,title,input){
  const label=editorNode('label',{},title);label.append(input);parent.append(label);return input;
 }
 function editorStatus(message){$('planner-status').textContent=message;}
+// Keep structured source fields structured when a page is saved or exported.
+// In particular, board member lists must not turn into an opaque JSON string.
+function renderPieceFields(parent,fields,onUpdate,{sourceText=false}={}){
+ const labels={heading:'Heading',subtitle:'Subtitle',question:'Question of the month',answer:'President’s answer',president:'President / attribution',closing:'Closing line',questionLabel:'Question label',answerLabel:'Answer label',body:'Full text',members:'Board members (JSON)',questions:'Interview questions (JSON)',events:'Events (JSON)'};
+ for(const [index,[key,value]] of Object.entries(fields).entries()){
+  const structured=value!==null&&typeof value==='object',input=editorNode('textarea',{rows:structured?5:key==='answer'||key==='body'?6:2,value:structured?JSON.stringify(value,null,2):String(value??'')});
+  editorLabel(parent,sourceText?(Object.keys(fields).length===1?'Source text':'Text fragment '+(index+1)):labels[key]||key.replaceAll('_',' '),input);
+  input.oninput=()=>{
+   try{
+    const next=structured?JSON.parse(input.value):typeof value==='number'?Number(input.value):input.value;
+    if(structured&&(Array.isArray(value)!==Array.isArray(next)||next===null||typeof next!=='object'))throw Error('Keep the same list or object structure.');
+    if(typeof value==='number'&&!Number.isFinite(next))throw Error('Use a finite number.');
+    fields[key]=next;input.setCustomValidity('');onUpdate();
+   }catch(error){input.setCustomValidity('Invalid '+key+': '+error.message);editorStatus('Invalid '+key+': '+error.message+' Your last valid value is retained.');}
+  };
+ }
+}
+function renderPieceTypography(parent,slot){
+ const details=editorNode('details');details.append(editorNode('summary',{},'Field positions and typography'));
+ for(const [index,part] of slot.contentLayout.entries()){
+  const group=editorNode('fieldset');group.append(editorNode('legend',{},slot.blockType==='source-text'?'Text fragment '+(index+1):part.field));
+  const style=typeof part.style==='object'?part.style:{},row=editorNode('div',{className:'two'});
+  for(const [key,label,value,maximum] of [['fontSize','Font size (pt)',part.fontSize||style.size||11,144],['leading','Line spacing (pt)',part.leading||style.leading||13,200]]){
+   const input=editorNode('input',{type:'number',min:'4',max:String(maximum),step:'.1',value:String(Math.round(value*100)/100)});
+   editorLabel(row,label,input);input.oninput=()=>{const next=Number(input.value);if(input.value===''||!Number.isFinite(next)||next<4||next>maximum){input.setCustomValidity('Use a value from 4 to '+maximum+'pt.');return;}input.setCustomValidity('');part[key]=next;renderPage();};
+  }
+  group.append(row);
+  const geometry=editorNode('div',{className:'boundary-inputs'}),inputs=[];
+  for(const [index,label] of ['Left (%)','Top (%)','Right (%)','Bottom (%)'].entries()){
+   const input=editorNode('input',{type:'number',min:'0',max:'100',step:'.1',value:String(Math.round(part.rect[index]*1000)/10)});inputs.push(input);editorLabel(geometry,label,input);
+   input.oninput=()=>{const rect=inputs.map(n=>Number(n.value)/100);if(inputs.some(n=>n.value==='')||rect.some(n=>!Number.isFinite(n)||n<0||n>1)||rect[0]>=rect[2]||rect[1]>=rect[3]){input.setCustomValidity('Keep a positive field rectangle inside 0–100% of this piece.');return;}input.setCustomValidity('');part.rect=rect;renderPage();};
+  }
+  group.append(geometry);details.append(group);
+ }
+ details.append(editorNode('p',{className:'muted'},'Positions are percentages of this piece’s frame. Longer questions and answers need enough space; native composition reports any overset text.'));
+ parent.append(details);
+}
 function editorShell(){
  let root=$('page-editor');if(root)return root;
  root=editorNode('section',{id:'page-editor'});
@@ -44,21 +81,22 @@ function editorShell(){
  return root;
 }
 function editorBaseRect(slot,actual){
- if(selected.kind!=='story'||!blocks.length||slot.role==='folio')return [...actual];
- const area=freeArea();if(!area)throw Error('No usable story area remains.');
+ if(selected.kind!=='story'||!blocks.length||slot.role==='folio'||slot.role==='text')return [...actual];
+ const box=contentBox(selected),area=freeArea(blocks,box);if(!area)throw Error('No usable story area remains.');
  if(actual[0]<area[0]||actual[1]<area[1]||actual[2]>area[2]||actual[3]>area[3])throw Error('Keep this frame inside the free story area around the reserved pieces.');
- return [36+(actual[0]-area[0])*684/(area[2]-area[0]),100+(actual[1]-area[1])*644/(area[3]-area[1]),36+(actual[2]-area[0])*684/(area[2]-area[0]),100+(actual[3]-area[1])*644/(area[3]-area[1])];
+ return [box[0]+(actual[0]-area[0])*(box[2]-box[0])/(area[2]-area[0]),box[1]+(actual[1]-area[1])*(box[3]-box[1])/(area[3]-area[1]),box[0]+(actual[2]-area[0])*(box[2]-box[0])/(area[2]-area[0]),box[1]+(actual[3]-area[1])*(box[3]-box[1])/(area[3]-area[1])];
 }
 function renderEditor(){
  if(!selected)return;editorShell();$('font-profile').value=issue.layoutPlan?.fontProfile||'portable';
  const picker=$('editor-slot');picker.replaceChildren();
- for(const slot of selected.slots)picker.append(editorNode('option',{value:slot.id},slot.id+' · '+slot.role));
+ for(const slot of selected.slots)picker.append(editorNode('option',{value:slot.id},slot.blockType==='source-text'?'Text: '+Object.values(slot.fields||{}).join(' ').replace(/\s+/g,' ').slice(0,60):slot.id+' · '+slot.role));
  if(!selected.slots.some(slot=>slot.id===editorSlotId))editorSlotId=selected.slots[0]?.id||null;
  picker.value=editorSlotId||'';renderSlotEditor();renderArtworkEditor();renderFlowEditor();
 }
 function renderSlotEditor(){
  const parent=$('editor-slot-fields');if(!parent)return;parent.replaceChildren();
  const slot=selected?.slots.find(slot=>slot.id===editorSlotId);if(!slot)return;
+ if(slot.role==='wrap'){parent.append(editorNode('p',{className:'muted'},'This boundary keeps the original artwork’s text exclusion shape. Article text flows around it in native composition. Use the web editor to reshape it.'));return;}
  let actual;try{actual=resolved(selected).slots.find(item=>item.id===slot.id)?.rect||slot.rect;}catch(error){parent.append(editorNode('p',{},error.message));return;}
  const rectGroup=editorNode('div',{className:'boundary-inputs'}),rectInputs=[];
  for(const [index,label] of ['Left','Top','Right','Bottom'].entries()){
@@ -71,7 +109,14 @@ function renderSlotEditor(){
   }catch(error){editorStatus(error.message);}};
  }
  parent.append(rectGroup);
- if(slot.role!=='photo'&&!slot.asset){
+ if(slot.fields&&!slot.asset){
+  renderPieceFields(parent,slot.fields,renderPage,{sourceText:slot.blockType==='source-text'});
+  if(slot.contentLayout)renderPieceTypography(parent,slot);
+ }else if(['text','piece','ad'].includes(slot.role)&&!slot.asset&&!slot.field){
+  const input=editorNode('textarea',{rows:4,value:slot.text||''});
+  editorLabel(parent,'Text',input);input.oninput=()=>{slot.text=input.value;renderPage();};
+ }
+ if(slot.role!=='photo'&&!slot.asset&&!slot.contentLayout){
   const row=editorNode('div',{className:'two'}),size=Number(slot.fontSize||editorFontDefaults[slot.role]||12);
   for(const [key,label,value] of [['fontSize','Font size (pt)',size],['leading','Line spacing (pt)',slot.leading||(slot.fontSize?size*1.15:editorLeadingDefaults[slot.role]||15)]]){
    const maximum=key==='leading'?200:144,input=editorNode('input',{id:'editor-'+key,type:'number',min:'4',max:String(maximum),step:'0.1',value:String(Math.round(value*100)/100)});
@@ -104,7 +149,7 @@ function editorImageControls(parent,target,prefix){
  const photo=!coverPhoto&&!target.asset&&Number.isInteger(target.articleIndex)?articles()[target.articleIndex]?.photos?.[slotPhotoIndex(selected,target)]:null;
  const holder=coverPhoto?(issue.layoutPlan||={},issue.layoutPlan.cover||={}):photo||target;
  const focus=()=>coverPhoto?{x:Number($('focus-x').value)/100,y:Number($('focus-y').value)/100}:{x:.5,y:.5,...holder.focus};
- const url=coverPhoto?(heroUrl||heroPath):photo?urls.get(photo.path):target.asset?(urls.get(target.asset)||(target.asset.startsWith('assets/ote-')?target.asset:null)):null;
+ const url=coverPhoto?(heroMime==='application/pdf'?mediaPreviewUrl(issue.layoutPlan?.cover?.photoPreviewPath||target.previewAsset):heroUrl||heroPath):photo?urls.get(photo.path):target.asset?(urls.get(target.asset)||(target.asset.startsWith('assets/ote-')?target.asset:null)):null;
  const set=(next,zoom)=>{
   const f={x:Math.round(Math.min(1,Math.max(0,next.x))*1000)/1000,y:Math.round(Math.min(1,Math.max(0,next.y))*1000)/1000};
   if(coverPhoto){$('focus-x').value=f.x*100;$('focus-y').value=f.y*100;target.focus=f;}else holder.focus=f;
@@ -154,13 +199,13 @@ function editorAssetControl(parent,target,label){
   const ext=editorAssetTypes[mime];if(!ext)throw Error('Use JPEG, PNG, WebP, TIFF or PDF artwork.');
   const data=new Uint8Array(await file.arrayBuffer());if(!data.length)throw Error('Choose a nonempty artwork file.');
   const asset='assets/user-piece-'+crypto.randomUUID()+'.'+ext;
-  target.asset=asset;target.assetMimeType=mime;target.fit||='contain';bytes.set(asset,data);urls.set(asset,URL.createObjectURL(new Blob([data],{type:mime})));
+  target.asset=asset;target.assetMimeType=mime;if(mime==='application/pdf')delete target.previewAsset;else target.previewAsset=asset;target.fit||='contain';bytes.set(asset,data);urls.set(asset,URL.createObjectURL(new Blob([data],{type:mime})));
   describe();renderPage();renderArtworkEditor();renderSlotEditor();
  }catch(error){editorStatus(error.message);}};
  editorLabel(parent,'Upload '+label,upload);parent.append(status);
  if(target.asset){
   const remove=editorNode('button',{type:'button',className:'outline'},'Remove artwork');
-  remove.onclick=()=>{delete target.asset;delete target.assetMimeType;renderPage();renderArtworkEditor();renderSlotEditor();};parent.append(remove);
+  remove.onclick=()=>{delete target.asset;delete target.assetMimeType;delete target.previewAsset;renderPage();renderArtworkEditor();renderSlotEditor();};parent.append(remove);
  }
 }
 function renderArtworkEditor(){

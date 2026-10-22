@@ -43,7 +43,7 @@ interface PaymentSectionProps {
     paymentRateSnapshot: string | null
     paidAt: Date | null
     paymentBankReference?: string | null
-    articleTier: string
+    articleTier: string | null
     hasResearchBonus: boolean | null
     hasTimeSensitiveBonus: boolean | null
     hasProfessionalPhotos: boolean | null
@@ -138,7 +138,7 @@ export function PaymentSection({ article }: PaymentSectionProps) {
       case 'Tier 1 (Basic)': return rateConfig.tier1Rate
       case 'Tier 2 (Standard)': return rateConfig.tier2Rate
       case 'Tier 3 (Advanced)': return rateConfig.tier3Rate
-      default: return rateConfig.tier1Rate
+      default: return 0
     }
   }
 

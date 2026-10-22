@@ -1,0 +1,159 @@
+{
+  "method": "PyMuPDF renders both source and exported PDF at 144dpi; compare exact placement region only. This measures preserved artwork, not editable text or whole-page fidelity.",
+  "results": [
+    {
+      "templateId": "source-2024-president-original",
+      "sourcePdf": "issue-7-march-2025-dfcbb959.pdf",
+      "sourcePage": 6,
+      "rect": [
+        374.699,
+        400,
+        717.664,
+        757.44
+      ],
+      "dpi": 144,
+      "meanAbsoluteChannelError": 0.8287,
+      "fractionPixelsDifferenceAbove12": 0.004438
+    },
+    {
+      "templateId": "source-2024-inside-edge",
+      "sourcePdf": "issue-7-march-2025-dfcbb959.pdf",
+      "sourcePage": 5,
+      "rect": [
+        39,
+        374,
+        717,
+        759
+      ],
+      "dpi": 144,
+      "meanAbsoluteChannelError": 0.8416,
+      "fractionPixelsDifferenceAbove12": 0.00258
+    },
+    {
+      "templateId": "source-2024-moose-ad",
+      "sourcePdf": "issue-7-march-2025-dfcbb959.pdf",
+      "sourcePage": 16,
+      "rect": [
+        386.601,
+        65.249,
+        716.849,
+        752.743
+      ],
+      "dpi": 144,
+      "meanAbsoluteChannelError": 1.6486,
+      "fractionPixelsDifferenceAbove12": 0.010868
+    },
+    {
+      "templateId": "source-2024-recruitment-ad",
+      "sourcePdf": "issue-7-march-2025-dfcbb959.pdf",
+      "sourcePage": 17,
+      "rect": [
+        378.383,
+        64.185,
+        718.898,
+        755.94
+      ],
+      "dpi": 144,
+      "meanAbsoluteChannelError": 0.5811,
+      "fractionPixelsDifferenceAbove12": 3.7e-05
+    },
+    {
+      "templateId": "source-2024-alumni",
+      "sourcePdf": "issue-7-march-2025-dfcbb959.pdf",
+      "sourcePage": 10,
+      "rect": [
+        0,
+        0,
+        756,
+        792
+      ],
+      "dpi": 144,
+      "meanAbsoluteChannelError": 1.4056,
+      "fractionPixelsDifferenceAbove12": 0.056526
+    },
+    {
+      "templateId": "source-2024-cfur-original",
+      "sourcePdf": "issue-7-march-2025-dfcbb959.pdf",
+      "sourcePage": 13,
+      "rect": [
+        0,
+        0,
+        756,
+        792
+      ],
+      "dpi": 144,
+      "meanAbsoluteChannelError": 3.8735,
+      "fractionPixelsDifferenceAbove12": 0.077297
+    },
+    {
+      "templateId": "source-2025-president-board",
+      "sourcePdf": "issue-2-october-2025-0eb630f7.pdf",
+      "sourcePage": 4,
+      "rect": [
+        53.567,
+        69.39,
+        687.308,
+        740
+      ],
+      "dpi": 144,
+      "meanAbsoluteChannelError": 0.5849,
+      "fractionPixelsDifferenceAbove12": 0.000249
+    },
+    {
+      "templateId": "source-2025-board",
+      "sourcePdf": "issue-2-october-2025-0eb630f7.pdf",
+      "sourcePage": 4,
+      "rect": [
+        53.567,
+        446.614,
+        687.308,
+        740
+      ],
+      "dpi": 144,
+      "meanAbsoluteChannelError": 0.9342,
+      "fractionPixelsDifferenceAbove12": 0.000228
+    },
+    {
+      "templateId": "source-2025-event-ad",
+      "sourcePdf": "issue-2-october-2025-0eb630f7.pdf",
+      "sourcePage": 14,
+      "rect": [
+        34.954,
+        428.098,
+        365.221,
+        756.94
+      ],
+      "dpi": 144,
+      "meanAbsoluteChannelError": 0.4617,
+      "fractionPixelsDifferenceAbove12": 0.009699
+    },
+    {
+      "templateId": "source-2025-moose-ad",
+      "sourcePdf": "issue-2-october-2025-0eb630f7.pdf",
+      "sourcePage": 15,
+      "rect": [
+        386.348,
+        65.249,
+        716.849,
+        752.36
+      ],
+      "dpi": 144,
+      "meanAbsoluteChannelError": 1.3537,
+      "fractionPixelsDifferenceAbove12": 9e-06
+    },
+    {
+      "templateId": "source-2025-recruitment-ad",
+      "sourcePdf": "issue-2-october-2025-0eb630f7.pdf",
+      "sourcePage": 16,
+      "rect": [
+        380.88,
+        65.249,
+        717.356,
+        754.92
+      ],
+      "dpi": 144,
+      "meanAbsoluteChannelError": 2.8056,
+      "fractionPixelsDifferenceAbove12": 0.006735
+    }
+  ]
+}

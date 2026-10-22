@@ -83,6 +83,8 @@ export async function buildDesignCraftIssueZip(
   articles: ExportArticle[],
   storage: Pick<StorageProvider, "getFile">,
 ) {
+  const missingText = articles.find((article) => !article.content?.trim());
+  if (missingText) throw new IncompleteDesignCraftExport(`Full article text is missing for “${missingText.title}”. Add the recovered text before exporting an article layout, or recreate the original issue from the source pages in Utilities → DesignCraft.`);
   const zip = new JSZip();
   const manifest = {
     schemaVersion: "ote.designcraft.issue.v1",

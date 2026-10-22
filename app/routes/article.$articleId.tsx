@@ -43,6 +43,8 @@ import {
   useTrackUnsaved,
 } from "~/components/article";
 import { stripLeadingTitle } from "../../shared/docx-markdown";
+import { articleDisplayAuthor, articleDisplaySubmitted, readSourceProvenance } from "~/lib/source-archive-display";
+import { SourceProvenancePanel } from "~/components/article/SourceProvenancePanel";
 
 // Server function to fetch article data
 const fetchArticleData = createServerFn({ method: "GET" })
@@ -277,9 +279,7 @@ function ArticleDetailPage() {
   // Track unsaved title changes
   const hasTitleChanges = editedTitle !== savedTitle && isEditingTitle;
 
-  const authorName = article.author
-    ? `${article.author.givenName} ${article.author.surname}`
-    : "Unknown";
+  const authorName = articleDisplayAuthor(article);
 
   const documents = article.attachments.filter(
     (a: any) => a.attachmentType === "word_document",
@@ -356,6 +356,7 @@ function ArticlePageContent({
   photos,
 }: any) {
   const navigate = useNavigate();
+  const source = readSourceProvenance(article.sourceProvenance);
   return (
     <>
       <div className="space-y-6">
@@ -486,8 +487,7 @@ function ArticlePageContent({
                   </span>
                 )}
                 <span className="text-xs" style={{ color: "var(--fg-muted)" }}>
-                  Submitted{" "}
-                  {formatDate(article.submittedAt || article.createdAt)}
+                  {source && !articleDisplaySubmitted(article) ? "Submission date not recorded" : `Submitted ${formatDate(articleDisplaySubmitted(article))}`}
                 </span>
               </div>
             </div>
@@ -562,6 +562,7 @@ function ArticlePageContent({
             <PhotoGallery photos={photos} articleId={article.id} />
 
             {/* Article Content */}
+            {source && !content?.trim() && <p className="text-sm rounded-lg p-4" style={{ background: "var(--bg-subtle)", color: "var(--fg-muted)" }}>Original article metadata is available. Full article text has not been recovered from the source archive.</p>}
             <ContentEditor articleId={article.id} initialContent={content} />
 
             {/* Feedback Letter */}
@@ -579,9 +580,10 @@ function ArticlePageContent({
 
           {/* Right Column - Sidebar */}
           <div className="space-y-6">
+            <SourceProvenancePanel value={article.sourceProvenance} />
             {/* Author Info */}
             <Section title="Author">
-              {article.author ? (
+              {article.author && (!source || source.originalAuthorName) ? (
                 <div className="space-y-3">
                   <Link
                     to="/author/$authorId"
@@ -607,7 +609,7 @@ function ArticlePageContent({
                   </Link>
 
                   <div className="space-y-2">
-                    <div className="flex items-center gap-2">
+                    {article.author.email && <div className="flex items-center gap-2">
                       <Mail
                         className="w-4 h-4"
                         style={{ color: "var(--fg-faint)" }}
@@ -619,7 +621,7 @@ function ArticlePageContent({
                       >
                         {article.author.email}
                       </a>
-                    </div>
+                    </div>}
 
                     {article.author.autoDepositAvailable && (
                       <div className="flex items-center gap-2">
@@ -648,7 +650,7 @@ function ArticlePageContent({
                 </div>
               ) : (
                 <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
-                  Author information not available
+                  {source ? "Author not recorded in the source archive" : "Author information not available"}
                 </p>
               )}
             </Section>
@@ -658,7 +660,7 @@ function ArticlePageContent({
               <div className="space-y-3">
                 <DetailRow
                   label="Submitted"
-                  value={formatDate(article.submittedAt || article.createdAt)}
+                  value={source && !articleDisplaySubmitted(article) ? "Not recorded in source" : formatDate(articleDisplaySubmitted(article))}
                 />
                 <DetailRow
                   label="Last Updated"
@@ -683,7 +685,10 @@ function ArticlePageContent({
 
             {/* Payment */}
             <Section title="Payment">
-              <PaymentSection article={article} />
+              {source && article.paymentStatus == null && article.paymentAmount == null ? <div className="space-y-3">
+                <p className="text-sm" style={{ color: "var(--fg-muted)" }}>Payment information was not verified in the original source archive.</p>
+                <details><summary className="text-xs cursor-pointer" style={{ color: "var(--accent)" }}>Record verified payment details</summary><div className="mt-3"><PaymentSection article={article} /></div></details>
+              </div> : <PaymentSection article={article} />}
             </Section>
           </div>
         </div>

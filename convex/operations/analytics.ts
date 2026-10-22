@@ -1,6 +1,17 @@
 import { Store, newest, sumPayments } from "../lib/store";
 import { articleDetails, queries } from "./queries";
 import type { Articles, Authors } from "../../shared/model";
+import { parseSourceProvenance } from "../../shared/source-archive";
+// Historical source copy does not establish that a payment is owed. Known
+// amounts/paid states and articles promoted into production retain normal rules.
+const hasFinancialRecord = (a: Articles) =>
+  !(
+    a.internalStatus === "Archived" &&
+    a.paymentStatus === null &&
+    a.paymentAmount === null &&
+    a.paymentRateSnapshot === null &&
+    parseSourceProvenance(a.sourceProvenance)
+  );
 interface DateRange {
   startDate?: string;
   endDate?: string;
@@ -56,9 +67,7 @@ function status(rows: Articles[]) {
   const paid = rows.filter(
       (a) => a.paymentStatus === true && a.paymentAmount !== null,
     ),
-    unpaid = rows.filter(
-      (a) => !a.paymentStatus && a.paymentAmount !== null,
-    );
+    unpaid = rows.filter((a) => !a.paymentStatus && a.paymentAmount !== null);
   return {
     paid: { count: paid.length, amount: sumPayments(paid) },
     unpaid: { count: unpaid.length, amount: sumPayments(unpaid) },
@@ -193,6 +202,7 @@ export const analytics = {
       const author = map.get(a.authorId);
       const bonus = f.bonus ? bonuses[f.bonus as keyof typeof bonuses] : null;
       return (
+        hasFinancialRecord(a) &&
         inRange(a.createdAt, data) &&
         (!f.tier || a.articleTier === f.tier) &&
         (!bonus || a[bonus] === true) &&
@@ -207,9 +217,7 @@ export const analytics = {
       );
     });
     const paid = rows.filter((a) => a.paymentStatus === true),
-      unpaid = rows.filter(
-        (a) => !a.paymentStatus && a.paymentAmount !== null,
-      );
+      unpaid = rows.filter((a) => !a.paymentStatus && a.paymentAmount !== null);
     return {
       paymentStats: stats(
         paid.filter((a) => a.paymentAmount !== null),
@@ -224,13 +232,11 @@ export const analytics = {
     };
   },
   async getPaymentStats(s: Store, data: DateRange = {}) {
-    const rows = await s.all("articles");
+    const rows = (await s.all("articles")).filter(hasFinancialRecord);
     return stats(
       rows.filter((a) => a.paymentStatus === true && inRange(a.paidAt, data)),
       rows.filter(
-        (a) =>
-          !a.paymentStatus &&
-          inRange(a.submittedAt || a.createdAt, data),
+        (a) => !a.paymentStatus && inRange(a.submittedAt || a.createdAt, data),
       ),
     );
   },
@@ -246,7 +252,9 @@ export const analytics = {
   },
   async getBonusFrequency(s: Store, data: DateRange = {}) {
     return bonusStats(
-      (await s.all("articles")).filter((a) => inRange(a.createdAt, data)),
+      (await s.all("articles")).filter(
+        (a) => hasFinancialRecord(a) && inRange(a.createdAt, data),
+      ),
     );
   },
   async getTopEarningAuthors(

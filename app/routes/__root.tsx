@@ -27,7 +27,7 @@ export const Route = createRootRoute({
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "OTE Manager - Over the Edge Article Management" },
     ],
-    links: [{ rel: "stylesheet", href: appCss }],
+    links: [{ rel: "stylesheet", href: appCss }, { rel: "icon", type: "image/png", href: "/designcraft/assets/ote-stacked-logo.png" }],
   }),
   notFoundComponent: NotFoundComponent,
   shellComponent: RootDocument,

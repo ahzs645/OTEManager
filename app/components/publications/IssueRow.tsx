@@ -30,7 +30,7 @@ export function IssueRow({
         paddingLeft: '2.5rem',
       }}
     >
-      <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+      <div style={{ flex: 1, display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
         <span style={{ fontWeight: 500, color: 'var(--fg-default)' }}>
           Issue {issue.issueNumber}
         </span>
@@ -51,6 +51,8 @@ export function IssueRow({
             })}
           </span>
         )}
+        {issue.sourceProvenance && <Link to="/utilities/source-archive" className="badge badge-default" style={{ textDecoration: 'none' }}>Source archive</Link>}
+        {issue.sourceProvenance && !issue.releaseDate && <span className="text-xs" style={{ color: 'var(--fg-muted)' }}>Release date not verified</span>}
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
         <Link

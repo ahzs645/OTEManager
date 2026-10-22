@@ -1,0 +1,60 @@
+{
+  "verifiedAt": "2026-10-22T22:48:29.188Z",
+  "documents": 9,
+  "subset": {
+    "conflicts": 0,
+    "create": 0,
+    "documents": 1,
+    "eligible": 11,
+    "excluded": 2,
+    "existing": 11,
+    "link": 0,
+    "missingBodies": 10,
+    "publications": 1
+  },
+  "reviewed": {
+    "conflicts": 0,
+    "create": 0,
+    "documents": 9,
+    "eligible": 100,
+    "excluded": 16,
+    "existing": 100,
+    "link": 0,
+    "missingBodies": 55,
+    "publications": 7
+  },
+  "files": {
+    "referenced": 352,
+    "available": 2,
+    "missing": 350,
+    "created": 0,
+    "skipped": 2,
+    "failed": 0
+  },
+  "imported": true,
+  "importedStats": {
+    "imported": 0,
+    "linked": 0,
+    "existing": 100,
+    "conflicts": 0
+  },
+  "zipPreview": {
+    "conflicts": 0,
+    "create": 0,
+    "documents": 9,
+    "eligible": 100,
+    "excluded": 16,
+    "existing": 100,
+    "link": 0,
+    "missingBodies": 55,
+    "publications": 7
+  },
+  "requestFormats": [
+    "application/json",
+    "application/json",
+    "application/json",
+    "multipart/form-data"
+  ],
+  "articleId": "6ad32a09-4f30-40ee-87b2-5a361c6b97e0",
+  "browserErrors": []
+}

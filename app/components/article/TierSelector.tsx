@@ -11,7 +11,7 @@ const TIER_OPTIONS = [
 
 interface TierSelectorProps {
   articleId: string
-  currentTier: string
+  currentTier: string | null
   baseRate?: number // In cents
   disabled?: boolean
   onTierChange?: (newTier: string) => void
@@ -25,7 +25,7 @@ export function TierSelector({
   onTierChange,
 }: TierSelectorProps) {
   const [isUpdating, setIsUpdating] = useState(false)
-  const [localTier, setLocalTier] = useState(currentTier)
+  const [localTier, setLocalTier] = useState(currentTier || '')
 
   const handleTierChange = async (newTier: string) => {
     if (disabled || newTier === localTier) return
@@ -77,6 +77,7 @@ export function TierSelector({
             cursor: disabled ? 'not-allowed' : 'pointer',
           }}
         >
+          <option value="" disabled>Tier not recorded</option>
           {TIER_OPTIONS.map((tier) => (
             <option key={tier.value} value={tier.value}>
               {tier.label}

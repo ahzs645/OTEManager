@@ -1,0 +1,301 @@
+{
+  "schemaVersion": "ote.designcraft.issue.v1",
+  "issue": {
+    "id": "issue-2-october-2025-0eb630f7",
+    "title": "Over the Edge",
+    "date": "2025-10-16",
+    "volume": 32,
+    "number": 2
+  },
+  "sourceIssue": {
+    "documentId": "issue-2-october-2025-0eb630f7",
+    "pageCount": 16,
+    "spreads": [],
+    "sourceSha256": "0eb630f7cb78af4776ebfcb2119f376906fadfbed354609107f45b899f0cc2d9",
+    "sourceMetadata": {
+      "date": "2025-10-16",
+      "volume": 32,
+      "number": 2,
+      "design": "ote-2025"
+    },
+    "mode": "reconstruction"
+  },
+  "articles": [],
+  "layoutPlan": {
+    "pages": [
+      {
+        "id": "issue-2-october-2025-0eb630f7-page-1",
+        "pageNumber": 1,
+        "sourcePage": 1,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "cover",
+        "label": "October 2025 cover",
+        "templateId": "whole-issue-2-october-2025-0eb630f7-p001-editable",
+        "articleIds": [],
+        "sourceMode": "editable"
+      },
+      {
+        "id": "issue-2-october-2025-0eb630f7-page-2",
+        "pageNumber": 2,
+        "sourcePage": 2,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-2-october-2025-0eb630f7-p002-editable",
+        "articleIds": [],
+        "sourceMode": "editable"
+      },
+      {
+        "id": "issue-2-october-2025-0eb630f7-page-3",
+        "pageNumber": 3,
+        "sourcePage": 3,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-2-october-2025-0eb630f7-p003-editable",
+        "articleIds": [],
+        "sourceMode": "editable"
+      },
+      {
+        "id": "issue-2-october-2025-0eb630f7-page-4",
+        "pageNumber": 4,
+        "sourcePage": 4,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "recurring",
+        "label": "Interim-President Question and Our Board 2025–2026",
+        "templateId": "whole-issue-2-october-2025-0eb630f7-p004-editable",
+        "articleIds": [],
+        "sourceMode": "editable"
+      },
+      {
+        "id": "issue-2-october-2025-0eb630f7-page-5",
+        "pageNumber": 5,
+        "sourcePage": 5,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-2-october-2025-0eb630f7-p005-editable",
+        "articleIds": [],
+        "sourceMode": "editable"
+      },
+      {
+        "id": "issue-2-october-2025-0eb630f7-page-6",
+        "pageNumber": 6,
+        "sourcePage": 6,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-2-october-2025-0eb630f7-p006-editable",
+        "articleIds": [],
+        "sourceMode": "editable"
+      },
+      {
+        "id": "issue-2-october-2025-0eb630f7-page-7",
+        "pageNumber": 7,
+        "sourcePage": 7,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-2-october-2025-0eb630f7-p007-editable",
+        "articleIds": [],
+        "sourceMode": "editable"
+      },
+      {
+        "id": "issue-2-october-2025-0eb630f7-page-8",
+        "pageNumber": 8,
+        "sourcePage": 8,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-2-october-2025-0eb630f7-p008-editable",
+        "articleIds": [],
+        "sourceMode": "editable"
+      },
+      {
+        "id": "issue-2-october-2025-0eb630f7-page-9",
+        "pageNumber": 9,
+        "sourcePage": 9,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-2-october-2025-0eb630f7-p009-editable",
+        "articleIds": [],
+        "sourceMode": "editable"
+      },
+      {
+        "id": "issue-2-october-2025-0eb630f7-page-10",
+        "pageNumber": 10,
+        "sourcePage": 10,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-2-october-2025-0eb630f7-p010-editable",
+        "articleIds": [],
+        "sourceMode": "editable"
+      },
+      {
+        "id": "issue-2-october-2025-0eb630f7-page-11",
+        "pageNumber": 11,
+        "sourcePage": 11,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "blank",
+        "label": "Wholly blank source page",
+        "templateId": "whole-issue-2-october-2025-0eb630f7-p011-editable",
+        "articleIds": [],
+        "sourceMode": "blank"
+      },
+      {
+        "id": "issue-2-october-2025-0eb630f7-page-12",
+        "pageNumber": 12,
+        "sourcePage": 12,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-2-october-2025-0eb630f7-p012-editable",
+        "articleIds": [],
+        "sourceMode": "editable"
+      },
+      {
+        "id": "issue-2-october-2025-0eb630f7-page-13",
+        "pageNumber": 13,
+        "sourcePage": 13,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "editorial",
+        "label": "Blank editorial page",
+        "templateId": "whole-issue-2-october-2025-0eb630f7-p013-editable",
+        "articleIds": [],
+        "sourceMode": "editable"
+      },
+      {
+        "id": "issue-2-october-2025-0eb630f7-page-14",
+        "pageNumber": 14,
+        "sourcePage": 14,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "ad",
+        "label": "CFUR Radiothon · Queen Vinyl Night · bottom-left quarter ad",
+        "templateId": "whole-issue-2-october-2025-0eb630f7-p014-editable",
+        "articleIds": [],
+        "sourceMode": "editable"
+      },
+      {
+        "id": "issue-2-october-2025-0eb630f7-page-15",
+        "pageNumber": 15,
+        "sourcePage": 15,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "ad",
+        "label": "Thirsty Moose Pub · right-half ad",
+        "templateId": "whole-issue-2-october-2025-0eb630f7-p015-editable",
+        "articleIds": [],
+        "sourceMode": "editable"
+      },
+      {
+        "id": "issue-2-october-2025-0eb630f7-page-16",
+        "pageNumber": 16,
+        "sourcePage": 16,
+        "sourceRegion": [
+          0,
+          0,
+          756.0,
+          792.0
+        ],
+        "role": "ad",
+        "label": "Write for Over the Edge · right-half recruitment",
+        "templateId": "whole-issue-2-october-2025-0eb630f7-p016-editable",
+        "articleIds": [],
+        "sourceMode": "editable"
+      }
+    ],
+    "cover": {
+      "mode": "editable",
+      "articleIds": [],
+      "photoPath": "source-art/whole-issue-2-october-2025-0eb630f7-p001-photo.jpeg",
+      "photoPreviewPath": "source-art/whole-issue-2-october-2025-0eb630f7-p001-photo.jpeg",
+      "photoMimeType": "image/jpeg",
+      "fit": "cover",
+      "focus": {
+        "x": 0.4999999128626883,
+        "y": 0.4999993178439738
+      },
+      "zoom": 1.0030180648880906
+    },
+    "truck": {
+      "mode": "editable",
+      "pageIds": []
+    }
+  }
+}

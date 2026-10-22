@@ -2,6 +2,7 @@ import { Link } from '@tanstack/react-router'
 import { DollarSign } from 'lucide-react'
 import { StatusBadge, TierBadge, formatDate } from '~/components/Layout'
 import type { Article } from './types'
+import { articleDisplayAuthor, articleDisplaySubmitted, readSourceProvenance, sourceRecoveryLabel } from '~/lib/source-archive-display'
 
 interface IssueArticleRowProps {
   article: Article
@@ -9,9 +10,8 @@ interface IssueArticleRowProps {
 }
 
 export function IssueArticleRow({ article, isLast }: IssueArticleRowProps) {
-  const authorName = article.author
-    ? `${article.author.givenName} ${article.author.surname}`
-    : 'Unknown'
+  const authorName = articleDisplayAuthor(article)
+  const source = readSourceProvenance(article.sourceProvenance)
 
   return (
     <Link
@@ -42,13 +42,14 @@ export function IssueArticleRow({ article, isLast }: IssueArticleRowProps) {
         >
           {article.title}
         </p>
+        {source && <p className="text-xs mt-1" style={{ color: 'var(--fg-muted)' }}>{sourceRecoveryLabel(source.recoveryStatus)}</p>}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.25rem' }}>
           <span style={{ fontSize: '0.75rem', color: 'var(--fg-muted)' }}>
             {authorName}
           </span>
           <span style={{ fontSize: '0.75rem', color: 'var(--fg-faint)' }}>·</span>
           <span style={{ fontSize: '0.75rem', color: 'var(--fg-muted)' }}>
-            {formatDate(article.submittedAt || article.createdAt)}
+            {formatDate(articleDisplaySubmitted(article))}
           </span>
         </div>
       </div>

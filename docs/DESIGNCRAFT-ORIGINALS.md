@@ -56,6 +56,8 @@ The substitutes (OFL/GUST-licensed) are committed in `public/designcraft/assets/
 
 When an original-font build lacks a face, the compiler notices (it reads the supplied fonts' name tables), uses that face's substitute and records it in the manifest as `substitutedFonts` instead of failing.
 
+Captured source fields can define a scoped substitute in `style.portable`, with `fontFamily`, `fontStyle` and optional `chars.hScale`. Horizontal scale is a finite fraction from 0.25 to 4; it lets a substitute match the source text's measured width without removing copy. These character overrides apply whenever the substitute is selected, including a missing-face fallback in an original-font build. Supplying the original face restores its captured character attributes. Native and IDML exports retain the selected scale.
+
 **Salted.** The supplied `salted-regular.otf` (The Type Founders) is licensed *for personal use only, no redistribution*, so it is not in the repository. Put it in the private font directory with the other originals. With it installed, the 2025–26 cover matches glyph for glyph.
 
 ## Fidelity
