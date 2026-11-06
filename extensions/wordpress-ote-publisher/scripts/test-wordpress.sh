@@ -23,7 +23,7 @@ else
 fi
 wp() { docker exec "$name-wp" php /tmp/wp "$@" --allow-root; }
 for attempt in {1..60}; do
-  if docker exec "$name-wp" php -r 'exit(@mysqli_connect(getenv("WORDPRESS_DB_HOST"), "root", "test-only", "wordpress") ? 0 : 1);'; then break; fi
+  if docker exec "$name-wp" php -r 'try { exit(mysqli_connect(getenv("WORDPRESS_DB_HOST"), "root", "test-only", "wordpress") ? 0 : 1); } catch (Throwable $e) { exit(1); }' 2>/dev/null; then break; fi
   sleep 1
 done
 wp core install --url="http://localhost:$port" --title=Test --admin_user=testadmin --admin_password=test-only --admin_email=test@example.test --skip-email
