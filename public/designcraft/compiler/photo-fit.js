@@ -281,7 +281,7 @@ export function insetPhotos(template, order, sizes, { side = 'right', size: reac
   return named(fitted, template, `inset-${side}${reach === 'small' ? '-small' : ''}`, `${reach === 'small' ? 'small ' : ''}photo inset ${side}, text wraps`, changed);
 }
 
-const CONTENT_ROLES = new Set(['headline', 'byline', 'body', 'caption', 'photo']);
+const CONTENT_ROLES = new Set(['headline', 'byline', 'body', 'caption', 'photo', 'ad', 'piece']);
 const OVERLAP_TOLERANCE = 2;
 
 /**
@@ -307,6 +307,8 @@ export function layoutCollisions(template) {
 export function photoLayouts(template, order, sizes, options = {}) {
   const assigned = assignPhotos(template, order, sizes);
   const out = [{ template: assigned, mode: 'as-designed' }];
+  // Ads and body flows hold checked geometry: match the photos, but leave those frames where they are.
+  if (template.reservationLayout || Object.values(template.bodyFlows ?? {}).some((ids) => ids.length > 1)) return out;
   const known = new Set(layoutCollisions(assigned).map(String));          // a design's own layering is not ours to judge
   const add = (result) => { if (result && layoutCollisions(result.template).every((hit) => known.has(String(hit)))) out.push({ template: result.template, mode: result.template.photoFit.mode }); };
   add(fitPhotoFrames(assigned, order, sizes, options));

@@ -32,12 +32,71 @@ function slotPhotoIndex(t,s){if(Number.isInteger(s.photoIndex))return s.photoInd
 function candidateArticles(){const seen=new Set();return [...issue.articles,...(issue.articlePool||[])].filter(article=>{if(seen.has(article.id))return false;seen.add(article.id);return true;});}
 function articles(){return (selected?.kind==='cover'?coverFeatured.filter(Boolean):assignments).map(id=>candidateArticles().find(a=>a.id===id)).filter(Boolean);}
 function contentBox(t){return t?.design&&library.designs?.[t.design]?.content||[36,100,720,744];}
-function freeArea(reserved=blocks,box=[36,100,720,744]){let free=[box];for(const q of reserved.map(b=>b.rect)){const next=[];for(const a of free){const l=Math.max(a[0],q[0]),t=Math.max(a[1],q[1]),r=Math.min(a[2],q[2]),b=Math.min(a[3],q[3]);if(l>=r||t>=b){next.push(a);continue;}if(a[1]<t)next.push([a[0],a[1],a[2],t-8]);if(b<a[3])next.push([a[0],b+8,a[2],a[3]]);if(a[0]<l)next.push([a[0],t,l-8,b]);if(r<a[2])next.push([r+8,t,a[2],b]);}free=next.filter(a=>a[2]-a[0]>=80&&a[3]-a[1]>=80);}return free.sort((a,b)=>(b[2]-b[0])*(b[3]-b[1])-(a[2]-a[0])*(a[3]-a[1]))[0];}
+// Return every disjoint usable region in deliberate top-to-bottom reading order.
+// Insets are applied around each reservation once, including its corners.
+function freeRegions(reserved=blocks,box=[36,100,720,744],gutter=8,minimum=80){
+ let free=[[...box]];
+ for(const block of reserved){
+  const q=[block.rect[0]-gutter,block.rect[1]-gutter,block.rect[2]+gutter,block.rect[3]+gutter],next=[];
+  for(const a of free){
+   const l=Math.max(a[0],q[0]),top=Math.max(a[1],q[1]),r=Math.min(a[2],q[2]),b=Math.min(a[3],q[3]);
+   if(l>=r||top>=b){next.push(a);continue;}
+   if(a[1]<top)next.push([a[0],a[1],a[2],top]);
+   if(b<a[3])next.push([a[0],b,a[2],a[3]]);
+   if(a[0]<l)next.push([a[0],top,l,b]);
+   if(r<a[2])next.push([r,top,a[2],b]);
+  }
+  free=next;
+ }
+ return free.filter(a=>a[2]-a[0]>=minimum&&a[3]-a[1]>=minimum).sort((a,b)=>a[1]-b[1]||a[0]-b[0]);
+}
+const regionArea=r=>(r[2]-r[0])*(r[3]-r[1]);
+function freeArea(reserved=blocks,box=[36,100,720,744]){return freeRegions(reserved,box)[0];}
+function assertUniqueSlots(t){const ids=new Set();for(const s of t.slots){if(typeof s.id!=='string'||!s.id||ids.has(s.id))throw Error('Every frame needs a unique nonempty ID.');ids.add(s.id);}}
+function unresolved(template){
+ const t=copy(template),layout=t.reservationLayout;if(!layout)return t;
+ if(layout.reservationOnly){t.slots=copy(layout.sourceSlots);delete t.reservationLayout;return t;}
+ const c=layout.contentBox,r=layout.primary;
+ t.slots=t.slots.filter(s=>!layout.addedSlotIds.includes(s.id));
+ for(const s of t.slots)if(s.role!=='folio'&&s.role!=='text')s.rect=[c[0]+(s.rect[0]-r[0])*(c[2]-c[0])/(r[2]-r[0]),c[1]+(s.rect[1]-r[1])*(c[3]-c[1])/(r[3]-r[1]),c[0]+(s.rect[2]-r[0])*(c[2]-c[0])/(r[2]-r[0]),c[1]+(s.rect[3]-r[1])*(c[3]-c[1])/(r[3]-r[1])];
+ if(layout.originalBodyFlows)t.bodyFlows=layout.originalBodyFlows;else delete t.bodyFlows;
+ delete t.reservationLayout;return t;
+}
 function resolved(template){
- const t=copy(template);
+ let t=copy(template);assertUniqueSlots(t);
+ const blockSlot=b=>({id:b.id,role:b.type==='ad'?'ad':'piece',blockType:b.type,rect:copy(b.rect),text:b.name,...(b.asset?{asset:b.asset,fit:b.fit||'contain',focus:b.focus||{x:.5,y:.5}}:{}),...(b.previewAsset?{previewAsset:b.previewAsset}:{}),...(b.contentLayout?{contentLayout:copy(b.contentLayout)}:{}),...(b.source?{source:copy(b.source)}:{}),fields:copy(sharedFields[b.fieldKey]||{})});
+ const signature=JSON.stringify({blocks,sharedFields,contentBox:contentBox(t)});
+ // Checked candidates are already resolved. Keep their exact checked geometry,
+ // including headline fitting, through selection, save and reload.
+ if(t.reservationLayout?.signature===signature)return t;
+ if(t.reservationLayout)t=unresolved(t);
  if(t.source&&blocks.length)throw Error('This source page keeps its measured frames and reservations. Remove added pieces, or choose a general story recipe to arrange new reservations.');
- if(t.kind==='story'&&blocks.length){const c=contentBox(t),r=freeArea(blocks,c),w=c[2]-c[0],h=c[3]-c[1];if(!r)throw Error('No usable rectangular story area remains. Move or remove a piece.');for(const s of t.slots)if(s.role!=='folio'&&s.role!=='text')s.rect=[r[0]+(s.rect[0]-c[0])/w*(r[2]-r[0]),r[1]+(s.rect[1]-c[1])/h*(r[3]-r[1]),r[0]+(s.rect[2]-c[0])/w*(r[2]-r[0]),r[1]+(s.rect[3]-c[1])/h*(r[3]-r[1])];}
- if(t.kind!=='cover')for(const b of blocks)t.slots.push({id:b.id,role:b.type==='ad'?'ad':'piece',blockType:b.type,rect:copy(b.rect),text:b.name,...(b.asset?{asset:b.asset,fit:b.fit||'contain',focus:b.focus||{x:.5,y:.5}}:{}),...(b.previewAsset?{previewAsset:b.previewAsset}:{}),...(b.contentLayout?{contentLayout:copy(b.contentLayout)}:{}),...(b.source?{source:copy(b.source)}:{}),fields:copy(sharedFields[b.fieldKey]||{})});
+ if(t.kind==='story'&&blocks.length){
+  const c=contentBox(t),regions=freeRegions(blocks,c),r=regions[0];
+  if(!r)throw Error('No usable story area remains. Move or remove a piece.');
+  const w=c[2]-c[0],h=c[3]-c[1],addedSlotIds=[],originalBodyFlows=t.bodyFlows?copy(t.bodyFlows):null;
+  if(originalBodyFlows)throw Error('Apply reservations to an unreserved single-region pattern first.');
+  for(const s of t.slots)if(s.role!=='folio'&&s.role!=='text')s.rect=[r[0]+(s.rect[0]-c[0])/w*(r[2]-r[0]),r[1]+(s.rect[1]-c[1])/h*(r[3]-r[1]),r[0]+(s.rect[2]-c[0])/w*(r[2]-r[0]),r[1]+(s.rect[3]-c[1])/h*(r[3]-r[1])];
+  const bodies=t.slots.filter(s=>s.role==='body'&&s.enabled!==false),bodyFlows={};
+  for(const body of bodies)bodyFlows[body.articleIndex??0]=[body.id];
+  // Additional regions become explicit linked body frames. Copy stays in the
+  // opening frame; the compiler threads the rest without duplicating the story.
+  for(const [index,region] of regions.entries())if(region!==r&&!region.every((v,i)=>v===r[i])){
+   const body=[...bodies].sort((a,b)=>Math.max(0,Math.min(b.rect[2],region[2])-Math.max(b.rect[0],region[0]))-Math.max(0,Math.min(a.rect[2],region[2])-Math.max(a.rect[0],region[0])))[0];
+   if(!body)continue;
+   const id=body.id+'-region-'+(index+1);addedSlotIds.push(id);t.slots.push({...copy(body),id,rect:[...region],columns:1});bodyFlows[body.articleIndex??0].push(id);
+  }
+  for(const b of blocks){addedSlotIds.push(b.id);t.slots.push(blockSlot(b));}
+  t.bodyFlows=bodyFlows;
+  const eligibleArea=regions.reduce((n,a)=>n+regionArea(a),0),physicalFreeArea=freeRegions(blocks,c,0,0).reduce((n,a)=>n+regionArea(a),0);
+  t.reservationLayout={signature,contentBox:[...c],primary:[...r],regions:copy(regions),addedSlotIds,originalBodyFlows,physicalFreeArea,eligibleArea,allocatedRegionArea:bodies.length?eligibleArea:regionArea(r),unallocatedArea:physicalFreeArea-(bodies.length?eligibleArea:regionArea(r))};
+  assertUniqueSlots(t);
+ }
+ if(['ad','custom'].includes(t.kind)&&blocks.length){
+  const sourceSlots=copy(t.slots);t.slots=t.slots.filter(s=>!['ad','piece'].includes(s.role));
+  for(const b of blocks)t.slots.push(blockSlot(b));
+  t.reservationLayout={signature,reservationOnly:true,sourceSlots,regions:freeRegions(blocks,contentBox(t))};assertUniqueSlots(t);
+ }
  if(t.kind==='cover')return applyCover(t,coverFeatured.filter(Boolean));
  for(const slot of t.slots)if(slot.field==='issueDate'&&slot.format&&$('release-date').value)slot.text=designField(slot.format,coverSettings());
  return t;
@@ -54,7 +113,7 @@ function draw(t,mini=false){
   svg.append(el('rect',{x,y,width:r-x,height:b-y,fill:colors[s.role]||'#eceee9',stroke:'#b6c9ba','stroke-width':mini?2:.5}));if(mini)continue;
   if(s.id.startsWith('cover-card-')&&!s.text||s.id==='cover-line'&&!s.text)continue;
   let value=s.text||s.role.toUpperCase(),size=12,family='Source Sans',max=8;
-  if(s.role==='headline'){value=a?.title||value;size=s.fontSize||24;max=3;}if(s.role==='byline'){value=a?'By '+a.author:value;size=10;max=2;}if(s.role==='body'){value=a?.body||'Article copy';size=11;family='Source Serif';max=999;}if(s.role==='caption'){value=p?.caption||s.text||'Photo caption';size=s.fontSize||9;max=2;}if(s.role==='piece'&&s.fields){value=Object.values(s.fields).filter(v=>v!==null&&v!==undefined&&v!=='').map(piecePreviewText).join('\n\n');max=99;}if(s.role==='folio'){value='OVER THE EDGE · '+$('page-number').value;size=9;max=1;}text(svg,value,s.rect,s.fontSize||size,family,max,s.leading);
+  if(s.role==='headline'){value=a?.title||value;size=s.fontSize||24;max=3;}if(s.role==='byline'){value=a?'By '+a.author:value;size=10;max=2;}if(s.role==='body'){value=t.bodyFlows?.[s.articleIndex??0]?.[0]!==s.id&&t.bodyFlows?.[s.articleIndex??0]?.length>1?'Continued copy · DesignCraft checks the complete story flow':a?.body||'Article copy';size=library.designs?.[t.design]?.styles?.['OTE Body']?.size||10;family='Source Serif';max=999;}if(s.role==='caption'){value=p?.caption||s.text||'Photo caption';size=s.fontSize||9;max=2;}if(s.role==='piece'&&s.fields){value=Object.values(s.fields).filter(v=>v!==null&&v!==undefined&&v!=='').map(piecePreviewText).join('\n\n');max=99;}if(s.role==='folio'){value='OVER THE EDGE · '+$('page-number').value;size=9;max=1;}const previewSize=['headline','byline','caption'].includes(s.role)?Math.min(s.fontSize||size,Math.max(4,b-y-8)):s.fontSize||size;const previewLeading=['headline','byline','caption'].includes(s.role)?Math.min(s.leading||previewSize*1.22,Math.max(4,b-y-4)):s.leading;text(svg,value,s.rect,previewSize,family,max,previewLeading);
  }return svg;
 }
 function readPDF(d){$('pdf-title').textContent=d.displayTitle||d.title;$('pdf-download').href=d.pdf;$('pdf-frame').src=d.pdf;$('pdf-dialog').showModal();}
@@ -73,8 +132,8 @@ function renderAssignments(){
  }
 }
 function choose(id,template=null){const source=template||library.templates.find(t=>t.id===id);if(!source)throw Error('Unknown template');selected=copy(source);$('selected-template').value=id;renderAssignments();renderPage();renderTemplates();if(typeof renderEditor==='function')renderEditor();if(typeof renderSourceOptions==='function')renderSourceOptions();if(typeof renderSourceIssueOverview==='function')renderSourceIssueOverview();}
-function renderPage(){renderCoverReferences();try{const t=resolved(selected);$('page-preview').replaceChildren(draw(t));$('preview-name').textContent=t.name;$('planner-status').textContent='Geometry ready. Text fit is verified by the native compiler, not this browser preview.';}catch(e){$('planner-status').textContent=e.message;}const n=Number($('page-count').value);$('truck-status').textContent=n>=4&&n%4===0?'Centre spread: pages '+n/2+' and '+(n/2+1)+'. Keep both pages continuous.':'A print-ready centre spread needs a page count divisible by four.';}
-function validateBlock(b,existing=blocks){if(!b||!Array.isArray(b.rect)||b.rect.length!==4||!b.rect.every(Number.isFinite))throw Error('Every block needs four finite boundary coordinates.');const [x,y,r,bottom]=b.rect;if(x<0||y<0||r>756||bottom>792||r-x<30||bottom-y<30)throw Error('Keep boundaries within the 756 × 792pt page, at least 30pt in each direction.');if(existing.some(a=>x<a.rect[2]&&r>a.rect[0]&&y<a.rect[3]&&bottom>a.rect[1]))throw Error('Reserved pieces must not overlap each other.');}
+function renderPage(){renderCoverReferences();try{const t=resolved(selected);$('page-preview').replaceChildren(draw(t));$('preview-name').textContent=t.name;$('planner-status').textContent=t.reservationLayout&&!t.reservationLayout.reservationOnly?'Estimated geometry · '+t.reservationLayout.regions.length+' editorial region(s), '+Math.round(t.reservationLayout.eligibleArea/t.reservationLayout.physicalFreeArea*100)+'% of free area eligible after gutters and minimum widths. DesignCraft composition checks complete text fit.':'Estimated geometry. DesignCraft composition checks text fit.';}catch(e){$('planner-status').textContent=e.message;}const n=Number($('page-count').value);$('truck-status').textContent=n>=4&&n%4===0?'Centre spread: pages '+n/2+' and '+(n/2+1)+'. Keep both pages continuous.':'A print-ready centre spread needs a page count divisible by four.';}
+function validateBlock(b,existing=blocks){if(!b||!Array.isArray(b.rect)||b.rect.length!==4||!b.rect.every(Number.isFinite))throw Error('Every block needs four finite boundary coordinates.');const [x,y,r,bottom]=b.rect;if(x<0||y<0||r>756||bottom>792||r-x<30||bottom-y<30)throw Error('Keep boundaries within the 756 × 792pt page, at least 30pt in each direction.');if(typeof b.id!=='string'||!b.id||existing.some(a=>a.id===b.id))throw Error('Reserved pieces need unique IDs.');if(existing.some(a=>x<a.rect[2]&&r>a.rect[0]&&y<a.rect[3]&&bottom>a.rect[1]))throw Error('Reserved pieces must not overlap each other.');}
 function renderBlocks(){
  $('pieces-list').replaceChildren();
  for(const b of blocks){
@@ -104,9 +163,10 @@ function validateMediaPath(path){if(typeof path!=='string'||!path||path.startsWi
 function requireMedia(data){for(const p of plannedPages)for(const s of p.template?.slots||[])if(s.asset?.startsWith('assets/user-')&&!bytes.has(s.asset))throw Error('Missing saved page artwork: '+s.asset);for(const s of selected?.slots||[])if(s.asset?.startsWith('assets/user-')&&!bytes.has(s.asset))throw Error('Missing frame artwork: '+s.asset);for(const a of data.articles)for(const p of a.photos){validateMediaPath(p.path);if(!bytes.has(p.path))throw Error('Import the issue ZIP to include original media: '+p.path);}for(const b of blocks)if(b.asset&&(b.asset.startsWith('assets/user-')||b.assetRoot==='issue')&&!bytes.has(b.asset))throw Error('Missing piece artwork: '+b.asset);}
 function baseFromSaved(page){
  if(page.baseTemplate)return copy(page.baseTemplate);
+ if(page.template?.reservationLayout)return copy(page.template);
  const t=copy(page.template),saved=page.blocks||[];
- if(saved.length&&t.kind==='story'){const r=freeArea(saved);if(!r)throw Error('Saved recipe has no usable story area.');t.slots=t.slots.filter(s=>!saved.some(b=>b.id===s.id));
-  if(t.kind==='story')for(const s of t.slots)if(s.role!=='folio')s.rect=[36+(s.rect[0]-r[0])*684/(r[2]-r[0]),100+(s.rect[1]-r[1])*644/(r[3]-r[1]),36+(s.rect[2]-r[0])*684/(r[2]-r[0]),100+(s.rect[3]-r[1])*644/(r[3]-r[1])];}
+ if(saved.length&&t.kind==='story'){const r=freeArea(saved,contentBox(t));if(!r)throw Error('Saved recipe has no usable story area.');t.slots=t.slots.filter(s=>!saved.some(b=>b.id===s.id));
+  const c=contentBox(t);if(t.kind==='story')for(const s of t.slots)if(s.role!=='folio'&&s.role!=='text')s.rect=[c[0]+(s.rect[0]-r[0])*(c[2]-c[0])/(r[2]-r[0]),c[1]+(s.rect[1]-r[1])*(c[3]-c[1])/(r[3]-r[1]),c[0]+(s.rect[2]-r[0])*(c[2]-c[0])/(r[2]-r[0]),c[1]+(s.rect[3]-r[1])*(c[3]-c[1])/(r[3]-r[1])];}
  return t;
 }
 async function importIssue(file){if(!file)return;try{

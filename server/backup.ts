@@ -6,6 +6,7 @@ import { fromWire, toWire } from "../shared/codec";
 import { parseManifest, validateSnapshot } from "../shared/backup";
 import { validateFilePath } from "../shared/file-path";
 import { getStorage } from "../storage";
+import { collectBackupFiles } from "../shared/issue-studio-assets";
 const MAX_MANIFEST = 8 * 1024 * 1024,
   MAX_FILE = 512 * 1024 * 1024;
 export class BackupArchive {
@@ -98,9 +99,7 @@ export async function importBackup(path: string, options: ImportOptions = {}) {
     if (type === "database" && !importDatabase)
       throw new Error("This archive has no database records");
     if (importDatabase) validateSnapshot(snapshot);
-    const paths = new Map(
-      snapshot.attachments.map((a) => [validateFilePath(a.filePath), a]),
-    );
+    const paths = new Map(collectBackupFiles({ ...snapshot, referencedFiles: manifest.data.referencedFiles }).map(file => [file.path, file]));
     const report = archive.entries.has("recovery-report.json")
       ? JSON.parse(
           (await archive.read("recovery-report.json", MAX_MANIFEST)).toString(

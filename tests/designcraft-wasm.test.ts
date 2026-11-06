@@ -119,6 +119,15 @@ test("the fixture issue compiles to a booklet with live cover references in the 
   expect(new TextDecoder().decode(artifacts.pdf.subarray(0, 5))).toBe("%PDF-");
 }, 120000);
 
+test("an unplaced story blocks a strict compile by title, and a draft can proof the rest", async () => {
+  const issue = structuredClone(fixture);
+  issue.articles.push({ id: "held-back", title: "Held back story", body: "Copy", author: "A", photos: [] });
+  const options = { library, issue, fonts, loadMedia, executor, markdownit, JSZip };
+  await expect(issues.compileIssue(options)).rejects.toThrow(/Held back story/);
+  const { manifest } = await issues.compileIssue({ ...options, allowUnplaced: true });
+  expect(manifest.status).toBe("exported");
+}, 120000);
+
 test("protected pages are refused in the browser compiler", async () => {
   const issue = structuredClone(fixture); issue.layoutPlan.pages[1].mode = "preserve";
   await expect(issues.compileIssue({ library, issue, fonts, loadMedia, executor, markdownit, JSZip })).rejects.toThrow(/server compiler/);

@@ -12,6 +12,7 @@ export const Route = createFileRoute("/api/backup/export")({
             );
           const { exportManifest } = await import("../../../../server/backup");
           const { getStorage } = await import("../../../../storage");
+          const { collectBackupFiles } = await import("../../../../shared/issue-studio-assets");
           const { default: archiver } = await import("archiver");
           const { Readable } = await import("node:stream");
           const manifest = await exportManifest(type),
@@ -40,9 +41,7 @@ export const Route = createFileRoute("/api/backup/export")({
               });
               await entry;
               if (type !== "database")
-                for (const path of new Set<string>(
-                  manifest.data.attachments.map((a: any) => a.filePath),
-                )) {
+                for (const { path } of collectBackupFiles(manifest.data)) {
                   const info = await storage.info(path);
                   if (!info?.url)
                     throw new Error(`Missing attachment: ${path}`);

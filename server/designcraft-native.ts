@@ -358,7 +358,7 @@ async function prepareRecipe(buffer: Buffer, directory: string, designcraftDir: 
   // Archive scripts and executables are deliberately ignored. Only validated JSON/resources are staged.
   const usedTemplates = templates.filter((t) => mode === "page" ? t.id === templateId : (plan.pages ?? []).some((p: Json) => p.templateId === t.id));
   return { templateId, pageNumber, articleIds: selectedArticles, designs: usedTemplates.some((t) => t.design),
-    sharedCompiler: !!issue.sourceIssue || usedTemplates.some((t) => t.design || t.section || t.sourceCover || t.slots.some((s: Json) => s.pdfPage || s.role === "text" || s.role === "wrap" || s.contentLayout || typeof s.style === "object")) || (plan.pages ?? []).some((p: Json) => p.section) };
+    sharedCompiler: !!issue.sourceIssue || usedTemplates.some((t) => t.design || t.bodyFlows || t.section || t.sourceCover || t.slots.some((s: Json) => s.pdfPage || s.role === "text" || s.role === "wrap" || s.contentLayout || typeof s.style === "object")) || (plan.pages ?? []).some((p: Json) => p.section) };
 }
 
 async function prepareBase(buffer: Buffer, directory: string, limits: typeof NATIVE_LIMITS, expandedBeforeNative: number) {
@@ -618,8 +618,8 @@ export function createNativeService(config: Config = {}) {
       // Original designs need the shared JavaScript compiler; with the CLI engine it runs on the bundled
       // WebAssembly engine too (the Python compilers have no design layer support).
       if (selected.sharedCompiler && engine !== "wasm") {
-        if (base) throw new NativeRequestError("Protected-page rebuilds are not available for original-design or structured source templates.", 409);
-        if (!(await staticDir)) throw new NativeRequestError("Original-design and structured source templates need the bundled DesignCraft WebAssembly engine on this server.", 503);
+        if (base) throw new NativeRequestError("Protected-page rebuilds are not available for original-design, multi-region or structured source templates.", 409);
+        if (!(await staticDir)) throw new NativeRequestError("Original-design, multi-region and structured source templates need the bundled DesignCraft WebAssembly engine on this server.", 503);
       }
       if (engine === "wasm" || selected.sharedCompiler) {
         job.wasm = { recipeDir: recipe, fontDir: profile === "original2025" ? resolve(originals!) : fonts, booklet: !!input.booklet, selected };

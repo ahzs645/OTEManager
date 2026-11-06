@@ -39,11 +39,13 @@ Measured on the 19 live Draft articles with photos and text, on DesignCraft 0.17
 
 - Very tall photos can still crop. An 800×2000 photo is too tall for one column of a one-story page.
 - Short stories with one photo can leave about half a page free, which is room for a second story. Filling it by enlarging the photo is not attempted.
-- Stories of roughly 950 words or more with photos may not fit one page on any layout, and need a continuation page.
-- Emoji stop every layout for that article until they are replaced.
+- Stories of roughly 950 words or more with photos may not fit one page on any layout. Issue Studio's planner gives them measured continuation pages.
+- Continuation pages after the opener are text-only, so a long story shows one photo layout, and each page repeats the full headline.
+- Emoji stop every layout for that article until they are replaced. The whole-issue planner holds the story back and names the characters.
+- Photo reshaping is skipped on pages with booked ads or several body frames, so their checked geometry stays put. Photos are still matched by shape there.
 - A photo with no caption prints the placeholder "Caption not provided".
 
 ## Checking it
 
 - `tests/designcraft-photo-fit.test.ts` covers size reading, matching, reshaping, and collisions across every story template and five photo shapes.
-- `tools/designcraft/check-interface-bot.cjs` walks the app on desktop and phone sizes, then runs Publications → planner → layouts → generate → editor against a local issue. It clicks and saves, so it refuses to run against anything but localhost. It expects an issue with 10 articles under Volume 33.
+- `tools/designcraft/check-interface-bot.cjs` walks the app on desktop and phone sizes, then runs Publications → planner → layouts → generate → editor against a local issue. It clicks and saves, so it refuses to run against anything but localhost. It runs Publications → Issue Studio → layouts → editor → whole-issue plan → composition, and expects an issue titled "Bot test issue" with 10 articles under Volume 33.
