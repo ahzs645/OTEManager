@@ -18,6 +18,7 @@ import type * as operations_analytics from "../operations/analytics.js";
 import type * as operations_issueStudio from "../operations/issueStudio.js";
 import type * as operations_mutations from "../operations/mutations.js";
 import type * as operations_paymentReceipts from "../operations/paymentReceipts.js";
+import type * as operations_publications from "../operations/publications.js";
 import type * as operations_queries from "../operations/queries.js";
 import type * as operations_sourceArchive from "../operations/sourceArchive.js";
 import type * as operations_utilities from "../operations/utilities.js";
@@ -40,6 +41,7 @@ declare const fullApi: ApiFromModules<{
   "operations/issueStudio": typeof operations_issueStudio;
   "operations/mutations": typeof operations_mutations;
   "operations/paymentReceipts": typeof operations_paymentReceipts;
+  "operations/publications": typeof operations_publications;
   "operations/queries": typeof operations_queries;
   "operations/sourceArchive": typeof operations_sourceArchive;
   "operations/utilities": typeof operations_utilities;

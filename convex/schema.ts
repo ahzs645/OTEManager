@@ -327,6 +327,27 @@ export default defineSchema({
     createdAt: v.number(),
     updatedAt: v.number(),
   }).index("by_legacy_id", ["id"]),
+  articlePublications: defineTable({
+    id: v.string(),
+    articleId: v.string(),
+    destination: v.string(),
+    siteUrl: v.string(),
+    remotePostId: v.union(v.number(), v.null()),
+    remoteUrl: v.union(v.string(), v.null()),
+    remoteEditUrl: v.union(v.string(), v.null()),
+    remoteStatus: v.union(v.string(), v.null()),
+    contentFingerprint: v.union(v.string(), v.null()),
+    mediaMap: v.union(v.string(), v.null()),
+    lastAction: v.union(v.string(), v.null()),
+    lastResult: v.string(),
+    lastError: v.union(v.string(), v.null()),
+    warnings: v.union(v.string(), v.null()),
+    lastPushedAt: v.union(v.number(), v.null()),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_legacy_id", ["id"])
+    .index("by_articleId", ["articleId"]),
   storedFiles: defineTable({
     path: v.string(),
     storageId: v.id("_storage"),

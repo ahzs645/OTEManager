@@ -354,6 +354,20 @@ export const utilityMutations = {
       ] as const)
         for (const row of await s.by(table, "articleId", id))
           await s.patch(table, row.id, { articleId: keep.id });
+      // Keep one web publication per site: the kept article's record wins.
+      const keptSites = new Set(
+        (await s.by("articlePublications", "articleId", keep.id)).map(
+          (p) => p.siteUrl,
+        ),
+      );
+      for (const row of await s.by("articlePublications", "articleId", id)) {
+        if (keptSites.has(row.siteUrl))
+          await s.delete("articlePublications", row.id);
+        else {
+          await s.patch("articlePublications", row.id, { articleId: keep.id });
+          keptSites.add(row.siteUrl);
+        }
+      }
       const types = new Set(
         (await s.by("articleMultimediaTypes", "articleId", keep.id)).map(
           (t) => t.multimediaType,

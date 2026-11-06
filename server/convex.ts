@@ -16,15 +16,21 @@ import type {
   issueStudioQueries,
   issueStudioMutations,
 } from "../convex/operations/issueStudio";
+import type {
+  publicationQueries,
+  publicationMutations,
+} from "../convex/operations/publications";
 type Queries = typeof queries &
   typeof analytics &
   typeof utilityQueries &
   typeof sourceArchiveQueries &
-  typeof issueStudioQueries;
+  typeof issueStudioQueries &
+  typeof publicationQueries;
 type Mutations = typeof mutations &
   typeof utilityMutations &
   typeof sourceArchiveMutations &
-  typeof issueStudioMutations;
+  typeof issueStudioMutations &
+  typeof publicationMutations;
 export function connection() {
   const url = process.env.CONVEX_URL || process.env.VITE_CONVEX_URL;
   const secret = process.env.CONVEX_SERVER_SECRET;

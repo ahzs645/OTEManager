@@ -61,3 +61,10 @@ export {
   type SavedViewConfig,
   type SavedView,
 } from "./savedViewMutations";
+
+// WordPress publishing
+export {
+  getWordPressConnection,
+  sendArticlesToWordPress,
+  sendIssueToWordPress,
+} from "./wordpressMutations";

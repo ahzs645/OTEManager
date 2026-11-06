@@ -6,6 +6,7 @@ import { VolumeForm } from './VolumeForm'
 import { IssueForm } from './IssueForm'
 import { IssueRow } from './IssueRow'
 import { IssueExportModal } from './IssueExportModal'
+import { WordPressIssueModal } from './WordPressIssueModal'
 import {
   type Volume,
   type Issue,
@@ -37,6 +38,7 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
   const [exportingIssueId, setExportingIssueId] = useState<string | null>(null)
   const [exportDialogIssue, setExportDialogIssue] = useState<Issue | null>(null)
   const [exportFormat, setExportFormat] = useState<'docx' | 'designcraft'>('docx')
+  const [wordPressIssue, setWordPressIssue] = useState<Issue | null>(null)
 
   const [volumeForm, setVolumeForm] = useState<VolumeFormData>(emptyVolumeForm)
   const [issueForm, setIssueForm] = useState<IssueFormData>(emptyIssueForm)
@@ -388,6 +390,7 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
                       onDelete={() => handleDeleteIssue(issue.id)}
                       onExport={() => { setExportFormat('docx'); setExportDialogIssue(issue) }}
                       onDesignCraftExport={() => { void router.navigate({ to: '/publications/issues/$issueId/studio', params: { issueId: issue.id } }) }}
+                      onWordPress={() => setWordPressIssue(issue)}
                       isExporting={exportingIssueId === issue.id}
                     />
                   )}
@@ -424,6 +427,14 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
             </div>
           )}
         </div>
+      )}
+
+      {wordPressIssue && (
+        <WordPressIssueModal
+          issueId={wordPressIssue.id}
+          label={`Volume ${volume.volumeNumber}, Issue ${wordPressIssue.issueNumber}`}
+          onClose={() => setWordPressIssue(null)}
+        />
       )}
 
       {exportDialogIssue && (

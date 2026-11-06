@@ -22,6 +22,7 @@ export const importOrder: TableName[] = [
   "issueReservations",
   "issueDesignRevisions",
   "compositionJobs",
+  "articlePublications",
 ];
 export function parseManifest(manifest: any): Snapshot {
   if (
@@ -108,6 +109,7 @@ export function validateSnapshot(snapshot: Snapshot) {
     "articleNotes",
     "statusHistory",
     "sourceArchiveLinks",
+    "articlePublications",
   ] as const)
     for (const row of snapshot[table])
       if (!ids.get("articles")!.has(row.articleId))

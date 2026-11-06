@@ -16,3 +16,5 @@ export {
   useTrackUnsaved,
   UnsavedChangesIndicator,
 } from './UnsavedChangesContext'
+export { WordPressPanel } from './WordPressPanel'
+export { WordPressResults, type WordPressSendResult } from './WordPressResults'

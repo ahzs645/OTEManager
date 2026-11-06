@@ -157,6 +157,7 @@ export class Store {
         "articleMultimediaTypes",
         "statusHistory",
         "sourceArchiveLinks",
+        "articlePublications",
       ].includes(table)
     )
       await this.require("articles", row.articleId);
