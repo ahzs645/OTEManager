@@ -205,6 +205,7 @@ export const queries = {
             statusHistory: (
               await s.by("statusHistory", "articleId", a.id)
             ).sort((a, b) => +b.changedAt - +a.changedAt),
+            publications: await s.by("articlePublications", "articleId", a.id),
           }
         : null,
     };

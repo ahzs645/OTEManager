@@ -199,6 +199,31 @@ export interface SourceArchiveLinks {
   createdAt: Date;
   updatedAt: Date;
 }
+/**
+ * Where an article was sent on the web (currently WordPress). One row per
+ * article and destination site. Holds only the remote IDs and the outcome of
+ * the last send, never credentials.
+ */
+export interface ArticlePublications {
+  id: string;
+  articleId: string;
+  destination: string;
+  siteUrl: string;
+  remotePostId: number | null;
+  remoteUrl: string | null;
+  remoteEditUrl: string | null;
+  remoteStatus: string | null;
+  contentFingerprint: string | null;
+  mediaMap: string | null;
+  lastAction: string | null;
+  lastResult: string;
+  lastError: string | null;
+  warnings: string | null;
+  lastPushedAt: Date | null;
+  createdAt: Date;
+  updatedAt: Date;
+}
+export const PUBLICATION_RESULTS = ["success", "warning", "failed"] as const;
 export interface RowMap {
   sourceArchiveLinks: SourceArchiveLinks;
   authors: Authors;
@@ -212,6 +237,7 @@ export interface RowMap {
   volumes: Volumes;
   issues: Issues;
   savedArticleViews: SavedArticleViews;
+  articlePublications: ArticlePublications;
 }
 export type TableName = keyof RowMap;
 export const tableNames = [
@@ -227,8 +253,25 @@ export const tableNames = [
   "volumes",
   "issues",
   "savedArticleViews",
+  "articlePublications",
 ] as const;
 export const recordDefaults: Record<TableName, Record<string, unknown>> = {
+  articlePublications: {
+    destination: "wordpress",
+    remotePostId: null,
+    remoteUrl: null,
+    remoteEditUrl: null,
+    remoteStatus: null,
+    contentFingerprint: null,
+    mediaMap: null,
+    lastAction: null,
+    lastResult: "success",
+    lastError: null,
+    warnings: null,
+    lastPushedAt: null,
+    createdAt: "$now",
+    updatedAt: "$now",
+  },
   sourceArchiveLinks: { createdAt: "$now", updatedAt: "$now" },
   authors: {
     sourceAuthorKey: null,
@@ -338,6 +381,7 @@ export const recordDefaults: Record<TableName, Record<string, unknown>> = {
   },
 };
 export const dateFields: Record<TableName, readonly string[]> = {
+  articlePublications: ["lastPushedAt", "createdAt", "updatedAt"],
   sourceArchiveLinks: ["createdAt", "updatedAt"],
   authors: ["createdAt", "updatedAt"],
   articles: [
@@ -358,6 +402,25 @@ export const dateFields: Record<TableName, readonly string[]> = {
   savedArticleViews: ["createdAt", "updatedAt"],
 };
 export const recordFields = {
+  articlePublications: {
+    id: { kind: "uuid", nullable: false, enum: null },
+    articleId: { kind: "uuid", nullable: false, enum: null },
+    destination: { kind: "text", nullable: false, enum: ["wordpress"] },
+    siteUrl: { kind: "text", nullable: false, enum: null },
+    remotePostId: { kind: "integer", nullable: true, enum: null },
+    remoteUrl: { kind: "text", nullable: true, enum: null },
+    remoteEditUrl: { kind: "text", nullable: true, enum: null },
+    remoteStatus: { kind: "text", nullable: true, enum: null },
+    contentFingerprint: { kind: "text", nullable: true, enum: null },
+    mediaMap: { kind: "text", nullable: true, enum: null },
+    lastAction: { kind: "text", nullable: true, enum: null },
+    lastResult: { kind: "text", nullable: false, enum: PUBLICATION_RESULTS },
+    lastError: { kind: "text", nullable: true, enum: null },
+    warnings: { kind: "text", nullable: true, enum: null },
+    lastPushedAt: { kind: "timestamp", nullable: true, enum: null },
+    createdAt: { kind: "timestamp", nullable: false, enum: null },
+    updatedAt: { kind: "timestamp", nullable: false, enum: null },
+  },
   sourceArchiveLinks: {
     id: { kind: "uuid", nullable: false, enum: null },
     archiveId: { kind: "text", nullable: false, enum: null },

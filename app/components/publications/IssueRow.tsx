@@ -9,6 +9,7 @@ interface IssueRowProps {
   onDelete: () => void
   onExport: () => void
   onDesignCraftExport: () => void
+  onWordPress?: () => void
   isExporting: boolean
 }
 
@@ -19,6 +20,7 @@ export function IssueRow({
   onDelete,
   onExport,
   onDesignCraftExport,
+  onWordPress,
   isExporting,
 }: IssueRowProps) {
   return (
@@ -71,6 +73,17 @@ export function IssueRow({
           {issue.articleCount} article{issue.articleCount !== 1 ? 's' : ''}
         </Link>
         <div style={{ display: 'flex', gap: '0.25rem' }}>
+          {onWordPress && (
+            <button
+              className="btn btn-ghost btn-sm"
+              onClick={onWordPress}
+              disabled={issue.articleCount === 0}
+              title={issue.articleCount === 0 ? 'No articles to send' : 'Send approved articles to WordPress as drafts'}
+              style={{ fontSize: '0.75rem', color: 'var(--accent)' }}
+            >
+              WordPress
+            </button>
+          )}
           <button
             className="btn btn-ghost btn-sm"
             onClick={onDesignCraftExport}

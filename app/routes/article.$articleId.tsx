@@ -38,6 +38,7 @@ import {
   FeedbackEditor,
   DocumentList,
   StatusHistory,
+  WordPressPanel,
   UnsavedChangesProvider,
   UnsavedChangesIndicator,
   useTrackUnsaved,
@@ -682,6 +683,12 @@ function ArticlePageContent({
                 )}
               </div>
             </Section>
+
+            <WordPressPanel
+              articleId={article.id}
+              status={articleStatus}
+              publications={article.publications || []}
+            />
 
             {/* Payment */}
             <Section title="Payment">

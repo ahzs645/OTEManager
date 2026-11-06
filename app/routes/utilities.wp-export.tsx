@@ -170,7 +170,8 @@ function WPExportPage() {
             <p
               style={{ fontSize: '0.875rem', color: 'var(--fg-muted)', margin: '0.25rem 0 0 0' }}
             >
-              Export articles as JSON with optional photos for WordPress import
+              Export articles as JSON with optional photos for WordPress import.
+              To send approved articles straight to WordPress as drafts, use the WordPress button on an issue in Publications.
             </p>
           </div>
         </div>

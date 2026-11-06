@@ -25,7 +25,7 @@ import {
   formatDate,
 } from "~/components/Layout";
 import { getPaymentRateConfig, getPaymentRateHistory } from "~/lib/queries";
-import { updatePaymentRateConfig, getConnectionConfig } from "~/lib/mutations";
+import { updatePaymentRateConfig, getConnectionConfig, getWordPressConnection } from "~/lib/mutations";
 import { formatCents } from "~/lib/payment-calculator";
 
 export const Route = createFileRoute("/settings")({
@@ -192,6 +192,7 @@ function SettingsPage() {
 
       {/* Connection Configuration */}
       <ConnectionConfigSection />
+      <WordPressConnectionSection />
 
       {/* Payment Settings Header */}
       <div className="flex items-center gap-2 pt-2">
@@ -644,6 +645,53 @@ function ConnectionConfigSection() {
         <Button onClick={check} disabled={checking}>
           <RefreshCw className="w-4 h-4" />
           Check connection
+        </Button>
+      </div>
+    </Section>
+  );
+}
+
+// WordPress credentials stay in the web server environment; only the outcome is shown.
+function WordPressConnectionSection() {
+  const [status, setStatus] = useState<Awaited<
+    ReturnType<typeof getWordPressConnection>
+  > | null>(null);
+  const [checking, setChecking] = useState(false);
+  const check = async () => {
+    setChecking(true);
+    try {
+      setStatus(await getWordPressConnection());
+    } finally {
+      setChecking(false);
+    }
+  };
+  useEffect(() => {
+    void check();
+  }, []);
+  return (
+    <Section title="WordPress publishing">
+      <div className="space-y-3">
+        <p
+          style={{
+            color: status?.connected ? "var(--status-success)" : "var(--fg-muted)",
+          }}
+        >
+          {checking ? "Checking WordPress…" : status?.message}
+        </p>
+        {status?.siteUrl && (
+          <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
+            {status.siteUrl}
+            {"pluginVersion" in status && status.pluginVersion ? ` · OTE Publisher ${status.pluginVersion}` : ""}
+          </p>
+        )}
+        {status && "canPublish" in status && status.canPublish && (
+          <p className="text-sm" style={{ color: "var(--status-warning)" }}>
+            This account can also publish posts. Give it the OTE Publisher role so it can only create drafts.
+          </p>
+        )}
+        <Button onClick={check} disabled={checking}>
+          <RefreshCw className="w-4 h-4" />
+          Test WordPress connection
         </Button>
       </div>
     </Section>

@@ -15,6 +15,7 @@ export const importOrder: TableName[] = [
   "paymentRateConfig",
   "paymentRateHistory",
   "savedArticleViews",
+  "articlePublications",
 ];
 export function parseManifest(manifest: any): Snapshot {
   if (
@@ -101,6 +102,7 @@ export function validateSnapshot(snapshot: Snapshot) {
     "articleNotes",
     "statusHistory",
     "sourceArchiveLinks",
+    "articlePublications",
   ] as const)
     for (const row of snapshot[table])
       if (!ids.get("articles")!.has(row.articleId))

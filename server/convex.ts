@@ -12,13 +12,19 @@ import type {
   sourceArchiveQueries,
   sourceArchiveMutations,
 } from "../convex/operations/sourceArchive";
+import type {
+  publicationQueries,
+  publicationMutations,
+} from "../convex/operations/publications";
 type Queries = typeof queries &
   typeof analytics &
   typeof utilityQueries &
-  typeof sourceArchiveQueries;
+  typeof sourceArchiveQueries &
+  typeof publicationQueries;
 type Mutations = typeof mutations &
   typeof utilityMutations &
-  typeof sourceArchiveMutations;
+  typeof sourceArchiveMutations &
+  typeof publicationMutations;
 export function connection() {
   const url = process.env.CONVEX_URL || process.env.VITE_CONVEX_URL;
   const secret = process.env.CONVEX_SERVER_SECRET;

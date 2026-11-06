@@ -74,16 +74,27 @@ const ArticleSubmissionSchema = z.object({
 
 type ArticleSubmission = z.infer<typeof ArticleSubmissionSchema>;
 
+/** Compares secrets without returning early on the first differing byte. */
+export function secretsMatch(provided: string, expected: string) {
+  const a = new TextEncoder().encode(provided);
+  const b = new TextEncoder().encode(expected);
+  let difference = a.length ^ b.length;
+  for (let i = 0; i < Math.max(a.length, b.length); i++)
+    difference |= (a[i] ?? 0) ^ (b[i] ?? 0);
+  return difference === 0;
+}
+
 export const Route = createFileRoute("/api/submissions")({
   server: {
     handlers: {
       POST: async ({ request }) => {
         try {
-          // Optional: Verify webhook secret
+          // Optional: Verify webhook secret (constant-time, so response
+          // timing does not reveal how much of a guess was right).
           const webhookSecret = process.env.WEBHOOK_SECRET;
           if (webhookSecret) {
-            const authHeader = request.headers.get("X-Webhook-Secret");
-            if (authHeader !== webhookSecret) {
+            const authHeader = request.headers.get("X-Webhook-Secret") ?? "";
+            if (!secretsMatch(authHeader, webhookSecret)) {
               return Response.json({ error: "Unauthorized" }, { status: 401 });
             }
           }

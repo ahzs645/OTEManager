@@ -11,16 +11,22 @@ import {
   sourceArchiveQueries,
   sourceArchiveMutations,
 } from "./operations/sourceArchive";
+import {
+  publicationQueries,
+  publicationMutations,
+} from "./operations/publications";
 const queryOperations = {
   ...queries,
   ...analytics,
   ...utilityQueries,
   ...sourceArchiveQueries,
+  ...publicationQueries,
 };
 const writeOperations = {
   ...mutations,
   ...utilityMutations,
   ...sourceArchiveMutations,
+  ...publicationMutations,
 };
 // Only the trusted application server can call this bridge. Operation names are allowlisted.
 export const read = query({
