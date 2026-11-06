@@ -9,6 +9,10 @@ import { designFontMapper, documentFonts } from './page-compiler.js';
 const DEFAULT_HEADLINE = { family: 'Source Sans 3', face: 'Bold', size: 24, leading: 27 };
 const MAX_LINES = 4;
 const ARTICLE_ROLES = new Set(['byline', 'photo', 'caption', 'body']);
+const moveDown = (slot, delta) => {
+  slot.rect = [slot.rect[0], slot.rect[1] + delta, slot.rect[2], slot.rect[3] + delta];
+  if (slot.points) slot.points = slot.points.map(([x, y]) => [x, Math.round((y + delta) * 100) / 100]);
+};
 
 const overlap = (a, b) => Math.max(0, Math.min(a[2], b[2]) - Math.max(a[0], b[0]));
 
@@ -84,11 +88,20 @@ export function fitHeadlineBands(template, measurements, { contentBottom = 744, 
     if (delta <= 0.01 && !(tighten && m.fits && -delta >= minimum)) continue;
     headline.rect = [x, y, r, y + m.height];
     // The headline's own article below it, in its column; folios and other stories stay put.
-    const column = fitted.slots.filter((s) => s !== headline && s.enabled !== false && ARTICLE_ROLES.has(s.role) && (s.articleIndex ?? 0) === (headline.articleIndex ?? 0)
+    const column = fitted.slots.filter((s) => s !== headline && s.enabled !== false && (ARTICLE_ROLES.has(s.role) || (fitted.photoFit && s.role === 'wrap')) && (s.articleIndex ?? 0) === (headline.articleIndex ?? 0)
       && s.rect[1] >= b - 1 && overlap(s.rect, [x, y, r, b]) > 0.5 * Math.min(r - x, s.rect[2] - s.rect[0]))
       .sort((p, q) => p.rect[1] - q.rect[1]);
     const body = column.find((s) => s.role === 'body');
-    if (delta > 0) {
+    if (fitted.photoFit && body) {
+      // Photo-shaped frames keep their exact shape: everything above or inside the body moves as one
+      // block, wraps included, and the body alone gives or takes the space. Tightening stays honest too.
+      if (delta < 0 && !(tighten && m.fits)) continue;
+      const bodyTop = body.rect[1];
+      for (const slot of column) {
+        if (slot === body) slot.rect = [slot.rect[0], bodyTop + delta, slot.rect[2], slot.rect[3]];
+        else if (slot.rect[1] < body.rect[3] - 1) moveDown(slot, delta);
+      }
+    } else if (delta > 0) {
       for (const slot of column) {
         if (body && slot.rect[1] > body.rect[1]) continue;              // below the body: unchanged
         if (slot === body) slot.rect = [slot.rect[0], slot.rect[1] + delta, slot.rect[2], slot.rect[3]];

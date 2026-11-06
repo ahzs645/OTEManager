@@ -2,12 +2,12 @@
   "engine": "DesignCraft (headless, no UI)",
   "upstream": {
     "repository": "https://github.com/storytold/designcraft",
-    "tag": "v0.9.0",
-    "rev": "7cb8b12507def48fb9346e5004340b5e8e4cfcb7"
+    "tag": "v0.17.2",
+    "rev": "16322ad54b3a20b4cd70666be7431086514d0a36"
   },
   "crate": "packages/designcraft-headless",
   "toolchain": {
-    "rustc": "rustc 1.97.0 (2d8144b78 2026-07-07)",
+    "rustc": "rustc 1.98.0 (88d9e12ae 2026-08-18)",
     "wasmBindgen": "wasm-bindgen 0.2.129",
     "target": "wasm32-unknown-unknown",
     "profile": "release (lto, codegen-units=1)"
@@ -15,10 +15,10 @@
   "wasm": {
     "file": "designcraft_headless_bg.wasm.gz",
     "compression": "gzip",
-    "bytes": 34897168,
-    "sha256": "5dd55c8652cda9a1167f1f493c83b3de764e673d477f84c412fd8e794b62776b",
-    "compressedBytes": 12703640,
-    "compressedSha256": "9e19c5a28330de1d88bc83371d8dc7c33de06a30276b2c591cc2a6af8245390c"
+    "bytes": 38810081,
+    "sha256": "ce5229640d68db877d73f47d82d866fe683a2dd8f7c09b73b8097485cb6f98bc",
+    "compressedBytes": 14379293,
+    "compressedSha256": "f254ac7ad1df8dcb4057e6f9279ee24b74b47298de646c88013aacf65566277b"
   },
   "glue": {
     "file": "designcraft_headless.js",

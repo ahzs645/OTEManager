@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Vendor a DesignCraft web build into public/designcraft/editor/.
 
-  python3 tools/designcraft/vendor-web-editor.py --official designcraft-web-0.9.0.zip \
+  python3 tools/designcraft/vendor-web-editor.py --official designcraft-web-0.17.2.zip \
       [--wasm designcraft-web_bg.wasm --glue designcraft-web.js --patch packages/designcraft-web/add-font.patch]
 
 Without --wasm/--glue the official module is vendored unchanged. With them, the
@@ -22,7 +22,7 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[2]
 EDITOR = ROOT / 'public/designcraft/editor'
 PIECE = 10 * 1024 * 1024
-KEEP = ('LICENSE-MIT', 'LICENSE-APACHE', 'README.md', 'HOSTING.md', '_headers', '.htaccess')
+KEEP = ('LICENSE-MIT', 'LICENSE-APACHE', 'NOTICE', 'README.md', 'HOSTING.md', '_headers', '.htaccess')
 
 
 def sha(data):
@@ -33,7 +33,7 @@ WRAPPER = r'''<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DesignCraft</title>
 
 <script type="module">
@@ -57,7 +57,7 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
 </script>
   <style>
     html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #262626; }
-    #designcraft_canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    #designcraft_canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
     #designcraft_loading { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
       color: #b8b8b8; font: 14px system-ui, sans-serif; pointer-events: none; }
   </style>
@@ -93,7 +93,17 @@ def main():
     for name in KEEP:
         if prefix + name in names:
             (EDITOR / name).write_bytes(archive.read(prefix + name))
+    # The module embeds these fonts, so their licences ship with it.
+    for name in names:
+        if re.fullmatch(re.escape(prefix) + r'OFL-[a-z0-9-]+\.txt', name):
+            (EDITOR / name[len(prefix):]).write_bytes(archive.read(name))
     (EDITOR / glue_name).write_bytes(glue)
+    # JavaScript snippets the glue imports; without them the module cannot start.
+    for name in names:
+        if name.startswith(prefix + 'snippets/') and not name.endswith('/'):
+            target = EDITOR / name[len(prefix):]
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(archive.read(name))
     parts = []
     for index, start in enumerate(range(0, len(wasm), PIECE)):
         raw = wasm[start:start + PIECE]

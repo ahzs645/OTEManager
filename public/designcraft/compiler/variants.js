@@ -6,6 +6,7 @@ import { composeSource } from './markdown-story.js';
 import { CompileError, buildPage, compilePage } from './page-compiler.js';
 import { clone, readNative } from './native-doc.js';
 import { fitHeadlineBands, growHeadlineBands, measureHeadlines } from './fit.js';
+import { PRINT_PPI, photoLayouts, photoReport, photoSizes, wrappedColumns } from './photo-fit.js';
 
 const BODY_LEADING = 12, BODY_PARAGRAPH_SPACE = 4, BODY_CHAR = 4.75;   // Source Serif 4 10/12
 const HEADLINE_CHAR = 0.5;                                               // Source Sans 3 Bold, em fraction
@@ -54,7 +55,7 @@ export function estimate(candidate, library, markdownit) {
       const perLine = Math.max(1, Math.floor(colWidth / BODY_CHAR));
       const paragraphs = composeSource(article.body, article.bodyFormat ?? 'markdown', markdownit).text.split('\n');
       const lines = paragraphs.reduce((n, p) => n + Math.max(1, Math.ceil([...p].length / perLine)), 0);
-      const ratio = (lines * BODY_LEADING + paragraphs.length * BODY_PARAGRAPH_SPACE) / (columns * h);
+      const ratio = (lines * BODY_LEADING + paragraphs.length * BODY_PARAGRAPH_SPACE) / (wrappedColumns(candidate.template, slot, gutter) * h);
       bodyFill.push(ratio);
       worstBody = Math.max(worstBody, ratio);
     } else if (slot.role === 'headline') {
@@ -69,8 +70,14 @@ export function estimate(candidate, library, markdownit) {
   return { worstBody, fill, headlineOver };
 }
 
+const PLAIN_FALLBACKS = 3;
+const PHOTO_CROP_WEIGHT = 9, SOFT_PHOTO_WEIGHT = 2, PHOTO_DROPPED_WEIGHT = 8;
+
+/** Penalty for what a layout does to its photos: lost picture, and printing below PRINT_PPI. */
+const photoPenalty = (report) => report.reduce((sum, p) => sum + p.crop * PHOTO_CROP_WEIGHT + Math.max(0, 1 - p.ppi / PRINT_PPI) * SOFT_PHOTO_WEIGHT, 0) / Math.max(1, report.length);
+
 function staticScore(est, candidate) {
-  let score = 0;
+  let score = candidate.photos ? photoPenalty(candidate.photos) + (!candidate.photos.length && candidate.unusedPhotos ? PHOTO_DROPPED_WEIGHT : 0) : 0;
   if (est.worstBody > 1.05) score += 10 + (est.worstBody - 1) * 20;    // likely overset
   score += Math.abs(Math.min(est.fill, 1) - 0.9) * 6;                  // prefer well-filled bodies
   score += Math.max(0, est.headlineOver) * 1.5;                         // headline may need a step
@@ -89,7 +96,7 @@ async function measure(native, built, executor, JSZip) {
   ], { doc: native, media: new Map(), fonts: [] });
   const fill = bodies.map((slot, i) => {
     const story = run.results[i + 1], [, y, , b] = slot.rect;
-    return (story.lines * BODY_LEADING + story.paragraphs * BODY_PARAGRAPH_SPACE) / ((slot.columns ?? 1) * (b - y));
+    return (story.lines * BODY_LEADING + story.paragraphs * BODY_PARAGRAPH_SPACE) / (wrappedColumns(built.template, slot) * (b - y));
   });
   const crops = built.template.slots.filter((s) => s.role === 'photo' && items.get(s.id)?.content?.type === 'graphic').map((slot) => {
     const [iw, ih] = items.get(slot.id).content.size, [x, y, r, b] = slot.rect;
@@ -103,8 +110,16 @@ function finalScore(v) {
   const meanFill = v.fill.length ? v.fill.reduce((a, c) => a + c, 0) / v.fill.length : 0.9;
   const minFill = v.fill.length ? Math.min(...v.fill) : 0.9;
   const crop = v.crops.length ? v.crops.reduce((a, c) => a + c, 0) / v.crops.length : 0;
-  return Math.abs(meanFill - 0.9) * 8 + Math.max(0, 0.55 - minFill) * 12 + crop * 3
+  return Math.abs(meanFill - 0.9) * 8 + Math.max(0, 0.55 - minFill) * 12 + (v.photos ? photoPenalty(v.photos) + (!v.photos.length && v.unusedPhotos ? PHOTO_DROPPED_WEIGHT : 0) : crop * 3)
     + (v.headlineSize ? (24 - v.headlineSize) / 2 * 0.8 : 0) + (v.headlineFit?.some((c) => c.grownBy > 0) ? 0.4 : 0) + v.unusedPhotos * 1.2;
+}
+
+/** What stopped a layout, in an editor's terms. Characters the fonts lack hold back every layout, so they are named. */
+function rejectionReason(error, oversetSlots) {
+  const issues = error.artifacts.preflight?.issues ?? [];
+  const glyphs = issues.filter((i) => i.severity === 'error' && i.kind === 'missingGlyphs').map((i) => String(i.message).replace(/^Missing glyphs in /, ''));
+  if (glyphs.length) return 'The text has characters its font cannot print: ' + [...new Set(glyphs)].join('; ') + '. Replace them in the article.';
+  return oversetSlots.length ? 'Overset text in ' + oversetSlots.join(', ') : error.message;
 }
 
 function withHeadline(template, size) {
@@ -119,8 +134,10 @@ function withHeadline(template, size) {
  * Compose and rank variants for one interior page.
  * options: {library, issue, articleIds, executor, fonts, loadMedia, markdownit, JSZip,
  *   limit = 8, keep = 4, previewScale = 0.25, pageNumber, onProgress, design, fontProfile, substituteFonts,
- *   tightenHeadlines (fit bands to headlines first: one-line headlines pull the byline up and grow the photo)}
- * Returns {variants: [{template, articleIds, status, score, fill, crops, headlineSize,
+ *   tightenHeadlines (fit bands to headlines first: one-line headlines pull the byline up and grow the photo),
+ *   photoFit (lead with the photos: match them to slots by shape, reshape frames to them and try text-wrapped
+ *   insets; crop and print resolution then rank the layouts)}
+ * Returns {variants: [{template, articleIds, status, score, fill, crops, photos?, headlineSize,
  *   preflight, native, pdf?, idml?, preview?, reason?}], considered, composed}.
  */
 export async function generatePageVariants(options) {
@@ -130,7 +147,9 @@ export async function generatePageVariants(options) {
   const byId = new Map(issue.articles.map((a) => [a.id, a]));
   const articles = options.articleIds.map((id) => byId.get(id));
   if (articles.some((a) => !a) || !articles.length || articles.length > 3) throw new Error('Choose one to three articles from the issue');
-  const candidates = enumerateCandidates(library, articles, options.design ?? null).map((c) => {
+  const sizes = options.photoFit ? await photoSizes(articles, loadMedia) : null;
+  const expand = (c) => sizes ? photoLayouts(c.template, c.order, sizes).map(({ template }) => ({ ...c, template, photos: photoReport(template, c.order, sizes) })) : [c];
+  const candidates = enumerateCandidates(library, articles, options.design ?? null).flatMap(expand).map((c) => {
     const est = estimate(c, library, markdownit);
     return { ...c, est, score: staticScore(est, c) };
   }).sort((a, b) => a.score - b.score);
@@ -143,16 +162,19 @@ export async function generatePageVariants(options) {
     shortlist.push(c);
     if (shortlist.length >= limit) break;
   }
+  // Photo-led candidates are often tighter on copy. Always compose the best plain layouts too, so
+  // a long story keeps the options it has without them.
+  if (sizes) for (const c of candidates.filter((c) => !c.template.photoFit && !shortlist.includes(c)).slice(0, PLAIN_FALLBACKS)) shortlist.push(c);
   const results = [];
   let composed = 0;
-  const attempt = async (template, order, headlineSize, unusedPhotos, headlineFit = null) => {
+  const attempt = async (template, order, headlineSize, unusedPhotos, headlineFit = null, photos = null) => {
     composed++;
     progress({ stage: 'compose', template: template.id, done: composed });
     const built = await buildPage({
       library: { ...library, templates: [template] }, template, issue, articleIds: order.map((a) => a.id),
       pageId: options.pageId ?? 'variant', pageNumber: options.pageNumber ?? 2, fontProfile: options.fontProfile ?? 'portable', markdownit, loadMedia, substituteFonts: options.substituteFonts,
     });
-    const variant = { template, articleIds: order.map((a) => a.id), headlineSize, unusedPhotos, headlineFit };
+    const variant = { template, articleIds: order.map((a) => a.id), headlineSize, unusedPhotos, headlineFit, ...(sizes ? { photos: photos ?? photoReport(template, order, sizes), photoFit: template.photoFit ?? null } : {}) };
     try {
       const { manifest, artifacts } = await compilePage(built, { executor, fonts, JSZip });
       Object.assign(variant, { status: manifest.status, preflight: artifacts.preflight, native: artifacts.native, pdf: artifacts.pdf, idml: artifacts.idml, manifest });
@@ -168,19 +190,19 @@ export async function generatePageVariants(options) {
       Object.assign(variant, {
         status: 'does-not-fit', preflight: error.artifacts.preflight, native: error.artifacts.native,
         headlineOnly: oversetSlots.length > 0 && oversetSlots.every((n) => headlineIds.has(n)) && errors.every((i) => i.kind === 'overset'),
-        reason: oversetSlots.length ? 'Overset text in ' + oversetSlots.join(', ') : error.message,
+        reason: rejectionReason(error, oversetSlots),
       });
     }
     results.push(variant);
     return variant;
   };
   const measureBands = (template, order, tight = false) => measureHeadlines(template, order, { executor, library, fonts, fontProfile: options.fontProfile, substituteFonts: options.substituteFonts, tight });
-  for (const c of shortlist) {
+  const tryCandidate = async (c) => {
     // tightenHeadlines: fit every band to its headline first (a one-line headline pulls its byline and
     // photo up and the photo grows); the layout as drawn stays the fallback.
     if (options.tightenHeadlines) {
       const fitted = fitHeadlineBands(c.template, await measureBands(c.template, c.order, true), { tighten: true });
-      if (fitted && (await attempt(fitted.template, c.order, null, c.unusedPhotos, fitted.changes)).status === 'exported') continue;
+      if (fitted && (await attempt(fitted.template, c.order, null, c.unusedPhotos, fitted.changes)).status === 'exported') return;
     }
     const first = await attempt(c.template, c.order, null, c.unusedPhotos);
     if (first.status === 'does-not-fit' && first.headlineOnly) {
@@ -191,6 +213,14 @@ export async function generatePageVariants(options) {
         const v = await attempt(grown?.template ?? sized, c.order, size, c.unusedPhotos, grown?.changes);
         if (v.status === 'exported') break;
       }
+    }
+  };
+  for (const c of shortlist) await tryCandidate(c);
+  // Nothing fit: rather than report failure, work further down the plain layouts.
+  if (sizes && !results.some((v) => v.status === 'exported')) {
+    for (const c of candidates.filter((c) => !c.template.photoFit && !shortlist.includes(c)).slice(0, limit)) {
+      await tryCandidate(c);
+      if (results.some((v) => v.status === 'exported')) break;
     }
   }
   const fits = results.filter((v) => v.status === 'exported').sort((a, b) => a.score - b.score).slice(0, keep);

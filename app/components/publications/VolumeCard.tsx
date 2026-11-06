@@ -282,7 +282,9 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
       <div
         style={{
           display: 'flex',
+          flexWrap: 'wrap',
           alignItems: 'center',
+          rowGap: '0.25rem',
           padding: '0.75rem 1rem',
           cursor: 'pointer',
           userSelect: 'none',
@@ -296,7 +298,7 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
             <ChevronRight className="w-4 h-4" />
           )}
         </div>
-        <div style={{ flex: 1 }}>
+        <div style={{ flex: '1 1 auto', whiteSpace: 'nowrap' }}>
           <span style={{ fontWeight: 600, color: 'var(--fg-default)' }}>
             Volume {volume.volumeNumber}
           </span>
@@ -306,8 +308,8 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
             </span>
           )}
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }} onClick={(e) => e.stopPropagation()}>
-          <span style={{ fontSize: '0.75rem', color: 'var(--fg-muted)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginLeft: 'auto' }} onClick={(e) => e.stopPropagation()}>
+          <span style={{ fontSize: '0.75rem', color: 'var(--fg-muted)', whiteSpace: 'nowrap' }}>
             {volume.issues.length} issue{volume.issues.length !== 1 ? 's' : ''}
           </span>
           <Link
@@ -320,6 +322,7 @@ export function VolumeCard({ volume, isExpanded, onToggle }: VolumeCardProps) {
               alignItems: 'center',
               gap: '0.25rem',
               textDecoration: 'none',
+              whiteSpace: 'nowrap',
             }}
           >
             <FileText className="w-3 h-3" />

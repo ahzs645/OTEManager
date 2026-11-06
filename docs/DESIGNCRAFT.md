@@ -234,7 +234,7 @@ The actual official DesignCraft web editor is now bundled in this repository, wi
 
 ## Browser and WebAssembly composition
 
-The compilers now also run as JavaScript with a headless WebAssembly build of the DesignCraft 0.9.0 engine, in the browser (no server) or on the server (`DESIGNCRAFT_ENGINE=wasm`). The planner adds checked layout variants and whole-issue plan suggestions. See [DESIGNCRAFT-CLIENT.md](DESIGNCRAFT-CLIENT.md).
+The compilers now also run as JavaScript with a headless WebAssembly build of the DesignCraft 0.17.2 engine, in the browser (no server) or on the server (`DESIGNCRAFT_ENGINE=wasm`). The planner adds checked layout variants and whole-issue plan suggestions. See [DESIGNCRAFT-CLIENT.md](DESIGNCRAFT-CLIENT.md).
 
 ## The original house designs
 

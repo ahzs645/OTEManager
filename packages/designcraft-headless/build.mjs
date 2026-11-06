@@ -18,7 +18,7 @@ import { gunzipSync, gzipSync } from 'node:zlib';
 const here = dirname(fileURLToPath(import.meta.url));
 const out = resolve(here, '../../public/designcraft/headless');
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
-const UPSTREAM = { repository: 'https://github.com/storytold/designcraft', tag: 'v0.9.0', rev: '7cb8b12507def48fb9346e5004340b5e8e4cfcb7' };
+const UPSTREAM = { repository: 'https://github.com/storytold/designcraft', tag: 'v0.17.2', rev: '16322ad54b3a20b4cd70666be7431086514d0a36' };
 
 function verify() {
   const manifest = JSON.parse(readFileSync(join(out, 'manifest.json'), 'utf8'));

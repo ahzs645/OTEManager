@@ -12,7 +12,7 @@ The browser mode keeps everything on the device: articles, photos and any privat
 
 ## What was built
 
-- **`packages/designcraft-headless/`** — a small Rust crate (wasm-bindgen) over the upstream DesignCraft engine, pinned to the same `v0.9.0` commit (`7cb8b125`) as the server CLI (with upstream's own `[patch.crates-io]` for krilla and the hayro crates, which 0.9.0 needs). It exposes `execute`, `runScript` (exactly `designcraft-cli script` semantics), `addFont` and `renderPagePng`. Documents, images and exports travel as bytes through the engine's own `file.openBytes`, `file.place {base64}`, `file.serialize` and path-less exports. No engine source is modified.
+- **`packages/designcraft-headless/`** — a small Rust crate (wasm-bindgen) over the upstream DesignCraft engine, pinned to the same `v0.17.2` commit (`7cb8b125`) as the server CLI (with upstream's own `[patch.crates-io]` for krilla and the hayro crates, which 0.9.0 needs). It exposes `execute`, `runScript` (exactly `designcraft-cli script` semantics), `addFont` and `renderPagePng`. Documents, images and exports travel as bytes through the engine's own `file.openBytes`, `file.place {base64}`, `file.serialize` and path-less exports. No engine source is modified.
 - **`public/designcraft/headless/`** — the committed build: glue JS, gzipped module, licences and `manifest.json` with both checksums and the toolchain. The loader verifies both before use. Normal OTEManager builds need no Rust.
 - **`public/designcraft/compiler/`** — the Python compilers ported to plain ES modules (`compile-template.py`, `compile-issue.py`, `markdown_story.py`, `cover_fields.py`, `native_flow.py`, `native_references.py`, the interchange sidecar). Dependencies (`JSZip`, `markdown-it` 14.1.0) are injected, so the same modules run in the browser worker, in Node, and in tests. Commands use symbolic files (`@doc`, `@media:…`, `@out:…`) that an executor maps to bytes (WebAssembly) or real paths (CLI), keeping step indices identical.
 - **`variants.js`** — the layout-variant generator (below).
@@ -67,7 +67,7 @@ Enable the server WebAssembly engine with `DESIGNCRAFT_ENGINE=wasm` (the regular
 
 ## Upgrading DesignCraft
 
-OTEManager is on 0.9.0 (headless `rev` in `packages/designcraft-headless/Cargo.toml`, CLI in `download-cli.py` and `Dockerfile.native`, web editor in `public/designcraft/editor/`). For the next upgrade:
+OTEManager is on 0.17.2 (headless `rev` in `packages/designcraft-headless/Cargo.toml`, CLI in `download-cli.py` and `Dockerfile.native`, web editor in `public/designcraft/editor/`). For the next upgrade:
 
 1. Change the `rev` and copy upstream's `Cargo.lock` and `[patch.crates-io]`, then rebuild.
 2. Rebuild the web editor from the release source with `add-font.patch`: `cargo build --release -p designcraft-web --target wasm32-unknown-unknown`, then `wasm-bindgen --target web --weak-refs`, then `tools/designcraft/vendor-web-editor.py --official designcraft-web-<v>.zip --wasm … --glue … --patch packages/designcraft-web/add-font.patch` and `package-web-editor.py`. Skip wasm-opt from binaryen 108: it produced a module whose externref table could not grow at start-up.
