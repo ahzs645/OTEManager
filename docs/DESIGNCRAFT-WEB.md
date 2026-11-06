@@ -1,6 +1,6 @@
 # DesignCraft web inside OTEManager
 
-Use the browser editor for layout work, saving and PDF/IDML export. Staff do not install desktop DesignCraft or a local CLI. The DesignCraft 0.9.0 web runtime is committed under `public/designcraft/editor/`: the official release source plus a nine-line `add_font` export ([`packages/designcraft-web/add-font.patch`](../packages/designcraft-web/add-font.patch)) so fonts can be loaded into the editor, with its compressed WASM pieces, licences and provenance. It is served by the regular OTEManager build/Docker image, independently of Sites.
+Use the browser editor for layout work, saving and PDF/IDML export. Staff do not install desktop DesignCraft or a local CLI. The DesignCraft 0.17.2 web runtime is committed under `public/designcraft/editor/`: the official release source plus a nine-line `add_font` export ([`packages/designcraft-web/add-font.patch`](../packages/designcraft-web/add-font.patch)) so fonts can be loaded into the editor, with its compressed WASM pieces, licences and provenance. It is served by the regular OTEManager build/Docker image, independently of Sites.
 
 ## Workflow
 
@@ -18,7 +18,7 @@ The standalone planner remains at `/designcraft/index.html`, with its archive an
 
 | Component | Requirement |
 |---|---|
-| DesignCraft web 0.9.0 (+ `add_font`) | Bundled in this repository; the browser downloads it automatically (about 20 MB, once). |
+| DesignCraft web 0.17.2 (+ `add_font`) | Bundled in this repository; the browser downloads it automatically (about 24 MB, once). |
 | Existing IDML/native opening and editing | Browser only; no CLI installation. |
 | Automatic selected-article recipe composition and server preflight | Configured `/api/designcraft/native` worker; see `designcraft-native-service.md`. This runs on the server, not staff machines. |
 | Salted Regular | Bundled in `public/designcraft/assets/fonts/Salted-Regular.otf`, automatically loaded by the editor and browser composer, and included in server output. The supplied notice is preserved as `LICENSE-Salted.txt` and labels it personal use only. Portable layouts keep their existing open substitutes; original-font layouts can use bundled Salted without uploading it. |
@@ -26,7 +26,7 @@ The standalone planner remains at `/designcraft/index.html`, with its archive an
 | Standalone web editor | `public/designcraft/web-editor.zip`, also downloadable from the planner; serve it from HTTPS or localhost. |
 | Raw Drive archives | Needed for historical audits, not for opening the bundled web editor. |
 
-The server CLI, the headless compiler engine and the editor are all DesignCraft 0.9.0. Server outputs continue to use checked preflight. Browser editing/export should be checked in its own editor and freshly in Adobe/printer workflows (`tools/designcraft/check-print.py`, `check-idml.py`).
+The server CLI, the headless compiler engine and the editor are all DesignCraft 0.17.2. Server outputs continue to use checked preflight. Browser editing/export should be checked in its own editor and freshly in Adobe/printer workflows (`tools/designcraft/check-print.py`, `check-idml.py`).
 
 ## Packaging and integrity
 

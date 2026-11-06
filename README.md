@@ -125,7 +125,7 @@ Version 0.12.2 fixes Review verification when Vancity renders the currency symbo
 
 ## DesignCraft newspaper workflow
 
-In Publications, select articles and images and open them directly in the DesignCraft planner. Edit layouts, cover metadata/photo, featured article references and explicit continuation chains; generate native/PDF/IDML output through a configured worker or export recipes for the standalone CLI.
+In Publications, **Design issue** opens the [persistent Issue Studio](docs/ISSUE-STUDIO-IMPLEMENTATION.md), including for empty issues. Save page budgets, ad reservations, print images, layouts, crops and locks; suggest fixed-budget plans with explicit continuations; and compose a recorded revision into stored native/PDF/IDML artifacts. Concurrent edits report conflicts, source edits mark affected work stale, and manual document forks remain separate. The [production guide](docs/ISSUE-STUDIO-PRODUCTION.md) covers Adobe reports and printer checks.
 
 See the [workflow guide](docs/DESIGNCRAFT.md), [complete integration review](docs/DESIGNCRAFT-INTEGRATION-REVIEW.md), [worker setup](docs/designcraft-native-service.md), and [committed report, proof bundle and verification record](docs/designcraft-review/README.md). The optional `Dockerfile.native` supplies the Linux compiler runtime. Production deployment and fresh Adobe/printer verification remain outstanding.
 
@@ -133,7 +133,7 @@ The [published sample Issue Studio](https://ote-issue-studio.ahzs6455.chatgpt.si
 
 The actual [DesignCraft web editor](docs/DESIGNCRAFT-WEB.md) is bundled in OTEManager under `public/designcraft/editor/`. Staff can edit/save/export in their browser; the optional server composer turns article recipes into checked editable pages and opens them in the editor.
 
-Composition can also run entirely in the browser, or on the server without the CLI: the compilers are ported to JavaScript and drive a headless WebAssembly build of the same DesignCraft 0.9.0 engine (output pixel-identical to the CLI across all 104 recipes). The planner's **Compose in this browser** panel generates pages and whole issues locally and suggests checked layout variants for chosen articles. See [browser and server composition](docs/DESIGNCRAFT-CLIENT.md).
+Composition can also run entirely in the browser, or on the server without the CLI: the compilers are ported to JavaScript and drive a headless WebAssembly build of the same DesignCraft 0.17.2 engine (the same release as the CLI; the 104-recipe pixel comparison was last run on 0.9.0, and 0.17.2 passed the four-recipe parity test). The planner's **Compose in this browser** panel generates pages and whole issues locally and suggests checked layout variants for chosen articles. See [browser and server composition](docs/DESIGNCRAFT-CLIENT.md).
 
 The two house designs OTE actually printed (2024–25 and 2025–26) are recreated from the source InDesign files as templates, with the original fonts when supplied privately and open look-alikes otherwise. Headline bands fit their headlines (previewed live with Pretext), and photos keep a WordPress-style focal point across layouts. See [the original designs](docs/DESIGNCRAFT-ORIGINALS.md).
 

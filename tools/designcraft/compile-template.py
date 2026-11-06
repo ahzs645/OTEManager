@@ -111,6 +111,8 @@ def compile_page(args):
     if len(matches) != 1:
         raise ValueError('Select a unique template ID from the library')
     template = matches[0]
+    if template.get('bodyFlows'):
+        raise ValueError('Explicit body-region flows require the JavaScript compiler (tools/designcraft/compile.mjs); no output was generated')
     if template.get('design') or template.get('art'):
         raise ValueError('Original-design templates need the JavaScript compiler (public/designcraft/compiler); '
                          'the server runs it on the bundled WebAssembly engine')
@@ -203,6 +205,8 @@ def compile_page(args):
     def label_frame(index, slot, article):
         metadata = dict(templateId=template['id'], slotId=slot['id'], role=slot['role'],
                         articleId=article.get('id') if article else None, pageId=args.page_id)
+        if slot['role'] == 'body':
+            metadata['flowOrder'] = 0  # Python compiles single-frame stories only, matching page-compiler.js
         add('object.label', ids=[ref(index)], label=json.dumps(metadata, ensure_ascii=False))
         add('object.rename', id=ref(index), name=slot['id'])
         slot_refs.append(dict(metadata, commandIndex=index))

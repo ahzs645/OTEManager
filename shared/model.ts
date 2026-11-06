@@ -1,3 +1,12 @@
+import {
+  studioRecordFields,
+  studioTableNames,
+  type IssueDesignPlans,
+  type IssueStudioObject,
+  type IssuePlacements,
+  type IssueDesignRevisions,
+  type CompositionJobs,
+} from "./issue-studio";
 // Application IDs stay stable across backup restores; Convex also assigns an internal _id.
 export interface Authors {
   sourceAuthorKey?: string | null;
@@ -226,6 +235,12 @@ export interface ArticlePublications {
 export const PUBLICATION_RESULTS = ["success", "warning", "failed"] as const;
 export interface RowMap {
   sourceArchiveLinks: SourceArchiveLinks;
+  issueDesignPlans: IssueDesignPlans;
+  issuePages: IssueStudioObject;
+  issuePlacements: IssuePlacements;
+  issueReservations: IssueStudioObject;
+  issueDesignRevisions: IssueDesignRevisions;
+  compositionJobs: CompositionJobs;
   authors: Authors;
   articles: Articles;
   articleMultimediaTypes: ArticleMultimediaTypes;
@@ -242,6 +257,7 @@ export interface RowMap {
 export type TableName = keyof RowMap;
 export const tableNames = [
   "sourceArchiveLinks",
+  ...studioTableNames,
   "authors",
   "articles",
   "articleMultimediaTypes",
@@ -273,6 +289,19 @@ export const recordDefaults: Record<TableName, Record<string, unknown>> = {
     updatedAt: "$now",
   },
   sourceArchiveLinks: { createdAt: "$now", updatedAt: "$now" },
+  issueDesignPlans: {
+    revision: 0,
+    pageBudget: 16,
+    houseStyle: "ote-2025",
+    plannerState: "null",
+    createdAt: "$now",
+    updatedAt: "$now",
+  },
+  issuePages: { createdAt: "$now", updatedAt: "$now" },
+  issuePlacements: { createdAt: "$now", updatedAt: "$now" },
+  issueReservations: { createdAt: "$now", updatedAt: "$now" },
+  issueDesignRevisions: { createdAt: "$now" },
+  compositionJobs: { status: "queued", createdAt: "$now", updatedAt: "$now" },
   authors: {
     sourceAuthorKey: null,
     role: "Guest Contributor",
@@ -383,6 +412,12 @@ export const recordDefaults: Record<TableName, Record<string, unknown>> = {
 export const dateFields: Record<TableName, readonly string[]> = {
   articlePublications: ["lastPushedAt", "createdAt", "updatedAt"],
   sourceArchiveLinks: ["createdAt", "updatedAt"],
+  issueDesignPlans: ["createdAt", "updatedAt"],
+  issuePages: ["createdAt", "updatedAt"],
+  issuePlacements: ["createdAt", "updatedAt"],
+  issueReservations: ["createdAt", "updatedAt"],
+  issueDesignRevisions: ["createdAt"],
+  compositionJobs: ["createdAt", "updatedAt"],
   authors: ["createdAt", "updatedAt"],
   articles: [
     "paidAt",
@@ -431,6 +466,7 @@ export const recordFields = {
     createdAt: { kind: "timestamp", nullable: false, enum: null },
     updatedAt: { kind: "timestamp", nullable: false, enum: null },
   },
+  ...studioRecordFields,
   authors: {
     sourceAuthorKey: { kind: "text", nullable: true, enum: null },
     id: {

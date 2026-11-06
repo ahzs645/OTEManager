@@ -1,5 +1,7 @@
 # OTE Issue Studio sample Site
 
+For the persistent workspace inside OTEManager, see [Persistent Issue Studio](ISSUE-STUDIO-IMPLEMENTATION.md). This document describes the separate sample Site.
+
 Live private Site: [OTE Issue Studio](https://ote-issue-studio.ahzs6455.chatgpt.site). The existing review Site remains separate.
 
 The user requested a standalone sample demo rather than a connection to a deployed OTEManager. This Site presents the verified pipeline review, evidence and updated toolkit alongside a working browser demo. Site identity, source commit, version and deployment are recorded in `ote-issue-studio-site.json`.

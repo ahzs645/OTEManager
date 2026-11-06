@@ -12,6 +12,10 @@ import {
   sourceArchiveMutations,
 } from "./operations/sourceArchive";
 import {
+  issueStudioQueries,
+  issueStudioMutations,
+} from "./operations/issueStudio";
+import {
   publicationQueries,
   publicationMutations,
 } from "./operations/publications";
@@ -20,12 +24,14 @@ const queryOperations = {
   ...analytics,
   ...utilityQueries,
   ...sourceArchiveQueries,
+  ...issueStudioQueries,
   ...publicationQueries,
 };
 const writeOperations = {
   ...mutations,
   ...utilityMutations,
   ...sourceArchiveMutations,
+  ...issueStudioMutations,
   ...publicationMutations,
 };
 // Only the trusted application server can call this bridge. Operation names are allowlisted.

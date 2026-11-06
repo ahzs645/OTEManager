@@ -1,7 +1,7 @@
 [package]
 name = "ote-designcraft-headless"
 description = "Headless DesignCraft engine for OTEManager: command scripts, PDF/IDML/native export and page previews in WebAssembly"
-version = "0.9.0"
+version = "0.17.2"
 edition = "2024"
 rust-version = "1.95"
 license = "MIT OR Apache-2.0"
@@ -10,23 +10,26 @@ publish = false
 [lib]
 crate-type = ["cdylib", "rlib"]
 
-# Pinned to the same upstream release as the server CLI (v0.9.0), so
+# Pinned to the same upstream release as the server CLI (v0.17.2), so
 # browser and server builds compose identical command scripts identically.
 [dependencies]
-designcraft-engine = { git = "https://github.com/storytold/designcraft", rev = "7cb8b12507def48fb9346e5004340b5e8e4cfcb7" }
-designcraft-render = { git = "https://github.com/storytold/designcraft", rev = "7cb8b12507def48fb9346e5004340b5e8e4cfcb7" }
-designcraft-fonts = { git = "https://github.com/storytold/designcraft", rev = "7cb8b12507def48fb9346e5004340b5e8e4cfcb7" }
+designcraft-engine = { git = "https://github.com/storytold/designcraft", rev = "16322ad54b3a20b4cd70666be7431086514d0a36" }
+designcraft-render = { git = "https://github.com/storytold/designcraft", rev = "16322ad54b3a20b4cd70666be7431086514d0a36" }
+designcraft-fonts = { git = "https://github.com/storytold/designcraft", rev = "16322ad54b3a20b4cd70666be7431086514d0a36" }
 serde_json = { version = "1", features = ["float_roundtrip"] }
 wasm-bindgen = "=0.2.129"
 
 # Upstream's workspace patches, which a dependent build must repeat: craft-pdf
-# requires the vendored, unwind-safe krilla, and the PDF reader the patched hayro.
+# requires the vendored, unwind-safe krilla, and craft-pdf/craft-prepress the
+# hayro crates vendored in craft-libs (plate mode and decode limits).
 [patch.crates-io]
-krilla = { git = "https://github.com/storytold/craft-libs", rev = "c3487320b2d1de657b860b3c8abb44e1f2b32bd8", version = "=0.8.2" }
-hayro = { git = "https://github.com/storytold/pdfcraft", rev = "b5467d93a0ffaa5e5e6658bccdf8655a3ba689c9" }
-hayro-interpret = { git = "https://github.com/storytold/pdfcraft", rev = "b5467d93a0ffaa5e5e6658bccdf8655a3ba689c9" }
-hayro-syntax = { git = "https://github.com/storytold/pdfcraft", rev = "b5467d93a0ffaa5e5e6658bccdf8655a3ba689c9" }
-hayro-jbig2 = { git = "https://github.com/storytold/pdfcraft", rev = "b5467d93a0ffaa5e5e6658bccdf8655a3ba689c9" }
+krilla = { git = "https://github.com/storytold/craft-libs", rev = "92d392cff132eaf53e13afff77f38b5c11b73aa0", version = "=0.8.2" }
+hayro = { git = "https://github.com/storytold/craft-libs", rev = "92d392cff132eaf53e13afff77f38b5c11b73aa0", version = "=0.7.1" }
+hayro-interpret = { git = "https://github.com/storytold/craft-libs", rev = "92d392cff132eaf53e13afff77f38b5c11b73aa0", version = "=0.7.0" }
+hayro-syntax = { git = "https://github.com/storytold/craft-libs", rev = "92d392cff132eaf53e13afff77f38b5c11b73aa0", version = "=0.7.2" }
+hayro-jbig2 = { git = "https://github.com/storytold/craft-libs", rev = "92d392cff132eaf53e13afff77f38b5c11b73aa0", version = "=0.3.0" }
+hayro-cmap = { git = "https://github.com/storytold/craft-libs", rev = "92d392cff132eaf53e13afff77f38b5c11b73aa0", version = "=0.1.0" }
+hayro-postscript = { git = "https://github.com/storytold/craft-libs", rev = "92d392cff132eaf53e13afff77f38b5c11b73aa0", version = "=0.1.0" }
 
 [profile.release]
 opt-level = 3

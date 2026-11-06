@@ -69,8 +69,10 @@ function PublicationsPage() {
       <div
         style={{
           display: 'flex',
+          flexWrap: 'wrap',
           alignItems: 'center',
           justifyContent: 'space-between',
+          gap: '0.75rem',
           marginBottom: '1.5rem',
         }}
       >

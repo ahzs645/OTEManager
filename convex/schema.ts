@@ -1,7 +1,60 @@
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
+const studioObject = {
+  id: v.string(),
+  issueId: v.string(),
+  planId: v.string(),
+  data: v.string(),
+  createdAt: v.number(),
+  updatedAt: v.number(),
+};
 export default defineSchema({
+  issueDesignPlans: defineTable({
+    id: v.string(),
+    issueId: v.string(),
+    revision: v.number(),
+    pageBudget: v.number(),
+    houseStyle: v.string(),
+    plannerState: v.string(),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_legacy_id", ["id"])
+    .index("by_issueId", ["issueId"]),
+  issuePages: defineTable(studioObject)
+    .index("by_legacy_id", ["id"])
+    .index("by_planId", ["planId"])
+    .index("by_issueId", ["issueId"]),
+  issuePlacements: defineTable({ ...studioObject, articleId: v.string() })
+    .index("by_legacy_id", ["id"])
+    .index("by_planId", ["planId"])
+    .index("by_issueId", ["issueId"])
+    .index("by_articleId", ["articleId"]),
+  issueReservations: defineTable(studioObject)
+    .index("by_legacy_id", ["id"])
+    .index("by_planId", ["planId"])
+    .index("by_issueId", ["issueId"]),
+  issueDesignRevisions: defineTable({
+    id: v.string(),
+    issueId: v.string(),
+    planId: v.string(),
+    revision: v.number(),
+    snapshot: v.string(),
+    createdAt: v.number(),
+  })
+    .index("by_legacy_id", ["id"])
+    .index("by_planId", ["planId"])
+    .index("by_issueId", ["issueId"]),
+  compositionJobs: defineTable({
+    ...studioObject,
+    inputRevision: v.number(),
+    status: v.string(),
+  })
+    .index("by_legacy_id", ["id"])
+    .index("by_planId", ["planId"])
+    .index("by_issueId", ["issueId"])
+    .index("by_planId_and_status", ["planId", "status"]),
   authors: defineTable({
     id: v.string(),
     givenName: v.string(),

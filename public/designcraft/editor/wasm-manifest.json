@@ -1,63 +1,71 @@
 {
-  "release": "0.9.0",
+  "release": "0.17.2",
   "originalFile": "designcraft-web_bg.wasm",
-  "bytes": 65906060,
-  "sha256": "c60d4ff9105f5469a1a6b1b1686e113a010873826b04f73375f88f91a2cbbc4c",
+  "bytes": 80556413,
+  "sha256": "849e64fec9a68163257a72c6c477037657ca0db0eb59dab352671aadeb6b5c11",
   "parts": [
     {
-      "file": "engine-part-0.b0595a400fcfb462.bin.gz",
+      "file": "engine-part-0.f6a0304e9457a666.bin.gz",
       "bytes": 10485760,
-      "sha256": "c658a7f2ce6f04e6e8869a2d236fbc1aeff61888d205722b9fd9d1b8fd9c2830",
-      "compressedBytes": 2841856,
-      "compressedSha256": "b0595a400fcfb4620dcdcbd4f55a1c06b05d2bfdb2aa135ff385e07b75e99db3",
+      "sha256": "89a586c4ff4ac24971444c74feefcb99fae741edc02120cb7dc5c4f3c268fa5d",
+      "compressedBytes": 2503651,
+      "compressedSha256": "f6a0304e9457a666baa28e1e535f86e69014306063859c29a0b27042185b3570",
       "compression": "gzip"
     },
     {
-      "file": "engine-part-1.015e833d86b726c1.bin.gz",
+      "file": "engine-part-1.3d01df4027046dc1.bin.gz",
       "bytes": 10485760,
-      "sha256": "b29e0a43c54ae8892385f1c329ead5a39e103376534d056b92e5b996622a21b6",
-      "compressedBytes": 2946291,
-      "compressedSha256": "015e833d86b726c1d272eac197fe1269a0cf7d47f9486e166fea087d928e04ae",
+      "sha256": "3298ddf39c801ec25a78d04e9eaa1c52451a2101bf392b4819f677e7d17d8931",
+      "compressedBytes": 2673374,
+      "compressedSha256": "3d01df4027046dc1b9cb9c0fc079d8dfa0fc52b56f26cfccaab76b76f2e6edb9",
       "compression": "gzip"
     },
     {
-      "file": "engine-part-2.b3b44c7277912315.bin.gz",
+      "file": "engine-part-2.f726fe604b13be13.bin.gz",
       "bytes": 10485760,
-      "sha256": "3220731086f6c37b2c76a577d6111651776bbad4f0eebff143d09b9d2b655635",
-      "compressedBytes": 3027460,
-      "compressedSha256": "b3b44c7277912315a8b512c57682e49417a77fced4900e76149ff471da04e51f",
+      "sha256": "2aaac86c690f97eaeaf1306a357014679e7f9be6d8011dfded14274acb95d96a",
+      "compressedBytes": 3010350,
+      "compressedSha256": "f726fe604b13be130b5ad83953e55a54ffc5140ff560bfc8fd0ff4eb46d22530",
       "compression": "gzip"
     },
     {
-      "file": "engine-part-3.89814c5d7c6e096d.bin.gz",
+      "file": "engine-part-3.700e81ee96f5bb68.bin.gz",
       "bytes": 10485760,
-      "sha256": "60ce25adad7bfe63d078d49970156a97b6a16260bda8f6d3563d0b1853968a6e",
-      "compressedBytes": 2684797,
-      "compressedSha256": "89814c5d7c6e096dd32d069a3cfd59c3d6e639d4f2e65731d50952e5586e4e4f",
+      "sha256": "f5f21ea3212c406d077c9095491b5bada472329d4678261fdb743992f9bbe5f3",
+      "compressedBytes": 2963721,
+      "compressedSha256": "700e81ee96f5bb68ed8027deddc6dde94c86fd2dced878d8581bf6e05efd1548",
       "compression": "gzip"
     },
     {
-      "file": "engine-part-4.a6da14e2cd6b76b2.bin.gz",
+      "file": "engine-part-4.3e8b60d5f57d95e7.bin.gz",
       "bytes": 10485760,
-      "sha256": "507ea3443d020cab68fc70cbd44ec889900054a9538911cffe8733879d28ebb3",
-      "compressedBytes": 4962326,
-      "compressedSha256": "a6da14e2cd6b76b2d54e2b590d7f3603159fdd6dff7b4f46dd3a6c3ee8ab0398",
+      "sha256": "f16a42219d56a03ceba4f8a9adbe377e9352e1f8f06bc6893663256c33e51f3a",
+      "compressedBytes": 2567086,
+      "compressedSha256": "3e8b60d5f57d95e7e35731396b7e76f8f841a203f2db4287f2fcba745784a203",
       "compression": "gzip"
     },
     {
-      "file": "engine-part-5.56d5cfdb6388158e.bin.gz",
+      "file": "engine-part-5.c4c3d0dde95707ad.bin.gz",
       "bytes": 10485760,
-      "sha256": "89dd7db3416a773301dcfc0868c31b84e4b56673ec1dc28bad96340ca8a0a341",
-      "compressedBytes": 3153650,
-      "compressedSha256": "56d5cfdb6388158e7dd4f492441344140821d62a0e489134e2a14834807275e1",
+      "sha256": "1ecad75ce8b3e1f346fdfcba0d075af292bd9da967056d6261b7256c15a7753b",
+      "compressedBytes": 5573325,
+      "compressedSha256": "c4c3d0dde95707ad21a3b92427921cfddfd151e01f1f7e26db3dfdeb678f4ba8",
       "compression": "gzip"
     },
     {
-      "file": "engine-part-6.8852176103337f06.bin.gz",
-      "bytes": 2991500,
-      "sha256": "294161c7dbe0e539307a32c0bffcb7cca60e9a6c924ab3ad9ca7712c5a1ff82a",
-      "compressedBytes": 398237,
-      "compressedSha256": "8852176103337f0614978fb4539aa7c419da66a8ea140e9bb60c243b753b6804",
+      "file": "engine-part-6.e0682c1761154a23.bin.gz",
+      "bytes": 10485760,
+      "sha256": "58157eba7eb50d8673dd591d48f6918afd15c689abe4de1dd70b8d7d981fa5ad",
+      "compressedBytes": 3858153,
+      "compressedSha256": "e0682c1761154a23db69c90fc7a44c26887f2685ca9cd0012581ced4cb0a1080",
+      "compression": "gzip"
+    },
+    {
+      "file": "engine-part-7.268e0371c2760090.bin.gz",
+      "bytes": 7156093,
+      "sha256": "225fdcf2a466f34be18118568e84c3c5500a388801ad44a7fb816e07c998c5ef",
+      "compressedBytes": 943332,
+      "compressedSha256": "268e0371c2760090410ee3a3e07c624a5fd6cc439d64fab6cb373a62cd6d4131",
       "compression": "gzip"
     }
   ]

@@ -114,7 +114,7 @@ const handlers = {
     try {
       let result;
       if (message.mode === 'issue') {
-        result = await modules.issues.compileIssue({ ...common, library: recipe.library, issue: recipe.issue, booklet: !!message.booklet, fonts, onProgress: progress,
+        result = await modules.issues.compileIssue({ ...common, library: recipe.library, issue: recipe.issue, booklet: !!message.booklet, allowUnplaced: !!message.allowUnplaced, fonts, onProgress: progress,
           fitCoverTitles: recipe.issue.layoutPlan?.cover?.fitTitles !== false });
       } else {
         const built = await modules.pages.buildPage({ ...common, library: recipe.library, templateId, issue: recipe.issue,
@@ -136,14 +136,14 @@ const handlers = {
     const design = message.design || null, scope = { ...message.library, templates: message.library.templates.filter((t) => (t.design ?? null) === design) };
     const fonts = await fontsFor(message, scope);
     const result = await modules.variants.generatePageVariants({
-      library: message.library, issue: recipe.issue, articleIds: message.articleIds, executor, fonts, design, substituteFonts: substitutesFor(message, scope, fonts), tightenHeadlines: !!message.tightenHeadlines,
+      library: message.library, issue: recipe.issue, articleIds: message.articleIds, executor, fonts, design, substituteFonts: substitutesFor(message, scope, fonts), tightenHeadlines: !!message.tightenHeadlines, photoFit: !!message.photoFit,
       fontProfile: message.fontProfile || 'portable', loadMedia: recipe.loadMedia, markdownit: self.markdownit, JSZip: self.JSZip,
       limit: message.limit || 8, keep: message.keep || 4, previewScale: 0.32,
       onProgress: (detail) => self.postMessage({ id: message.id, progress: detail }),
     });
     return {
       considered: result.considered, composed: result.composed,
-      variants: result.variants.map((v) => ({ template: v.template, articleIds: v.articleIds, score: v.score, fill: v.fill, crops: v.crops, headlineSize: v.headlineSize, headlineFit: v.headlineFit, unusedPhotos: v.unusedPhotos, warnings: v.preflight.warnings, preview: v.preview, pdf: v.pdf, native: v.native })),
+      variants: result.variants.map((v) => ({ template: v.template, articleIds: v.articleIds, score: v.score, fill: v.fill, crops: v.crops, photos: v.photos, photoFit: v.photoFit, headlineSize: v.headlineSize, headlineFit: v.headlineFit, unusedPhotos: v.unusedPhotos, warnings: v.preflight.warnings, preview: v.preview, pdf: v.pdf, native: v.native })),
       rejected: result.rejected.map((v) => ({ template: v.template.id, name: v.template.name, reason: v.reason })),
     };
   },
@@ -155,13 +155,17 @@ const handlers = {
     const fonts = await fontsFor(message, scope);
     const plan = await modules.variants.suggestIssuePlan({
       library: message.library, issue: recipe.issue, articleIds: message.articleIds, executor, fonts, design,
-      fontProfile: message.fontProfile || 'portable', substituteFonts: substitutesFor(message, scope, fonts), tightenHeadlines: !!message.tightenHeadlines,
+      pageBudget: message.pageBudget, existingPages: message.existingPages, protectedPageIds: message.protectedPageIds,
+      pageLibraries: message.pageLibraries, reservations: message.reservations,
+      articleFlows: message.articleFlows, articleConstraints: message.articleConstraints,
+      fontProfile: message.fontProfile || 'portable', substituteFonts: substitutesFor(message, scope, fonts), tightenHeadlines: !!message.tightenHeadlines, photoFit: !!message.photoFit,
       loadMedia: recipe.loadMedia, markdownit: self.markdownit, JSZip: self.JSZip, previewScale: 0,
       onProgress: (detail) => self.postMessage({ id: message.id, progress: detail }),
     });
     return {
       pages: plan.pages.map(({ template, ...page }) => ({ ...page, template })),
-      featured: plan.featured, extraTemplates: plan.extraTemplates,
+      featured: plan.featured, extraTemplates: plan.extraTemplates, articleFlows: plan.articleFlows,
+      unplaced: plan.unplaced, pageBudget: plan.pageBudget, confidence: plan.confidence,
       problems: plan.plans.filter((p) => p.error).map((p) => ({ pageNumber: p.pageNumber, articleIds: p.articleIds, error: p.error })),
     };
   },

@@ -1,16 +1,16 @@
-import { Link } from '@tanstack/react-router'
-import { FileText, Calendar, Download, Pencil, Trash2 } from 'lucide-react'
-import type { Issue } from './types'
+import { Link } from "@tanstack/react-router";
+import { FileText, Calendar, Download, Pencil, Trash2 } from "lucide-react";
+import type { Issue } from "./types";
 
 interface IssueRowProps {
-  issue: Issue
-  volumeNumber: number
-  onEdit: () => void
-  onDelete: () => void
-  onExport: () => void
-  onDesignCraftExport: () => void
-  onWordPress?: () => void
-  isExporting: boolean
+  issue: Issue;
+  volumeNumber: number;
+  onEdit: () => void;
+  onDelete: () => void;
+  onExport: () => void;
+  onDesignCraftExport: () => void;
+  onWordPress?: () => void;
+  isExporting: boolean;
 }
 
 export function IssueRow({
@@ -25,38 +25,40 @@ export function IssueRow({
 }: IssueRowProps) {
   return (
     <div
+      className="pl-4 sm:pl-10"
       style={{
         display: 'flex',
+        flexWrap: 'wrap',
         alignItems: 'center',
-        padding: '0.625rem 1rem',
-        paddingLeft: '2.5rem',
+        gap: '0.25rem 0.75rem',
+        paddingTop: '0.625rem',
+        paddingBottom: '0.625rem',
+        paddingRight: '1rem',
       }}
     >
-      <div style={{ flex: 1, display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
-        <span style={{ fontWeight: 500, color: 'var(--fg-default)' }}>
+      <div style={{ flex: '1 1 12rem', minWidth: 0, display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.25rem 0.75rem' }}>
+        <span style={{ fontWeight: 500, color: 'var(--fg-default)', whiteSpace: 'nowrap' }}>
           Issue {issue.issueNumber}
         </span>
         {issue.title && (
-          <span style={{ color: 'var(--fg-muted)' }}>
-            {issue.title}
-          </span>
+          <span style={{ color: "var(--fg-muted)" }}>{issue.title}</span>
         )}
         {issue.releaseDate && (
-          <span style={{ fontSize: '0.75rem', color: 'var(--fg-faint)', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+          <span style={{ fontSize: '0.75rem', color: 'var(--fg-faint)', display: 'flex', alignItems: 'center', gap: '0.25rem', whiteSpace: 'nowrap' }}>
             <Calendar className="w-3 h-3" />
             {/* Release dates are stored as UTC midnight; formatting in local time shows the day before */}
-            {new Date(issue.releaseDate).toLocaleDateString('en-US', {
-              timeZone: 'UTC',
-              month: 'short',
-              day: 'numeric',
-              year: 'numeric',
+            {new Date(issue.releaseDate).toLocaleDateString("en-US", {
+              timeZone: "UTC",
+              month: "short",
+              day: "numeric",
+              year: "numeric",
             })}
           </span>
         )}
         {issue.sourceProvenance && <Link to="/utilities/source-archive" className="badge badge-default" style={{ textDecoration: 'none' }}>Source archive</Link>}
         {issue.sourceProvenance && !issue.releaseDate && <span className="text-xs" style={{ color: 'var(--fg-muted)' }}>Release date not verified</span>}
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginLeft: 'auto' }}>
         <Link
           to="/articles"
           search={{ issueId: issue.id }}
@@ -67,43 +69,53 @@ export function IssueRow({
             alignItems: 'center',
             gap: '0.25rem',
             textDecoration: 'none',
+            whiteSpace: 'nowrap',
           }}
         >
           <FileText className="w-3 h-3" />
-          {issue.articleCount} article{issue.articleCount !== 1 ? 's' : ''}
+          {issue.articleCount} article{issue.articleCount !== 1 ? "s" : ""}
         </Link>
-        <div style={{ display: 'flex', gap: '0.25rem' }}>
+        <div style={{ display: "flex", gap: "0.25rem" }}>
           {onWordPress && (
             <button
               className="btn btn-ghost btn-sm"
               onClick={onWordPress}
               disabled={issue.articleCount === 0}
-              title={issue.articleCount === 0 ? 'No articles to send' : 'Send approved articles to WordPress as drafts'}
-              style={{ fontSize: '0.75rem', color: 'var(--accent)' }}
+              title={issue.articleCount === 0 ? "No articles to send" : "Send approved articles to WordPress as drafts"}
+              style={{ fontSize: "0.75rem", color: "var(--accent)" }}
             >
               WordPress
             </button>
           )}
           <button
-            className="btn btn-ghost btn-sm"
+            className="btn btn-primary btn-sm"
             onClick={onDesignCraftExport}
-            disabled={isExporting || issue.articleCount === 0}
-            title={issue.articleCount === 0 ? 'No articles to export' : 'Choose articles and images for DesignCraft web'}
-            style={{ fontSize: '0.75rem', color: 'var(--accent)' }}
+            title="Open the saved Issue Studio"
+            style={{ fontSize: "0.75rem" }}
           >
-            DesignCraft ZIP
+            Design issue
           </button>
           <button
             className="btn btn-ghost btn-sm"
             onClick={onExport}
             disabled={isExporting || issue.articleCount === 0}
-            title={issue.articleCount === 0 ? 'No articles to export' : 'Choose photos and export issue as ZIP'}
-            style={{ color: issue.articleCount === 0 ? 'var(--fg-faint)' : 'var(--accent)' }}
+            title={
+              issue.articleCount === 0
+                ? "No articles to export"
+                : "Download content ZIP"
+            }
+            style={{
+              color:
+                issue.articleCount === 0 ? "var(--fg-faint)" : "var(--accent)",
+            }}
           >
             {isExporting ? (
-              <span style={{ fontSize: '0.625rem' }}>...</span>
+              <span style={{ fontSize: "0.625rem" }}>...</span>
             ) : (
-              <Download className="w-3 h-3" />
+              <>
+                <Download className="w-3 h-3" />
+                <span>Download content ZIP</span>
+              </>
             )}
           </button>
           <button
@@ -117,12 +129,12 @@ export function IssueRow({
             className="btn btn-ghost btn-sm"
             onClick={onDelete}
             title="Delete"
-            style={{ color: 'var(--status-error)' }}
+            style={{ color: "var(--status-error)" }}
           >
             <Trash2 className="w-3 h-3" />
           </button>
         </div>
       </div>
     </div>
-  )
+  );
 }

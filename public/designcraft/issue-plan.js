@@ -1,7 +1,7 @@
 function validatePlacements(){
  const assigned=new Map(issue.articles.map(a=>[a.id,[]]));for(const p of plannedPages)if(p.template.kind!=='cover')for(const id of p.articleIds){if(!assigned.has(id))throw Error('Unknown article in issue plan.');assigned.get(id).push(p.id);}
  const flows=issue.layoutPlan?.articleFlows||{};
- for(const [id,chain] of assigned){const declared=flows[id]?.pageIds||[];if(!chain.length)throw Error('Place every article on an interior page: '+id);if(chain.length>1&&JSON.stringify(chain)!==JSON.stringify(declared))throw Error('Repeated articles need an explicit continuation chain in page order: '+id);if(declared.length&&JSON.stringify(chain)!==JSON.stringify(declared))throw Error('Continuation chain does not match saved page assignments: '+id);if(declared.some(pid=>plannedPages.find(p=>p.id===pid)?.mode==='preserve'))throw Error('Continuation pages must be editable: '+id);}
+ for(const [id,chain] of assigned){const declared=flows[id]?.pageIds||[];if(!chain.length){if(window.oteIssueStudio?.config?.())continue;throw Error('Place every article on an interior page: '+(issue.articles.find(a=>a.id===id)?.title||id));}if(chain.length>1&&JSON.stringify(chain)!==JSON.stringify(declared))throw Error('Repeated articles need an explicit continuation chain in page order: '+id);if(declared.length&&JSON.stringify(chain)!==JSON.stringify(declared))throw Error('Continuation chain does not match saved page assignments: '+id);if(declared.some(pid=>plannedPages.find(p=>p.id===pid)?.mode==='preserve'))throw Error('Continuation pages must be editable: '+id);}
  for(const id of Object.keys(flows))if(!assigned.has(id))throw Error('Unknown continuation article: '+id);
 }
 'use strict';
