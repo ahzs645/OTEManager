@@ -343,8 +343,10 @@ async function prepareRecipe(buffer: Buffer, directory: string, designcraftDir: 
     const target = join(directory, path); await mkdir(dirname(target), { recursive: true });
     if (zip.file(path)) await writeFile(target, await entryBytes(zip, path, sizes.get(path)));
     else if (BRAND.has(path) || SOURCE_ART.test(path) || SOURCE_PDF.test(path)) {
-      try { await writeFile(target, await readFile(join(designcraftDir, path))); }
+      let artwork: Buffer;
+      try { artwork = await readFile(join(designcraftDir, path)); }
       catch { throw new NativeRequestError("This server does not have the source artwork " + path + ".", 409); }
+      await writeFile(target, artwork);
     }
     else throw new NativeRequestError("Missing original media in the recipe ZIP: " + path);
   }

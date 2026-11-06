@@ -3,7 +3,7 @@ import { afterAll, beforeAll, expect, test } from "vitest";
 import JSZip from "jszip";
 import markdownit from "markdown-it";
 import { execFileSync } from "node:child_process";
-import { mkdtemp, readFile, readdir, rm } from "node:fs/promises";
+import { mkdtemp, readFile, readdir, realpath, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -36,8 +36,8 @@ afterAll(async () => { for (const directory of temporary) await rm(directory, { 
 
 test("committed headless engine passes its integrity manifest and runs a command script", async () => {
   const manifest = JSON.parse(await readFile(join(root, "public/designcraft/headless/manifest.json"), "utf8"));
-  expect(manifest.upstream).toMatchObject({ tag: "v0.9.0", rev: "7cb8b12507def48fb9346e5004340b5e8e4cfcb7" });
-  expect(executor.version).toBe("designcraft-headless 0.9.0 (WebAssembly)");
+  expect(manifest.upstream).toMatchObject({ tag: "v0.17.2", rev: "16322ad54b3a20b4cd70666be7431086514d0a36" });
+  expect(executor.version).toBe("designcraft-headless 0.17.2 (WebAssembly)");
   const run = await executor.run([
     { command: "file.new", params: { width: 300, height: 300, pages: 1 } },
     { command: "frame.create", params: { rect: [20, 20, 280, 80], content: "text", text: "Headless", caret: false } },
@@ -58,8 +58,8 @@ test("headless loader accepts a module decoded by HTTP Content-Encoding gzip", a
     const bytes = await readFile(new URL(name, base));
     return new Uint8Array(name.endsWith(".wasm.gz") ? gunzipSync(bytes) : bytes);
   });
-  expect(Engine.version()).toBe("0.9.0");
-  expect(manifest.wasm.bytes).toBe(34897168);
+  expect(Engine.version()).toBe("0.17.2");
+  expect(manifest.wasm.bytes).toBe(38810081);
 });
 
 test.each([false, true])("headless loader rejects modified engine bytes (HTTP decoded: %s)", async (decoded) => {
@@ -143,7 +143,7 @@ test("server WASM engine produces the same job artifacts without a CLI or Python
   const service = createNativeService({ engine: "wasm", repository: root, root: directory, python: "/nonexistent", cli: "/nonexistent" });
   try {
     const capabilities = await service.capabilities();
-    expect(capabilities).toMatchObject({ available: true, engine: "wasm", version: "designcraft-headless 0.9.0 (WebAssembly)" });
+    expect(capabilities).toMatchObject({ available: true, engine: "wasm", version: "designcraft-headless 0.17.2 (WebAssembly)" });
     const zip = new JSZip();
     zip.file("issue.json", JSON.stringify(fixture)); zip.file("templates.json", JSON.stringify(library));
     for (const article of fixture.articles) for (const photo of article.photos) zip.file(photo.path, await readFile(join(fixtureDir, photo.path)));
@@ -170,7 +170,7 @@ test.skipIf(!python)("JavaScript Markdown conversion matches markdown_story.py e
 });
 
 test.skipIf(!python || !process.env.DESIGNCRAFT_TEST_CLI)("command scripts and rendered pages match the Python compiler on the native CLI", async () => {
-  const output = await mkdtemp(join(tmpdir(), "ote-parity-")); temporary.push(output);
+  const output = await realpath(await mkdtemp(join(tmpdir(), "ote-parity-"))); temporary.push(output);
   for (const templateId of ["story-3-three-top-lead-top", "cover-framed-cards-border", "piece-board-members", "ad-half-bottom"]) {
     execFileSync("python3", ["tools/designcraft/compile-template.py", "--library", "public/designcraft/templates.json", "--template", templateId, "--output", join(output, templateId), "--cli", process.env.DESIGNCRAFT_TEST_CLI!]);
     const built = await pages.buildPage({ library, templateId, markdownit, loadMedia });

@@ -229,7 +229,7 @@ export async function buildPage(options) {
   };
   const styledText = (rect, text, style, columns = 1, slot = null, article = null, rich = null) => {
     const index = add('frame.create', { rect, content: 'text', text, caret: false });
-    add('object.textFrameOptions', { ids: [ref(index)], inset: 0, columns, gutter: page.gutter ?? 12 });
+    add('object.textFrameOptions', { ids: [ref(index)], inset: 0, columns, gutter: page.gutter ?? 12, ...(slot?.ignoreWrap ? { ignoreWrap: true } : {}) });
     add('text.select', { story: ref(index, 'story'), anchor: 0, focus: utf8Length(text) });
     add('style.paragraph.apply', { name: style, clearOverrides: true });
     if (rich) {

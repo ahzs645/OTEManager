@@ -23,15 +23,19 @@ export function IssueRow({
 }: IssueRowProps) {
   return (
     <div
+      className="pl-4 sm:pl-10"
       style={{
         display: 'flex',
+        flexWrap: 'wrap',
         alignItems: 'center',
-        padding: '0.625rem 1rem',
-        paddingLeft: '2.5rem',
+        gap: '0.25rem 0.75rem',
+        paddingTop: '0.625rem',
+        paddingBottom: '0.625rem',
+        paddingRight: '1rem',
       }}
     >
-      <div style={{ flex: 1, display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
-        <span style={{ fontWeight: 500, color: 'var(--fg-default)' }}>
+      <div style={{ flex: '1 1 12rem', minWidth: 0, display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.25rem 0.75rem' }}>
+        <span style={{ fontWeight: 500, color: 'var(--fg-default)', whiteSpace: 'nowrap' }}>
           Issue {issue.issueNumber}
         </span>
         {issue.title && (
@@ -40,7 +44,7 @@ export function IssueRow({
           </span>
         )}
         {issue.releaseDate && (
-          <span style={{ fontSize: '0.75rem', color: 'var(--fg-faint)', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+          <span style={{ fontSize: '0.75rem', color: 'var(--fg-faint)', display: 'flex', alignItems: 'center', gap: '0.25rem', whiteSpace: 'nowrap' }}>
             <Calendar className="w-3 h-3" />
             {/* Release dates are stored as UTC midnight; formatting in local time shows the day before */}
             {new Date(issue.releaseDate).toLocaleDateString('en-US', {
@@ -54,7 +58,7 @@ export function IssueRow({
         {issue.sourceProvenance && <Link to="/utilities/source-archive" className="badge badge-default" style={{ textDecoration: 'none' }}>Source archive</Link>}
         {issue.sourceProvenance && !issue.releaseDate && <span className="text-xs" style={{ color: 'var(--fg-muted)' }}>Release date not verified</span>}
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginLeft: 'auto' }}>
         <Link
           to="/articles"
           search={{ issueId: issue.id }}
@@ -65,6 +69,7 @@ export function IssueRow({
             alignItems: 'center',
             gap: '0.25rem',
             textDecoration: 'none',
+            whiteSpace: 'nowrap',
           }}
         >
           <FileText className="w-3 h-3" />

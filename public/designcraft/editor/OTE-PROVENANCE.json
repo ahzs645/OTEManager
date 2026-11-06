@@ -1,11 +1,11 @@
 {
   "engine": "DesignCraft web (OTE build: official source + add_font export)",
-  "version": "0.9.0",
-  "release": "https://github.com/storytold/designcraft/releases/tag/v0.9.0",
-  "archive": "designcraft-web-0.9.0.zip",
-  "archiveSha256": "e9e23c3f8cae1e2234d6382eb7f5d9009b209d8a5aff6e340285fd63e84f167e",
-  "officialModuleSha256": "ada9266de438e748b3c70114afc98bd29fac52fa87b53277c124ae93e1ce704c",
-  "moduleSha256": "c60d4ff9105f5469a1a6b1b1686e113a010873826b04f73375f88f91a2cbbc4c",
+  "version": "0.17.2",
+  "release": "https://github.com/storytold/designcraft/releases/tag/v0.17.2",
+  "archive": "designcraft-web-0.17.2.zip",
+  "archiveSha256": "23f15c8e67fb692b772cf8ede9c192e7d62a594ce1cf20345957dac4db17ff64",
+  "officialModuleSha256": "a1c03155657d6e9edb3e4c88e6771613be7895c82454093ee0f018c05deca90e",
+  "moduleSha256": "849e64fec9a68163257a72c6c477037657ca0db0eb59dab352671aadeb6b5c11",
   "moduleUnchanged": false,
   "upstreamGlueUnchanged": false,
   "patch": {
