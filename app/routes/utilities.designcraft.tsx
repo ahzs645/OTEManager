@@ -12,10 +12,11 @@ import {
   Wand2,
 } from "lucide-react";
 import { takeDesignCraftIssue } from "~/lib/designcraft-handoff";
+import type { IssueStudioState } from "../../shared/issue-studio";
 import workspaceCss from "../components/designcraft/workspace.css?url";
 
 export const Route = createFileRoute("/utilities/designcraft")({
-  component: DesignCraftWorkspace,
+  component: () => <DesignCraftWorkspace />,
   head: () => ({ links: [{ rel: "stylesheet", href: workspaceCss }] }),
 });
 
@@ -29,7 +30,111 @@ type ExportFile = { name: string; href: string };
 type Plan = { articles: number; pages: number; sample: boolean };
 const documentLimit = 64 * 1024 * 1024;
 
-function DesignCraftWorkspace() {
+export type StudioWorkspaceProps = {
+  issueId: string;
+  state: IssueStudioState;
+  onPlannerState: (state: Record<string, unknown>) => void;
+  onRegisterSnapshot?: (
+    snapshot?: () => Promise<Record<string, unknown>>,
+  ) => void;
+};
+
+export function DesignCraftWorkspace({
+  studio,
+}: { studio?: StudioWorkspaceProps } = {}) {
+  const studioRef = useRef(studio);
+  studioRef.current = studio;
+  const studioImported = useRef(false);
+  const studioHydrated = useRef(false);
+  const studioLoadRequested = useRef(false);
+  const snapshots = useRef(
+    new Map<
+      string,
+      {
+        resolve: (state: Record<string, unknown>) => void;
+        reject: (error: Error) => void;
+        timer: ReturnType<typeof setTimeout>;
+      }
+    >(),
+  );
+  useEffect(() => {
+    if (!studio?.onRegisterSnapshot) return;
+    studio.onRegisterSnapshot(
+      () =>
+        new Promise((resolve, reject) => {
+          if (!studioHydrated.current || !planner.current?.contentWindow) {
+            reject(
+              new Error(
+                "Wait for the saved issue to finish loading before saving the designer.",
+              ),
+            );
+            return;
+          }
+          const requestId = crypto.randomUUID();
+          const timer = setTimeout(() => {
+            snapshots.current.delete(requestId);
+            reject(
+              new Error(
+                "The designer did not finish saving its artwork. Try Save issue again.",
+              ),
+            );
+          }, 60000);
+          snapshots.current.set(requestId, { resolve, reject, timer });
+          planner.current.contentWindow.postMessage(
+            {
+              type: "ote.studio.snapshot",
+              issueId: studioRef.current?.issueId,
+              requestId,
+            },
+            location.origin,
+          );
+        }),
+    );
+    return () => {
+      studio.onRegisterSnapshot?.(undefined);
+      for (const pending of snapshots.current.values()) {
+        clearTimeout(pending.timer);
+        pending.reject(
+          new Error("The designer was closed before its snapshot completed."),
+        );
+      }
+      snapshots.current.clear();
+    };
+  }, [studio?.onRegisterSnapshot]);
+  const studioConfig = studio
+    ? JSON.stringify({
+        pageBudget: studio.state.pageBudget,
+        houseStyle: studio.state.houseStyle,
+        reservations: studio.state.reservations,
+        pages: studio.state.pages.map((p) => ({ id: p.id, locked: p.locked })),
+        placements: studio.state.placements.map((p) => ({
+          id: p.id,
+          articleId: p.articleId,
+          pageIds: p.pageIds,
+          locked: p.locked,
+          included: p.included,
+          imageChoices: p.imageChoices,
+          priority: p.priority,
+          allowedPages: p.allowedPages,
+        })),
+      })
+    : "";
+  useEffect(() => {
+    if (!studioHydrated.current || !studioRef.current) return;
+    const value = studioRef.current.state;
+    planner.current?.contentWindow?.postMessage(
+      {
+        type: "ote.studio.load",
+        state: value.plannerState,
+        pageBudget: value.pageBudget,
+        houseStyle: value.houseStyle,
+        reservations: value.reservations,
+        placements: value.placements,
+        pages: value.pages,
+      },
+      location.origin,
+    );
+  }, [studioConfig]);
   const planner = useRef<HTMLIFrameElement>(null);
   const editor = useRef<HTMLIFrameElement>(null);
   const issueInput = useRef<HTMLInputElement>(null);
@@ -98,7 +203,36 @@ function DesignCraftWorkspace() {
       if (event.source === planner.current?.contentWindow) {
         if (data?.type === "ote.workspace.ready") {
           setReady(true);
-          const pending = takeDesignCraftIssue();
+          if (studioRef.current && !studioImported.current) {
+            studioImported.current = true;
+            setBusy(true);
+            setStatus("Loading saved issue sources…");
+            try {
+              const response = await fetch(
+                `/api/issue-studio/${encodeURIComponent(studioRef.current.issueId)}/bundle`,
+              );
+              if (!response.ok)
+                throw new Error(
+                  (await response.json()).error ||
+                    "Could not load issue sources",
+                );
+              const bytes = await response.arrayBuffer();
+              planner.current?.contentWindow?.postMessage(
+                { type: "ote.import-issue", name: "issue-studio.zip", bytes },
+                location.origin,
+                [bytes],
+              );
+            } catch (error) {
+              setBusy(false);
+              setStatus(
+                error instanceof Error
+                  ? error.message
+                  : "Could not load issue sources",
+              );
+            }
+            return;
+          }
+          const pending = studioRef.current ? null : takeDesignCraftIssue();
           if (pending) {
             setBusy(true);
             setStatus("Importing selected articles…");
@@ -116,7 +250,62 @@ function DesignCraftWorkspace() {
               );
             }
           }
+        } else if (
+          data?.type === "ote.studio.changed" &&
+          studioRef.current &&
+          data.state &&
+          typeof data.state === "object"
+        ) {
+          studioRef.current.onPlannerState(data.state);
+        } else if (
+          data?.type === "ote.studio.snapshot" &&
+          typeof data.requestId === "string"
+        ) {
+          const pending = snapshots.current.get(data.requestId);
+          if (pending) {
+            clearTimeout(pending.timer);
+            snapshots.current.delete(data.requestId);
+            pending.resolve(data.state);
+          }
+        } else if (data?.type === "ote.studio.loaded") {
+          studioHydrated.current = true;
+          setBusy(false);
+          setStatus("Saved issue restored · changes are saved with Save issue");
+        } else if (data?.type === "ote.studio.error") {
+          const pending = snapshots.current.get(data.requestId);
+          if (pending) {
+            clearTimeout(pending.timer);
+            snapshots.current.delete(data.requestId);
+            pending.reject(
+              new Error(String(data.message || "Designer save failed")),
+            );
+          }
+          setBusy(false);
+          setStatus(
+            `Issue plan could not load: ${String(data.message || "Unknown error")}`,
+          );
         } else if (data?.type === "ote.workspace.state") {
+          if (
+            studioRef.current &&
+            !studioLoadRequested.current &&
+            typeof data.status === "string" &&
+            data.status.includes("articles imported")
+          ) {
+            studioLoadRequested.current = true;
+            const value = studioRef.current.state;
+            planner.current?.contentWindow?.postMessage(
+              {
+                type: "ote.studio.load",
+                state: value.plannerState,
+                pageBudget: value.pageBudget,
+                houseStyle: value.houseStyle,
+                reservations: value.reservations,
+                placements: value.placements,
+                pages: value.pages,
+              },
+              location.origin,
+            );
+          }
           setPlan({
             articles: Number(data.articles) || 0,
             pages: Number(data.pages) || 0,
@@ -267,7 +456,9 @@ function DesignCraftWorkspace() {
     <div className={`designcraft-utility ${expanded ? "dc-expanded" : ""}`}>
       <div className="dc-heading">
         <div>
-          <h1 className="page-title">DesignCraft</h1>
+          <h1 className="page-title">
+            {studio ? "Page design" : "DesignCraft"}
+          </h1>
           <p className="page-subtitle">
             Plan your pages, compose the issue, and edit the finished document.
           </p>
@@ -275,7 +466,7 @@ function DesignCraftWorkspace() {
         <div className="dc-heading-actions">
           <button
             className="btn btn-secondary"
-            disabled={!ready || busy}
+            disabled={!!studio || !ready || busy}
             onClick={() => issueInput.current?.click()}
           >
             <FileInput size={15} /> Import issue
@@ -467,7 +658,11 @@ function DesignCraftWorkspace() {
             <Loader2 size={12} className="animate-spin" />
           )}
           <span>{status}</span>
-          <span className="dc-local">Works on this device</span>
+          <span className="dc-local">
+            {studio
+              ? "Save issue to keep layout changes"
+              : "Works on this device"}
+          </span>
         </div>
       </div>
     </div>

@@ -46,7 +46,7 @@ async function setupBrowserCompose(){
   try{
    status.textContent='Preparing the recipe…';const recipe=mode==='issue'?await buildIssueZip():await buildPageZip();
    const fonts=await fontPayload(),localFonts=fonts.fonts.map(f=>({name:f.name,bytes:f.bytes.slice(0)}));
-   const result=await call('compile',{mode,booklet:booklet.checked,recipe:toBuffer(recipe),...fonts},p=>status.textContent=describe(p));result.localFonts??=localFonts;
+   const result=await call('compile',{mode,booklet:booklet.checked,allowUnplaced:!!window.oteIssueStudio?.config?.(),recipe:toBuffer(recipe),...fonts},p=>status.textContent=describe(p));result.localFonts??=localFonts;
    status.textContent=result.status==='completed'?`Composed in your browser with ${result.version}. Preflight passed: ${result.preflight.warnings} warning(s). Download below.`:`${result.message} Download the draft and preflight below.`;
    offer(result,mode);return result;
   }catch(error){status.textContent=error.message;throw error;}finally{busy(false);}
@@ -72,7 +72,7 @@ async function setupBrowserCompose(){
     card.append(element('p',{className:'muted',textContent:facts.join(' · ')}));
     card.append(element('p',{className:'muted',textContent:'Order: '+v.articleIds.map(id=>issue.articles.find(a=>a.id===id)?.title||id).join(' → ')}));
     const use=element('button',{className:'outline',textContent:'Use this layout'});
-    use.onclick=()=>{assignments.splice(0,v.articleIds.length,...v.articleIds);choose(v.template.id.split('@')[0],v.headlineSize||v.headlineFit?.length||v.photoFit||v.template.slots.some(s=>s.photoIndex!==undefined)?v.template:null);status.textContent='Applied '+v.template.name+'. Save it in the issue plan or generate it.';};
+    use.onclick=()=>{assignments.splice(0,v.articleIds.length,...v.articleIds);choose(v.template.id.split('@')[0],v.template);status.textContent='Applied '+v.template.name+'. Save it in the issue plan or generate it.';};
     card.append(use,' ',element('a',{href:blobUrl(v.pdf,'application/pdf'),download:v.template.id+'.pdf',className:'text-link',textContent:'PDF'}));
     results.append(card);
    });
@@ -84,20 +84,25 @@ async function setupBrowserCompose(){
   try{
    status.textContent='Preparing the articles…';const recipe=await buildPageZip();
    const design=designSelect.value||null,inDesign=t=>designOf(t)===design;
-   const libraryForPlan={...library,templates:library.templates.filter(t=>t.kind==='story'&&!t.source&&inDesign(t)).map(t=>({...copy(resolved(t)),id:t.id,name:t.name})).concat(library.templates.filter(t=>t.kind==='cover'&&inDesign(t)))};
-   const result=await call('suggestIssue',{recipe:toBuffer(recipe),library:libraryForPlan,articleIds:issue.articles.map(a=>a.id),design,tightenHeadlines:tighten.checked,photoFit:photoFit.checked,...await fontPayload()},p=>status.textContent=describe(p));
-   const list=element('ol');for(const p of result.pages)list.append(element('li',{textContent:`Page ${p.pageNumber}: ${p.template?.name||library.templates.find(t=>t.id===p.templateId)?.name||p.templateId} — ${p.articleIds.map(id=>issue.articles.find(a=>a.id===id)?.title||id).join(', ')}`}));
-   results.append(element('p',{textContent:'Suggested plan (every interior page passed native preflight):'}),list);
-   for(const problem of result.problems)results.append(element('p',{className:'muted',textContent:`Page ${problem.pageNumber}: ${problem.error}`}));
+   const candidateLibrary={...library,templates:library.templates.filter(t=>(t.kind==='cover'||t.kind==='story'&&!t.source)&&inDesign(t)).map(t=>copy(t))};
+   const planning=window.oteIssueStudio?.planningOptions?window.oteIssueStudio.planningOptions(candidateLibrary):{
+    pageBudget:Number($('page-count').value)||16,existingPages:copy(plannedPages),articleFlows:copy(issue.layoutPlan?.articleFlows||{}),
+    pageLibraries:Object.fromEntries(Array.from({length:Number($('page-count').value)||16},(_,i)=>[i+1,{...candidateLibrary,templates:candidateLibrary.templates.map(t=>({...copy(resolved(t)),id:t.id,name:t.name}))}])),
+    reservations:Array.from({length:Number($('page-count').value)||16},(_,i)=>blocks.map(b=>({id:b.id,pageNumber:i+1,kind:b.type==='ad'?'booked-ad':'editorial',rect:[b.rect[0],b.rect[1],b.rect[2]-b.rect[0],b.rect[3]-b.rect[1]],name:b.name,assetPath:b.asset}))).flat()
+   };
+   const result=await call('suggestIssue',{recipe:toBuffer(recipe),library:candidateLibrary,...planning,articleIds:issue.articles.map(a=>a.id),design,tightenHeadlines:tighten.checked,photoFit:photoFit.checked,...await fontPayload()},p=>status.textContent=describe(p));
+   const list=element('ol');for(const p of result.pages)list.append(element('li',{textContent:`Page ${p.pageNumber}: ${p.template?.name||library.templates.find(t=>t.id===p.templateId)?.name||p.templateId} · ${p.suggestionStatus||'protected'} — ${p.articleIds.map(id=>issue.articles.find(a=>a.id===id)?.title||id).join(', ')}`}));
+   results.append(element('p',{textContent:'Fixed-budget proposal. Checked single-page variants, estimated continuations and reserved pages are labelled separately; compose the whole issue before approval.'}),list);
+   for(const problem of result.problems)results.append(element('p',{className:'muted',textContent:problem.pageNumber?`Page ${problem.pageNumber}: ${problem.error}`:problem.error}));
    const apply=element('button',{className:'outline',textContent:'Load this plan into the issue builder'});
    apply.onclick=()=>{
     plannedPages.length=0;
-    for(const p of result.pages){const template=p.template||library.templates.find(t=>t.id===p.templateId);plannedPages.push({id:p.id,pageNumber:p.pageNumber,templateId:template.id,articleIds:p.articleIds,mode:'replace',template:copy(template),baseTemplate:copy(template),blocks:[],sharedFields:copy(sharedFields),controls:Object.fromEntries(controls.map(k=>[k,$(k).value]))});}
-    coverFeatured=[...result.featured];if(typeof renderIssuePlan==='function')renderIssuePlan();
+    for(const p of result.pages){const template=p.template||library.templates.find(t=>t.id===p.templateId);plannedPages.push(p.suggestionStatus?{...copy(p),template:copy(template),baseTemplate:copy(template),blocks:copy(p.blocks||[]),sharedFields:copy(p.sharedFields||sharedFields),controls:p.controls||Object.fromEntries(controls.map(k=>[k,$(k).value]))}:copy(p));}
+    coverFeatured=[...result.featured];issue.layoutPlan={...issue.layoutPlan,articleFlows:copy(result.articleFlows||{})};if(typeof renderIssuePlan==='function')renderIssuePlan();
     status.textContent='Plan loaded. Review the cover options, then generate the whole issue.';
    };
    results.append(apply);
-   status.textContent=`Plan for ${result.pages.length} pages.`+(result.pages.length%4?' Add pages to reach a multiple of four for print.':'');
+   status.textContent=`Proposal uses the fixed ${result.pageBudget} pages. ${result.unplaced.length} article(s) remain unplaced.`+(result.pageBudget%4?' The page budget is not a multiple of four.':'');
   }catch(error){status.textContent=error.message;}finally{busy(false);}
  };
 }

@@ -82,6 +82,7 @@ function editorShell(){
 }
 function editorBaseRect(slot,actual){
  if(selected.kind!=='story'||!blocks.length||slot.role==='folio'||slot.role==='text')return [...actual];
+ if(selected.reservationLayout){const regions=selected.reservationLayout.regions;if(!regions.some(r=>actual[0]>=r[0]&&actual[1]>=r[1]&&actual[2]<=r[2]&&actual[3]<=r[3]))throw Error('Keep this frame inside one of the eligible editorial regions.');return [...actual];}
  const box=contentBox(selected),area=freeArea(blocks,box);if(!area)throw Error('No usable story area remains.');
  if(actual[0]<area[0]||actual[1]<area[1]||actual[2]>area[2]||actual[3]>area[3])throw Error('Keep this frame inside the free story area around the reserved pieces.');
  return [box[0]+(actual[0]-area[0])*(box[2]-box[0])/(area[2]-area[0]),box[1]+(actual[1]-area[1])*(box[3]-box[1])/(area[3]-area[1]),box[0]+(actual[2]-area[0])*(box[2]-box[0])/(area[2]-area[0]),box[1]+(actual[3]-area[1])*(box[3]-box[1])/(area[3]-area[1])];

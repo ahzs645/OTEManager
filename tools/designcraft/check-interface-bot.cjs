@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Walks the app like an editor, on a desktop and a phone, and reports what breaks: page errors, failed
-// requests, sideways scrolling, undersized touch targets, then the Publications → DesignCraft flow.
+// requests, sideways scrolling, undersized touch targets, then Publications → Issue Studio → layouts → editor → plan → composition.
 //   PLAYWRIGHT_CORE=/path/to/playwright-core node tools/designcraft/check-interface-bot.cjs [--base URL] [--out DIR]
 // It clicks and saves, so it only runs against a local app and refuses every other host.
 const fs = require('node:fs'), path = require('node:path');
@@ -47,54 +47,42 @@ async function walk(browser, device, options, report) {
     catch (e) { flow.push({ name, ok: false, ms: Date.now() - started, error: e.message.split('\n')[0].slice(0, 200) }); await page.screenshot({ path: path.join(shots, 'failed-' + name.replace(/\W+/g, '-') + '.png') }).catch(() => {}); return false; }
   };
   const plannerFrame = () => page.frames().find((f) => /designcraft\/(index\.html)?\?/.test(f.url()) || /workspace=1/.test(f.url()));
-  const ok = await step('open the issue on Publications', async () => {
+  const designer = async () => { for (let i = 0; i < 120; i++) { const f = plannerFrame(); if (f && await f.evaluate(() => !!document.getElementById('browser-suggest-issue')).catch(() => false)) return f; await page.waitForTimeout(500); } throw new Error('Designer frame not found: ' + page.frames().map((f) => f.url()).join(' ')); };
+  const idle = (frame, id) => frame.waitForFunction((id) => { const b = document.getElementById(id); return b && !b.disabled; }, id, { timeout: 280000 });
+  const opened = await step('open the issue on Publications', async () => {
     await page.goto(BASE + '/publications', { waitUntil: 'networkidle' });
     const issue = page.getByText('Bot test issue').first();
     for (let tries = 0; tries < 8 && !(await issue.isVisible()); tries++) { await page.getByText(/^Volume 33/).first().click(); await page.waitForTimeout(700); }
     await issue.waitFor({ timeout: 5000 });
     await page.screenshot({ path: path.join(shots, 'publications-open.png'), fullPage: true });
-  }) && await step('open the DesignCraft export', async () => {
-    const row = page.locator('div').filter({ hasText: /10 articles/ }).filter({ has: page.getByRole('button', { name: /DesignCraft ZIP/ }) }).last();
-    await row.getByRole('button', { name: /DesignCraft ZIP/ }).click();
-    await page.getByRole('dialog').or(page.locator('.btn-primary:visible')).first().waitFor({ timeout: 15000 });
-    await page.waitForTimeout(1500);
-    await page.screenshot({ path: path.join(shots, 'export-modal.png') });
-    return (await page.locator('.btn-primary:visible').allInnerTexts()).map((t) => t.trim());
-  }) && await step('send the issue to the planner', async () => {
-    await page.getByRole('button', { name: 'Open selected in DesignCraft' }).click();
-    await page.waitForURL(/utilities\/designcraft/, { timeout: 60000 });
-    await page.waitForFunction(() => !/Loading page planner/.test(document.body.innerText), null, { timeout: 60000 });
-    await page.waitForTimeout(3000);
-    await page.screenshot({ path: path.join(shots, 'planner-loaded.png') });
-    const frame = plannerFrame();
-    if (!frame) throw new Error('Planner frame not found: ' + page.frames().map((f) => f.url()).join(' '));
-    return await frame.evaluate(() => ({ variantsEnabled: !document.getElementById('browser-variants')?.disabled, articles: document.querySelectorAll('[id^=article-], .assignment select').length, photoFit: !!document.getElementById('browser-compose-photo-fit') }));
-  }) && await step('find fitting layouts', async () => {
-    const frame = plannerFrame();
-    // A single story with a square photo: the default pairing is too long for one page.
-    await frame.evaluate(() => {
-      const recipe = document.getElementById('selected-template'); recipe.value = 'story-1-top-balanced'; recipe.dispatchEvent(new Event('change', { bubbles: true }));
-    });
+  }) && await step('open Issue Studio', async () => {
+    const row = page.locator('div').filter({ hasText: /10 articles/ }).filter({ has: page.getByRole('button', { name: 'Design issue' }) }).last();
+    await row.getByRole('button', { name: 'Design issue' }).click();
+    await page.waitForURL(/publications\/issues\/.*\/studio/, { timeout: 30000 });
+    await page.getByRole('heading', { name: 'Issue map', exact: true }).waitFor({ timeout: 30000 });
+    await page.screenshot({ path: path.join(shots, 'studio.png'), fullPage: true });
+    return await page.evaluate(measure);
+  }) && await step('open the designer', async () => {
+    await page.getByRole('button', { name: 'Open designer', exact: true }).first().click();
+    const frame = await designer();
+    await page.waitForTimeout(2000);
+    return await frame.evaluate(() => ({ photoFit: !!document.getElementById('browser-compose-photo-fit') }));
+  });
+  const layouts = opened && await step('find fitting layouts', async () => {
+    const frame = await designer();
+    await frame.evaluate(() => { const recipe = document.getElementById('selected-template'); recipe.value = 'story-1-top-balanced'; recipe.dispatchEvent(new Event('change', { bubbles: true })); });
     await page.waitForTimeout(400);
-    await frame.evaluate(() => {
-      const story = [...document.querySelectorAll('select')].find((s) => [...s.options].some((o) => o.text.startsWith('Graduate Students')));
-      story.value = [...story.options].find((o) => o.text.startsWith('Graduate Students')).value; story.dispatchEvent(new Event('change', { bubbles: true }));
-    });
+    await frame.evaluate(() => { const story = [...document.querySelectorAll('select')].find((s) => [...s.options].some((o) => o.text.startsWith('Graduate Students'))); story.value = [...story.options].find((o) => o.text.startsWith('Graduate Students')).value; story.dispatchEvent(new Event('change', { bubbles: true })); });
     await page.waitForTimeout(400);
     await frame.evaluate(() => document.getElementById('browser-variants').click());
-    await frame.waitForFunction(() => { const b = document.getElementById('browser-variants'); return b && !b.disabled; }, null, { timeout: 180000 });
-    await page.waitForTimeout(800);
-    await page.screenshot({ path: path.join(shots, 'planner-variants.png'), fullPage: false });
-    return await frame.evaluate(() => ({
-      status: document.querySelector('#browser-compose-status, [id*=status]')?.textContent?.slice(0, 160),
-      cards: [...document.querySelectorAll('.browser-variant')].map((c) => c.innerText.replace(/\s+/g, ' ').slice(0, 220)),
-      rejected: document.querySelector('#browser-compose-results details li')?.textContent?.slice(0, 200),
-    }));
+    await page.waitForTimeout(500);
+    await idle(frame, 'browser-variants');
+    await page.screenshot({ path: path.join(shots, 'planner-variants.png') });
+    return await frame.evaluate(() => ({ status: document.getElementById('browser-compose-status')?.textContent?.slice(0, 120), cards: [...document.querySelectorAll('.browser-variant')].map((c) => c.innerText.replace(/\s+/g, ' ').slice(0, 130)).slice(0, 2) }));
   });
-  if (ok) await step('use a layout and open the editor', async () => {
-    const frame = plannerFrame();
-    const use = frame.getByRole('button', { name: 'Use this layout' }).first();
-    if (await use.count()) await use.evaluate((b) => b.click());
+  if (layouts) await step('generate a layout and open the editor', async () => {
+    const frame = await designer();
+    await frame.getByRole('button', { name: 'Use this layout' }).first().evaluate((b) => b.click());
     await page.waitForTimeout(500);
     await page.getByRole('button', { name: /Generate & edit/ }).click();
     await page.waitForFunction(() => { const tab = document.getElementById('dc-editor-tab'); return tab && !tab.disabled; }, null, { timeout: 180000 });
@@ -108,9 +96,35 @@ async function walk(browser, device, options, report) {
     await page.screenshot({ path: path.join(shots, 'editor.png') });
     const message = await frame2.evaluate(() => document.getElementById('designcraft_loading')?.textContent ?? '');
     if (/could not load/.test(message)) throw new Error(message);
-    return { editorUrl: frame2.url().replace(BASE, ''), workspaceText: (await page.locator('body').innerText()).replace(/\s+/g, ' ').slice(-200) };
+    await page.locator('#dc-plan-tab').click();
+    await page.waitForTimeout(800);
+    return frame2.url().replace(BASE, '');
   });
-  report[device] = { pages, flow, problems, flowReachedModal: !!ok };
+  if (opened) await step('suggest a whole-issue plan', async () => {
+    const frame = await designer();
+    await frame.evaluate(() => { const d = document.getElementById('browser-compose-design'); d.value = 'ote-2025'; d.dispatchEvent(new Event('change', { bubbles: true })); document.getElementById('browser-compose-photo-fit').checked = true; document.getElementById('browser-suggest-issue').click(); });
+    await page.waitForTimeout(500);
+    await idle(frame, 'browser-suggest-issue');
+    await page.screenshot({ path: path.join(shots, 'studio-plan.png') });
+    const detail = await frame.evaluate(() => ({ status: document.getElementById('browser-compose-status')?.textContent?.slice(0, 160), pages: document.querySelectorAll('#browser-compose-results ol li').length, fitted: [...document.querySelectorAll('#browser-compose-results ol li')].filter((l) => /text wraps|photo/.test(l.textContent)).length, notes: [...document.querySelectorAll('#browser-compose-results p')].map((l) => l.textContent.slice(0, 190)).filter((t) => /Not placed|cannot print/.test(t)) }));
+    await frame.getByRole('button', { name: 'Load this plan into the issue builder' }).evaluate((b) => b.click());
+    await page.waitForTimeout(1200);
+    return detail;
+  }) && await step('save and compose the issue', async () => {
+    await page.getByRole('button', { name: 'Save issue', exact: true }).first().click();
+    await page.waitForTimeout(2500);
+    const close = page.getByRole('button', { name: 'Close designer', exact: true });
+    if (await close.isVisible().catch(() => false)) await close.click();
+    await page.getByRole('button', { name: /Compose saved revision/ }).click();
+    await page.getByRole('button', { name: 'Compose saved revision', exact: true }).waitFor({ timeout: 280000 });
+    await page.waitForTimeout(1500);
+    await page.screenshot({ path: path.join(shots, 'studio-composed.png'), fullPage: true });
+    const text = (await page.locator('body').innerText()).replace(/\s+/g, ' ');
+    const outcome = text.match(/Composition: (\w+)/)?.[1];
+    if (outcome !== 'completed' && !/DesignCraft checked/.test(text)) throw new Error('Composition did not complete: ' + (text.match(/Composition failed.{0,220}/)?.[0] ?? outcome));
+    return { outcome, overflow: (await page.evaluate(measure)).overflow, release: text.match(/Release checks: \d+ unresolved/)?.[0] };
+  });
+  report[device] = { pages, flow, problems };
   return { page, context, step, shots, flow, problems };
 }
 module.exports = { walk, DEVICES, BASE, OUT };
